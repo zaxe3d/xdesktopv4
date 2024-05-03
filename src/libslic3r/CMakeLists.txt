@@ -453,6 +453,8 @@ set(lisbslic3r_sources
     Interlocking/InterlockingGenerator.cpp
     Interlocking/VoxelUtils.hpp
     Interlocking/VoxelUtils.cpp
+    Format/ZaxeArchive.hpp
+    Format/ZaxeArchive.cpp
 )
 
 if (APPLE)

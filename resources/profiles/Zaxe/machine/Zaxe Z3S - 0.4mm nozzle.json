@@ -1,0 +1,7 @@
+{
+    "type": "machine",
+    "name": "Zaxe Z3S - 0.4mm nozzle",
+    "from": "system",
+    "instantiation": "true",
+    "inherits": "Zaxe_machine_common"
+}

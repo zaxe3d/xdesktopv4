@@ -1,0 +1,7 @@
+{
+    "type": "filament",
+    "name": "Zaxe PLA @Z3S",
+    "from": "system",
+    "instantiation": "true",
+    "inherits": "Zaxe PLA @base"
+}

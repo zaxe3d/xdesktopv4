@@ -1,0 +1,12 @@
+{
+    "type": "machine_model",
+    "name": "Z3S Revo HF",
+    "model_id": "Z3S Revo HF",
+    "nozzle_diameter": "0.4;0.6;0.8",
+    "machine_tech": "FFF",
+    "family": "Z3",
+    "bed_model": "z3_bed_v3.stl",
+    "bed_texture": "z3_bed_texture_v2.svg",
+    "hotend_model": "",
+    "default_materials": "Zaxe ABS @Z3S;Zaxe PLA @Z3S"
+}

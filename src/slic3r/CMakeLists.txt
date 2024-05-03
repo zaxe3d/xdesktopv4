@@ -565,6 +565,19 @@ set(SLIC3R_GUI_SOURCES
     GUI/Jobs/OAuthJob.hpp
     Utils/SimplyPrint.cpp
     Utils/SimplyPrint.hpp
+
+    GUI/NetworkMachineManager.cpp
+    GUI/NetworkMachineManager.hpp
+    GUI/Device.cpp
+    GUI/Device.hpp
+    GUI/CustomIPDialog.cpp
+    GUI/CustomIPDialog.hpp
+    Utils/NetworkMachine.cpp
+    Utils/NetworkMachine.hpp
+    Utils/BroadcastReceiver.cpp
+    Utils/BroadcastReceiver.hpp
+    Utils/WebSocket.cpp
+    Utils/WebSocket.hpp
 )
 
 if (WIN32)
