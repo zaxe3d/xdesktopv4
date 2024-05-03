@@ -1,0 +1,67 @@
+{
+    "name": "Zaxe",
+    "url": "",
+    "version": "02.00.02.00",
+    "force_update": "0",
+    "description": "Zaxe configurations",
+    "machine_model_list": [
+        {
+            "name": "Z3S Revo HF",
+            "sub_path": "machine/Z3S Revo HF.json"
+        }
+    ],
+    "process_list": [
+        {
+            "name": "Zaxe_process_common",
+            "sub_path": "process/Zaxe_process_common.json"
+        },
+        {
+            "name": "Zaxe_process_0.20mm",
+            "sub_path": "process/Zaxe_process_0.20mm.json"
+        },
+        {
+            "name": "0.20mm Recommended @Z3S",
+            "sub_path": "process/0.20mm Recommended @Z3S.json"
+        }
+    ],
+    "filament_list": [
+        {
+            "name": "Zaxe_filament_common",
+            "sub_path": "filament/Zaxe_filament_common.json"
+        },
+        {
+            "name": "Zaxe_filament_abs",
+            "sub_path": "filament/Zaxe_filament_abs.json"
+        },
+        {
+            "name": "Zaxe ABS @base",
+            "sub_path": "filament/Zaxe ABS @base.json"
+        },
+        {
+            "name": "Zaxe ABS @Z3S",
+            "sub_path": "filament/Zaxe ABS @Z3S.json"
+        },
+        {
+            "name": "Zaxe_filament_pla",
+            "sub_path": "filament/Zaxe_filament_pla.json"
+        },
+        {
+            "name": "Zaxe PLA @base",
+            "sub_path": "filament/Zaxe PLA @base.json"
+        },
+        {
+            "name": "Zaxe PLA @Z3S",
+            "sub_path": "filament/Zaxe PLA @Z3S.json"
+        }
+    ],
+    "machine_list": [
+        {
+            "name": "Zaxe_machine_common",
+            "sub_path": "machine/Zaxe_machine_common.json"
+        },
+        {
+            "name": "Zaxe Z3S - 0.4mm nozzle",
+            "sub_path": "machine/Zaxe Z3S - 0.4mm nozzle.json"
+        }
+    ]
+}

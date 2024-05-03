@@ -15,6 +15,7 @@
 #include "libslic3r/Preset.hpp"
 #include "libslic3r/BoundingBox.hpp"
 #include "libslic3r/GCode/GCodeProcessor.hpp"
+#include "libslic3r/Format/ZaxeArchive.hpp"
 #include "Jobs/Job.hpp"
 #include "Jobs/Worker.hpp"
 #include "Search.hpp"
@@ -187,6 +188,8 @@ public:
     Search::OptionsSearcher&        get_searcher();
     std::string&                    get_search_line();
 
+    void show_carousel(bool show);
+
 private:
     struct priv;
     std::unique_ptr<priv> p;
@@ -351,6 +354,7 @@ public:
     void enable_sidebar(bool enabled);
     bool is_sidebar_collapsed() const;
     void collapse_sidebar(bool collapse);
+    void toggle_sidebar_content();
     Sidebar::DockingState get_sidebar_docking_state() const;
 
     void reset_window_layout();
@@ -398,7 +402,7 @@ public:
     void send_gcode_finish(wxString name);
     void export_core_3mf();
     static TriangleMesh combine_mesh_fff(const ModelObject& mo, int instance_id, std::function<void(const std::string&)> notify_func = {});
-    void export_stl(bool extended = false, bool selection_only = false, bool multi_stls = false);
+    void export_stl(bool extended = false, bool selection_only = false, bool multi_stls = false, bool zaxe_file_temp_export = false);
     //BBS: remove amf
     //void export_amf();
     //BBS add extra param for exporting 3mf silence
@@ -480,6 +484,7 @@ public:
     // BBS
     //void show_action_buttons(const bool is_ready_to_slice) const;
 
+    wxString get_filename();
     wxString get_project_filename(const wxString& extension = wxEmptyString) const;
     wxString get_export_gcode_filename(const wxString& extension = wxEmptyString, bool only_filename = false, bool export_all = false) const;
     void set_project_filename(const wxString& filename);
@@ -518,6 +523,9 @@ public:
     PrinterTechnology   printer_technology() const;
     const DynamicPrintConfig * config() const;
     bool                set_printer_technology(PrinterTechnology printer_technology);
+
+    // see if we need a zaxe file according to technology and selected printer model on config change.
+    void check_and_set_zaxe_file();
 
     //BBS
     void cut_selection_to_clipboard();
@@ -774,6 +782,10 @@ public:
         return m_arrange_running.compare_exchange_strong(prevRunning, true);
     };
     std::atomic<bool> m_arrange_running{false};
+
+    std::string get_gcode_path();
+    std::string get_zaxe_code_path();
+    const ZaxeArchive& get_zaxe_archive() const;
 
 private:
     struct priv;

@@ -534,6 +534,17 @@ public:
             return std::string();
         return this->get_selected_preset().name;
     }
+    bool            is_selected_preset_zaxe_premium() const {
+        std::string pname = get_selected_preset_name();
+        return is_selected_preset_zaxe() &&
+               pname.find("Z3") != std::string::npos;
+    }
+    bool            is_selected_preset_zaxe() const {
+        std::string pname = get_selected_preset_name();
+        return pname.find("Zaxe") != std::string::npos &&
+               pname.find("X3") == std::string::npos &&
+               pname.find("lite") == std::string::npos;
+    }
     // For the current edited preset, return the parent preset if there is one.
     // If there is no parent preset, nullptr is returned.
     // The parent preset may be a system preset or a user preset, which will be
