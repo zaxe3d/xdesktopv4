@@ -447,6 +447,9 @@ set(lisbslic3r_sources
     calib.cpp
         GCode/Thumbnails.cpp
         GCode/Thumbnails.hpp
+
+    Format/ZaxeArchive.hpp
+    Format/ZaxeArchive.cpp
 )
 
 if (APPLE)

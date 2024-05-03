@@ -1,0 +1,7 @@
+{
+    "type": "filament",
+    "name": "Zaxe ABS @Z3S",
+    "from": "system",
+    "instantiation": "true",
+    "inherits": "Zaxe ABS @base"
+}

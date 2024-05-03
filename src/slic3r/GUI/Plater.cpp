@@ -167,6 +167,8 @@
 #include "DailyTips.hpp"
 #include "CreatePresetsDialog.hpp"
 
+#include "NetworkMachineManager.hpp"
+
 using boost::optional;
 namespace fs = boost::filesystem;
 using Slic3r::_3DScene;
@@ -329,6 +331,8 @@ enum class ActionButtonType : int {
 struct Sidebar::priv
 {
     Plater *plater;
+
+    NetworkMachineManager* machine_manager{nullptr};
 
     wxPanel *scrolled;
     PlaterPresetComboBox *combo_print;
@@ -1020,7 +1024,13 @@ Sidebar::Sidebar(Plater *parent)
     p->object_layers->Hide();
     p->sizer_params->Add(p->object_layers->get_sizer(), 0, wxEXPAND | wxTOP, 0);
 
+    p->machine_manager = new NetworkMachineManager(this,
+                                                   wxSize(GetSize().GetWidth(),
+                                                          -1));
+    p->machine_manager->Show(false);                                          
+
     auto *sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(p->machine_manager, 1, wxEXPAND);
     sizer->Add(p->scrolled, 1, wxEXPAND);
     SetSizer(sizer);
 }
@@ -1854,6 +1864,11 @@ std::string& Sidebar::get_search_line()
     return p->searcher.search_string();
 }
 
+void Sidebar::show_carousel(bool show) {
+    p->machine_manager->Show(show);
+    p->scrolled->Show(!show);
+}
+
 void Sidebar::auto_calc_flushing_volumes(const int modify_id)
 {
     auto& preset_bundle = wxGetApp().preset_bundle;
@@ -2064,6 +2079,7 @@ struct Plater::priv
     {
         bool                  is_enabled{false};
         bool                  is_collapsed{false};
+        bool                  is_carousel_visible{false};
         bool                  show{false};
     } sidebar_layout;
     Bed3D bed;
@@ -2204,6 +2220,7 @@ struct Plater::priv
 
     void enable_sidebar(bool enabled);
     void collapse_sidebar(bool collapse);
+    void toggle_sidebar_content();
     void update_sidebar(bool force_update = false);
     void reset_window_layout();
     Sidebar::DockingState get_sidebar_docking_state();
@@ -2251,7 +2268,7 @@ struct Plater::priv
     std::vector<size_t> load_model_objects(const ModelObjectPtrs& model_objects, bool allow_negative_z = false, bool split_object = false);
 
     fs::path get_export_file_path(GUI::FileType file_type);
-    wxString get_export_file(GUI::FileType file_type);
+    wxString get_export_file(GUI::FileType file_type, bool zaxe_file_temp_export = false);
 
     // BBS
     void load_auxiliary_files();
@@ -2474,6 +2491,7 @@ struct Plater::priv
 
     void bring_instance_forward() const;
 
+    wxString get_filename();
     // returns the path to project file with the given extension (none if extension == wxEmptyString)
     // extension should contain the leading dot, i.e.: ".3mf"
     wxString get_project_filename(const wxString& extension = wxEmptyString) const;
@@ -2507,6 +2525,11 @@ struct Plater::priv
     bool PopupObjectTable(int object_id, int volume_id, const wxPoint& position);
     void on_action_send_to_printer(bool isall = false);
     int update_print_required_data(Slic3r::DynamicPrintConfig config, Slic3r::Model model, Slic3r::PlateDataPtrs plate_data_list, std::string file_name, std::string file_path);
+
+    std::string get_zaxe_code_path();
+    std::string get_gcode_path();
+    const ZaxeArchive& get_zaxe_archive() const;
+
 private:
     bool layers_height_allowed() const;
 
@@ -3258,6 +3281,26 @@ void Plater::priv::collapse_sidebar(bool collapse)
     collapse_toolbar.set_tooltip(id, new_tooltip);
 
     update_sidebar();
+}
+
+void Plater::priv::toggle_sidebar_content()
+{
+    if (q->m_only_gcode)
+        return;
+
+    sidebar_layout.is_carousel_visible = !sidebar_layout.is_carousel_visible;
+
+    sidebar->show_carousel(sidebar_layout.is_carousel_visible);
+    
+
+    // Now update the tooltip in the toolbar.
+    std::string new_tooltip = sidebar_layout.is_carousel_visible
+                              ? _u8L("Switch to properties")
+                              : _u8L("Switch to carousel");
+    int id = collapse_toolbar.get_item_id("switch_to_zaxe_carousel");
+    collapse_toolbar.set_tooltip(id, new_tooltip);
+
+    update_sidebar(true);
 }
 
 void Plater::priv::update_sidebar(bool force_update) {
@@ -4416,7 +4459,7 @@ fs::path Plater::priv::get_export_file_path(GUI::FileType file_type)
     return output_file;
 }
 
-wxString Plater::priv::get_export_file(GUI::FileType file_type)
+wxString Plater::priv::get_export_file(GUI::FileType file_type, bool zaxe_file_temp_export)
 {
     wxString wildcard;
     switch (file_type) {
@@ -4424,6 +4467,7 @@ wxString Plater::priv::get_export_file(GUI::FileType file_type)
         case FT_AMF:
         case FT_3MF:
         case FT_GCODE:
+        case FT_ZAXE:
         case FT_OBJ:
             wildcard = file_wildcards(file_type);
         break;
@@ -4462,6 +4506,12 @@ wxString Plater::priv::get_export_file(GUI::FileType file_type)
             break;
         }
         default: break;
+    }
+
+    if (zaxe_file_temp_export) {
+        boost::filesystem::path temp_model_path(wxStandardPaths::Get().GetTempDir().utf8_str().data());
+        temp_model_path /= "model.stl";
+        return temp_model_path.string();
     }
 
     std::string out_dir = (boost::filesystem::path(output_file).parent_path()).string();
@@ -5144,6 +5194,21 @@ bool Plater::priv::restart_background_process(unsigned int state)
     }
     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(", Line %1%: not started")%__LINE__;
     return false;
+}
+
+std::string Plater::priv::get_gcode_path()
+{
+    return  background_process.gcode_path();
+}
+
+std::string Plater::priv::get_zaxe_code_path()
+{
+    return  background_process.zaxe_archive_path();
+}
+
+const ZaxeArchive& Plater::priv::get_zaxe_archive() const
+{
+    return  background_process.zaxe_archive();
 }
 
 void Plater::priv::export_gcode(fs::path output_path, bool output_path_on_removable_media)
@@ -7300,6 +7365,11 @@ PlateBBoxData Plater::priv::generate_first_layer_bbox()
     return bboxdata;
 }
 
+wxString Plater::priv::get_filename()
+{
+    return this->background_process.output_filename();
+}
+
 wxString Plater::priv::get_project_filename(const wxString& extension) const
 {
     if (m_project_name.empty())
@@ -7556,9 +7626,25 @@ bool Plater::priv::init_collapse_toolbar()
     if (!collapse_toolbar.add_item(item))
         return false;
 
+    GLToolbarItem::Data switch_to_zaxe_carousel;
+
+    switch_to_zaxe_carousel.name = "switch_to_zaxe_carousel";
+    switch_to_zaxe_carousel.icon_filename = "collapse.svg";
+    switch_to_zaxe_carousel.sprite_id = 0;
+    switch_to_zaxe_carousel.left.action_callback = []() {
+        auto _plater =  wxGetApp().plater();
+        if(!_plater->is_sidebar_collapsed()){
+            _plater->toggle_sidebar_content();
+        }
+    };
+
+    if (!collapse_toolbar.add_item(switch_to_zaxe_carousel))
+        return false;
+
     // Now "collapse" sidebar to current state. This is done so the tooltip
     // is updated before the toolbar is first used.
     wxGetApp().plater()->collapse_sidebar(wxGetApp().plater()->is_sidebar_collapsed());
+    wxGetApp().plater()->toggle_sidebar_content();
     return true;
 }
 
@@ -10355,6 +10441,7 @@ bool Plater::is_sidebar_enabled() const { return p->sidebar_layout.is_enabled; }
 void Plater::enable_sidebar(bool enabled) { p->enable_sidebar(enabled); }
 bool Plater::is_sidebar_collapsed() const { return p->sidebar_layout.is_collapsed; }
 void Plater::collapse_sidebar(bool collapse) { p->collapse_sidebar(collapse); }
+void Plater::toggle_sidebar_content() { p->toggle_sidebar_content(); }
 Sidebar::DockingState Plater::get_sidebar_docking_state() const { return p->get_sidebar_docking_state(); }
 
 void Plater::reset_window_layout() { p->reset_window_layout(); }
@@ -10699,13 +10786,15 @@ void Plater::export_gcode(bool prefer_removable)
             start_dir = appconfig.get_last_output_dir(default_output_file.parent_path().string(), false);
     }
 
+    const bool isZaxe = wxGetApp().preset_bundle->printers.is_selected_preset_zaxe();
+
     fs::path output_path;
     {
-        std::string ext = default_output_file.extension().string();
-        wxFileDialog dlg(this, (printer_technology() == ptFFF) ? _L("Save G-code file as:") : _L("Save SLA file as:"),
+        std::string ext = isZaxe ? ".zaxe" : (printer_technology() == ptFFF ? ".gcode" : default_output_file.extension().string());
+        wxFileDialog dlg(this, (printer_technology() == ptFFF) ? (isZaxe ? _L("Save Zaxe file as:") :  _L("Save G-code file as:")) : _L("Save SLA file as:"),
             start_dir,
-            from_path(default_output_file.filename()),
-            GUI::file_wildcards((printer_technology() == ptFFF) ? FT_GCODE : FT_SL1, ext),
+            from_path(default_output_file.stem()),
+            GUI::file_wildcards((printer_technology() == ptFFF) ? (isZaxe ? FT_ZAXE : FT_GCODE): FT_SL1, ext),
             wxFD_SAVE | wxFD_OVERWRITE_PROMPT
         );
         if (dlg.ShowModal() == wxID_OK) {
@@ -10910,7 +10999,7 @@ TriangleMesh Plater::combine_mesh_fff(const ModelObject& mo, int instance_id, st
 
 // BBS export with/without boolean, however, stil merge mesh
 #define EXPORT_WITH_BOOLEAN 0
-void Plater::export_stl(bool extended, bool selection_only, bool multi_stls)
+void Plater::export_stl(bool extended, bool selection_only, bool multi_stls, bool zaxe_file_temp_export)
 {
     if (p->model.objects.empty()) { return; }
 
@@ -10922,7 +11011,7 @@ void Plater::export_stl(bool extended, bool selection_only, bool multi_stls)
             path = dlg.GetPath() + "/";
         }
     } else {
-        path = p->get_export_file(FT_STL);
+        path = p->get_export_file(FT_STL, zaxe_file_temp_export);
     }
     if (path.empty()) { return; }
     const std::string path_u8 = into_u8(path);
@@ -12147,6 +12236,7 @@ void Plater::on_config_change(const DynamicPrintConfig &config)
         }
         else if (opt_key == "printer_model") {
             p->reset_gcode_toolpaths();
+            this->check_and_set_zaxe_file();
             // update to force bed selection(for texturing)
             bed_shape_changed = true;
             update_scheduled = true;
@@ -12303,6 +12393,11 @@ void Plater::update_print_error_info(int code, std::string msg, std::string extr
         p->main_frame->m_calibration->update_print_error_info(code, msg, extra);
 }
 
+wxString Plater::get_filename()
+{
+    return p->get_filename();
+}
+
 wxString Plater::get_project_filename(const wxString& extension) const
 {
     return p->get_project_filename(extension);
@@ -12403,6 +12498,13 @@ PrinterTechnology Plater::printer_technology() const
 
 const DynamicPrintConfig * Plater::config() const { return p->config; }
 
+void Plater::check_and_set_zaxe_file()
+{
+    const bool isZaxe = wxGetApp().preset_bundle->printers.is_selected_preset_zaxe();
+    p->label_btn_export = p->printer_technology == ptFFF && !isZaxe ?  L("Export G-code") : L("Export");
+    p->label_btn_send   = p->printer_technology == ptFFF && !isZaxe ? L("Send G-code") : L("Send to printer");
+}
+
 bool Plater::set_printer_technology(PrinterTechnology printer_technology)
 {
     p->printer_technology = printer_technology;
@@ -12419,8 +12521,7 @@ bool Plater::set_printer_technology(PrinterTechnology printer_technology)
         }
     }
 
-    p->label_btn_export = printer_technology == ptFFF ? L("Export G-code") : L("Export");
-    p->label_btn_send   = printer_technology == ptFFF ? L("Send G-code")   : L("Send to printer");
+    check_and_set_zaxe_file(); // see if we need a zaxe file according to technology and selected printer model.
 
     if (wxGetApp().mainframe != nullptr)
         wxGetApp().mainframe->update_menubar();
@@ -13609,6 +13710,10 @@ void Plater::set_need_update(bool need_update)
 {
     p->set_need_update(need_update);
 }
+
+std::string Plater::get_gcode_path() { return p->get_gcode_path(); }
+std::string Plater::get_zaxe_code_path() { return p->get_zaxe_code_path(); }
+const ZaxeArchive& Plater::get_zaxe_archive() const { return p->get_zaxe_archive(); };
 
 // BBS
 //BBS: add popup logic for table object

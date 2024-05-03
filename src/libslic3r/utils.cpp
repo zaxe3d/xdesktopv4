@@ -1242,6 +1242,23 @@ std::string xml_escape(std::string text, bool is_marked/* = false*/)
     return text;
 }
 
+std::string translate_chars(std::string text)
+{
+    // Convert to utf-16.
+    std::wstring wtext = boost::nowide::widen(text);
+
+    const std::wstring tbr = L"ğĞıİöÖüÜşŞçÇ ";
+    const std::wstring rw  = L"gGiIoOuUsScC_";
+
+    std::size_t found;
+    for (int i = 0; i < tbr.size(); i++) {
+        found = wtext.find(tbr[i]);
+        if (found != std::string::npos)
+            wtext.replace(found, 1, std::wstring(1, rw[i]));
+    }
+    return std::string(wtext.begin(), wtext.end());
+}
+
 // Definition of escape symbols https://www.w3.org/TR/REC-xml/#AVNormalize
 // During the read of xml attribute normalization of white spaces is applied
 // Soo for not lose white space character it is escaped before store

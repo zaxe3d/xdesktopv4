@@ -1,0 +1,7 @@
+{
+    "type": "filament",
+    "name": "Zaxe_filament_abs",
+    "from": "system",
+    "instantiation": "false",
+    "inherits": "Zaxe_filament_common"
+}

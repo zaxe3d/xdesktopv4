@@ -377,6 +377,7 @@ inline typename CONTAINER_TYPE::value_type& next_value_modulo(typename CONTAINER
 	return container[next_idx_modulo(idx, container.size())];
 }
 
+extern std::string translate_chars(std::string text);
 extern std::string xml_escape(std::string text, bool is_marked = false);
 extern std::string xml_escape_double_quotes_attribute_value(std::string text);
 extern std::string xml_unescape(std::string text);
@@ -434,6 +435,25 @@ public:
     void reset() { closure = Closure(); }
 };
 
+// Returns true if needle is in the haystack
+inline bool is_there(const std::string &haystack, const std::vector<std::string> &needles)
+{
+    for (auto &needle : needles)
+        if (haystack.find(needle) != std::string::npos)
+            return true;
+    return false;
+}
+
+inline bool case_insensitive_compare(const std::string& str1, const std::string& str2) {
+    std::string str1Lower = str1;
+    std::string str2Lower = str2;
+    
+    std::transform(str1Lower.begin(), str1Lower.end(), str1Lower.begin(), ::tolower);
+    std::transform(str2Lower.begin(), str2Lower.end(), str2Lower.begin(), ::tolower);
+    
+    return str1Lower == str2Lower;
+}
+
 // Shorten the dhms time by removing the seconds, rounding the dhm to full minutes
 // and removing spaces.
 inline std::string short_time(const std::string &time)
@@ -478,6 +498,31 @@ inline std::string short_time(const std::string &time)
         ::sprintf(buffer, "<1s");
     else if (seconds == 0)
         ::sprintf(buffer, "0s");
+    return buffer;
+}
+
+// Returns the given time is seconds in format HHh:MMm:SSs
+inline std::string get_time_hms(const std::string &time)
+{
+    // Parse the dhms time format.
+    int days = 0;
+    int hours = 0;
+    int minutes = 0;
+    int seconds = 0;
+    if (time.find('d') != std::string::npos)
+        ::sscanf(time.c_str(), "%dd %dh %dm %ds", &days, &hours, &minutes, &seconds);
+    else if (time.find('h') != std::string::npos)
+        ::sscanf(time.c_str(), "%dh %dm %ds", &hours, &minutes, &seconds);
+    else if (time.find('m') != std::string::npos)
+        ::sscanf(time.c_str(), "%dm %ds", &minutes, &seconds);
+    else if (time.find('s') != std::string::npos)
+        ::sscanf(time.c_str(), "%ds", &seconds);
+
+    hours += days * 24; // eliminate days.
+
+    char buffer[64];
+    ::sprintf(buffer, "%02d:%02d:%02d", hours, minutes, seconds);
+
     return buffer;
 }
 
