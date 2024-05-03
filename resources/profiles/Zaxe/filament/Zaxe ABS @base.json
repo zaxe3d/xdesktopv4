@@ -1,0 +1,10 @@
+{
+    "type": "filament",
+    "name": "Zaxe ABS @base",
+    "from": "system",
+    "instantiation": "false",
+    "inherits": "Zaxe_filament_abs",
+    "filament_notes": [
+        "zaxe_abs"
+    ]
+}

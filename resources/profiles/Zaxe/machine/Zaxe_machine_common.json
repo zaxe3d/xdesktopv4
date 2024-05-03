@@ -1,0 +1,177 @@
+{
+    "type": "machine",
+    "name": "Zaxe_machine_common",
+    "from": "system",
+    "instantiation": "false",
+    "nozzle_diameter": [
+        "0.4"
+    ],
+    "printer_variant": "0.4",
+    "support_chamber_temp_control": "0",
+    "printer_technology": "FFF",
+    "deretraction_speed": [
+        "30"
+    ],
+    "extruder_colour": [
+        "#018001"
+    ],
+    "extruder_offset": [
+        "0x0"
+    ],
+    "gcode_flavor": "klipper",
+    "silent_mode": "0",
+    "machine_max_acceleration_e": [
+        "5000",
+        "5000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "12000",
+        "12000"
+    ],
+    "machine_max_acceleration_retracting": [
+        "5000",
+        "5000"
+    ],
+    "machine_max_acceleration_x": [
+        "12000",
+        "12000"
+    ],
+    "machine_max_acceleration_y": [
+        "12000",
+        "12000"
+    ],
+    "machine_max_acceleration_z": [
+        "1500",
+        "1500"
+    ],
+    "machine_max_speed_e": [
+        "30",
+        "30"
+    ],
+    "machine_max_speed_x": [
+        "500",
+        "200"
+    ],
+    "machine_max_speed_y": [
+        "500",
+        "200"
+    ],
+    "machine_max_speed_z": [
+        "30",
+        "30"
+    ],
+    "machine_max_jerk_e": [
+        "3",
+        "3"
+    ],
+    "machine_max_jerk_x": [
+        "9",
+        "9"
+    ],
+    "machine_max_jerk_y": [
+        "9",
+        "9"
+    ],
+    "machine_max_jerk_z": [
+        "3",
+        "3"
+    ],
+    "machine_min_extruding_rate": [
+        "0",
+        "0"
+    ],
+    "machine_min_travel_rate": [
+        "0",
+        "0"
+    ],
+    "max_layer_height": [
+        "0.28"
+    ],
+    "min_layer_height": [
+        "0.08"
+    ],
+    "printable_height": "256",
+    "extruder_clearance_radius": "73",
+    "extruder_clearance_height_to_rod": "25",
+    "extruder_clearance_height_to_lid": "256",
+    "printer_settings_id": "",
+    "retraction_minimum_travel": [
+        "1"
+    ],
+    "retract_before_wipe": [
+        "0%"
+    ],
+    "retract_when_changing_layer": [
+        "1"
+    ],
+    "retraction_length": [
+        "0.8"
+    ],
+    "retract_length_toolchange": [
+        "2"
+    ],
+    "z_hop": [
+        "0.4"
+    ],
+    "retract_restart_extra": [
+        "0"
+    ],
+    "retract_restart_extra_toolchange": [
+        "0"
+    ],
+    "retraction_speed": [
+        "30"
+    ],
+    "single_extruder_multi_material": "1",
+    "support_air_filtration": "0",
+    "wipe": [
+        "1"
+    ],
+    "default_filament_profile": [
+        "Zaxe ABS @Z3S"
+    ],
+    "default_print_profile": "0.20mm Recommended @Z3S",
+    "upward_compatible_machine": [],
+    "machine_start_gcode": "G28\nG30\nG29\nM83\nG1 E3 F150\nG90\nG1 Z5 F500\nG1 X20 Y0 F10000\nG1 Z0.4 F500\nG91\nM83\nG1 X40 E15 F500\nG90\nM82\nG92 E0\n M221\n",
+    "machine_end_gcode": "",
+    "change_filament_gcode": "",
+    "purge_in_prime_tower": "0",
+    "enable_filament_ramming": "0",
+    "printable_area": [
+        "0x0",
+        "405x0",
+        "405x305",
+        "0x305"
+    ],
+    "auxiliary_fan": "0",
+    "bed_exclude_area": [],
+    "machine_max_acceleration_travel": [
+        "9000",
+        "9000"
+    ],
+    "retract_lift_below": [
+        "255"
+    ],
+    "extruder_clearance_max_radius": "73",
+    "nozzle_volume": "117",
+    "printer_structure": "i3",
+    "best_object_pos": "0.5x0.5",
+    "z_hop_types": [
+        "Auto Lift"
+    ],
+    "nozzle_type": "brass",
+    "layer_change_gcode": "; layer num/total_layer_count: {layer_num+1}/[total_layer_count]\n; update layer progress\nM73 L{layer_num+1}\nM991 S0 P{layer_num} ;notify layer change",
+    "machine_pause_gcode": "M400 U1",
+    "setting_id": "GM030",
+    "printer_model": "Z3S Revo HF",
+    "head_wrap_detect_zone": [
+        "226x224",
+        "256x224",
+        "256x256",
+        "226x256"
+    ],
+    "machine_load_filament_time": "25",
+    "machine_unload_filament_time": "29",
+    "scan_first_layer": "0",
+    "time_lapse_gcode": ""
+}

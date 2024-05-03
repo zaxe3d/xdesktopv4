@@ -1,0 +1,10 @@
+{
+    "type": "filament",
+    "name": "Zaxe PLA @base",
+    "from": "system",
+    "instantiation": "false",
+    "inherits": "Zaxe_filament_pla",
+    "filament_notes": [
+        "zaxe_pla"
+    ]
+}

@@ -1,0 +1,7 @@
+{
+    "type": "process",
+    "name": "0.20mm Recommended @Z3S",
+    "from": "system",
+    "instantiation": "true",
+    "inherits": "Zaxe_process_0.20mm"
+}

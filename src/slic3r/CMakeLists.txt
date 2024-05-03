@@ -572,6 +572,19 @@ set(SLIC3R_GUI_SOURCES
     Utils/ElegooLink.hpp
     Utils/ElegooLink.cpp
     Utils/WebSocketClient.hpp
+
+    GUI/NetworkMachineManager.cpp
+    GUI/NetworkMachineManager.hpp
+    GUI/Device.cpp
+    GUI/Device.hpp
+    GUI/CustomIPDialog.cpp
+    GUI/CustomIPDialog.hpp
+    Utils/NetworkMachine.cpp
+    Utils/NetworkMachine.hpp
+    Utils/BroadcastReceiver.cpp
+    Utils/BroadcastReceiver.hpp
+    Utils/WebSocket.cpp
+    Utils/WebSocket.hpp
 )
 
 if (WIN32)
