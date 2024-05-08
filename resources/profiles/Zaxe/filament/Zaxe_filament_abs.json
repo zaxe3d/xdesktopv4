@@ -1,7 +1,53 @@
 {
-    "type": "filament",
-    "name": "Zaxe_filament_abs",
-    "from": "system",
-    "instantiation": "false",
-    "inherits": "Zaxe_filament_common"
+  "type": "filament",
+  "name": "Zaxe_filament_abs",
+  "inherits": "fdm_filament_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA01",
+  "filament_notes": [
+    "zaxe_abs"
+  ],
+  "reduce_fan_stop_start_freq": [
+    "0"
+  ],
+  "fan_min_speed": [
+    "25"
+  ],
+  "overhang_fan_speed": [
+    "65"
+  ],
+  "nozzle_temperature": [
+    "260"
+  ],
+  "cool_plate_temp": [
+    "105"
+  ],
+  "eng_plate_temp": [
+    "105"
+  ],
+  "hot_plate_temp": [
+    "105"
+  ],
+  "textured_plate_temp": [
+    "105"
+  ],
+  "cool_plate_temp_initial_layer": [
+    "105"
+  ],
+  "eng_plate_temp_initial_layer": [
+    "105"
+  ],
+  "hot_plate_temp_initial_layer": [
+    "105"
+  ],
+  "textured_plate_temp_initial_layer": [
+    "105"
+  ],
+  "enable_pressure_advance": [
+    "1"
+  ],
+  "pressure_advance": [
+    "0.025"
+  ]
 }
