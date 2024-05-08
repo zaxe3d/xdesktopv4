@@ -1,0 +1,14 @@
+{
+  "type": "machine",
+  "name": "Zaxe Z3S - 0.4mm Revo HF OBX nozzle",
+  "from": "system",
+  "instantiation": "true",
+  "inherits": "Zaxe Z3S - 0.4mm Revo HF nozzle",
+  "printer_model": "Z3S Revo HF OBX",
+  "setting_id": "GM022",
+  "nozzle_diameter": [
+    "0.4"
+  ],
+  "printer_variant": "0.4",
+  "default_print_profile": "0.20mm, Recommended @Z3S 0.4mm OBX"
+}

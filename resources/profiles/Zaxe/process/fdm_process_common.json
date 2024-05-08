@@ -1,0 +1,6 @@
+{
+  "type": "process",
+  "name": "fdm_process_common",
+  "from": "system",
+  "instantiation": "false"
+}
