@@ -1,0 +1,11 @@
+{
+  "type": "filament",
+  "name": "Zaxe_filament_asa",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "fdm_filament_asa",
+  "filament_id": "GFA02",
+  "filament_notes": [
+    "zaxe_asa"
+  ]
+}
