@@ -1,0 +1,10 @@
+{
+  "type": "process",
+  "name": "0.56mm, Fast @Z3S 0.8mm DIAMONDBACK",
+  "from": "system",
+  "instantiation": "true",
+  "inherits": "fdm_process_zaxe_common",
+  "compatible_printers": [
+    "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle"
+  ]
+}

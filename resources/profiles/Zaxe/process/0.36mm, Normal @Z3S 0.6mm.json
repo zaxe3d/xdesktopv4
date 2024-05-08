@@ -1,0 +1,10 @@
+{
+  "type": "process",
+  "name": "0.36mm, Normal @Z3S 0.6mm",
+  "from": "system",
+  "instantiation": "true",
+  "inherits": "fdm_process_zaxe_common",
+  "compatible_printers": [
+    "Zaxe Z3S - 0.6mm Revo HF nozzle"
+  ]
+}
