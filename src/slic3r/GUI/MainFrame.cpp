@@ -2004,6 +2004,12 @@ void MainFrame::update_slice_print_status(SlicePrintEventType event, bool can_sl
 
     if (wxGetApp().mainframe)
         wxGetApp().plater()->update_title_dirty_status();
+
+    auto machine_manager = wxGetApp().plater()->sidebar().machine_manager();
+    if (machine_manager)
+    {
+        machine_manager->enablePrintNowButton(enable_print);
+    }
 }
 
 
