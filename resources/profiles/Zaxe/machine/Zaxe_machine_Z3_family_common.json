@@ -10,20 +10,12 @@
     "printer_variant": "0.4",
     "printable_area": [
         "0x0",
-        "256x0",
-        "256x256",
-        "0x256"
+        "405x0",
+        "405x305",
+        "0x305"
     ],
     "auxiliary_fan": "1",
     "bed_exclude_area": [
-        "0x0",
-        "28x0",
-        "28x28",
-        "0x28",
-        "0x28",
-        "8x28",
-        "8x256",
-        "0x256"
     ],
     "default_filament_profile": [
         "Zaxe PLA @Z3S"

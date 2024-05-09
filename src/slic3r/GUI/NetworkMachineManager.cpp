@@ -130,7 +130,11 @@ void NetworkMachineManager::onMachineOpen(MachineEvent &event)
 
     Freeze();
     shared_ptr<Device> d = make_shared<Device>(event.nm, this);
-    d->enablePrintNowButton(true); // TODO zaxe
+    d->enablePrintNowButton(m_printNowButtonEnabled);
+    auto searchText = m_searchTextCtrl->GetValue();
+    if (d->getName().Lower().Find(searchText.Lower()) == wxNOT_FOUND) {
+        d->Hide();
+    }
     m_deviceMap[event.nm->ip] = d;
     m_warningSizer->Show(m_deviceMap.empty());
     m_deviceListSizer->Add(d.get());

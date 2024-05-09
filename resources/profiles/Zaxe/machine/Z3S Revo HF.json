@@ -6,7 +6,7 @@
   "machine_tech": "FFF",
   "family": "Z3",
   "bed_model": "z3_bed_v3.stl",
-  "bed_texture": "z3_bed_texture_v2.svg",
+  "bed_texture": "",
   "hotend_model": "",
   "default_materials": "Zaxe ABS @Z3S;Zaxe ASA @Z3S;Zaxe FLEX @Z3S;Zaxe PETG @Z3S;Zaxe PLA @Z3S"
 }
