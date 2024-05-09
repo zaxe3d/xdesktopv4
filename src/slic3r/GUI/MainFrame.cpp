@@ -1941,6 +1941,12 @@ void MainFrame::update_slice_print_status(SlicePrintEventType event, bool can_sl
     m_slice_btn->Enable(enable_slice);
     m_slice_enable = enable_slice;
     m_print_enable = enable_print;
+
+    auto machine_manager = wxGetApp().plater()->sidebar().machine_manager();
+    if (machine_manager)
+    {
+        machine_manager->enablePrintNowButton(enable_print);
+    }
 }
 
 

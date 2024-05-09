@@ -167,8 +167,6 @@
 #include "DailyTips.hpp"
 #include "CreatePresetsDialog.hpp"
 
-#include "NetworkMachineManager.hpp"
-
 using boost::optional;
 namespace fs = boost::filesystem;
 using Slic3r::_3DScene;
@@ -1867,6 +1865,11 @@ std::string& Sidebar::get_search_line()
 void Sidebar::show_carousel(bool show) {
     p->machine_manager->Show(show);
     p->scrolled->Show(!show);
+}
+
+NetworkMachineManager* Sidebar::machine_manager()
+{
+    return p->machine_manager;
 }
 
 void Sidebar::auto_calc_flushing_volumes(const int modify_id)

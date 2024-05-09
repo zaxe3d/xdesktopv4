@@ -46,6 +46,8 @@
 #include "libslic3r/CutUtils.hpp"
 #include "libslic3r/FlushVolCalc.hpp"
 
+#include "NetworkMachineManager.hpp"
+
 #define FILAMENT_SYSTEM_COLORS_NUM      16
 
 class wxButton;
@@ -197,7 +199,8 @@ public:
     Search::OptionsSearcher&        get_searcher();
     std::string&                    get_search_line();
 
-    void show_carousel(bool show);
+    void                   show_carousel(bool show);
+    NetworkMachineManager* machine_manager();
 
 private:
     struct priv;
