@@ -4,6 +4,7 @@
     "inherits": "fdm_machine_common",
     "from": "system",
     "instantiation": "false",
+    "zaxe_bed_leveling": "1",
     "nozzle_diameter": [
         "0.4"
     ],

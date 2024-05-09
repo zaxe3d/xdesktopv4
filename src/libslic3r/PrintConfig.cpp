@@ -3636,6 +3636,13 @@ void PrintConfigDef::init_fff_params()
     def->mode = comAdvanced;
     def->set_default_value(new ConfigOptionBool(false));
 
+    def          = this->add("zaxe_bed_leveling", coBool);
+    def->label   = L("Mesh level (G29)");
+    def->tooltip = L("This flag enables/disables the mesh leveling after homing. If unchecked will use the previous bed leveling mesh. "
+                     "This can greatly reduce initial time to start the file.");
+    def->mode    = comAdvanced;
+    def->set_default_value(new ConfigOptionBool(false));
+
     def = this->add("seam_position", coEnum);
     def->label = L("Seam position");
     def->category = L("Quality");
