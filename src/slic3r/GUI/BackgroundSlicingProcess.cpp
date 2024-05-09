@@ -929,7 +929,7 @@ void BackgroundSlicingProcess::prepare_zaxe_file()
 	zip_path /= (boost::format("%1%.zaxe") % boost::filesystem::path(m_print->output_filename("")).stem().string()).str();
 	m_zaxe_archive_path = zip_path.string();
 	std::string model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
-	auto bl = true; // TODO Zaxe GUI::wxGetApp().mainframe->m_plater->is_bed_level_active();
+	auto bl = current_print()->full_print_config().option<ConfigOptionBool>("zaxe_bed_leveling")->value;
 	if (is_there(model, {"Z1", "Z2", "Z3"})) {
 		if (is_there(model, {"Z2", "Z3"})) // export stl if model is Z2 or Z3.
 		{

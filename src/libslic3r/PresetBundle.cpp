@@ -326,22 +326,26 @@ Semver PresetBundle::get_vendor_profile_version(std::string vendor_name)
 
 VendorType PresetBundle::get_current_vendor_type()
 {
-    auto        t      = VendorType::Unknown;
+    auto t           = VendorType::Unknown;
+    auto vendor_name = get_current_vendor();
+    if (!vendor_name.empty()) {
+        if (vendor_name.compare("BBL") == 0)
+            t = VendorType::Marlin_BBL;
+    }
+    return t;
+}
+
+std::string PresetBundle::get_current_vendor()
+{
     auto        config = &printers.get_edited_preset().config;
     std::string vendor_name;
     for (auto vendor_profile : vendors) {
         for (auto vendor_model : vendor_profile.second.models)
             if (vendor_model.name == config->opt_string("printer_model")) {
-                vendor_name = vendor_profile.first;
-                break;
+                return vendor_profile.first;
             }
     }
-    if (!vendor_name.empty())
-    {
-        if(vendor_name.compare("BBL") == 0)
-            t = VendorType::Marlin_BBL;
-    }
-    return t;
+    return "";
 }
 
 bool PresetBundle::use_bbl_network()

@@ -1162,6 +1162,9 @@ PRINT_CONFIG_CLASS_DEFINE(
     ((ConfigOptionStrings,              small_area_infill_flow_compensation_model))
 
     ((ConfigOptionBool,                has_scarf_joint_seam))
+
+    // Zaxe
+    ((ConfigOptionBool,                zaxe_bed_leveling))
 )
 
 // This object is mapped to Perl as Slic3r::Config::Print.
