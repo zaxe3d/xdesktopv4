@@ -99,6 +99,9 @@ public:
     bool is_bbl_vendor() { return get_current_vendor_type() == VendorType::Marlin_BBL; }
     bool use_bbl_network();
 
+    std::string get_current_vendor();
+    bool is_zaxe_vendor() { return get_current_vendor() == "Zaxe"; }
+
     //BBS: project embedded preset logic
     PresetsConfigSubstitutions load_project_embedded_presets(std::vector<Preset*> project_presets, ForwardCompatibilitySubstitutionRule substitution_rule);
     std::vector<Preset*> get_current_project_embedded_presets();

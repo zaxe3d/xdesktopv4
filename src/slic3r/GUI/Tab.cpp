@@ -3705,6 +3705,10 @@ void TabPrinter::build_fff()
         option.opt.full_width = true;
         option.opt.height = notes_field_height;//250;
         optgroup->append_single_option_line(option);
+
+    page = add_options_page(L("Others"), "advanced");
+        optgroup = page->new_optgroup(L("Calibration"));
+        optgroup->append_single_option_line("zaxe_bed_leveling");
 #if 0
     //page = add_options_page(L("Dependencies"), "advanced");
     //    optgroup = page->new_optgroup(L("Profile dependencies"));
@@ -4181,6 +4185,12 @@ void TabPrinter::toggle_options()
        is_BBL_printer = wxGetApp().preset_bundle->is_bbl_vendor();
     }
 
+    //Zaxe: whether the preset is Zaxe printer
+    bool is_zaxe_printer = false;
+    if (m_preset_bundle) {
+       is_zaxe_printer = wxGetApp().preset_bundle->is_zaxe_vendor();
+    }
+
     bool have_multiple_extruders = true;
     //m_extruders_count > 1;
     //if (m_active_page->title() == "Custom G-code") {
@@ -4283,6 +4293,10 @@ void TabPrinter::toggle_options()
         for (int i = 0; i < max_field; ++i)
             toggle_option("machine_max_acceleration_travel", gcf != gcfMarlinLegacy && gcf != gcfKlipper, i);
         toggle_line("machine_max_acceleration_travel", gcf != gcfMarlinLegacy && gcf != gcfKlipper);
+    }
+
+    if (m_active_page->title() == L("Others")) {
+        toggle_line("zaxe_bed_leveling", is_zaxe_printer);
     }
 }
 
