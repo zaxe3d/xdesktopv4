@@ -317,6 +317,8 @@ struct Sidebar::priv
 {
     Plater *plater;
 
+    Button* mode_settings{nullptr};
+    Button* mode_carousel{nullptr};
     NetworkMachineManager* machine_manager{nullptr};
 
     wxPanel *scrolled;
@@ -615,7 +617,7 @@ Sidebar::Sidebar(Plater *parent)
     wxGetApp().UpdateDarkUI(this);
     wxGetApp().UpdateDarkUI(p->scrolled);
 #else
-    SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_WINDOW));
+    SetBackgroundColour(*wxWHITE);
 #endif
 #endif
 
@@ -694,7 +696,7 @@ Sidebar::Sidebar(Plater *parent)
 
         /*************************** 2. add printer content ************************/
         p->m_panel_printer_content = new wxPanel(p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL);
-        p->m_panel_printer_content->SetBackgroundColour(wxColour(255, 255, 255));
+        p->m_panel_printer_content->SetBackgroundColour(*wxWHITE);
 
         PlaterPresetComboBox* combo_printer = new PlaterPresetComboBox(p->m_panel_printer_content, Preset::TYPE_PRINTER);
         ScalableButton* edit_btn = new ScalableButton(p->m_panel_printer_content, wxID_ANY, "edit");
@@ -709,7 +711,7 @@ Sidebar::Sidebar(Plater *parent)
         p->combo_printer = combo_printer;
 
         connection_btn = new ScalableButton(p->m_panel_printer_content, wxID_ANY, "monitor_signal_strong");
-        connection_btn->SetBackgroundColour(wxColour(255, 255, 255));
+        connection_btn->SetBackgroundColour(*wxWHITE);
         connection_btn->SetToolTip(_L("Connection"));
         connection_btn->Bind(wxEVT_BUTTON, [this, combo_printer](wxCommandEvent)
             {
@@ -957,7 +959,7 @@ Sidebar::Sidebar(Plater *parent)
 
     // add filament content
     p->m_panel_filament_content = new wxPanel( p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
-    p->m_panel_filament_content->SetBackgroundColour( wxColour( 255, 255, 255 ) );
+    p->m_panel_filament_content->SetBackgroundColour(*wxWHITE);
 
     //wxBoxSizer* bSizer_filament_content;
     //bSizer_filament_content = new wxBoxSizer( wxHORIZONTAL );
@@ -981,7 +983,7 @@ Sidebar::Sidebar(Plater *parent)
     combo_and_btn_sizer->Add(p->combos_filament[0], 1, wxALL | wxEXPAND, FromDIP(2))->SetMinSize({-1, FromDIP(30) });
 
     ScalableButton* edit_btn = new ScalableButton(p->m_panel_filament_content, wxID_ANY, "edit");
-    edit_btn->SetBackgroundColour(wxColour(255, 255, 255));
+    edit_btn->SetBackgroundColour(*wxWHITE);
     edit_btn->SetToolTip(_L("Click to edit preset"));
 
     PlaterPresetComboBox* combobox = p->combos_filament[0];
@@ -1071,12 +1073,62 @@ Sidebar::Sidebar(Plater *parent)
     p->object_layers->Hide();
     p->sizer_params->Add(p->object_layers->get_sizer(), 0, wxEXPAND | wxTOP, 0);
 
+    auto z_mode_sizer = new wxBoxSizer(wxHORIZONTAL);
+
+    auto       this_bg = *wxWHITE; // StaticBox::GetParentBackgroundColor(this);
+    StateColor active_btn_bg(std::pair<wxColour, int>(this_bg, StateColor::Disabled),
+                             std::pair<wxColour, int>(this_bg, StateColor::Pressed), std::pair<wxColour, int>(this_bg, StateColor::Hovered),
+                             std::pair<wxColour, int>(this_bg, StateColor::Normal));
+    auto       active_fg = wxColour(0, 154, 222);
+
+    wxString   inactive_bg = "#F2F4F7";
+    StateColor inactive_btn_bg(std::pair<wxColour, int>(inactive_bg, StateColor::Disabled),
+                               std::pair<wxColour, int>(inactive_bg, StateColor::Pressed),
+                               std::pair<wxColour, int>(inactive_bg, StateColor::Hovered),
+                               std::pair<wxColour, int>(inactive_bg, StateColor::Normal));
+    wxString   inactive_fg = "#667085";
+
+    auto create_mode_button = [=, this](const wxString& label, bool is_active, auto cb) {
+        auto* b = new Button(this, label);
+        b->SetFont(wxGetApp().bold_font());
+        b->SetBackgroundColor(is_active ? active_btn_bg : inactive_btn_bg);
+        b->SetBorderColor(is_active ? active_btn_bg : inactive_btn_bg);
+        b->SetTextColor(is_active ? active_fg : inactive_fg);
+        b->SetCornerRadius(0);
+        b->Bind(wxEVT_BUTTON, cb);
+        return b;
+    };
+
+    p->mode_carousel = create_mode_button(_L("Zaxe Machine Carousel"), true, [=, this](auto& e) {
+        p->mode_carousel->SetBackgroundColor(active_btn_bg);
+        p->mode_carousel->SetTextColor(active_fg);
+        p->mode_carousel->SetBorderColor(active_btn_bg);
+        p->mode_settings->SetBackgroundColor(inactive_btn_bg);
+        p->mode_settings->SetTextColor(inactive_fg);
+        p->mode_settings->SetBorderColor(inactive_btn_bg);
+        show_carousel(true);
+    });
+
+    p->mode_settings = create_mode_button(_L("Settings"), false, [=, this](auto& e) {
+        p->mode_carousel->SetBackgroundColor(inactive_btn_bg);
+        p->mode_carousel->SetTextColor(inactive_fg);
+        p->mode_carousel->SetBorderColor(inactive_btn_bg);
+        p->mode_settings->SetBackgroundColor(active_btn_bg);
+        p->mode_settings->SetTextColor(active_fg);
+        p->mode_settings->SetBorderColor(active_btn_bg);
+        show_carousel(false);
+    });
+
+    z_mode_sizer->Add(p->mode_carousel, 1, wxEXPAND);
+    z_mode_sizer->Add(p->mode_settings, 1, wxEXPAND);
+
     p->machine_manager = new NetworkMachineManager(this,
                                                    wxSize(GetSize().GetWidth(),
                                                           -1));
-    p->machine_manager->Show(false);                                          
+    show_carousel(true);                                         
 
     auto *sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(z_mode_sizer, 0, wxEXPAND);
     sizer->Add(p->machine_manager, 1, wxEXPAND);
     sizer->Add(p->scrolled, 1, wxEXPAND);
     SetSizer(sizer);
@@ -1949,6 +2001,8 @@ std::string& Sidebar::get_search_line()
 void Sidebar::show_carousel(bool show) {
     p->machine_manager->Show(show);
     p->scrolled->Show(!show);
+    Layout();
+    Refresh();
 }
 
 NetworkMachineManager* Sidebar::machine_manager()
@@ -2167,7 +2221,6 @@ struct Plater::priv
     {
         bool                  is_enabled{false};
         bool                  is_collapsed{false};
-        bool                  is_carousel_visible{false};
         bool                  show{false};
     } sidebar_layout;
     Bed3D bed;
@@ -2308,7 +2361,6 @@ struct Plater::priv
 
     void enable_sidebar(bool enabled);
     void collapse_sidebar(bool collapse);
-    void toggle_sidebar_content();
     void update_sidebar(bool force_update = false);
     void reset_window_layout();
     Sidebar::DockingState get_sidebar_docking_state();
@@ -2811,7 +2863,7 @@ Plater::priv::priv(Plater *q, MainFrame *main_frame)
     // Orca: Make sidebar dockable
     m_aui_mgr.AddPane(sidebar, wxAuiPaneInfo()
                                    .Name("sidebar")
-                                   .Left()
+                                   .Right()
                                    .CloseButton(false)
                                    .TopDockable(false)
                                    .BottomDockable(false)
@@ -3394,26 +3446,6 @@ void Plater::priv::collapse_sidebar(bool collapse)
     collapse_toolbar.set_tooltip(id, new_tooltip);
 
     update_sidebar();
-}
-
-void Plater::priv::toggle_sidebar_content()
-{
-    if (q->m_only_gcode)
-        return;
-
-    sidebar_layout.is_carousel_visible = !sidebar_layout.is_carousel_visible;
-
-    sidebar->show_carousel(sidebar_layout.is_carousel_visible);
-    
-
-    // Now update the tooltip in the toolbar.
-    std::string new_tooltip = sidebar_layout.is_carousel_visible
-                              ? _u8L("Switch to properties")
-                              : _u8L("Switch to carousel");
-    int id = collapse_toolbar.get_item_id("switch_to_zaxe_carousel");
-    collapse_toolbar.set_tooltip(id, new_tooltip);
-
-    update_sidebar(true);
 }
 
 void Plater::priv::update_sidebar(bool force_update) {
@@ -7909,25 +7941,9 @@ bool Plater::priv::init_collapse_toolbar()
     if (!collapse_toolbar.add_item(item))
         return false;
 
-    GLToolbarItem::Data switch_to_zaxe_carousel;
-
-    switch_to_zaxe_carousel.name = "switch_to_zaxe_carousel";
-    switch_to_zaxe_carousel.icon_filename = "collapse.svg";
-    switch_to_zaxe_carousel.sprite_id = 0;
-    switch_to_zaxe_carousel.left.action_callback = []() {
-        auto _plater =  wxGetApp().plater();
-        if(!_plater->is_sidebar_collapsed()){
-            _plater->toggle_sidebar_content();
-        }
-    };
-
-    if (!collapse_toolbar.add_item(switch_to_zaxe_carousel))
-        return false;
-
     // Now "collapse" sidebar to current state. This is done so the tooltip
     // is updated before the toolbar is first used.
     wxGetApp().plater()->collapse_sidebar(wxGetApp().plater()->is_sidebar_collapsed());
-    wxGetApp().plater()->toggle_sidebar_content();
     return true;
 }
 
@@ -11004,7 +11020,6 @@ bool Plater::is_sidebar_enabled() const { return p->sidebar_layout.is_enabled; }
 void Plater::enable_sidebar(bool enabled) { p->enable_sidebar(enabled); }
 bool Plater::is_sidebar_collapsed() const { return p->sidebar_layout.is_collapsed; }
 void Plater::collapse_sidebar(bool collapse) { p->collapse_sidebar(collapse); }
-void Plater::toggle_sidebar_content() { p->toggle_sidebar_content(); }
 Sidebar::DockingState Plater::get_sidebar_docking_state() const { return p->get_sidebar_docking_state(); }
 
 void Plater::reset_window_layout() { p->reset_window_layout(); }
