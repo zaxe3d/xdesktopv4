@@ -360,7 +360,6 @@ public:
     void enable_sidebar(bool enabled);
     bool is_sidebar_collapsed() const;
     void collapse_sidebar(bool collapse);
-    void toggle_sidebar_content();
     Sidebar::DockingState get_sidebar_docking_state() const;
 
     void reset_window_layout();
