@@ -23,6 +23,8 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size) :
     SetDoubleBuffered(true);
 #endif
 
+    SetBackgroundColour(*wxWHITE);
+
     m_searchTextCtrl->SetHint(_L("Search Printer"));
     m_searchTextCtrl->SetFont(wxGetApp().normal_font());
     wxGetApp().UpdateDarkUI(m_searchTextCtrl);
