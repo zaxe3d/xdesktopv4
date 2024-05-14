@@ -79,6 +79,8 @@ public:
     
     bool print();
 
+    bool isBusy();
+
 private:
     wxTimer* m_timer; // elapsed timer.
     void confirm(std::function<void()> cb, const wxString& question=_L("Are you sure?"));

@@ -599,6 +599,10 @@ void Device::toggleDeviceNameWidgets()
     m_mainSizer->Layout();
 }
 
+bool Device::isBusy(){
+    return nm->isBusy();
+}
+
 // Custom controls start.
 CustomProgressBar::CustomProgressBar(wxPanel *parent, int id, wxSize size) :
     wxPanel(parent, id, wxDefaultPosition, size),

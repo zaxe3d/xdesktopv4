@@ -25,11 +25,60 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size) :
 
     SetBackgroundColour(*wxWHITE);
 
+    auto modify_button_color = [this](Button* b, bool is_active) {
+        wxString active_fg   = "#FFFFFF";
+        wxString inactive_fg = "#667085";
+        wxString active_bg   = "#009ADE";
+        wxString inactive_bg = "#F2F4F7";
+        b->SetBackgroundColor(is_active ? active_bg : inactive_bg);
+        b->SetBorderColor(is_active ? active_bg : inactive_bg);
+        b->SetTextColor(is_active ? active_fg : inactive_fg);
+    };
+
+    auto create_filter_button = [=](const wxString& label, bool is_active, auto cb) {
+        auto* b = new Button(this, label);
+        modify_button_color(b, is_active);
+        b->SetMaxSize(wxSize(-1, FromDIP(20)));
+        b->SetCornerRadius(FromDIP(12));
+        b->Bind(wxEVT_BUTTON, cb);
+        return b;
+    };
+
+    m_available_btn = create_filter_button(_L("Available"), false, [=](auto& e) {
+        filter_state = FilterState::SHOW_AVAILABLE;
+        modify_button_color(m_available_btn, true);
+        modify_button_color(m_busy_btn, false);
+        modify_button_color(m_all_btn, false);
+        applyFilters();
+    });
+    m_busy_btn      = create_filter_button(_L("Busy"), false, [=](auto& e) {
+        filter_state = FilterState::SHOW_BUSY;
+        modify_button_color(m_available_btn, false);
+        modify_button_color(m_busy_btn, true);
+        modify_button_color(m_all_btn, false);
+        applyFilters();
+    });
+    m_all_btn       = create_filter_button(_L("All"), true, [=](auto& e) {
+        filter_state = FilterState::SHOW_ALL;
+        modify_button_color(m_available_btn, false);
+        modify_button_color(m_busy_btn, false);
+        modify_button_color(m_all_btn, true);
+        applyFilters();
+    });
+
+    auto btn_sizer = new wxBoxSizer(wxHORIZONTAL);
+    btn_sizer->AddStretchSpacer(1);
+    btn_sizer->Add(m_available_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
+    btn_sizer->Add(m_busy_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
+    btn_sizer->Add(m_all_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
+    btn_sizer->AddStretchSpacer(1);
+
     m_searchTextCtrl->SetHint(_L("Search Printer"));
     m_searchTextCtrl->SetFont(wxGetApp().normal_font());
     wxGetApp().UpdateDarkUI(m_searchTextCtrl);
 
-    m_searchSizer->Add(m_searchTextCtrl, 11, wxALL | wxALIGN_CENTRE, 5);
+    m_searchSizer->AddStretchSpacer(1);
+    m_searchSizer->Add(m_searchTextCtrl, 11);
     m_searchSizer->AddStretchSpacer(1);
 
     wxStaticText *noDeviceFoundText =
@@ -51,6 +100,7 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size) :
     m_warningSizer->Add(noDeviceFoundText, 0, wxALIGN_CENTER | wxALL, 1);
     m_warningSizer->Show(m_deviceMap.empty());
 
+    m_mainSizer->Add(btn_sizer, 0, wxEXPAND | wxTOP, 10);
     m_mainSizer->Add(m_searchSizer, 0, wxEXPAND | wxALL, 5);
     m_mainSizer->Add(m_deviceListSizer, 1, wxEXPAND | wxALL, 5);
     m_mainSizer->Add(m_warningSizer, 0, wxALIGN_CENTER);
@@ -67,20 +117,7 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size) :
     m_broadcastReceiver->Bind(EVT_BROADCAST_RECEIVED, &NetworkMachineManager::onBroadcastReceived, this);
 
     m_searchTextCtrl->Bind(wxEVT_TEXT, [&](auto &evt) {
-        auto searchText = m_searchTextCtrl->GetValue();
-
-        for (auto &[ip, dev] : m_deviceMap) {
-            if (dev->getName().Lower().Find(searchText.Lower()) ==
-                wxNOT_FOUND) {
-                dev->Hide();
-            } else {
-                dev->Show();
-            }
-        }
-
-        m_mainSizer->Layout();
-        Refresh();
-        FitInside();
+        applyFilters();
         evt.Skip();
     });
 
@@ -133,11 +170,8 @@ void NetworkMachineManager::onMachineOpen(MachineEvent &event)
     Freeze();
     shared_ptr<Device> d = make_shared<Device>(event.nm, this);
     d->enablePrintNowButton(m_printNowButtonEnabled);
-    auto searchText = m_searchTextCtrl->GetValue();
-    if (d->getName().Lower().Find(searchText.Lower()) == wxNOT_FOUND) {
-        d->Hide();
-    }
     m_deviceMap[event.nm->ip] = d;
+    applyFilters();
     m_warningSizer->Show(m_deviceMap.empty());
     m_deviceListSizer->Add(d.get());
     Thaw();
@@ -203,5 +237,26 @@ void NetworkMachineManager::onModeChanged()
         if (d.second) d.second->onModeChanged();
     });
 }
-} // namespace GUI
-} // namespace Slic3r
+
+void NetworkMachineManager::applyFilters()
+{
+    auto searchText = m_searchTextCtrl->GetValue();
+
+    for (auto& [ip, dev] : m_deviceMap) {
+        bool show = true;
+        if (filter_state == FilterState::SHOW_AVAILABLE) {
+            show = show && !dev->isBusy();
+        } else if (filter_state == FilterState::SHOW_BUSY) {
+            show = show && dev->isBusy();
+        }
+
+        show = show && (dev->getName().Lower().Find(searchText.Lower()) != wxNOT_FOUND);
+
+        dev->Show(show);
+    }
+
+    m_mainSizer->Layout();
+    Refresh();
+    FitInside();
+}
+}} // namespace Slic3r::GUI
