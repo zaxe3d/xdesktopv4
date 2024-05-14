@@ -1144,7 +1144,7 @@ Sidebar::Sidebar(Plater *parent)
                                std::pair<wxColour, int>(inactive_bg, StateColor::Normal));
     wxString   inactive_fg = "#667085";
 
-    auto create_mode_button = [=, this](const wxString& label, bool is_active, auto cb) {
+    auto create_mode_button = [=](const wxString& label, bool is_active, auto cb) {
         auto* b = new Button(this, label);
         b->SetFont(wxGetApp().bold_font());
         b->SetBackgroundColor(is_active ? active_btn_bg : inactive_btn_bg);
@@ -1155,7 +1155,7 @@ Sidebar::Sidebar(Plater *parent)
         return b;
     };
 
-    p->mode_carousel = create_mode_button(_L("Zaxe Machine Carousel"), true, [=, this](auto& e) {
+    p->mode_carousel = create_mode_button(_L("Zaxe Machine Carousel"), true, [=](auto& e) {
         p->mode_carousel->SetBackgroundColor(active_btn_bg);
         p->mode_carousel->SetTextColor(active_fg);
         p->mode_carousel->SetBorderColor(active_btn_bg);
@@ -1165,7 +1165,7 @@ Sidebar::Sidebar(Plater *parent)
         show_carousel(true);
     });
 
-    p->mode_settings = create_mode_button(_L("Settings"), false, [=, this](auto& e) {
+    p->mode_settings = create_mode_button(_L("Settings"), false, [=](auto& e) {
         p->mode_carousel->SetBackgroundColor(inactive_btn_bg);
         p->mode_carousel->SetTextColor(inactive_fg);
         p->mode_carousel->SetBorderColor(inactive_btn_bg);
