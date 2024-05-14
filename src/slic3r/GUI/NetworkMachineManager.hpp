@@ -7,6 +7,7 @@
 
 #include "../Utils/BroadcastReceiver.hpp"
 #include "../Utils/NetworkMachine.hpp"
+#include "Widgets/Button.hpp"
 
 #include "Device.hpp"
 
@@ -18,7 +19,7 @@ namespace GUI {
 class NetworkMachineManager : public wxScrolledWindow
 {
 public:
-    NetworkMachineManager(wxWindow *parent, wxSize size);
+    NetworkMachineManager(wxWindow* parent, wxSize size);
     virtual ~NetworkMachineManager(); // avoid leakage on possible children.
 
     void enablePrintNowButton(bool enable);
@@ -26,27 +27,35 @@ public:
     void onModeChanged();
 
 private:
-    // slots
-    void onBroadcastReceived(wxCommandEvent &event);
-    void onMachineOpen(MachineEvent &event);
-    void onMachineClose(MachineEvent &event);
-    void onMachineMessage(MachineNewMessageEvent &event);
-    void onMachineAvatarReady(wxCommandEvent &event);
+    enum class FilterState { SHOW_AVAILABLE, SHOW_BUSY, SHOW_ALL };
 
-    BroadcastReceiver* m_broadcastReceiver;
+    void applyFilters();
+
+    // slots
+    void onBroadcastReceived(wxCommandEvent& event);
+    void onMachineOpen(MachineEvent& event);
+    void onMachineClose(MachineEvent& event);
+    void onMachineMessage(MachineNewMessageEvent& event);
+    void onMachineAvatarReady(wxCommandEvent& event);
+
+    BroadcastReceiver*       m_broadcastReceiver;
     NetworkMachineContainer* m_networkMContainer;
 
     // UI
-    wxSizer    *m_mainSizer;
-    wxBoxSizer *m_warningSizer;
-    wxSizer    *m_searchSizer;
-    wxSizer    *m_deviceListSizer;
-    wxTextCtrl *m_searchTextCtrl;
+    Button*     m_available_btn;
+    Button*     m_busy_btn;
+    Button*     m_all_btn;
+    wxSizer*    m_mainSizer;
+    wxBoxSizer* m_warningSizer;
+    wxSizer*    m_searchSizer;
+    wxSizer*    m_deviceListSizer;
+    wxTextCtrl* m_searchTextCtrl;
 
     boost::unordered_map<std::string, shared_ptr<Device>> m_deviceMap;
 
-    bool m_printNowButtonEnabled = false;
+    bool        m_printNowButtonEnabled = false;
+    FilterState filter_state{FilterState::SHOW_ALL};
 };
-} // namespace Slic3r
 } // namespace GUI
+} // namespace Slic3r
 #endif
