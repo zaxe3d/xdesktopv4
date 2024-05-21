@@ -32,6 +32,7 @@ public:
     wxColour m_progress_background_colour = {233, 233, 233};
     wxColour m_progress_colour            = {0, 150, 136};
     wxColour m_progress_colour_disable    = {255, 111, 0};
+    wxColour m_text_colour                = {144, 144, 144};
     wxString m_disable_text;
     
 
@@ -44,6 +45,7 @@ public:
     void         SetRadius(double radius);
     void         SetProgressForedColour(wxColour colour);
     void         SetProgressBackgroundColour(wxColour colour);
+    void         SetTextColour(wxColour colour);
     void         Rescale();
     void         SetHeight(int height) {
         m_minHeight = height;
