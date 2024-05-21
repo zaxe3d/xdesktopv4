@@ -1,5 +1,4 @@
-#ifndef slic3r_NetworkMachineManager_hpp_
-#define slic3r_NetworkMachineManager_hpp_
+#pragma once
 
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
@@ -9,18 +8,20 @@
 #include "../Utils/NetworkMachine.hpp"
 #include "Widgets/Button.hpp"
 
-#include "Device.hpp"
+#include "ZaxeDevice.hpp"
+
+#include <memory>
 
 namespace Slic3r {
 
 class BroadcastReceiver; // forward declaration.
 
 namespace GUI {
-class NetworkMachineManager : public wxScrolledWindow
+class NetworkMachineManager : public wxPanel
 {
 public:
     NetworkMachineManager(wxWindow* parent, wxSize size);
-    virtual ~NetworkMachineManager(); // avoid leakage on possible children.
+    virtual ~NetworkMachineManager() = default;
 
     void enablePrintNowButton(bool enable);
     void addMachine(std::string ip, int port, std::string id);
@@ -28,6 +29,10 @@ public:
 
 private:
     enum class FilterState { SHOW_AVAILABLE, SHOW_BUSY, SHOW_ALL };
+
+    wxPanel* createFilterArea();
+    wxPanel* createWarningArea();
+    wxPanel* createScrolledArea();
 
     void applyFilters();
 
@@ -38,24 +43,21 @@ private:
     void onMachineMessage(MachineNewMessageEvent& event);
     void onMachineAvatarReady(wxCommandEvent& event);
 
-    BroadcastReceiver*       m_broadcastReceiver;
-    NetworkMachineContainer* m_networkMContainer;
+    std::unique_ptr<BroadcastReceiver>       broadcast_receiver;
+    std::unique_ptr<NetworkMachineContainer> network_machine_container;
 
     // UI
-    Button*     m_available_btn;
-    Button*     m_busy_btn;
-    Button*     m_all_btn;
-    wxSizer*    m_mainSizer;
-    wxBoxSizer* m_warningSizer;
-    wxSizer*    m_searchSizer;
-    wxSizer*    m_deviceListSizer;
-    wxTextCtrl* m_searchTextCtrl;
+    Button*     available_btn{nullptr};
+    Button*     busy_btn{nullptr};
+    Button*     all_btn{nullptr};
+    wxPanel*    scrolled_area{nullptr};
+    wxBoxSizer* warning_sizer{nullptr};
+    wxTextCtrl* search_textctrl{nullptr};
 
-    boost::unordered_map<std::string, shared_ptr<Device>> m_deviceMap;
+    std::unordered_map<std::string, ZaxeDevice*> device_map;
 
-    bool        m_printNowButtonEnabled = false;
+    bool        print_enable{false};
     FilterState filter_state{FilterState::SHOW_ALL};
 };
 } // namespace GUI
 } // namespace Slic3r
-#endif

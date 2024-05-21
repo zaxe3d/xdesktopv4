@@ -3,27 +3,53 @@
 #include "MainFrame.hpp" // for wxGetApp().app_config
 #include "I18N.hpp"
 #include "libslic3r/Utils.hpp"
+#include "ZaxeDevice.hpp"
 
 #include <wx/artprov.h>
 
-namespace Slic3r {
-namespace GUI {
+namespace Slic3r::GUI {
 
-NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size) :
-    wxScrolledWindow(parent, wxID_ANY, wxDefaultPosition, wxSize(size)),
-    m_mainSizer(new wxBoxSizer(wxVERTICAL)),
-    m_searchSizer(new wxBoxSizer(wxHORIZONTAL)),
-    m_deviceListSizer(new wxBoxSizer(wxVERTICAL)),
-    m_searchTextCtrl(new wxTextCtrl(this, wxID_ANY)),
-    m_broadcastReceiver(new BroadcastReceiver()),
-    m_networkMContainer(new NetworkMachineContainer()),
-    m_printNowButtonEnabled(false)
+NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
+    : wxPanel(parent, wxID_ANY, wxDefaultPosition, size)
+    , broadcast_receiver(std::make_unique<BroadcastReceiver>())
+    , network_machine_container(std::make_unique<NetworkMachineContainer>())
+
 {
 #ifdef __WINDOWS__
     SetDoubleBuffered(true);
 #endif
 
     SetBackgroundColour(*wxWHITE);
+
+    auto filter_area  = createFilterArea();
+    auto warning_area = createWarningArea();
+    scrolled_area     = createScrolledArea();
+
+    auto sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(filter_area, 0, wxEXPAND);
+    sizer->Add(warning_area, 0, wxEXPAND);
+    sizer->Add(scrolled_area, 1, wxEXPAND);
+
+    SetSizer(sizer);
+    Layout();
+
+    network_machine_container->Bind(EVT_MACHINE_OPEN, &NetworkMachineManager::onMachineOpen, this);
+    network_machine_container->Bind(EVT_MACHINE_CLOSE, &NetworkMachineManager::onMachineClose, this);
+    network_machine_container->Bind(EVT_MACHINE_NEW_MESSAGE, &NetworkMachineManager::onMachineMessage, this);
+    network_machine_container->Bind(EVT_MACHINE_AVATAR_READY, &NetworkMachineManager::onMachineAvatarReady, this);
+
+    broadcast_receiver->Bind(EVT_BROADCAST_RECEIVED, &NetworkMachineManager::onBroadcastReceived, this);
+
+    // add custom ips here.
+    // auto ips = wxGetApp().app_config->get_custom_ips();
+    // for (int i = 0; i < ips.size(); i++)
+    //    addMachine(ips[i], 9294, "Zaxe (m.)");
+}
+
+wxPanel* NetworkMachineManager::createFilterArea()
+{
+    auto panel = new wxPanel(this);
+    panel->SetBackgroundColour(*wxWHITE);
 
     auto modify_button_color = [this](Button* b, bool is_active) {
         wxString active_fg   = "#FFFFFF";
@@ -36,108 +62,120 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size) :
     };
 
     auto create_filter_button = [=](const wxString& label, bool is_active, auto cb) {
-        auto* b = new Button(this, label);
-        modify_button_color(b, is_active);
+        auto* b = new Button(panel, label);
         b->SetMaxSize(wxSize(-1, FromDIP(20)));
-        b->SetCornerRadius(FromDIP(12));
+        b->SetCornerRadius(FromDIP(11));
+        modify_button_color(b, is_active);
         b->Bind(wxEVT_BUTTON, cb);
         return b;
     };
 
-    m_available_btn = create_filter_button(_L("Available"), false, [=](auto& e) {
+    available_btn = create_filter_button(_L("Available"), false, [=](auto& e) {
         filter_state = FilterState::SHOW_AVAILABLE;
-        modify_button_color(m_available_btn, true);
-        modify_button_color(m_busy_btn, false);
-        modify_button_color(m_all_btn, false);
+        modify_button_color(available_btn, true);
+        modify_button_color(busy_btn, false);
+        modify_button_color(all_btn, false);
         applyFilters();
     });
-    m_busy_btn      = create_filter_button(_L("Busy"), false, [=](auto& e) {
+    busy_btn      = create_filter_button(_L("Busy"), false, [=](auto& e) {
         filter_state = FilterState::SHOW_BUSY;
-        modify_button_color(m_available_btn, false);
-        modify_button_color(m_busy_btn, true);
-        modify_button_color(m_all_btn, false);
+        modify_button_color(available_btn, false);
+        modify_button_color(busy_btn, true);
+        modify_button_color(all_btn, false);
         applyFilters();
     });
-    m_all_btn       = create_filter_button(_L("All"), true, [=](auto& e) {
+    all_btn       = create_filter_button(_L("All"), true, [=](auto& e) {
         filter_state = FilterState::SHOW_ALL;
-        modify_button_color(m_available_btn, false);
-        modify_button_color(m_busy_btn, false);
-        modify_button_color(m_all_btn, true);
+        modify_button_color(available_btn, false);
+        modify_button_color(busy_btn, false);
+        modify_button_color(all_btn, true);
         applyFilters();
     });
 
     auto btn_sizer = new wxBoxSizer(wxHORIZONTAL);
     btn_sizer->AddStretchSpacer(1);
-    btn_sizer->Add(m_available_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
-    btn_sizer->Add(m_busy_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
-    btn_sizer->Add(m_all_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, 5);
+    btn_sizer->Add(available_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, FromDIP(5));
+    btn_sizer->Add(busy_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, FromDIP(5));
+    btn_sizer->Add(all_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, FromDIP(5));
     btn_sizer->AddStretchSpacer(1);
 
-    m_searchTextCtrl->SetHint(_L("Search Printer"));
-    m_searchTextCtrl->SetFont(wxGetApp().normal_font());
-    wxGetApp().UpdateDarkUI(m_searchTextCtrl);
-
-    m_searchSizer->AddStretchSpacer(1);
-    m_searchSizer->Add(m_searchTextCtrl, 11);
-    m_searchSizer->AddStretchSpacer(1);
-
-    wxStaticText *noDeviceFoundText =
-        new wxStaticText(this, wxID_ANY,
-                         _L("Can not find a Zaxe on the network"),
-                         wxDefaultPosition, wxDefaultSize);
-    wxGetApp().UpdateDarkUI(noDeviceFoundText);
-    wxFont label_font = wxGetApp().normal_font();
-    label_font.SetPointSize(14);
-    noDeviceFoundText->SetFont(label_font);
-
-    auto warningIcon = new wxStaticBitmap(this, wxID_ANY,
-                                          wxArtProvider::GetBitmap(
-                                              wxART_WARNING),
-                                          wxDefaultPosition, wxSize(35, 35));
-
-    m_warningSizer = new wxBoxSizer(wxHORIZONTAL);
-    m_warningSizer->Add(warningIcon, 0, wxALIGN_CENTER | wxALL, 5);
-    m_warningSizer->Add(noDeviceFoundText, 0, wxALIGN_CENTER | wxALL, 1);
-    m_warningSizer->Show(m_deviceMap.empty());
-
-    m_mainSizer->Add(btn_sizer, 0, wxEXPAND | wxTOP, 10);
-    m_mainSizer->Add(m_searchSizer, 0, wxEXPAND | wxALL, 5);
-    m_mainSizer->Add(m_deviceListSizer, 1, wxEXPAND | wxALL, 5);
-    m_mainSizer->Add(m_warningSizer, 0, wxALIGN_CENTER);
-
-    SetSizer(m_mainSizer);
-
-    // As result of below line we can see the empty block at the bottom of the carousel
-    //SetScrollbars(0, DEVICE_HEIGHT, 0, DEVICE_HEIGHT);
-    // This fixes the above problem.
-    SetScrollRate(0, 5);
-    FitInside();
-
-    // start listenting for devices here on the network.
-    m_broadcastReceiver->Bind(EVT_BROADCAST_RECEIVED, &NetworkMachineManager::onBroadcastReceived, this);
-
-    m_searchTextCtrl->Bind(wxEVT_TEXT, [&](auto &evt) {
+    search_textctrl = new wxTextCtrl(panel, wxID_ANY);
+    search_textctrl->SetHint(_L("Search Printer"));
+    search_textctrl->SetFont(wxGetApp().normal_font());
+    wxGetApp().UpdateDarkUI(search_textctrl);
+    search_textctrl->Bind(wxEVT_TEXT, [&](auto& evt) {
         applyFilters();
         evt.Skip();
     });
 
-    // add custom ips here.
-    //auto ips = wxGetApp().app_config->get_custom_ips();
-    //for (int i = 0; i < ips.size(); i++)
-    //    addMachine(ips[i], 9294, "Zaxe (m.)");
+    auto search_sizer = new wxBoxSizer(wxHORIZONTAL);
+    search_sizer->AddStretchSpacer(1);
+    search_sizer->Add(search_textctrl, 11);
+    search_sizer->AddStretchSpacer(1);
+
+    auto sizer = new wxBoxSizer(wxVERTICAL);
+    sizer->Add(btn_sizer, 1, wxEXPAND);
+    sizer->Add(search_sizer, 1, wxEXPAND);
+
+    panel->SetSizer(sizer);
+    panel->Layout();
+
+    return panel;
+}
+
+wxPanel* NetworkMachineManager::createWarningArea()
+{
+    auto panel = new wxPanel(this);
+
+    auto no_device_found_txt = new wxStaticText(panel, wxID_ANY, _L("Can not find a Zaxe on the network"), wxDefaultPosition, wxDefaultSize);
+    wxGetApp().UpdateDarkUI(no_device_found_txt);
+
+    wxFont label_font = wxGetApp().normal_font();
+    label_font.SetPointSize(14);
+    no_device_found_txt->SetFont(label_font);
+
+    auto warning_icon = new wxStaticBitmap(panel, wxID_ANY, wxArtProvider::GetBitmap(wxART_WARNING), wxDefaultPosition, wxSize(35, 35));
+
+    warning_sizer = new wxBoxSizer(wxHORIZONTAL);
+    warning_sizer->AddStretchSpacer(1);
+    warning_sizer->Add(warning_icon, 0, wxALIGN_CENTER | wxALL, 5);
+    warning_sizer->Add(no_device_found_txt, 0, wxALIGN_CENTER | wxALL, 1);
+    warning_sizer->AddStretchSpacer(1);
+    warning_sizer->Show(device_map.empty());
+
+    panel->SetSizer(warning_sizer);
+    panel->Layout();
+
+    return panel;
+}
+
+wxPanel* NetworkMachineManager::createScrolledArea()
+{
+    auto panel = new wxScrolled<wxPanel>(this);
+
+    auto sizer = new wxBoxSizer(wxVERTICAL);
+
+    panel->SetSizer(sizer);
+    panel->SetScrollRate(0, 5);
+
+    panel->Layout();
+
+    return panel;
 }
 
 void NetworkMachineManager::enablePrintNowButton(bool enable)
 {
-    if (enable == m_printNowButtonEnabled) return;
-    for (auto& it : m_deviceMap) {
-        if (m_deviceMap[it.first] == nullptr) continue;
-        m_deviceMap[it.first]->enablePrintNowButton(enable);
+    if (enable == print_enable)
+        return;
+    for (auto& [ip, dev] : device_map) {
+        if (!dev)
+            continue;
+        dev->enablePrintButton(enable);
     }
-    m_printNowButtonEnabled = enable;
+    print_enable = enable;
 }
 
-void NetworkMachineManager::onBroadcastReceived(wxCommandEvent &event)
+void NetworkMachineManager::onBroadcastReceived(wxCommandEvent& event)
 {
     std::stringstream jsonStream;
     jsonStream.str(std::string(event.GetString().utf8_str().data())); // wxString to std::string
@@ -146,103 +184,127 @@ void NetworkMachineManager::onBroadcastReceived(wxCommandEvent &event)
     boost::property_tree::read_json(jsonStream, pt);
     try {
         this->addMachine(pt.get<std::string>("ip"), pt.get<int>("port"), pt.get<std::string>("id"));
-    } catch(std::exception ex) {
+    } catch (std::exception ex) {
         BOOST_LOG_TRIVIAL(warning) << boost::format("Cannot parse broadcast message json: [%1%].") % ex.what();
     }
 }
 
 void NetworkMachineManager::addMachine(std::string ip, int port, std::string id)
 {
-    auto machine  = this->m_networkMContainer->addMachine(ip, port, id);
-    if (machine != nullptr) {
-        this->m_networkMContainer->Bind(EVT_MACHINE_OPEN, &NetworkMachineManager::onMachineOpen, this);
-        this->m_networkMContainer->Bind(EVT_MACHINE_CLOSE, &NetworkMachineManager::onMachineClose, this);
-        this->m_networkMContainer->Bind(EVT_MACHINE_NEW_MESSAGE, &NetworkMachineManager::onMachineMessage, this);
-        this->m_networkMContainer->Bind(EVT_MACHINE_AVATAR_READY, &NetworkMachineManager::onMachineAvatarReady, this);
-    }
+    auto machine = network_machine_container->addMachine(ip, port, id);
 }
-void NetworkMachineManager::onMachineOpen(MachineEvent &event)
+
+void NetworkMachineManager::onMachineOpen(MachineEvent& event)
 {
     // Now we can add this to UI.
-    if (!event.nm || m_deviceMap.find(event.nm->ip) != m_deviceMap.end()) return;
+    if (!event.nm || device_map.find(event.nm->ip) != device_map.end()) {
+        return;
+    }
+
     BOOST_LOG_TRIVIAL(info) << boost::format("NetworkMachineManager - Connected to machine: [%1% - %2%].") % event.nm->name % event.nm->ip;
 
-    Freeze();
-    shared_ptr<Device> d = make_shared<Device>(event.nm, this);
-    d->enablePrintNowButton(m_printNowButtonEnabled);
-    m_deviceMap[event.nm->ip] = d;
+    auto zd = new ZaxeDevice(event.nm, scrolled_area);
+    zd->enablePrintButton(print_enable);
+    device_map[event.nm->ip] = zd;
     applyFilters();
-    m_warningSizer->Show(m_deviceMap.empty());
-    m_deviceListSizer->Add(d.get());
-    Thaw();
+    warning_sizer->Show(device_map.empty());
+    scrolled_area->GetSizer()->Add(zd, 0, wxEXPAND | wxALL, FromDIP(5));
 
-    m_mainSizer->Layout();
-    FitInside();
-    Refresh();
+    scrolled_area->Layout();
+    scrolled_area->FitInside();
+    Layout();
 }
 
-void NetworkMachineManager::onMachineClose(MachineEvent &event)
+void NetworkMachineManager::onMachineClose(MachineEvent& event)
 {
-    if (!event.nm) return;
-    if (m_deviceMap.erase(event.nm->ip) == 0) return; // couldn't delete so don't continue...
+    if (!event.nm) {
+        return;
+    }
+
+    auto it = device_map.find(event.nm->ip);
+    if (it == device_map.end()) {
+        return;
+    }
+
+    if (it->second) {
+        delete it->second;
+        it->second = nullptr;
+    }
+
+    if (device_map.erase(event.nm->ip) == 0) {
+        return;
+    }
+
     BOOST_LOG_TRIVIAL(info) << boost::format("NetworkMachineManager - Closing machine: [%1% - %2%].") % event.nm->name % event.nm->ip;
-    this->m_networkMContainer->removeMachine(event.nm->ip);
-    m_warningSizer->Show(m_deviceMap.empty());
-    m_mainSizer->Layout();
-    FitInside();
-    Refresh();
+    network_machine_container->removeMachine(event.nm->ip);
+    warning_sizer->Show(device_map.empty());
+
+    scrolled_area->Layout();
+    scrolled_area->FitInside();
+    Layout();
 }
 
-void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent &event)
+void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
 {
-    if (!event.nm || m_deviceMap[event.nm->ip] == nullptr) return;
+    if (!event.nm) {
+        return;
+    }
+
+    auto dev = device_map.find(event.nm->ip);
+    if (dev == device_map.end() || dev->second == nullptr) {
+        return;
+    }
+
     if (event.event == "states_update") {
-        m_deviceMap[event.nm->ip]->updateStates();
-    } else if (event.event == "print_progress" ||
-               event.event == "temperature_progress" ||
-               event.event == "calibration_progress") {
+        dev->second->updateStates();
+    } else if (event.event == "print_progress" || event.event == "temperature_progress" || event.event == "calibration_progress") {
         event.nm->progress = event.pt.get<float>("progress", 0);
-        m_deviceMap[event.nm->ip]->updateProgress();
-    } else if (event.event == "new_name") {
-        m_deviceMap[event.nm->ip]->setName(event.nm->name);
-    } else if (event.event == "material_change") {
-        m_deviceMap[event.nm->ip]->setMaterialLabel(event.nm->attr->materialLabel);
+        dev->second->updateProgressValue();
+    }
+    else if (event.event == "new_name") {
+        dev->second->setName(event.nm->name);
+    }
+    /* else if (event.event == "material_change") {
+        dev->second->setMaterialLabel(event.nm->attr->materialLabel);
     } else if (event.event == "nozzle_change") {
-        m_deviceMap[event.nm->ip]->setNozzle(event.nm->attr->nozzle);
+        dev->second->setNozzle(event.nm->attr->nozzle);
     } else if (event.event == "pin_change") {
-        m_deviceMap[event.nm->ip]->setPin(event.nm->attr->hasPin);
+        dev->second->setPin(event.nm->attr->hasPin);
     } else if (event.event == "start_print") {
-        m_deviceMap[event.nm->ip]->setFileStart();
+        dev->second->setFileStart();
+    }
+    */
+    else if (event.event == "file_init_failed") {
+        dev->second->onPrintDenied();
     }
 }
 
-void NetworkMachineManager::onMachineAvatarReady(wxCommandEvent &event)
+void NetworkMachineManager::onMachineAvatarReady(wxCommandEvent& event)
 {
     string ip = event.GetString().ToStdString();
-    if (m_deviceMap.find(ip) == m_deviceMap.end()) return;
-    //BOOST_LOG_TRIVIAL(debug) << boost::format("NetworkMachineManager - Avatar ready on machine: [%1%].") % ip;
-    m_deviceMap[ip]->avatarReady();
-}
-
-NetworkMachineManager::~NetworkMachineManager()
-{
-    m_deviceMap.clear(); // since the map holds shared_ptrs clear is enough
-    delete m_broadcastReceiver;
-    delete m_networkMContainer;
+    auto   it = device_map.find(ip);
+    if (it == device_map.end()) {
+        return;
+    }
+    // BOOST_LOG_TRIVIAL(debug) << boost::format("NetworkMachineManager - Avatar ready on machine: [%1%].") % ip;
+    it->second->onAvatarReady();
 }
 
 void NetworkMachineManager::onModeChanged()
 {
-    std::for_each(m_deviceMap.begin(), m_deviceMap.end(), [](auto &d) {
-        if (d.second) d.second->onModeChanged();
+    /*
+    std::for_each(m_deviceMap.begin(), m_deviceMap.end(), [](auto& d) {
+        if (d.second)
+            d.second->onModeChanged();
     });
+    */
 }
 
 void NetworkMachineManager::applyFilters()
 {
-    auto searchText = m_searchTextCtrl->GetValue();
+    auto searchText = search_textctrl->GetValue();
 
-    for (auto& [ip, dev] : m_deviceMap) {
+    for (auto& [ip, dev] : device_map) {
         bool show = true;
         if (filter_state == FilterState::SHOW_AVAILABLE) {
             show = show && !dev->isBusy();
@@ -255,8 +317,8 @@ void NetworkMachineManager::applyFilters()
         dev->Show(show);
     }
 
-    m_mainSizer->Layout();
-    Refresh();
-    FitInside();
+    scrolled_area->Layout();
+    scrolled_area->FitInside();
+    Layout();
 }
-}} // namespace Slic3r::GUI
+} // namespace Slic3r::GUI
