@@ -42,6 +42,7 @@ private:
     Label*            status_desc;
     Button*           print_btn;
     ProgressBar*      progress_bar;
+    Label*            progress_label;
     wxPanel*          progress_line;
 
     bool device_name_ctrl_visible{false};
