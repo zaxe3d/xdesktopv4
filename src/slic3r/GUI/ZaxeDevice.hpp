@@ -26,7 +26,7 @@ public:
     void onPrintDenied();
 
     bool     isBusy();
-    void setName(const string &name);
+    void     setName(const string& name);
     wxString getName() const;
 
 private:

@@ -6,6 +6,8 @@
 #include <wx/bookctrl.h>
 #include <wx/sizer.h>
 
+#include "wxExtensions.hpp"
+
 class ModeSizer;
 class ScalableButton;
 class Button;
@@ -50,10 +52,11 @@ public:
                  const wxSize & size = wxDefaultSize,
                 // BBS
                  wxBoxSizer* side_tools = NULL,
-                 long style = 0)
+                 long style = 0,
+                 bool show_logo = false)
     {
         Init();
-        Create(parent, winid, pos, size, side_tools, style);
+        Create(parent, winid, pos, size, side_tools, style, show_logo);
     }
 
     bool Create(wxWindow * parent,
@@ -62,10 +65,25 @@ public:
                 const wxSize & size = wxDefaultSize,
                 // BBS
                 wxBoxSizer* side_tools = NULL,
-                long style = 0)
+                long style = 0,
+                bool show_logo = false)
     {
-        if (!wxBookCtrlBase::Create(parent, winid, pos, size, style | wxBK_TOP))
+        if (!wxBookCtrlBase::Create(parent, winid, pos, size, style))
             return false;
+
+        auto create_logo = [&]() {
+            auto panel = new wxPanel(this);
+            panel->SetBackgroundColour("#475467");
+            auto logo  = new wxStaticBitmap(panel, wxID_ANY, create_scaled_bitmap("zaxe_logo_icon", panel, FromDIP(48)), wxDefaultPosition,
+                                            wxDefaultSize);
+
+            auto sizer = new wxBoxSizer(wxVERTICAL);
+            sizer->Add(logo, 1, wxEXPAND | wxALIGN_CENTER | wxBOTTOM | wxTOP, FromDIP(30));
+            
+            panel->SetSizer(sizer);
+            panel->Layout();
+            return panel;
+        };
 
         m_bookctrl = new ButtonsListCtrl(this, side_tools);
 
@@ -75,11 +93,21 @@ public:
             mainSizer->Add(0, 0, 1, wxEXPAND, 0);
 
         m_controlSizer = new wxBoxSizer(IsVertical() ? wxHORIZONTAL : wxVERTICAL);
-        m_controlSizer->Add(m_bookctrl, wxSizerFlags(1).Expand());
+        if(show_logo){
+            m_controlSizer->Add(create_logo(), 0, wxEXPAND | wxALIGN_CENTER);
+        }
+        m_controlSizer->Add(m_bookctrl, 0, wxEXPAND);
+
+        auto create_empty_area = [&]() {
+            auto panel = new wxPanel(this);
+            panel->SetBackgroundColour("#475467");
+            return panel;
+        };
+        m_controlSizer->Add(create_empty_area(), 1, wxEXPAND);
+
         wxSizerFlags flags;
-        if (IsVertical())
-            flags.Expand();
-        else
+        flags.Expand();
+        if (!IsVertical())
             flags.CentreVertical();
         mainSizer->Add(m_controlSizer, flags.Border(wxALL, m_controlMargin));
         SetSizer(mainSizer);

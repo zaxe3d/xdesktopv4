@@ -6,6 +6,7 @@
 
 namespace Slic3r::GUI {
 const wxString gray200{"#EAECF0"};
+const wxString gray300{"#D0D5DD"};
 const wxString gray500{"#667085"};
 const wxString gray700{"#344054"};
 const wxString blue500{"#009ADE"};
@@ -181,8 +182,9 @@ wxSizer* ZaxeDevice::createPrintButton()
     print_btn = new Button(this, _L("Print"));
     print_btn->SetMinSize(wxSize(FromDIP(64), FromDIP(36)));
     print_btn->SetBackgroundColor(*wxWHITE);
-    print_btn->SetBorderColor(blue500);
-    print_btn->SetTextColor(blue500);
+    auto color = StateColor(std::pair<wxColour, int>(gray300, StateColor::Disabled), std::pair<wxColour, int>(blue500, StateColor::Normal));
+    print_btn->SetBorderColor(color);
+    print_btn->SetTextColor(color);
     wxGetApp().UpdateDarkUI(print_btn);
 
     auto sizer = new wxBoxSizer(wxVERTICAL);
@@ -346,7 +348,7 @@ void ZaxeDevice::onAvatarReady()
     }
 }
 
-void ZaxeDevice::enablePrintButton(bool enable) { print_btn->Enable(true); }
+void ZaxeDevice::enablePrintButton(bool enable) { print_btn->Enable(enable); }
 
 void ZaxeDevice::onPrintDenied()
 {
