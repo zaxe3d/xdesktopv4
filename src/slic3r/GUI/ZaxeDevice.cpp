@@ -202,11 +202,14 @@ void ZaxeDevice::createProgressLine()
     wxGetApp().UpdateDarkUI(progress_line);
 
     progress_bar = new ProgressBar(progress_line);
-    progress_bar->ShowNumber(true);
+    progress_bar->ShowNumber(false);
     progress_bar->SetProgressForedColour(gray200);
     progress_bar->SetProgressBackgroundColour(blue500);
-    progress_bar->SetTextColour(*wxBLACK);
+    // progress_bar->SetTextColour(*wxBLACK);
     wxGetApp().UpdateDarkUI(progress_bar);
+
+    progress_label = new Label(progress_line, "", wxALIGN_CENTER_VERTICAL);
+    progress_label->SetFont(Label::Head_14);
 
     auto pause_btn = new Button(progress_line, "", "zaxe_pause", wxBORDER_NONE, FromDIP(20));
     pause_btn->SetPaddingSize(wxSize(2, 2));
@@ -218,6 +221,7 @@ void ZaxeDevice::createProgressLine()
 
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(progress_bar, 1, wxALIGN_CENTER | wxALL, FromDIP(1));
+    sizer->Add(progress_label, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
     sizer->Add(pause_btn, 0, wxALL, FromDIP(1));
     sizer->Add(stop_btn, 0, wxALL, FromDIP(1));
 
@@ -284,6 +288,7 @@ void ZaxeDevice::updateTimer()
 void ZaxeDevice::updateProgressValue()
 {
     progress_bar->SetProgress(nm->progress);
+    progress_label->SetLabel(wxString::Format("%d%%", nm->progress));
     Layout();
     Refresh();
 }
