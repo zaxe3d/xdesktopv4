@@ -889,8 +889,11 @@ void GUI_App::post_init()
 //#endif
         if (is_editor())
             mainframe->select_tab(size_t(0));
+        
+        /* TODO zaxe
         if (app_config->get("default_page") == "1")
             mainframe->select_tab(size_t(1));
+        */
         mainframe->Thaw();
         plater_->trigger_restore_project(1);
         BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << ", end load_gl_resources";
