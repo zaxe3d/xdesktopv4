@@ -182,40 +182,72 @@ void Button::render(wxDC& dc)
     else
         icon = inactive_icon;
     int padding = 5;
+
+    bool is_vertical = (GetWindowStyle() & wxVERTICAL) != 0;
+
     if (icon.bmp().IsOk()) {
         if (szContent.y > 0) {
-            //BBS norrow size between text and icon
-            szContent.x += padding;
+            // BBS norrow size between text and icon
+            if (is_vertical) {
+                szContent.y += padding;
+            } else {
+                szContent.x += padding;
+            }
         }
         szIcon = icon.GetBmpSize();
-        szContent.x += szIcon.x;
-        if (szIcon.y > szContent.y)
-            szContent.y = szIcon.y;
-        if (szContent.x > size.x) {
-            int d = std::min(padding, szContent.x - size.x);
-            padding -= d;
-            szContent.x -= d;
+        if (is_vertical) {
+            szContent.y += szIcon.y;
+            if (szIcon.x > szContent.x)
+                szContent.x = szIcon.x;
+            if (szContent.y > size.y) {
+                int d = std::min(padding, szContent.y - size.y);
+                padding -= d;
+                szContent.y -= d;
+            }
+        } else {
+            szContent.x += szIcon.x;
+            if (szIcon.y > szContent.y)
+                szContent.y = szIcon.y;
+            if (szContent.x > size.x) {
+                int d = std::min(padding, szContent.x - size.x);
+                padding -= d;
+                szContent.x -= d;
+            }
         }
     }
     // move to center
     wxRect rcContent = { {0, 0}, size };
     wxSize offset = (size - szContent) / 2;
     if (offset.x < 0) offset.x = 0;
+    if (offset.y < 0) offset.y = 0;
     rcContent.Deflate(offset.x, offset.y);
     // start draw
     wxPoint pt = rcContent.GetLeftTop();
     if (icon.bmp().IsOk()) {
-        pt.y += (rcContent.height - szIcon.y) / 2;
-        dc.DrawBitmap(icon.bmp(), pt);
-        //BBS norrow size between text and icon
-        pt.x += szIcon.x + padding;
-        pt.y = rcContent.y;
+        if (is_vertical) {
+            pt.x += (rcContent.width - szIcon.x) / 2;
+            dc.DrawBitmap(icon.bmp(), pt);
+            // BBS norrow size between text and icon
+            pt.y += szIcon.y + padding;
+            pt.x = rcContent.x;
+        } else {
+            pt.y += (rcContent.height - szIcon.y) / 2;
+            dc.DrawBitmap(icon.bmp(), pt);
+            // BBS norrow size between text and icon
+            pt.x += szIcon.x + padding;
+            pt.y = rcContent.y;
+        }
     }
     auto text = GetLabel();
     if (!text.IsEmpty()) {
         if (pt.x + textSize.width > size.x)
             text = wxControl::Ellipsize(text, dc, wxELLIPSIZE_END, size.x - pt.x);
-        pt.y += (rcContent.height - textSize.height) / 2;
+
+        if (is_vertical) {
+            pt.x += (rcContent.width - textSize.width) / 2;
+        } else {
+            pt.y += (rcContent.height - textSize.height) / 2;
+        }
         dc.SetTextForeground(text_color.colorForStates(states));
 #if 0
         dc.SetBrush(*wxLIGHT_GREY);
@@ -234,15 +266,26 @@ void Button::messureSize()
     wxClientDC dc(this);
     dc.GetTextExtent(GetLabel(), &textSize.width, &textSize.height, &textSize.x, &textSize.y);
     wxSize szContent = textSize.GetSize();
+    bool is_vertical = (GetWindowStyle() & wxVERTICAL) != 0;
     if (this->active_icon.bmp().IsOk()) {
         if (szContent.y > 0) {
             //BBS norrow size between text and icon
-            szContent.x += 5;
+            if (is_vertical) {
+                szContent.y += 5;
+            } else {
+                szContent.x += 5;
+            }
         }
         wxSize szIcon = this->active_icon.GetBmpSize();
-        szContent.x += szIcon.x;
-        if (szIcon.y > szContent.y)
-            szContent.y = szIcon.y;
+        if (is_vertical) {
+            szContent.y += szIcon.y;
+            if (szIcon.x > szContent.x)
+                szContent.x = szIcon.x;
+        } else {
+            szContent.x += szIcon.x;
+            if (szIcon.y > szContent.y)
+                szContent.y = szIcon.y;
+        }
     }
     wxSize size = szContent + paddingSize * 2;
     if (minSize.GetHeight() > 0)
