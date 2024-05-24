@@ -756,8 +756,8 @@ void MainFrame::update_layout()
     case ESettingsLayout::Old:
     {
         m_plater->Reparent(m_tabpanel);
-        m_tabpanel->InsertPage(tp3DEditor, m_plater, _L("Prepare"), std::string("tab_3d_active"), std::string("tab_3d_active"), false);
-        m_tabpanel->InsertPage(tpPreview, m_plater, _L("Preview"), std::string("tab_preview_active"), std::string("tab_preview_active"), false);
+        m_tabpanel->InsertPage(tp3DEditor, m_plater, _L("Prepare"), std::string("zaxe_tab_prepare"), std::string("zaxe_tab_prepare"), false);
+        m_tabpanel->InsertPage(tpPreview, m_plater, _L("Preview"), std::string("zaxe_tab_preview"), std::string("zaxe_tab_preview"), false);
         m_main_sizer->Add(m_tabpanel, 1, wxEXPAND | wxTOP, 0);
 
         m_tabpanel->Bind(wxCUSTOMEVT_NOTEBOOK_SEL_CHANGED, [this](wxCommandEvent& evt)
@@ -927,10 +927,10 @@ void MainFrame::show_option(bool show)
         }
     } else {
         if (!m_slice_btn->IsShown()) {
-            m_slice_btn->Show();
-            m_print_btn->Show();
-            m_slice_option_btn->Show();
-            m_print_option_btn->Show();
+            //m_slice_btn->Show();
+            //m_print_btn->Show();
+            //m_slice_option_btn->Show();
+            //m_print_option_btn->Show();
             Layout();
         }
     }
@@ -942,7 +942,7 @@ void MainFrame::init_tabpanel() {
     // BBS
     wxBoxSizer *side_tools = create_side_tools();
     m_tabpanel = new Notebook(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, side_tools,
-                              wxNB_TOP | wxTAB_TRAVERSAL | wxNB_NOPAGETHEME);
+                              wxNB_LEFT  | wxTAB_TRAVERSAL | wxNB_NOPAGETHEME, true);
     m_tabpanel->SetBackgroundColour(*wxWHITE);
 
 #ifndef __WXOSX__ // Don't call SetFont under OSX to avoid name cutting in ObjectList
@@ -1009,12 +1009,15 @@ void MainFrame::init_tabpanel() {
 
     if (wxGetApp().is_editor()) {
         m_webview         = new WebViewPanel(m_tabpanel);
+        m_webview->Hide();
+        /* TODO zaxe
         Bind(EVT_LOAD_URL, [this](wxCommandEvent &evt) {
             wxString url = evt.GetString();
             select_tab(MainFrame::tpHome);
             m_webview->load_url(url);
         });
-        m_tabpanel->AddPage(m_webview, "", "tab_home_active", "tab_home_active", false);
+        */
+        // m_tabpanel->AddPage(m_webview, "", "zaxe_logo_icon", "zaxe_logo_icon", false);
         m_param_panel = new ParamsPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBK_LEFT | wxTAB_TRAVERSAL);
     }
 
@@ -1029,7 +1032,7 @@ void MainFrame::init_tabpanel() {
         //BBS add pages
     m_monitor = new MonitorPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     m_monitor->SetBackgroundColour(*wxWHITE);
-    m_tabpanel->AddPage(m_monitor, _L("Device"), std::string("tab_monitor_active"), std::string("tab_monitor_active"), false);
+    m_tabpanel->AddPage(m_monitor, _L("Device"), std::string("zaxe_tab_devices"), std::string("zaxe_tab_devices"), false);
 
     m_printer_view = new PrinterWebView(m_tabpanel);
     Bind(EVT_LOAD_PRINTER_URL, [this](LoadPrinterViewEvent &evt) {
@@ -1049,11 +1052,12 @@ void MainFrame::init_tabpanel() {
 
     m_project = new ProjectPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     m_project->SetBackgroundColour(*wxWHITE);
-    m_tabpanel->AddPage(m_project, _L("Project"), std::string("tab_auxiliary_active"), std::string("tab_auxiliary_active"), false);
+
+    m_tabpanel->AddPage(m_project, _L("Project"), std::string("zaxe_tab_projects"), std::string("zaxe_tab_projects"), false);
 
     m_calibration = new CalibrationPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize);
     m_calibration->SetBackgroundColour(*wxWHITE);
-    m_tabpanel->AddPage(m_calibration, _L("Calibration"), std::string("tab_calibration_active"), std::string("tab_calibration_active"), false);
+    m_tabpanel->AddPage(m_calibration, _L("Calibration"), std::string("zaxe_tab_devices"), std::string("zaxe_tab_devices"), false);
 
     if (m_plater) {
         // load initial config
@@ -1139,8 +1143,8 @@ void MainFrame::show_device(bool bBBLPrinter) {
             });
         }
         m_printer_view->Show(false);
-        m_tabpanel->InsertPage(tpMonitor, m_printer_view, _L("Device"), std::string("tab_monitor_active"),
-                               std::string("tab_monitor_active"));
+        m_tabpanel->InsertPage(tpMonitor, m_printer_view, _L("Device"), std::string("zaxe_tab_devices"),
+                               std::string("zaxe_tab_devices"));
     }
 }
 
@@ -1491,7 +1495,7 @@ wxBoxSizer* MainFrame::create_side_tools()
 {
     enable_multi_machine = wxGetApp().is_enable_multi_machine();
     int em = em_unit();
-    wxBoxSizer* sizer = new wxBoxSizer(wxHORIZONTAL);
+    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
 
     m_slice_select = eSlicePlate;
     m_print_select = ePrintPlate;
@@ -1501,6 +1505,12 @@ wxBoxSizer* MainFrame::create_side_tools()
     m_slice_option_btn = new SideButton(this, "", "sidebutton_dropdown", 0, FromDIP(14));
     m_print_btn = new SideButton(this, _L("Print plate"), "");
     m_print_option_btn = new SideButton(this, "", "sidebutton_dropdown", 0, FromDIP(14));
+
+    // TODO zaxe
+    m_slice_btn->Hide();
+    m_slice_option_btn->Hide();
+    m_print_btn->Hide();
+    m_print_option_btn->Hide();
 
     update_side_button_style();
     // m_publish_btn->Hide();
