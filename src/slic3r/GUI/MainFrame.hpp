@@ -220,13 +220,13 @@ public:
     //BBS GUI refactor
     enum TabPosition {
         // tpHome          = 0,
-        tp3DEditor = 0,
-        tpPreview,
-        tpMonitor,
-        tpProject,
-        tpCalibration,
-        tpAuxiliary,
-        toDebugTool,
+        tp3DEditor    = 0,
+        tpPreview     = 1,
+        tpMonitor     = 2,
+        tpProject     = 3,
+        tpCalibration = 4,
+        tpAuxiliary   = 5,
+        toDebugTool   = 6,
     };
 
     //BBS: add slice&&print status update logic

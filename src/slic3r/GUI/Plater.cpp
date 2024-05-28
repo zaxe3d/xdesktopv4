@@ -1030,14 +1030,14 @@ Sidebar::Sidebar(Plater *parent)
     StateColor active_btn_bg(std::pair<wxColour, int>(this_bg, StateColor::Disabled),
                              std::pair<wxColour, int>(this_bg, StateColor::Pressed), std::pair<wxColour, int>(this_bg, StateColor::Hovered),
                              std::pair<wxColour, int>(this_bg, StateColor::Normal));
-    auto       active_fg = wxColour(0, 154, 222);
+    wxString   active_fg = "#009ADE";
 
     wxString   inactive_bg = "#F2F4F7";
     StateColor inactive_btn_bg(std::pair<wxColour, int>(inactive_bg, StateColor::Disabled),
                                std::pair<wxColour, int>(inactive_bg, StateColor::Pressed),
                                std::pair<wxColour, int>(inactive_bg, StateColor::Hovered),
                                std::pair<wxColour, int>(inactive_bg, StateColor::Normal));
-    wxString   inactive_fg = "#667085";
+    wxString   inactive_fg = "#98A2B3";
 
     auto create_mode_button = [=](const wxString& label, bool is_active, auto cb) {
         auto* b = new Button(this, label);
