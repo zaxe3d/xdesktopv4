@@ -19,22 +19,24 @@ class TextInput : public wxNavigationEnabled<StaticBox>
 public:
     TextInput();
 
-    TextInput(wxWindow *     parent,
+    TextInput(wxWindow*      parent,
               wxString       text,
-              wxString       label = "",
-              wxString       icon  = "",
-              const wxPoint &pos   = wxDefaultPosition,
-              const wxSize & size  = wxDefaultSize,
-              long           style = 0);
+              wxString       label     = "",
+              wxString       icon      = "",
+              const wxPoint& pos       = wxDefaultPosition,
+              const wxSize&  size      = wxDefaultSize,
+              long           style     = 0,
+              int            icon_size = 16);
 
 public:
-    void Create(wxWindow *     parent,
-              wxString       text,
-              wxString       label = "",
-              wxString       icon  = "",
-              const wxPoint &pos   = wxDefaultPosition,
-              const wxSize & size  = wxDefaultSize,
-              long           style = 0);
+    void Create(wxWindow*      parent,
+                wxString       text,
+                wxString       label     = "",
+                wxString       icon      = "",
+                const wxPoint& pos       = wxDefaultPosition,
+                const wxSize&  size      = wxDefaultSize,
+                long           style     = 0,
+                int            icon_size = 16);
 
     void SetCornerRadius(double radius);
 

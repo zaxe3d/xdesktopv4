@@ -26,7 +26,7 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
     scrolled_area     = createScrolledArea();
 
     auto sizer = new wxBoxSizer(wxVERTICAL);
-    sizer->Add(filter_area, 0, wxEXPAND);
+    sizer->Add(filter_area, 0, wxEXPAND | wxTOP, FromDIP(10));
     sizer->Add(warning_area, 0, wxEXPAND);
     sizer->Add(scrolled_area, 1, wxEXPAND);
 
@@ -53,7 +53,7 @@ wxPanel* NetworkMachineManager::createFilterArea()
 
     auto modify_button_color = [this](Button* b, bool is_active) {
         wxString active_fg   = "#FFFFFF";
-        wxString inactive_fg = "#667085";
+        wxString inactive_fg = "#98A2B3";
         wxString active_bg   = "#009ADE";
         wxString inactive_bg = "#F2F4F7";
         b->SetBackgroundColor(is_active ? active_bg : inactive_bg);
@@ -63,7 +63,7 @@ wxPanel* NetworkMachineManager::createFilterArea()
 
     auto create_filter_button = [=](const wxString& label, bool is_active, auto cb) {
         auto* b = new Button(panel, label);
-        b->SetMaxSize(wxSize(-1, FromDIP(20)));
+        b->SetMaxSize(wxSize(-1, FromDIP(25)));
         b->SetCornerRadius(FromDIP(11));
         modify_button_color(b, is_active);
         b->Bind(wxEVT_BUTTON, cb);
@@ -99,18 +99,23 @@ wxPanel* NetworkMachineManager::createFilterArea()
     btn_sizer->Add(all_btn, 5, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, FromDIP(5));
     btn_sizer->AddStretchSpacer(1);
 
-    search_textctrl = new wxTextCtrl(panel, wxID_ANY);
-    search_textctrl->SetHint(_L("Search Printer"));
-    search_textctrl->SetFont(wxGetApp().normal_font());
-    wxGetApp().UpdateDarkUI(search_textctrl);
-    search_textctrl->Bind(wxEVT_TEXT, [&](auto& evt) {
+    search_ctrl = new TextInput(panel, "", "", "zaxe_search", wxDefaultPosition, wxDefaultSize, wxBORDER_NONE, FromDIP(24));
+    search_ctrl->SetCornerRadius(FromDIP(10));
+    auto search_bg = wxColor("#F2F4F7");
+    search_ctrl->SetBackgroundColor(std::make_pair(search_bg, (int) StateColor::Normal));
+    search_ctrl->GetTextCtrl()->SetBackgroundColour(search_bg);
+    search_ctrl->GetTextCtrl()->SetMaxLength(50);
+    search_ctrl->GetTextCtrl()->SetHint(_L("Search printer"));
+    wxGetApp().UpdateDarkUI(search_ctrl);
+    wxGetApp().UpdateDarkUI(search_ctrl->GetTextCtrl());
+    search_ctrl->GetTextCtrl()->Bind(wxEVT_TEXT, [&](auto& evt) {
         applyFilters();
         evt.Skip();
     });
 
     auto search_sizer = new wxBoxSizer(wxHORIZONTAL);
     search_sizer->AddStretchSpacer(1);
-    search_sizer->Add(search_textctrl, 11);
+    search_sizer->Add(search_ctrl, 13);
     search_sizer->AddStretchSpacer(1);
 
     auto sizer = new wxBoxSizer(wxVERTICAL);
@@ -260,8 +265,7 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
     } else if (event.event == "print_progress" || event.event == "temperature_progress" || event.event == "calibration_progress") {
         event.nm->progress = event.pt.get<float>("progress", 0);
         dev->second->updateProgressValue();
-    }
-    else if (event.event == "new_name") {
+    } else if (event.event == "new_name") {
         dev->second->setName(event.nm->name);
     }
     /* else if (event.event == "material_change") {
@@ -302,7 +306,7 @@ void NetworkMachineManager::onModeChanged()
 
 void NetworkMachineManager::applyFilters()
 {
-    auto searchText = search_textctrl->GetValue();
+    auto searchText = search_ctrl->GetTextCtrl()->GetValue();
 
     for (auto& [ip, dev] : device_map) {
         bool show = true;

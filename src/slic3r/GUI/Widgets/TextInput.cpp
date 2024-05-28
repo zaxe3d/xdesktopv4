@@ -38,10 +38,11 @@ TextInput::TextInput(wxWindow *     parent,
                      wxString       icon,
                      const wxPoint &pos,
                      const wxSize & size,
-                     long           style)
+                     long           style,
+                     int            icon_size)
     : TextInput()
 {
-    Create(parent, text, label, icon, pos, size, style);
+    Create(parent, text, label, icon, pos, size, style, icon_size);
 }
 
 void TextInput::Create(wxWindow *     parent,
@@ -50,7 +51,8 @@ void TextInput::Create(wxWindow *     parent,
                        wxString       icon,
                        const wxPoint &pos,
                        const wxSize & size,
-                       long           style)
+                       long           style,
+                       int            icon_size)
 {
         text_ctrl = nullptr;
     StaticBox::Create(parent, wxID_ANY, pos, size, style);
@@ -77,7 +79,7 @@ void TextInput::Create(wxWindow *     parent,
     });
     text_ctrl->Bind(wxEVT_RIGHT_DOWN, [this](auto &e) {}); // disable context menu
     if (!icon.IsEmpty()) {
-        this->icon = ScalableBitmap(this, icon.ToStdString(), 16);
+        this->icon = ScalableBitmap(this, icon.ToStdString(), icon_size);
     }
     messureSize();
 }
