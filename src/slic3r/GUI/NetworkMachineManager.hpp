@@ -7,6 +7,7 @@
 #include "../Utils/BroadcastReceiver.hpp"
 #include "../Utils/NetworkMachine.hpp"
 #include "Widgets/Button.hpp"
+#include "Widgets/TextInput.hpp"
 
 #include "ZaxeDevice.hpp"
 
@@ -52,7 +53,7 @@ private:
     Button*     all_btn{nullptr};
     wxPanel*    scrolled_area{nullptr};
     wxBoxSizer* warning_sizer{nullptr};
-    wxTextCtrl* search_textctrl{nullptr};
+    TextInput*  search_ctrl{nullptr};
 
     std::unordered_map<std::string, ZaxeDevice*> device_map;
 
