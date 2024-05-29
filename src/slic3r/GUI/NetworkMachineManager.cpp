@@ -105,7 +105,7 @@ wxPanel* NetworkMachineManager::createFilterArea()
     search_ctrl->SetBackgroundColor(std::make_pair(search_bg, (int) StateColor::Normal));
     search_ctrl->GetTextCtrl()->SetBackgroundColour(search_bg);
     search_ctrl->GetTextCtrl()->SetMaxLength(50);
-    search_ctrl->GetTextCtrl()->SetHint(_L("Search printer"));
+    search_ctrl->GetTextCtrl()->SetHint(_L("Search printer, nozzle, material, ip address..."));
     wxGetApp().UpdateDarkUI(search_ctrl);
     wxGetApp().UpdateDarkUI(search_ctrl->GetTextCtrl());
     search_ctrl->GetTextCtrl()->Bind(wxEVT_TEXT, [&](auto& evt) {
@@ -120,7 +120,7 @@ wxPanel* NetworkMachineManager::createFilterArea()
 
     auto sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(btn_sizer, 1, wxEXPAND);
-    sizer->Add(search_sizer, 1, wxEXPAND);
+    sizer->Add(search_sizer, 1, wxEXPAND | wxTOP, FromDIP(5));
 
     panel->SetSizer(sizer);
     panel->Layout();
@@ -267,8 +267,7 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
         dev->second->updateProgressValue();
     } else if (event.event == "new_name") {
         dev->second->setName(event.nm->name);
-    }
-    /* else if (event.event == "material_change") {
+    } else if (event.event == "material_change") {
         dev->second->setMaterialLabel(event.nm->attr->materialLabel);
     } else if (event.event == "nozzle_change") {
         dev->second->setNozzle(event.nm->attr->nozzle);
@@ -276,10 +275,10 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
         dev->second->setPin(event.nm->attr->hasPin);
     } else if (event.event == "start_print") {
         dev->second->setFileStart();
-    }
-    */
-    else if (event.event == "file_init_failed") {
+    } else if (event.event == "file_init_failed") {
         dev->second->onPrintDenied();
+    } else if (event.event == "temperature_update") {
+        dev->second->onTemperatureUpdate();
     }
 }
 
@@ -316,7 +315,7 @@ void NetworkMachineManager::applyFilters()
             show = show && dev->isBusy();
         }
 
-        show = show && (dev->getName().Lower().Find(searchText.Lower()) != wxNOT_FOUND);
+        show = show && dev->has(searchText);
 
         dev->Show(show);
     }

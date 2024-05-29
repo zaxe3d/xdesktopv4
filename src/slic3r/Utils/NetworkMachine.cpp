@@ -137,6 +137,12 @@ void NetworkMachine::onWSRead(string message)
             attr->hasNFCSpool = to_lower_copy(pt.get<string>("has_nfc_spool", "false")) == "true";
             attr->filamentColor = to_lower_copy(pt.get<string>("filament_color", "unknown"));
         }
+        if (event == "temperature_update") {
+            attr->nozzle_temp        = pt.get<float>("ext_temp", 0);
+            attr->target_nozzle_temp = pt.get<float>("ext_temp_set", 0);
+            attr->bed_temp           = pt.get<float>("bed_temp", 0);
+            attr->target_bed_temp    = pt.get<float>("bed_temp_set", 0);
+        }
         if (event == "hello") { // gather up all the events up untill here.
             MachineEvent evt(EVT_MACHINE_OPEN, this, wxID_ANY); // ? get window id here ?; // ? get window id here ?
             evt.SetEventObject(this->m_evtHandler);
