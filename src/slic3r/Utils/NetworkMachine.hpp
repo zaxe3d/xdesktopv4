@@ -92,6 +92,10 @@ struct MachineAttributes // attributes.
     string estimatedTime;
     int startTime;
     int filamentRemaining;
+    float nozzle_temp;
+    float target_nozzle_temp;
+    float bed_temp;
+    float target_bed_temp;
     wxVersionInfo firmwareVersion;
 
     inline std::string toString()
@@ -115,6 +119,10 @@ struct MachineAttributes // attributes.
         ss << "estimatedTime: " << estimatedTime << std::endl;
         ss << "startTime: " << startTime << std::endl;
         ss << "filamentRemaining: " << filamentRemaining << std::endl;
+        ss << "nozzle_temp: " << nozzle_temp << std::endl;
+        ss << "target_nozzle_temp: " << target_nozzle_temp << std::endl;
+        ss << "bed_temp: " << bed_temp << std::endl;
+        ss << "target_bed_temp: " << target_bed_temp << std::endl;
         ss << "firmwareVersion: " << firmwareVersion.ToString() << std::endl;
         return ss.str();
     }

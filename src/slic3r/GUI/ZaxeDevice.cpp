@@ -7,15 +7,15 @@
 namespace Slic3r::GUI {
 const wxString gray200{"#EAECF0"};
 const wxString gray300{"#D0D5DD"};
+const wxString gray400{"#98A2B3"};
 const wxString gray500{"#667085"};
 const wxString gray700{"#344054"};
 const wxString blue500{"#009ADE"};
-const wxString grayText{"#98A2B3"};
 
-const wxString warning_color{"#FFA500"};
-const wxString danger_color{"#FF0000"};
-const wxString success_color{"#009BDF"};
-const wxString uploading_color{"#00FF00"};
+const wxString progress_calib_color{"#FFA500"};
+const wxString progress_danger_color{"#F25A46"};
+const wxString progress_success_color{"#009BDF"};
+const wxString progress_uploading_color{"#00FF00"};
 
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer())
@@ -28,21 +28,29 @@ ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSiz
     auto state_info_sizer = createStateInfo();
     auto print_btn_sizer  = createPrintButton();
     createProgressLine();
-    auto seperator = createSeperator();
+    auto icon_btns_sizer = createIconButtons();
+    detailed_info_sizer  = createDetailedInfo();
+    auto seperator       = createSeperator();
 
-    auto s1 = new wxBoxSizer(wxVERTICAL);
-    s1->Add(state_info_sizer, 0, wxEXPAND | wxALL, FromDIP(1));
-    s1->Add(progress_line, 0, wxEXPAND | wxALL, FromDIP(3));
-    s1->Add(print_btn_sizer, 1, wxALL, FromDIP(1));
+    auto s1 = new wxBoxSizer(wxHORIZONTAL);
+    s1->Add(progress_line, 19, wxALIGN_CENTER | wxALL, FromDIP(3));
+    s1->Add(print_btn_sizer, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
+    s1->AddStretchSpacer(1);
+    s1->Add(icon_btns_sizer, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
+
+    auto s2 = new wxBoxSizer(wxVERTICAL);
+    s2->Add(state_info_sizer, 0, wxEXPAND | wxALL, FromDIP(1));
+    s2->Add(s1, 0, wxEXPAND | wxALL, FromDIP(1));
 
     auto body_sizer = new wxBoxSizer(wxHORIZONTAL);
     body_sizer->Add(avatar_rect, 0, wxALL, FromDIP(1));
-    body_sizer->Add(s1, 1, wxEXPAND | wxALIGN_CENTER | wxALL, FromDIP(1));
+    body_sizer->Add(s2, 1, wxALIGN_CENTER | wxALL, FromDIP(1));
 
     auto sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(header_sizer, 0, wxEXPAND | wxALL, FromDIP(3));
     sizer->Add(body_sizer, 1, wxEXPAND | wxALL, FromDIP(3));
-    sizer->Add(seperator, 0, wxRIGHT | wxEXPAND, 20);
+    sizer->Add(detailed_info_sizer, 0, wxALIGN_CENTER | wxALL, FromDIP(10));
+    sizer->Add(seperator, 0, wxEXPAND);
 
     SetSizer(sizer);
 
@@ -61,40 +69,31 @@ ZaxeDevice::~ZaxeDevice()
 
 void ZaxeDevice::onTimer(wxTimerEvent& event)
 {
-    return;
-    /*
-    m_txtFileTime->SetLabel(_L("Elapsed / Estimated time: ") +
-        get_time_hms(
-            wxDateTime::Now().GetTicks() -
-            this->nm->attr->startTime -
-            // make it look paused by incrementing and subtracting from the counter.
-            (nm->states->paused ? m_pausedSeconds++ : m_pausedSeconds))
-        + " / " + nm->attr->estimatedTime);
-    */
+    printing_time_val->SetLabel(get_time_hms(wxDateTime::Now().GetTicks() - nm->attr->startTime) + " / " + nm->attr->estimatedTime);
 }
 
 wxSizer* ZaxeDevice::createHeader()
 {
-    auto model_rect = new RoundedRectangle(this, gray500, wxDefaultPosition, wxSize(FromDIP(36), FromDIP(24)), FromDIP(7));
-    wxGetApp().UpdateDarkUI(model_rect);
-
     string model_str = to_upper_copy(nm->attr->deviceModel);
     boost::replace_all(model_str, "PLUS", "+");
-    auto model_label = new Label(model_rect, wxString(model_str.c_str(), wxConvUTF8), wxALIGN_LEFT);
-    model_label->SetFont(::Label::Body_14);
-    model_label->SetForegroundColour(*wxWHITE);
-    model_label->SetBackgroundColour(gray500);
-    wxGetApp().UpdateDarkUI(model_label);
 
-    auto model_sizer = new wxBoxSizer(wxVERTICAL);
-    model_sizer->Add(model_label, 0, wxALL | wxALIGN_CENTER, FromDIP(3));
+    model_btn = new Button(this, wxString(model_str.c_str(), wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
+    model_btn->SetPaddingSize(wxSize(4, 3));
+    model_btn->SetTextColor(*wxWHITE);
+    model_btn->SetBackgroundColor(gray500);
+    wxGetApp().UpdateDarkUI(model_btn);
+    model_btn->Show(!is_expanded);
 
-    model_rect->SetSizer(model_sizer);
-    model_rect->Layout();
+    model_btn_expanded = new Button(this, wxString(model_str.c_str(), wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
+    model_btn_expanded->SetPaddingSize(wxSize(4, 3));
+    model_btn_expanded->SetTextColor(*wxWHITE);
+    model_btn_expanded->SetBackgroundColor(blue500);
+    wxGetApp().UpdateDarkUI(model_btn_expanded);
+    model_btn_expanded->Show(is_expanded);
 
     device_name = new Label(this, wxString(nm->name.c_str(), wxConvUTF8), wxALIGN_CENTER_VERTICAL);
-    device_name->SetFont(::Label::Head_18);
-    device_name->SetForegroundColour(grayText);
+    device_name->SetFont(::Label::Body_16);
+    device_name->SetForegroundColour(gray400);
     wxGetApp().UpdateDarkUI(device_name);
 
     device_name_ctrl = new wxTextCtrl(this, wxID_ANY, wxString(nm->name.c_str(), wxConvUTF8), wxDefaultPosition, wxDefaultSize,
@@ -104,15 +103,17 @@ wxSizer* ZaxeDevice::createHeader()
     wxGetApp().UpdateDarkUI(device_name_ctrl);
     device_name_ctrl_visible = false;
 
-    auto more_btn = new Button(this, "", "zaxe_more", wxBORDER_NONE, FromDIP(12));
-    wxGetApp().UpdateDarkUI(more_btn);
+    expand_btn = new Button(this, "", "zaxe_arrow_down", wxBORDER_NONE, FromDIP(24));
+    wxGetApp().UpdateDarkUI(expand_btn);
+    is_expanded = false;
 
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
-    sizer->Add(model_rect, 0, wxALIGN_LEFT | wxALL, FromDIP(1));
-    sizer->Add(device_name, 0, wxALIGN_LEFT | wxALL, FromDIP(1));
-    sizer->Add(device_name_ctrl, 10, wxALIGN_LEFT | wxALL, FromDIP(1));
+    sizer->Add(model_btn, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
+    sizer->Add(model_btn_expanded, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
+    sizer->Add(device_name, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
+    sizer->Add(device_name_ctrl, 10, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
     sizer->AddStretchSpacer(1);
-    sizer->Add(more_btn, 0, wxALIGN_RIGHT | wxALL, FromDIP(3));
+    sizer->Add(expand_btn, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
 
     device_name->Bind(wxEVT_LEFT_UP, [&](auto& evt) {
         toggleDeviceNameWidgets();
@@ -140,6 +141,18 @@ wxSizer* ZaxeDevice::createHeader()
         evt.Skip();
     });
 
+    expand_btn->Bind(wxEVT_BUTTON, [&](auto& e) {
+        is_expanded = !is_expanded;
+        expand_btn->SetIcon(is_expanded ? "zaxe_arrow_up_active" : "zaxe_arrow_down");
+        model_btn->Show(!is_expanded);
+        model_btn_expanded->Show(is_expanded);
+        device_name->SetForegroundColour(is_expanded ? blue500 : gray400);
+        detailed_info_sizer->Show(is_expanded);
+        updatePrintInfo();
+        Layout();
+        GetParent()->Layout();
+    });
+
     return sizer;
 }
 
@@ -155,6 +168,31 @@ void ZaxeDevice::createAvatar()
 
     avatar_rect->SetSizer(avatar_sizer);
     avatar_rect->Layout();
+
+    if (is_there(nm->attr->deviceModel, {"z2", "z3"})) {
+        avatar_rect->Bind(wxEVT_LEFT_DCLICK, [&](auto& e) {
+            BOOST_LOG_TRIVIAL(info) << "Clicked on avatar trying to open stream on: " << nm->name;
+            if (nm->attr->firmwareVersion.GetMinor() >= 4 ||
+                (nm->attr->firmwareVersion.GetMinor() >= 3 && nm->attr->firmwareVersion.GetMicro() >= 80)) {
+                wxFileName ffplay(wxStandardPaths::Get().GetExecutablePath());
+                wxString   curExecPath(ffplay.GetPath());
+
+                wxExecute(
+#ifdef _WIN32
+                    "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + to_upper_copy(nm->attr->deviceModel) +
+                        ": " + nm->name + "\" -x 720",
+                    wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE
+#else
+                    curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + to_upper_copy(nm->attr->deviceModel) + ": " + nm->name + "\" -x 720",
+                    wxEXEC_ASYNC
+#endif
+                );
+            } else {
+                wxMessageBox("Need device firmware version at least v3.3.80 to comply.", "Need firmware update for this feautre.",
+                             wxICON_INFORMATION);
+            }
+        });
+    }
 }
 
 wxSizer* ZaxeDevice::createStateInfo()
@@ -179,7 +217,7 @@ wxSizer* ZaxeDevice::createStateInfo()
 
 wxSizer* ZaxeDevice::createPrintButton()
 {
-    print_btn = new Button(this, _L("Print"));
+    print_btn = new Button(this, _L("Print now"));
     print_btn->SetMinSize(wxSize(FromDIP(64), FromDIP(36)));
     print_btn->SetBackgroundColor(*wxWHITE);
     auto color = StateColor(std::pair<wxColour, int>(gray300, StateColor::Disabled), std::pair<wxColour, int>(blue500, StateColor::Normal));
@@ -205,25 +243,14 @@ void ZaxeDevice::createProgressLine()
     progress_bar->ShowNumber(false);
     progress_bar->SetProgressForedColour(gray200);
     progress_bar->SetProgressBackgroundColour(blue500);
-    // progress_bar->SetTextColour(*wxBLACK);
     wxGetApp().UpdateDarkUI(progress_bar);
 
     progress_label = new Label(progress_line, "", wxALIGN_CENTER_VERTICAL);
     progress_label->SetFont(Label::Head_14);
 
-    auto pause_btn = new Button(progress_line, "", "zaxe_pause", wxBORDER_NONE, FromDIP(20));
-    pause_btn->SetPaddingSize(wxSize(2, 2));
-    wxGetApp().UpdateDarkUI(pause_btn);
-
-    auto stop_btn = new Button(progress_line, "", "zaxe_stop", wxBORDER_NONE, FromDIP(20));
-    stop_btn->SetPaddingSize(wxSize(2, 2));
-    wxGetApp().UpdateDarkUI(stop_btn);
-
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(progress_bar, 1, wxALIGN_CENTER | wxALL, FromDIP(1));
     sizer->Add(progress_label, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
-    sizer->Add(pause_btn, 0, wxALL, FromDIP(1));
-    sizer->Add(stop_btn, 0, wxALL, FromDIP(1));
 
     progress_line->SetSizer(sizer);
     progress_line->Layout();
@@ -234,6 +261,90 @@ void ZaxeDevice::createProgressLine()
         };
         updateProgressValue();
     });
+}
+
+wxSizer* ZaxeDevice::createIconButtons()
+{
+    auto create_icon_btn = [&](const auto& icon_name, const wxString& tool_tip, auto callback) {
+        auto btn = new Button(this, "", icon_name, wxBORDER_NONE, FromDIP(24));
+        btn->SetPaddingSize(wxSize(2, 2));
+        btn->SetToolTip(tool_tip);
+        wxGetApp().UpdateDarkUI(btn);
+        btn->Bind(wxEVT_BUTTON, callback);
+        return btn;
+    };
+
+    pause_btn   = create_icon_btn("zaxe_pause", _L("Pause"), [&](const auto& evt) { confirm([&] { nm->pause(); }); });
+    resume_btn  = create_icon_btn("zaxe_resume", _L("Resume"), [&](const auto& evt) { confirm([&] { nm->resume(); }); });
+    stop_btn    = create_icon_btn("zaxe_stop", _L("Stop"), [&](const auto& evt) { confirm([&] { nm->cancel(); }); });
+    preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto& evt) { confirm([&] { nm->togglePreheat(); }); });
+    say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto& evt) { confirm([&] { nm->sayHi(); }); });
+    unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto& evt) { confirm([&] { nm->unloadFilament(); }); });
+
+    auto sizer = new wxBoxSizer(wxHORIZONTAL);
+    sizer->Add(pause_btn);
+    sizer->Add(resume_btn);
+    sizer->Add(stop_btn);
+    sizer->Add(preheat_btn);
+    sizer->Add(say_hi_btn);
+    sizer->Add(unload_btn);
+    sizer->Layout();
+    return sizer;
+}
+
+wxSizer* ZaxeDevice::createDetailedInfo()
+{
+    auto create_label = [&](const auto& font, const wxString& txt) {
+        auto l = new Label(this, txt, wxALIGN_LEFT);
+        l->SetFont(font);
+        wxGetApp().UpdateDarkUI(l);
+        return l;
+    };
+
+    wxFont bold_font   = ::Label::Head_12;
+    wxFont normal_font = ::Label::Body_12;
+
+    printing_file     = create_label(bold_font, _L("File"));
+    printing_file_val = create_label(normal_font, wxString(nm->attr->printingFile.c_str(), wxConvUTF8));
+    printing_file_val->Wrap(FromDIP(200));
+
+    printing_time     = create_label(bold_font, _L("Elapsed / Estimated time"));
+    printing_time_val = create_label(normal_font, "");
+
+    auto material = create_label(bold_font, _L("Material"));
+    material_val  = create_label(normal_font, "");
+
+    auto nozzle = create_label(bold_font, _L("Nozzle"));
+    nozzle_val  = create_label(normal_font, nm->attr->isLite ? "-" : nm->attr->nozzle + "mm");
+
+    auto nozzle_temp = create_label(bold_font, _L("Nozzle Temp."));
+    nozzle_temp_val  = create_label(normal_font, "");
+
+    auto plate_temp = create_label(bold_font, _L("Plate Temp."));
+    plate_temp_val  = create_label(normal_font, "");
+
+    auto ip_addr     = create_label(bold_font, _L("IP Address"));
+    auto ip_addr_val = create_label(normal_font, nm->ip);
+
+    auto sizer = new wxFlexGridSizer(6, 2, FromDIP(5), FromDIP(15));
+    sizer->Add(printing_file, 0, wxEXPAND);
+    sizer->Add(printing_file_val, 0, wxEXPAND);
+    sizer->Add(printing_time, 0, wxEXPAND);
+    sizer->Add(printing_time_val, 0, wxEXPAND);
+    sizer->Add(material, 0, wxEXPAND);
+    sizer->Add(material_val, 0, wxEXPAND);
+    sizer->Add(nozzle, 0, wxEXPAND);
+    sizer->Add(nozzle_val, 0, wxEXPAND);
+    sizer->Add(nozzle_temp, 0, wxEXPAND);
+    sizer->Add(nozzle_temp_val, 0, wxEXPAND);
+    sizer->Add(plate_temp, 0, wxEXPAND);
+    sizer->Add(plate_temp_val, 0, wxEXPAND);
+    sizer->Add(ip_addr, 0, wxEXPAND);
+    sizer->Add(ip_addr_val, 0, wxEXPAND);
+
+    sizer->Show(false);
+
+    return sizer;
 }
 
 wxStaticLine* ZaxeDevice::createSeperator()
@@ -251,6 +362,8 @@ void ZaxeDevice::updateStates()
     updatePrintButton();
     updateStatusText();
     updateAvatar();
+    updateIconButtons();
+    setFilamentPresent(nm->states->filamentPresent);
 
     Layout();
     Refresh();
@@ -263,11 +376,11 @@ void ZaxeDevice::updateProgressLine()
     updateProgressValue();
 
     if (nm->states->heating) {
-        progress_bar->SetProgressBackgroundColour(danger_color);
+        progress_bar->SetProgressBackgroundColour(progress_danger_color);
     } else if (nm->states->uploading) {
-        progress_bar->SetProgressBackgroundColour(uploading_color);
+        progress_bar->SetProgressBackgroundColour(progress_uploading_color);
     } else if (nm->states->calibrating) {
-        progress_bar->SetProgressBackgroundColour(warning_color);
+        progress_bar->SetProgressBackgroundColour(progress_calib_color);
     } else {
         progress_bar->SetProgressBackgroundColour(blue500);
     }
@@ -301,8 +414,9 @@ void ZaxeDevice::updatePrintButton()
 
 void ZaxeDevice::updateStatusText()
 {
-    wxString title = "";
-    wxString desc  = "";
+    wxString title      = "";
+    wxString desc       = "";
+    wxString desc_color = gray700;
 
     if (nm->states->bedOccupied) {
         title = _L("Bed is occupied");
@@ -321,9 +435,11 @@ void ZaxeDevice::updateStatusText()
     }
 
     if (nm->states->hasError) {
-        desc = _L("Device is in error state!");
+        desc       = _L("Device is in error state!");
+        desc_color = "#E22005";
     } else if (!nm->isBusy() && nm->states->bedOccupied) {
-        desc = _L("Please take your print!");
+        desc       = _L("Please take your print!");
+        desc_color = progress_success_color;
     } else if (nm->states->printing) {
         desc = _L("Processing");
     }
@@ -332,6 +448,7 @@ void ZaxeDevice::updateStatusText()
     status_title->Show(!title.empty());
 
     status_desc->SetLabel(desc);
+    status_desc->SetForegroundColour(desc_color);
     status_desc->Show(!desc.empty());
 }
 
@@ -346,10 +463,49 @@ void ZaxeDevice::updateAvatar()
     }
 }
 
+void ZaxeDevice::updateIconButtons()
+{
+    bool family_z = is_there(nm->attr->deviceModel, {"z"});
+
+    pause_btn->Show(nm->states->printing && !nm->states->paused && !nm->states->heating);
+    resume_btn->Show(nm->states->printing && nm->states->paused && !nm->states->heating);
+    stop_btn->Show(nm->isBusy() && (nm->states->printing || !nm->states->uploading));
+
+    preheat_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+    preheat_btn->SetIcon(nm->states->preheat ? "zaxe_preheat_active" : "zaxe_preheat");
+
+    say_hi_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+
+    unload_btn->Show(family_z && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+}
+
+void ZaxeDevice::updatePrintInfo()
+{
+    printing_file->Show(is_expanded && nm->states->printing);
+    printing_file_val->Show(is_expanded && nm->states->printing);
+
+    printing_time->Show(is_expanded && nm->states->printing);
+    printing_time_val->Show(is_expanded && nm->states->printing);
+}
+
+void ZaxeDevice::onTemperatureUpdate()
+{
+    nozzle_temp_val->SetLabel(wxString::Format("%.1f "
+                                               "\xC2\xB0"
+                                               "C",
+                                               nm->attr->nozzle_temp));
+    plate_temp_val->SetLabel(wxString::Format("%.1f "
+                                              "\xC2\xB0"
+                                              "C",
+                                              nm->attr->bed_temp));
+    Refresh();
+}
+
 void ZaxeDevice::onAvatarReady()
 {
     if (nm) {
         avatar->SetBitmap(nm->getAvatar());
+        avatar_rect->Layout();
     }
 }
 
@@ -396,6 +552,46 @@ void ZaxeDevice::toggleDeviceNameWidgets()
 
     Layout();
     Refresh();
+}
+
+void ZaxeDevice::confirm(function<void()> cb, const wxString& question)
+{
+    RichMessageDialog dialog(GetParent(), question, _L("XDesktop: Confirmation"), wxICON_QUESTION | wxYES_NO);
+    dialog.SetYesNoLabels(_L("Yes"), _L("No"));
+    int res = dialog.ShowModal();
+    if (res == wxID_YES)
+        cb();
+}
+
+void ZaxeDevice::setMaterialLabel(const std::string& material_label)
+{
+    if (nm->attr->firmwareVersion.GetMajor() >= 3 && nm->attr->firmwareVersion.GetMinor() >= 5 && !nm->states->filamentPresent) {
+        material_val->SetLabel(_L("Not installed"));
+    } else {
+        material_val->SetLabel(wxString(material_label.c_str(), wxConvUTF8));
+    }
+    Refresh();
+}
+
+void ZaxeDevice::setFilamentPresent(bool present) { setMaterialLabel(nm->attr->materialLabel); }
+
+void ZaxeDevice::setPin(bool has_pin) { nm->attr->hasPin = has_pin; }
+
+void ZaxeDevice::setNozzle(const std::string& nozzle)
+{
+    nozzle_val->SetLabel(nm->attr->nozzle + "mm");
+    Refresh();
+}
+
+void ZaxeDevice::setFileStart() { printing_file_val->SetLabel(wxString(nm->attr->printingFile.c_str(), wxConvUTF8)); }
+
+bool ZaxeDevice::has(const wxString& search_text)
+{
+    auto txt = search_text.Lower();
+
+    return getName().Lower().Find(txt) != wxNOT_FOUND || wxString(nm->ip).Find(txt) != wxNOT_FOUND ||
+           material_val->GetLabel().Lower().Find(txt) != wxNOT_FOUND || nozzle_val->GetLabel().Lower().Find(txt) != wxNOT_FOUND ||
+           model_btn->GetLabel().Lower().Find(txt) != wxNOT_FOUND;
 }
 
 } // namespace Slic3r::GUI
