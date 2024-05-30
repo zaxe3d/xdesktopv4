@@ -22,7 +22,7 @@ public:
     void updateStates();
     void updateProgressValue();
     void enablePrintButton(bool enable);
-    
+
     void onPrintDenied();
     void onAvatarReady();
     void onTemperatureUpdate();
@@ -53,6 +53,7 @@ private:
     RoundedRectangle* avatar_rect;
     Label*            status_title;
     Label*            status_desc;
+    Button*           status_desc_icon;
     Button*           print_btn;
     ProgressBar*      progress_bar;
     Label*            progress_label;
