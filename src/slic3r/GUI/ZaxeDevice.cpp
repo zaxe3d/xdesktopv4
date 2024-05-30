@@ -179,8 +179,8 @@ void ZaxeDevice::createAvatar()
 
                 wxExecute(
 #ifdef _WIN32
-                    "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + to_upper_copy(nm->attr->deviceModel) +
-                        ": " + nm->name + "\" -x 720",
+                    "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + to_upper_copy(nm->attr->deviceModel) + ": " +
+                        nm->name + "\" -x 720",
                     wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE
 #else
                     curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + to_upper_copy(nm->attr->deviceModel) + ": " + nm->name + "\" -x 720",
@@ -209,9 +209,18 @@ wxSizer* ZaxeDevice::createStateInfo()
     wxGetApp().UpdateDarkUI(status_desc);
     status_desc->Hide();
 
+    status_desc_icon = new Button(this, "", "zaxe_red_warning", wxBORDER_NONE, FromDIP(24));
+    status_desc_icon->SetPaddingSize(wxSize(0, 0));
+    wxGetApp().UpdateDarkUI(status_desc_icon);
+    status_desc_icon->Hide();
+
+    auto desc_sizer = new wxBoxSizer(wxHORIZONTAL);
+    desc_sizer->Add(status_desc_icon, 0, wxALIGN_CENTER);
+    desc_sizer->Add(status_desc, 0, wxALIGN_CENTER);
+
     auto sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(status_title, 0, wxEXPAND | wxALL, FromDIP(1));
-    sizer->Add(status_desc, 0, wxEXPAND | wxALL, FromDIP(1));
+    sizer->Add(desc_sizer, 0, wxEXPAND | wxALL, FromDIP(1));
     return sizer;
 }
 
@@ -417,6 +426,7 @@ void ZaxeDevice::updateStatusText()
     wxString title      = "";
     wxString desc       = "";
     wxString desc_color = gray700;
+    wxString desc_icon  = "";
 
     if (nm->states->bedOccupied) {
         title = _L("Bed is occupied");
@@ -437,6 +447,7 @@ void ZaxeDevice::updateStatusText()
     if (nm->states->hasError) {
         desc       = _L("Device is in error state!");
         desc_color = "#E22005";
+        desc_icon  = "zaxe_red_warning";
     } else if (!nm->isBusy() && nm->states->bedOccupied) {
         desc       = _L("Please take your print!");
         desc_color = progress_success_color;
@@ -446,6 +457,11 @@ void ZaxeDevice::updateStatusText()
 
     status_title->SetLabel(title);
     status_title->Show(!title.empty());
+
+    if (!desc_icon.empty()) {
+        status_desc_icon->SetIcon(desc_icon);
+    }
+    status_desc_icon->Show(!desc_icon.empty());
 
     status_desc->SetLabel(desc);
     status_desc->SetForegroundColour(desc_color);
