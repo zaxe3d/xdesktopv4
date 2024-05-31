@@ -1,8 +1,9 @@
 #include "ZaxeDevice.hpp"
 
-#include "GUI_App.hpp"
 #include "libslic3r/Utils.hpp"
 #include "MsgDialog.hpp"
+#include "Plater.hpp"
+#include "GUI_App.hpp"
 
 namespace Slic3r::GUI {
 const wxString gray200{"#EAECF0"};
@@ -227,7 +228,7 @@ wxSizer* ZaxeDevice::createStateInfo()
 wxSizer* ZaxeDevice::createPrintButton()
 {
     print_btn = new Button(this, _L("Print now"));
-    print_btn->SetMinSize(wxSize(FromDIP(64), FromDIP(36)));
+    print_btn->SetPaddingSize(wxSize(8, 5));
     print_btn->SetBackgroundColor(*wxWHITE);
     auto color = StateColor(std::pair<wxColour, int>(gray300, StateColor::Disabled), std::pair<wxColour, int>(blue500, StateColor::Normal));
     print_btn->SetBorderColor(color);
@@ -237,7 +238,12 @@ wxSizer* ZaxeDevice::createPrintButton()
     auto sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(print_btn, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
 
-    print_btn->Bind(wxEVT_BUTTON, [this](auto& evt) { onPrintDenied(); });
+    print_btn->Bind(wxEVT_BUTTON, [this](auto& evt) {
+        print_btn->Enable(false);
+        BOOST_LOG_TRIVIAL(info) << "Print now pressed on " << nm->name;
+        print();
+        print_btn->Enable(true);
+    });
 
     return sizer;
 }
@@ -608,6 +614,56 @@ bool ZaxeDevice::has(const wxString& search_text)
     return getName().Lower().Find(txt) != wxNOT_FOUND || wxString(nm->ip).Find(txt) != wxNOT_FOUND ||
            material_val->GetLabel().Lower().Find(txt) != wxNOT_FOUND || nozzle_val->GetLabel().Lower().Find(txt) != wxNOT_FOUND ||
            model_btn->GetLabel().Lower().Find(txt) != wxNOT_FOUND;
+}
+
+bool ZaxeDevice::print()
+{
+    bool               ready   = false;
+    const ZaxeArchive& archive = wxGetApp().plater()->get_zaxe_archive();
+
+    vector<string> sPV;
+    split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
+    string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
+    string dM = to_upper_copy(nm->attr->deviceModel);
+    auto   s  = pN.find(dM);
+    boost::replace_all(dM, "PLUS", "+");
+    trim(pN);
+
+    std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
+    std::string model_nozzle_arch = archive.get_info("model") + " " + archive.get_info("sub_model") + " " +
+                                    archive.get_info("nozzle_diameter");
+
+    if (s == std::string::npos || pN.length() != dM.length() + s) {
+        wxMessageBox(_L("Device model does NOT match. Please reslice with "
+                        "the correct model."),
+                     _L("Wrong device model"), wxOK | wxICON_ERROR);
+    } else if (!nm->attr->isLite && nm->attr->material != "custom" && nm->states->filamentPresent &&
+               nm->attr->material.compare(archive.get_info("material")) != 0) {
+        wxMessageBox(_L("Materials don't match with this device. Please "
+                        "reslice with the correct material."),
+                     _L("Wrong material type"), wxICON_ERROR);
+    } else if (!nm->states->filamentPresent && nm->attr->firmwareVersion.GetMajor() >= 3 && nm->attr->firmwareVersion.GetMinor() >= 5) {
+        confirm([&] { ready = true; }, _L("No filament sensed. Do you really want to continue printing?"));
+    } else if (!nm->attr->isLite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch)) {
+        wxMessageBox(_L("Currently installed nozzle on device doesn't match with this "
+                        "slice. Please reslice with the correct nozzle."),
+                     _L("Wrong nozzle type"), wxICON_ERROR);
+    } else {
+        ready = true;
+    }
+
+    if (ready) {
+        std::thread t([&]() {
+            if (nm->attr->isLite) {
+                nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
+                           translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
+            } else
+                nm->upload(wxGetApp().plater()->get_zaxe_code_path().c_str());
+        });
+        t.detach(); // crusial. otherwise blocks main thread.
+        return true;
+    }
+    return false;
 }
 
 } // namespace Slic3r::GUI

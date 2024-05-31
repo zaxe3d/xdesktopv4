@@ -39,6 +39,8 @@ public:
 
     bool has(const wxString& search_text);
 
+    bool print();
+
 private:
     NetworkMachine* nm;
     wxTimer*        timer;
