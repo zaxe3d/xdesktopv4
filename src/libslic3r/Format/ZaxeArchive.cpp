@@ -2,6 +2,8 @@
 
 #include "libslic3r/Utils.hpp"
 
+#define ZAXE_FILE_VERSION "3.0.1"
+
 namespace Slic3r {
 
 namespace {
