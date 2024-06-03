@@ -28,7 +28,6 @@ using namespace boost::property_tree;
 using namespace std;
 using ConfMap = std::map<std::string, std::string>;
 
-#define ZAXE_FILE_VERSION "3.0.1"
 namespace Slic3r {
 class ZaxeArchive {
 public:
