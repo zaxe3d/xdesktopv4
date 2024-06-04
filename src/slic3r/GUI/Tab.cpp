@@ -257,7 +257,7 @@ void Tab::create_preset_tab()
     add_scaled_bitmap(this, m_bmp_value_unlock, "lock_normal");
     m_bmp_non_system = &m_bmp_white_bullet;
     // Bitmaps to be shown on the "Undo user changes" button next to each input field.
-    add_scaled_bitmap(this, m_bmp_value_revert, "undo");
+    add_scaled_bitmap(this, m_bmp_value_revert, "zaxe_undo");
     add_scaled_bitmap(this, m_bmp_white_bullet, "dot");
     // Bitmap to be shown on the "edit" button before to each editable input field.
     add_scaled_bitmap(this, m_bmp_edit_value, "edit");
@@ -394,8 +394,11 @@ void Tab::create_preset_tab()
 
     m_top_sizer->SetMinSize(-1, 3 * m_em_unit);
     m_top_panel->SetSizer(m_top_sizer);
-    if (m_presets_choice)
-        m_main_sizer->Add(m_top_panel, 0, wxEXPAND | wxUP | wxDOWN, m_em_unit);
+    if (m_presets_choice){
+        m_main_sizer->Add(m_em_unit, 0, 0, 0, 0);
+        m_main_sizer->Add(m_top_panel, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(15));
+        m_main_sizer->Add(m_em_unit, 0, 0, 0, 0);
+    } 
     else
         m_top_panel->Hide();
 
@@ -500,7 +503,7 @@ void Tab::create_preset_tab()
 
     m_tabctrl->Bind(wxEVT_KEY_DOWN, &Tab::OnKeyDown, this);
 
-    m_main_sizer->Add(m_tabctrl, 1, wxEXPAND | wxALL, 0 );
+    m_main_sizer->Add(m_tabctrl, 1, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(15));
 
     this->SetSizer(m_main_sizer);
     //this->Layout();

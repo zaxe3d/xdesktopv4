@@ -208,21 +208,27 @@ ParamsPanel::ParamsPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos, c
 
     if (dynamic_cast<Notebook*>(parent)) {
         // BBS: new layout
-        m_top_panel = new StaticBox(this, wxID_ANY, wxDefaultPosition);
-        m_top_panel->SetBackgroundColor(0xF8F8F8);
-        m_top_panel->SetBackgroundColor2(0xF1F1F1);
 
-        m_process_icon = new ScalableButton(m_top_panel, wxID_ANY, "process");
+        wxString blue100{"#E0F2FE"};
+        wxString blue500{"#009ADE"};
+
+        m_top_panel = new StaticBox(this,wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBORDER_NONE);
+        m_top_panel->SetBackgroundColor(blue100);
+
+        //m_process_icon = new ScalableButton(m_top_panel, wxID_ANY, "process");
 
         m_title_label = new Label(m_top_panel, _L("Process"));
+        m_title_label->SetFont(Label::Head_14);
+        m_title_label->SetForegroundColour(blue500);
 
         //int width, height;
         // BBS: new layout
         m_mode_region = new SwitchButton(m_top_panel);
         m_mode_region->SetMaxSize({em_unit(this) * 12, -1});
-        m_mode_region->SetLabels(_L("Global"), _L("Objects"));
+        m_mode_region->SetThumbColor(blue500);
+        m_mode_region->SetLabels(_L("G"), _L("O"));
         //m_mode_region->GetSize(&width, &height);
-        m_tips_arrow = new ScalableButton(m_top_panel, wxID_ANY, "tips_arrow");
+        m_tips_arrow = new ScalableButton(m_top_panel, wxID_ANY, "zaxe_tips_arrow_blue");
         m_tips_arrow->Hide();
 
         m_title_view = new Label(m_top_panel, _L("Advance"));
@@ -233,11 +239,11 @@ ParamsPanel::ParamsPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos, c
         //m_search_btn->SetToolTip(format_wxstr(_L("Search in settings [%1%]"), "Ctrl+F"));
         //m_search_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent &) { wxGetApp().plater()->search(false); });
 
-        m_compare_btn = new ScalableButton(m_top_panel, wxID_ANY, "compare", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
+        m_compare_btn = new ScalableButton(m_top_panel, wxID_ANY, "zaxe_recovery_convert", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
         m_compare_btn->SetToolTip(_L("Compare presets"));
         m_compare_btn->Bind(wxEVT_BUTTON, ([this](wxCommandEvent e) { wxGetApp().mainframe->diff_dialog.show(); }));
 
-        m_setting_btn = new ScalableButton(m_top_panel, wxID_ANY, "table", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
+        m_setting_btn = new ScalableButton(m_top_panel, wxID_ANY, "zaxe_document_text", wxEmptyString, wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true);
         m_setting_btn->SetToolTip(_L("View all object's settings"));
         m_setting_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent &) { wxGetApp().plater()->PopupObjectTable(-1, -1, {0, 0}); });
 
@@ -360,8 +366,8 @@ void ParamsPanel::create_layout()
 
     if (m_top_panel) {
         m_mode_sizer = new wxBoxSizer( wxHORIZONTAL );
-        m_mode_sizer->AddSpacer(FromDIP(11));
-        m_mode_sizer->Add(m_process_icon, 0, wxALIGN_CENTER);
+        //m_mode_sizer->AddSpacer(FromDIP(11));
+        //m_mode_sizer->Add(m_process_icon, 0, wxALIGN_CENTER);
         m_mode_sizer->AddSpacer(FromDIP(11));
         m_mode_sizer->Add( m_title_label, 0, wxALIGN_CENTER );
         m_mode_sizer->AddStretchSpacer(2);
