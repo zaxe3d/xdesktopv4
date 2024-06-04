@@ -522,7 +522,7 @@ wxBitmap* get_default_extruder_color_icon(bool thin_icon/* = false*/)
     return bitmap;
 }
 
-std::vector<wxBitmap*> get_extruder_color_icons(bool thin_icon/* = false*/)
+std::vector<wxBitmap*> get_extruder_color_icons(bool thin_icon/* = false*/, bool rounded/* = false*/)
 {
     // Create the bitmap with color bars.
     std::vector<wxBitmap*> bmps;
@@ -543,13 +543,13 @@ std::vector<wxBitmap*> get_extruder_color_icons(bool thin_icon/* = false*/)
     for (const std::string &color : colors)
     {
         auto label = std::to_string(++index);
-        bmps.push_back(get_extruder_color_icon(color, label, icon_width, icon_height));
+        bmps.push_back(get_extruder_color_icon(color, label, icon_width, icon_height, rounded));
     }
 
     return bmps;
 }
 
-wxBitmap *get_extruder_color_icon(std::string color, std::string label, int icon_width, int icon_height)
+wxBitmap *get_extruder_color_icon(std::string color, std::string label, int icon_width, int icon_height, bool rounded/* = false*/)
 {
     static Slic3r::GUI::BitmapCache bmp_cache;
 
@@ -582,13 +582,26 @@ wxBitmap *get_extruder_color_icon(std::string color, std::string label, int icon
             clr.SetRGB(0xffffff); // for text color
             dc.SetBrush(*wxTRANSPARENT_BRUSH);
         } else {
-            dc.SetBackground(wxBrush(clr));
-            dc.Clear();
-            dc.SetBrush(wxBrush(clr));
+            if (rounded) {
+                dc.Clear();
+                dc.SetBrush(wxBrush(clr));
+                dc.SetPen(wxPen(clr));
+                int radius = std::min(icon_height, icon_width) / 2;
+                dc.DrawRoundedRectangle(0, 0, icon_width, icon_height, radius);
+            } else {
+                dc.SetBackground(wxBrush(clr));
+                dc.Clear();
+                dc.SetBrush(wxBrush(clr));
+            }
         }
         if (clr.Red() > 224 && clr.Blue() > 224 && clr.Green() > 224) {
             dc.SetPen(*wxGREY_PEN);
-            dc.DrawRectangle(0, 0, icon_width, icon_height);
+            if (rounded) {
+                int radius = std::min(icon_height, icon_width) / 2;
+                dc.DrawRoundedRectangle(0, 0, icon_width, icon_height, radius);
+            } else {
+                dc.DrawRectangle(0, 0, icon_width, icon_height);
+            }
         }
         auto size = dc.GetTextExtent(wxString(label));
         dc.SetTextForeground(clr.GetLuminance() < 0.51 ? *wxWHITE : *wxBLACK);

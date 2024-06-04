@@ -35,7 +35,7 @@ class PresetComboBox : public ::ComboBox // BBS
 {
     bool m_show_all { false };
 public:
-    PresetComboBox(wxWindow* parent, Preset::Type preset_type, const wxSize& size = wxDefaultSize, PresetBundle* preset_bundle = nullptr);
+    PresetComboBox(wxWindow* parent, Preset::Type preset_type, const wxSize& size = wxDefaultSize, PresetBundle* preset_bundle = nullptr, long style = 0);
     ~PresetComboBox();
 
 	enum LabelItemType {
