@@ -62,10 +62,10 @@ TipsDialog::TipsDialog(wxWindow *parent, const wxString &title, const wxString &
 
     m_confirm = new Button(this, _L("OK"));
     StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
-                            std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal));
+                            std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
 
     m_confirm->SetBackgroundColor(btn_bg_green);
-    m_confirm->SetBorderColor(wxColour(0, 150, 136));
+    m_confirm->SetBorderColor(wxColour(0, 154, 222));
     m_confirm->SetTextColor(wxColour(255, 255, 255));
     m_confirm->SetSize(TIPS_DIALOG_BUTTON_SIZE);
     m_confirm->SetMinSize(TIPS_DIALOG_BUTTON_SIZE);
@@ -225,7 +225,6 @@ ParamsPanel::ParamsPanel( wxWindow* parent, wxWindowID id, const wxPoint& pos, c
         // BBS: new layout
         m_mode_region = new SwitchButton(m_top_panel);
         m_mode_region->SetMaxSize({em_unit(this) * 12, -1});
-        m_mode_region->SetThumbColor(blue500);
         m_mode_region->SetLabels(_L("G"), _L("O"));
         //m_mode_region->GetSize(&width, &height);
         m_tips_arrow = new ScalableButton(m_top_panel, wxID_ANY, "zaxe_tips_arrow_blue");
