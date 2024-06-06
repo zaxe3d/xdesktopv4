@@ -212,11 +212,11 @@ wxBoxSizer* WipingDialog::create_btn_sizer(long flags)
     StateColor ok_btn_bg(
         std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
         std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
+        std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal)
     );
 
     StateColor ok_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
+        std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal)
     );
 
     StateColor ok_btn_text(
@@ -241,11 +241,11 @@ wxBoxSizer* WipingDialog::create_btn_sizer(long flags)
     StateColor calc_btn_bg(
         std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
         std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
+        std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal)
     );
     
     StateColor calc_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
+        std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal)
     );
     
     StateColor calc_btn_text(
@@ -297,11 +297,11 @@ wxBoxSizer* WipingPanel::create_calc_btn_sizer(wxWindow* parent) {
     StateColor calc_btn_bg(
         std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
         std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
+        std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal)
     );
 
     StateColor calc_btn_bd(
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
+        std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal)
     );
 
     StateColor calc_btn_text(
