@@ -323,7 +323,7 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
 
     // map of color replaces
     std::map<std::string, std::string> replaces;
-    replaces["\"#0x00AE42\""] = "\"#009688\"";
+replaces["\"#0x00AE42\""] = "\"#009ADE\"";
     replaces["\"#00FF00\""] = "\"#52c7b8\"";
     if (dark_mode) {
         replaces["\"#262E30\""] = "\"#EFEFF0\"";
@@ -335,6 +335,7 @@ wxBitmap* BitmapCache::load_svg(const std::string &bitmap_name, unsigned target_
         replaces["\"#909090\""] = "\"#FFFFFF\"";
         replaces["\"#00FF00\""] = "\"#FF0000\"";
         replaces["\"#009688\""] = "\"#00675b\"";
+        replaces["\"#009ADE\""] = "\"#00675b\"";
         replaces["#DBDBDB"] = "#4A4A51"; // ORCA border color
         replaces["#F0F0F1"] = "#333337"; // ORCA disabled background color
         replaces["#262E30"] = "#EFEFF0"; // ORCA
