@@ -877,8 +877,8 @@ Sidebar::Sidebar(Plater *parent)
                             std::pair<wxColour, int>(wxColour(107, 107, 106), StateColor::Hovered),
                             std::pair<wxColour, int>(wxColour(107, 107, 106), StateColor::Normal));
 
-    StateColor flush_bd_col(std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Pressed),
-                            std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Hovered),
+    StateColor flush_bd_col(std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Pressed),
+                            std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Hovered),
                             std::pair<wxColour, int>(wxColour(172, 172, 172), StateColor::Normal));
 
     p->m_flushing_volume_btn->SetBackgroundColor(flush_bg_col);
@@ -9968,10 +9968,10 @@ ProjectDropDialog::ProjectDropDialog(const std::string &filename)
 
     m_confirm = new Button(this, _L("OK"));
     StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
-                            std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal));
+                            std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
 
     m_confirm->SetBackgroundColor(btn_bg_green);
-    m_confirm->SetBorderColor(wxColour(0, 150, 136));
+    m_confirm->SetBorderColor(wxColour(0, 154, 222));
     m_confirm->SetTextColor(wxColour("#FFFFFE"));
     m_confirm->SetSize(PROJECT_DROP_DIALOG_BUTTON_SIZE);
     m_confirm->SetMinSize(PROJECT_DROP_DIALOG_BUTTON_SIZE);
