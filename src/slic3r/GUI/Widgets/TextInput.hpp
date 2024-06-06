@@ -16,6 +16,8 @@ class TextInput : public wxNavigationEnabled<StaticBox>
     static const int TextInputWidth = 200;
     static const int TextInputHeight = 50;
 
+    bool icon_first; 
+
 public:
     TextInput();
 
@@ -26,7 +28,8 @@ public:
               const wxPoint& pos       = wxDefaultPosition,
               const wxSize&  size      = wxDefaultSize,
               long           style     = 0,
-              int            icon_size = 16);
+              int            icon_size = 16,
+              bool           icon_first = true);
 
 public:
     void Create(wxWindow*      parent,
@@ -36,7 +39,8 @@ public:
                 const wxPoint& pos       = wxDefaultPosition,
                 const wxSize&  size      = wxDefaultSize,
                 long           style     = 0,
-                int            icon_size = 16);
+                int            icon_size = 16,
+                bool           icon_first = true);
 
     void SetCornerRadius(double radius);
 

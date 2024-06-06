@@ -39,10 +39,11 @@ TextInput::TextInput(wxWindow *     parent,
                      const wxPoint &pos,
                      const wxSize & size,
                      long           style,
-                     int            icon_size)
+                     int            icon_size,
+                     bool           icon_first)
     : TextInput()
 {
-    Create(parent, text, label, icon, pos, size, style, icon_size);
+    Create(parent, text, label, icon, pos, size, style, icon_size, icon_first);
 }
 
 void TextInput::Create(wxWindow *     parent,
@@ -52,9 +53,11 @@ void TextInput::Create(wxWindow *     parent,
                        const wxPoint &pos,
                        const wxSize & size,
                        long           style,
-                       int            icon_size)
+                       int            icon_size,
+                       bool           icon_first)
 {
-        text_ctrl = nullptr;
+    this->icon_first = icon_first;
+    text_ctrl = nullptr;
     StaticBox::Create(parent, wxID_ANY, pos, size, style);
     wxWindow::SetLabel(label);
     style &= ~wxRIGHT;
@@ -204,29 +207,50 @@ void TextInput::render(wxDC& dc)
     bool   align_right = GetWindowStyle() & wxRIGHT;
     // start draw
     wxPoint pt = {5, 0};
-    if (icon.bmp().IsOk()) {
-        wxSize szIcon = icon.GetBmpSize();
-        pt.y = (size.y - szIcon.y) / 2;
-        dc.DrawBitmap(icon.bmp(), pt);
-        pt.x += szIcon.x + 0;
-    }
-    auto text = wxWindow::GetLabel();
-    if (!text.IsEmpty()) {
-        wxSize textSize = text_ctrl->GetSize();
-        if (align_right) {
-            if (pt.x + labelSize.x > size.x)
-                text = wxControl::Ellipsize(text, dc, wxELLIPSIZE_END, size.x - pt.x);
-            pt.y = (size.y - labelSize.y) / 2;
-        } else {
-            pt.x += textSize.x;
-            pt.y = (size.y + textSize.y) / 2 - labelSize.y;
+
+    auto render_text = [&]() {
+        auto text = wxWindow::GetLabel();
+        if (!text.IsEmpty()) {
+            wxSize textSize = text_ctrl->GetSize();
+            if (align_right) {
+                if (pt.x + labelSize.x > size.x){
+                    auto max_x = size.x - pt.x;
+                    if(!icon_first && icon.bmp().IsOk())
+                        max_x -= icon.GetBmpSize().x - 2;
+                    text = wxControl::Ellipsize(text, dc, wxELLIPSIZE_END, max_x);
+                }
+                pt.y = (size.y - labelSize.y) / 2;
+            } else {
+                pt.x += textSize.x;
+                pt.y = (size.y + textSize.y) / 2 - labelSize.y;
+            }
+            dc.SetTextForeground(label_color.colorForStates(states));
+            if (align_right)
+                dc.SetFont(GetFont());
+            else
+                dc.SetFont(Label::Body_12);
+            dc.DrawText(text, pt);
         }
-        dc.SetTextForeground(label_color.colorForStates(states));
-        if(align_right)
-            dc.SetFont(GetFont());
-        else
-            dc.SetFont(Label::Body_12);
-        dc.DrawText(text, pt);
+    };
+
+    auto render_icon = [&]() {
+        if (icon.bmp().IsOk()) {
+            wxSize szIcon = icon.GetBmpSize();
+            if (!icon_first)
+                pt.x = size.x - szIcon.x - 2;
+            pt.y = (size.y - szIcon.y) / 2;
+            dc.DrawBitmap(icon.bmp(), pt);
+            pt.x += szIcon.x + 0;
+        }
+    };
+
+    if(icon_first){
+        render_icon();
+        render_text();
+    }
+    else {
+        render_text();
+        render_icon();
     }
 }
 
