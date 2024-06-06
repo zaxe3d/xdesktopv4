@@ -52,7 +52,7 @@ void SpinInput::Create(wxWindow *parent,
                      long           style,
                      int min, int max, int initial)
 {
-    StaticBox::Create(parent, wxID_ANY, pos, size);
+    StaticBox::Create(parent, wxID_ANY, pos, size, style | wxBORDER_NONE);
     SetFont(Label::Body_12);
     wxWindow::SetLabel(label);
     state_handler.attach({&label_color, &text_color});

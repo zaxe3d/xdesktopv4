@@ -44,8 +44,8 @@ ComboBox::ComboBox(wxWindow *parent,
     if (style & wxCB_READONLY)
         style |= wxRIGHT;
     text_off = style & CB_NO_TEXT;
-    TextInput::Create(parent, "", value, (style & CB_NO_DROP_ICON) ? "" : "drop_down", pos, size,
-                      style | wxTE_PROCESS_ENTER);
+    TextInput::Create(parent, "", value, (style & CB_NO_DROP_ICON) ? "" : "zaxe_drop_down", pos, size,
+                      style | wxTE_PROCESS_ENTER, 16, false);
     drop.Create(this, style & DD_STYLE_MASK);
 
     if (style & wxCB_READONLY) {

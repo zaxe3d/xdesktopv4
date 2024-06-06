@@ -481,9 +481,9 @@ bool OptionsGroup::activate(std::function<void()> throw_if_canceled/* = [](){}*/
 		}
 		else {
 			// BBS: new layout
-			::StaticLine* stl = new ::StaticLine(m_parent, false, _(title), icon);
-            stl->SetFont(Label::Head_14);
-            stl->SetForegroundColour("#363636"); // ORCA Match Parameters title color with tab title color 
+			::StaticLine* stl = new ::StaticLine(m_parent, false, _(title)/*, icon*/);
+            stl->SetFont(Label::Body_14);
+            stl->SetForegroundColour("#98A2B3");
             sizer = new wxBoxSizer(wxVERTICAL);
             if (title.IsEmpty()) {
                 stl->Hide();
