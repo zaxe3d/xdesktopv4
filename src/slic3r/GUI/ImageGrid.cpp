@@ -41,8 +41,8 @@ ImageGrid::ImageGrid(wxWindow * parent)
             std::make_pair(0x3B4446, (int) StateColor::Pressed),
             std::make_pair(*wxLIGHT_GREY, (int) StateColor::Hovered),
             std::make_pair(*wxWHITE, (int) StateColor::Normal)))
-    , m_checked_icon(this, "check_on", 16)
-    , m_unchecked_icon(this, "check_off", 16)
+    , m_checked_icon(this, "zaxe_check_on", 16)
+    , m_unchecked_icon(this, "zaxe_check_off", 16)
     , m_model_time_icon(this, "model_time", 14)
     , m_model_weight_icon(this, "model_weight", 14)
 {
