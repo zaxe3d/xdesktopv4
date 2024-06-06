@@ -695,7 +695,7 @@ void GridCellSupportRenderer::Draw(wxGrid& grid,
     wxGridCellRenderer::Draw(grid, attr, dc, rect, row, col, isSelected);
     if (cur_option.value) {
 
-        auto check_on = create_scaled_bitmap("check_on", nullptr, 18);
+        auto check_on = create_scaled_bitmap("zaxe_check_on", nullptr, 18);
         dc.SetPen(*wxTRANSPARENT_PEN);
 
         auto offsetx = 0;
@@ -711,7 +711,7 @@ void GridCellSupportRenderer::Draw(wxGrid& grid,
 
         dc.DrawBitmap(check_on, rect.x + offsetx, rect.y + offsety);
     } else {
-        auto check_off = create_scaled_bitmap("check_off_focused", nullptr, 18);
+        auto check_off = create_scaled_bitmap("zaxe_check_off", nullptr, 18);
         dc.SetPen(*wxTRANSPARENT_PEN);
 
         auto offsetx = 0;

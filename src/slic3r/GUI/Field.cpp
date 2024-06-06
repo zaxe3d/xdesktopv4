@@ -556,7 +556,7 @@ void TextCtrl::BUILD() {
     // const long style = m_opt.multiline ? wxTE_MULTILINE : wxTE_PROCESS_ENTER/*0*/;
     auto temp = m_opt.multiline
         ? (wxWindow *) new wxTextCtrl(m_parent, wxID_ANY, text_value, wxDefaultPosition, size, wxTE_MULTILINE)
-        : new ::TextInput(m_parent, text_value, _L(m_opt.sidetext), "", wxDefaultPosition, size, wxTE_PROCESS_ENTER);
+        : new ::TextInput(m_parent, text_value, _L(m_opt.sidetext), "", wxDefaultPosition, size, wxTE_PROCESS_ENTER | wxBORDER_NONE);
 	auto text_ctrl = m_opt.multiline ? (wxTextCtrl *)temp : ((TextInput *) temp)->GetTextCtrl();
     m_combine_side_text = !m_opt.multiline;
     if (parent_is_custom_ctrl && m_opt.height < 0)
@@ -1091,7 +1091,7 @@ void Choice::BUILD()
     if (m_opt.gui_type != ConfigOptionDef::GUIType::undefined && m_opt.gui_type != ConfigOptionDef::GUIType::select_open 
             && m_list == nullptr) {
         m_is_editable = true;
-        temp = new choice_ctrl(m_parent, wxID_ANY, wxString(""), wxDefaultPosition, size, 0, nullptr, wxTE_PROCESS_ENTER);
+        temp = new choice_ctrl(m_parent, wxID_ANY, wxString(""), wxDefaultPosition, size, 0, nullptr, wxTE_PROCESS_ENTER | wxBORDER_NONE);
     }
     else {
 #ifdef UNDEIFNED__WXOSX__ // __WXOSX__ // BBS
@@ -1103,7 +1103,7 @@ void Choice::BUILD()
         temp->SetTextCtrlStyle(wxTE_READONLY);
         temp->Create(m_parent, wxID_ANY, wxString(""), wxDefaultPosition, size, 0, nullptr);
 #else
-        temp = new choice_ctrl(m_parent, wxID_ANY, wxString(""), wxDefaultPosition, size, 0, nullptr, wxCB_READONLY);
+        temp = new choice_ctrl(m_parent, wxID_ANY, wxString(""), wxDefaultPosition, size, 0, nullptr, wxCB_READONLY | wxBORDER_NONE);
 #endif //__WXOSX__
     }
     temp->GetDropDown().SetUseContentWidth(true);

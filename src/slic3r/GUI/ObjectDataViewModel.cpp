@@ -181,7 +181,7 @@ bool ObjectDataViewModelNode::valid()
 
 void ObjectDataViewModelNode::sys_color_changed()
 {
-    m_printable_icon = m_printable == piUndef ? m_empty_bmp : create_scaled_bitmap(m_printable == piPrintable ? "check_on" : "check_off_focused");
+    m_printable_icon = m_printable == piUndef ? m_empty_bmp : create_scaled_bitmap(m_printable == piPrintable ? "zaxe_check_on" : "zaxe_check_off");
 }
 
 void ObjectDataViewModelNode::set_icons()
@@ -210,7 +210,7 @@ void ObjectDataViewModelNode::set_printable_icon(PrintIndicator printable)
         return;
     m_printable = printable;
     m_printable_icon = m_printable == piUndef ? m_empty_bmp :
-                       create_scaled_bitmap(m_printable == piPrintable ? "check_on" : "check_off_focused");
+                       create_scaled_bitmap(m_printable == piPrintable ? "zaxe_check_on" : "zaxe_check_off");
 }
 
 void ObjectDataViewModelNode::set_action_icon(bool enable)
