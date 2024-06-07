@@ -10,8 +10,8 @@ ButtonRow::ButtonRow(wxWindow* parent, wxWindowID id, wxPoint position, wxSize s
 Button* ButtonRow::insertNewButton(const wxString& label, std::function<void(wxCommandEvent&)> cb)
 {
     auto b        = new Button(this, label);
-    auto bg_color = StateColor(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed),
-                               std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+    auto bg_color = StateColor(std::pair<wxColour, int>(wxColour(0, 134, 201), StateColor::Pressed),
+                               std::pair<wxColour, int>(wxColour(54, 191, 250), StateColor::Hovered),
                                std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
     b->SetBackgroundColor(bg_color);
     b->SetBorderColor(wxColour(0, 154, 222));

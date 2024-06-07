@@ -6,6 +6,7 @@
 #include "GUI_App.hpp"
 
 namespace Slic3r::GUI {
+const wxString gray100{"#F2F4F7"};
 const wxString gray200{"#EAECF0"};
 const wxString gray300{"#D0D5DD"};
 const wxString gray400{"#98A2B3"};
@@ -48,10 +49,10 @@ ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSiz
     body_sizer->Add(s2, 1, wxALIGN_CENTER | wxALL, FromDIP(1));
 
     auto sizer = new wxBoxSizer(wxVERTICAL);
-    sizer->Add(header_sizer, 0, wxEXPAND | wxALL, FromDIP(3));
+    sizer->Add(header_sizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, FromDIP(3));
     sizer->Add(body_sizer, 1, wxEXPAND | wxALL, FromDIP(3));
     sizer->Add(detailed_info_sizer, 0, wxALIGN_CENTER | wxALL, FromDIP(10));
-    sizer->Add(seperator, 0, wxEXPAND);
+    sizer->Add(seperator, 0, wxEXPAND | wxTOP, FromDIP(5));
 
     SetSizer(sizer);
 
@@ -105,6 +106,7 @@ wxSizer* ZaxeDevice::createHeader()
     device_name_ctrl_visible = false;
 
     expand_btn = new Button(this, "", "zaxe_arrow_down", wxBORDER_NONE, FromDIP(24));
+    expand_btn->SetPaddingSize(wxSize(3, 3));
     wxGetApp().UpdateDarkUI(expand_btn);
     is_expanded = false;
 
@@ -281,7 +283,10 @@ void ZaxeDevice::createProgressLine()
 wxSizer* ZaxeDevice::createIconButtons()
 {
     auto create_icon_btn = [&](const auto& icon_name, const wxString& tool_tip, auto callback) {
-        auto btn = new Button(this, "", icon_name, wxBORDER_NONE, FromDIP(24));
+        auto       btn = new Button(this, "", icon_name, wxBORDER_NONE, FromDIP(24));
+        StateColor btn_bg(std::pair<wxColour, int>(gray300, StateColor::Pressed), std::pair<wxColour, int>(gray200, StateColor::Hovered),
+                          std::pair<wxColour, int>(gray100, StateColor::Normal));
+        btn->SetBackgroundColor(btn_bg);
         btn->SetPaddingSize(wxSize(2, 2));
         btn->SetToolTip(tool_tip);
         wxGetApp().UpdateDarkUI(btn);
@@ -297,12 +302,12 @@ wxSizer* ZaxeDevice::createIconButtons()
     unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto& evt) { confirm([&] { nm->unloadFilament(); }); });
 
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
-    sizer->Add(pause_btn);
-    sizer->Add(resume_btn);
-    sizer->Add(stop_btn);
-    sizer->Add(preheat_btn);
-    sizer->Add(say_hi_btn);
-    sizer->Add(unload_btn);
+    sizer->Add(pause_btn, 1, wxRIGHT, FromDIP(5));
+    sizer->Add(resume_btn, 1, wxRIGHT, FromDIP(5));
+    sizer->Add(stop_btn, 1, wxRIGHT, FromDIP(5));
+    sizer->Add(preheat_btn, 1, wxRIGHT, FromDIP(5));
+    sizer->Add(say_hi_btn, 1, wxRIGHT, FromDIP(5));
+    sizer->Add(unload_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Layout();
     return sizer;
 }
@@ -362,9 +367,9 @@ wxSizer* ZaxeDevice::createDetailedInfo()
     return sizer;
 }
 
-wxStaticLine* ZaxeDevice::createSeperator()
+wxPanel* ZaxeDevice::createSeperator()
 {
-    auto seperator = new wxStaticLine(this, wxID_ANY, wxDefaultPosition, wxSize(-1, FromDIP(4)), wxLI_HORIZONTAL);
+    auto seperator = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize(-1, FromDIP(1)));
     seperator->SetBackgroundColour(gray200);
     wxGetApp().UpdateDarkUI(seperator);
     return seperator;

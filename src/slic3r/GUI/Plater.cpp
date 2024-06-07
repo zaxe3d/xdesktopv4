@@ -659,6 +659,7 @@ Sidebar::Sidebar(Plater *parent)
         auto spliter_2 = new ::StaticLine(p->scrolled);
         spliter_2->SetLineColour("#CECECE");
         scrolled_sizer->Add(spliter_2, 0, wxEXPAND);
+        scrolled_sizer->AddSpacer(FromDIP(10));
 
 
         /*************************** 2. add printer content ************************/
@@ -693,7 +694,6 @@ Sidebar::Sidebar(Plater *parent)
         wxBoxSizer* vsizer_printer = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer* hsizer_printer = new wxBoxSizer(wxHORIZONTAL);
 
-        vsizer_printer->AddSpacer(FromDIP(5));
         hsizer_printer->Add(combo_printer, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(3));
         hsizer_printer->Add(edit_btn, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(3));
         hsizer_printer->Add(FromDIP(8), 0, 0, 0, 0);
@@ -808,10 +808,11 @@ Sidebar::Sidebar(Plater *parent)
     auto spliter_1 = new ::StaticLine(p->scrolled);
     spliter_1->SetLineColour("#A6A9AA");
     scrolled_sizer->Add(spliter_1, 0, wxEXPAND);
-    scrolled_sizer->Add(p->m_panel_filament_title, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(15));
+    scrolled_sizer->Add(p->m_panel_filament_title, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(13));
     auto spliter_2 = new ::StaticLine(p->scrolled);
     spliter_2->SetLineColour("#CECECE");
     scrolled_sizer->Add(spliter_2, 0, wxEXPAND);
+    scrolled_sizer->AddSpacer(FromDIP(10));
 
     ScalableButton* add_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_add_circle_blue", wxEmptyString, wxDefaultSize,
                                                  wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true, 18);
@@ -921,7 +922,7 @@ Sidebar::Sidebar(Plater *parent)
     bSizer39->Hide(p->m_flushing_volume_btn);
     bSizer39->Add(FromDIP(10), 0, 0, 0, 0 );
 
-    ams_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "ams_fila_sync", wxEmptyString, wxDefaultSize, wxDefaultPosition,
+    ams_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_ams_fila_sync", wxEmptyString, wxDefaultSize, wxDefaultPosition,
                                                  wxBU_EXACTFIT | wxNO_BORDER, false, 18);
     ams_btn->SetToolTip(_L("Synchronize filament list from AMS"));
     ams_btn->Bind(wxEVT_BUTTON, [this, scrolled_sizer](wxCommandEvent &e) {
@@ -1004,7 +1005,7 @@ Sidebar::Sidebar(Plater *parent)
         auto spliter_1 = new ::StaticLine(p->scrolled);
         spliter_1->SetLineColour("#A6A9AA");
         scrolled_sizer->Add(spliter_1, 0, wxEXPAND);
-        scrolled_sizer->Add(params_panel->get_top_panel(), 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(15));
+        scrolled_sizer->Add(params_panel->get_top_panel(), 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(13));
         auto spliter_2 = new ::StaticLine(p->scrolled);
         spliter_2->SetLineColour("#CECECE");
         scrolled_sizer->Add(spliter_2, 0, wxEXPAND);
@@ -9967,7 +9968,7 @@ ProjectDropDialog::ProjectDropDialog(const std::string &filename)
     wxBoxSizer *m_sizer_right  = new wxBoxSizer(wxHORIZONTAL);
 
     m_confirm = new Button(this, _L("OK"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 134, 201), StateColor::Pressed), std::pair<wxColour, int>(wxColour(54, 191, 250), StateColor::Hovered),
                             std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
 
     m_confirm->SetBackgroundColor(btn_bg_green);
