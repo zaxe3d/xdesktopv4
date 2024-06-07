@@ -1186,7 +1186,7 @@ SelectMachineDialog::SelectMachineDialog(Plater *plater)
     m_comboBox_printer->Bind(wxEVT_COMBOBOX, &SelectMachineDialog::on_selection_changed, this);
 
     m_sizer_printer->Add(m_comboBox_printer, 1, wxEXPAND | wxRIGHT, FromDIP(5));
-    m_btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+    m_btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 134, 201), StateColor::Pressed), std::pair<wxColour, int>(wxColour(54, 191, 250), StateColor::Hovered),
                                std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
 
     m_button_refresh = new Button(this, _L("Refresh"));
@@ -4706,7 +4706,7 @@ EditDevNameDialog::EditDevNameDialog(Plater *plater /*= nullptr*/)
 
 
     m_button_confirm = new Button(this, _L("Confirm"));
-    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
+    StateColor btn_bg_green(std::pair<wxColour, int>(wxColour(0, 134, 201), StateColor::Pressed), std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
     m_button_confirm->SetBackgroundColor(btn_bg_green);
     m_button_confirm->SetBorderColor(wxColour(0, 154, 222));
     m_button_confirm->SetTextColor(wxColour(255, 255, 255));
