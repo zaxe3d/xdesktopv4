@@ -73,7 +73,7 @@ body
 {
 	font-size:28px;
 	line-height: 28px;
-	color: #009688;
+	color: #009ADE;
 	padding: 0px 10mm;
 }
 
@@ -116,7 +116,7 @@ body
 	padding: 3mm 9mm;
 	font-size: 14px;
 	text-align: center;
-	background-color: #009688;
+	background-color: #009ADE;
 	border-radius: 16px;
 	color: #fff;
 	cursor: pointer;
@@ -125,7 +125,7 @@ body
 
 .NormalBtn:hover
 {
-	background-color:#4db6ac;
+	background-color:#36BFFA;
 }
 
 .GrayBtn
@@ -168,7 +168,7 @@ body
 	padding: 2px 4mm;
 	font-size: 14px;
 	text-align: center;
-	background-color: #009688;
+	background-color: #009ADE;
 	border-radius: 6px;
 	color: #fff;
 	cursor: pointer;
@@ -177,13 +177,13 @@ body
 
 .SmallBtn_Green:hover
 {
-	background-color: #4db6ac;
+	background-color: #36BFFA;
 }
 
 /*---HyperLink---*/
 .HyperLink
 {
-	color: #009688;
+	color: #009ADE;
 	text-decoration: underline;
     font-weight: 700;
 	cursor: pointer;

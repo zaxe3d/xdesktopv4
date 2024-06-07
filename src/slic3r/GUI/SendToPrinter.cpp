@@ -251,7 +251,7 @@ SendToPrinterDialog::SendToPrinterDialog(Plater *plater)
     m_comboBox_printer->Bind(wxEVT_COMBOBOX, &SendToPrinterDialog::on_selection_changed, this);
 
     m_sizer_printer->Add(m_comboBox_printer, 1, wxEXPAND | wxRIGHT, FromDIP(5));
-    btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), std::pair<wxColour, int>(wxColour(38, 166, 154), StateColor::Hovered),
+    btn_bg_enable = StateColor(std::pair<wxColour, int>(wxColour(0, 134, 201), StateColor::Pressed), std::pair<wxColour, int>(wxColour(54, 191, 250), StateColor::Hovered),
                                std::pair<wxColour, int>(wxColour(0, 154, 222), StateColor::Normal));
 
     m_button_refresh = new Button(this, _L("Refresh"));

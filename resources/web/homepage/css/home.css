@@ -169,8 +169,8 @@ body
 	font-size: 14px;
 	height: 24px;
 	line-height: 24px;
-	color: #4db6ac;
-	border: 1px solid  #009688;
+	color: #36BFFA;
+	border: 1px solid  #009ADE;
 	border-radius: 4px;
 	cursor: pointer;
 	margin-top: 5px;
@@ -277,8 +277,8 @@ body
 
 .MenuItem:hover
 {
-	border-color: #009688;		/*ORCA color*/
-	background-color: #E5F0EE; /*ORCA color with %25 opacity*/
+	border-color: #36BFFA;
+	background-color: #E0FCEB;
 }
 
 .MenuIcon
@@ -701,7 +701,7 @@ body
 #HotModel_RIGHT_Title:hover
 {
 	cursor: pointer;	
-	color:#009688;	
+	color:#009ADE;	
 }
 
 .HotModelPiece
