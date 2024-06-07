@@ -2,7 +2,6 @@
 
 #include <wx/panel.h>
 #include <wx/statbmp.h>
-#include <wx/statline.h>
 
 #include "Widgets/Label.hpp"
 #include "Widgets/ProgressBar.hpp"
@@ -80,15 +79,15 @@ private:
     bool is_expanded{false};
     bool is_file_name_visible{false};
 
-    void          onTimer(wxTimerEvent& event);
-    wxSizer*      createHeader();
-    void          createAvatar();
-    wxSizer*      createStateInfo();
-    wxSizer*      createPrintButton();
-    void          createProgressLine();
-    wxSizer*      createIconButtons();
-    wxSizer*      createDetailedInfo();
-    wxStaticLine* createSeperator();
+    void     onTimer(wxTimerEvent& event);
+    wxSizer* createHeader();
+    void     createAvatar();
+    wxSizer* createStateInfo();
+    wxSizer* createPrintButton();
+    void     createProgressLine();
+    wxSizer* createIconButtons();
+    wxSizer* createDetailedInfo();
+    wxPanel* createSeperator();
 
     void updateProgressLine();
     void updateTimer();
