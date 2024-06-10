@@ -540,11 +540,13 @@ void ZaxeDevice::enablePrintButton(bool enable) { print_btn->Enable(enable); }
 
 void ZaxeDevice::onPrintDenied()
 {
-    RichMessageDialog dialog(GetParent(), _L("Failed to start printing"), _L("XDesktop: Unknown error"), wxICON_ERROR);
-    dialog.ShowModal();
+    if (nm->states->updating) {
+        RichMessageDialog dialog(GetParent(), _L("Failed to start printing"), _L("XDesktop: Unknown error"), wxICON_ERROR);
+        dialog.ShowModal();
 
-    nm->states->updating = false;
-    updateStates();
+        nm->states->updating = false;
+        updateStates();
+    }
 }
 
 bool ZaxeDevice::isBusy() { return nm->isBusy(); }
