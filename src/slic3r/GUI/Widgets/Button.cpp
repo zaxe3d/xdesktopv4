@@ -288,13 +288,28 @@ void Button::messureSize()
         }
     }
     wxSize size = szContent + paddingSize * 2;
-    if (minSize.GetHeight() > 0)
-        size.SetHeight(minSize.GetHeight());
+    if (is_vertical) {
+        if (minSize.GetWidth() > 0) {
+            size.SetWidth(minSize.GetWidth());
+        }
 
-    if (minSize.GetWidth() > size.GetWidth())
-        wxWindow::SetMinSize(minSize);
-    else
-        wxWindow::SetMinSize(size);
+        if (minSize.GetHeight() > size.GetHeight()) {
+            wxWindow::SetMinSize(minSize);
+        } else {
+            wxWindow::SetMinSize(size);
+        }
+
+    } else {
+        if (minSize.GetHeight() > 0) {
+            size.SetHeight(minSize.GetHeight());
+        }
+
+        if (minSize.GetWidth() > size.GetWidth()) {
+            wxWindow::SetMinSize(minSize);
+        } else {
+            wxWindow::SetMinSize(size);
+        }
+    }
 }
 
 void Button::mouseDown(wxMouseEvent& event)
