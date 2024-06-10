@@ -132,7 +132,7 @@ void ButtonsListCtrl::Rescale()
     int em = em_unit(this);
     for (Button* btn : m_pageButtons) {
         //BBS
-        btn->SetMinSize({(btn->GetLabel().empty() ? 40 : 132) * em / 10, 36 * em / 10});
+        btn->SetMinSize({FromDIP(70), FromDIP(70)});
         btn->Rescale();
     }
 
