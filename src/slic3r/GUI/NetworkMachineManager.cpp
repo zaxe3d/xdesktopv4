@@ -279,6 +279,8 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
         dev->second->onPrintDenied();
     } else if (event.event == "temperature_update") {
         dev->second->onTemperatureUpdate();
+    } else if (event.event == "upload_done") {
+       dev->second->onUploadDone();
     }
 }
 
@@ -293,21 +295,15 @@ void NetworkMachineManager::onMachineAvatarReady(wxCommandEvent& event)
     it->second->onAvatarReady();
 }
 
-void NetworkMachineManager::onModeChanged()
-{
-    /*
-    std::for_each(m_deviceMap.begin(), m_deviceMap.end(), [](auto& d) {
-        if (d.second)
-            d.second->onModeChanged();
-    });
-    */
-}
-
 void NetworkMachineManager::applyFilters()
 {
     auto searchText = search_ctrl->GetTextCtrl()->GetValue();
 
     for (auto& [ip, dev] : device_map) {
+        if (!dev) {
+            continue;
+        }
+
         bool show = true;
         if (filter_state == FilterState::SHOW_AVAILABLE) {
             show = show && !dev->isBusy();

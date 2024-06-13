@@ -4,6 +4,7 @@
 #include "MsgDialog.hpp"
 #include "Plater.hpp"
 #include "GUI_App.hpp"
+#include "NotificationManager.hpp"
 
 namespace Slic3r::GUI {
 const wxString gray100{"#F2F4F7"};
@@ -627,7 +628,6 @@ bool ZaxeDevice::has(const wxString& search_text)
 
 bool ZaxeDevice::print()
 {
-    bool               ready   = false;
     const ZaxeArchive& archive = wxGetApp().plater()->get_zaxe_archive();
 
     vector<string> sPV;
@@ -642,37 +642,71 @@ bool ZaxeDevice::print()
     std::string model_nozzle_arch = archive.get_info("model") + " " + archive.get_info("sub_model") + " " +
                                     archive.get_info("nozzle_diameter");
 
+    if (is_there(nm->attr->deviceModel, {"x3"}) && !nm->states->usbPresent) {
+        wxMessageBox(_L("Please insert a usb stick before start printing."), _L("USB stick not found"), wxICON_ERROR);
+        return false;
+    }
+
     if (s == std::string::npos || pN.length() != dM.length() + s) {
         wxMessageBox(_L("Device model does NOT match. Please reslice with "
                         "the correct model."),
                      _L("Wrong device model"), wxOK | wxICON_ERROR);
-    } else if (!nm->attr->isLite && nm->attr->material != "custom" && nm->states->filamentPresent &&
-               nm->attr->material.compare(archive.get_info("material")) != 0) {
+        return false;
+    }
+
+    if (!nm->attr->isLite && nm->states->filamentPresent && nm->attr->material != "custom" &&
+        nm->attr->material.compare(archive.get_info("material")) != 0) {
+        BOOST_LOG_TRIVIAL(warning) << "Wrong material type, filamentPresent: " << nm->states->filamentPresent
+                                   << " deviceMaterial: " << nm->attr->material << " slicerMaterial: " << archive.get_info("material");
         wxMessageBox(_L("Materials don't match with this device. Please "
                         "reslice with the correct material."),
                      _L("Wrong material type"), wxICON_ERROR);
-    } else if (!nm->states->filamentPresent && nm->attr->firmwareVersion.GetMajor() >= 3 && nm->attr->firmwareVersion.GetMinor() >= 5) {
-        confirm([&] { ready = true; }, _L("No filament sensed. Do you really want to continue printing?"));
-    } else if (!nm->attr->isLite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch)) {
+        return false;
+    }
+
+    if (!nm->states->filamentPresent && nm->attr->firmwareVersion.GetMajor() >= 3 && nm->attr->firmwareVersion.GetMinor() >= 5) {
+        bool confirmed = false;
+        confirm([&] { confirmed = true; }, _L("No filament sensed. Do you really want to continue "
+                                              "printing?"));
+        if (!confirmed)
+            return false;
+    }
+
+    if (!nm->attr->isLite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch)) {
+        BOOST_LOG_TRIVIAL(warning) << "Wrong nozzle type, deviceNozzle: " << model_nozzle_attr << " slicerNozzle: " << model_nozzle_arch;
         wxMessageBox(_L("Currently installed nozzle on device doesn't match with this "
                         "slice. Please reslice with the correct nozzle."),
                      _L("Wrong nozzle type"), wxICON_ERROR);
-    } else {
-        ready = true;
+        return false;
     }
 
-    if (ready) {
-        std::thread t([&]() {
-            if (nm->attr->isLite) {
-                nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
-                           translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
-            } else
-                nm->upload(wxGetApp().plater()->get_zaxe_code_path().c_str());
-        });
-        t.detach(); // crusial. otherwise blocks main thread.
-        return true;
+    if (nm->states->bedDirty) {
+        bool confirmed = false;
+        confirm([&] { confirmed = true; }, _L("Bed might not be ready for the next print. Please be "
+                                              "sure its clean before pressing YES!"));
+        if (!confirmed)
+            return false;
     }
-    return false;
+
+    std::thread t([&]() {
+        if (nm->attr->isLite) {
+            this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
+                             translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
+        } else {
+            this->nm->upload(wxGetApp().plater()->get_zaxe_code_path().c_str());
+        }
+    });
+    t.detach(); // crusial. otherwise blocks main thread.
+    return true;
+}
+
+void ZaxeDevice::onUploadDone()
+{
+    updateStates();
+    wxGetApp().plater()->get_notification_manager()->push_notification(NotificationType::CustomNotification,
+                                                                       NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
+                                                                       _u8L("Your print job has been sent to the device. Printing will "
+                                                                            "start shortly."));
 }
 
 } // namespace Slic3r::GUI
