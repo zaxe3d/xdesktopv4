@@ -26,7 +26,6 @@ public:
 
     void enablePrintNowButton(bool enable);
     void addMachine(std::string ip, int port, std::string id);
-    void onModeChanged();
 
 private:
     enum class FilterState { SHOW_AVAILABLE, SHOW_BUSY, SHOW_ALL };

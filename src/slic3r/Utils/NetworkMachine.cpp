@@ -108,6 +108,7 @@ void NetworkMachine::onWSRead(string message)
             states->updating       = states->ptreeStringtoBool(pt, "is_updating");
             states->calibrating    = states->ptreeStringtoBool(pt, "is_calibrating");
             states->bedOccupied    = states->ptreeStringtoBool(pt, "is_bed_occupied");
+            states->bedDirty       = states->ptreeStringtoBool(pt, "is_bed_dirty");
             states->usbPresent     = states->ptreeStringtoBool(pt, "is_usb_present");
             states->preheat        = states->ptreeStringtoBool(pt, "is_preheat");
             states->printing       = states->ptreeStringtoBool(pt, "is_printing");
@@ -321,17 +322,28 @@ int xfercb(void *userp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal
 
 void NetworkMachine::uploadHTTP(const char *filename, const char *uploadAs)
 {
-    std::string url = "http://" + ip + "/upload.cgi:" + std::to_string(m_httpPort);
+    std::string url = "http://" + ip +
+                      "/upload.cgi:" + std::to_string(m_httpPort);
     states->uploading = true;
-    auto http = Http::post(std::move(url));
+    auto http         = Http::post(std::move(url));
     http.form_add_file("file", filename, uploadAs)
-        .on_complete([&](std::string body, unsigned status) {states->uploading = false;})
+        .on_complete([&](std::string body, unsigned status) {
+            states->uploading = false;
+            MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done",
+                                       {}, this, wxID_ANY);
+            evt.SetEventObject(this->m_evtHandler);
+            wxPostEvent(this->m_evtHandler, evt);
+        })
         .on_error([&](std::string body, std::string error, unsigned status) {
             states->uploading = false;
-            BOOST_LOG_TRIVIAL(error) << boost::format("%1%: Error uploading file: %2%, HTTP %3%, body: `%4%`") % name % error % status % body;
+            BOOST_LOG_TRIVIAL(error)
+                << boost::format("%1%: Error uploading file: %2%, HTTP %3%, "
+                                 "body: `%4%`") %
+                       name % error % status % body;
         })
         .on_progress([&](Http::Progress progress, bool &cancel) {
-            xfercb(static_cast<void *>(this), progress.dltotal, progress.dlnow, progress.ultotal, progress.ulnow);
+            xfercb(static_cast<void *>(this), progress.dltotal,
+                   progress.dlnow, progress.ultotal, progress.ulnow);
         })
         .perform_sync();
 }
@@ -392,6 +404,11 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
         BOOST_LOG_TRIVIAL(warning) << boost::format("Networkmachine - Couldn't connect to machine [%1% - %2%] for uploading print. ERROR_CODE: %3%") % name % ip % res;
         return;
     }
+
+    MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done", {},
+                               this, wxID_ANY);
+    evt.SetEventObject(this->m_evtHandler);
+    wxPostEvent(this->m_evtHandler, evt);
 
     curl_global_cleanup();
 }
