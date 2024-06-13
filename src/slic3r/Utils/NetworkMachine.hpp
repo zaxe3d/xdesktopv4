@@ -60,6 +60,7 @@ struct MachineStates { // states.
     bool updating;
     bool calibrating;
     bool bedOccupied;
+    bool bedDirty;
     bool usbPresent;
     bool preheat;
     bool printing;

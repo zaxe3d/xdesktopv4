@@ -25,6 +25,7 @@ public:
     void onPrintDenied();
     void onAvatarReady();
     void onTemperatureUpdate();
+    void onUploadDone();
 
     bool     isBusy();
     void     setName(const string& name);
