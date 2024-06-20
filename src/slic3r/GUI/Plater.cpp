@@ -318,6 +318,7 @@ enum class ActionButtonType : int {
 struct Sidebar::priv
 {
     Plater *plater;
+    wxBoxSizer* side_tools;
 
     Button* mode_settings{nullptr};
     Button* mode_carousel{nullptr};
@@ -374,7 +375,7 @@ struct Sidebar::priv
     Search::OptionsSearcher     searcher;
     std::string ams_list_device;
 
-    priv(Plater *plater) : plater(plater) {}
+    priv(Plater *plater, wxBoxSizer* side_tools = nullptr) : plater(plater), side_tools(side_tools) {}
     ~priv();
 
     void show_preset_comboboxes();
@@ -650,8 +651,8 @@ struct DynamicFilamentList1Based : DynamicFilamentList
 static DynamicFilamentList dynamic_filament_list;
 static DynamicFilamentList1Based dynamic_filament_list_1_based;
 
-Sidebar::Sidebar(Plater *parent)
-    : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(42 * wxGetApp().em_unit(), -1)), p(new priv(parent))
+Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
+    : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxSize(42 * wxGetApp().em_unit(), -1)), p(new priv(parent, side_tools))
 {
     Choice::register_dynamic_list("support_filament", &dynamic_filament_list);
     Choice::register_dynamic_list("support_interface_filament", &dynamic_filament_list);
@@ -659,6 +660,8 @@ Sidebar::Sidebar(Plater *parent)
     Choice::register_dynamic_list("sparse_infill_filament", &dynamic_filament_list_1_based);
     Choice::register_dynamic_list("solid_infill_filament", &dynamic_filament_list_1_based);
     Choice::register_dynamic_list("wipe_tower_filament", &dynamic_filament_list);
+
+    SetBackgroundColour(*wxWHITE);
 
     p->scrolled = new wxPanel(this);
     //    p->scrolled->SetScrollbars(0, 100, 1, 2); // ys_DELETE_after_testing. pixelsPerUnitY = 100
@@ -698,7 +701,8 @@ Sidebar::Sidebar(Plater *parent)
     wxString blue100{"#E0F2FE"};
     wxString blue300{"#7CD4FD"};
     wxString blue500{"#009ADE"};
-    wxString gray100("#F2F4F7");
+    wxString gray100{"#F2F4F7"};
+    wxString gray300{"#D0D5DD"};
     wxString gray400{"#98A2B3"};
 
     // add printer
@@ -882,18 +886,18 @@ Sidebar::Sidebar(Plater *parent)
     auto on_filament_title_clicked = [&]() {
         if (p->m_panel_filament_content->GetMaxHeight() == 0) {
             p->m_panel_filament_content->SetMaxSize({-1, -1});
-            p->m_printer_icon->SetBitmap_("zaxe_arrow_up_blue");
+            p->m_filament_icon->SetBitmap_("zaxe_arrow_up_blue");
         } else {
-            p->m_printer_icon->SetBitmap_("zaxe_arrow_down_blue");
+            p->m_filament_icon->SetBitmap_("zaxe_arrow_down_blue");
             p->m_panel_filament_content->SetMaxSize({-1, 0});
         }
 
         m_scrolled_sizer->Layout();
     };
-    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [&, on_filament_title_clicked](wxMouseEvent& e) {
-        if (e.GetPosition().x >
-            (p->m_flushing_volume_btn->IsShown() ? p->m_flushing_volume_btn->GetPosition().x : p->m_bpButton_add_filament->GetPosition().x))
-            return;
+    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [&, on_filament_title_clicked](wxMouseEvent&) {
+        //if (e.GetPosition().x >
+        //    (p->m_flushing_volume_btn->IsShown() ? p->m_flushing_volume_btn->GetPosition().x : p->m_bpButton_add_filament->GetPosition().x))
+        //    return;
         on_filament_title_clicked();
     });
 
@@ -1258,15 +1262,45 @@ Sidebar::Sidebar(Plater *parent)
     z_mode_sizer->Add(p->mode_carousel, 1, wxEXPAND);
     z_mode_sizer->Add(p->mode_settings, 1, wxEXPAND);
 
-    p->machine_manager = new NetworkMachineManager(this,
-                                                   wxSize(GetSize().GetWidth(),
-                                                          -1));
-    show_carousel(true);                                         
+    p->machine_manager = new NetworkMachineManager(this, wxSize(GetSize().GetWidth(), -1));
+    show_carousel(true);
 
-    auto *sizer = new wxBoxSizer(wxVERTICAL);
+    auto* sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(z_mode_sizer, 0, wxEXPAND);
-    sizer->Add(p->machine_manager, 1, wxEXPAND);
-    sizer->Add(p->scrolled, 1, wxEXPAND);
+    sizer->Add(p->machine_manager, 6, wxEXPAND);
+    sizer->Add(p->scrolled, 6, wxEXPAND);
+
+    if (p->side_tools) {
+        std::function<void(wxSizer*, wxWindow*)> _reparent = [&_reparent](wxSizer* _sizer, wxWindow* new_parent) {
+            if (!_sizer)
+                return;
+
+            for (size_t idx = 0; idx < _sizer->GetItemCount(); idx++) {
+                wxSizerItem* item = _sizer->GetItem(idx);
+                if (!item)
+                    continue;
+
+                wxWindow* item_win = item->GetWindow();
+                if (item_win) {
+                    item_win->Reparent(new_parent);
+                } else {
+                    wxSizer* sub_sizer = item->GetSizer();
+                    if (sub_sizer) {
+                        _reparent(sub_sizer, new_parent);
+                    }
+                }
+            }
+        };
+
+        _reparent(p->side_tools, this);
+
+        auto seperator = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize{-1, 1});
+        seperator->SetBackgroundColour(gray300);
+
+        sizer->Add(seperator, 0, wxEXPAND, 0);
+        sizer->Add(p->side_tools, 1, wxEXPAND | wxALL, FromDIP(15));
+    }
+
     SetSizer(sizer);
 }
 
@@ -2453,7 +2487,7 @@ struct Plater::priv
 
     bool m_is_dark = false;
 
-    priv(Plater *q, MainFrame *main_frame);
+    priv(Plater *q, MainFrame *main_frame, wxBoxSizer* side_tools = nullptr);
     ~priv();
 
 
@@ -2917,7 +2951,7 @@ bool PlaterDropTarget::OnDropFiles(wxCoord x, wxCoord y, const wxArrayString &fi
     return res;
 }
 
-Plater::priv::priv(Plater *q, MainFrame *main_frame)
+Plater::priv::priv(Plater *q, MainFrame *main_frame, wxBoxSizer* side_tools)
     : q(q)
     , main_frame(main_frame)
     //BBS: add bed_exclude_area
@@ -2936,7 +2970,7 @@ Plater::priv::priv(Plater *q, MainFrame *main_frame)
         "wipe_tower_rotation_angle", "wipe_tower_cone_angle", "wipe_tower_extra_spacing", "wipe_tower_extra_flow", "wipe_tower_max_purge_speed", "wipe_tower_filament",
         "best_object_pos"
         }))
-    , sidebar(new Sidebar(q))
+    , sidebar(new Sidebar(q, side_tools))
     , notification_manager(std::make_unique<NotificationManager>(q))
     , m_worker{q, std::make_unique<NotificationProgressIndicator>(notification_manager.get()), "ui_worker"}
     , m_sla_import_dlg{new SLAImportDialog{q}}
@@ -8965,9 +8999,9 @@ void Sidebar::set_btn_label(const ActionButtonType btn_type, const wxString& lab
 
 // Plater / Public
 
-Plater::Plater(wxWindow *parent, MainFrame *main_frame)
+Plater::Plater(wxWindow *parent, MainFrame *main_frame, wxBoxSizer* side_tools)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, wxGetApp().get_min_size())
-    , p(new priv(this, main_frame))
+    , p(new priv(this, main_frame, side_tools))
 {
     // Initialization performed in the private c-tor
     enable_wireframe(true);

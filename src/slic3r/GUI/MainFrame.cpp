@@ -551,6 +551,7 @@ DPIFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, BORDERLESS_FRAME_
             m_plater->apply_background_progress();
             m_print_enable = get_enable_print_status();
             m_print_btn->Enable(m_print_enable);
+            update_btn2(m_print_enable);
             if (m_print_enable) {
                 if (wxGetApp().preset_bundle->use_bbl_network())
                     wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_PLATE));
@@ -927,10 +928,10 @@ void MainFrame::show_option(bool show)
         }
     } else {
         if (!m_slice_btn->IsShown()) {
-            //m_slice_btn->Show();
-            //m_print_btn->Show();
-            //m_slice_option_btn->Show();
-            //m_print_option_btn->Show();
+            m_slice_btn->Show();
+            m_print_btn->Show();
+            m_slice_option_btn->Show();
+            m_print_option_btn->Show();
             Layout();
         }
     }
@@ -940,8 +941,7 @@ void MainFrame::init_tabpanel() {
     // wxNB_NOPAGETHEME: Disable Windows Vista theme for the Notebook background. The theme performance is terrible on
     // Windows 10 with multiple high resolution displays connected.
     // BBS
-    wxBoxSizer *side_tools = create_side_tools();
-    m_tabpanel = new Notebook(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, side_tools,
+    m_tabpanel = new Notebook(this, wxID_ANY, wxDefaultPosition, wxDefaultSize, nullptr,
                               wxNB_LEFT  | wxTAB_TRAVERSAL | wxNB_NOPAGETHEME, true);
     m_tabpanel->SetBackgroundColour(*wxWHITE);
 
@@ -1021,7 +1021,8 @@ void MainFrame::init_tabpanel() {
         m_param_panel = new ParamsPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBK_LEFT | wxTAB_TRAVERSAL);
     }
 
-    m_plater = new Plater(this, this);
+    wxBoxSizer *side_tools = create_side_tools();
+    m_plater = new Plater(this, this, side_tools);
     m_plater->SetBackgroundColour(*wxWHITE);
     m_plater->Hide();
 
@@ -1491,39 +1492,85 @@ bool MainFrame::can_reslice() const
     return (m_plater != nullptr) && !m_plater->model().objects.empty();
 }
 
-wxBoxSizer* MainFrame::create_side_tools()
+void MainFrame::update_btn1(bool enable)
 {
-    enable_multi_machine = wxGetApp().is_enable_multi_machine();
-    int em = em_unit();
-    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+    m_btn1->SetBackgroundColor(enable ? blue500 : gray300);
+    m_btn1->SetBackgroundColour(*wxWHITE);
+    m_btn1->SetBorderColor(enable ? blue500 : gray300);
+
+    m_slice_btn->SetBackgroundColor(enable ? blue500 : gray300);
+    m_slice_btn->SetTextColor(*wxWHITE);
+    m_slice_option_btn->SetBackgroundColor(enable ? blue500 : gray300);
+
+    Refresh();
+}
+
+void MainFrame::update_btn2(bool enable)
+{
+    m_btn2->SetBackgroundColor(*wxWHITE);
+    m_btn2->SetBackgroundColour(*wxWHITE);
+    m_btn2->SetBorderColor(enable ? blue500 : gray300);
+
+    m_print_btn->SetBackgroundColor(*wxWHITE);
+    m_print_btn->SetTextColor(enable ? blue500 : gray300);
+    m_print_option_btn->SetBackgroundColor(*wxWHITE);
+
+    Refresh();
+}
+
+wxBoxSizer* MainFrame::create_side_tools()
+{   
+
+    auto create_multi_btn = [&](auto btn_l, auto btn_r){
+        auto btn = new StaticBox(this);
+        auto sizer = new wxBoxSizer(wxHORIZONTAL);
+
+        btn_l->Reparent(btn);
+        btn_r->Reparent(btn);
+
+        btn->SetMinSize(wxSize(FromDIP(150), FromDIP(45)));
+        btn->SetCornerRadius(FromDIP(12));
+
+        btn_l->SetCornerRadius(0);
+        btn_r->SetPaddingSize({0 , 0});
+        btn_r->SetCornerRadius(FromDIP(0));
+
+        sizer->AddSpacer(FromDIP(10));
+        sizer->Add(btn_l, 1, wxEXPAND | wxALL | wxALIGN_CENTER, FromDIP(3));
+        sizer->Add(btn_r, 0, wxALL | wxALIGN_CENTER, FromDIP(3));
+        sizer->AddSpacer(FromDIP(15));
+
+        btn->SetSizer(sizer);
+        sizer->Layout();
+
+        return btn;
+    };
 
     m_slice_select = eSlicePlate;
     m_print_select = ePrintPlate;
 
     // m_publish_btn = new Button(this, _L("Upload"), "bar_publish", 0, FromDIP(16));
-    m_slice_btn = new SideButton(this, _L("Slice plate"), "");
-    m_slice_option_btn = new SideButton(this, "", "sidebutton_dropdown", 0, FromDIP(14));
-    m_print_btn = new SideButton(this, _L("Print plate"), "");
-    m_print_option_btn = new SideButton(this, "", "sidebutton_dropdown", 0, FromDIP(14));
+    m_slice_btn = new Button(this, _L("Slice plate"), "", wxBORDER_NONE);
+    m_slice_option_btn = new Button(this, "", "zaxe_square_arrow_down", wxBORDER_NONE, FromDIP(24));
+    m_print_btn = new Button(this, _L("Print plate"), "", wxBORDER_NONE);
+    m_print_option_btn = new Button(this, "", "zaxe_square_arrow_down_blue", wxBORDER_NONE, FromDIP(24));
 
-    // TODO zaxe
-    m_slice_btn->Hide();
-    m_slice_option_btn->Hide();
-    m_print_btn->Hide();
-    m_print_option_btn->Hide();
-
-    update_side_button_style();
     // m_publish_btn->Hide();
     m_slice_option_btn->Enable();
     m_print_option_btn->Enable();
-    // sizer->Add(m_publish_btn, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, FromDIP(1));
-    // sizer->Add(FromDIP(15), 0, 0, 0, 0);
-    sizer->Add(m_slice_option_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, FromDIP(1));
-    sizer->Add(m_slice_btn, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, FromDIP(1));
-    sizer->Add(FromDIP(15), 0, 0, 0, 0);
-    sizer->Add(m_print_option_btn, 0, wxRIGHT | wxALIGN_CENTER_VERTICAL, FromDIP(1));
-    sizer->Add(m_print_btn, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, FromDIP(1));
-    sizer->Add(FromDIP(19), 0, 0, 0, 0);
+
+    m_btn1 = create_multi_btn(m_slice_btn, m_slice_option_btn);
+    m_btn2 = create_multi_btn(m_print_btn, m_print_option_btn);
+
+    update_btn1(true);
+    update_btn2(true);
+
+    wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
+
+    sizer->Add(m_btn1, 0, wxEXPAND | wxLEFT | wxRIGHT | wxALIGN_CENTER, FromDIP(30));
+    sizer->AddSpacer(FromDIP(10));
+    sizer->Add(m_btn2, 0, wxEXPAND | wxLEFT | wxRIGHT | wxALIGN_CENTER, FromDIP(30));
+    sizer->AddSpacer(FromDIP(10));
 
     sizer->Layout();
 
@@ -1564,6 +1611,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                 // check valid of print
                 m_print_enable = get_enable_print_status();
                 m_print_btn->Enable(m_print_enable);
+                update_btn2(m_print_enable);
                 if (m_print_enable) {
                     if (m_print_select == ePrintAll)
                         wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_ALL));
@@ -1604,6 +1652,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                 m_slice_select = eSliceAll;
                 m_slice_enable = get_enable_slice_status();
                 m_slice_btn->Enable(m_slice_enable);
+                update_btn1(m_slice_enable);
                 this->Layout();
                 p->Dismiss();
                 });
@@ -1613,6 +1662,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                 m_slice_select = eSlicePlate;
                 m_slice_enable = get_enable_slice_status();
                 m_slice_btn->Enable(m_slice_enable);
+                update_btn1(m_slice_enable);
                 this->Layout();
                 p->Dismiss();
                 });
@@ -1636,6 +1686,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = eExportGcode;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1648,6 +1699,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = eSendGcode;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1674,6 +1726,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = ePrintPlate;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1685,6 +1738,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = ePrintAll;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1694,6 +1748,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = eSendToPrinter;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1705,6 +1760,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = eSendToPrinterAll;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1714,6 +1770,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = eExportSlicedFile;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1723,6 +1780,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = eExportAllSlicedFile;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
@@ -1775,6 +1833,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     m_print_select = eExportGcode;
                     m_print_enable = get_enable_print_status();
                     m_print_btn->Enable(m_print_enable);
+                    update_btn2(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                 });
@@ -1793,7 +1852,7 @@ wxBoxSizer* MainFrame::create_side_tools()
     });
     sizer->Add(aux_btn, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 1 * em / 10);
     */
-    sizer->Add(FromDIP(19), 0, 0, 0, 0);
+    //sizer->Add(FromDIP(19), 0, 0, 0, 0);
 
     return sizer;
 }
@@ -1934,53 +1993,6 @@ bool MainFrame::get_enable_print_status()
     return enable;
 }
 
-void MainFrame::update_side_button_style()
-{
-    // BBS
-    int em = em_unit();
-
-    /*m_slice_btn->SetLayoutStyle(1);
-    m_slice_btn->SetTextLayout(SideButton::EHorizontalOrientation::HO_Center, FromDIP(15));
-    m_slice_btn->SetMinSize(wxSize(-1, FromDIP(24)));
-    m_slice_btn->SetCornerRadius(FromDIP(12));
-    m_slice_btn->SetExtraSize(wxSize(FromDIP(38), FromDIP(10)));
-    m_slice_btn->SetBottomColour(wxColour(0x3B4446));*/
-    StateColor m_btn_bg_enable = StateColor(
-        std::pair<wxColour, int>(wxColour(0, 137, 123), StateColor::Pressed), 
-        std::pair<wxColour, int>(wxColour(48, 221, 112), StateColor::Hovered),
-        std::pair<wxColour, int>(wxColour(0, 150, 136), StateColor::Normal)
-    );
-
-    // m_publish_btn->SetMinSize(wxSize(FromDIP(125), FromDIP(24)));
-    // m_publish_btn->SetCornerRadius(FromDIP(12));
-    // m_publish_btn->SetBackgroundColor(m_btn_bg_enable);
-    // m_publish_btn->SetBorderColor(m_btn_bg_enable);
-    // m_publish_btn->SetBackgroundColour(wxColour(59,68,70));
-    // m_publish_btn->SetTextColor(StateColor::darkModeColorFor("#FFFFFE"));
-
-    m_slice_btn->SetTextLayout(SideButton::EHorizontalOrientation::HO_Left, FromDIP(15));
-    m_slice_btn->SetCornerRadius(FromDIP(12));
-    m_slice_btn->SetExtraSize(wxSize(FromDIP(38), FromDIP(10)));
-    m_slice_btn->SetMinSize(wxSize(-1, FromDIP(24)));
-
-    m_slice_option_btn->SetTextLayout(SideButton::EHorizontalOrientation::HO_Center);
-    m_slice_option_btn->SetCornerRadius(FromDIP(12));
-    m_slice_option_btn->SetExtraSize(wxSize(FromDIP(10), FromDIP(10)));
-    m_slice_option_btn->SetIconOffset(FromDIP(2));
-    m_slice_option_btn->SetMinSize(wxSize(FromDIP(24), FromDIP(24)));
-
-    m_print_btn->SetTextLayout(SideButton::EHorizontalOrientation::HO_Left, FromDIP(15));
-    m_print_btn->SetCornerRadius(FromDIP(12));
-    m_print_btn->SetExtraSize(wxSize(FromDIP(38), FromDIP(10)));
-    m_print_btn->SetMinSize(wxSize(-1, FromDIP(24)));
-
-    m_print_option_btn->SetTextLayout(SideButton::EHorizontalOrientation::HO_Center);
-    m_print_option_btn->SetCornerRadius(FromDIP(12));
-    m_print_option_btn->SetExtraSize(wxSize(FromDIP(10), FromDIP(10)));
-    m_print_option_btn->SetIconOffset(FromDIP(2));
-    m_print_option_btn->SetMinSize(wxSize(FromDIP(24), FromDIP(24)));
-}
-
 void MainFrame::update_slice_print_status(SlicePrintEventType event, bool can_slice, bool can_print)
 {
     bool enable_print = true, enable_slice = true;
@@ -2009,6 +2021,8 @@ void MainFrame::update_slice_print_status(SlicePrintEventType event, bool can_sl
     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(" m_slice_select %1%: can_slice= %2%, can_print %3%, enable_slice %4%, enable_print %5% ")%m_slice_select % can_slice %can_print %enable_slice %enable_print;
     m_print_btn->Enable(enable_print);
     m_slice_btn->Enable(enable_slice);
+    update_btn1(enable_slice);
+    update_btn2(enable_print);
     m_slice_enable = enable_slice;
     m_print_enable = enable_print;
 
@@ -2040,8 +2054,6 @@ void MainFrame::on_dpi_changed(const wxRect& suggested_rect)
 #endif
 
     m_tabpanel->Rescale();
-
-    update_side_button_style();
 
     m_slice_btn->Rescale();
     m_print_btn->Rescale();
@@ -3532,6 +3544,7 @@ void MainFrame::set_print_button_to_default(PrintSelectType select_type)
         if (m_print_enable)
             m_print_enable = get_enable_print_status();
         m_print_btn->Enable(m_print_enable);
+        update_btn2(m_print_enable);
         this->Layout();
     } else if (select_type == PrintSelectType::eSendGcode) {
         m_print_btn->SetLabel(_L("Print"));
@@ -3539,6 +3552,7 @@ void MainFrame::set_print_button_to_default(PrintSelectType select_type)
         if (m_print_enable)
             m_print_enable = get_enable_print_status() && can_send_gcode();
         m_print_btn->Enable(m_print_enable);
+        update_btn2(m_print_enable);
         this->Layout();
     } else if (select_type == PrintSelectType::eExportGcode) {
         m_print_btn->SetLabel(_L("Export G-code file"));
@@ -3546,6 +3560,7 @@ void MainFrame::set_print_button_to_default(PrintSelectType select_type)
         if (m_print_enable)
             m_print_enable = get_enable_print_status() && can_send_gcode();
         m_print_btn->Enable(m_print_enable);
+        update_btn2(m_print_enable);
         this->Layout();
     } else {
         // unsupport
