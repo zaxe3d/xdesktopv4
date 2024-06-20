@@ -131,7 +131,7 @@ public:
         None, Left, Right
     };
 
-    Sidebar(Plater *parent);
+    Sidebar(Plater *parent, wxBoxSizer* side_tools = nullptr);
     Sidebar(Sidebar &&) = delete;
     Sidebar(const Sidebar &) = delete;
     Sidebar &operator=(Sidebar &&) = delete;
@@ -217,7 +217,7 @@ class Plater: public wxPanel
 public:
     using fs_path = boost::filesystem::path;
 
-    Plater(wxWindow *parent, MainFrame *main_frame);
+    Plater(wxWindow *parent, MainFrame *main_frame, wxBoxSizer* side_tools = nullptr);
     Plater(Plater &&) = delete;
     Plater(const Plater &) = delete;
     Plater &operator=(Plater &&) = delete;
