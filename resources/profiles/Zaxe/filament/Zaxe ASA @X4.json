@@ -1,0 +1,32 @@
+{
+  "type": "filament",
+  "name": "Zaxe ASA @X4",
+  "inherits": "Zaxe_filament_asa",
+  "from": "system",
+  "setting_id": "GFSA02_03",
+  "instantiation": "true",
+  "fan_cooling_layer_time": [
+      "80"
+  ],
+  "fan_max_speed": [
+      "80"
+  ],
+  "fan_min_speed": [
+      "60"
+  ],
+  "hot_plate_temp": [
+      "65"
+  ],
+  "hot_plate_temp_initial_layer": [
+      "65"
+  ],
+  "textured_plate_temp": [
+      "65"
+  ],
+  "textured_plate_temp_initial_layer": [
+      "65"
+  ],
+  "compatible_printers": [
+    "Zaxe X4 - 0.4mm nozzle"
+  ]
+}

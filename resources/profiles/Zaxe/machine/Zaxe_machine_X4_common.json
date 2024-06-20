@@ -1,0 +1,7 @@
+{
+    "type": "machine",
+    "name": "Zaxe_machine_X4_common",
+    "from": "system",
+    "instantiation": "false",
+    "inherits": "Zaxe_machine_Z3_family_common"
+}
