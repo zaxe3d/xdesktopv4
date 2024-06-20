@@ -683,7 +683,7 @@ bool ZaxeDevice::print()
     if (nm->states->bedDirty) {
         bool confirmed = false;
         confirm([&] { confirmed = true; }, _L("Bed might not be ready for the next print. Please be "
-                                              "sure its clean before pressing YES!"));
+                                              "sure it is clean before pressing YES!"));
         if (!confirmed)
             return false;
     }

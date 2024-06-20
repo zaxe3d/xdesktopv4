@@ -139,6 +139,8 @@ class MainFrame : public DPIFrame
 
     // BBS
     wxBoxSizer* create_side_tools();
+    void update_btn1(bool enable);
+    void update_btn2(bool enable);
 
     // MenuBar items changeable in respect to printer technology
     enum MenuItems
@@ -386,16 +388,19 @@ public:
     mutable int m_print_select{ ePrintAll };
     mutable int m_slice_select{ eSliceAll };
     // Button* m_publish_btn{ nullptr };
-    SideButton* m_slice_btn{ nullptr };
-    SideButton* m_slice_option_btn{ nullptr };
-    SideButton* m_print_btn{ nullptr };
-    SideButton* m_print_option_btn{ nullptr };
+    Button* m_slice_btn{ nullptr };
+    Button* m_slice_option_btn{ nullptr };
+    Button* m_print_btn{ nullptr };
+    Button* m_print_option_btn{ nullptr };
+    StaticBox* m_btn1{ nullptr };
+    StaticBox* m_btn2{ nullptr };
+    wxColor blue500{"#009ADE"};
+    wxColor gray300{"#D0D5DD"};
     mutable bool          m_slice_enable{ true };
     mutable bool          m_print_enable{ true };
     bool get_enable_slice_status();
     bool get_enable_print_status();
     //BBS
-    void update_side_button_style();
     void update_slice_print_status(SlicePrintEventType event, bool can_slice = true, bool can_print = true);
 
 #ifdef __APPLE__
