@@ -1,0 +1,10 @@
+{
+    "type": "process",
+    "name": "0.15mm, Recommended @Z4 0.4mm",
+    "from": "system",
+    "instantiation": "true",
+    "inherits": "fdm_process_zaxe_common",
+    "compatible_printers": [
+      "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}
