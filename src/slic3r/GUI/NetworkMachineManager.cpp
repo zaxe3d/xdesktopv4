@@ -5,8 +5,6 @@
 #include "libslic3r/Utils.hpp"
 #include "ZaxeDevice.hpp"
 
-#include <wx/artprov.h>
-
 namespace Slic3r::GUI {
 
 NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
@@ -27,7 +25,7 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
 
     auto sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(filter_area, 0, wxEXPAND | wxTOP, FromDIP(10));
-    sizer->Add(warning_area, 0, wxEXPAND);
+    sizer->Add(warning_area, 0, wxEXPAND | wxTOP, FromDIP(25));
     sizer->Add(scrolled_area, 1, wxEXPAND);
 
     SetSizer(sizer);
@@ -139,13 +137,12 @@ wxPanel* NetworkMachineManager::createWarningArea()
     label_font.SetPointSize(14);
     no_device_found_txt->SetFont(label_font);
 
-    auto warning_icon = new wxStaticBitmap(panel, wxID_ANY, wxArtProvider::GetBitmap(wxART_WARNING), wxDefaultPosition, wxSize(35, 35));
+    auto warning_icon     = create_scaled_bitmap("zaxe_no_connection", panel, 48);
+    auto warning_icon_bmp = new wxStaticBitmap(panel, wxID_ANY, warning_icon, wxDefaultPosition, wxDefaultSize);
 
-    warning_sizer = new wxBoxSizer(wxHORIZONTAL);
-    warning_sizer->AddStretchSpacer(1);
-    warning_sizer->Add(warning_icon, 0, wxALIGN_CENTER | wxALL, 5);
+    warning_sizer = new wxBoxSizer(wxVERTICAL);
+    warning_sizer->Add(warning_icon_bmp, 0, wxALIGN_CENTER | wxALL, 5);
     warning_sizer->Add(no_device_found_txt, 0, wxALIGN_CENTER | wxALL, 1);
-    warning_sizer->AddStretchSpacer(1);
     warning_sizer->Show(device_map.empty());
 
     panel->SetSizer(warning_sizer);
@@ -280,7 +277,7 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
     } else if (event.event == "temperature_update") {
         dev->second->onTemperatureUpdate();
     } else if (event.event == "upload_done") {
-       dev->second->onUploadDone();
+        dev->second->onUploadDone();
     }
 }
 
