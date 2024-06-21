@@ -8,25 +8,26 @@
 #include <wx/frame.h>
 #include "../wxExtensions.hpp"
 #include "StateHandler.hpp"
-#include "SideButton.hpp"
+#include "Button.hpp"
 #include "PopupWindow.hpp"
 
 class SidePopup : public PopupWindow
 {
 private:
-	std::vector<SideButton*> btn_list;
+	std::vector<Button*> btn_list;
+    bool style1;
 public:
-    SidePopup(wxWindow* parent);
+    SidePopup(wxWindow* parent, bool style1);
     ~SidePopup();
 
-    void Create();
+    void Create(wxWindow* focus);
 
     virtual void Popup(wxWindow *focus = NULL) wxOVERRIDE;
     virtual void OnDismiss() wxOVERRIDE;
     virtual bool ProcessLeftDown(wxMouseEvent& event) wxOVERRIDE;
     virtual bool Show(bool show = true) wxOVERRIDE;
 
-    void append_button(SideButton* btn);
+    void append_button(Button* btn);
 
     void paintEvent(wxPaintEvent& evt);
 
