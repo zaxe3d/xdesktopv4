@@ -1624,11 +1624,10 @@ wxBoxSizer* MainFrame::create_side_tools()
 
     m_slice_option_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
         {
-            SidePopup* p = new SidePopup(this);
-            SideButton* slice_all_btn = new SideButton(p, _L("Slice all"), "");
-            slice_all_btn->SetCornerRadius(0);
-            SideButton* slice_plate_btn = new SideButton(p, _L("Slice plate"), "");
-            slice_plate_btn->SetCornerRadius(0);
+            SidePopup* p = new SidePopup(this, true);
+            p->SetBackgroundColour(wxTransparentColour);
+            Button* slice_all_btn = new Button(p, _L("Slice all"), "", wxBORDER_NONE);
+            Button* slice_plate_btn = new Button(p, _L("Slice plate"), "", wxBORDER_NONE);
 
             slice_all_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
                 m_slice_btn->SetLabel(_L("Slice all"));
@@ -1651,19 +1650,19 @@ wxBoxSizer* MainFrame::create_side_tools()
                 });
             p->append_button(slice_all_btn);
             p->append_button(slice_plate_btn);
-            p->Popup(m_slice_btn);
+            p->Popup(m_btn1);
         }
     );
 
     m_print_option_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
         {
-            SidePopup* p = new SidePopup(this);
+            SidePopup* p = new SidePopup(this, false);
+            p->SetBackgroundColour(wxTransparentColour);
 
             if (wxGetApp().preset_bundle
                 && !wxGetApp().preset_bundle->use_bbl_network()) {
                 // ThirdParty Buttons
-                SideButton* export_gcode_btn = new SideButton(p, _L("Export G-code file"), "");
-                export_gcode_btn->SetCornerRadius(0);
+                Button* export_gcode_btn = new Button(p, _L("Export G-code file"), "", wxBORDER_NONE);
                 export_gcode_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
                     m_print_btn->SetLabel(_L("Export G-code file"));
                     m_print_select = eExportGcode;
@@ -1675,8 +1674,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     });
 
                 // upload and print
-                SideButton* send_gcode_btn = new SideButton(p, _L("Print"), "");
-                send_gcode_btn->SetCornerRadius(0);
+                Button* send_gcode_btn = new Button(p, _L("Print"), "", wxBORDER_NONE);
                 send_gcode_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
                     m_print_btn->SetLabel(_L("Print"));
                     m_print_select = eSendGcode;
@@ -1691,18 +1689,14 @@ wxBoxSizer* MainFrame::create_side_tools()
                 p->append_button(export_gcode_btn);
             }
             else {
-                //Orca Slicer Buttons
-                SideButton* print_plate_btn = new SideButton(p, _L("Print plate"), "");
-                print_plate_btn->SetCornerRadius(0);
+                //XDesktop Buttons
+                Button* print_plate_btn = new Button(p, _L("Print plate"), "", wxBORDER_NONE);
 
-                SideButton* send_to_printer_btn = new SideButton(p, _L("Send"), "");
-                send_to_printer_btn->SetCornerRadius(0);
+                Button* send_to_printer_btn = new Button(p, _L("Send"), "", wxBORDER_NONE);
 
-                SideButton* export_sliced_file_btn = new SideButton(p, _L("Export plate sliced file"), "");
-                export_sliced_file_btn->SetCornerRadius(0);
+                Button* export_sliced_file_btn = new Button(p, _L("Export plate sliced file"), "", wxBORDER_NONE);
 
-                SideButton* export_all_sliced_file_btn = new SideButton(p, _L("Export all sliced file"), "");
-                export_all_sliced_file_btn->SetCornerRadius(0);
+                Button* export_all_sliced_file_btn = new Button(p, _L("Export all sliced file"), "", wxBORDER_NONE);
 
                 print_plate_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
                     m_print_btn->SetLabel(_L("Print plate"));
@@ -1714,8 +1708,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     p->Dismiss();
                     });
 
-                SideButton* print_all_btn = new SideButton(p, _L("Print all"), "");
-                print_all_btn->SetCornerRadius(0);
+                Button* print_all_btn = new Button(p, _L("Print all"), "", wxBORDER_NONE);
                 print_all_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
                     m_print_btn->SetLabel(_L("Print all"));
                     m_print_select = ePrintAll;
@@ -1736,8 +1729,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     p->Dismiss();
                     });
 
-                SideButton* send_to_printer_all_btn = new SideButton(p, _L("Send all"), "");
-                send_to_printer_all_btn->SetCornerRadius(0);
+                Button* send_to_printer_all_btn = new Button(p, _L("Send all"), "", wxBORDER_NONE);
                 send_to_printer_all_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
                     m_print_btn->SetLabel(_L("Send all"));
                     m_print_select = eSendToPrinterAll;
@@ -1768,8 +1760,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                     p->Dismiss();
                     });
 
-                SideButton* export_gcode_btn = new SideButton(p, _L("Export G-code file"), "");
-                export_gcode_btn->SetCornerRadius(0);
+                Button* export_gcode_btn = new Button(p, _L("Export G-code file"), "", wxBORDER_NONE);
                 export_gcode_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
                     m_print_btn->SetLabel(_L("Export G-code file"));
                     m_print_select = eExportGcode;
@@ -1788,7 +1779,7 @@ wxBoxSizer* MainFrame::create_side_tools()
                 p->append_button(export_gcode_btn);
             }
 
-            p->Popup(m_print_btn);
+            p->Popup(m_btn2);
         }
     );
 
