@@ -50,13 +50,25 @@ wxPanel* NetworkMachineManager::createFilterArea()
     panel->SetBackgroundColour(*wxWHITE);
 
     auto modify_button_color = [this](Button* b, bool is_active) {
-        wxString active_fg   = "#FFFFFF";
-        wxString inactive_fg = "#98A2B3";
-        wxString active_bg   = "#009ADE";
-        wxString inactive_bg = "#F2F4F7";
+        wxString active_fg         = "#FFFFFF";
+        wxString inactive_fg       = "#98A2B3";
+        wxString inactive_hover_fg = "#36BFFA";
+        wxString active_bg         = "#009ADE";
+        wxString inactive_bg       = "#F2F4F7";
+
+        StateColor active_text_fg(std::pair<wxColour, int>(active_fg, StateColor::Disabled),
+                                  std::pair<wxColour, int>(active_fg, StateColor::Pressed),
+                                  std::pair<wxColour, int>(active_fg, StateColor::Hovered),
+                                  std::pair<wxColour, int>(active_fg, StateColor::Normal));
+
+        StateColor inactive_text_fg(std::pair<wxColour, int>(inactive_fg, StateColor::Disabled),
+                                    std::pair<wxColour, int>(inactive_fg, StateColor::Pressed),
+                                    std::pair<wxColour, int>(inactive_hover_fg, StateColor::Hovered),
+                                    std::pair<wxColour, int>(inactive_fg, StateColor::Normal));
+
         b->SetBackgroundColor(is_active ? active_bg : inactive_bg);
         b->SetBorderColor(is_active ? active_bg : inactive_bg);
-        b->SetTextColor(is_active ? active_fg : inactive_fg);
+        b->SetTextColor(is_active ? active_text_fg : inactive_text_fg);
     };
 
     auto create_filter_button = [=](const wxString& label, bool is_active, auto cb) {
