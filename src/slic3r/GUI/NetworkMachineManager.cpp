@@ -37,11 +37,6 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
     network_machine_container->Bind(EVT_MACHINE_AVATAR_READY, &NetworkMachineManager::onMachineAvatarReady, this);
 
     broadcast_receiver->Bind(EVT_BROADCAST_RECEIVED, &NetworkMachineManager::onBroadcastReceived, this);
-
-    // add custom ips here.
-    // auto ips = wxGetApp().app_config->get_custom_ips();
-    // for (int i = 0; i < ips.size(); i++)
-    //    addMachine(ips[i], 9294, "Zaxe (m.)");
 }
 
 wxPanel* NetworkMachineManager::createFilterArea()
