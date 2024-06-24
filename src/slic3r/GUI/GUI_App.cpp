@@ -91,7 +91,6 @@
 #include "ParamsDialog.hpp"
 #include "KBShortcutsDialog.hpp"
 #include "DownloadProgressDialog.hpp"
-#include "CustomIPDialog.hpp"
 
 #include "BitmapCache.hpp"
 #include "Notebook.hpp"
