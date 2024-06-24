@@ -393,6 +393,7 @@ public:
     Button* m_print_option_btn{ nullptr };
     StaticBox* m_btn1{ nullptr };
     StaticBox* m_btn2{ nullptr };
+    wxColor blue400{"#36BFFA"};
     wxColor blue500{"#009ADE"};
     wxColor gray300{"#D0D5DD"};
     mutable bool          m_slice_enable{ true };
