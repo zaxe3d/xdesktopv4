@@ -700,6 +700,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     // Zaxe colors
     wxString blue100{"#E0F2FE"};
     wxString blue300{"#7CD4FD"};
+    wxString blue400{"#36BFFA"};
     wxString blue500{"#009ADE"};
     wxString gray100{"#F2F4F7"};
     wxString gray300{"#D0D5DD"};
@@ -1228,12 +1229,22 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
                                std::pair<wxColour, int>(gray100, StateColor::Hovered),
                                std::pair<wxColour, int>(gray100, StateColor::Normal));
 
+    StateColor active_text_fg(std::pair<wxColour, int>(blue500, StateColor::Disabled),
+                              std::pair<wxColour, int>(blue500, StateColor::Pressed),
+                              std::pair<wxColour, int>(blue500, StateColor::Hovered),
+                              std::pair<wxColour, int>(blue500, StateColor::Normal));
+
+    StateColor inactive_text_fg(std::pair<wxColour, int>(gray400, StateColor::Disabled),
+                                std::pair<wxColour, int>(gray400, StateColor::Pressed),
+                                std::pair<wxColour, int>(blue400, StateColor::Hovered),
+                                std::pair<wxColour, int>(gray400, StateColor::Normal));
+
     auto create_mode_button = [=](const wxString& label, bool is_active, auto cb) {
         auto* b = new Button(this, label);
         b->SetFont(wxGetApp().bold_font());
         b->SetBackgroundColor(is_active ? active_btn_bg : inactive_btn_bg);
         b->SetBorderColor(is_active ? active_btn_bg : inactive_btn_bg);
-        b->SetTextColor(is_active ? blue500 : gray400);
+        b->SetTextColor(is_active ? active_text_fg : inactive_text_fg);
         b->SetCornerRadius(0);
         b->Bind(wxEVT_BUTTON, cb);
         return b;
@@ -1241,20 +1252,20 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
     p->mode_carousel = create_mode_button(_L("Zaxe Machine Carousel"), true, [=](auto& e) {
         p->mode_carousel->SetBackgroundColor(active_btn_bg);
-        p->mode_carousel->SetTextColor(blue500);
+        p->mode_carousel->SetTextColor(active_text_fg);
         p->mode_carousel->SetBorderColor(active_btn_bg);
         p->mode_settings->SetBackgroundColor(inactive_btn_bg);
-        p->mode_settings->SetTextColor(gray400);
+        p->mode_settings->SetTextColor(inactive_text_fg);
         p->mode_settings->SetBorderColor(inactive_btn_bg);
         show_carousel(true);
     });
 
     p->mode_settings = create_mode_button(_L("Settings"), false, [=](auto& e) {
         p->mode_carousel->SetBackgroundColor(inactive_btn_bg);
-        p->mode_carousel->SetTextColor(gray400);
+        p->mode_carousel->SetTextColor(inactive_text_fg);
         p->mode_carousel->SetBorderColor(inactive_btn_bg);
         p->mode_settings->SetBackgroundColor(active_btn_bg);
-        p->mode_settings->SetTextColor(blue500);
+        p->mode_settings->SetTextColor(active_text_fg);
         p->mode_settings->SetBorderColor(active_btn_bg);
         show_carousel(false);
     });
