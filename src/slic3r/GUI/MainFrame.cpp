@@ -1492,33 +1492,49 @@ bool MainFrame::can_reslice() const
 
 void MainFrame::update_btn1(bool enable)
 {
-    m_btn1->SetBackgroundColor(enable ? blue500 : gray300);
-    m_btn1->SetBackgroundColour(*wxWHITE);
-    m_btn1->SetBorderColor(enable ? blue500 : gray300);
+    StateColor enabled_color(std::pair<wxColour, int>(blue400, StateColor::Hovered), std::pair<wxColour, int>(blue500, StateColor::Normal));
+    StateColor disabled_color(std::pair<wxColour, int>(gray300, StateColor::Hovered), std::pair<wxColour, int>(gray300, StateColor::Normal));
 
-    m_slice_btn->SetBackgroundColor(enable ? blue500 : gray300);
+    m_btn1->SetBackgroundColor(enable ? enabled_color : disabled_color);
+    m_btn1->SetBackgroundColour(*wxWHITE);
+    m_btn1->SetBorderColor(enable ? enabled_color : disabled_color);
+
+    auto mouse_pos   = wxGetMousePosition();
+    auto client_pos  = m_btn1->ScreenToClient(mouse_pos);
+    auto client_rect = m_btn1->GetClientRect();
+    bool is_hovered  = client_rect.Contains(client_pos);
+
+    m_slice_btn->SetBackgroundColor(enable ? is_hovered ? blue400 : blue500 : gray300);
+    m_slice_btn->SetBackgroundColour(enable ? is_hovered ? blue400 : blue500 : gray300);
     m_slice_btn->SetTextColor(*wxWHITE);
-    m_slice_option_btn->SetBackgroundColor(enable ? blue500 : gray300);
+    m_slice_option_btn->SetBackgroundColor(enable ? is_hovered ? blue400 : blue500 : gray300);
+    m_slice_option_btn->SetBackgroundColour(enable ? is_hovered ? blue400 : blue500 : gray300);
 
     Refresh();
 }
 
 void MainFrame::update_btn2(bool enable)
 {
+    StateColor enabled_color(std::pair<wxColour, int>(blue400, StateColor::Hovered), std::pair<wxColour, int>(blue500, StateColor::Normal));
+
+    StateColor disabled_color(std::pair<wxColour, int>(gray300, StateColor::Hovered),
+                               std::pair<wxColour, int>(gray300, StateColor::Normal));
+
     m_btn2->SetBackgroundColor(*wxWHITE);
     m_btn2->SetBackgroundColour(*wxWHITE);
-    m_btn2->SetBorderColor(enable ? blue500 : gray300);
+    m_btn2->SetBorderColor(enable ? enabled_color : disabled_color);
 
     m_print_btn->SetBackgroundColor(*wxWHITE);
+    m_print_btn->SetBackgroundColour(*wxWHITE);
     m_print_btn->SetTextColor(enable ? blue500 : gray300);
     m_print_option_btn->SetBackgroundColor(*wxWHITE);
+    m_print_option_btn->SetBackgroundColour(*wxWHITE);
 
     Refresh();
 }
 
 wxBoxSizer* MainFrame::create_side_tools()
-{   
-
+{
     auto create_multi_btn = [&](auto btn_l, auto btn_r){
         auto btn = new StaticBox(this);
         auto sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -1529,13 +1545,13 @@ wxBoxSizer* MainFrame::create_side_tools()
         btn->SetMinSize(wxSize(FromDIP(150), FromDIP(45)));
         btn->SetCornerRadius(FromDIP(12));
 
-        btn_l->SetCornerRadius(0);
-        btn_r->SetPaddingSize({0 , 0});
+        btn_l->SetCornerRadius(FromDIP(0));
+        btn_r->SetPaddingSize({FromDIP(0) , FromDIP(0)});
         btn_r->SetCornerRadius(FromDIP(0));
 
         sizer->AddSpacer(FromDIP(10));
-        sizer->Add(btn_l, 1, wxEXPAND | wxALL | wxALIGN_CENTER, FromDIP(3));
-        sizer->Add(btn_r, 0, wxALL | wxALIGN_CENTER, FromDIP(3));
+        sizer->Add(btn_l, 1, wxEXPAND | wxALL | wxALIGN_CENTER, FromDIP(2));
+        sizer->Add(btn_r, 0, wxALL | wxALIGN_CENTER, FromDIP(2));
         sizer->AddSpacer(FromDIP(15));
 
         btn->SetSizer(sizer);
@@ -1559,6 +1575,36 @@ wxBoxSizer* MainFrame::create_side_tools()
 
     m_btn1 = create_multi_btn(m_slice_btn, m_slice_option_btn);
     m_btn2 = create_multi_btn(m_print_btn, m_print_option_btn);
+
+    m_btn1->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {
+        m_slice_btn->SetBackgroundColor(m_slice_enable ? blue400 : gray300);
+        m_slice_btn->SetBackgroundColour(m_slice_enable ? blue400 : gray300);
+        m_slice_option_btn->SetBackgroundColor(m_slice_enable ? blue400 : gray300);
+        m_slice_option_btn->SetBackgroundColour(m_slice_enable ? blue400 : gray300);
+        Refresh();
+        e.Skip();
+    });
+
+    m_btn1->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {
+        m_slice_btn->SetBackgroundColor(m_slice_enable ? blue500 : gray300);
+        m_slice_btn->SetBackgroundColour(m_slice_enable ? blue500 : gray300);
+        m_slice_option_btn->SetBackgroundColor(m_slice_enable ? blue500 : gray300);
+        m_slice_option_btn->SetBackgroundColour(m_slice_enable ? blue500 : gray300);
+        Refresh();
+        e.Skip();
+    });
+
+     m_btn2->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {
+        m_print_btn->SetTextColor(m_print_enable ? blue400 : gray300);
+        Refresh();
+        e.Skip();
+    });
+
+    m_btn2->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {
+        m_print_btn->SetTextColor(m_print_enable ? blue500 : gray300);
+        Refresh();
+        e.Skip();
+    });
 
     update_btn1(true);
     update_btn2(true);
