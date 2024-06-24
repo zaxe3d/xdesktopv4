@@ -568,8 +568,6 @@ set(SLIC3R_GUI_SOURCES
     GUI/NetworkMachineManager.hpp
     GUI/ZaxeDevice.cpp
     GUI/ZaxeDevice.hpp
-    GUI/CustomIPDialog.cpp
-    GUI/CustomIPDialog.hpp
     Utils/NetworkMachine.cpp
     Utils/NetworkMachine.hpp
     Utils/BroadcastReceiver.cpp
