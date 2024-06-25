@@ -16,13 +16,13 @@ function check_available_memory_and_disk() {
     MIN_DISK_KB=$((10 * 1024 * 1024))
 
     if [ ${FREE_MEM_GB} -le ${MIN_MEM_GB} ]; then
-        echo -e "\nERROR: Orca Slicer Builder requires at least ${MIN_MEM_GB}G of 'available' mem (systen has only ${FREE_MEM_GB}G available)"
+        echo -e "\nERROR: XDesktop Builder requires at least ${MIN_MEM_GB}G of 'available' mem (systen has only ${FREE_MEM_GB}G available)"
         echo && free -h && echo
         exit 2
     fi
 
     if [[ ${FREE_DISK_KB} -le ${MIN_DISK_KB} ]]; then 
-        echo -e "\nERROR: Orca Slicer Builder requires at least $(echo $MIN_DISK_KB |awk '{ printf "%.1fG\n", $1/1024/1024; }') (systen has only $(echo ${FREE_DISK_KB} | awk '{ printf "%.1fG\n", $1/1024/1024; }') disk free)"
+        echo -e "\nERROR: XDesktop Builder requires at least $(echo $MIN_DISK_KB |awk '{ printf "%.1fG\n", $1/1024/1024; }') (systen has only $(echo ${FREE_DISK_KB} | awk '{ printf "%.1fG\n", $1/1024/1024; }') disk free)"
         echo && df -h . && echo
         exit 1
     fi
@@ -34,7 +34,7 @@ function usage() {
     echo "   -g: force gtk2 build"
     echo "   -b: build in debug mode"
     echo "   -d: build deps (optional)"
-    echo "   -s: build orca-slicer (optional)"
+    echo "   -s: build xdesktop-slicer (optional)"
     echo "   -u: only update clock & dependency packets (optional and need sudo)"
     echo "   -r: skip free ram check (low ram compiling)"
     echo "For a first use, you want to 'sudo ./BuildLinux.sh -u'"
@@ -233,10 +233,10 @@ then
         
         # make Slic3r
         echo "[8/9] Building Slic3r..."
-        make -j$NCORES OrcaSlicer # Slic3r
+        make -j$NCORES XDesktop # Slic3r
 
-        # make OrcaSlicer_profile_validator
-        make -j$NCORES OrcaSlicer_profile_validator
+        # make XDesktop_profile_validator
+        make -j$NCORES XDesktop_profile_validator
     popd
     ./run_gettext.sh
     echo "done"

@@ -21,5 +21,5 @@ docker run \
   `# Attach tty for running orca slicer with command line things` \
   -ti \
   `# Pass all parameters from this script to the orca slicer  ENTRYPOINT binary` \
-  orcaslicer $* 
+  xdesktop $* 
   
