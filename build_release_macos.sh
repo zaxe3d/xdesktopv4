@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -ex
 set -o pipefail
 
 while getopts ":dpa:snt:xbc:h" opt; do
@@ -110,7 +110,7 @@ PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_BUILD_DIR="$PROJECT_DIR/build_$ARCH"
 DEPS_DIR="$PROJECT_DIR/deps"
 DEPS_BUILD_DIR="$DEPS_DIR/build_$ARCH"
-DEPS="$DEPS_BUILD_DIR/OrcaSlicer_dep_$ARCH"
+DEPS="$DEPS_BUILD_DIR/XDesktop_dep_$ARCH"
 
 # Fix for Multi-config generators
 if [ "$SLICER_CMAKE_GENERATOR" == "Xcode" ]; then
@@ -134,7 +134,7 @@ function build_deps() {
                 -DCMAKE_OSX_ARCHITECTURES:STRING="${ARCH}" \
                 -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}"
         fi
-        cmake --build . --config "$BUILD_CONFIG" --target deps
+        cmake --build . --config "$BUILD_CONFIG" --target deps -j4
     )
 }
 
@@ -144,7 +144,7 @@ function pack_deps() {
         set -x
         mkdir -p "$DEPS"
         cd "$DEPS_BUILD_DIR"
-        tar -zcvf "OrcaSlicer_dep_mac_${ARCH}_$(date +"%Y%m%d").tar.gz" "OrcaSlicer_dep_$ARCH"
+        tar -zcvf "XDesktop_dep_mac_${ARCH}_$(date +"%Y%m%d").tar.gz" "XDesktop_dep_$ARCH"
     )
 }
 
@@ -159,7 +159,7 @@ function build_slicer() {
                 -G "${SLICER_CMAKE_GENERATOR}" \
                 -DBBL_RELEASE_TO_PUBLIC=1 \
                 -DCMAKE_PREFIX_PATH="$DEPS/usr/local" \
-                -DCMAKE_INSTALL_PREFIX="$PWD/OrcaSlicer" \
+                -DCMAKE_INSTALL_PREFIX="$PWD/XDesktop" \
                 -DCMAKE_BUILD_TYPE="$BUILD_CONFIG" \
                 -DCMAKE_MACOSX_RPATH=ON \
                 -DCMAKE_INSTALL_RPATH="${DEPS}/usr/local" \
@@ -167,7 +167,7 @@ function build_slicer() {
                 -DCMAKE_OSX_ARCHITECTURES="${ARCH}" \
                 -DCMAKE_OSX_DEPLOYMENT_TARGET="${OSX_DEPLOYMENT_TARGET}"
         fi
-        cmake --build . --config "$BUILD_CONFIG" --target "$SLICER_BUILD_TARGET"
+        cmake --build . --config "$BUILD_CONFIG" --target "$SLICER_BUILD_TARGET" -j8
     )
 
     echo "Verify localization with gettext..."
@@ -179,18 +179,21 @@ function build_slicer() {
     echo "Fix macOS app package..."
     (
         cd "$PROJECT_BUILD_DIR"
-        mkdir -p OrcaSlicer
-        cd OrcaSlicer
+        mkdir -p XDesktop
+        cd XDesktop
         # remove previously built app
-        rm -rf ./OrcaSlicer.app
+        rm -rf ./XDesktop.app
         # fully copy newly built app
-        cp -pR "../src$BUILD_DIR_CONFIG_SUBDIR/OrcaSlicer.app" ./OrcaSlicer.app
+        cp -pR "../src$BUILD_DIR_CONFIG_SUBDIR/XDesktop.app" ./XDesktop.app
         # fix resources
-        resources_path=$(readlink ./OrcaSlicer.app/Contents/Resources)
-        rm ./OrcaSlicer.app/Contents/Resources
-        cp -R "$resources_path" ./OrcaSlicer.app/Contents/Resources
+        resources_path=$(readlink ./XDesktop.app/Contents/Resources)
+        rm ./XDesktop.app/Contents/Resources
+        cp -R "$resources_path" ./XDesktop.app/Contents/Resources
         # delete .DS_Store file
-        find ./OrcaSlicer.app/ -name '.DS_Store' -delete
+        find ./XDesktop.app/ -name '.DS_Store' -delete
+
+        # TODO zaxe
+        cp /opt/homebrew/bin/ffplay ./XDesktop.app/Contents/MacOS
     )
 
     # extract version
@@ -202,7 +205,7 @@ function build_slicer() {
     #     ver=${ver}_dev
     # fi
 
-    # zip -FSr OrcaSlicer${ver}_Mac_${ARCH}.zip OrcaSlicer.app
+    # zip -FSr XDesktop${ver}_Mac_${ARCH}.zip XDesktop.app
 }
 
 case "${BUILD_TARGET}" in

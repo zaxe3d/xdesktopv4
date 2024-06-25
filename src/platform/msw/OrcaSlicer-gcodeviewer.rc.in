@@ -6,7 +6,7 @@ PRODUCTVERSION @SLIC3R_VERSION@
  {
   BLOCK "040904E4"
   {
-   VALUE "CompanyName", "SoftFever"
+   VALUE "CompanyName", "Zaxe3D"
    VALUE "FileDescription", "@SLIC3R_APP_NAME@ G-code Viewer"
    VALUE "FileVersion", "@SLIC3R_BUILD_ID@"
    VALUE "ProductName", "@SLIC3R_APP_NAME@ G-code Viewer"
@@ -22,4 +22,4 @@ PRODUCTVERSION @SLIC3R_VERSION@
  }
 }
 2 ICON "@SLIC3R_RESOURCES_DIR@/images/OrcaSlicer-gcodeviewer.ico"
-1 24 "OrcaSlicer.manifest" 
+1 24 "XDesktop.manifest" 
