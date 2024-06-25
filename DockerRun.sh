@@ -23,5 +23,5 @@ docker run \
   `# Clean up after yourself` \
   --rm \
   `# Pass all parameters from this script to the orca slicer  ENTRYPOINT binary` \
-  orcaslicer $* 
+  xdesktop $* 
   

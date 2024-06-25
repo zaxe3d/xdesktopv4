@@ -8,7 +8,7 @@ if (APPLE)
     message(STATUS "CMAKE_OSX_DEPLOYMENT_TARGET: ${CMAKE_OSX_DEPLOYMENT_TARGET}")
 endif ()
 
-project(OrcaSlicer)
+project(XDesktop)
 
 include("version.inc")
 include(GNUInstallDirs)
@@ -32,11 +32,11 @@ else()
         endif()
 endif()
 
-option(SLIC3R_STATIC 			"Compile OrcaSlicer with static libraries (Boost, TBB, glew)" ${SLIC3R_STATIC_INITIAL})
-option(SLIC3R_GUI    			"Compile OrcaSlicer with GUI components (OpenGL, wxWidgets)" 1)
-option(SLIC3R_FHS               "Assume OrcaSlicer is to be installed in a FHS directory structure" 0)
+option(SLIC3R_STATIC 			"Compile XDesktop with static libraries (Boost, TBB, glew)" ${SLIC3R_STATIC_INITIAL})
+option(SLIC3R_GUI    			"Compile XDesktop with GUI components (OpenGL, wxWidgets)" 1)
+option(SLIC3R_FHS               "Assume XDesktop is to be installed in a FHS directory structure" 0)
 option(SLIC3R_WX_STABLE         "Build against wxWidgets stable (3.0) as oppsed to dev (3.1) on Linux" 0)
-option(SLIC3R_PROFILE 			"Compile OrcaSlicer with an invasive Shiny profiler" 0)
+option(SLIC3R_PROFILE 			"Compile XDesktop with an invasive Shiny profiler" 0)
 option(SLIC3R_PCH               "Use precompiled headers" 1)
 option(SLIC3R_MSVC_COMPILE_PARALLEL "Compile on Visual Studio in parallel" 1)
 option(SLIC3R_MSVC_PDB          "Generate PDB files on MSVC in Release mode" 1)
@@ -61,7 +61,7 @@ if (APPLE)
     if (CMAKE_MACOSX_BUNDLE)
         set(CMAKE_INSTALL_RPATH @executable_path/../Frameworks)
     endif()
-    SET(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.softfever3d.orca-slicer")
+    SET(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.zaxe3d.xdesktop-slicer")
 
     message(STATUS "Orca: IS_CROSS_COMPILE: ${IS_CROSS_COMPILE}")
 endif ()
@@ -132,7 +132,7 @@ if (MINGW)
 endif ()
 
 if (NOT MSVC)
-    # ARMs (Raspberry PI) use an unsigned char by default. Let's make it consistent for OrcaSlicer on all platforms.
+    # ARMs (Raspberry PI) use an unsigned char by default. Let's make it consistent for XDesktop on all platforms.
     add_compile_options(-fsigned-char)
 endif ()
 
@@ -330,7 +330,7 @@ if(WIN32)
     if(MSVC)
         # BOOST_ALL_NO_LIB: Avoid the automatic linking of Boost libraries on Windows. Rather rely on explicit linking.
         add_definitions(-DBOOST_ALL_NO_LIB -DBOOST_USE_WINAPI_VERSION=0x602 -DBOOST_SYSTEM_USE_UTF8 )
-        # Force the source code encoding to UTF-8. See OrcaSlicer GH pull request #5583
+        # Force the source code encoding to UTF-8. See XDesktop GH pull request #5583
         add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
         add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
     endif(MSVC)
@@ -342,7 +342,7 @@ add_definitions(-DwxUSE_UNICODE -D_UNICODE -DUNICODE -DWXINTL_NO_GETTEXT_MACRO)
 add_definitions(-DwxNO_UNSAFE_WXSTRING_CONV)
 
 if (SLIC3R_PROFILE)
-    message("OrcaSlicer will be built with a Shiny invasive profiler")
+    message("XDesktop will be built with a Shiny invasive profiler")
     add_definitions(-DSLIC3R_PROFILE)
 endif ()
 
@@ -699,9 +699,9 @@ function(orcaslicer_copy_dlls target config postfix output_dlls)
 endfunction()
 
 
-# libslic3r, OrcaSlicer GUI and the OrcaSlicer executable.
+# libslic3r, XDesktop GUI and the XDesktop executable.
 add_subdirectory(src)
-set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT OrcaSlicer_app_gui)
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT XDesktop_app_gui)
 
 add_dependencies(gettext_make_pot hintsToPot)
 
@@ -721,7 +721,7 @@ if(SLIC3R_BUILD_TESTS)
 endif()
 
 if (NOT WIN32 AND NOT APPLE)
-    set(SLIC3R_APP_CMD "orca-slicer")
+    set(SLIC3R_APP_CMD "xdesktop-slicer")
     configure_file(${LIBDIR}/platform/unix/build_appimage.sh.in ${CMAKE_CURRENT_BINARY_DIR}/build_appimage.sh @ONLY)
 endif()
 
@@ -739,49 +739,49 @@ if (WIN32)
     install (PROGRAMS ${CMAKE_INSTALL_SYSTEM_RUNTIME_LIBS} DESTINATION ".")
 elseif (SLIC3R_FHS)
     # CMAKE_INSTALL_FULL_DATAROOTDIR: read-only architecture-independent data root (share)
-    set(SLIC3R_FHS_RESOURCES "${CMAKE_INSTALL_FULL_DATAROOTDIR}/OrcaSlicer")
+    set(SLIC3R_FHS_RESOURCES "${CMAKE_INSTALL_FULL_DATAROOTDIR}/XDesktop")
     install(DIRECTORY ${SLIC3R_RESOURCES_DIR}/ DESTINATION ${SLIC3R_FHS_RESOURCES}
         PATTERN "*/udev" EXCLUDE
     )
-    install(FILES src/platform/unix/OrcaSlicer.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+    install(FILES src/platform/unix/XDesktop.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
     foreach(SIZE 32 128 192)
-        install(FILES ${SLIC3R_RESOURCES_DIR}/images/OrcaSlicer_${SIZE}px.png
-            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/${SIZE}x${SIZE}/apps RENAME OrcaSlicer.png
+        install(FILES ${SLIC3R_RESOURCES_DIR}/images/XDesktop_${SIZE}px.png
+            DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons/hicolor/${SIZE}x${SIZE}/apps RENAME XDesktop.png
         )
     endforeach()
 elseif (CMAKE_MACOSX_BUNDLE)
-    # install(DIRECTORY "${SLIC3R_RESOURCES_DIR}/" DESTINATION "${CMAKE_INSTALL_PREFIX}/OrcaSlicer.app/Contents/resources")
+    # install(DIRECTORY "${SLIC3R_RESOURCES_DIR}/" DESTINATION "${CMAKE_INSTALL_PREFIX}/XDesktop.app/Contents/resources")
 else ()
-    install(FILES src/platform/unix/OrcaSlicer.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/resources/applications)
+    install(FILES src/platform/unix/XDesktop.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/resources/applications)
     install(DIRECTORY "${SLIC3R_RESOURCES_DIR}/" DESTINATION "${CMAKE_INSTALL_PREFIX}/resources")
 endif ()
 
 install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.txt DESTINATION ".")
 configure_file(${LIBDIR}/platform/unix/fhs.hpp.in ${LIBDIR_BIN}/platform/unix/fhs.hpp)
 
-set (CPACK_PACKAGE_NAME "OrcaSlicer")
-set (CPACK_PACKAGE_VENDOR "SoftFever")
-set (CPACK_PACKAGE_VERSION_MAJOR "${ORCA_VERSION_MAJOR}")
-set (CPACK_PACKAGE_VERSION_MINOR "${ORCA_VERSION_MINOR}")
-set (CPACK_PACKAGE_VERSION_PATCH "${ORCA_VERSION_PATCH}")
-set (CPACK_PACKAGE_FILE_NAME "OrcaSlicer_Windows_Installer_V${SoftFever_VERSION}")
-set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "Orca Slicer is an open source slicer for FDM printers")
-set (CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/SoftFever/OrcaSlicer")
+set (CPACK_PACKAGE_NAME "XDesktop")
+set (CPACK_PACKAGE_VENDOR "Zaxe3D")
+set (CPACK_PACKAGE_VERSION_MAJOR "${XDESKTOP_VERSION_MAJOR}")
+set (CPACK_PACKAGE_VERSION_MINOR "${XDESKTOP_VERSION_MINOR}")
+set (CPACK_PACKAGE_VERSION_PATCH "${XDESKTOP_VERSION_PATCH}")
+set (CPACK_PACKAGE_FILE_NAME "XDesktop_Windows_Installer_V${SoftFever_VERSION}")
+set (CPACK_PACKAGE_DESCRIPTION_SUMMARY "XDesktop is an open source slicer for FDM printers")
+set (CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/zaxe3d/xdesktopv4")
 set (CPACK_PACKAGE_INSTALL_DIRECTORY ${CPACK_PACKAGE_NAME})
-set (CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources/images\\\\OrcaSlicer.ico")
+set (CPACK_PACKAGE_ICON "${CMAKE_SOURCE_DIR}/resources/images\\\\XDesktop.ico")
 set (CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
 set (CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
-set (CPACK_NSIS_INSTALLED_ICON_NAME  "$INSTDIR\\\\orca-slicer.exe")
+set (CPACK_NSIS_INSTALLED_ICON_NAME  "$INSTDIR\\\\xdesktop-slicer.exe")
 set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
-    CreateShortCut \\\"$DESKTOP\\\\OrcaSlicer.lnk\\\" \\\"$INSTDIR\\\\orca-slicer.exe\\\"
+    CreateShortCut \\\"$DESKTOP\\\\XDesktop.lnk\\\" \\\"$INSTDIR\\\\xdesktop-slicer.exe\\\"
 ")
 set (CPACK_PACKAGE_CHECKSUM SHA256)
-set (CPACK_PACKAGE_INSTALL_REGISTRY_KEY "OrcaSlicer")
+set (CPACK_PACKAGE_INSTALL_REGISTRY_KEY "XDesktop")
 set (CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set (CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 # set (CPACK_NSIS_MODIFY_PATH "ON")
-set(CPACK_PACKAGE_EXECUTABLES "orca-slicer;OrcaSlicer")
-set(CPACK_CREATE_DESKTOP_LINKS "orca-slicer")
+set(CPACK_PACKAGE_EXECUTABLES "xdesktop-slicer;XDesktop")
+set(CPACK_CREATE_DESKTOP_LINKS "xdesktop-slicer")
 set (CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE.txt) # must also include in install command
 
 set(CPACK_WIX_UPGRADE_GUID "058245e8-20e0-4a95-9ab7-1acfe17ad511")

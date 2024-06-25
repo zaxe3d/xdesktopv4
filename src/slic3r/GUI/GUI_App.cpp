@@ -737,7 +737,7 @@ static void generic_exception_handle()
         // and terminate the app so it is at least certain to happen now.
         BOOST_LOG_TRIVIAL(error) << boost::format("std::bad_alloc exception: %1%") % ex.what();
         flush_logs();
-        wxString errmsg = wxString::Format(_L("OrcaSlicer will terminate because of running out of memory."
+        wxString errmsg = wxString::Format(_L("XDesktop will terminate because of running out of memory."
                                               "It may be a bug. It will be appreciated if you report the issue to our team."));
         wxMessageBox(errmsg + "\n\n" + wxString(ex.what()), _L("Fatal error"), wxOK | wxICON_ERROR);
 
@@ -746,13 +746,13 @@ static void generic_exception_handle()
      } catch (const boost::io::bad_format_string& ex) {
      	BOOST_LOG_TRIVIAL(error) << boost::format("Uncaught exception: %1%") % ex.what();
         	flush_logs();
-        wxString errmsg = _L("OrcaSlicer will terminate because of a localization error. "
+        wxString errmsg = _L("XDesktop will terminate because of a localization error. "
                              "It will be appreciated if you report the specific scenario this issue happened.");
         wxMessageBox(errmsg + "\n\n" + wxString(ex.what()), _L("Critical error"), wxOK | wxICON_ERROR);
         std::terminate();
         //throw;
     } catch (const std::exception& ex) {
-        wxLogError(format_wxstr(_L("OrcaSlicer got an unhandled exception: %1%"), ex.what()));
+        wxLogError(format_wxstr(_L("XDesktop got an unhandled exception: %1%"), ex.what()));
         BOOST_LOG_TRIVIAL(error) << boost::format("Uncaught exception: %1%") % ex.what();
         flush_logs();
         throw;
@@ -1853,9 +1853,9 @@ static boost::optional<Semver> parse_semver_from_ini(std::string path)
     std::stringstream buffer;
     buffer << stream.rdbuf();
     std::string body = buffer.str();
-    size_t start = body.find("OrcaSlicer ");
+    size_t start = body.find("XDesktop ");
     if (start == std::string::npos) {
-        start = body.find("OrcaSlicer ");
+        start = body.find("XDesktop ");
         if (start == std::string::npos)
             return boost::none;
     }
@@ -1889,7 +1889,7 @@ void GUI_App::init_webview_runtime()
 {
     // Check WebView Runtime
     if (!WebView::CheckWebViewRuntime()) {
-        int nRet = wxMessageBox(_L("Orca Slicer requires the Microsoft WebView2 Runtime to operate certain features.\nClick Yes to install it now."),
+        int nRet = wxMessageBox(_L("XDesktop requires the Microsoft WebView2 Runtime to operate certain features.\nClick Yes to install it now."),
                                 _L("WebView2 Runtime"), wxYES_NO);
         if (nRet == wxYES) {
             WebView::DownloadAndInstallWebViewRuntime();
@@ -1901,9 +1901,10 @@ void GUI_App::init_webview_runtime()
 void GUI_App::init_app_config()
 {
 	// Profiles for the alpha are stored into the PrusaSlicer-alpha directory to not mix with the current release.
-    SetAppName(SLIC3R_APP_KEY);
+    // TODO zaxe
+    //SetAppName(SLIC3R_APP_KEY);
 //	SetAppName(SLIC3R_APP_KEY "-alpha");
-//  SetAppName(SLIC3R_APP_KEY "-beta");
+    SetAppName(SLIC3R_APP_KEY "v4-beta");
 //	SetAppDisplayName(SLIC3R_APP_NAME);
 
 	// Set the Slic3r data directory at the Slic3r XS module.
@@ -2213,7 +2214,7 @@ bool GUI_App::on_init_inner()
     }
 #endif
 
-    BOOST_LOG_TRIVIAL(info) << boost::format("gui mode, Current OrcaSlicer Version %1%")%SoftFever_VERSION;
+    BOOST_LOG_TRIVIAL(info) << boost::format("gui mode, Current XDesktop Version %1%")%SoftFever_VERSION;
     // Enable this to get the default Win32 COMCTRL32 behavior of static boxes.
 //    wxSystemOptions::SetOption("msw.staticbox.optimized-paint", 0);
     // Enable this to disable Windows Vista themes for all wxNotebooks. The themes seem to lead to terrible
@@ -2230,7 +2231,7 @@ bool GUI_App::on_init_inner()
             RichMessageDialog
                 dlg(nullptr,
                     wxString::Format(_L("%s\nDo you want to continue?"), msg),
-                    "OrcaSlicer", wxICON_QUESTION | wxYES_NO);
+                    "XDesktop", wxICON_QUESTION | wxYES_NO);
             dlg.ShowCheckBox(_L("Remember my choice"));
             if (dlg.ShowModal() != wxID_YES) return false;
 
@@ -2364,7 +2365,7 @@ bool GUI_App::on_init_inner()
                /* wxString tips = wxString::Format(_L("Click to download new version in default browser: %s"), version_info.version_str);
                 DownloadDialog dialog(this->mainframe,
                     tips,
-                    _L("New version of Orca Slicer"),
+                    _L("New version of XDesktop"),
                     false,
                     wxCENTER | wxICON_INFORMATION);
 
@@ -2411,7 +2412,7 @@ bool GUI_App::on_init_inner()
                 wxString tips = wxString::Format(_L("Click to download new version in default browser: %s"), version_str);
                 DownloadDialog dialog(this->mainframe,
                     tips,
-                    _L("The Orca Slicer needs an upgrade"),
+                    _L("The XDesktop needs an upgrade"),
                     false,
                     wxCENTER | wxICON_INFORMATION);
                 dialog.SetExtendedMessage(description_text);
@@ -2630,7 +2631,7 @@ bool GUI_App::on_init_inner()
         m_config_corrupted = false;
         show_error(nullptr,
                    _u8L(
-                       "The OrcaSlicer configuration file may be corrupted and cannot be parsed.\nOrcaSlicer has attempted to recreate the "
+                       "The XDesktop configuration file may be corrupted and cannot be parsed.\nXDesktop has attempted to recreate the "
                        "configuration file.\nPlease note, application settings will be lost, but printer profiles will not be affected."));
     }
     return true;
@@ -4000,7 +4001,7 @@ void GUI_App::on_http_error(wxCommandEvent &evt)
 
     // Version limit
     if (code == HttpErrorVersionLimited) {
-        MessageDialog msg_dlg(nullptr, _L("The version of Orca Slicer is too low and needs to be updated to the latest version before it can be used normally"), "", wxAPPLY | wxOK);
+        MessageDialog msg_dlg(nullptr, _L("The version of XDesktop is too low and needs to be updated to the latest version before it can be used normally"), "", wxAPPLY | wxOK);
         if (msg_dlg.ShowModal() == wxOK) {
         }
 
@@ -5025,7 +5026,7 @@ bool GUI_App::load_language(wxString language, bool initial)
     	// Get the active language from PrusaSlicer.ini, or empty string if the key does not exist.
         language = app_config->get("language");
         if (! language.empty())
-        	BOOST_LOG_TRIVIAL(info) << boost::format("language provided by OrcaSlicer.conf: %1%") % language;
+        	BOOST_LOG_TRIVIAL(info) << boost::format("language provided by XDesktop.conf: %1%") % language;
         else {
             // Get the system language.
             const wxLanguage lang_system = wxLanguage(wxLocale::GetSystemLanguage());
@@ -5082,7 +5083,7 @@ bool GUI_App::load_language(wxString language, bool initial)
 	}
 
 	if (language_info != nullptr && language_info->LayoutDirection == wxLayout_RightToLeft) {
-    	BOOST_LOG_TRIVIAL(trace) << boost::format("The following language code requires right to left layout, which is not supported by OrcaSlicer: %1%") % language_info->CanonicalName.ToUTF8().data();
+    	BOOST_LOG_TRIVIAL(trace) << boost::format("The following language code requires right to left layout, which is not supported by XDesktop: %1%") % language_info->CanonicalName.ToUTF8().data();
 		language_info = nullptr;
 	}
 
@@ -5167,14 +5168,14 @@ bool GUI_App::load_language(wxString language, bool initial)
 
     if (! wxLocale::IsAvailable(language_info->Language)) {
     	// Loading the language dictionary failed.
-    	wxString message = "Switching Orca Slicer to language " + language_info->CanonicalName + " failed.";
+    	wxString message = "Switching XDesktop to language " + language_info->CanonicalName + " failed.";
 #if !defined(_WIN32) && !defined(__APPLE__)
         // likely some linux system
         message += "\nYou may need to reconfigure the missing locales, likely by running the \"locale-gen\" and \"dpkg-reconfigure locales\" commands.\n";
 #endif
         if (initial)
         	message + "\n\nApplication will close.";
-        wxMessageBox(message, "Orca Slicer - Switching language failed", wxOK | wxICON_ERROR);
+        wxMessageBox(message, "XDesktop - Switching language failed", wxOK | wxICON_ERROR);
         if (initial)
 			std::exit(EXIT_FAILURE);
 		else
@@ -6524,8 +6525,8 @@ void GUI_App::associate_files(std::wstring extend)
     ::GetModuleFileNameW(nullptr, app_path, sizeof(app_path));
 
     std::wstring prog_path = L"\"" + std::wstring(app_path) + L"\"";
-    std::wstring prog_id = L" Orca.Slicer.1";
-    std::wstring prog_desc = L"OrcaSlicer";
+    std::wstring prog_id = L" XDesktop.Slicer.1";
+    std::wstring prog_desc = L"XDesktop";
     std::wstring prog_command = prog_path + L" \"%1\"";
     std::wstring reg_base = L"Software\\Classes";
     std::wstring reg_extension = reg_base + L"\\." + extend;
@@ -6549,8 +6550,8 @@ void GUI_App::disassociate_files(std::wstring extend)
     ::GetModuleFileNameW(nullptr, app_path, sizeof(app_path));
 
     std::wstring prog_path = L"\"" + std::wstring(app_path) + L"\"";
-    std::wstring prog_id = L" Orca.Slicer.1";
-    std::wstring prog_desc = L"OrcaSlicer";
+    std::wstring prog_id = L" XDesktop.Slicer.1";
+    std::wstring prog_desc = L"XDesktop";
     std::wstring prog_command = prog_path + L" \"%1\"";
     std::wstring reg_base = L"Software\\Classes";
     std::wstring reg_extension = reg_base + L"\\." + extend;
