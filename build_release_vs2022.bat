@@ -7,9 +7,9 @@ if "%1"=="pack" (
     setlocal ENABLEDELAYEDEXPANSION 
     cd %WP%/deps/build
     for /f "tokens=2-4 delims=/ " %%a in ('date /t') do set build_date=%%c%%b%%a
-    echo packing deps: OrcaSlicer_dep_win64_!build_date!_vs2022.zip
+    echo packing deps: XDesktop_dep_win64_!build_date!_vs2022.zip
 
-    %WP%/tools/7z.exe a OrcaSlicer_dep_win64_!build_date!_vs2022.zip OrcaSlicer_dep
+    %WP%/tools/7z.exe a XDesktop_dep_win64_!build_date!_vs2022.zip XDesktop_dep
     exit /b 0
 )
 
@@ -37,7 +37,7 @@ setlocal DISABLEDELAYEDEXPANSION
 cd deps
 mkdir %build_dir%
 cd %build_dir%
-set DEPS=%CD%/OrcaSlicer_dep
+set DEPS=%CD%/XDesktop_dep
 
 if "%1"=="slicer" (
     GOTO :slicer
@@ -52,7 +52,7 @@ cmake --build . --config %build_type% --target deps -- -m
 if "%1"=="deps" exit /b 0
 
 :slicer
-echo "building Orca Slicer..."
+echo "building XDesktop..."
 cd %WP%
 mkdir %build_dir%
 cd %build_dir%

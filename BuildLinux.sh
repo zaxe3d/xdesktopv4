@@ -12,7 +12,7 @@ function check_available_memory_and_disk() {
     MIN_DISK_KB=$((10 * 1024 * 1024))
 
     if [ ${FREE_MEM_GB} -le ${MIN_MEM_GB} ]; then
-        echo -e "\nERROR: Orca Slicer Builder requires at least ${MIN_MEM_GB}G of 'available' mem (systen has only ${FREE_MEM_GB}G available)"
+        echo -e "\nERROR: XDesktop Builder requires at least ${MIN_MEM_GB}G of 'available' mem (systen has only ${FREE_MEM_GB}G available)"
         echo && free -h && echo
         exit 2
     fi

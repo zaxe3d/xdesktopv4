@@ -13,9 +13,9 @@
 {
 	//NSLog(@"adding observer");
 	//NSString *nsver = @"OtherOrcaSlicerInstanceMessage" + version_hash;
-	NSString *nsver = [NSString stringWithFormat: @"%@%@", @"OtherOrcaSlicerInstanceMessage", version_hash];
+	NSString *nsver = [NSString stringWithFormat: @"%@%@", @"OtherXDesktopInstanceMessage", version_hash];
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(message_update:) name:nsver object:nil suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
-	NSString *nsver2 = [NSString stringWithFormat: @"%@%@", @"OtherOrcaSlicerInstanceClosing", version_hash];
+	NSString *nsver2 = [NSString stringWithFormat: @"%@%@", @"OtherXDesktopInstanceClosing", version_hash];
 	[[NSDistributedNotificationCenter defaultCenter] addObserver:self selector:@selector(closing_update:) name:nsver2 object:nil suspensionBehavior:NSNotificationSuspensionBehaviorDeliverImmediately];
 }
 
@@ -56,7 +56,7 @@ void send_message_mac(const std::string &msg, const std::string &version)
 	NSString *nsmsg = [NSString stringWithCString:msg.c_str() encoding:[NSString defaultCStringEncoding]];
 	//NSString *nsver = @"OtherOrcaSlicerInstanceMessage" + [NSString stringWithCString:version.c_str() encoding:[NSString defaultCStringEncoding]];
 	NSString *nsver = [NSString stringWithCString:version.c_str() encoding:[NSString defaultCStringEncoding]];
-	NSString *notifname = [NSString stringWithFormat: @"%@%@", @"OtherOrcaSlicerInstanceMessage", nsver];
+	NSString *notifname = [NSString stringWithFormat: @"%@%@", @"OtherXDesktopInstanceMessage", nsver];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notifname object:nil userInfo:[NSDictionary dictionaryWithObject:nsmsg forKey:@"data"] deliverImmediately:YES];
 }
 
@@ -65,7 +65,7 @@ void send_message_mac_closing(const std::string &msg, const std::string &version
 	NSString *nsmsg = [NSString stringWithCString:msg.c_str() encoding:[NSString defaultCStringEncoding]];
 	//NSString *nsver = @"OtherOrcaSlicerInstanceMessage" + [NSString stringWithCString:version.c_str() encoding:[NSString defaultCStringEncoding]];
 	NSString *nsver = [NSString stringWithCString:version.c_str() encoding:[NSString defaultCStringEncoding]];
-	NSString *notifname = [NSString stringWithFormat: @"%@%@", @"OtherOrcaSlicerInstanceClosing", nsver];
+	NSString *notifname = [NSString stringWithFormat: @"%@%@", @"OtherXDesktopInstanceClosing", nsver];
 	[[NSDistributedNotificationCenter defaultCenter] postNotificationName:notifname object:nil userInfo:[NSDictionary dictionaryWithObject:nsmsg forKey:@"data"] deliverImmediately:YES];
 }
 
