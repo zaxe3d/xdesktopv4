@@ -31,9 +31,10 @@ ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSiz
     auto state_info_sizer = createStateInfo();
     auto print_btn_sizer  = createPrintButton();
     createProgressLine();
-    auto icon_btns_sizer = createIconButtons();
-    detailed_info_sizer  = createDetailedInfo();
-    auto seperator       = createSeperator();
+    auto icon_btns_sizer    = createIconButtons();
+    auto version_info_sizer = createVersionInfoSizer();
+    detailed_info_sizer     = createDetailedInfo();
+    auto seperator          = createSeperator();
 
     auto s1 = new wxBoxSizer(wxHORIZONTAL);
     s1->Add(progress_line, 19, wxALIGN_CENTER | wxALL, FromDIP(3));
@@ -52,6 +53,7 @@ ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSiz
     auto sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(header_sizer, 0, wxEXPAND | wxLEFT | wxRIGHT | wxBOTTOM, FromDIP(3));
     sizer->Add(body_sizer, 1, wxEXPAND | wxALL, FromDIP(3));
+    sizer->Add(version_info_sizer, 0, wxALIGN_RIGHT, FromDIP(3));
     sizer->Add(detailed_info_sizer, 0, wxALIGN_CENTER | wxALL, FromDIP(10));
     sizer->Add(seperator, 0, wxEXPAND | wxTOP, FromDIP(5));
 
@@ -310,6 +312,16 @@ wxSizer* ZaxeDevice::createIconButtons()
     sizer->Add(say_hi_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Add(unload_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Layout();
+    return sizer;
+}
+
+wxSizer* ZaxeDevice::createVersionInfoSizer()
+{
+    auto version = new Label(this, nm->attr->firmwareVersion.GetVersionString(), wxALIGN_RIGHT);
+    version->SetForegroundColour(gray500);
+    version->SetFont(::Label::Body_10);
+    auto sizer = new wxBoxSizer(wxHORIZONTAL);
+    sizer->Add(version);
     return sizer;
 }
 
