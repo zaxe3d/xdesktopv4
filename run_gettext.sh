@@ -4,6 +4,8 @@
 #  Created by SoftFever on 27/5/23.
 #
 
+set -ex
+
 # Check for --full argument
 FULL_MODE=false
 for arg in "$@"
@@ -15,7 +17,7 @@ done
 
 if $FULL_MODE; then
     xgettext --keyword=L --keyword=_L --keyword=_u8L --keyword=L_CONTEXT:1,2c --keyword=_L_PLURAL:1,2 --add-comments=TRN --from-code=UTF-8 --no-location --debug --boost -f ./localization/i18n/list.txt -o ./localization/i18n/OrcaSlicer.pot
-    ./build_arm64/src/hints/Release/hintsToPot.app/Contents/MacOS/hintsToPot ./resources ./localization/i18n
+    ./build_arm64/src/hints/hintsToPot.app/Contents/MacOS/hintsToPot ./resources ./localization/i18n
 fi
 
 
