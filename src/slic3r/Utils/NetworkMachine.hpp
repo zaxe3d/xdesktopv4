@@ -153,6 +153,7 @@ public:
     void upload(const char *filename, const char *uploadAs = "");
     void downloadAvatar();
     void changeName(const char *new_name);
+    void fw_update();
 
     void shutdown() { m_running = false; }
 

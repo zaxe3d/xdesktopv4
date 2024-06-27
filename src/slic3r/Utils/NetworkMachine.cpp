@@ -197,6 +197,11 @@ void NetworkMachine::changeName(const char *new_name)
     send(pt);
 }
 
+void NetworkMachine::fw_update()
+{
+    request("fw_update");
+}
+
 void NetworkMachine::request(const char* command)
 {
     ptree pt; // construct root obj.

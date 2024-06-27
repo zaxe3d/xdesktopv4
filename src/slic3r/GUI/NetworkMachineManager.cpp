@@ -37,6 +37,60 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
     network_machine_container->Bind(EVT_MACHINE_AVATAR_READY, &NetworkMachineManager::onMachineAvatarReady, this);
 
     broadcast_receiver->Bind(EVT_BROADCAST_RECEIVED, &NetworkMachineManager::onBroadcastReceived, this);
+
+    checkVersions();
+    version_check_timer = new wxTimer();
+    version_check_timer->SetOwner(this);
+    Bind(wxEVT_TIMER, [&](wxTimerEvent&) { checkVersions(); });
+    version_check_timer->Start(1'000 * 60 * 10);
+}
+
+NetworkMachineManager::~NetworkMachineManager()
+{
+    if (version_check_timer) {
+        version_check_timer->Stop();
+        delete version_check_timer;
+        version_check_timer = nullptr;
+    }
+}
+
+void NetworkMachineManager::checkVersions()
+{
+    int timeout_sec = 15;
+    Http::get("https://software.zaxe.com/z3new/firmware.json")
+        .timeout_connect(timeout_sec)
+        .timeout_max(timeout_sec)
+        .on_error([&](std::string, std::string error, unsigned http_status) {
+            BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version: HTTP(" << http_status << ") " << error;
+        })
+        .on_complete([&](std::string body, unsigned http_status) {
+            if (http_status != 200) {
+                BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version: HTTP(" << http_status << ") " << body;
+                return;
+            }
+
+            try {
+                boost::trim(body);
+                boost::property_tree::ptree root;
+                std::stringstream           json_stream(body);
+                boost::property_tree::read_json(json_stream, root);
+
+                auto fw_latest     = Semver(root.get<std::string>("version"));
+                fw_versions["z3"]  = fw_latest;
+                fw_versions["z3s"] = fw_latest;
+
+                CallAfter([&]() {
+                    for (auto& [ip, dev] : device_map) {
+                        if (dev) {
+                            dev->onVersionCheck(fw_versions);
+                        }
+                    }
+                });
+            } catch (...) {
+                BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version";
+            }
+        })
+        .perform();
 }
 
 wxPanel* NetworkMachineManager::createFilterArea()
@@ -214,6 +268,7 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
 
     auto zd = new ZaxeDevice(event.nm, scrolled_area);
     zd->enablePrintButton(print_enable);
+    zd->onVersionCheck(fw_versions);
     device_map[event.nm->ip] = zd;
     applyFilters();
     warning_sizer->Show(device_map.empty());

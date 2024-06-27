@@ -20,8 +20,12 @@ const wxString progress_danger_color{"#F25A46"};
 const wxString progress_success_color{"#009BDF"};
 const wxString progress_uploading_color{"#00FF00"};
 
+ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm) : nm(_nm) {}
+
+bool ZaxeDeviceCapabilities::hasRemoteUpdate() { return is_there(nm->attr->deviceModel, {"z3"}); }
+
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
-    : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer())
+    : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
 {
     SetBackgroundColour(*wxWHITE);
     wxGetApp().UpdateDarkUI(this);
@@ -227,6 +231,15 @@ wxSizer* ZaxeDevice::createStateInfo()
     auto sizer = new wxBoxSizer(wxVERTICAL);
     sizer->Add(status_title, 0, wxEXPAND | wxALL, FromDIP(1));
     sizer->Add(desc_sizer, 0, wxEXPAND | wxALL, FromDIP(1));
+
+    status_desc_icon->Bind(wxEVT_BUTTON, [this](auto&) {
+        if (update_available && capabilities.hasRemoteUpdate() && upstream_version.has_value()) {
+            confirm([&] { nm->fw_update(); },
+                    wxString::Format(_L("Current version: %s, Latest Version: %s. Do you want to update your printer?"),
+                                     nm->attr->firmwareVersion.ToString(), upstream_version.value().to_string_sf()));
+        }
+    });
+
     return sizer;
 }
 
@@ -451,6 +464,7 @@ void ZaxeDevice::updateStatusText()
     wxString desc       = "";
     wxString desc_color = gray700;
     wxString desc_icon  = "";
+    update_available    = false;
 
     if (nm->states->bedOccupied) {
         title = _L("Bed is occupied");
@@ -477,6 +491,13 @@ void ZaxeDevice::updateStatusText()
         desc_color = progress_success_color;
     } else if (nm->states->printing) {
         desc = _L("Processing");
+    } else if (capabilities.hasRemoteUpdate() && !nm->isBusy() && upstream_version.has_value() &&
+               upstream_version > Semver(nm->attr->firmwareVersion.GetMajor(), nm->attr->firmwareVersion.GetMinor(),
+                                         nm->attr->firmwareVersion.GetMicro())) {
+        desc             = _L("Update available");
+        desc_color       = "#F4B617";
+        desc_icon        = "zaxe_warning_1";
+        update_available = true;
     }
 
     status_title->SetLabel(title);
@@ -719,6 +740,14 @@ void ZaxeDevice::onUploadDone()
                                                                        NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
                                                                        _u8L("Your print job has been sent to the device. Printing will "
                                                                             "start shortly."));
+}
+
+void ZaxeDevice::onVersionCheck(const std::map<std::string, Semver>& latest_versions)
+{
+    if (auto it = latest_versions.find(nm->attr->deviceModel); it != latest_versions.end()) {
+        upstream_version = it->second;
+        updateStates();
+    }
 }
 
 } // namespace Slic3r::GUI
