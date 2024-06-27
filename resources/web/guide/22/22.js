@@ -257,8 +257,8 @@ function SortUI()
 	//--If Need Install Network Plugin
 	if(m_ProfileItem["network_plugin_install"]!='1' || (m_ProfileItem["network_plugin_install"]=='1' && m_ProfileItem["network_plugin_compability"]=='0') )
 	{
-		$("#AcceptBtn").hide();
-		$("#GotoNetPluginBtn").show();
+		$("#AcceptBtn").show();
+		$("#GotoNetPluginBtn").hide();
 	}
 }
 
@@ -559,7 +559,7 @@ function ResponseFilamentResult()
 
 function ReturnPreviewPage()
 {
-	let nMode=m_ProfileItem["model"].length;
+	//let nMode=m_ProfileItem["model"].length;
 	
 	if( nMode==1)
 		document.location.href="../1/index.html";
