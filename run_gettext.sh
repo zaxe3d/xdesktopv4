@@ -4,6 +4,8 @@
 #  Created by SoftFever on 27/5/23.
 #
 
+set -ex
+
 # Check for --full argument
 FULL_MODE=false
 for arg in "$@"
