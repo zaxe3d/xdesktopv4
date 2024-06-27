@@ -164,3 +164,15 @@ src/slic3r/Utils/SimplyPrint.cpp
 src/slic3r/Utils/Flashforge.cpp
 src/slic3r/GUI/Jobs/OAuthJob.cpp
 src/slic3r/GUI/BackgroundSlicingProcess.cpp
+src/slic3r/GUI/NetworkMachineManager.cpp
+src/slic3r/GUI/NetworkMachineManager.hpp
+src/slic3r/GUI/ZaxeDevice.cpp
+src/slic3r/GUI/ZaxeDevice.hpp
+src/slic3r/Utils/NetworkMachine.cpp
+src/slic3r/Utils/NetworkMachine.hpp
+src/slic3r/Utils/BroadcastReceiver.cpp
+src/slic3r/Utils/BroadcastReceiver.hpp
+src/slic3r/Utils/WebSocket.cpp
+src/slic3r/Utils/WebSocket.hpp
+src/libslic3r/Format/ZaxeArchive.hpp
+src/libslic3r/Format/ZaxeArchive.cpp
