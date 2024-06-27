@@ -87,6 +87,7 @@ private:
     wxSizer* createPrintButton();
     void     createProgressLine();
     wxSizer* createIconButtons();
+    wxSizer* createVersionInfoSizer();
     wxSizer* createDetailedInfo();
     wxPanel* createSeperator();
 
