@@ -10,8 +10,23 @@
 
 #include "../Utils/NetworkMachine.hpp"
 #include "I18N.hpp"
+#include "libslic3r/Semver.hpp"
+
+#include <optional>
 
 namespace Slic3r::GUI {
+
+class ZaxeDeviceCapabilities
+{
+public:
+    ZaxeDeviceCapabilities(NetworkMachine* _nm);
+
+    bool hasRemoteUpdate();
+
+private:
+    NetworkMachine* nm;
+};
+
 class ZaxeDevice : public wxPanel
 {
 public:
@@ -26,6 +41,7 @@ public:
     void onAvatarReady();
     void onTemperatureUpdate();
     void onUploadDone();
+    void onVersionCheck(const std::map<std::string, Semver>& latest_versions);
 
     bool     isBusy();
     void     setName(const string& name);
@@ -79,6 +95,10 @@ private:
     bool device_name_ctrl_visible{false};
     bool is_expanded{false};
     bool is_file_name_visible{false};
+
+    ZaxeDeviceCapabilities capabilities;
+    std::optional<Semver> upstream_version;
+    bool update_available{false};
 
     void     onTimer(wxTimerEvent& event);
     wxSizer* createHeader();
