@@ -160,9 +160,9 @@ wxPanel* NetworkMachineManager::createFilterArea()
 
     search_ctrl = new TextInput(panel, "", "", "zaxe_search", wxDefaultPosition, wxDefaultSize, wxBORDER_NONE, FromDIP(24));
     search_ctrl->SetCornerRadius(FromDIP(10));
-    auto search_bg = wxColor("#F2F4F7");
-    search_ctrl->SetBackgroundColor(std::make_pair(search_bg, (int) StateColor::Normal));
-    search_ctrl->GetTextCtrl()->SetBackgroundColour(search_bg);
+    auto gray100 = wxColor("#F2F4F7");
+    search_ctrl->SetBackgroundColor(std::make_pair(gray100, (int) StateColor::Normal));
+    search_ctrl->GetTextCtrl()->SetBackgroundColour(gray100);
     search_ctrl->GetTextCtrl()->SetMaxLength(50);
     search_ctrl->GetTextCtrl()->SetHint(_L("Search printer, nozzle, material, ip address..."));
     wxGetApp().UpdateDarkUI(search_ctrl);
