@@ -103,7 +103,9 @@ int TabCtrl::AppendItem(const wxString &item,
     btn->SetTextColor(StateColor(
         std::make_pair(0x6B6B6C, (int) StateColor::NotChecked),
         std::make_pair(*wxLIGHT_GREY, (int) StateColor::Normal)));
-    btn->SetBackgroundColor(wxColor("#F2F4F7"));
+    auto gray100 = wxColor("#F2F4F7");
+    btn->SetBackgroundColor(gray100);
+    btn->SetBackgroundColour(gray100);
     btn->SetCornerRadius(0);
     btn->SetPaddingSize({TAB_BUTTON_PADDING});
     btns.push_back(btn);
@@ -327,16 +329,16 @@ void TabCtrl::doRender(wxDC& dc)
     dc.DrawLine(x2 + radius - BS2, size.y - BS2, size.x, size.y - BS2);
 #else
     wxColour bg("#F2F4F7");
-    dc.SetPen(bg);
-    dc.SetBrush(bg);
+    dc.SetPen(StateColor::darkModeColorFor(bg));
+    dc.SetBrush(StateColor::darkModeColorFor(bg));
     dc.DrawRoundedRectangle(0, 0, size.x, size.y, FromDIP(10));
     dc.DrawRectangle(0, size.y / 2, size.x, size.y);
 
     dc.SetPen(wxPen(border_color.colorForStates(states), border_width));
     dc.DrawLine(0, size.y - BS2, size.x, size.y - BS2);
     wxColour c("#009ADE");
-    dc.SetPen(wxPen(c, 1));
-    dc.SetBrush(c);
+    dc.SetPen(wxPen(StateColor::darkModeColorFor(c), 1));
+    dc.SetBrush(StateColor::darkModeColorFor(c));
     dc.DrawRoundedRectangle(x1 - radius, size.y - BS2 - border_width * 3, x2 + radius * 2 - x1, border_width * 3, radius);
 
     for (size_t i = 1; i < btns.size(); ++i) {
@@ -345,7 +347,7 @@ void TabCtrl::doRender(wxDC& dc)
         auto    _btn_pos       = btns[i]->GetPosition();
         wxCoord _line_x        = _btn_pos.x - ((_btn_pos.x - _prev_btn_pos.x - _prev_btn_size.x) / 2);
 
-        dc.SetPen(wxColor("#CECECE"));
+        dc.SetPen(StateColor::darkModeColorFor(wxColor("#CECECE")));
         dc.DrawLine(_line_x, 3, _line_x, size.y - 5);
     }
 #endif
