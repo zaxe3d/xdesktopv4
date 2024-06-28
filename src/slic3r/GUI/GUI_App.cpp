@@ -2875,7 +2875,7 @@ const wxColour GUI_App::get_label_default_clr_modified()
 void GUI_App::init_label_colours()
 {
     bool is_dark_mode = dark_mode();
-    m_color_label_modified = is_dark_mode ? wxColour("#009ADE") : wxColour("#009ADE");
+    m_color_label_modified = is_dark_mode ? wxColour("#009ADE") : wxColour("#7CD4FD");
     m_color_label_sys      = is_dark_mode ? wxColour("#B2B3B5") : wxColour("#363636");
 
 #if defined(_WIN32) || defined(__linux__) || defined(__APPLE__)
