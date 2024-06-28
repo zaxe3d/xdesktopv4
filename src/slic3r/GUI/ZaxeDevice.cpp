@@ -280,6 +280,7 @@ void ZaxeDevice::createProgressLine()
 
     progress_label = new Label(progress_line, "", wxALIGN_CENTER_VERTICAL);
     progress_label->SetFont(Label::Head_14);
+    wxGetApp().UpdateDarkUI(progress_label);
 
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(progress_bar, 1, wxALIGN_CENTER | wxALL, FromDIP(1));
@@ -333,6 +334,8 @@ wxSizer* ZaxeDevice::createVersionInfoSizer()
     auto version = new Label(this, nm->attr->firmwareVersion.GetVersionString(), wxALIGN_RIGHT);
     version->SetForegroundColour(gray500);
     version->SetFont(::Label::Body_10);
+    wxGetApp().UpdateDarkUI(version);
+
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(version);
     return sizer;
@@ -430,6 +433,7 @@ void ZaxeDevice::updateProgressLine()
     } else {
         progress_bar->SetProgressBackgroundColour(blue500);
     }
+    wxGetApp().UpdateDarkUI(progress_bar);
 }
 
 void ZaxeDevice::updateTimer()
@@ -510,6 +514,7 @@ void ZaxeDevice::updateStatusText()
 
     status_desc->SetLabel(desc);
     status_desc->SetForegroundColour(desc_color);
+    wxGetApp().UpdateDarkUI(status_desc);
     status_desc->Show(!desc.empty());
 }
 

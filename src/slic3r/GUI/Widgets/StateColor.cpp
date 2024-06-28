@@ -39,6 +39,29 @@ static std::map<wxColour, wxColour> gDarkColors{
     {"#ABABAB", "#ABABAB"},
     {"#D9D9D9", "#2D2D32"},
     //{"#F0F0F0", "#4C4C54"},
+    {"#FCFCFD", "#231F21"}, // gray25, gray900
+    {"#231F20", "#FCFCFE"}, // gray900, gray25
+    {"#F9FAFB", "#1D293A"}, // gray50, gray800
+    {"#1D2939", "#F9FAFC"}, // gray800, gray50
+    {"#F2F4F7", "#344055"}, // gray100, gray700
+    {"#344054", "#F2F4F8"}, // gray700, gray100
+    {"#EAECF0", "#475468"}, // gray200, gray600
+    //{"#475467", "#EAECF1"}, // gray600, gray200
+    {"#D0D5DD", "#667086"}, // gray300, gray500
+    {"#667085", "#D0D5DE"}, // gray500, gray300
+    {"#98A2B3", "#98A2B3"}, // gray400, gray400
+    {"#F5FBFF", "#0B4B6F"}, // blue25, blue900
+    {"#0B4A6F", "#F5FCFF"}, // blue900, blue25
+    {"#F0F9FF", "#065987"}, // blue50, blue800
+    {"#065986", "#F0FAFF"}, // blue800, blue50
+    {"#E0F2FE", "#026AA3"}, // blue100, blue700
+    {"#026AA2", "#E0F2FF"}, // blue700, blue100
+    {"#B9E6FE", "#0086CA"}, // blue200, blue600
+    {"#0086C9", "#B9E6FF"}, // blue600, blue200
+    {"#7CD4FD", "#009ADF"}, // blue300, blue500
+    {"#009ADE", "#7CD4FE"}, // blue500, blue300
+    {"#36BFFA", "#36BFFA"}  // blue400, blue400
+
 };
 
 std::map<wxColour, wxColour> const & StateColor::GetDarkMap() 

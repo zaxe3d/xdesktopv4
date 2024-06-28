@@ -1486,7 +1486,7 @@ void MainFrame::update_btn1(bool enable)
     StateColor disabled_color(std::pair<wxColour, int>(gray300, StateColor::Hovered), std::pair<wxColour, int>(gray300, StateColor::Normal));
 
     m_btn1->SetBackgroundColor(enable ? enabled_color : disabled_color);
-    m_btn1->SetBackgroundColour(*wxWHITE);
+    m_btn1->SetBackgroundColour(m_btn1->GetParent()->GetBackgroundColour());
     m_btn1->SetBorderColor(enable ? enabled_color : disabled_color);
 
     auto mouse_pos   = wxGetMousePosition();
@@ -1511,7 +1511,7 @@ void MainFrame::update_btn2(bool enable)
                                std::pair<wxColour, int>(gray300, StateColor::Normal));
 
     m_btn2->SetBackgroundColor(*wxWHITE);
-    m_btn2->SetBackgroundColour(*wxWHITE);
+    m_btn2->SetBackgroundColour(m_btn2->GetParent()->GetBackgroundColour());
     m_btn2->SetBorderColor(enable ? enabled_color : disabled_color);
 
     m_print_btn->SetBackgroundColor(*wxWHITE);
