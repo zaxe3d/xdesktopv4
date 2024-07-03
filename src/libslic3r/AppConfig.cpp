@@ -38,8 +38,8 @@ using namespace nlohmann;
 
 namespace Slic3r {
 
-static const std::string VERSION_CHECK_URL_STABLE = "https://api.github.com/repos/softfever/OrcaSlicer/releases/latest";
-static const std::string VERSION_CHECK_URL = "https://api.github.com/repos/softfever/OrcaSlicer/releases";
+static const std::string VERSION_CHECK_URL_STABLE = "https://api.github.com/repos/zaxe3d/xdesktopv4/releases/latest";
+static const std::string VERSION_CHECK_URL = "https://api.github.com/repos/zaxe3d/xdesktopv4/releases";
 static const std::string PROFILE_UPDATE_URL = "https://software.zaxe.com/xdesktopv4-config-beta";
 static const std::string MODELS_STR = "models";
 
