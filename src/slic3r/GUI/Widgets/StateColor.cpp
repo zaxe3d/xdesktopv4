@@ -44,28 +44,28 @@ static std::map<wxColour, wxColour> gDarkColors{
     {"#BFE1DE", "#223C3C"}, // rgb(191, 225, 222)  Dropdown checked item background color > ORCA color with %25 opacity
     {"#E5F0EE", "#283232"}, // rgb(229, 240, 238)  Combo / Dropdown focused background color > ORCA color with %10 opacity
     // ZAXE
-    {"#FCFCFD", "#231F21"}, // gray25, gray900
-    {"#231F20", "#FCFCFE"}, // gray900, gray25
-    {"#F9FAFB", "#1D293A"}, // gray50, gray800
-    {"#1D2939", "#F9FAFC"}, // gray800, gray50
-    {"#F2F4F7", "#344055"}, // gray100, gray700
-    {"#344054", "#F2F4F8"}, // gray700, gray100
-    {"#EAECF0", "#475468"}, // gray200, gray600
-    //{"#475467", "#EAECF1"}, // gray600, gray200
-    {"#D0D5DD", "#667086"}, // gray300, gray500
-    {"#667085", "#D0D5DE"}, // gray500, gray300
-    {"#98A2B3", "#98A2B3"}, // gray400, gray400
-    {"#F5FBFF", "#0B4B6F"}, // blue25, blue900
-    {"#0B4A6F", "#F5FCFF"}, // blue900, blue25
-    {"#F0F9FF", "#065987"}, // blue50, blue800
-    {"#065986", "#F0FAFF"}, // blue800, blue50
-    {"#E0F2FE", "#026AA3"}, // blue100, blue700
-    {"#026AA2", "#E0F2FF"}, // blue700, blue100
-    {"#B9E6FE", "#0086CA"}, // blue200, blue600
-    {"#0086C9", "#B9E6FF"}, // blue600, blue200
-    {"#7CD4FD", "#009ADF"}, // blue300, blue500
-    {"#009ADE", "#7CD4FE"}, // blue500, blue300
-    {"#36BFFA", "#36BFFA"}  // blue400, blue400
+    {"#FCFCFD", "#231F21"}, // gray25, gray900D
+    {"#231F20", "#FCFCFC"}, // gray900, gray25D
+    {"#F9FAFB", "#1D2938"}, // gray50, gray800D
+    {"#1D2939", "#F9FAFA"}, // gray800, gray50D
+    {"#F2F4F7", "#344053"}, // gray100, gray700D
+    {"#344054", "#F2F4F8"}, // gray700, gray100D
+    {"#EAECF0", "#475468"}, // gray200, gray600D
+    //{"#475467", "#EAECF1"}, // gray600, gray200D
+    {"#D0D5DD", "#667086"}, // gray300, gray500D
+    {"#667085", "#D0D5D8"}, // gray500, gray300D
+    {"#98A2B3", "#98A2B4"}, // gray400, gray400D
+    {"#F5FBFF", "#0B4A6A"}, // blue25, blue900D
+    {"#0B4A6F", "#F5FBFE"}, // blue900, blue25D
+    {"#F0F9FF", "#065985"}, // blue50, blue800D
+    {"#065986", "#F0F9FE"}, // blue800, blue50D
+    {"#E0F2FE", "#026AA3"}, // blue100, blue700D
+    {"#026AA2", "#E0F2FC"}, // blue700, blue100D
+    {"#B9E6FE", "#0086C8"}, // blue200, blue600D
+    {"#0086C9", "#B9E6FC"}, // blue600, blue200D
+    {"#7CD4FD", "#009ADC"}, // blue300, blue500D
+    {"#009ADE", "#7CD4FC"}, // blue500, blue300D
+    {"#36BFFA", "#36BFFB"}  // blue400, blue400D
 
 };
 

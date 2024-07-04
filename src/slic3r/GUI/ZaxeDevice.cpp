@@ -677,8 +677,11 @@ bool ZaxeDevice::print()
     trim(pN);
 
     std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
-    std::string model_nozzle_arch = archive.get_info("model") + " " + archive.get_info("sub_model") + " " +
-                                    archive.get_info("nozzle_diameter");
+    std::string model_nozzle_arch = archive.get_info("model") + " ";
+    if (!archive.get_info("sub_model").empty()) {
+        model_nozzle_arch.append(archive.get_info("sub_model")).append(" ");
+    }
+    model_nozzle_arch.append(archive.get_info("nozzle_diameter"));
 
     if (is_there(nm->attr->deviceModel, {"x3"}) && !nm->states->usbPresent) {
         wxMessageBox(_L("Please insert a usb stick before start printing."), _L("USB stick not found"), wxICON_ERROR);
