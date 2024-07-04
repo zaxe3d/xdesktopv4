@@ -178,7 +178,7 @@ function build_slicer() {
 
     echo "Fix macOS app package..."
     (
-        cd "$PROJECT_BUILD_DIR"
+        pushd "$PROJECT_BUILD_DIR"
         mkdir -p XDesktop
         cd XDesktop
         # remove previously built app
@@ -192,8 +192,9 @@ function build_slicer() {
         # delete .DS_Store file
         find ./XDesktop.app/ -name '.DS_Store' -delete
 
-        # TODO zaxe
-        cp /opt/homebrew/bin/ffplay ./XDesktop.app/Contents/MacOS
+        cp ../../package/bin/ffplay_"${ARCH}" ./XDesktop.app/Contents/MacOS/ffplay
+
+        popd
     )
 
     # extract version
