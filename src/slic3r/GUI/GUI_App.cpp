@@ -1823,10 +1823,10 @@ void GUI_App::init_webview_runtime()
 void GUI_App::init_app_config()
 {
 	// Profiles for the alpha are stored into the PrusaSlicer-alpha directory to not mix with the current release.
-    // TODO zaxe
+
     //SetAppName(SLIC3R_APP_KEY);
 //	SetAppName(SLIC3R_APP_KEY "-alpha");
-    SetAppName(SLIC3R_APP_KEY "v4-beta");
+    SetAppName(SLIC3R_APP_KEY "v4");
 //	SetAppDisplayName(SLIC3R_APP_NAME);
 
 	// Set the Slic3r data directory at the Slic3r XS module.

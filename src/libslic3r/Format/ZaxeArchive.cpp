@@ -187,7 +187,7 @@ void ZaxeArchive::generate_info_file(ConfMap &m, const Print &print)
     m["bed_temperature"]        = get_cfg_value(cfg, "eng_plate_temp", "0", true); // todo zaxe
     m["standby_temperature"]    = standby_temp_char;
     m["slicer_version"]         = SLIC3R_VERSION;
-    m["xdesktop_version"]       = "3.0.1"; // TODO zaxe XDESKTOP_VERSION;
+    m["xdesktop_version"]       = SoftFever_VERSION;
 }
 
 } // namespace Slic3r
