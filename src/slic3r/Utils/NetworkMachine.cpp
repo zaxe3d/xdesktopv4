@@ -115,6 +115,7 @@ void NetworkMachine::onWSRead(string message)
             states->heating        = states->ptreeStringtoBool(pt, "is_heating");
             states->paused         = states->ptreeStringtoBool(pt, "is_paused");
             states->hasError       = states->ptreeStringtoBool(pt, "is_error");
+            states->ledsSwithedOn  = states->ptreeStringtoBool(pt, "is_leds");
             states->filamentPresent= attr->firmwareVersion.GetMinor() >= 3 && attr->firmwareVersion.GetMinor() >= 5 // Z3 and FW>=3.5
                                          ? states->ptreeStringtoBool(pt, "is_filament_present") : true;
         }
@@ -186,6 +187,11 @@ void NetworkMachine::resume()
 void NetworkMachine::togglePreheat()
 {
     request("toggle_preheat");
+}
+
+void NetworkMachine::toggleLeds()
+{
+    request("toggle_leds");
 }
 
 void NetworkMachine::changeName(const char *new_name)

@@ -20,9 +20,14 @@ const wxString progress_danger_color{"#F25A46"};
 const wxString progress_success_color{"#009BDF"};
 const wxString progress_uploading_color{"#00FF00"};
 
-ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm) : nm(_nm) {}
+ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm)
+    : nm(_nm)
+    , version(Semver(nm->attr->firmwareVersion.GetMajor(), nm->attr->firmwareVersion.GetMinor(), nm->attr->firmwareVersion.GetMicro()))
+{}
 
-bool ZaxeDeviceCapabilities::hasRemoteUpdate() { return is_there(nm->attr->deviceModel, {"z3"}); }
+bool ZaxeDeviceCapabilities::hasRemoteUpdate() { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
+
+bool ZaxeDeviceCapabilities::canToggleLeds() { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
 
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
@@ -317,6 +322,16 @@ wxSizer* ZaxeDevice::createIconButtons()
     preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto& evt) { confirm([&] { nm->togglePreheat(); }); });
     say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto& evt) { confirm([&] { nm->sayHi(); }); });
     unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto& evt) { confirm([&] { nm->unloadFilament(); }); });
+    toggle_leds_btn = create_icon_btn(nm->states->ledsSwithedOn ? "zaxe_lamp_on_orange" : "zaxe_lamp_off", _L("Toggle Leds"),
+                                      [&](const auto& evt) {
+                                          if (nm->states->ledsSwithedOn) {
+                                              confirm([&] { nm->toggleLeds(); },
+                                                      _L("Turning off the LEDs will disable error detection (if it is on), are you sure?"));
+                                          } else {
+                                              nm->toggleLeds();
+                                          }
+                                      });
+    toggle_leds_btn->Show(capabilities.canToggleLeds());
 
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(pause_btn, 1, wxRIGHT, FromDIP(5));
@@ -325,6 +340,7 @@ wxSizer* ZaxeDevice::createIconButtons()
     sizer->Add(preheat_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Add(say_hi_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Add(unload_btn, 1, wxRIGHT, FromDIP(5));
+    sizer->Add(toggle_leds_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Layout();
     return sizer;
 }
@@ -543,6 +559,9 @@ void ZaxeDevice::updateIconButtons()
     say_hi_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
 
     unload_btn->Show(family_z && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+
+    toggle_leds_btn->SetIcon(nm->states->ledsSwithedOn ? "zaxe_lamp_on_orange" : "zaxe_lamp_off");
+    toggle_leds_btn->Show(capabilities.canToggleLeds());
 }
 
 void ZaxeDevice::updatePrintInfo()

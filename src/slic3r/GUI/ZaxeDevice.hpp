@@ -22,9 +22,11 @@ public:
     ZaxeDeviceCapabilities(NetworkMachine* _nm);
 
     bool hasRemoteUpdate();
+    bool canToggleLeds();
 
 private:
     NetworkMachine* nm;
+    Semver          version;
 };
 
 class ZaxeDevice : public wxPanel
@@ -82,6 +84,7 @@ private:
     Button*           preheat_btn;
     Button*           say_hi_btn;
     Button*           unload_btn;
+    Button*           toggle_leds_btn;
     Label*            material_val;
     Label*            nozzle_val;
     Label*            nozzle_temp_val;
