@@ -91,14 +91,15 @@ private:
     Label*            printing_time;
     Label*            printing_time_val;
     wxSizer*          detailed_info_sizer;
+    Label*            version;
 
     bool device_name_ctrl_visible{false};
     bool is_expanded{false};
     bool is_file_name_visible{false};
 
     ZaxeDeviceCapabilities capabilities;
-    std::optional<Semver> upstream_version;
-    bool update_available{false};
+    std::optional<Semver>  upstream_version;
+    bool                   update_available{false};
 
     void     onTimer(wxTimerEvent& event);
     wxSizer* createHeader();
