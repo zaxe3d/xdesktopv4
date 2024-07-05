@@ -69,6 +69,7 @@ struct MachineStates { // states.
     bool hasError;
     bool filamentPresent;
     bool ledsSwithedOn;
+    bool updatingFw;
     inline bool ptreeStringtoBool(ptree pt, string prop) {
         return pt.get<string>(prop, "False") == "True";
     }
@@ -176,7 +177,7 @@ public:
         return m_avatar;
     }
     bool isBusy() {
-        return states->printing || states->heating || states->calibrating || states->paused || states->uploading;
+        return states->printing || states->heating || states->calibrating || states->paused || states->uploading || states->updatingFw;
     }
 private:
 #ifdef _WIN32

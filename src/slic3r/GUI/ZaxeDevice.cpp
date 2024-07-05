@@ -436,7 +436,7 @@ void ZaxeDevice::updateStates()
 
 void ZaxeDevice::updateProgressLine()
 {
-    bool show = nm->isBusy() && !nm->states->hasError;
+    bool show = nm->isBusy() && !nm->states->hasError && !nm->states->updatingFw;
     progress_line->Show(show);
     updateProgressValue();
 
@@ -486,7 +486,9 @@ void ZaxeDevice::updateStatusText()
     wxString desc_icon  = "";
     update_available    = false;
 
-    if (nm->states->bedOccupied) {
+    if (nm->states->updatingFw) {
+        title = _L("Updating");
+    } else if (nm->states->bedOccupied) {
         title = _L("Bed is occupied");
     } else if (nm->states->heating) {
         title = _L("Heating");
@@ -518,6 +520,9 @@ void ZaxeDevice::updateStatusText()
         desc_color       = "#F4B617";
         desc_icon        = "zaxe_warning_1";
         update_available = true;
+    } else if (nm->states->updatingFw) {
+        desc       = _L("In progress");
+        desc_color = blue500;
     }
 
     status_title->SetLabel(title);
@@ -549,9 +554,9 @@ void ZaxeDevice::updateIconButtons()
 {
     bool family_z = is_there(nm->attr->deviceModel, {"z"});
 
-    pause_btn->Show(nm->states->printing && !nm->states->paused && !nm->states->heating);
-    resume_btn->Show(nm->states->printing && nm->states->paused && !nm->states->heating);
-    stop_btn->Show(nm->isBusy() && (nm->states->printing || !nm->states->uploading));
+    pause_btn->Show(!nm->states->updatingFw && nm->states->printing && !nm->states->paused && !nm->states->heating);
+    resume_btn->Show(!nm->states->updatingFw && nm->states->printing && nm->states->paused && !nm->states->heating);
+    stop_btn->Show(!nm->states->updatingFw && nm->isBusy() && (nm->states->printing || !nm->states->uploading));
 
     preheat_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
     preheat_btn->SetIcon(nm->states->preheat ? "zaxe_preheat_active" : "zaxe_preheat");
@@ -561,7 +566,7 @@ void ZaxeDevice::updateIconButtons()
     unload_btn->Show(family_z && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
 
     toggle_leds_btn->SetIcon(nm->states->ledsSwithedOn ? "zaxe_lamp_on_orange" : "zaxe_lamp_off");
-    toggle_leds_btn->Show(capabilities.canToggleLeds());
+    toggle_leds_btn->Show(!nm->states->updatingFw && capabilities.canToggleLeds());
 }
 
 void ZaxeDevice::updatePrintInfo()
