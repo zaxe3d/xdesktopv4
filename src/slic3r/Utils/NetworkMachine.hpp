@@ -68,6 +68,7 @@ struct MachineStates { // states.
     bool paused;
     bool hasError;
     bool filamentPresent;
+    bool ledsSwithedOn;
     inline bool ptreeStringtoBool(ptree pt, string prop) {
         return pt.get<string>(prop, "False") == "True";
     }
@@ -145,6 +146,7 @@ public:
     void unloadFilament();
     void sayHi();
     void togglePreheat();
+    void toggleLeds();
     void cancel();
     void pause();
     void resume();
