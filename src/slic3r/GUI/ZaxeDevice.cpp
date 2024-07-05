@@ -331,7 +331,7 @@ wxSizer* ZaxeDevice::createIconButtons()
 
 wxSizer* ZaxeDevice::createVersionInfoSizer()
 {
-    auto version = new Label(this, nm->attr->firmwareVersion.GetVersionString(), wxALIGN_RIGHT);
+    version = new Label(this, nm->attr->firmwareVersion.GetVersionString(), wxALIGN_RIGHT);
     version->SetForegroundColour(gray500);
     version->SetFont(::Label::Body_10);
     wxGetApp().UpdateDarkUI(version);
@@ -661,7 +661,7 @@ bool ZaxeDevice::has(const wxString& search_text)
 
     return getName().Lower().Find(txt) != wxNOT_FOUND || wxString(nm->ip).Find(txt) != wxNOT_FOUND ||
            material_val->GetLabel().Lower().Find(txt) != wxNOT_FOUND || nozzle_val->GetLabel().Lower().Find(txt) != wxNOT_FOUND ||
-           model_btn->GetLabel().Lower().Find(txt) != wxNOT_FOUND;
+           model_btn->GetLabel().Lower().Find(txt) != wxNOT_FOUND || version->GetLabelText().Lower().Find(txt) != wxNOT_FOUND;
 }
 
 bool ZaxeDevice::print()
