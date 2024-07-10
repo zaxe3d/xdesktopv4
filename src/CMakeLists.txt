@@ -177,7 +177,7 @@ if (WIN32)
         set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -municode")
     endif()
 
-    add_executable(XDesktop_app_gui WIN32 XDesktop_app_msvc.cpp ${CMAKE_CURRENT_BINARY_DIR}/XDesktop.rc)
+    add_executable(XDesktop_app_gui WIN32 OrcaSlicer_app_msvc.cpp ${CMAKE_CURRENT_BINARY_DIR}/XDesktop.rc)
     # Generate debug symbols even in release mode.
     if(MSVC)
         target_link_options(XDesktop_app_gui PUBLIC "$<$<CONFIG:RELEASE>:/DEBUG>")

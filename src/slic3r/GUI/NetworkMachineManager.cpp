@@ -266,6 +266,7 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
 
     BOOST_LOG_TRIVIAL(info) << boost::format("NetworkMachineManager - Connected to machine: [%1% - %2%].") % event.nm->name % event.nm->ip;
 
+    Freeze();
     auto zd = new ZaxeDevice(event.nm, scrolled_area);
     zd->enablePrintButton(print_enable);
     zd->onVersionCheck(fw_versions);
@@ -273,6 +274,7 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
     applyFilters();
     warning_sizer->Show(device_map.empty());
     scrolled_area->GetSizer()->Add(zd, 0, wxEXPAND | wxALL, FromDIP(5));
+    Thaw();
 
     scrolled_area->Layout();
     scrolled_area->FitInside();

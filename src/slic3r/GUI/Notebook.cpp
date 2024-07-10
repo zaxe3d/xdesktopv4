@@ -180,7 +180,7 @@ void ButtonsListCtrl::SetSelection(int sel)
 
 bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /* = false*/, const std::string &bmp_name /* = ""*/, const std::string &inactive_bmp_name)
 {
-    Button* btn = new Button(this, text.empty() ? text : " " + text, bmp_name, wxNO_BORDER | wxVERTICAL, FromDIP(36));
+    Button* btn = new Button(m_buttons_sizer->GetContainingWindow(), text.empty() ? text : " " + text, bmp_name, wxNO_BORDER | wxVERTICAL, FromDIP(36));
     btn->SetCornerRadius(0);
 
     // int em = em_unit(this);
