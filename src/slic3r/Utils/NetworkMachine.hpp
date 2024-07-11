@@ -201,6 +201,8 @@ private:
     wxBitmap m_avatar; // avatar image via FTP.
     boost::mutex m_avatarMtx; // allows read operations on m_avatar without locking.
     bool m_running;
+
+    std::mutex m_ftp_mtx;
 };
 
 class NetworkMachineContainer : public std::enable_shared_from_this<NetworkMachineContainer>, public wxEvtHandler
