@@ -268,6 +268,8 @@ static size_t mem_cb(void *contents, size_t size, size_t nmemb, void *userp)
 
 void NetworkMachine::ftpRun()
 {
+    std::lock_guard<std::mutex> guard(m_ftp_mtx);
+
     CURL *curl;
     CURLcode res;
     struct response chunk = {0};
