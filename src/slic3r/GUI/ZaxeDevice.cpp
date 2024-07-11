@@ -546,6 +546,8 @@ void ZaxeDevice::updateAvatar()
             nm->downloadAvatar();
         } else {
             avatar->SetBitmap(default_avatar);
+            avatar_rect->Layout();
+            avatar_rect->Refresh();
         }
     }
 }
@@ -594,8 +596,10 @@ void ZaxeDevice::onTemperatureUpdate()
 void ZaxeDevice::onAvatarReady()
 {
     if (nm) {
-        avatar->SetBitmap(nm->getAvatar());
+        auto scaled_avatar = nm->getAvatar().ConvertToImage().Scale(FromDIP(60), FromDIP(60), wxIMAGE_QUALITY_HIGH);
+        avatar->SetBitmap(scaled_avatar);
         avatar_rect->Layout();
+        avatar_rect->Refresh();
     }
 }
 
