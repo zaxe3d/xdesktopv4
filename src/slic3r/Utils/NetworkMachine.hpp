@@ -57,7 +57,6 @@ wxDECLARE_EVENT(EVT_MACHINE_AVATAR_READY, wxCommandEvent);
 
 struct MachineStates { // states.
     bool uploading;
-    bool updating;
     bool calibrating;
     bool bedOccupied;
     bool bedDirty;
