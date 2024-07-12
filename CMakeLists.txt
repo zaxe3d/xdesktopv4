@@ -780,7 +780,7 @@ endif ()
 install(FILES ${CMAKE_SOURCE_DIR}/LICENSE.txt DESTINATION ".")
 configure_file(${LIBDIR}/platform/unix/fhs.hpp.in ${LIBDIR_BIN}/platform/unix/fhs.hpp)
 
-set (CPACK_PACKAGE_NAME "XDesktop")
+set (CPACK_PACKAGE_NAME "XDesktopV4")
 set (CPACK_PACKAGE_VENDOR "Zaxe3D")
 set (CPACK_PACKAGE_VERSION_MAJOR "${XDESKTOP_VERSION_MAJOR}")
 set (CPACK_PACKAGE_VERSION_MINOR "${XDESKTOP_VERSION_MINOR}")
@@ -794,10 +794,10 @@ set (CPACK_NSIS_MUI_ICON "${CPACK_PACKAGE_ICON}")
 set (CPACK_NSIS_MUI_UNIICON "${CPACK_PACKAGE_ICON}")
 set (CPACK_NSIS_INSTALLED_ICON_NAME  "$INSTDIR\\\\xdesktop-slicer.exe")
 set(CPACK_NSIS_EXTRA_INSTALL_COMMANDS "
-    CreateShortCut \\\"$DESKTOP\\\\XDesktop.lnk\\\" \\\"$INSTDIR\\\\xdesktop-slicer.exe\\\"
+    CreateShortCut \\\"$DESKTOP\\\\XDesktopV4.lnk\\\" \\\"$INSTDIR\\\\xdesktop-slicer.exe\\\"
 ")
 set (CPACK_PACKAGE_CHECKSUM SHA256)
-set (CPACK_PACKAGE_INSTALL_REGISTRY_KEY "XDesktop")
+set (CPACK_PACKAGE_INSTALL_REGISTRY_KEY "XDesktopV4")
 set (CPACK_NSIS_ENABLE_UNINSTALL_BEFORE_INSTALL ON)
 set (CPACK_NSIS_EXECUTABLES_DIRECTORY ".")
 # set (CPACK_NSIS_MODIFY_PATH "ON")
@@ -805,6 +805,6 @@ set(CPACK_PACKAGE_EXECUTABLES "xdesktop-slicer;XDesktop")
 set(CPACK_CREATE_DESKTOP_LINKS "xdesktop-slicer")
 set (CPACK_RESOURCE_FILE_LICENSE ${CMAKE_SOURCE_DIR}/LICENSE.txt) # must also include in install command
 
-set(CPACK_WIX_UPGRADE_GUID "058245e8-20e0-4a95-9ab7-1acfe17ad511")
+set(CPACK_WIX_UPGRADE_GUID "3e971ed9-7e7d-447b-9449-7e901f79b97f")
 set(CPACK_GENERATOR NSIS)
 include(CPack)
