@@ -184,7 +184,7 @@ void ZaxeArchive::generate_info_file(ConfMap &m, const Print &print)
     m["filament_used"]          = std::to_string(stats.total_used_filament);
     m["nozzle_diameter"]        = get_cfg_value(cfg, "printer_variant", "0.4", true);
     m["extruder_temperature"]   = get_cfg_value(cfg, "nozzle_temperature_initial_layer", "0", true);
-    m["bed_temperature"]        = get_cfg_value(cfg, "eng_plate_temp", "0", true); // todo zaxe
+    m["bed_temperature"]        = std::to_string(print.config().option<ConfigOptionInts>(get_bed_temp_1st_layer_key(print.config().curr_bed_type))->get_at(0));
     m["standby_temperature"]    = standby_temp_char;
     m["slicer_version"]         = SLIC3R_VERSION;
     m["xdesktop_version"]       = SoftFever_VERSION;
