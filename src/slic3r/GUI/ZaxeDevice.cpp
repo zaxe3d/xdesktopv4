@@ -607,11 +607,12 @@ void ZaxeDevice::enablePrintButton(bool enable) { print_btn->Enable(enable); }
 
 void ZaxeDevice::onPrintDenied()
 {
-    if (nm->states->updating) {
+    // Todo: uploading is already false, dialog is never constructed
+    if (nm->states->uploading) {
         RichMessageDialog dialog(GetParent(), _L("Failed to start printing"), _L("XDesktop: Unknown error"), wxICON_ERROR);
         dialog.ShowModal();
 
-        nm->states->updating = false;
+        nm->states->uploading = false;
         updateStates();
     }
 }

@@ -105,7 +105,6 @@ void NetworkMachine::onWSRead(string message)
         }
         if (event == "hello" || event == "states_update") {
             // states
-            states->updating       = states->ptreeStringtoBool(pt, "is_updating");
             states->calibrating    = states->ptreeStringtoBool(pt, "is_calibrating");
             states->bedOccupied    = states->ptreeStringtoBool(pt, "is_bed_occupied");
             states->bedDirty       = states->ptreeStringtoBool(pt, "is_bed_dirty");
@@ -268,6 +267,7 @@ static size_t mem_cb(void *contents, size_t size, size_t nmemb, void *userp)
 
 void NetworkMachine::ftpRun()
 {
+    return;
     std::lock_guard<std::mutex> guard(m_ftp_mtx);
 
     CURL *curl;
