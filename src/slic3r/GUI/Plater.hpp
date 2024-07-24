@@ -31,7 +31,6 @@
 #include "libslic3r/Preset.hpp"
 #include "libslic3r/BoundingBox.hpp"
 #include "libslic3r/GCode/GCodeProcessor.hpp"
-#include "libslic3r/Format/ZaxeArchive.hpp"
 #include "Jobs/Job.hpp"
 #include "Jobs/Worker.hpp"
 #include "Search.hpp"
@@ -788,8 +787,11 @@ public:
     std::atomic<bool> m_arrange_running{false};
 
     std::string get_gcode_path();
-    std::string get_zaxe_code_path();
-    const ZaxeArchive& get_zaxe_archive() const;
+
+    void set_model_path_by_plate_index(int plate_idx, const std::string& list);
+    void set_thumbnails_list_by_plate_index(int plate_idx, const ThumbnailsList& list);
+    std::string get_model_path_by_plate_index(int plate_idx);
+    ThumbnailsList get_thumbnails_list_by_plate_index(int plate_idx);
 
 private:
     struct priv;
@@ -809,6 +811,9 @@ private:
     bool m_loading_project {false };
     std::string m_preview_only_filename;
     int m_valid_plates_count { 0 };
+
+    std::unordered_map<std::string, std::string> model_path_map;
+    std::unordered_map<std::string, ThumbnailsList> thumbnails_list_map;
 
     void suppress_snapshots();
     void allow_snapshots();
