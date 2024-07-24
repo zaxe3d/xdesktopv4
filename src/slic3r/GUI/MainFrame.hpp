@@ -386,6 +386,7 @@ public:
     
     mutable int m_print_select{ ePrintAll };
     mutable int m_slice_select{ eSliceAll };
+    int m_last_slice{ eSlicePlate };
     // Button* m_publish_btn{ nullptr };
     Button* m_slice_btn{ nullptr };
     Button* m_slice_option_btn{ nullptr };

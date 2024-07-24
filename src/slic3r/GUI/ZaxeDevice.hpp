@@ -7,6 +7,7 @@
 #include "Widgets/ProgressBar.hpp"
 #include "Widgets/RoundedRectangle.hpp"
 #include "Widgets/Button.hpp"
+#include "Widgets/SwitchButton.hpp"
 
 #include "../Utils/NetworkMachine.hpp"
 #include "I18N.hpp"
@@ -23,6 +24,8 @@ public:
 
     bool hasRemoteUpdate();
     bool canToggleLeds();
+    bool hasStl();
+    bool hasThumbnails();
 
 private:
     NetworkMachine* nm;
@@ -37,7 +40,7 @@ public:
 
     void updateStates();
     void updateProgressValue();
-    void enablePrintButton(bool enable);
+    void enablePrintButton(bool enable_for_all, bool enable_for_current_plate);
 
     void onPrintDenied();
     void onAvatarReady();
@@ -63,38 +66,39 @@ private:
     NetworkMachine* nm;
     wxTimer*        timer;
 
-    Button*           model_btn;
-    Button*           model_btn_expanded;
-    Label*            device_name;
-    wxTextCtrl*       device_name_ctrl;
-    Button*           expand_btn;
+    Button*           model_btn{nullptr};
+    Button*           model_btn_expanded{nullptr};
+    Label*            device_name{nullptr};
+    wxTextCtrl*       device_name_ctrl{nullptr};
+    Button*           expand_btn{nullptr};
     wxBitmap          default_avatar;
-    wxStaticBitmap*   avatar;
-    RoundedRectangle* avatar_rect;
-    Label*            status_title;
-    Label*            status_desc;
-    Button*           status_desc_icon;
-    Button*           print_btn;
-    ProgressBar*      progress_bar;
-    Label*            progress_label;
-    wxPanel*          progress_line;
-    Button*           pause_btn;
-    Button*           resume_btn;
-    Button*           stop_btn;
-    Button*           preheat_btn;
-    Button*           say_hi_btn;
-    Button*           unload_btn;
-    Button*           toggle_leds_btn;
-    Label*            material_val;
-    Label*            nozzle_val;
-    Label*            nozzle_temp_val;
-    Label*            plate_temp_val;
-    Label*            printing_file;
-    Label*            printing_file_val;
-    Label*            printing_time;
-    Label*            printing_time_val;
-    wxSizer*          detailed_info_sizer;
-    Label*            version;
+    wxStaticBitmap*   avatar{nullptr};
+    RoundedRectangle* avatar_rect{nullptr};
+    Label*            status_title{nullptr};
+    Label*            status_desc{nullptr};
+    Button*           status_desc_icon{nullptr};
+    Button*           print_btn{nullptr};
+    SwitchButton*     print_mode{nullptr};
+    ProgressBar*      progress_bar{nullptr};
+    Label*            progress_label{nullptr};
+    wxPanel*          progress_line{nullptr};
+    Button*           pause_btn{nullptr};
+    Button*           resume_btn{nullptr};
+    Button*           stop_btn{nullptr};
+    Button*           preheat_btn{nullptr};
+    Button*           say_hi_btn{nullptr};
+    Button*           unload_btn{nullptr};
+    Button*           toggle_leds_btn{nullptr};
+    Label*            material_val{nullptr};
+    Label*            nozzle_val{nullptr};
+    Label*            nozzle_temp_val{nullptr};
+    Label*            plate_temp_val{nullptr};
+    Label*            printing_file{nullptr};
+    Label*            printing_file_val{nullptr};
+    Label*            printing_time{nullptr};
+    Label*            printing_time_val{nullptr};
+    wxSizer*          detailed_info_sizer{nullptr};
+    Label*            version{nullptr};
 
     bool device_name_ctrl_visible{false};
     bool is_expanded{false};
@@ -103,6 +107,9 @@ private:
     ZaxeDeviceCapabilities capabilities;
     std::optional<Semver>  upstream_version;
     bool                   update_available{false};
+
+    bool print_enable_for_current_plate{false};
+    bool print_enable_for_all{false};
 
     void     onTimer(wxTimerEvent& event);
     wxSizer* createHeader();
