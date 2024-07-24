@@ -16,8 +16,6 @@
 #include "libslic3r/GCode/GCodeProcessor.hpp"
 #include "PartPlate.hpp"
 
-#include "libslic3r/Format/ZaxeArchive.hpp"
-
 namespace boost { namespace filesystem { class path; } }
 
 namespace Slic3r {
@@ -194,9 +192,7 @@ public:
     //need to call stop_internal in ui thread
     friend class GUI::Plater;
 
-	std::string zaxe_archive_path() const;
 	std::string gcode_path() const;
-	const ZaxeArchive& zaxe_archive() const;
 
 private:
 	void 	thread_proc();
@@ -248,8 +244,6 @@ private:
 	SL1Archive                  m_sla_archive;
 		// Temporary G-code, there is one defined for the BackgroundSlicingProcess, differentiated from the other processes by a process ID.
 	std::string 				m_temp_output_path;
-	ZaxeArchive                 m_zaxe_archive;
-	std::string 		    	m_zaxe_archive_path;
 	// Output path provided by the user. The output path may be set even if the slicing is running,
 	// but once set, it cannot be re-set.
 	std::string 				m_export_path;
@@ -297,10 +291,9 @@ private:
     void                throw_if_canceled() const { if (m_print->canceled()) throw CanceledException(); }
 	void				finalize_gcode();
 	void				export_gcode();
-	void                prepare_zaxe_file();
     void                prepare_upload();
     // To be executed at the background thread.
-	ThumbnailsList		render_thumbnails(const ThumbnailsParams &params);
+	ThumbnailsList		render_thumbnails(const ThumbnailsParams &params, bool as_ui_task = true);
 	// Execute task from background thread on the UI thread synchronously. Returns true if processed, false if cancelled before executing the task.
 	bool 				execute_ui_task(std::function<void()> task);
 	// To be called from inside m_mutex to cancel a planned UI task.

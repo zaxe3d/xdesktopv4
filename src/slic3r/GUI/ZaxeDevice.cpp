@@ -5,6 +5,7 @@
 #include "Plater.hpp"
 #include "GUI_App.hpp"
 #include "NotificationManager.hpp"
+#include "libslic3r/Format/ZaxeArchive.hpp"
 
 namespace Slic3r::GUI {
 const wxString gray100{"#F2F4F7"};
@@ -28,6 +29,10 @@ ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm)
 bool ZaxeDeviceCapabilities::hasRemoteUpdate() { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
 
 bool ZaxeDeviceCapabilities::canToggleLeds() { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
+
+bool ZaxeDeviceCapabilities::hasStl() { return is_there(nm->attr->deviceModel, {"z2", "z3"}); }
+
+bool ZaxeDeviceCapabilities::hasThumbnails() { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3"}); }
 
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
@@ -88,7 +93,7 @@ void ZaxeDevice::onTimer(wxTimerEvent& event)
 
 wxSizer* ZaxeDevice::createHeader()
 {
-    string model_str = to_upper_copy(nm->attr->deviceModel);
+    string model_str = boost::to_upper_copy(nm->attr->deviceModel);
     boost::replace_all(model_str, "PLUS", "+");
 
     model_btn = new Button(this, wxString(model_str.c_str(), wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
@@ -194,11 +199,11 @@ void ZaxeDevice::createAvatar()
 
                 wxExecute(
 #ifdef _WIN32
-                    "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + to_upper_copy(nm->attr->deviceModel) + ": " +
-                        nm->name + "\" -x 720",
+                    "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) +
+                        ": " + nm->name + "\" -x 720",
                     wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE
 #else
-                    curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + to_upper_copy(nm->attr->deviceModel) + ": " + nm->name + "\" -x 720",
+                    curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) + ": " + nm->name + "\" -x 720",
                     wxEXEC_ASYNC
 #endif
                 );
@@ -250,7 +255,7 @@ wxSizer* ZaxeDevice::createStateInfo()
 
 wxSizer* ZaxeDevice::createPrintButton()
 {
-    print_btn = new Button(this, _L("Print now"));
+    print_btn = new Button(this, _L("Print single"));
     print_btn->SetPaddingSize(wxSize(8, 5));
     print_btn->SetBackgroundColor(*wxWHITE);
     auto color = StateColor(std::pair<wxColour, int>(gray300, StateColor::Disabled), std::pair<wxColour, int>(blue500, StateColor::Normal));
@@ -258,14 +263,29 @@ wxSizer* ZaxeDevice::createPrintButton()
     print_btn->SetTextColor(color);
     wxGetApp().UpdateDarkUI(print_btn);
 
-    auto sizer = new wxBoxSizer(wxVERTICAL);
+    print_mode = new SwitchButton(this);
+    print_mode->SetMaxSize({em_unit(this) * 12, -1});
+    print_mode->SetLabels(_L("S"), _L("A"));
+    wxGetApp().UpdateDarkUI(print_mode);
+
+    auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(print_btn, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
+    sizer->Add(print_mode, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
 
     print_btn->Bind(wxEVT_BUTTON, [this](auto& evt) {
         print_btn->Enable(false);
         BOOST_LOG_TRIVIAL(info) << "Print now pressed on " << nm->name;
         print();
         print_btn->Enable(true);
+    });
+
+    print_mode->Bind(wxEVT_TOGGLEBUTTON, [&](auto& evt) {
+        bool print_all = print_mode->GetValue();
+        print_btn->SetLabel(print_all ? _L("Print all") : _L("Print single"));
+        print_btn->Enable(print_all ? print_enable_for_all : print_enable_for_current_plate);
+        Layout();
+        Refresh();
+        evt.Skip();
     });
 
     return sizer;
@@ -476,6 +496,7 @@ void ZaxeDevice::updatePrintButton()
 {
     bool show = !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError;
     print_btn->Show(show);
+    print_mode->Show(show);
 }
 
 void ZaxeDevice::updateStatusText()
@@ -603,7 +624,14 @@ void ZaxeDevice::onAvatarReady()
     }
 }
 
-void ZaxeDevice::enablePrintButton(bool enable) { print_btn->Enable(enable); }
+void ZaxeDevice::enablePrintButton(bool enable_for_all, bool enable_for_current_plate)
+{
+    bool enable = print_mode->GetValue() ? enable_for_all : enable_for_current_plate;
+    print_btn->Enable(enable);
+
+    print_enable_for_current_plate = enable_for_current_plate;
+    print_enable_for_all           = enable_for_all;
+}
 
 void ZaxeDevice::onPrintDenied()
 {
@@ -695,22 +723,37 @@ bool ZaxeDevice::has(const wxString& search_text)
 
 bool ZaxeDevice::print()
 {
-    const ZaxeArchive& archive = wxGetApp().plater()->get_zaxe_archive();
+    ZaxeArchive zaxe_archive(wxStandardPaths::Get().GetTempDir().utf8_str().data());
+    zaxe_archive.reset();
+
+    if (GUI::wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
+        auto model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
+
+        auto& partplate_list = wxGetApp().plater()->get_partplate_list();
+        for (int i = 0; i < partplate_list.get_plate_count(); i++) {
+            if (!print_mode->GetValue() && partplate_list.get_curr_plate_index() != i) {
+                continue;
+            }
+            auto plate     = partplate_list.get_plate(i);
+            auto fff_print = plate->fff_print();
+
+            auto thumnails  = wxGetApp().plater()->get_thumbnails_list_by_plate_index(i);
+            auto model_file = wxGetApp().plater()->get_model_path_by_plate_index(i);
+            zaxe_archive.append(thumnails, *fff_print, plate->get_tmp_gcode_path(), model_file);
+        }
+        zaxe_archive.prepare_file();
+    }
 
     vector<string> sPV;
     split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
     string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
-    string dM = to_upper_copy(nm->attr->deviceModel);
+    string dM = boost::to_upper_copy(nm->attr->deviceModel);
     auto   s  = pN.find(dM);
     boost::replace_all(dM, "PLUS", "+");
     trim(pN);
 
     std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
-    std::string model_nozzle_arch = archive.get_info("model") + " ";
-    if (!archive.get_info("sub_model").empty()) {
-        model_nozzle_arch.append(archive.get_info("sub_model")).append(" ");
-    }
-    model_nozzle_arch.append(archive.get_info("nozzle_diameter"));
+    std::string model_nozzle_arch = zaxe_archive.get_info("model") + " " + zaxe_archive.get_info("nozzle_diameter");
 
     if (is_there(nm->attr->deviceModel, {"x3"}) && !nm->states->usbPresent) {
         wxMessageBox(_L("Please insert a usb stick before start printing."), _L("USB stick not found"), wxICON_ERROR);
@@ -725,9 +768,9 @@ bool ZaxeDevice::print()
     }
 
     if (!nm->attr->isLite && nm->states->filamentPresent && nm->attr->material != "custom" &&
-        nm->attr->material.compare(archive.get_info("material")) != 0) {
+        nm->attr->material.compare(zaxe_archive.get_info("material")) != 0) {
         BOOST_LOG_TRIVIAL(warning) << "Wrong material type, filamentPresent: " << nm->states->filamentPresent
-                                   << " deviceMaterial: " << nm->attr->material << " slicerMaterial: " << archive.get_info("material");
+                                   << " deviceMaterial: " << nm->attr->material << " slicerMaterial: " << zaxe_archive.get_info("material");
         wxMessageBox(_L("Materials don't match with this device. Please "
                         "reslice with the correct material."),
                      _L("Wrong material type"), wxICON_ERROR);
@@ -758,12 +801,12 @@ bool ZaxeDevice::print()
             return false;
     }
 
-    std::thread t([&]() {
+    std::thread t([&, zaxe_code_path = zaxe_archive.get_path()]() {
         if (nm->attr->isLite) {
             this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
                              translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
         } else {
-            this->nm->upload(wxGetApp().plater()->get_zaxe_code_path().c_str());
+            this->nm->upload(zaxe_code_path.c_str());
         }
     });
     t.detach(); // crusial. otherwise blocks main thread.

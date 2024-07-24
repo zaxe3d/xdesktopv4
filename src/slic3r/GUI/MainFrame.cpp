@@ -1637,6 +1637,7 @@ wxBoxSizer* MainFrame::create_side_tools()
 
     m_slice_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
         {
+            m_last_slice = m_slice_select;
             //this->m_plater->select_view_3D("Preview");
             m_plater->exit_gizmo();
             m_plater->update(true, true);
@@ -2068,9 +2069,14 @@ void MainFrame::update_slice_print_status(SlicePrintEventType event, bool can_sl
         wxGetApp().plater()->update_title_dirty_status();
 
     auto machine_manager = wxGetApp().plater()->sidebar().machine_manager();
-    if (machine_manager)
-    {
-        machine_manager->enablePrintNowButton(enable_print);
+    if (machine_manager) {
+        PartPlateList& part_plate_list = m_plater->get_partplate_list();
+        PartPlate*     current_plate   = part_plate_list.get_curr_plate();
+
+        bool _enable_print_all   = m_last_slice == eSliceAll && part_plate_list.is_all_slice_results_valid();
+        bool _enable_print_plate = current_plate->is_slice_result_valid();
+
+        machine_manager->enablePrintNowButton(_enable_print_all, _enable_print_plate);
     }
 }
 
