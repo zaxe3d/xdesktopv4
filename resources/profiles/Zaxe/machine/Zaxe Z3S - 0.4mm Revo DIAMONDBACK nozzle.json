@@ -10,5 +10,6 @@
     "0.4"
   ],
   "printer_variant": "0.4",
-  "default_print_profile": "0.20mm, Recommended @Z3S 0.4mm DIAMONDBACK"
+  "default_print_profile": "0.20mm, Recommended @Z3S 0.4mm DIAMONDBACK",
+  "nozzle_type": "hardened_steel"
 }

@@ -3,7 +3,7 @@
   "name": "0.15mm, Recommended @Z3S 0.4mm",
   "from": "system",
   "instantiation": "true",
-  "inherits": "fdm_process_zaxe_common",
+  "inherits": "zaxe_process_Z3S_0.4_nozzle_common",
   "compatible_printers": [
     "Zaxe Z3S - 0.4mm Revo HF nozzle"
   ]

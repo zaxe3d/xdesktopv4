@@ -1,0 +1,7 @@
+{
+    "type": "process",
+    "name": "zaxe_process_Z3_family_common",
+    "from": "system",
+    "instantiation": "false",
+    "inherits": "fdm_process_zaxe_common"
+  }

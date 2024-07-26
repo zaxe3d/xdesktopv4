@@ -1,6 +1,6 @@
 {
   "name": "Zaxe",
-  "version": "02.00.02.00",
+  "version": "02.00.03.00",
   "url": "",
   "force_update": "0",
   "description": "Zaxe configurations",
@@ -34,6 +34,18 @@
     {
       "name": "fdm_process_zaxe_common",
       "sub_path": "process/fdm_process_zaxe_common.json"
+    },
+    {
+      "name": "zaxe_process_Z3_family_common",
+      "sub_path": "process/zaxe_process_Z3_family_common.json"
+    },
+    {
+      "name": "zaxe_process_Z3S_common",
+      "sub_path": "process/zaxe_process_Z3S_common.json"
+    },
+    {
+      "name": "zaxe_process_Z3S_0.4_nozzle_common",
+      "sub_path": "process/zaxe_process_Z3S_0.4_nozzle_common.json"
     },
     {
       "name": "0.05mm, Expert @Z3S 0.4mm",
