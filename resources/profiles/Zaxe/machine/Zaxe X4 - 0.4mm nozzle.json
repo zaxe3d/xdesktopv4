@@ -50,7 +50,6 @@
     "retract_lift_below":[
         "179"
     ],
-    "printer_structure": "i3",
     "scan_first_layer": "0",
     "upward_compatible_machine": [
     ],
