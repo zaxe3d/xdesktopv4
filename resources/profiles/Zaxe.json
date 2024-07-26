@@ -1,6 +1,6 @@
 {
   "name": "Zaxe",
-  "version": "02.00.02.00",
+  "version": "02.00.03.00",
   "url": "",
   "force_update": "0",
   "description": "Zaxe configurations",
@@ -16,6 +16,14 @@
     {
       "name": "Z3S Revo DIAMONDBACK",
       "sub_path": "machine/Z3S Revo DIAMONDBACK.json"
+    },
+    {
+      "name": "Z4",
+      "sub_path": "machine/Z4.json"
+    },
+    {
+      "name": "X4",
+      "sub_path": "machine/X4.json"
     }
   ],
   "process_list": [
@@ -26,6 +34,18 @@
     {
       "name": "fdm_process_zaxe_common",
       "sub_path": "process/fdm_process_zaxe_common.json"
+    },
+    {
+      "name": "zaxe_process_Z3_family_common",
+      "sub_path": "process/zaxe_process_Z3_family_common.json"
+    },
+    {
+      "name": "zaxe_process_Z3S_common",
+      "sub_path": "process/zaxe_process_Z3S_common.json"
+    },
+    {
+      "name": "zaxe_process_Z3S_0.4_nozzle_common",
+      "sub_path": "process/zaxe_process_Z3S_0.4_nozzle_common.json"
     },
     {
       "name": "0.05mm, Expert @Z3S 0.4mm",
@@ -154,6 +174,14 @@
     {
       "name": "0.56mm, Fast @Z3S 0.8mm DIAMONDBACK",
       "sub_path": "process/0.56mm, Fast @Z3S 0.8mm DIAMONDBACK.json"
+    },
+    {
+      "name": "0.15mm, Recommended @Z4 0.4mm",
+      "sub_path": "process/0.15mm, Recommended @Z4 0.4mm.json"
+    },
+    {
+      "name": "0.15mm, Recommended @X4 0.4mm",
+      "sub_path": "process/0.15mm, Recommended @X4 0.4mm.json"
     }
   ],
   "filament_list": [
@@ -220,6 +248,46 @@
     {
       "name": "Zaxe PLA @Z3S",
       "sub_path": "filament/Zaxe PLA @Z3S.json"
+    },
+    {
+      "name": "Zaxe ABS @Z4",
+      "sub_path": "filament/Zaxe ABS @Z4.json"
+    },
+    {
+      "name": "Zaxe ASA @Z4",
+      "sub_path": "filament/Zaxe ASA @Z4.json"
+    },
+    {
+      "name": "Zaxe FLEX @Z4",
+      "sub_path": "filament/Zaxe FLEX @Z4.json"
+    },
+    {
+      "name": "Zaxe PETG @Z4",
+      "sub_path": "filament/Zaxe PETG @Z4.json"
+    },
+    {
+      "name": "Zaxe PLA @Z4",
+      "sub_path": "filament/Zaxe PLA @Z4.json"
+    },
+    {
+      "name": "Zaxe ABS @X4",
+      "sub_path": "filament/Zaxe ABS @X4.json"
+    },
+    {
+      "name": "Zaxe ASA @X4",
+      "sub_path": "filament/Zaxe ASA @X4.json"
+    },
+    {
+      "name": "Zaxe FLEX @X4",
+      "sub_path": "filament/Zaxe FLEX @X4.json"
+    },
+    {
+      "name": "Zaxe PETG @X4",
+      "sub_path": "filament/Zaxe PETG @X4.json"
+    },
+    {
+      "name": "Zaxe PLA @X4",
+      "sub_path": "filament/Zaxe PLA @X4.json"
     }
   ],
   "machine_list": [
@@ -234,6 +302,14 @@
     {
       "name": "Zaxe_machine_Z3S_common",
       "sub_path": "machine/Zaxe_machine_Z3S_common.json"
+    },
+    {
+      "name": "Zaxe_machine_Z4_common",
+      "sub_path": "machine/Zaxe_machine_Z4_common.json"
+    },
+    {
+      "name": "Zaxe_machine_X4_common",
+      "sub_path": "machine/Zaxe_machine_X4_common.json"
     },
     {
       "name": "Zaxe Z3S - 0.4mm Revo HF nozzle",
@@ -266,6 +342,14 @@
     {
       "name": "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle",
       "sub_path": "machine/Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle.json"
+    },
+    {
+      "name": "Zaxe Z4 - 0.4mm nozzle",
+      "sub_path": "machine/Zaxe Z4 - 0.4mm nozzle.json"
+    },
+    {
+      "name": "Zaxe X4 - 0.4mm nozzle",
+      "sub_path": "machine/Zaxe X4 - 0.4mm nozzle.json"
     }
   ]
 }

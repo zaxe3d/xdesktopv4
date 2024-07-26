@@ -24,8 +24,5 @@
   "retract_length_toolchange": [
       "3"
   ],
-  "retraction_length": [
-      "3"
-  ],
   "upward_compatible_machine": []
 }
