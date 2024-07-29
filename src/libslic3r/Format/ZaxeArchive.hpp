@@ -15,7 +15,6 @@ public:
     std::string get_info(const std::string& key, int plate_idx = -1 /* first plate */) const;
     std::string get_path() const;
 
-    void reset();
     void append(const ThumbnailsList& thumbnails,
                 const Print&          print,
                 const std::string&    temp_gcode_output_path,

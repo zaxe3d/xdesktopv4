@@ -973,17 +973,12 @@ void BackgroundSlicingProcess::prepare_upload()
 	GUI::wxGetApp().printhost_job_queue().enqueue(std::move(m_upload_job));
 }
 // Executed by the background thread, to start a task on the UI thread.
-ThumbnailsList BackgroundSlicingProcess::render_thumbnails(const ThumbnailsParams &params, bool as_ui_task)
+ThumbnailsList BackgroundSlicingProcess::render_thumbnails(const ThumbnailsParams &params)
 {
     ThumbnailsList thumbnails;
-    if (m_thumbnail_cb) {
-        if (as_ui_task) {
-            this->execute_ui_task([this, &params, &thumbnails]() { thumbnails = m_thumbnail_cb(params); });
-        } else {
-            thumbnails = m_thumbnail_cb(params);
-        }
-    }
-    return thumbnails;
+	if (m_thumbnail_cb)
+		this->execute_ui_task([this, &params, &thumbnails](){ thumbnails = m_thumbnail_cb(params); });
+	return thumbnails;
 }
 
 }; // namespace Slic3r
