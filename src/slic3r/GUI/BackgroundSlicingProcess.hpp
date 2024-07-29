@@ -292,7 +292,7 @@ private:
 	void				finalize_gcode();
     void                prepare_upload();
     // To be executed at the background thread.
-	ThumbnailsList		render_thumbnails(const ThumbnailsParams &params, bool as_ui_task = true);
+	ThumbnailsList		render_thumbnails(const ThumbnailsParams &params);
 	// Execute task from background thread on the UI thread synchronously. Returns true if processed, false if cancelled before executing the task.
 	bool 				execute_ui_task(std::function<void()> task);
 	// To be called from inside m_mutex to cancel a planned UI task.
