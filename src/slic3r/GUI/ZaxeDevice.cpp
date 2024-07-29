@@ -342,7 +342,7 @@ wxSizer* ZaxeDevice::createIconButtons()
     preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto& evt) { confirm([&] { nm->togglePreheat(); }); });
     say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto& evt) { confirm([&] { nm->sayHi(); }); });
     unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto& evt) { confirm([&] { nm->unloadFilament(); }); });
-    toggle_leds_btn = create_icon_btn(nm->states->ledsSwithedOn ? "zaxe_lamp_on_orange" : "zaxe_lamp_off", _L("Toggle Leds"),
+    toggle_leds_btn = create_icon_btn(nm->states->ledsSwithedOn ? "zaxe_lights_on" : "zaxe_lights_off", _L("Toggle Leds"),
                                       [&](const auto& evt) {
                                           if (nm->states->ledsSwithedOn) {
                                               confirm([&] { nm->toggleLeds(); },
@@ -588,7 +588,7 @@ void ZaxeDevice::updateIconButtons()
 
     unload_btn->Show(family_z && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
 
-    toggle_leds_btn->SetIcon(nm->states->ledsSwithedOn ? "zaxe_lamp_on_orange" : "zaxe_lamp_off");
+    toggle_leds_btn->SetIcon(nm->states->ledsSwithedOn ? "zaxe_lights_on" : "zaxe_lights_off");
     toggle_leds_btn->Show(!nm->states->updatingFw && capabilities.canToggleLeds());
 }
 
