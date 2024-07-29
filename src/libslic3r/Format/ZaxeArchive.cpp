@@ -110,14 +110,6 @@ ZaxeArchive::ZaxeArchive(const std::string& tmp_dir) : tmp_dir(tmp_dir)
 {
     info           = nlohmann::json::object();
     info["plates"] = nlohmann::json::array();
-}
-
-void ZaxeArchive::reset()
-{
-    //BOOST_LOG_TRIVIAL(error) << "ZaxeArchive::reset";
-    info           = nlohmann::json::object();
-    info["plates"] = nlohmann::json::array();
-    zipper.reset();
 
     auto get_date_time = []() {
         std::time_t        now = std::time(nullptr);
