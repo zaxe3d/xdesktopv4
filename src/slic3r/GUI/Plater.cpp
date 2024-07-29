@@ -2652,9 +2652,7 @@ struct Plater::priv
     void on_action_send_to_printer(bool isall = false);
     int update_print_required_data(Slic3r::DynamicPrintConfig config, Slic3r::Model model, Slic3r::PlateDataPtrs plate_data_list, std::string file_name, std::string file_path);
 
-    std::string get_zaxe_code_path();
     std::string get_gcode_path();
-    const ZaxeArchive& get_zaxe_archive() const;
 
 private:
     bool layers_height_allowed() const;
@@ -4614,13 +4612,10 @@ wxString Plater::priv::get_export_file(GUI::FileType file_type, bool zaxe_file_t
         default: break;
     }
 
-    if (zaxe_file_temp_export) {
-        boost::filesystem::path temp_model_path(wxStandardPaths::Get().GetTempDir().utf8_str().data());
-        temp_model_path /= "model.stl";
-        return temp_model_path.string();
-    }
-
     std::string out_dir = (boost::filesystem::path(output_file).parent_path()).string();
+    if (zaxe_file_temp_export) {
+        return out_dir;
+    }
 
     wxFileDialog dlg(q, dlg_title,
         is_shapes_dir(out_dir) ? from_u8(wxGetApp().app_config->get_last_dir()) : from_path(output_file.parent_path()), from_path(output_file.filename()),
@@ -5305,16 +5300,6 @@ bool Plater::priv::restart_background_process(unsigned int state)
 std::string Plater::priv::get_gcode_path()
 {
     return  background_process.gcode_path();
-}
-
-std::string Plater::priv::get_zaxe_code_path()
-{
-    return  background_process.zaxe_archive_path();
-}
-
-const ZaxeArchive& Plater::priv::get_zaxe_archive() const
-{
-    return  background_process.zaxe_archive();
 }
 
 void Plater::priv::export_gcode(fs::path output_path, bool output_path_on_removable_media)
@@ -6819,6 +6804,7 @@ void Plater::priv::on_process_completed(SlicingProcessCompletedEvent &evt)
     if (is_finished)
     {
         BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(":finished, reload print soon");
+
         m_is_slicing = false;
         this->preview->reload_print(false);
         /* BBS if in publishing progress */
@@ -11093,14 +11079,19 @@ void Plater::export_stl(bool extended, bool selection_only, bool multi_stls, boo
     if (p->model.objects.empty()) { return; }
 
     wxString path;
-    if (multi_stls) {
+
+    if(zaxe_file_temp_export) {
+        auto dir = p->get_export_file(FT_STL, zaxe_file_temp_export).ToStdString();
+        auto curr_plate_idx = p->partplate_list.get_curr_plate_index();
+        std::string model_name = (boost::format("model_%1%.stl") % curr_plate_idx).str();
+        path = (boost::filesystem::path(dir) / model_name).string();
+    }
+    else if (multi_stls) {
         wxDirDialog dlg(this, _L("Choose a directory"), from_u8(wxGetApp().app_config->get_last_dir()),
                         wxDD_DEFAULT_STYLE | wxDD_DIR_MUST_EXIST);
         if (dlg.ShowModal() == wxID_OK) {
             path = dlg.GetPath() + "/";
         }
-    } else {
-        path = p->get_export_file(FT_STL, zaxe_file_temp_export);
     }
     if (path.empty()) { return; }
     const std::string path_u8 = into_u8(path);
@@ -11233,7 +11224,14 @@ void Plater::export_stl(bool extended, bool selection_only, bool multi_stls, boo
     };
 
     TriangleMesh mesh;
-    if (selection_only) {
+    if(zaxe_file_temp_export) {
+        for (auto* o : p->model.objects) {
+            if(o && p->partplate_list.get_curr_plate()->contain_instance_totally(o, 0)){
+                mesh.merge(mesh_to_export(*o, -1));
+			}
+        }
+    }
+    else if (selection_only) {
         if (selection.is_single_full_object()) {
             const auto obj_idx = selection.get_object_idx();
             const ModelObject* model_object = p->model.objects[obj_idx];
@@ -11280,6 +11278,7 @@ void Plater::export_stl(bool extended, bool selection_only, bool multi_stls, boo
     }
 
     Slic3r::store_stl(path_u8.c_str(), &mesh, true);
+    set_model_path_by_plate_index(p->partplate_list.get_curr_plate_index(), path_u8);
 }
 
 //BBS: remove amf export
@@ -11737,6 +11736,7 @@ void Plater::reslice()
     {
         //slice next
         BOOST_LOG_TRIVIAL(warning) << __FUNCTION__ << boost::format(": in slicing all, current plate %1% already sliced, skip to next") % p->m_cur_slice_plate ;
+       
         SlicingProcessCompletedEvent evt(EVT_PROCESS_COMPLETED, 0,
             SlicingProcessCompletedEvent::Finished, nullptr);
         // Post the "complete" callback message, so that it will slice the next plate soon
@@ -13801,8 +13801,36 @@ void Plater::set_need_update(bool need_update)
 }
 
 std::string Plater::get_gcode_path() { return p->get_gcode_path(); }
-std::string Plater::get_zaxe_code_path() { return p->get_zaxe_code_path(); }
-const ZaxeArchive& Plater::get_zaxe_archive() const { return p->get_zaxe_archive(); };
+
+void Plater::set_model_path_by_plate_index(int plate_idx, const std::string& path)
+{
+    auto key            = std::to_string(plate_idx);
+    model_path_map[key] = path;
+}
+
+void Plater::set_thumbnails_list_by_plate_index(int plate_idx, const ThumbnailsList& list)
+{
+    auto key                 = std::to_string(plate_idx);
+    thumbnails_list_map[key] = list;
+}
+
+std::string Plater::get_model_path_by_plate_index(int plate_idx)
+{
+    auto key = std::to_string(plate_idx);
+    if (model_path_map.find(key) == model_path_map.end()) {
+        return "";
+    }
+    return model_path_map[key];
+}
+
+ThumbnailsList Plater::get_thumbnails_list_by_plate_index(int plate_idx)
+{
+    auto key = std::to_string(plate_idx);
+    if (thumbnails_list_map.find(key) == thumbnails_list_map.end()) {
+        return {};
+    }
+    return thumbnails_list_map[key];
+}
 
 // BBS
 //BBS: add popup logic for table object

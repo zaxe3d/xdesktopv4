@@ -226,16 +226,20 @@ wxPanel* NetworkMachineManager::createScrolledArea()
     return panel;
 }
 
-void NetworkMachineManager::enablePrintNowButton(bool enable)
+void NetworkMachineManager::enablePrintNowButton(bool enable_for_all, bool enable_for_current_plate)
 {
-    if (enable == print_enable)
+    if (print_enable_for_all == enable_for_all && print_enable_for_current_plate == enable_for_current_plate) {
         return;
+    }
+
     for (auto& [ip, dev] : device_map) {
         if (!dev)
             continue;
-        dev->enablePrintButton(enable);
+        dev->enablePrintButton(enable_for_all, enable_for_current_plate);
     }
-    print_enable = enable;
+
+    print_enable_for_all           = enable_for_all;
+    print_enable_for_current_plate = enable_for_current_plate;
 }
 
 void NetworkMachineManager::onBroadcastReceived(wxCommandEvent& event)
@@ -268,7 +272,7 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
 
     Freeze();
     auto zd = new ZaxeDevice(event.nm, scrolled_area);
-    zd->enablePrintButton(print_enable);
+    zd->enablePrintButton(print_enable_for_all, print_enable_for_current_plate);
     zd->onVersionCheck(fw_versions);
     device_map[event.nm->ip] = zd;
     applyFilters();

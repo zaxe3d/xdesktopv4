@@ -24,7 +24,7 @@ public:
     NetworkMachineManager(wxWindow* parent, wxSize size);
     virtual ~NetworkMachineManager();
 
-    void enablePrintNowButton(bool enable);
+    void enablePrintNowButton(bool enable_for_all, bool enable_for_current_plate);
     void addMachine(std::string ip, int port, std::string id);
 
 private:
@@ -58,10 +58,11 @@ private:
 
     std::unordered_map<std::string, ZaxeDevice*> device_map;
 
-    bool        print_enable{false};
+    bool        print_enable_for_current_plate{false};
+    bool        print_enable_for_all{false};
     FilterState filter_state{FilterState::SHOW_ALL};
 
-    wxTimer* version_check_timer;
+    wxTimer*                      version_check_timer;
     std::map<std::string, Semver> fw_versions;
 };
 } // namespace GUI

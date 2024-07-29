@@ -2001,12 +2001,13 @@ void GCode::_do_export(Print& print, GCodeOutputStream &file, ThumbnailsGenerato
     // if thumbnail type of BTT_TFT, insert above header
     // if not, it is inserted under the header in its normal spot
     const GCodeThumbnailsFormat m_gcode_thumbnail_format = print.full_print_config().opt_enum<GCodeThumbnailsFormat>("thumbnails_format");
-    if (m_gcode_thumbnail_format == GCodeThumbnailsFormat::BTT_TFT)
+    /*if (m_gcode_thumbnail_format == GCodeThumbnailsFormat::BTT_TFT)
         GCodeThumbnails::export_thumbnails_to_file(
             thumbnail_cb, print.get_plate_index(), print.full_print_config().option<ConfigOptionPoints>("thumbnails")->values,
             m_gcode_thumbnail_format,
             [&file](const char *sz) { file.write(sz); },
             [&print]() { print.throw_if_canceled(); });
+    */
 
     file.write_format("; HEADER_BLOCK_START\n");
     // Write information on the generator.
@@ -2083,15 +2084,18 @@ void GCode::_do_export(Print& print, GCodeOutputStream &file, ThumbnailsGenerato
             print.config().nozzle_temperature_initial_layer.get_at(0));
         file.write("; CONFIG_BLOCK_END\n\n");
       } else {
+        /*
         if (m_gcode_thumbnail_format != GCodeThumbnailsFormat::BTT_TFT) {
             auto thumbnaim_fmt = m_gcode_thumbnail_format;
             // Orca: if the thumbnail format is ColPic, we write PNG in the beginning of gcode file and ColPic in the end of gcode file. 
             if(m_gcode_thumbnail_format == GCodeThumbnailsFormat::ColPic)
                 thumbnaim_fmt = GCodeThumbnailsFormat::PNG;
+
           GCodeThumbnails::export_thumbnails_to_file(
               thumbnail_cb, print.get_plate_index(), print.full_print_config().option<ConfigOptionPoints>("thumbnails")->values,
               thumbnaim_fmt, [&file](const char* sz) { file.write(sz); }, [&print]() { print.throw_if_canceled(); });
         }
+        */
       }
     }
 
@@ -2758,10 +2762,12 @@ void GCode::_do_export(Print& print, GCodeOutputStream &file, ThumbnailsGenerato
                 GCodeProcessor::ETags::Estimated_Printing_Time_Placeholder)
             .c_str());
       file.write("\n");
+      /*
       if (m_gcode_thumbnail_format == GCodeThumbnailsFormat::ColPic)
             GCodeThumbnails::export_thumbnails_to_file(
                 thumbnail_cb, print.get_plate_index(), print.full_print_config().option<ConfigOptionPoints>("thumbnails")->values,
                 m_gcode_thumbnail_format, [&file](const char* sz) { file.write(sz); }, [&print]() { print.throw_if_canceled(); });
+     */
 
       file.write("; CONFIG_BLOCK_START\n");
       std::string full_config;
