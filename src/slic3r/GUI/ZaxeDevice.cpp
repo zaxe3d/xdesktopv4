@@ -724,7 +724,6 @@ bool ZaxeDevice::has(const wxString& search_text)
 bool ZaxeDevice::print()
 {
     ZaxeArchive zaxe_archive(wxStandardPaths::Get().GetTempDir().utf8_str().data());
-    zaxe_archive.reset();
 
     if (GUI::wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
         auto model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
