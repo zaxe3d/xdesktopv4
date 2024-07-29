@@ -2691,6 +2691,7 @@ void GCode::_do_export(Print& print, GCodeOutputStream &file, ThumbnailsGenerato
                 GCodeProcessor::ETags::Estimated_Printing_Time_Placeholder)
             .c_str());
       file.write("\n");
+
       file.write("; CONFIG_BLOCK_START\n");
       std::string full_config;
       append_full_config(print, full_config);
