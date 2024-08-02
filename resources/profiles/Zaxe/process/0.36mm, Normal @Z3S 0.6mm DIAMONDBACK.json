@@ -3,8 +3,9 @@
   "name": "0.36mm, Normal @Z3S 0.6mm DIAMONDBACK",
   "from": "system",
   "instantiation": "true",
-  "inherits": "fdm_process_zaxe_common",
+  "inherits": "zaxe_process_Z3S_0.6_nozzle_common",
   "compatible_printers": [
     "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle"
-  ]
+  ],
+  "layer_height":"0.36"
 }

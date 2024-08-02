@@ -543,11 +543,6 @@ public:
             return std::string();
         return this->get_selected_preset().name;
     }
-    bool            is_selected_preset_zaxe_premium() const {
-        std::string pname = get_selected_preset_name();
-        return is_selected_preset_zaxe() &&
-               pname.find("Z3") != std::string::npos;
-    }
     bool            is_selected_preset_zaxe() const {
         std::string pname = get_selected_preset_name();
         return pname.find("Zaxe") != std::string::npos &&
