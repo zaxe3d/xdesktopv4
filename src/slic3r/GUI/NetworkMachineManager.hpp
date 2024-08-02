@@ -10,6 +10,7 @@
 #include "Widgets/TextInput.hpp"
 #include "libslic3r/Semver.hpp"
 #include "ZaxeDevice.hpp"
+#include "libslic3r/Format/ZaxeArchive.hpp"
 
 #include <memory>
 
@@ -24,8 +25,14 @@ public:
     NetworkMachineManager(wxWindow* parent, wxSize size);
     virtual ~NetworkMachineManager();
 
-    void enablePrintNowButton(bool enable_for_all, bool enable_for_current_plate);
+    void enablePrintNowButton(bool enable);
     void addMachine(std::string ip, int port, std::string id);
+
+    wxPanel* scrolledArea() { return scrolled_area; }
+    std::shared_ptr<ZaxeArchive> get_archive();
+
+    enum class PrintMode { SinglePlate, AllPlates };
+    bool print(NetworkMachine* machine, PrintMode mode);
 
 private:
     enum class FilterState { SHOW_AVAILABLE, SHOW_BUSY, SHOW_ALL };
@@ -44,6 +51,7 @@ private:
     void onMachineAvatarReady(wxCommandEvent& event);
 
     void checkVersions();
+    bool prepare_archive(PrintMode mode);
 
     std::unique_ptr<BroadcastReceiver>       broadcast_receiver;
     std::unique_ptr<NetworkMachineContainer> network_machine_container;
@@ -58,12 +66,13 @@ private:
 
     std::unordered_map<std::string, ZaxeDevice*> device_map;
 
-    bool        print_enable_for_current_plate{false};
-    bool        print_enable_for_all{false};
+    bool        print_enable{false};
     FilterState filter_state{FilterState::SHOW_ALL};
 
     wxTimer*                      version_check_timer;
     std::map<std::string, Semver> fw_versions;
+
+    std::shared_ptr<ZaxeArchive> archive{nullptr};
 };
 } // namespace GUI
 } // namespace Slic3r

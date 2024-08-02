@@ -323,6 +323,7 @@ struct Sidebar::priv
     Button* mode_settings{nullptr};
     Button* mode_carousel{nullptr};
     NetworkMachineManager* machine_manager{nullptr};
+    NetworkMachine* selected_zaxe_machine{nullptr};
 
     wxPanel *scrolled;
     PlaterPresetComboBox *combo_print;
@@ -362,6 +363,9 @@ struct Sidebar::priv
     wxStaticText* m_text_printer_settings = nullptr;
     wxPanel* m_panel_printer_content = nullptr;
 
+    Label* m_printer_label = nullptr;
+    Label* m_filament_label = nullptr;
+
     ObjectList          *m_object_list{ nullptr };
     ObjectSettings      *object_settings{ nullptr };
     ObjectLayers        *object_layers{ nullptr };
@@ -374,6 +378,15 @@ struct Sidebar::priv
 
     Search::OptionsSearcher     searcher;
     std::string ams_list_device;
+
+    // Zaxe colors
+    wxString blue100{"#E0F2FE"};
+    wxString blue300{"#7CD4FD"};
+    wxString blue400{"#36BFFA"};
+    wxString blue500{"#009ADE"};
+    wxString gray100{"#F2F4F7"};
+    wxString gray300{"#D0D5DD"};
+    wxString gray400{"#98A2B3"};
 
     priv(Plater *plater, wxBoxSizer* side_tools = nullptr) : plater(plater), side_tools(side_tools) {}
     ~priv();
@@ -697,26 +710,22 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     p->scrolled->SetDoubleBuffered(true);
 #endif //__WINDOWS__
 
-    // Zaxe colors
-    wxString blue100{"#E0F2FE"};
-    wxString blue300{"#7CD4FD"};
-    wxString blue400{"#36BFFA"};
-    wxString blue500{"#009ADE"};
-    wxString gray100{"#F2F4F7"};
-    wxString gray300{"#D0D5DD"};
-    wxString gray400{"#98A2B3"};
-
     // add printer
     {
         /***************** 1. create printer title bar    **************/
         // 1.1 create title bar resources
         p->m_panel_printer_title = new StaticBox(p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxBORDER_NONE);
-        p->m_panel_printer_title->SetBackgroundColor(blue100);
+        p->m_panel_printer_title->SetBackgroundColor(p->blue100);
 
         p->m_printer_icon = new ScalableButton(p->m_panel_printer_title, wxID_ANY, "zaxe_arrow_up_blue");
         p->m_text_printer_settings = new Label(p->m_panel_printer_title, _L("Printer"), LB_PROPAGATE_MOUSE_EVENT);
         p->m_text_printer_settings->SetFont(Label::Head_14);
-        p->m_text_printer_settings->SetForegroundColour(blue500);
+        p->m_text_printer_settings->SetForegroundColour(p->blue500);
+
+        p->m_printer_label = new Label(p->m_panel_printer_title, "");
+        p->m_printer_label->SetLabel(wxGetApp().preset_bundle->printers.get_edited_preset_with_vendor_profile().preset.name);
+        p->m_printer_label->SetFont(Label::Body_10);
+        p->m_printer_label->SetForegroundColour(p->blue400);
 
         p->m_printer_icon->Bind(wxEVT_BUTTON, [this](wxCommandEvent& e) {
             //auto wizard_t = new ConfigWizard(wxGetApp().mainframe);
@@ -730,11 +739,14 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             // wxGetApp().params_dialog()->Popup();
             // wxGetApp().get_tab(Preset::TYPE_FILAMENT)->restore_last_select_item();
             wxGetApp().run_wizard(ConfigWizard::RR_USER, ConfigWizard::SP_PRINTERS);
+            on_select_preset();
             });
 
         wxBoxSizer* h_sizer_title = new wxBoxSizer(wxHORIZONTAL);
         h_sizer_title->Add(p->m_printer_icon, 0, wxALIGN_CENTRE | wxLEFT | wxRIGHT, em);
         h_sizer_title->Add(p->m_text_printer_settings, 0, wxALIGN_CENTER);
+        h_sizer_title->AddStretchSpacer();
+        h_sizer_title->Add(p->m_printer_label, 0, wxALIGN_CENTER);
         h_sizer_title->AddStretchSpacer();
         h_sizer_title->Add(p->m_printer_setting, 0, wxALIGN_CENTER);
         h_sizer_title->Add(15 * em / 10, 0, 0, 0, 0);
@@ -752,21 +764,8 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         // add printer title
         scrolled_sizer->Add(p->m_panel_printer_title, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, FromDIP(13));
 
-        auto on_printer_title_clicked = [&]() {
-            if (p->m_panel_printer_content->GetMaxHeight() == 0) {
-                p->m_panel_printer_content->SetMaxSize({-1, -1});
-                p->m_printer_icon->SetBitmap_("zaxe_arrow_up_blue");
-            }
-
-            else {
-                p->m_panel_printer_content->SetMaxSize({-1, 0});
-                p->m_printer_icon->SetBitmap_("zaxe_arrow_down_blue");
-            }
-
-            m_scrolled_sizer->Layout();
-        };
-        p->m_panel_printer_title->Bind(wxEVT_LEFT_UP, [=](auto& e) { on_printer_title_clicked(); });
-        p->m_printer_icon->Bind(wxEVT_LEFT_UP, [=](auto& e) { on_printer_title_clicked(); });
+        p->m_panel_printer_title->Bind(wxEVT_LEFT_UP, [this](auto& e) { on_printer_title_clicked(PresetContentResizeMode::TOGGLE); });
+        p->m_printer_icon->Bind(wxEVT_LEFT_UP, [this](auto& e) { on_printer_title_clicked(PresetContentResizeMode::TOGGLE); });
 
         // add spliter 2
         auto spliter_2 = new ::StaticLine(p->scrolled);
@@ -781,7 +780,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
         auto printer_type_title = new Label(p->m_panel_printer_content, _L("Printer Type"));
         printer_type_title->SetFont(Label::Body_14);
-        printer_type_title->SetForegroundColour(gray400);
+        printer_type_title->SetForegroundColour(p->gray400);
 
         PlaterPresetComboBox* combo_printer = new PlaterPresetComboBox(p->m_panel_printer_content, Preset::TYPE_PRINTER);
         ScalableButton* edit_btn = new ScalableButton(p->m_panel_printer_content, wxID_ANY, "zaxe_export_blue");
@@ -819,7 +818,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         // Bed type selection
         auto bed_type_title = new Label(p->m_panel_printer_content, _L("Plate Type"));
         bed_type_title->SetFont(Label::Body_14);
-        bed_type_title->SetForegroundColour(gray400);
+        bed_type_title->SetForegroundColour(p->gray400);
 
         m_bed_type_list = new ComboBox(p->m_panel_printer_content, wxID_ANY, wxString(""), wxDefaultPosition, wxDefaultSize, 0, nullptr, wxCB_READONLY | wxBORDER_NONE);
         const ConfigOptionDef* bed_type_def = print_config_def.get("curr_bed_type");
@@ -882,38 +881,32 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     {
     // add filament title
     p->m_panel_filament_title = new StaticBox(p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxBORDER_NONE);
-    p->m_panel_filament_title->SetBackgroundColor(blue100);
+    p->m_panel_filament_title->SetBackgroundColor(p->blue100);
 
-    auto on_filament_title_clicked = [&]() {
-        if (p->m_panel_filament_content->GetMaxHeight() == 0) {
-            p->m_panel_filament_content->SetMaxSize({-1, -1});
-            p->m_filament_icon->SetBitmap_("zaxe_arrow_up_blue");
-        } else {
-            p->m_filament_icon->SetBitmap_("zaxe_arrow_down_blue");
-            p->m_panel_filament_content->SetMaxSize({-1, 0});
-        }
-
-        m_scrolled_sizer->Layout();
-    };
-    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [&, on_filament_title_clicked](wxMouseEvent&) {
+    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [&](wxMouseEvent&) {
         //if (e.GetPosition().x >
         //    (p->m_flushing_volume_btn->IsShown() ? p->m_flushing_volume_btn->GetPosition().x : p->m_bpButton_add_filament->GetPosition().x))
         //    return;
-        on_filament_title_clicked();
+        on_filament_title_clicked(PresetContentResizeMode::TOGGLE);
     });
 
     wxBoxSizer* bSizer39;
     bSizer39 = new wxBoxSizer( wxHORIZONTAL );
     p->m_filament_icon = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_arrow_up_blue");
-    p->m_filament_icon->Bind(wxEVT_LEFT_UP, [=](wxMouseEvent& e) { on_filament_title_clicked(); });
+    p->m_filament_icon->Bind(wxEVT_LEFT_UP, [=](wxMouseEvent& e) { on_filament_title_clicked(PresetContentResizeMode::TOGGLE); });
 
     p->m_staticText_filament_settings = new Label(p->m_panel_filament_title, _L("Filament"), LB_PROPAGATE_MOUSE_EVENT);
     p->m_staticText_filament_settings->SetFont(Label::Head_14);
-    p->m_staticText_filament_settings->SetForegroundColour(blue500);
+    p->m_staticText_filament_settings->SetForegroundColour(p->blue500);
+
+    p->m_filament_label = new Label(p->m_panel_filament_title, "");
+    p->m_filament_label->SetLabel(wxGetApp().preset_bundle->filaments.get_edited_preset_with_vendor_profile().preset.name);
+    p->m_filament_label->SetFont(Label::Body_10);
+    p->m_filament_label->SetForegroundColour(p->blue400);
 
     bSizer39->Add(p->m_filament_icon, 0, wxALIGN_CENTER | wxLEFT | wxRIGHT, FromDIP(10));
     bSizer39->Add( p->m_staticText_filament_settings, 0, wxALIGN_CENTER );
-    bSizer39->Add(FromDIP(10), 0, 0, 0, 0);
+    bSizer39->AddStretchSpacer();
     bSizer39->SetMinSize(-1, FromDIP(30));
 
     p->m_panel_filament_title->SetSizer( bSizer39 );
@@ -972,8 +965,10 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     p->m_bpButton_del_filament = del_btn;
 
     bSizer39->Add(del_btn, 0, wxEXPAND | wxALIGN_CENTER_VERTICAL, FromDIP(5));
+    bSizer39->AddStretchSpacer();
 
-    bSizer39->AddStretchSpacer(1);
+    bSizer39->Add(p->m_filament_label, 0, wxALIGN_CENTER);
+    bSizer39->AddStretchSpacer();
 
     // BBS
     // add wiping dialog
@@ -1030,7 +1025,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
     bSizer39->Add(p->m_flushing_volume_btn, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(5));
     bSizer39->Hide(p->m_flushing_volume_btn);
-    bSizer39->Add(FromDIP(10), 0, 0, 0, 0 );
+    bSizer39->AddStretchSpacer();
 
     ScalableButton* add_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "add_filament");
     add_btn->SetToolTip(_L("Add one filament"));
@@ -1087,7 +1082,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     p->m_bpButton_ams_filament = ams_btn;
 
     bSizer39->Add(ams_btn, 0, wxALIGN_CENTER|wxALL, FromDIP(5));
-    bSizer39->Add(FromDIP(10), 0, 0, 0, 0 );
+    bSizer39->AddStretchSpacer();
 
     ScalableButton* set_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_settings_blue");
     set_btn->SetToolTip(_L("Set filaments to use"));
@@ -1096,11 +1091,12 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         // wxGetApp().params_dialog()->Popup();
         // wxGetApp().get_tab(Preset::TYPE_FILAMENT)->restore_last_select_item();
         wxGetApp().run_wizard(ConfigWizard::RR_USER, ConfigWizard::SP_FILAMENTS);
+        on_select_preset();
         });
     p->m_bpButton_set_filament = set_btn;
 
     bSizer39->Add(set_btn, 0, wxALIGN_CENTER);
-    bSizer39->Add(FromDIP(15), 0, 0, 0, 0);
+    bSizer39->AddStretchSpacer();
 
     // add filament content
     p->m_panel_filament_content = new wxPanel( p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
@@ -1219,54 +1215,19 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
     auto z_mode_sizer = new wxBoxSizer(wxHORIZONTAL);
 
-    auto       this_bg = *wxWHITE; // StaticBox::GetParentBackgroundColor(this);
-    StateColor active_btn_bg(std::pair<wxColour, int>(this_bg, StateColor::Disabled),
-                             std::pair<wxColour, int>(this_bg, StateColor::Pressed), std::pair<wxColour, int>(this_bg, StateColor::Hovered),
-                             std::pair<wxColour, int>(this_bg, StateColor::Normal));
-
-    StateColor inactive_btn_bg(std::pair<wxColour, int>(gray100, StateColor::Disabled),
-                               std::pair<wxColour, int>(gray100, StateColor::Pressed),
-                               std::pair<wxColour, int>(gray100, StateColor::Hovered),
-                               std::pair<wxColour, int>(gray100, StateColor::Normal));
-
-    StateColor active_text_fg(std::pair<wxColour, int>(blue500, StateColor::Disabled),
-                              std::pair<wxColour, int>(blue500, StateColor::Pressed),
-                              std::pair<wxColour, int>(blue500, StateColor::Hovered),
-                              std::pair<wxColour, int>(blue500, StateColor::Normal));
-
-    StateColor inactive_text_fg(std::pair<wxColour, int>(gray400, StateColor::Disabled),
-                                std::pair<wxColour, int>(gray400, StateColor::Pressed),
-                                std::pair<wxColour, int>(blue400, StateColor::Hovered),
-                                std::pair<wxColour, int>(gray400, StateColor::Normal));
-
     auto create_mode_button = [=](const wxString& label, bool is_active, auto cb) {
         auto* b = new Button(this, label);
         b->SetFont(wxGetApp().bold_font());
-        b->SetBackgroundColor(is_active ? active_btn_bg : inactive_btn_bg);
-        b->SetBorderColor(is_active ? active_btn_bg : inactive_btn_bg);
-        b->SetTextColor(is_active ? active_text_fg : inactive_text_fg);
         b->SetCornerRadius(0);
         b->Bind(wxEVT_BUTTON, cb);
         return b;
     };
 
     p->mode_carousel = create_mode_button(_L("Zaxe Machine Carousel"), true, [=](auto& e) {
-        p->mode_carousel->SetBackgroundColor(active_btn_bg);
-        p->mode_carousel->SetTextColor(active_text_fg);
-        p->mode_carousel->SetBorderColor(active_btn_bg);
-        p->mode_settings->SetBackgroundColor(inactive_btn_bg);
-        p->mode_settings->SetTextColor(inactive_text_fg);
-        p->mode_settings->SetBorderColor(inactive_btn_bg);
         show_carousel(true);
     });
 
     p->mode_settings = create_mode_button(_L("Settings"), false, [=](auto& e) {
-        p->mode_carousel->SetBackgroundColor(inactive_btn_bg);
-        p->mode_carousel->SetTextColor(inactive_text_fg);
-        p->mode_carousel->SetBorderColor(inactive_btn_bg);
-        p->mode_settings->SetBackgroundColor(active_btn_bg);
-        p->mode_settings->SetTextColor(active_text_fg);
-        p->mode_settings->SetBorderColor(active_btn_bg);
         show_carousel(false);
     });
 
@@ -1274,6 +1235,54 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     z_mode_sizer->Add(p->mode_settings, 1, wxEXPAND);
 
     p->machine_manager = new NetworkMachineManager(this, wxSize(GetSize().GetWidth(), -1));
+    p->machine_manager->scrolledArea()->Bind(wxEVT_BUTTON, [this](auto& e) {
+        auto split_nozzle = [](const std::string& nozzle_str) -> std::pair<std::string, std::string> {
+            size_t pos = nozzle_str.find_last_of(' ');
+            if (pos == std::string::npos) {
+                return {nozzle_str, ""};
+            }
+            auto model = nozzle_str.substr(0, pos);
+            auto size  = nozzle_str.substr(pos + 1);
+            return {model, size};
+        };
+
+        void* user_data = e.GetClientData();
+        if (user_data) {
+            auto _nm                         = static_cast<NetworkMachine*>(user_data);
+            auto [nozzle_model, nozzle_size] = split_nozzle(_nm->attr->nozzle);
+
+            std::string printer = (boost::format("Zaxe %1% - %2%mm %3% nozzle") % boost::to_upper_copy(_nm->attr->deviceModel) %
+                                   nozzle_size % nozzle_model)
+                                      .str();
+
+            bool hide_preset_details = true;
+            const auto& printers = p->combo_printer->GetValues();
+            if (auto it = std::find(printers.begin(), printers.end(), printer); it != printers.end()) {
+                p->combo_printer->SelectAndNotify(std::distance(printers.begin(), it));
+            } else {
+                wxMessageBox(_L(wxString::Format("Printer preset cannot be found, please add %s using Configuration Wizard and try again.",
+                                                 printer)),
+                             _L("Unknown Preset"), wxICON_ERROR);
+                hide_preset_details = false;
+            }
+
+            const auto& filaments = p->combos_filament.front()->GetValues();
+            if (auto it = std::find(filaments.begin(), filaments.end(), _nm->attr->materialLabel); it != filaments.end()) {
+                p->combos_filament.front()->SelectAndNotify(std::distance(filaments.begin(), it));
+            } else {
+                wxMessageBox(_L(wxString::Format("Material preset cannot be found, please add %s using Configuration Wizard and try again.",
+                                                 _nm->attr->materialLabel)),
+                             _L("Unknown Preset"), wxICON_ERROR);
+                hide_preset_details = false;
+            }
+
+            p->selected_zaxe_machine = _nm;
+            show_carousel(false, hide_preset_details);
+            wxGetApp().mainframe->set_print_button_to_default(MainFrame::ModeSelectType::eSlicePlate);
+        }
+
+        e.Skip();
+    });
     show_carousel(true);
 
     auto* sizer = new wxBoxSizer(wxVERTICAL);
@@ -1306,16 +1315,48 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         _reparent(p->side_tools, this);
 
         auto seperator = new wxPanel(this, wxID_ANY, wxDefaultPosition, wxSize{-1, 1});
-        seperator->SetBackgroundColour(gray300);
+        seperator->SetBackgroundColour(p->gray300);
 
         sizer->Add(seperator, 0, wxEXPAND, 0);
-        sizer->Add(p->side_tools, 1, wxEXPAND | wxALL, FromDIP(15));
+        sizer->Add(p->side_tools, 0, wxEXPAND | wxALL, FromDIP(15));
     }
 
     SetSizer(sizer);
 }
 
 Sidebar::~Sidebar() {}
+
+void Sidebar::on_printer_title_clicked(PresetContentResizeMode mode)
+{
+    if ((mode == PresetContentResizeMode::TOGGLE && p->m_panel_printer_content->GetMaxHeight() == 0) ||
+        mode == PresetContentResizeMode::SHOW) {
+        p->m_panel_printer_content->SetMaxSize({-1, -1});
+        p->m_printer_icon->SetBitmap_("zaxe_arrow_up_blue");
+        p->m_printer_label->Hide();
+    } else {
+        p->m_panel_printer_content->SetMaxSize({-1, 0});
+        p->m_printer_icon->SetBitmap_("zaxe_arrow_down_blue");
+        p->m_printer_label->Show();
+    }
+
+    m_scrolled_sizer->Layout();
+}
+
+void Sidebar::on_filament_title_clicked(PresetContentResizeMode mode)
+{
+    if ((mode == PresetContentResizeMode::TOGGLE && p->m_panel_filament_content->GetMaxHeight() == 0) ||
+        mode == PresetContentResizeMode::SHOW) {
+        p->m_panel_filament_content->SetMaxSize({-1, -1});
+        p->m_filament_icon->SetBitmap_("zaxe_arrow_up_blue");
+        p->m_filament_label->Hide();
+    } else {
+        p->m_filament_icon->SetBitmap_("zaxe_arrow_down_blue");
+        p->m_panel_filament_content->SetMaxSize({-1, 0});
+        p->m_filament_label->Show();
+    }
+
+    m_scrolled_sizer->Layout();
+}
 
 void Sidebar::create_printer_preset()
 {
@@ -1425,11 +1466,11 @@ void Sidebar::update_all_preset_comboboxes()
         //only show sync-ams button for BBL printer
         ams_btn->Show();
         //update print button default value for bbl or third-party printer
-        p_mainframe->set_print_button_to_default(MainFrame::PrintSelectType::ePrintPlate);
+        p_mainframe->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
     } else {
         connection_btn->Show();
         ams_btn->Hide();
-        auto print_btn_type = MainFrame::PrintSelectType::eExportGcode;
+        auto print_btn_type = MainFrame::ModeSelectType::eSlicePlate;
         wxString url = cfg.opt_string("print_host_webui").empty() ? cfg.opt_string("print_host") : cfg.opt_string("print_host_webui");
         wxString apikey;
         if(url.empty())
@@ -1440,13 +1481,13 @@ void Sidebar::update_all_preset_comboboxes()
             const auto host_type = cfg.option<ConfigOptionEnum<PrintHostType>>("host_type")->value;
             if (cfg.has("printhost_apikey") && (host_type != htSimplyPrint))
                 apikey = cfg.opt_string("printhost_apikey");
-            print_btn_type = preset_bundle.is_bbl_vendor() ? MainFrame::PrintSelectType::ePrintPlate : MainFrame::PrintSelectType::eSendGcode;
+            print_btn_type = MainFrame::ModeSelectType::eSlicePlate;
         }
 
         p_mainframe->load_printer_url(url, apikey);
 
 
-        p_mainframe->set_print_button_to_default(print_btn_type);
+        //p_mainframe->set_print_button_to_default(print_btn_type);
 
     }
 
@@ -2205,9 +2246,39 @@ std::string& Sidebar::get_search_line()
     return p->searcher.search_string();
 }
 
-void Sidebar::show_carousel(bool show) {
+void Sidebar::show_carousel(bool show, bool hide_preset_details)
+{
     p->machine_manager->Show(show);
     p->scrolled->Show(!show);
+    on_printer_title_clicked(hide_preset_details ? PresetContentResizeMode::HIDE : PresetContentResizeMode::SHOW);
+    on_filament_title_clicked(hide_preset_details ? PresetContentResizeMode::HIDE : PresetContentResizeMode::SHOW);
+
+    auto this_bg = *wxWHITE;
+    StateColor active_btn_bg(std::pair<wxColour, int>(this_bg, StateColor::Disabled),
+                             std::pair<wxColour, int>(this_bg, StateColor::Pressed), std::pair<wxColour, int>(this_bg, StateColor::Hovered),
+                             std::pair<wxColour, int>(this_bg, StateColor::Normal));
+
+    StateColor inactive_btn_bg(std::pair<wxColour, int>(p->gray100, StateColor::Disabled),
+                               std::pair<wxColour, int>(p->gray100, StateColor::Pressed),
+                               std::pair<wxColour, int>(p->gray100, StateColor::Hovered),
+                               std::pair<wxColour, int>(p->gray100, StateColor::Normal));
+
+    StateColor active_text_fg(std::pair<wxColour, int>(p->blue500, StateColor::Disabled),
+                              std::pair<wxColour, int>(p->blue500, StateColor::Pressed),
+                              std::pair<wxColour, int>(p->blue500, StateColor::Hovered),
+                              std::pair<wxColour, int>(p->blue500, StateColor::Normal));
+
+    StateColor inactive_text_fg(std::pair<wxColour, int>(p->gray400, StateColor::Disabled),
+                                std::pair<wxColour, int>(p->gray400, StateColor::Pressed),
+                                std::pair<wxColour, int>(p->blue400, StateColor::Hovered),
+                                std::pair<wxColour, int>(p->gray400, StateColor::Normal));
+    p->mode_carousel->SetBackgroundColor(show ? active_btn_bg : inactive_btn_bg);
+    p->mode_carousel->SetTextColor(show ? active_text_fg : inactive_text_fg);
+    p->mode_carousel->SetBorderColor(show ? active_btn_bg : inactive_btn_bg);
+    p->mode_settings->SetBackgroundColor(show ? inactive_btn_bg : active_btn_bg);
+    p->mode_settings->SetTextColor(show ? inactive_text_fg : active_text_fg);
+    p->mode_settings->SetBorderColor(show ? inactive_btn_bg : active_btn_bg);
+
     Layout();
     Refresh();
 }
@@ -6833,6 +6904,8 @@ void Plater::priv::on_select_preset(wxCommandEvent &evt)
     for (auto plate : plate_list) {
          plate->update_slice_result_valid_state(false);
     }
+
+    sidebar->on_select_preset();
 }
 
 void Plater::priv::on_slicing_update(SlicingStatusEvent &evt)
@@ -7307,6 +7380,8 @@ void Plater::priv::on_action_slice_plate(SimpleEvent&)
         m_slice_all = false;
         q->reslice();
         q->select_view_3D("Preview");
+
+        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
     }
 }
 
@@ -7333,6 +7408,8 @@ void Plater::priv::on_action_slice_all(SimpleEvent&)
             q->select_view_3D("Preview");
         //BBS: wish to select all plates stats item
         preview->get_canvas3d()->_update_select_plate_toolbar_stats_item(true);
+
+        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
     }
 }
 
@@ -7367,6 +7444,13 @@ void Plater::priv::on_action_print_plate(SimpleEvent&)
 {
     if (q != nullptr) {
         BOOST_LOG_TRIVIAL(debug) << __FUNCTION__ << ":received print plate event\n" ;
+    }
+
+    if (wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
+        if (sidebar->print_plate()) {
+            sidebar->show_carousel(true, true);
+        }
+        return;
     }
 
     PresetBundle& preset_bundle = *wxGetApp().preset_bundle;
@@ -7463,6 +7547,13 @@ void Plater::priv::on_action_print_all(SimpleEvent&)
 {
     if (q != nullptr) {
         BOOST_LOG_TRIVIAL(debug) << __FUNCTION__ << ":received print all event\n" ;
+    }
+
+    if (wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
+        if (sidebar->print_all()) {
+            sidebar->show_carousel(true, true);
+        }
+        return;
     }
 
     PresetBundle& preset_bundle = *wxGetApp().preset_bundle;
@@ -8993,6 +9084,18 @@ void Sidebar::set_btn_label(const ActionButtonType btn_type, const wxString& lab
         case ActionButtonType::abSendGCode: /*p->btn_send_gcode->SetLabelText(label);*/     break;
     }
 }
+
+void Sidebar::on_select_preset() {
+    auto printer = wxGetApp().preset_bundle->printers.get_edited_preset_with_vendor_profile().preset.name;
+    p->m_printer_label->SetLabel(printer);
+
+    auto filament = wxGetApp().preset_bundle->filaments.get_edited_preset_with_vendor_profile().preset.name;
+    p->m_filament_label->SetLabel(filament);
+}
+
+bool Sidebar::print_plate() { return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::SinglePlate); }
+
+bool Sidebar::print_all() { return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::AllPlates); }
 
 // Plater / Public
 

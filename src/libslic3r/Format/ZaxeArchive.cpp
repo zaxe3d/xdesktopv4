@@ -4,6 +4,7 @@
 #include "libslic3r/Time.hpp"
 #include "libslic3r/miniz_extension.hpp"
 #include "libslic3r/LocalesUtils.hpp"
+#include "libslic3r/ZaxeConfigHelper.hpp"
 
 #include <openssl/md5.h>
 
@@ -12,29 +13,6 @@
 namespace Slic3r {
 
 namespace {
-
-std::string get_cfg_value(const DynamicPrintConfig& cfg,
-                          const std::string&        key,
-                          const std::string&        default_val          = "",
-                          const bool                only_first_occurence = false,
-                          const char                delimeter            = ',')
-{
-    std::string ret = default_val; // start with default.
-    if (cfg.has(key)) {
-        auto opt = cfg.option(key);
-        if (opt)
-            ret = opt->serialize();
-        if (ret.empty())
-            ret = default_val; // again to default when empty.
-        if (only_first_occurence) {
-            const auto colon_idx = ret.find_first_of(delimeter);
-            if (std::string::npos != colon_idx) {
-                return ret.substr(0, colon_idx); // return first occurence.
-            }
-        }
-    }
-    return ret;
-}
 
 std::string generate_md5_checksum(const std::string& file_path)
 {
@@ -154,26 +132,15 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     j["bed_level"]  = cfg.option<ConfigOptionBool>("zaxe_bed_leveling")->value ? "on" : "off";
     j["arc_welder"] = "off"; // backward compatibility
 
-    std::string fill_density = get_cfg_value(cfg, "sparse_infill_density");
+    using namespace Slic3r;
+    std::string fill_density = ZaxeConfigHelper::get_cfg_value(cfg, "sparse_infill_density");
     fill_density.replace(fill_density.find("%"), 1, "");
 
-    bool has_raft  = stoi(get_cfg_value(cfg, "raft_layers")) > 0;
-    bool has_skirt = stoi(get_cfg_value(cfg, "skirt_loops")) > 0;
+    bool has_raft  = stoi(ZaxeConfigHelper::get_cfg_value(cfg, "raft_layers")) > 0;
+    bool has_skirt = stoi(ZaxeConfigHelper::get_cfg_value(cfg, "skirt_loops")) > 0;
 
-    std::string dM = boost::to_upper_copy(get_cfg_value(cfg, "printer_model"));
-    std::string printer_sub_model{};
-    size_t      dM_pos = dM.find(' ');
-    if (dM_pos != std::string::npos) {
-        printer_sub_model = dM.substr(dM_pos + 1);
-        dM                = dM.substr(0, dM_pos);
-    }
-    boost::replace_all(dM, "+", "PLUS");
-
-    std::string nozzle{};
-    if (!printer_sub_model.empty()) {
-        nozzle.append(printer_sub_model).append(" ");
-    }
-    nozzle.append(get_cfg_value(cfg, "printer_variant", "0.4", true));
+    auto [dM, printer_sub_model] = ZaxeConfigHelper::get_printer_model(cfg);
+    auto nozzle                  = ZaxeConfigHelper::get_nozzle(cfg);
 
     PrintStatistics stats = print.print_statistics();
 
@@ -184,11 +151,11 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     j["raft"]                 = has_raft ? "raft" : (has_skirt ? "skirt" : "none");
     j["layer_height"]         = cfg.opt_float("layer_height");
     j["infill_density"]       = stoi(fill_density);
-    j["support_angle"]        = get_cfg_value(cfg, "support_angle");
-    j["material"]             = get_cfg_value(cfg, "filament_notes", "0", true, ';'); // FIXME change this to filament code later.
+    j["support_angle"]        = ZaxeConfigHelper::get_cfg_value(cfg, "support_angle");
+    j["material"]             = ZaxeConfigHelper::get_material(cfg);
     j["model"]                = dM;
     j["sub_model"]            = printer_sub_model;
-    j["printer_profile"]      = get_cfg_value(cfg, "printer_settings_id");
+    j["printer_profile"]      = ZaxeConfigHelper::get_cfg_value(cfg, "printer_settings_id");
     j["filament_used"]        = stats.total_used_filament;
     j["nozzle_diameter"]      = nozzle;
     j["extruder_temperature"] = cfg.opt_int("nozzle_temperature_initial_layer", 0);

@@ -7,11 +7,11 @@
 #include "Widgets/ProgressBar.hpp"
 #include "Widgets/RoundedRectangle.hpp"
 #include "Widgets/Button.hpp"
-#include "Widgets/SwitchButton.hpp"
 
 #include "../Utils/NetworkMachine.hpp"
 #include "I18N.hpp"
 #include "libslic3r/Semver.hpp"
+#include "libslic3r/Format/ZaxeArchive.hpp"
 
 #include <optional>
 
@@ -40,7 +40,7 @@ public:
 
     void updateStates();
     void updateProgressValue();
-    void enablePrintButton(bool enable_for_all, bool enable_for_current_plate);
+    void onPrintButtonStateChanged(bool print_enable, std::shared_ptr<ZaxeArchive> archive);
 
     void onPrintDenied();
     void onAvatarReady();
@@ -60,7 +60,7 @@ public:
 
     bool has(const wxString& search_text);
 
-    bool print();
+    bool print(std::shared_ptr<ZaxeArchive> archive);
 
 private:
     NetworkMachine* nm;
@@ -78,7 +78,6 @@ private:
     Label*            status_desc{nullptr};
     Button*           status_desc_icon{nullptr};
     Button*           print_btn{nullptr};
-    SwitchButton*     print_mode{nullptr};
     ProgressBar*      progress_bar{nullptr};
     Label*            progress_label{nullptr};
     wxPanel*          progress_line{nullptr};
@@ -108,8 +107,8 @@ private:
     std::optional<Semver>  upstream_version;
     bool                   update_available{false};
 
-    bool print_enable_for_current_plate{false};
-    bool print_enable_for_all{false};
+    enum class PrintBtnMode {Print, Prepare};
+    PrintBtnMode print_btn_mode{PrintBtnMode::Prepare};
 
     void     onTimer(wxTimerEvent& event);
     wxSizer* createHeader();
