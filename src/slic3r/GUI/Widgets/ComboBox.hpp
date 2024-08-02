@@ -31,6 +31,8 @@ public:
 
     DropDown & GetDropDown() { return drop; }
 
+    const std::vector<wxString>& GetValues() { return texts; };
+
     virtual bool SetFont(wxFont const & font) override;
 
 public:
