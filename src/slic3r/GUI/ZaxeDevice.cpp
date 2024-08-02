@@ -469,12 +469,12 @@ void ZaxeDevice::updateProgressLine()
     progress_line->Show(show);
     updateProgressValue();
 
-    if (nm->states->heating) {
-        progress_bar->SetProgressBackgroundColour(progress_danger_color);
+    if (nm->states->calibrating) {
+        progress_bar->SetProgressBackgroundColour(progress_calib_color);
     } else if (nm->states->uploading) {
         progress_bar->SetProgressBackgroundColour(progress_uploading_color);
-    } else if (nm->states->calibrating) {
-        progress_bar->SetProgressBackgroundColour(progress_calib_color);
+    } else if (nm->states->heating) {
+        progress_bar->SetProgressBackgroundColour(progress_danger_color);
     } else {
         progress_bar->SetProgressBackgroundColour(blue500);
     }
@@ -519,6 +519,8 @@ void ZaxeDevice::updateStatusText()
         title = _L("Updating");
     } else if (nm->states->bedOccupied) {
         title = _L("Bed is occupied");
+    } else if (nm->states->calibrating) {
+        title = _L("Calibrating");
     } else if (nm->states->heating) {
         title = _L("Heating");
     } else if (nm->states->paused) {
@@ -527,8 +529,6 @@ void ZaxeDevice::updateStatusText()
         title = _L("Printing");
     } else if (nm->states->uploading) {
         title = _L("Uploading");
-    } else if (nm->states->calibrating) {
-        title = _L("Calibrating");
     } else if (!nm->isBusy()) {
         title = _L("Ready to use");
     }
