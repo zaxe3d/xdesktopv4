@@ -1,6 +1,6 @@
 {
   "name": "Zaxe",
-  "version": "02.00.03.00",
+  "version": "02.00.04.00",
   "url": "",
   "force_update": "0",
   "description": "Zaxe configurations",
@@ -40,6 +40,14 @@
       "sub_path": "process/zaxe_process_Z3_family_common.json"
     },
     {
+      "name": "zaxe_process_X4_family_common",
+      "sub_path": "process/zaxe_process_X4_family_common.json"
+    },
+    {
+      "name": "zaxe_process_X4_common",
+      "sub_path": "process/zaxe_process_X4_common.json"
+    },
+    {
       "name": "zaxe_process_Z3S_common",
       "sub_path": "process/zaxe_process_Z3S_common.json"
     },
@@ -48,12 +56,32 @@
       "sub_path": "process/zaxe_process_Z3S_0.4_nozzle_common.json"
     },
     {
+      "name": "zaxe_process_Z3S_0.6_nozzle_common",
+      "sub_path": "process/zaxe_process_Z3S_0.6_nozzle_common.json"
+    },
+    {
+      "name": "zaxe_process_Z3S_0.8_nozzle_common",
+      "sub_path": "process/zaxe_process_Z3S_0.8_nozzle_common.json"
+    },
+    {
+      "name": "zaxe_process_X4_0.4_nozzle_common",
+      "sub_path": "process/zaxe_process_X4_0.4_nozzle_common.json"
+    },
+    {
       "name": "0.05mm, Expert @Z3S 0.4mm",
       "sub_path": "process/0.05mm, Expert @Z3S 0.4mm.json"
     },
     {
+      "name": "0.05mm, Expert @X4 0.4mm",
+      "sub_path": "process/0.05mm, Expert @X4 0.4mm.json"
+    },
+    {
       "name": "0.10mm, High @Z3S 0.4mm",
       "sub_path": "process/0.10mm, High @Z3S 0.4mm.json"
+    },
+    {
+      "name": "0.10mm, High @X4 0.4mm",
+      "sub_path": "process/0.10mm, High @X4 0.4mm.json"
     },
     {
       "name": "0.15mm, Recommended @Z3S 0.4mm",
@@ -64,12 +92,28 @@
       "sub_path": "process/0.20mm, Normal @Z3S 0.4mm.json"
     },
     {
+      "name": "0.20mm, Strength @Z3S 0.4mm",
+      "sub_path": "process/0.20mm, Strength @Z3S 0.4mm.json"
+    },
+    {
+      "name": "0.20mm, Strength @X4 0.4mm",
+      "sub_path": "process/0.20mm, Strength @X4 0.4mm.json"
+    },
+    {
       "name": "0.24mm, Fast @Z3S 0.4mm",
       "sub_path": "process/0.24mm, Fast @Z3S 0.4mm.json"
     },
     {
+      "name": "0.24mm, Fast @X4 0.4mm",
+      "sub_path": "process/0.24mm, Fast @X4 0.4mm.json"
+    },
+    {
       "name": "0.30mm, Draft @Z3S 0.4mm",
       "sub_path": "process/0.30mm, Draft @Z3S 0.4mm.json"
+    },
+    {
+      "name": "0.30mm, Draft @X4 0.4mm",
+      "sub_path": "process/0.30mm, Draft @X4 0.4mm.json"
     },
     {
       "name": "0.24mm, High @Z3S 0.6mm",
@@ -182,6 +226,10 @@
     {
       "name": "0.15mm, Recommended @X4 0.4mm",
       "sub_path": "process/0.15mm, Recommended @X4 0.4mm.json"
+    },
+    {
+      "name": "0.20mm, Normal @X4 0.4mm",
+      "sub_path": "process/0.20mm, Normal @X4 0.4mm.json"
     }
   ],
   "filament_list": [
@@ -230,6 +278,26 @@
       "sub_path": "filament/Zaxe_filament_pla.json"
     },
     {
+      "name": "Generic_filament_pla",
+      "sub_path": "filament/Generic_filament_pla.json"
+    },
+    {
+      "name": "Generic_filament_abs",
+      "sub_path": "filament/Generic_filament_abs.json"
+    },
+    {
+      "name": "Generic_filament_petg",
+      "sub_path": "filament/Generic_filament_petg.json"
+    },
+    {
+      "name": "Generic_filament_asa",
+      "sub_path": "filament/Generic_filament_asa.json"
+    },
+    {
+      "name": "Generic_filament_flex",
+      "sub_path": "filament/Generic_filament_flex.json"
+    },
+    {
       "name": "Zaxe ABS @Z3S",
       "sub_path": "filament/Zaxe ABS @Z3S.json"
     },
@@ -248,6 +316,46 @@
     {
       "name": "Zaxe PLA @Z3S",
       "sub_path": "filament/Zaxe PLA @Z3S.json"
+    },
+    {
+      "name": "Generic PLA @Z3S",
+      "sub_path": "filament/Generic PLA @Z3S.json"
+    },
+    {
+      "name": "Generic ABS @Z3S",
+      "sub_path": "filament/Generic ABS @Z3S.json"
+    },
+    {
+      "name": "Generic ASA @Z3S",
+      "sub_path": "filament/Generic ASA @Z3S.json"
+    },
+    {
+      "name": "Generic FLEX @Z3S",
+      "sub_path": "filament/Generic FLEX @Z3S.json"
+    },
+    {
+      "name": "Generic PETG @Z3S",
+      "sub_path": "filament/Generic PETG @Z3S.json"
+    },
+    {
+      "name": "Generic PLA @Z4",
+      "sub_path": "filament/Generic PLA @Z4.json"
+    },
+    {
+      "name": "Generic ABS @Z4",
+      "sub_path": "filament/Generic ABS @Z4.json"
+    },
+    {
+      "name": "Generic PETG @Z4",
+      "sub_path": "filament/Generic PETG @Z4.json"
+    },
+    {
+      "name": "Generic FLEX @Z4",
+      "sub_path": "filament/Generic FLEX @Z4.json"
+    },
+    {
+      "name": "Generic ASA @Z4",
+      "sub_path": "filament/Generic ASA @Z4.json"
     },
     {
       "name": "Zaxe ABS @Z4",
@@ -288,6 +396,26 @@
     {
       "name": "Zaxe PLA @X4",
       "sub_path": "filament/Zaxe PLA @X4.json"
+    },
+    {
+      "name": "Generic PLA @X4",
+      "sub_path": "filament/Generic PLA @X4.json"
+    },
+    {
+      "name": "Generic ABS @X4",
+      "sub_path": "filament/Generic ABS @X4.json"
+    },
+    {
+      "name": "Generic ASA @X4",
+      "sub_path": "filament/Generic ASA @X4.json"
+    },
+    {
+      "name": "Generic FLEX @X4",
+      "sub_path": "filament/Generic FLEX @X4.json"
+    },
+    {
+      "name": "Generic PETG @X4",
+      "sub_path": "filament/Generic PETG @X4.json"
     }
   ],
   "machine_list": [
@@ -298,6 +426,10 @@
     {
       "name": "Zaxe_machine_Z3_family_common",
       "sub_path": "machine/Zaxe_machine_Z3_family_common.json"
+    },
+    {
+      "name": "Zaxe_machine_X4_family_common",
+      "sub_path": "machine/Zaxe_machine_X4_family_common.json"
     },
     {
       "name": "Zaxe_machine_Z3S_common",

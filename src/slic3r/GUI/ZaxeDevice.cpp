@@ -26,14 +26,23 @@ ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm)
     : nm(_nm)
     , version(Semver(nm->attr->firmwareVersion.GetMajor(), nm->attr->firmwareVersion.GetMinor(), nm->attr->firmwareVersion.GetMicro()))
 {}
+// todo zaxe
+bool ZaxeDeviceCapabilities::hasRemoteUpdate() const { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
 
-bool ZaxeDeviceCapabilities::hasRemoteUpdate() { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
+bool ZaxeDeviceCapabilities::canToggleLeds() const
+{
+    return is_there(nm->attr->deviceModel, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 70);
+}
 
-bool ZaxeDeviceCapabilities::canToggleLeds() { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
+bool ZaxeDeviceCapabilities::hasStl() const { return is_there(nm->attr->deviceModel, {"z2", "z3", "z4", "x4"}); }
 
-bool ZaxeDeviceCapabilities::hasStl() { return is_there(nm->attr->deviceModel, {"z2", "z3"}); }
+bool ZaxeDeviceCapabilities::hasThumbnails() const { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3", "z4", "x4"}); }
 
-bool ZaxeDeviceCapabilities::hasThumbnails() { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3"}); }
+bool ZaxeDeviceCapabilities::hasCam() const { return is_there(nm->attr->deviceModel, {"z2", "z3", "z4", "x4"}); }
+
+bool ZaxeDeviceCapabilities::hasSnapshot() const { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3", "z4", "x4"}); }
+
+bool ZaxeDeviceCapabilities::canUnloadFilament() const { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3", "z4", "x4"}); }
 
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
@@ -190,7 +199,7 @@ void ZaxeDevice::createAvatar()
     avatar_rect->SetSizer(avatar_sizer);
     avatar_rect->Layout();
 
-    if (is_there(nm->attr->deviceModel, {"z2", "z3"})) {
+    if (capabilities.hasCam()) {
         avatar_rect->Bind(wxEVT_LEFT_DCLICK, [&](auto& e) {
             BOOST_LOG_TRIVIAL(info) << "Clicked on avatar trying to open stream on: " << nm->name;
             if (nm->attr->firmwareVersion.GetMinor() >= 4 ||
@@ -561,7 +570,7 @@ void ZaxeDevice::updateStatusText()
 
 void ZaxeDevice::updateAvatar()
 {
-    if (nm->attr->hasSnapshot) {
+    if (capabilities.hasSnapshot()) {
         if (nm->states->heating || nm->states->printing || nm->states->calibrating || nm->states->bedOccupied) {
             nm->downloadAvatar();
         } else {
@@ -574,8 +583,6 @@ void ZaxeDevice::updateAvatar()
 
 void ZaxeDevice::updateIconButtons()
 {
-    bool family_z = is_there(nm->attr->deviceModel, {"z"});
-
     pause_btn->Show(!nm->states->updatingFw && nm->states->printing && !nm->states->paused && !nm->states->heating);
     resume_btn->Show(!nm->states->updatingFw && nm->states->printing && nm->states->paused && !nm->states->heating);
     stop_btn->Show(!nm->states->updatingFw && nm->isBusy() && (nm->states->printing || !nm->states->uploading));
@@ -585,7 +592,7 @@ void ZaxeDevice::updateIconButtons()
 
     say_hi_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
 
-    unload_btn->Show(family_z && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+    unload_btn->Show(capabilities.canUnloadFilament() && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
 
     toggle_leds_btn->SetIcon(nm->states->ledsSwithedOn ? "zaxe_lights_on" : "zaxe_lights_off");
     toggle_leds_btn->Show(!nm->states->updatingFw && capabilities.canToggleLeds());
@@ -820,6 +827,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
             this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
                              translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
         } else {
+            BOOST_LOG_TRIVIAL(info) << "Print started for " << nm->name;
             this->nm->upload(archive_path.c_str());
         }
     });

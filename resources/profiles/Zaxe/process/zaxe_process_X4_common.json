@@ -1,0 +1,7 @@
+{
+  "type": "process",
+  "name": "zaxe_process_X4_common",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "zaxe_process_X4_family_common"
+}

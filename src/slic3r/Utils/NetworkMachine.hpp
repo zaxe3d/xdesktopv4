@@ -85,7 +85,6 @@ struct MachineAttributes // attributes.
     string deviceModel;
     bool hasPin;
     bool hasNFCSpool;
-    bool hasSnapshot;
     bool isLite;
     bool isHttp;
     bool isNoneTLS;
@@ -112,7 +111,6 @@ struct MachineAttributes // attributes.
         ss << "deviceModel: " << deviceModel << std::endl;
         ss << "hasPin: " << hasPin << std::endl;
         ss << "hasNFCSpool: " << hasNFCSpool << std::endl;
-        ss << "hasSnapshot: " << hasSnapshot << std::endl;
         ss << "isLite: " << isLite << std::endl;
         ss << "isHttp: " << isHttp << std::endl;
         ss << "isNoneTLS: " << isNoneTLS << std::endl;
