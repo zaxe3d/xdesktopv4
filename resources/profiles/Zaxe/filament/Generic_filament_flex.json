@@ -1,0 +1,11 @@
+{
+  "type": "filament",
+  "name": "Generic_filament_flex",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "fdm_filament_flex",
+  "filament_id": "GFA09",
+  "filament_notes": [
+    "zaxe_flex"
+  ]
+}

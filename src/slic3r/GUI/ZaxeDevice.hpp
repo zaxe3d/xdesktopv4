@@ -22,10 +22,13 @@ class ZaxeDeviceCapabilities
 public:
     ZaxeDeviceCapabilities(NetworkMachine* _nm);
 
-    bool hasRemoteUpdate();
-    bool canToggleLeds();
-    bool hasStl();
-    bool hasThumbnails();
+    bool hasRemoteUpdate() const;
+    bool canToggleLeds() const;
+    bool hasStl() const;
+    bool hasThumbnails() const;
+    bool hasCam() const;
+    bool hasSnapshot() const;
+    bool canUnloadFilament() const;
 
 private:
     NetworkMachine* nm;

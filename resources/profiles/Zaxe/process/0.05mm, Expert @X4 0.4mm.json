@@ -1,0 +1,11 @@
+{
+  "type": "process",
+  "name": "0.05mm, Expert @X4 0.4mm",
+  "from": "system",
+  "instantiation": "true",
+  "inherits": "zaxe_process_X4_0.4_nozzle_common",
+  "compatible_printers": [
+    "Zaxe X4 - 0.4mm nozzle"
+  ],
+  "layer_height": "0.05"
+}

@@ -1,0 +1,11 @@
+{
+  "type": "filament",
+  "name": "Generic_filament_petg",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "fdm_filament_petg",
+  "filament_id": "GFA10",
+  "filament_notes": [
+    "zaxe_petg"
+  ]
+}

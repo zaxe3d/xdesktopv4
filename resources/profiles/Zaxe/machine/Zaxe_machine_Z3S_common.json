@@ -5,55 +5,55 @@
   "instantiation": "false",
   "inherits": "Zaxe_machine_Z3_family_common",
   "machine_max_speed_x": [
-    "500",
-    "500"
+    "300",
+    "300"
   ],
   "machine_max_speed_y": [
-    "500",
-    "500"
+    "300",
+    "300"
   ],
   "machine_max_speed_z": [
     "35",
     "35"
   ],
   "machine_max_speed_e": [
-    "100",
-    "100"
+    "300",
+    "300"
   ],
   "machine_max_acceleration_x": [
-    "15000",
-    "15000"
+    "6500",
+    "6500"
   ],
   "machine_max_acceleration_y": [
-    "15000",
-    "15000"
+    "6500",
+    "5000"
   ],
   "machine_max_acceleration_z": [
-    "5000",
-    "5000"
+    "6500",
+    "6500"
   ],
   "machine_max_acceleration_e": [
-    "5000",
-    "5000"
+    "6500",
+    "6500"
   ],
   "machine_max_acceleration_extruding": [
-    "15000",
-    "15000"
+    "6500",
+    "6500"
   ],
   "machine_max_acceleration_retracting": [
-    "5000",
-    "5000"
+    "1500",
+    "1500"
   ],
   "machine_max_jerk_x": [
-    "8.5",
-    "8.5"
+    "8",
+    "8"
   ],
   "machine_max_jerk_y": [
-    "8.5",
-    "8.5"
+    "8",
+    "8"
   ],
   "machine_max_jerk_z": [
-    "3",
+    "0.2",
     "3"
   ],
   "machine_max_jerk_e": [
@@ -61,7 +61,7 @@
     "2.5"
   ],
   "retraction_length": [
-    "0.2"
+    "0.8"
   ],
   "retraction_speed": [
     "35"

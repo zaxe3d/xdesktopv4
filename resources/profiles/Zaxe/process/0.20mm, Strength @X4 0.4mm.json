@@ -1,0 +1,17 @@
+{
+  "type": "process",
+  "name": "0.20mm, Strength @X4 0.4mm",
+  "from": "system",
+  "instantiation": "true",
+  "inherits": "zaxe_process_X4_0.4_nozzle_common",
+  "compatible_printers": [
+    "Zaxe X4 - 0.4mm nozzle"
+  ],
+  "wall_loops": "5",
+  "sparse_infill_density": "45",
+  "outer_wall_speed": "150",
+  "sparse_infill_pattern": "gyroid",
+  "top_shell_layers": "6",
+  "bottom_shell_layers": "5",
+  "layer_height": "0.2"
+}

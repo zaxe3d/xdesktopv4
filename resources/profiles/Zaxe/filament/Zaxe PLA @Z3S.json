@@ -43,24 +43,24 @@
         "1"
     ],
     "pressure_advance": [
-        "0.038"
+        "0.036"
     ],
     "filament_flow_ratio": [
         "0.95"
     ],
     "filament_max_volumetric_speed": [
-        "16"
+        "12"
     ],
     "nozzle_temperature": [
-        "225"
+        "215"
     ],
     "nozzle_temperature_initial_layer": [
-        "225"
+        "215"
     ],
     "slow_down_layer_time": [
-        "5"
+        "10"
     ],
     "slow_down_min_speed": [
-        "30"
+        "10"
     ]
 }
