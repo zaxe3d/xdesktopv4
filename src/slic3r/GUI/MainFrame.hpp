@@ -182,11 +182,6 @@ class MainFrame : public DPIFrame
 
     ESettingsLayout m_layout{ ESettingsLayout::Unknown };
 
-    enum SliceSelectType
-    {
-        eSliceAll = 0,
-        eSlicePlate = 1,
-    };
 
     //jump to editor under preview only mode
     bool preview_only_to_editor = false;
@@ -201,18 +196,13 @@ protected:
 
 public:
 
-    //BBS GUI refactor
-    enum PrintSelectType
+    enum ModeSelectType
     {
-        ePrintAll = 0,
-        ePrintPlate = 1,
-        eExportSlicedFile = 2,
-        eExportGcode = 3,
-        eSendGcode = 4,
-        eSendToPrinter = 5,
-        eSendToPrinterAll = 6,
-        eUploadGcode = 7,
-        eExportAllSlicedFile = 8
+        eSliceAll = 0,
+        eSlicePlate = 1,
+        ePrintAll = 2,
+        ePrintPlate = 3,
+        eExportGcode = 4
     };
 
     MainFrame();
@@ -320,7 +310,7 @@ public:
     void        select_view(const std::string& direction);
     // Propagate changed configuration from the Tab to the Plater and save changes to the AppConfig
     void        on_config_changed(DynamicPrintConfig* cfg) const ;
-    void        set_print_button_to_default(PrintSelectType select_type);
+    void        set_print_button_to_default(ModeSelectType select_type);
 
     bool can_save() const;
     bool can_save_as() const;
@@ -346,6 +336,8 @@ public:
 
     //SoftFever
     void show_device(bool bBBLPrinter);
+
+    int get_last_slice_mode() { return m_last_slice_mode; }
 
     PA_Calibration_Dlg* m_pa_calib_dlg{ nullptr };
     Temp_Calibration_Dlg* m_temp_calib_dlg{ nullptr };
@@ -379,17 +371,14 @@ public:
     wxWindow*             m_plater_page{ nullptr };
     PrintHostQueueDialog* m_printhost_queue_dlg;
 
-    
-    mutable int m_print_select{ ePrintAll };
-    mutable int m_slice_select{ eSliceAll };
-    int m_last_slice{ eSlicePlate };
+    bool m_in_slicing_mode{true};
+    mutable int m_print_select{ ePrintPlate };
+    mutable int m_slice_select{ eSlicePlate };
+    int m_last_slice_mode{ eSlicePlate };
     // Button* m_publish_btn{ nullptr };
-    Button* m_slice_btn{ nullptr };
-    Button* m_slice_option_btn{ nullptr };
-    Button* m_print_btn{ nullptr };
-    Button* m_print_option_btn{ nullptr };
+    Button* m_mode_btn{ nullptr };
+    Button* m_mode_option_btn{ nullptr };
     StaticBox* m_btn1{ nullptr };
-    StaticBox* m_btn2{ nullptr };
     wxColor blue400{"#36BFFA"};
     wxColor blue500{"#009ADE"};
     wxColor gray300{"#D0D5DD"};
