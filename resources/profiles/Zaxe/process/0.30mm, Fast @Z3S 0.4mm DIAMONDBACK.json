@@ -3,8 +3,9 @@
   "name": "0.30mm, Fast @Z3S 0.4mm DIAMONDBACK",
   "from": "system",
   "instantiation": "true",
-  "inherits": "fdm_process_zaxe_common",
+  "inherits": "zaxe_process_Z3S_0.4_nozzle_common",
   "compatible_printers": [
     "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle"
-  ]
+  ],
+  "layer_height":"0.30"
 }

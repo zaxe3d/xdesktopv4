@@ -255,12 +255,12 @@ void BackgroundSlicingProcess::process_fff()
             auto        model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
             std::string model_file{};
             int         plate_idx = m_fff_print->get_plate_index();
-            if (is_there(model, {"Z2", "Z3"})) // export stl if model is Z2 or Z3.
+            if (is_there(model, {"Z2", "Z3", "Z4", "X4"})) // export stl if model is Z2 or Z3.
             {
                 GUI::wxGetApp().mainframe->m_plater->export_stl(false, false, false, true);
             }
 
-            if (is_there(model, {"Z1", "Z2", "Z3"})) {
+            if (is_there(model, {"Z1", "Z2", "Z3", "Z4", "X4"})) {
                 GUI::wxGetApp().plater()->set_thumbnails_list_by_plate_index(
                     m_fff_print->get_plate_index(),
                     this->render_thumbnails(

@@ -1087,7 +1087,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         auto split_nozzle = [](const std::string& nozzle_str) -> std::pair<std::string, std::string> {
             size_t pos = nozzle_str.find_last_of(' ');
             if (pos == std::string::npos) {
-                return {nozzle_str, ""};
+                return {"", nozzle_str};
             }
             auto model = nozzle_str.substr(0, pos);
             auto size  = nozzle_str.substr(pos + 1);
@@ -1099,9 +1099,14 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             auto _nm                         = static_cast<NetworkMachine*>(user_data);
             auto [nozzle_model, nozzle_size] = split_nozzle(_nm->attr->nozzle);
 
-            std::string printer = (boost::format("Zaxe %1% - %2%mm %3% nozzle") % boost::to_upper_copy(_nm->attr->deviceModel) %
-                                   nozzle_size % nozzle_model)
-                                      .str();
+            std::string printer{};
+            if (nozzle_model.empty()) {
+                printer = (boost::format("Zaxe %1% - %2%mm nozzle") % boost::to_upper_copy(_nm->attr->deviceModel) % nozzle_size).str();
+            } else {
+                printer = (boost::format("Zaxe %1% - %2%mm %3% nozzle") % boost::to_upper_copy(_nm->attr->deviceModel) % nozzle_size %
+                           nozzle_model)
+                              .str();
+            }
 
             bool hide_preset_details = true;
             const auto& printers = p->combo_printer->GetValues();

@@ -1,0 +1,48 @@
+{
+    "type": "machine",
+    "name": "Zaxe_machine_X4_family_common",
+    "inherits": "fdm_machine_common",
+    "from": "system",
+    "instantiation": "false",
+    "zaxe_bed_leveling": "1",
+    "nozzle_diameter": [
+        "0.4"
+    ],
+    "printer_variant": "0.4",
+    "auxiliary_fan": "1",
+    "bed_exclude_area": [],
+    "default_filament_profile": [
+        "Zaxe PLA @X4"
+    ],
+    "best_object_pos": "0.5x0.5",
+    "default_print_profile": "0.15mm, Recommended @X4 0.4mm",
+    "extruder_colour": [
+        "#018001"
+    ],
+    "extruder_clearance_height_to_lid": "90",
+    "nozzle_volume": "107",
+    "printer_structure": "corexy",
+    "extruder_clearance_max_radius": "73",
+    "extruder_clearance_radius": "73",
+    "head_wrap_detect_zone": [
+        "156x152",
+        "180x152",
+        "180x180",
+        "156x180"
+    ],
+    "printable_area": [
+        "0x0",
+        "240x0",
+        "240x240",
+        "0x240"
+    ],
+    "printable_height": "260",
+    "machine_load_filament_time": "28",
+    "machine_unload_filament_time": "34",
+    "nozzle_type": "brass",
+    "scan_first_layer": "0",
+    "upward_compatible_machine": [],
+    "single_extruder_multi_material": "1",
+    "machine_start_gcode": "G28\nG29\nM83\nG1 E3 F150\nG90\nG1 Z5 F500\nG1 X20 Y20 F10000\nG1 Z0.4 F500\nG91\nM83\nG1 X80 E15 F500\nG90\nM82\nG92 E0\nM221",
+    "machine_end_gcode": "G28 X0"
+}

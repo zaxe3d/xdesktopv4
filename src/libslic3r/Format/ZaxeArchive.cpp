@@ -186,7 +186,7 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     }
 
     boost::filesystem::path temp_path(temp_gcode_output_path);
-    if (zipper && !model_path.empty() && is_there(dM, {"Z2", "Z3"})) {
+    if (zipper && !model_path.empty() && is_there(dM, {"Z2", "Z3", "Z4", "X4"})) {
         std::vector<char>       bytes;
         std::ifstream::pos_type file_size = read_binary_into_buffer(model_path.c_str(), bytes);
         auto                    stl_name  = boost::str(boost::format("model_%d.stl") % plate_idx);

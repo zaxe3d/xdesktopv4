@@ -1,7 +1,7 @@
 {
   "type": "machine",
   "name": "Zaxe Z3S - 0.6mm Revo HF nozzle",
-  "inherits": "Zaxe Z3S - 0.4mm Revo HF nozzle",
+  "inherits": "Zaxe_machine_Z3S_common",
   "from": "system",
   "setting_id": "GM023",
   "instantiation": "true",
@@ -15,7 +15,7 @@
   ],
   "default_print_profile": "0.30mm, Recommended @Z3S 0.6mm",
   "max_layer_height": [
-      "0.42"
+      "0.45"
   ],
   "min_layer_height": [
       "0.12"
