@@ -1,11 +1,12 @@
 #include "ZaxeDevice.hpp"
 
 #include "libslic3r/Utils.hpp"
+#include "libslic3r/ZaxeConfigHelper.hpp"
+
 #include "MsgDialog.hpp"
 #include "Plater.hpp"
 #include "GUI_App.hpp"
 #include "NotificationManager.hpp"
-#include "libslic3r/Format/ZaxeArchive.hpp"
 
 namespace Slic3r::GUI {
 const wxString gray100{"#F2F4F7"};
@@ -255,7 +256,8 @@ wxSizer* ZaxeDevice::createStateInfo()
 
 wxSizer* ZaxeDevice::createPrintButton()
 {
-    print_btn = new Button(this, _L("Print single"));
+    print_btn_mode = PrintBtnMode::Prepare;
+    print_btn      = new Button(this, _L("Prepare"));
     print_btn->SetPaddingSize(wxSize(8, 5));
     print_btn->SetBackgroundColor(*wxWHITE);
     auto color = StateColor(std::pair<wxColour, int>(gray300, StateColor::Disabled), std::pair<wxColour, int>(blue500, StateColor::Normal));
@@ -263,29 +265,27 @@ wxSizer* ZaxeDevice::createPrintButton()
     print_btn->SetTextColor(color);
     wxGetApp().UpdateDarkUI(print_btn);
 
-    print_mode = new SwitchButton(this);
-    print_mode->SetMaxSize({em_unit(this) * 12, -1});
-    print_mode->SetLabels(_L("S"), _L("A"));
-    wxGetApp().UpdateDarkUI(print_mode);
-
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(print_btn, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
-    sizer->Add(print_mode, 0, wxALIGN_CENTER | wxALL, FromDIP(1));
 
     print_btn->Bind(wxEVT_BUTTON, [this](auto& evt) {
+        BOOST_LOG_TRIVIAL(info) << "Print button pressed on " << nm->name;
         print_btn->Enable(false);
-        BOOST_LOG_TRIVIAL(info) << "Print now pressed on " << nm->name;
-        print();
-        print_btn->Enable(true);
-    });
 
-    print_mode->Bind(wxEVT_TOGGLEBUTTON, [&](auto& evt) {
-        bool print_all = print_mode->GetValue();
-        print_btn->SetLabel(print_all ? _L("Print all") : _L("Print single"));
-        print_btn->Enable(print_all ? print_enable_for_all : print_enable_for_current_plate);
-        Layout();
-        Refresh();
-        evt.Skip();
+        if (print_btn_mode == PrintBtnMode::Prepare) {
+            evt.SetClientData(nm);
+            wxPostEvent(GetParent(), evt);
+        } else {
+            auto net_manager = dynamic_cast<NetworkMachineManager*>(GetParent()->GetParent());
+            if (net_manager) {
+                auto archive = net_manager->get_archive();
+                if (archive) {
+                    print(archive);
+                }
+            }
+        }
+
+        print_btn->Enable(true);
     });
 
     return sizer;
@@ -496,7 +496,6 @@ void ZaxeDevice::updatePrintButton()
 {
     bool show = !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError;
     print_btn->Show(show);
-    print_mode->Show(show);
 }
 
 void ZaxeDevice::updateStatusText()
@@ -624,13 +623,49 @@ void ZaxeDevice::onAvatarReady()
     }
 }
 
-void ZaxeDevice::enablePrintButton(bool enable_for_all, bool enable_for_current_plate)
+void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<ZaxeArchive> archive)
 {
-    bool enable = print_mode->GetValue() ? enable_for_all : enable_for_current_plate;
-    print_btn->Enable(enable);
+    if (!print_enable) {
+        print_btn_mode = PrintBtnMode::Prepare;
+    } else {
+        std::vector<string> sPV;
+        split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
+        string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
+        string dM = boost::to_upper_copy(nm->attr->deviceModel);
+        auto   s  = pN.find(dM);
+        boost::replace_all(dM, "PLUS", "+");
+        trim(pN);
 
-    print_enable_for_current_plate = enable_for_current_plate;
-    print_enable_for_all           = enable_for_all;
+        std::string sliced_info_model{};
+        std::string sliced_info_nozzle{};
+        std::string sliced_info_material{};
+        if (archive) {
+            sliced_info_model    = archive->get_info("model");
+            sliced_info_nozzle   = archive->get_info("nozzle_diameter");
+            sliced_info_material = archive->get_info("material");
+        } else {
+            auto& cfg            = wxGetApp().plater()->get_partplate_list().get_curr_plate()->fff_print()->full_print_config();
+            sliced_info_model    = ZaxeConfigHelper::get_printer_model(cfg).first;
+            sliced_info_nozzle   = ZaxeConfigHelper::get_nozzle(cfg);
+            sliced_info_material = ZaxeConfigHelper::get_material(cfg);
+        }
+
+        std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
+        std::string model_nozzle_arch = sliced_info_model + " " + sliced_info_nozzle;
+
+        if ((s == std::string::npos || pN.length() != dM.length() + s) ||
+            (!nm->attr->isLite && nm->states->filamentPresent && nm->attr->material != "custom" &&
+             nm->attr->material.compare(sliced_info_material) != 0) ||
+            (!nm->attr->isLite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch))) {
+            print_btn_mode = PrintBtnMode::Prepare;
+        } else {
+            print_btn_mode = PrintBtnMode::Print;
+        }
+    }
+
+    print_btn->SetLabel(print_btn_mode == PrintBtnMode::Prepare ? _L("Prepare") : L("Print now"));
+    Layout();
+    Refresh();
 }
 
 void ZaxeDevice::onPrintDenied()
@@ -721,29 +756,9 @@ bool ZaxeDevice::has(const wxString& search_text)
            model_btn->GetLabel().Lower().Find(txt) != wxNOT_FOUND || version->GetLabelText().Lower().Find(txt) != wxNOT_FOUND;
 }
 
-bool ZaxeDevice::print()
+bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
 {
-    ZaxeArchive zaxe_archive(wxStandardPaths::Get().GetTempDir().utf8_str().data());
-
-    if (GUI::wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
-        auto model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
-
-        auto& partplate_list = wxGetApp().plater()->get_partplate_list();
-        for (int i = 0; i < partplate_list.get_plate_count(); i++) {
-            if (!print_mode->GetValue() && partplate_list.get_curr_plate_index() != i) {
-                continue;
-            }
-            auto plate     = partplate_list.get_plate(i);
-            auto fff_print = plate->fff_print();
-
-            auto thumnails  = wxGetApp().plater()->get_thumbnails_list_by_plate_index(i);
-            auto model_file = wxGetApp().plater()->get_model_path_by_plate_index(i);
-            zaxe_archive.append(thumnails, *fff_print, plate->get_tmp_gcode_path(), model_file);
-        }
-        zaxe_archive.prepare_file();
-    }
-
-    vector<string> sPV;
+    std::vector<string> sPV;
     split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
     string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
     string dM = boost::to_upper_copy(nm->attr->deviceModel);
@@ -752,7 +767,7 @@ bool ZaxeDevice::print()
     trim(pN);
 
     std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
-    std::string model_nozzle_arch = zaxe_archive.get_info("model") + " " + zaxe_archive.get_info("nozzle_diameter");
+    std::string model_nozzle_arch = archive->get_info("model") + " " + archive->get_info("nozzle_diameter");
 
     if (is_there(nm->attr->deviceModel, {"x3"}) && !nm->states->usbPresent) {
         wxMessageBox(_L("Please insert a usb stick before start printing."), _L("USB stick not found"), wxICON_ERROR);
@@ -767,9 +782,9 @@ bool ZaxeDevice::print()
     }
 
     if (!nm->attr->isLite && nm->states->filamentPresent && nm->attr->material != "custom" &&
-        nm->attr->material.compare(zaxe_archive.get_info("material")) != 0) {
+        nm->attr->material.compare(archive->get_info("material")) != 0) {
         BOOST_LOG_TRIVIAL(warning) << "Wrong material type, filamentPresent: " << nm->states->filamentPresent
-                                   << " deviceMaterial: " << nm->attr->material << " slicerMaterial: " << zaxe_archive.get_info("material");
+                                   << " deviceMaterial: " << nm->attr->material << " slicerMaterial: " << archive->get_info("material");
         wxMessageBox(_L("Materials don't match with this device. Please "
                         "reslice with the correct material."),
                      _L("Wrong material type"), wxICON_ERROR);
@@ -800,12 +815,12 @@ bool ZaxeDevice::print()
             return false;
     }
 
-    std::thread t([&, zaxe_code_path = zaxe_archive.get_path()]() {
+    std::thread t([&, archive_path = archive->get_path()]() {
         if (nm->attr->isLite) {
             this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
                              translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
         } else {
-            this->nm->upload(zaxe_code_path.c_str());
+            this->nm->upload(archive_path.c_str());
         }
     });
     t.detach(); // crusial. otherwise blocks main thread.

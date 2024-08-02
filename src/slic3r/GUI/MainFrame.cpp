@@ -548,18 +548,21 @@ DPIFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, BORDERLESS_FRAME_
 #endif
         if (evt.CmdDown() && evt.GetKeyCode() == 'R') { if (m_slice_enable) { wxGetApp().plater()->update(true, true); wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SLICE_PLATE)); this->m_tabpanel->SetSelection(tpPreview); } return; }
         if (evt.CmdDown() && evt.ShiftDown() && evt.GetKeyCode() == 'G') {
-            m_plater->apply_background_progress();
-            m_print_enable = get_enable_print_status();
-            m_print_btn->Enable(m_print_enable);
-            update_btn2(m_print_enable);
-            if (m_print_enable) {
-                if (wxGetApp().preset_bundle->use_bbl_network())
-                    wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_PLATE));
-                else
-                    wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SEND_GCODE));
+            if(!m_in_slicing_mode) {
+                m_plater->apply_background_progress();
+                m_print_enable = get_enable_print_status();
+                m_mode_btn->Enable(m_print_enable);
+                wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+                update_btn1(m_print_enable);
+                if (m_print_enable) {
+                    if (wxGetApp().preset_bundle->use_bbl_network())
+                        wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_PLATE));
+                    else
+                        wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SEND_GCODE));
+                }
+                evt.Skip();
+                return;
             }
-            evt.Skip();
-            return;
         }
         else if (evt.CmdDown() && evt.GetKeyCode() == 'G') { if (can_export_gcode()) { wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_EXPORT_SLICED_FILE)); } evt.Skip(); return; }
         if (evt.CmdDown() && evt.GetKeyCode() == 'J') { m_printhost_queue_dlg->Show(); return; }    
@@ -919,19 +922,15 @@ void MainFrame::show_option(bool show)
 {
     if (!this) { return; }
     if (!show) {
-        if (m_slice_btn->IsShown()) {
-            m_slice_btn->Hide();
-            m_print_btn->Hide();
-            m_slice_option_btn->Hide();
-            m_print_option_btn->Hide();
+        if (m_mode_btn->IsShown()) {
+            m_mode_btn->Hide();
+            m_mode_option_btn->Hide();
             Layout();
         }
     } else {
-        if (!m_slice_btn->IsShown()) {
-            m_slice_btn->Show();
-            m_print_btn->Show();
-            m_slice_option_btn->Show();
-            m_print_option_btn->Show();
+        if (!m_mode_btn->IsShown()) {
+            m_mode_btn->Show();
+            m_mode_option_btn->Show();
             Layout();
         }
     }
@@ -1504,34 +1503,15 @@ void MainFrame::update_btn1(bool enable)
     auto client_rect = m_btn1->GetClientRect();
     bool is_hovered  = client_rect.Contains(client_pos);
 
-    m_slice_btn->SetBackgroundColor(enable ? is_hovered ? blue400 : blue500 : gray300);
-    m_slice_btn->SetBackgroundColour(enable ? is_hovered ? blue400 : blue500 : gray300);
-    m_slice_btn->SetTextColor(*wxWHITE);
-    m_slice_option_btn->SetBackgroundColor(enable ? is_hovered ? blue400 : blue500 : gray300);
-    m_slice_option_btn->SetBackgroundColour(enable ? is_hovered ? blue400 : blue500 : gray300);
+    m_mode_btn->SetBackgroundColor(enable ? is_hovered ? blue400 : blue500 : gray300);
+    m_mode_btn->SetBackgroundColour(enable ? is_hovered ? blue400 : blue500 : gray300);
+    m_mode_btn->SetTextColor(*wxWHITE);
+    m_mode_option_btn->SetBackgroundColor(enable ? is_hovered ? blue400 : blue500 : gray300);
+    m_mode_option_btn->SetBackgroundColour(enable ? is_hovered ? blue400 : blue500 : gray300);
 
     Refresh();
 }
 
-void MainFrame::update_btn2(bool enable)
-{
-    StateColor enabled_color(std::pair<wxColour, int>(blue400, StateColor::Hovered), std::pair<wxColour, int>(blue500, StateColor::Normal));
-
-    StateColor disabled_color(std::pair<wxColour, int>(gray300, StateColor::Hovered),
-                               std::pair<wxColour, int>(gray300, StateColor::Normal));
-
-    m_btn2->SetBackgroundColor(*wxWHITE);
-    m_btn2->SetBackgroundColour(m_btn2->GetParent()->GetBackgroundColour());
-    m_btn2->SetBorderColor(enable ? enabled_color : disabled_color);
-
-    m_print_btn->SetBackgroundColor(*wxWHITE);
-    m_print_btn->SetBackgroundColour(*wxWHITE);
-    m_print_btn->SetTextColor(enable ? blue500 : gray300);
-    m_print_option_btn->SetBackgroundColor(*wxWHITE);
-    m_print_option_btn->SetBackgroundColour(*wxWHITE);
-
-    Refresh();
-}
 
 wxBoxSizer* MainFrame::create_side_tools()
 {
@@ -1562,60 +1542,41 @@ wxBoxSizer* MainFrame::create_side_tools()
 
     m_slice_select = eSlicePlate;
     m_print_select = ePrintPlate;
+    m_in_slicing_mode = true;
 
     // m_publish_btn = new Button(this, _L("Upload"), "bar_publish", 0, FromDIP(16));
-    m_slice_btn = new Button(this, _L("Slice plate"), "", wxBORDER_NONE);
-    m_slice_option_btn = new Button(this, "", "zaxe_square_arrow_down", wxBORDER_NONE, FromDIP(24));
-    m_print_btn = new Button(this, _L("Print plate"), "", wxBORDER_NONE);
-    m_print_option_btn = new Button(this, "", "zaxe_square_arrow_down_blue", wxBORDER_NONE, FromDIP(24));
+    m_mode_btn = new Button(this, _L("Slice plate"), "", wxBORDER_NONE);
+    m_mode_option_btn = new Button(this, "", "zaxe_square_arrow_down", wxBORDER_NONE, FromDIP(24));
 
     // m_publish_btn->Hide();
-    m_slice_option_btn->Enable();
-    m_print_option_btn->Enable();
+    m_mode_option_btn->Enable();
 
-    m_btn1 = create_multi_btn(m_slice_btn, m_slice_option_btn);
-    m_btn2 = create_multi_btn(m_print_btn, m_print_option_btn);
+    m_btn1 = create_multi_btn(m_mode_btn, m_mode_option_btn);
 
     m_btn1->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {
-        m_slice_btn->SetBackgroundColor(m_slice_enable ? blue400 : gray300);
-        m_slice_btn->SetBackgroundColour(m_slice_enable ? blue400 : gray300);
-        m_slice_option_btn->SetBackgroundColor(m_slice_enable ? blue400 : gray300);
-        m_slice_option_btn->SetBackgroundColour(m_slice_enable ? blue400 : gray300);
+        bool is_enabled = m_in_slicing_mode ? m_slice_enable : m_print_enable;
+        m_mode_btn->SetBackgroundColor(is_enabled ? blue400 : gray300);
+        m_mode_btn->SetBackgroundColour(is_enabled ? blue400 : gray300);
+        m_mode_option_btn->SetBackgroundColor(is_enabled ? blue400 : gray300);
+        m_mode_option_btn->SetBackgroundColour(is_enabled ? blue400 : gray300);
         Refresh();
         e.Skip();
     });
 
     m_btn1->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {
-        m_slice_btn->SetBackgroundColor(m_slice_enable ? blue500 : gray300);
-        m_slice_btn->SetBackgroundColour(m_slice_enable ? blue500 : gray300);
-        m_slice_option_btn->SetBackgroundColor(m_slice_enable ? blue500 : gray300);
-        m_slice_option_btn->SetBackgroundColour(m_slice_enable ? blue500 : gray300);
-        Refresh();
-        e.Skip();
-    });
-
-     m_btn2->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {
-        m_print_btn->SetTextColor(m_print_enable ? blue400 : gray300);
-        Refresh();
-        e.Skip();
-    });
-
-    m_btn2->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {
-        m_print_btn->SetTextColor(m_print_enable ? blue500 : gray300);
+        bool is_enabled = m_in_slicing_mode ? m_slice_enable : m_print_enable;
+        m_mode_btn->SetBackgroundColor(is_enabled ? blue500 : gray300);
+        m_mode_btn->SetBackgroundColour(is_enabled ? blue500 : gray300);
+        m_mode_option_btn->SetBackgroundColor(is_enabled ? blue500 : gray300);
+        m_mode_option_btn->SetBackgroundColour(is_enabled ? blue500 : gray300);
         Refresh();
         e.Skip();
     });
 
     update_btn1(true);
-    update_btn2(true);
 
     wxBoxSizer* sizer = new wxBoxSizer(wxVERTICAL);
-
     sizer->Add(m_btn1, 0, wxEXPAND | wxLEFT | wxRIGHT | wxALIGN_CENTER, FromDIP(30));
-    sizer->AddSpacer(FromDIP(10));
-    sizer->Add(m_btn2, 0, wxEXPAND | wxLEFT | wxRIGHT | wxALIGN_CENTER, FromDIP(30));
-    sizer->AddSpacer(FromDIP(10));
-
     sizer->Layout();
 
     // m_publish_btn->Bind(wxEVT_BUTTON, [this](auto& e) {
@@ -1633,58 +1594,42 @@ wxBoxSizer* MainFrame::create_side_tools()
     //     });
     // });
 
-    m_slice_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
+    m_mode_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
         {
-            m_last_slice = m_slice_select;
-            //this->m_plater->select_view_3D("Preview");
-            m_plater->exit_gizmo();
-            m_plater->update(true, true);
-            if (m_slice_select == eSliceAll)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SLICE_ALL));
-            else
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SLICE_PLATE));
+            if(m_in_slicing_mode){
+                m_last_slice = m_slice_select;
+                //this->m_plater->select_view_3D("Preview");
+                m_plater->exit_gizmo();
+                m_plater->update(true, true);
+                if (m_slice_select == eSliceAll)
+                    wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SLICE_ALL));
+                else
+                    wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SLICE_PLATE));
 
-            this->m_tabpanel->SetSelection(tpPreview);
-        });
-
-    m_print_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
-        {
-            //this->m_plater->select_view_3D("Preview");
-            if (m_print_select == ePrintAll || m_print_select == ePrintPlate || m_print_select == ePrintMultiMachine)
-            {
-                m_plater->apply_background_progress();
-                // check valid of print
-                m_print_enable = get_enable_print_status();
-                m_print_btn->Enable(m_print_enable);
-                update_btn2(m_print_enable);
-                if (m_print_enable) {
-                    if (m_print_select == ePrintAll)
-                        wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_ALL));
-                    if (m_print_select == ePrintPlate)
-                        wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_PLATE));
-                    if(m_print_select == ePrintMultiMachine)
-                         wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_MULTI_MACHINE));
+                this->m_tabpanel->SetSelection(tpPreview);
+            } else {
+                //this->m_plater->select_view_3D("Preview");
+                if (m_print_select == ePrintAll || m_print_select == ePrintPlate)
+                {
+                    m_plater->apply_background_progress();
+                    // check valid of print
+                    m_print_enable = get_enable_print_status();
+                    m_mode_btn->Enable(m_print_enable);
+                    wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+                    update_btn1(m_print_enable);
+                    if (m_print_enable) {
+                        if (m_print_select == ePrintAll)
+                            wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_ALL));
+                        if (m_print_select == ePrintPlate)
+                            wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_PLATE));
+                    }
                 }
-            }
-            else if (m_print_select == eExportGcode)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_EXPORT_GCODE));
-            else if (m_print_select == eSendGcode)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SEND_GCODE));
-            else if (m_print_select == eUploadGcode)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_UPLOAD_GCODE));
-            else if (m_print_select == eExportSlicedFile)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_EXPORT_SLICED_FILE));
-            else if (m_print_select == eExportAllSlicedFile)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_EXPORT_ALL_SLICED_FILE));
-            else if (m_print_select == eSendToPrinter)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SEND_TO_PRINTER));
-            else if (m_print_select == eSendToPrinterAll)
-                wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_SEND_TO_PRINTER_ALL));
-            /* else if (m_print_select == ePrintMultiMachine)
-                 wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_PRINT_MULTI_MACHINE));*/
+                else if (m_print_select == eExportGcode)
+                    wxPostEvent(m_plater, SimpleEvent(EVT_GLTOOLBAR_EXPORT_GCODE));
+                }
         });
 
-    m_slice_option_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
+    m_mode_option_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
         {
             SidePopup* p = new SidePopup(this, true);
             p->SetBackgroundColour(wxTransparentColour);
@@ -1692,204 +1637,79 @@ wxBoxSizer* MainFrame::create_side_tools()
             Button* slice_plate_btn = new Button(p, _L("Slice plate"), "", wxBORDER_NONE);
 
             slice_all_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                m_slice_btn->SetLabel(_L("Slice all"));
+                m_mode_btn->SetLabel(_L("Slice all"));
                 m_slice_select = eSliceAll;
+                m_in_slicing_mode = true;
                 m_slice_enable = get_enable_slice_status();
-                m_slice_btn->Enable(m_slice_enable);
+                m_mode_btn->Enable(m_slice_enable);
                 update_btn1(m_slice_enable);
                 this->Layout();
                 p->Dismiss();
                 });
 
             slice_plate_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                m_slice_btn->SetLabel(_L("Slice plate"));
+                m_mode_btn->SetLabel(_L("Slice plate"));
                 m_slice_select = eSlicePlate;
+                m_in_slicing_mode = true;
                 m_slice_enable = get_enable_slice_status();
-                m_slice_btn->Enable(m_slice_enable);
+                m_mode_btn->Enable(m_slice_enable);
                 update_btn1(m_slice_enable);
                 this->Layout();
                 p->Dismiss();
                 });
+
             p->append_button(slice_all_btn);
             p->append_button(slice_plate_btn);
-            p->Popup(m_btn1);
-        }
-    );
-
-    m_print_option_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
-        {
-            SidePopup* p = new SidePopup(this, false);
-            p->SetBackgroundColour(wxTransparentColour);
 
             if (wxGetApp().preset_bundle
                 && !wxGetApp().preset_bundle->is_bbl_vendor()) {
-                // ThirdParty Buttons
-                Button* export_gcode_btn = new Button(p, _L("Export G-code file"), "", wxBORDER_NONE);
+                Button* export_gcode_btn = new Button(p, _L("Export Zaxe code"), "", wxBORDER_NONE);
                 export_gcode_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Export G-code file"));
+                    m_mode_btn->SetLabel(_L("Export Zaxe code"));
                     m_print_select = eExportGcode;
+                    m_in_slicing_mode = false;
                     m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
+                    m_mode_btn->Enable(m_print_enable);
+                    wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+                    update_btn1(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
 
-                // upload and print
-                Button* send_gcode_btn = new Button(p, _L("Print"), "", wxBORDER_NONE);
-                send_gcode_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Print"));
-                    m_print_select = eSendGcode;
-                    m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
-                    this->Layout();
-                    p->Dismiss();
-                    });
-
-                p->append_button(send_gcode_btn);
-                p->append_button(export_gcode_btn);
-            }
-            else {
-                //XDesktop Buttons
-                Button* print_plate_btn = new Button(p, _L("Print plate"), "", wxBORDER_NONE);
-
-                Button* send_to_printer_btn = new Button(p, _L("Send"), "", wxBORDER_NONE);
-
-                Button* export_sliced_file_btn = new Button(p, _L("Export plate sliced file"), "", wxBORDER_NONE);
-
-                Button* export_all_sliced_file_btn = new Button(p, _L("Export all sliced file"), "", wxBORDER_NONE);
-
-                print_plate_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Print plate"));
+                Button* zaxe_print_btn = new Button(p, _L("Print"), "", wxBORDER_NONE);
+                zaxe_print_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
+                    m_mode_btn->SetLabel(_L("Print"));
                     m_print_select = ePrintPlate;
+                    m_in_slicing_mode = false;
                     m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
+                    m_mode_btn->Enable(m_print_enable);
+                    wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+                    update_btn1(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
 
-                Button* print_all_btn = new Button(p, _L("Print all"), "", wxBORDER_NONE);
-                print_all_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Print all"));
+                Button* zaxe_print_all_btn = new Button(p, _L("Print All"), "", wxBORDER_NONE);
+                zaxe_print_all_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
+                    m_mode_btn->SetLabel(_L("Print All"));
                     m_print_select = ePrintAll;
+                    m_in_slicing_mode = false;
                     m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
+                    m_mode_btn->Enable(m_print_enable);
+                    wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+                    update_btn1(m_print_enable);
                     this->Layout();
                     p->Dismiss();
                     });
 
-                send_to_printer_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Send"));
-                    m_print_select = eSendToPrinter;
-                    m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
-                    this->Layout();
-                    p->Dismiss();
-                    });
-
-                Button* send_to_printer_all_btn = new Button(p, _L("Send all"), "", wxBORDER_NONE);
-                send_to_printer_all_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Send all"));
-                    m_print_select = eSendToPrinterAll;
-                    m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
-                    this->Layout();
-                    p->Dismiss();
-                    });
-
-                export_sliced_file_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Export plate sliced file"));
-                    m_print_select = eExportSlicedFile;
-                    m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
-                    this->Layout();
-                    p->Dismiss();
-                    });
-
-                export_all_sliced_file_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Export all sliced file"));
-                    m_print_select = eExportAllSlicedFile;
-                    m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
-                    this->Layout();
-                    p->Dismiss();
-                    });
-
-                bool support_send = true;
-                bool support_print_all = true;
-
-                const auto preset_bundle = wxGetApp().preset_bundle;
-                if (preset_bundle) {
-                    if (preset_bundle->use_bbl_network()) {
-                        // BBL network support everything
-                    } else {
-                        support_send = false; // All 3rd print hosts do not have the send options
-
-                        auto cfg = preset_bundle->printers.get_edited_preset().config;
-                        const auto host_type = cfg.option<ConfigOptionEnum<PrintHostType>>("host_type")->value;
-
-                        // Only simply print support uploading all plates
-                        support_print_all = host_type == PrintHostType::htSimplyPrint;
-                    }
-                }
-
-                p->append_button(print_plate_btn);
-                if (support_print_all) {
-                    p->append_button(print_all_btn);
-                }
-                if (support_send) {
-                    p->append_button(send_to_printer_btn);
-                    p->append_button(send_to_printer_all_btn);
-                }
-                if (enable_multi_machine) {
-                    SideButton* print_multi_machine_btn = new SideButton(p, _L("Send to Multi-device"), "");
-                    print_multi_machine_btn->SetCornerRadius(0);
-                    print_multi_machine_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                        m_print_btn->SetLabel(_L("Send to Multi-device"));
-                        m_print_select = ePrintMultiMachine;
-                        m_print_enable = get_enable_print_status();
-                        m_print_btn->Enable(m_print_enable);
-                        this->Layout();
-                        p->Dismiss();
-                    });
-                    p->append_button(print_multi_machine_btn);
-                }
-                p->append_button(export_sliced_file_btn);
-                p->append_button(export_all_sliced_file_btn);
-                SideButton* export_gcode_btn = new SideButton(p, _L("Export G-code file"), "", wxBORDER_NONE);
-                export_gcode_btn->SetCornerRadius(0);
-                export_gcode_btn->Bind(wxEVT_BUTTON, [this, p](wxCommandEvent&) {
-                    m_print_btn->SetLabel(_L("Export G-code file"));
-                    m_print_select = eExportGcode;
-                    m_print_enable = get_enable_print_status();
-                    m_print_btn->Enable(m_print_enable);
-                    update_btn2(m_print_enable);
-                    this->Layout();
-                    p->Dismiss();
-                });
+                p->append_button(zaxe_print_btn);
+                p->append_button(zaxe_print_all_btn);
                 p->append_button(export_gcode_btn);
             }
 
-            p->Popup(m_btn2);
+            p->Popup(m_btn1);
         }
     );
-
-    /*
-    Button * aux_btn = new Button(this, _L("Auxiliary"));
-    aux_btn->SetBackgroundColour(0x3B4446);
-    aux_btn->Bind(wxEVT_BUTTON, [](auto e) {
-        wxGetApp().sidebar().show_auxiliary_dialog();
-    });
-    sizer->Add(aux_btn, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, 1 * em / 10);
-    */
-    //sizer->Add(FromDIP(19), 0, 0, 0, 0);
 
     return sizer;
 }
@@ -1970,6 +1790,7 @@ bool MainFrame::get_enable_print_status()
         }
         enable = enable && !is_all_plates;
     }
+    /*
     else if (m_print_select == eSendGcode)
     {
         if (!current_plate->is_slice_result_valid())
@@ -2024,6 +1845,7 @@ bool MainFrame::get_enable_print_status()
         }
         enable = enable && !is_all_plates;
     }
+    */
 
     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(": m_print_select %1%, enable= %2% ")%m_print_select %enable;
 
@@ -2056,22 +1878,14 @@ void MainFrame::update_slice_print_status(SlicePrintEventType event, bool can_sl
     }
 
     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(" m_slice_select %1%: can_slice= %2%, can_print %3%, enable_slice %4%, enable_print %5% ")%m_slice_select % can_slice %can_print %enable_slice %enable_print;
-    m_print_btn->Enable(enable_print);
-    m_slice_btn->Enable(enable_slice);
-    update_btn1(enable_slice);
-    update_btn2(enable_print);
+    m_mode_btn->Enable(m_in_slicing_mode ? enable_slice : enable_print);
+    update_btn1(m_in_slicing_mode ? enable_slice : enable_print);
     m_slice_enable = enable_slice;
     m_print_enable = enable_print;
 
     auto machine_manager = wxGetApp().plater()->sidebar().machine_manager();
     if (machine_manager) {
-        PartPlateList& part_plate_list = m_plater->get_partplate_list();
-        PartPlate*     current_plate   = part_plate_list.get_curr_plate();
-
-        bool _enable_print_all   = m_last_slice == eSliceAll && part_plate_list.is_all_slice_results_valid();
-        bool _enable_print_plate = current_plate->is_slice_result_valid();
-
-        machine_manager->enablePrintNowButton(_enable_print_all, _enable_print_plate);
+        machine_manager->enablePrintNowButton(m_print_enable);
     }
 }
 
@@ -2094,10 +1908,8 @@ void MainFrame::on_dpi_changed(const wxRect& suggested_rect)
 
     m_tabpanel->Rescale();
 
-    m_slice_btn->Rescale();
-    m_print_btn->Rescale();
-    m_slice_option_btn->Rescale();
-    m_print_option_btn->Rescale();
+    m_mode_btn->Rescale();
+    m_mode_option_btn->Rescale();
 
     // update Plater
     wxGetApp().plater()->msw_rescale();
@@ -3538,31 +3350,56 @@ void MainFrame::on_config_changed(DynamicPrintConfig* config) const
         m_plater->on_config_change(*config); // propagate config change events to the plater
 }
 
-void MainFrame::set_print_button_to_default(PrintSelectType select_type)
+void MainFrame::set_print_button_to_default(ModeSelectType select_type)
 {
-    if (select_type == PrintSelectType::ePrintPlate) {
-        m_print_btn->SetLabel(_L("Print plate"));
+     if (select_type == ModeSelectType::eSlicePlate) {
+        m_mode_btn->SetLabel(_L("Slice plate"));
+        m_slice_select = eSlicePlate;
+        m_in_slicing_mode = true;
+        if (m_slice_enable)
+            m_slice_enable = get_enable_slice_status();
+        m_mode_btn->Enable(m_slice_enable);
+        update_btn1(m_slice_enable);
+        this->Layout();
+    } else  if (select_type == ModeSelectType::eSliceAll) {
+        m_mode_btn->SetLabel(_L("Slice All"));
+        m_slice_select = eSliceAll;
+        m_in_slicing_mode = true;
+        if (m_slice_enable)
+            m_slice_enable = get_enable_slice_status();
+        m_mode_btn->Enable(m_slice_enable);
+        update_btn1(m_slice_enable);
+        this->Layout();
+    }
+    if (select_type == ModeSelectType::ePrintPlate) {
+        m_mode_btn->SetLabel(_L("Print plate"));
         m_print_select = ePrintPlate;
+        m_in_slicing_mode = false;
         if (m_print_enable)
             m_print_enable = get_enable_print_status();
-        m_print_btn->Enable(m_print_enable);
-        update_btn2(m_print_enable);
+        m_mode_btn->Enable(m_print_enable);
+        wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+        update_btn1(m_print_enable);
         this->Layout();
-    } else if (select_type == PrintSelectType::eSendGcode) {
-        m_print_btn->SetLabel(_L("Print"));
-        m_print_select = eSendGcode;
+    } else if (select_type == ModeSelectType::ePrintAll) {
+        m_mode_btn->SetLabel(_L("Print All"));
+        m_print_select = ePrintAll;
+        m_in_slicing_mode = false;
         if (m_print_enable)
-            m_print_enable = get_enable_print_status() && can_send_gcode();
-        m_print_btn->Enable(m_print_enable);
-        update_btn2(m_print_enable);
+            m_print_enable = get_enable_print_status();
+        m_mode_btn->Enable(m_print_enable);
+        wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+        update_btn1(m_print_enable);
         this->Layout();
-    } else if (select_type == PrintSelectType::eExportGcode) {
-        m_print_btn->SetLabel(_L("Export G-code file"));
+    } else if (select_type == ModeSelectType::eExportGcode) {
+        m_mode_btn->SetLabel(_L("Export Zaxe code"));
         m_print_select = eExportGcode;
+        m_in_slicing_mode = false;
         if (m_print_enable)
-            m_print_enable = get_enable_print_status() && can_send_gcode();
-        m_print_btn->Enable(m_print_enable);
-        update_btn2(m_print_enable);
+            m_print_enable = get_enable_print_status();
+        m_mode_btn->Enable(m_print_enable);
+        wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+        update_btn1(m_print_enable);
         this->Layout();
     } else {
         // unsupport

@@ -189,8 +189,15 @@ public:
     Search::OptionsSearcher&        get_searcher();
     std::string&                    get_search_line();
 
-    void                   show_carousel(bool show);
+    enum class PresetContentResizeMode { TOGGLE, HIDE, SHOW };
+    void on_printer_title_clicked(PresetContentResizeMode mode);
+    void on_filament_title_clicked(PresetContentResizeMode mode);
+    bool print_plate();
+    bool print_all();
+
+    void                   show_carousel(bool show, bool hide_preset_details = false);
     NetworkMachineManager* machine_manager();
+    void                   on_select_preset();
 
 private:
     struct priv;

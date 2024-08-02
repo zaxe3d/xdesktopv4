@@ -4,6 +4,7 @@
 #include "I18N.hpp"
 #include "libslic3r/Utils.hpp"
 #include "ZaxeDevice.hpp"
+#include "NotificationManager.hpp"
 
 namespace Slic3r::GUI {
 
@@ -98,7 +99,7 @@ wxPanel* NetworkMachineManager::createFilterArea()
     auto panel = new wxPanel(this);
     panel->SetBackgroundColour(*wxWHITE);
 
-    auto modify_button_color = [this](Button* b, bool is_active) {
+    auto modify_button_color = [](Button* b, bool is_active) {
         wxString active_fg         = "#FFFFFF";
         wxString inactive_fg       = "#98A2B3";
         wxString inactive_hover_fg = "#36BFFA";
@@ -226,20 +227,15 @@ wxPanel* NetworkMachineManager::createScrolledArea()
     return panel;
 }
 
-void NetworkMachineManager::enablePrintNowButton(bool enable_for_all, bool enable_for_current_plate)
+void NetworkMachineManager::enablePrintNowButton(bool enable)
 {
-    if (print_enable_for_all == enable_for_all && print_enable_for_current_plate == enable_for_current_plate) {
-        return;
-    }
-
     for (auto& [ip, dev] : device_map) {
         if (!dev)
             continue;
-        dev->enablePrintButton(enable_for_all, enable_for_current_plate);
+        dev->onPrintButtonStateChanged(enable, archive);
     }
 
-    print_enable_for_all           = enable_for_all;
-    print_enable_for_current_plate = enable_for_current_plate;
+    print_enable = enable;
 }
 
 void NetworkMachineManager::onBroadcastReceived(wxCommandEvent& event)
@@ -272,7 +268,7 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
 
     Freeze();
     auto zd = new ZaxeDevice(event.nm, scrolled_area);
-    zd->enablePrintButton(print_enable_for_all, print_enable_for_current_plate);
+    zd->onPrintButtonStateChanged(print_enable, archive);
     zd->onVersionCheck(fw_versions);
     device_map[event.nm->ip] = zd;
     applyFilters();
@@ -384,5 +380,75 @@ void NetworkMachineManager::applyFilters()
     scrolled_area->Layout();
     scrolled_area->FitInside();
     Layout();
+}
+
+bool NetworkMachineManager::prepare_archive(PrintMode mode)
+{
+    archive.reset();
+
+    if (GUI::wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
+        archive    = std::make_unique<ZaxeArchive>(wxStandardPaths::Get().GetTempDir().utf8_str().data());
+        auto model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
+
+        auto& partplate_list = wxGetApp().plater()->get_partplate_list();
+        for (int i = 0; i < partplate_list.get_plate_count(); i++) {
+            if (mode != PrintMode::AllPlates && partplate_list.get_curr_plate_index() != i) {
+                continue;
+            }
+            auto plate     = partplate_list.get_plate(i);
+            auto fff_print = plate->fff_print();
+
+            auto thumnails  = wxGetApp().plater()->get_thumbnails_list_by_plate_index(i);
+            auto model_file = wxGetApp().plater()->get_model_path_by_plate_index(i);
+            archive->append(thumnails, *fff_print, plate->get_tmp_gcode_path(), model_file);
+        }
+        archive->prepare_file();
+        return true;
+    }
+
+    return false;
+}
+
+bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
+{
+    auto create_error_notification = []() {
+        wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(NotificationType::CustomNotification, NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _u8L("Selected printer cannot be found in network, please select a printer from Zaxe Machine Carousel"));
+    };
+
+    if (!machine) {
+        create_error_notification();
+        return false;
+    }
+
+    auto it = device_map.find(machine->ip);
+    if (it == device_map.end()) {
+        create_error_notification();
+        return false;
+    }
+
+    if (prepare_archive(mode)) {
+        enablePrintNowButton(print_enable);
+        return it->second->print(archive);
+    }
+
+    enablePrintNowButton(print_enable);
+    return false;
+}
+
+std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive()
+{
+    if (!archive) {
+        auto mode = wxGetApp().mainframe->get_last_slice_mode() == MainFrame::ModeSelectType::eSlicePlate ? PrintMode::SinglePlate :
+                                                                                                            PrintMode::AllPlates;
+        if (prepare_archive(mode)) {
+            enablePrintNowButton(print_enable);
+        }
+    }
+
+    return archive;
 }
 } // namespace Slic3r::GUI
