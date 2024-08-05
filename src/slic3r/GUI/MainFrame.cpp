@@ -1764,31 +1764,22 @@ bool MainFrame::get_enable_print_status()
 {
     bool enable = true;
 
-    PartPlateList &part_plate_list = m_plater->get_partplate_list();
-    PartPlate *current_plate = part_plate_list.get_curr_plate();
-    bool is_all_plates = wxGetApp().plater()->get_preview_canvas3D()->is_all_plates_selected();
-    if (m_print_select == ePrintAll)
-    {
-        if (!part_plate_list.is_all_slice_results_ready_for_print())
-        {
+    PartPlateList& part_plate_list = m_plater->get_partplate_list();
+    PartPlate*     current_plate   = part_plate_list.get_curr_plate();
+    bool           is_all_plates   = wxGetApp().plater()->get_preview_canvas3D()->is_all_plates_selected();
+    if (m_print_select == ePrintAll) {
+        if (!part_plate_list.is_all_slice_results_ready_for_print()) {
             enable = false;
         }
-    }
-    else if (m_print_select == ePrintPlate)
-    {
-        if (!current_plate->is_slice_result_ready_for_print())
-        {
+    } else if (m_print_select == ePrintPlate) {
+        if (!current_plate->is_slice_result_ready_for_print()) {
             enable = false;
         }
         enable = enable && !is_all_plates;
-    }
-    else if (m_print_select == eExportGcode)
-    {
-        if (!current_plate->is_slice_result_valid())
-        {
+    } else if (m_print_select == eExportGcode) {
+        if (!current_plate->is_slice_result_valid() && !part_plate_list.is_all_slice_results_valid()) {
             enable = false;
         }
-        enable = enable && !is_all_plates;
     }
     /*
     else if (m_print_select == eSendGcode)
