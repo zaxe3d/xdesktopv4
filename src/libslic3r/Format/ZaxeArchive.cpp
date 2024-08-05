@@ -145,7 +145,6 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     PrintStatistics stats = print.print_statistics();
 
     j["name"]                 = print.output_filename();
-    j["version"]              = ZAXE_FILE_VERSION;
     j["plate_idx"]            = plate_idx;
     j["duration"]             = get_time_hms(stats.estimated_normal_print_time);
     j["raft"]                 = has_raft ? "raft" : (has_skirt ? "skirt" : "none");
@@ -206,6 +205,7 @@ void ZaxeArchive::prepare_file()
     }
 
     info["name"]             = boost::filesystem::path(zipper->get_filename()).stem().string();
+    info["version"]          = ZAXE_FILE_VERSION;
     info["slicer_version"]   = SLIC3R_VERSION;
     info["xdesktop_version"] = SoftFever_VERSION;
 
