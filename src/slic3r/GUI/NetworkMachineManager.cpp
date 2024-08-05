@@ -441,9 +441,12 @@ bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
 
 std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive()
 {
-    if (!archive) {
-        auto mode = wxGetApp().mainframe->get_last_slice_mode() == MainFrame::ModeSelectType::eSlicePlate ? PrintMode::SinglePlate :
-                                                                                                            PrintMode::AllPlates;
+    bool is_all_plates_selected = wxGetApp().plater()->get_preview_canvas3D()->is_all_plates_selected();
+    if (!archive || is_all_plates_selected) {
+        auto last_slice_mode = wxGetApp().mainframe->get_last_slice_mode();
+
+        auto mode = (is_all_plates_selected || last_slice_mode == MainFrame::ModeSelectType::eSliceAll) ? PrintMode::AllPlates :
+                                                                                                          PrintMode::SinglePlate;
         if (prepare_archive(mode)) {
             enablePrintNowButton(print_enable);
         }
