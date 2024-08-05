@@ -827,7 +827,7 @@ void BackgroundSlicingProcess::finalize_gcode()
 	try
 	{
 		string o_path = GUI::wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()
-			? "m_zaxe_archive.get_path()" // TODO zaxe
+			? GUI::wxGetApp().mainframe->m_plater->sidebar().machine_manager()->get_archive()->get_path()
 			: output_path;
 		copy_ret_val = copy_file(o_path, export_path, error_message, m_export_path_on_removable_media);
 		remove_post_processed_temp_file();
