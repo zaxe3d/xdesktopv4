@@ -11738,6 +11738,11 @@ void Plater::export_gcode(bool prefer_removable)
         return;
     }
     default_output_file = fs::path(Slic3r::fold_utf8_to_ascii(default_output_file.string()));
+
+    bool isZaxe = wxGetApp().preset_bundle->printers.is_selected_preset_zaxe();
+    if(isZaxe) {
+        default_output_file = sidebar().machine_manager()->get_archive()->get_path();
+    }
     AppConfig 				&appconfig 				 = *wxGetApp().app_config;
     RemovableDriveManager 	&removable_drive_manager = *wxGetApp().removable_drive_manager();
     // Get a last save path, either to removable media or to an internal media.
@@ -11749,8 +11754,6 @@ void Plater::export_gcode(bool prefer_removable)
             // Direct user to the last internal media.
             start_dir = appconfig.get_last_output_dir(default_output_file.parent_path().string(), false);
     }
-
-    const bool isZaxe = wxGetApp().preset_bundle->printers.is_selected_preset_zaxe();
 
     fs::path output_path;
     {
