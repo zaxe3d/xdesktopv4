@@ -113,8 +113,8 @@ void NetworkMachine::onWSRead(string message)
             states->heating        = states->ptreeStringtoBool(pt, "is_heating");
             states->paused         = states->ptreeStringtoBool(pt, "is_paused");
             states->hasError       = states->ptreeStringtoBool(pt, "is_error");
-            states->ledsSwithedOn  = states->ptreeStringtoBool(pt, "is_leds");
-            states->updatingFw       = states->ptreeStringtoBool(pt, "is_downloading");
+            states->ledsSwitchedOn = states->ptreeStringtoBool(pt, "is_leds");
+            states->updatingFw     = states->ptreeStringtoBool(pt, "is_downloading");
             states->filamentPresent= attr->firmwareVersion.GetMinor() >= 3 && attr->firmwareVersion.GetMinor() >= 5 // Z3 and FW>=3.5
                                          ? states->ptreeStringtoBool(pt, "is_filament_present") : true;
         }
