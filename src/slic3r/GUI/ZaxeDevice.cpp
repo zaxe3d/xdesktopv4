@@ -44,6 +44,11 @@ bool ZaxeDeviceCapabilities::hasSnapshot() const { return is_there(nm->attr->dev
 
 bool ZaxeDeviceCapabilities::canUnloadFilament() const { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3", "z4", "x4"}); }
 
+bool ZaxeDeviceCapabilities::canPrintMultiPlate() const
+{
+    return is_there(nm->attr->deviceModel, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 78);
+}
+
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
 {
@@ -287,7 +292,7 @@ wxSizer* ZaxeDevice::createPrintButton()
         } else {
             auto net_manager = dynamic_cast<NetworkMachineManager*>(GetParent()->GetParent());
             if (net_manager) {
-                auto archive = net_manager->get_archive();
+                auto archive = net_manager->get_archive(capabilities.canPrintMultiPlate());
                 if (archive) {
                     print(archive);
                 }
@@ -765,6 +770,11 @@ bool ZaxeDevice::has(const wxString& search_text)
 
 bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
 {
+    if (archive->support_multiplate() && !capabilities.canPrintMultiPlate()) {
+        wxMessageBox(_L("To support multi plate print, update your printer"), _L("Feature not supported"), wxICON_ERROR);
+        return false;
+    }
+
     std::vector<string> sPV;
     split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
     string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S

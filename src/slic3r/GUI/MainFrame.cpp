@@ -1777,7 +1777,9 @@ bool MainFrame::get_enable_print_status()
         }
         enable = enable && !is_all_plates;
     } else if (m_print_select == eExportGcode) {
-        if (!current_plate->is_slice_result_valid() && !part_plate_list.is_all_slice_results_valid()) {
+        if (m_last_slice_mode == eSlicePlate && !current_plate->is_slice_result_valid()) {
+            enable = false;
+        } else if (m_last_slice_mode == eSliceAll && !part_plate_list.is_all_slice_results_valid()) {
             enable = false;
         }
     }

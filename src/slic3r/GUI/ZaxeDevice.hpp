@@ -29,6 +29,7 @@ public:
     bool hasCam() const;
     bool hasSnapshot() const;
     bool canUnloadFilament() const;
+    bool canPrintMultiPlate() const;
 
 private:
     NetworkMachine* nm;

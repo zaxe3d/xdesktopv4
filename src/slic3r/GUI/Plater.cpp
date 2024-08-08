@@ -7243,6 +7243,7 @@ void Plater::priv::on_action_slice_plate(SimpleEvent&)
         q->reslice();
         q->select_view_3D("Preview");
 
+        main_frame->set_last_slice_mode(MainFrame::ModeSelectType::eSlicePlate);
         main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
     }
 }
@@ -7271,7 +7272,8 @@ void Plater::priv::on_action_slice_all(SimpleEvent&)
         //BBS: wish to select all plates stats item
         preview->get_canvas3d()->_update_select_plate_toolbar_stats_item(true);
 
-        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
+        main_frame->set_last_slice_mode(MainFrame::ModeSelectType::eSliceAll);
+        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintAll);
     }
 }
 
@@ -7403,6 +7405,9 @@ void Plater::priv::on_action_select_sliced_plate(wxCommandEvent &evt)
         BOOST_LOG_TRIVIAL(debug) << __FUNCTION__ << ":received select sliced plate event\n" ;
     }
     q->select_sliced_plate(evt.GetInt());
+
+    main_frame->set_last_slice_mode(MainFrame::ModeSelectType::eSlicePlate);
+    main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
 }
 
 void Plater::priv::on_action_print_all(SimpleEvent&)
@@ -11913,6 +11918,8 @@ void Plater::export_stl(bool extended, bool selection_only, bool multi_stls, boo
                 mesh.merge(mesh_to_export(*o, -1));
 			}
         }
+        mesh.translate(Vec3f{static_cast<float>(-p->bed.build_volume().bed_center()[0]),
+                             static_cast<float>(-p->bed.build_volume().bed_center()[1]), 0});
     }
     else if (selection_only) {
         if (selection.is_single_full_object()) {

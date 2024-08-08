@@ -356,7 +356,8 @@ public:
     //SoftFever
     void show_device(bool bBBLPrinter);
 
-    int get_last_slice_mode() { return m_last_slice_mode; }
+    int get_last_slice_mode() const { return m_last_slice_mode; }
+    void set_last_slice_mode(int mode) { m_last_slice_mode = mode; }
 
     PA_Calibration_Dlg* m_pa_calib_dlg{ nullptr };
     Temp_Calibration_Dlg* m_temp_calib_dlg{ nullptr };
