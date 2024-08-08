@@ -91,6 +91,7 @@ private:
     Button*           preheat_btn{nullptr};
     Button*           say_hi_btn{nullptr};
     Button*           unload_btn{nullptr};
+    Button*           camera_btn{nullptr};
     Button*           toggle_leds_btn{nullptr};
     Label*            material_val{nullptr};
     Label*            nozzle_val{nullptr};
@@ -137,5 +138,7 @@ private:
     void toggleDeviceNameWidgets();
 
     void confirm(std::function<void()> cb, const wxString& question = _L("Are you sure?"));
+
+    void switch_cam_on();
 };
 } // namespace Slic3r::GUI

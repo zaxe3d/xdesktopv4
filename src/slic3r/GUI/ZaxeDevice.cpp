@@ -205,28 +205,7 @@ void ZaxeDevice::createAvatar()
     avatar_rect->Layout();
 
     if (capabilities.hasCam()) {
-        avatar_rect->Bind(wxEVT_LEFT_DCLICK, [&](auto& e) {
-            BOOST_LOG_TRIVIAL(info) << "Clicked on avatar trying to open stream on: " << nm->name;
-            if (nm->attr->firmwareVersion.GetMinor() >= 4 ||
-                (nm->attr->firmwareVersion.GetMinor() >= 3 && nm->attr->firmwareVersion.GetMicro() >= 80)) {
-                wxFileName ffplay(wxStandardPaths::Get().GetExecutablePath());
-                wxString   curExecPath(ffplay.GetPath());
-
-                wxExecute(
-#ifdef _WIN32
-                    "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) +
-                        ": " + nm->name + "\" -x 720",
-                    wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE
-#else
-                    curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) + ": " + nm->name + "\" -x 720",
-                    wxEXEC_ASYNC
-#endif
-                );
-            } else {
-                wxMessageBox("Need device firmware version at least v3.3.80 to comply.", "Need firmware update for this feautre.",
-                             wxICON_INFORMATION);
-            }
-        });
+        avatar_rect->Bind(wxEVT_LEFT_DCLICK, [&](auto& e) { switch_cam_on(); });
     }
 }
 
@@ -350,12 +329,13 @@ wxSizer* ZaxeDevice::createIconButtons()
         return btn;
     };
 
-    pause_btn   = create_icon_btn("zaxe_pause", _L("Pause"), [&](const auto& evt) { confirm([&] { nm->pause(); }); });
-    resume_btn  = create_icon_btn("zaxe_resume", _L("Resume"), [&](const auto& evt) { confirm([&] { nm->resume(); }); });
-    stop_btn    = create_icon_btn("zaxe_stop", _L("Stop"), [&](const auto& evt) { confirm([&] { nm->cancel(); }); });
-    preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto& evt) { confirm([&] { nm->togglePreheat(); }); });
-    say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto& evt) { confirm([&] { nm->sayHi(); }); });
-    unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto& evt) { confirm([&] { nm->unloadFilament(); }); });
+    pause_btn   = create_icon_btn("zaxe_pause", _L("Pause"), [&](const auto&) { confirm([&] { nm->pause(); }); });
+    resume_btn  = create_icon_btn("zaxe_resume", _L("Resume"), [&](const auto&) { confirm([&] { nm->resume(); }); });
+    stop_btn    = create_icon_btn("zaxe_stop", _L("Stop"), [&](const auto&) { confirm([&] { nm->cancel(); }); });
+    preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto&) { confirm([&] { nm->togglePreheat(); }); });
+    say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto&) { confirm([&] { nm->sayHi(); }); });
+    unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto&) { confirm([&] { nm->unloadFilament(); }); });
+
     toggle_leds_btn = create_icon_btn(nm->states->ledsSwitchedOn ? "zaxe_lights_on" : "zaxe_lights_off", _L("Toggle Leds"),
                                       [&](const auto& evt) {
                                           if (nm->states->ledsSwitchedOn) {
@@ -367,6 +347,9 @@ wxSizer* ZaxeDevice::createIconButtons()
                                       });
     toggle_leds_btn->Show(capabilities.canToggleLeds());
 
+    camera_btn = create_icon_btn("zaxe_cam", _L("Camera"), [&](const auto&) { switch_cam_on(); });
+    camera_btn->Show(capabilities.hasCam());
+
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
     sizer->Add(pause_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Add(resume_btn, 1, wxRIGHT, FromDIP(5));
@@ -375,6 +358,7 @@ wxSizer* ZaxeDevice::createIconButtons()
     sizer->Add(say_hi_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Add(unload_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Add(toggle_leds_btn, 1, wxRIGHT, FromDIP(5));
+    sizer->Add(camera_btn, 1, wxRIGHT, FromDIP(5));
     sizer->Layout();
     return sizer;
 }
@@ -859,6 +843,31 @@ void ZaxeDevice::onVersionCheck(const std::map<std::string, Semver>& latest_vers
     if (auto it = latest_versions.find(nm->attr->deviceModel); it != latest_versions.end()) {
         upstream_version = it->second;
         updateStates();
+    }
+}
+
+void ZaxeDevice::switch_cam_on()
+{
+    BOOST_LOG_TRIVIAL(info) << "Clicked on avatar trying to open stream on: " << nm->name;
+    if (nm->attr->firmwareVersion.GetMinor() >= 4 ||
+        (nm->attr->firmwareVersion.GetMinor() >= 3 && nm->attr->firmwareVersion.GetMicro() >= 80)) {
+        wxFileName ffplay(wxStandardPaths::Get().GetExecutablePath());
+        wxString   curExecPath(ffplay.GetPath());
+
+        wxExecute(
+#ifdef _WIN32
+            "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) + ": " +
+                nm->name + "\" -x 720",
+            wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE
+#else
+            curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) + ": " +
+                nm->name + "\" -x 720",
+            wxEXEC_ASYNC
+#endif
+        );
+    } else {
+        wxMessageBox("Need device firmware version at least v3.3.80 to comply.", "Need firmware update for this feautre.",
+                     wxICON_INFORMATION);
     }
 }
 
