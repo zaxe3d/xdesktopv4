@@ -107,6 +107,7 @@ private:
     bool device_name_ctrl_visible{false};
     bool is_expanded{false};
     bool is_file_name_visible{false};
+    bool is_print_btn_visible{false};
 
     ZaxeDeviceCapabilities capabilities;
     std::optional<Semver>  upstream_version;

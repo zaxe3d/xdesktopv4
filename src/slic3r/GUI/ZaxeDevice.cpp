@@ -492,8 +492,8 @@ void ZaxeDevice::updateProgressValue()
 
 void ZaxeDevice::updatePrintButton()
 {
-    bool show = !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError;
-    print_btn->Show(show);
+    is_print_btn_visible = !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError;
+    print_btn->Show(is_print_btn_visible);
 }
 
 void ZaxeDevice::updateStatusText()
@@ -754,6 +754,10 @@ bool ZaxeDevice::has(const wxString& search_text)
 
 bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
 {
+    if (!is_print_btn_visible) {
+        return false;
+    }
+
     if (archive->support_multiplate() && !capabilities.canPrintMultiPlate()) {
         wxMessageBox(_L("To support multi plate print, update your printer"), _L("Feature not supported"), wxICON_ERROR);
         return false;
