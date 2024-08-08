@@ -25,9 +25,12 @@ std::string ZaxeConfigHelper::get_cfg_value(const DynamicPrintConfig& cfg,
     return ret;
 }
 
-std::pair<std::string, std::string> ZaxeConfigHelper::get_printer_model(const DynamicPrintConfig& cfg)
+std::pair<std::string, std::string> ZaxeConfigHelper::get_printer_model(const DynamicPrintConfig& cfg, bool uppercase)
 {
-    std::string dM = boost::to_upper_copy(get_cfg_value(cfg, "printer_model"));
+    std::string dM = get_cfg_value(cfg, "printer_model");
+    if (uppercase) {
+        dM = boost::to_upper_copy(dM);
+    }
     std::string printer_sub_model{};
     size_t      dM_pos = dM.find(' ');
     if (dM_pos != std::string::npos) {
@@ -39,9 +42,9 @@ std::pair<std::string, std::string> ZaxeConfigHelper::get_printer_model(const Dy
     return {dM, printer_sub_model};
 }
 
-std::string ZaxeConfigHelper::get_nozzle(const DynamicPrintConfig& cfg)
+std::string ZaxeConfigHelper::get_nozzle(const DynamicPrintConfig& cfg, bool uppercase)
 {
-    auto [dM, printer_sub_model] = get_printer_model(cfg);
+    auto [dM, printer_sub_model] = get_printer_model(cfg, uppercase);
 
     std::string nozzle{};
     if (!printer_sub_model.empty()) {

@@ -68,12 +68,15 @@ static void write_thumbnail(std::shared_ptr<Zipper> zipper, const ThumbnailData&
 std::string ZaxeArchive::get_info(const std::string& key, int plate_idx) const
 {
     try {
+        if (!is_multi_plate) {
+            return info.at(key).get<std::string>();
+        }
         const auto& plates = info["plates"];
 
         for (const auto& plate : plates) {
             if (plate_idx == -1 || plate["plate_idx"] == plate_idx) {
                 if (plate.contains(key) && plate[key].is_string()) {
-                    return plate[key].get<std::string>();
+                    return plate.at(key).get<std::string>();
                 }
                 break;
             }
@@ -84,10 +87,12 @@ std::string ZaxeArchive::get_info(const std::string& key, int plate_idx) const
     return "";
 }
 
-ZaxeArchive::ZaxeArchive(const std::string& tmp_dir) : tmp_dir(tmp_dir)
+ZaxeArchive::ZaxeArchive(const std::string& tmp_dir, bool is_multi_plate) : tmp_dir(tmp_dir), is_multi_plate(is_multi_plate)
 {
-    info           = nlohmann::json::object();
-    info["plates"] = nlohmann::json::array();
+    info = nlohmann::json::object();
+    if (is_multi_plate) {
+        info["plates"] = nlohmann::json::array();
+    }
 
     auto get_date_time = []() {
         std::time_t        now = std::time(nullptr);
@@ -99,7 +104,8 @@ ZaxeArchive::ZaxeArchive(const std::string& tmp_dir) : tmp_dir(tmp_dir)
 
     boost::filesystem::path temp_path(tmp_dir);
     boost::filesystem::path zip_path(temp_path);
-    zip_path /= (boost::format("xdesktop_%1%.zaxe") % get_date_time()).str();
+    std::string             file_extension = is_multi_plate ? "zaxemp" : "zaxe";
+    zip_path /= (boost::format("xdesktop_%1%.%2%") % get_date_time() % file_extension).str();
     path   = zip_path.string();
     zipper = std::make_shared<Zipper>(path);
 }
@@ -140,11 +146,11 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     bool has_skirt = stoi(ZaxeConfigHelper::get_cfg_value(cfg, "skirt_loops")) > 0;
 
     auto [dM, printer_sub_model] = ZaxeConfigHelper::get_printer_model(cfg);
-    auto nozzle                  = ZaxeConfigHelper::get_nozzle(cfg);
+    auto nozzle                  = ZaxeConfigHelper::get_nozzle(cfg, false);
 
     PrintStatistics stats = print.print_statistics();
 
-    j["name"]                 = print.output_filename();
+    j["name"]                 = boost::filesystem::path(print.output_filename()).stem().string();
     j["plate_idx"]            = plate_idx;
     j["duration"]             = get_time_hms(stats.estimated_normal_print_time);
     j["raft"]                 = has_raft ? "raft" : (has_skirt ? "skirt" : "none");
@@ -165,7 +171,7 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     std::string       gcode;
     load_string_file(temp_gcode_output_path, gcode);
 
-    auto zaxe_code_name = boost::str(boost::format("data_%d.zaxe_code") % plate_idx);
+    auto zaxe_code_name = is_multi_plate ? boost::str(boost::format("data_%d.zaxe_code") % plate_idx) : "data.zaxe_code";
     j["zaxe_code"]      = zaxe_code_name;
 
     j["snapshots"] = nlohmann::json::array();
@@ -177,7 +183,8 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
         int snapshot_idx = 0;
         for (const ThumbnailData& data : thumbnails) {
             if (data.is_valid()) {
-                auto snaphot_name = boost::str(boost::format("snapshot_%d_%d.png") % plate_idx % snapshot_idx++);
+                auto snaphot_name = is_multi_plate ? boost::str(boost::format("snapshot_%d_%d.png") % plate_idx % snapshot_idx++) :
+                                                     "snapshot.png";
                 write_thumbnail(zipper, data, snaphot_name);
                 j["snapshots"].push_back(snaphot_name);
             }
@@ -188,12 +195,16 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     if (zipper && !model_path.empty() && is_there(dM, {"Z2", "Z3", "Z4", "X4"})) {
         std::vector<char>       bytes;
         std::ifstream::pos_type file_size = read_binary_into_buffer(model_path.c_str(), bytes);
-        auto                    stl_name  = boost::str(boost::format("model_%d.stl") % plate_idx);
+        auto                    stl_name  = is_multi_plate ? boost::str(boost::format("model_%d.stl") % plate_idx) : "model.stl";
         zipper->add_entry(stl_name, bytes.data(), file_size);
         j["stl"] = stl_name;
     }
 
-    info["plates"].push_back(j);
+    if (is_multi_plate) {
+        info["plates"].push_back(j);
+    } else {
+        info.merge_patch(j);
+    }
 }
 
 void ZaxeArchive::prepare_file()
@@ -204,10 +215,14 @@ void ZaxeArchive::prepare_file()
         return;
     }
 
-    info["name"]             = boost::filesystem::path(zipper->get_filename()).stem().string();
+    if (is_multi_plate) {
+        info["name"] = boost::filesystem::path(zipper->get_filename()).stem().string();
+    }
     info["version"]          = ZAXE_FILE_VERSION;
     info["slicer_version"]   = SLIC3R_VERSION;
     info["xdesktop_version"] = SoftFever_VERSION;
+
+    BOOST_LOG_TRIVIAL(debug) << __func__ << "-" << __LINE__ << " info.json: " << info.dump(4);
 
     zipper->add_entry("info.json");
     *zipper << info.dump(4);
