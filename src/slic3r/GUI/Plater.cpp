@@ -764,8 +764,14 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         // add printer title
         scrolled_sizer->Add(p->m_panel_printer_title, 0, wxEXPAND | wxTOP | wxLEFT | wxRIGHT, FromDIP(13));
 
-        p->m_panel_printer_title->Bind(wxEVT_LEFT_UP, [this](auto& e) { on_printer_title_clicked(PresetContentResizeMode::TOGGLE); });
-        p->m_printer_icon->Bind(wxEVT_LEFT_UP, [this](auto& e) { on_printer_title_clicked(PresetContentResizeMode::TOGGLE); });
+        p->m_panel_printer_title->Bind(wxEVT_LEFT_UP, [this](auto& e) {
+             on_printer_title_clicked(PresetContentResizeMode::TOGGLE); 
+             e.Skip();
+        });
+        p->m_printer_icon->Bind(wxEVT_LEFT_UP, [this](auto& e) { 
+            on_printer_title_clicked(PresetContentResizeMode::TOGGLE); 
+            e.Skip();
+        });
 
         // add spliter 2
         auto spliter_2 = new ::StaticLine(p->scrolled);
@@ -883,17 +889,21 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     p->m_panel_filament_title = new StaticBox(p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxBORDER_NONE);
     p->m_panel_filament_title->SetBackgroundColor(p->blue100);
 
-    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [&](wxMouseEvent&) {
+    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [&](wxMouseEvent& e) {
         //if (e.GetPosition().x >
         //    (p->m_flushing_volume_btn->IsShown() ? p->m_flushing_volume_btn->GetPosition().x : p->m_bpButton_add_filament->GetPosition().x))
         //    return;
         on_filament_title_clicked(PresetContentResizeMode::TOGGLE);
+        e.Skip();
     });
 
     wxBoxSizer* bSizer39;
     bSizer39 = new wxBoxSizer( wxHORIZONTAL );
     p->m_filament_icon = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_arrow_up_blue");
-    p->m_filament_icon->Bind(wxEVT_LEFT_UP, [=](wxMouseEvent& e) { on_filament_title_clicked(PresetContentResizeMode::TOGGLE); });
+    p->m_filament_icon->Bind(wxEVT_LEFT_UP, [=](wxMouseEvent& e) { 
+        on_filament_title_clicked(PresetContentResizeMode::TOGGLE); 
+        e.Skip()
+    ;});
 
     p->m_staticText_filament_settings = new Label(p->m_panel_filament_title, _L("Filament"), LB_PROPAGATE_MOUSE_EVENT);
     p->m_staticText_filament_settings->SetFont(Label::Head_14);
