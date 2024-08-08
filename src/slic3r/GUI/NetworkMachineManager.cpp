@@ -384,18 +384,41 @@ void NetworkMachineManager::applyFilters()
 
 bool NetworkMachineManager::prepare_archive(PrintMode mode)
 {
+    auto& partplate_list    = wxGetApp().plater()->get_partplate_list();
+    int   empty_plate_count = 0;
+    for (int i = 0; i < partplate_list.get_plate_count(); i++) {
+        if (partplate_list.get_plate(i)->empty()) {
+            empty_plate_count++;
+        }
+    }
+
+    int printable_plate_count = partplate_list.get_plate_count() - empty_plate_count;
+    if (printable_plate_count == 0) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": Nothing to print!";
+        return false;
+    }
+
+    if (printable_plate_count == 1) {
+        mode = PrintMode::SinglePlate;
+    }
+
+
     archive.reset();
 
     if (GUI::wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
-        archive    = std::make_unique<ZaxeArchive>(wxStandardPaths::Get().GetTempDir().utf8_str().data());
-        auto model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
+        bool is_multi_plate = mode == PrintMode::AllPlates;
+        archive             = std::make_shared<ZaxeArchive>(wxStandardPaths::Get().GetTempDir().utf8_str().data(), is_multi_plate);
+        auto model          = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
 
-        auto& partplate_list = wxGetApp().plater()->get_partplate_list();
         for (int i = 0; i < partplate_list.get_plate_count(); i++) {
             if (mode != PrintMode::AllPlates && partplate_list.get_curr_plate_index() != i) {
                 continue;
             }
-            auto plate     = partplate_list.get_plate(i);
+            auto plate = partplate_list.get_plate(i);
+            if (plate->empty()) {
+                BOOST_LOG_TRIVIAL(warning) << __func__ << ": Plate " << i << " is empty, skipping...";
+                continue;
+            }
             auto fff_print = plate->fff_print();
 
             auto thumnails  = wxGetApp().plater()->get_thumbnails_list_by_plate_index(i);
@@ -439,14 +462,15 @@ bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
     return false;
 }
 
-std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive()
+std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_multiplate)
 {
     bool is_all_plates_selected = wxGetApp().plater()->get_preview_canvas3D()->is_all_plates_selected();
-    if (!archive || is_all_plates_selected) {
+    if (!archive || is_all_plates_selected || (archive && (!support_multiplate && archive->support_multiplate()))) {
         auto last_slice_mode = wxGetApp().mainframe->get_last_slice_mode();
+        auto mode            = (support_multiplate && (is_all_plates_selected || last_slice_mode == MainFrame::ModeSelectType::eSliceAll)) ?
+                                   PrintMode::AllPlates :
+                                   PrintMode::SinglePlate;
 
-        auto mode = (is_all_plates_selected || last_slice_mode == MainFrame::ModeSelectType::eSliceAll) ? PrintMode::AllPlates :
-                                                                                                          PrintMode::SinglePlate;
         if (prepare_archive(mode)) {
             enablePrintNowButton(print_enable);
         }
