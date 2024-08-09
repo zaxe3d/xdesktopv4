@@ -87,26 +87,13 @@ std::string ZaxeArchive::get_info(const std::string& key, int plate_idx) const
     return "";
 }
 
-ZaxeArchive::ZaxeArchive(const std::string& tmp_dir, bool is_multi_plate) : tmp_dir(tmp_dir), is_multi_plate(is_multi_plate)
+ZaxeArchive::ZaxeArchive(const std::string& path, bool is_multi_plate) : path(path), is_multi_plate(is_multi_plate)
 {
     info = nlohmann::json::object();
     if (is_multi_plate) {
         info["plates"] = nlohmann::json::array();
     }
 
-    auto get_date_time = []() {
-        std::time_t        now = std::time(nullptr);
-        std::tm*           lt  = std::localtime(&now);
-        std::ostringstream ss;
-        ss << std::put_time(lt, "%Y%m%d_%H%M%S");
-        return ss.str();
-    };
-
-    boost::filesystem::path temp_path(tmp_dir);
-    boost::filesystem::path zip_path(temp_path);
-    std::string             file_extension = is_multi_plate ? "zaxemp" : "zaxe";
-    zip_path /= (boost::format("xdesktop_%1%.%2%") % get_date_time() % file_extension).str();
-    path   = zip_path.string();
     zipper = std::make_shared<Zipper>(path);
 }
 
