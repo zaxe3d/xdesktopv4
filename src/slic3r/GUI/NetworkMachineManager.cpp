@@ -402,13 +402,38 @@ bool NetworkMachineManager::prepare_archive(PrintMode mode)
         mode = PrintMode::SinglePlate;
     }
 
-
     archive.reset();
 
     if (GUI::wxGetApp().preset_bundle->printers.is_selected_preset_zaxe()) {
         bool is_multi_plate = mode == PrintMode::AllPlates;
-        archive             = std::make_shared<ZaxeArchive>(wxStandardPaths::Get().GetTempDir().utf8_str().data(), is_multi_plate);
-        auto model          = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
+
+        auto get_date_time = []() {
+            std::time_t        now = std::time(nullptr);
+            std::tm*           lt  = std::localtime(&now);
+            std::ostringstream ss;
+            ss << std::put_time(lt, "%Y%m%d_%H%M%S");
+            return ss.str();
+        };
+
+        std::string multi_plate_file_name = (boost::format("xdesktop_%1%") % get_date_time()).str();
+        std::string single_plate_file_name{};
+        if (!is_multi_plate) {
+            for (int i = 0; i < partplate_list.get_plate_count(); i++) {
+                auto plate = partplate_list.get_plate(i);
+                if (!plate->empty()) {
+                    single_plate_file_name = boost::filesystem::path(plate->fff_print()->output_filename("")).stem().string();
+                }
+            }
+        }
+
+        std::string file_name      = (is_multi_plate || single_plate_file_name.empty()) ? multi_plate_file_name : single_plate_file_name;
+        std::string file_extension = is_multi_plate ? "zaxemp" : "zaxe";
+        boost::filesystem::path _temp_path(wxStandardPaths::Get().GetTempDir().utf8_str().data());
+        boost::filesystem::path archive_path(_temp_path);
+        archive_path /= (boost::format("%1%.%2%") % file_name % file_extension).str();
+
+        archive    = std::make_shared<ZaxeArchive>(archive_path.string(), is_multi_plate);
+        auto model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
 
         for (int i = 0; i < partplate_list.get_plate_count(); i++) {
             if (mode != PrintMode::AllPlates && partplate_list.get_curr_plate_index() != i) {
