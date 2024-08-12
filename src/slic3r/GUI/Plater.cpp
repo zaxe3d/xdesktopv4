@@ -3161,7 +3161,7 @@ Plater::priv::priv(Plater *q, MainFrame *main_frame, wxBoxSizer* side_tools)
                                    .TopDockable(false)
                                    .BottomDockable(false)
                                    .Floatable(true)
-                                   .BestSize(wxSize(42 * wxGetApp().em_unit(), 90 * wxGetApp().em_unit())));
+                                   .BestSize(wxSize(45 * wxGetApp().em_unit(), 90 * wxGetApp().em_unit())));
 
     auto* panel_sizer = new wxBoxSizer(wxHORIZONTAL);
     panel_sizer->Add(view3D, 1, wxEXPAND | wxALL, 0);
