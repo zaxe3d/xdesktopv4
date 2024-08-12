@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Kimya ASA @Z4",
+    "inherits": "kimya_asa",
+    "from": "system",
+    "setting_id": "GFSA34_02",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

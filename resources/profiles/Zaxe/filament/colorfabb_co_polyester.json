@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "colorfabb_co_polyester",
+  "inherits": "fdm_filament_asa",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA43",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "colorfabb_co_polyester"
+  ],
+  "filament_type": [
+      "nGEN"
+  ],
+  "filament_vendor": [
+      "ColorFabb"
+  ]
+}

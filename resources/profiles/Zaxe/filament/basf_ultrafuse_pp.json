@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "basf_ultrafuse_pp",
+  "inherits": "basf_ultrafuse_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA19",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "basf_ultrafuse_pp"
+  ],
+  "filament_type": [
+      "PP"
+  ],
+  "filament_vendor": [
+      "BASF"
+  ]
+}

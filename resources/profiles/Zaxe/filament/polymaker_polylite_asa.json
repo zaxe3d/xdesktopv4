@@ -1,0 +1,32 @@
+{
+  "type": "filament",
+  "name": "polymaker_polylite_asa",
+  "inherits": "Generic_filament_asa",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA24",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "1.1"
+  ],
+  "filament_notes": [
+    "polymaker_polylite_asa"
+  ],
+  "filament_type": [
+      "ASA"
+  ],
+  "filament_vendor": [
+      "Polymaker"
+  ],
+  "filament_max_volumetric_speed": [
+      "9"
+  ],
+  "nozzle_temperature": [
+      "265"
+  ],
+  "nozzle_temperature_initial_layer": [
+      "260"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "iglidur_i190",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "fdm_filament_abs",
+  "filament_id": "GFA40",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "iglidur_i190"
+  ],
+  "filament_type": [
+      "iGus"
+  ],
+  "filament_vendor": [
+      "iGus"
+  ]
+}

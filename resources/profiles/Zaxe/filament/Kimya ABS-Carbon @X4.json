@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Kimya ABS-Carbon @X4",
+    "inherits": "kimya_abs_carbon",
+    "from": "system",
+    "setting_id": "GFSA38_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

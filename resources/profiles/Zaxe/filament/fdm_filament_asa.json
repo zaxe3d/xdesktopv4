@@ -7,23 +7,11 @@
     "activate_air_filtration": [
         "1"
     ],
-    "cool_plate_temp": [
-        "0"
-    ],
-    "cool_plate_temp_initial_layer": [
-        "0"
-    ],
-    "eng_plate_temp": [
-        "90"
-    ],
-    "eng_plate_temp_initial_layer": [
-        "90"
-    ],
     "fan_cooling_layer_time": [
         "35"
     ],
     "fan_max_speed": [
-        "80"
+        "50"
     ],
     "fan_min_speed": [
         "10"
@@ -32,10 +20,10 @@
         "20"
     ],
     "filament_density": [
-        "1.04"
+        "1.1"
     ],
     "filament_max_volumetric_speed": [
-        "28.6"
+        "12"
     ],
     "filament_type": [
         "ASA"
@@ -68,15 +56,21 @@
         "1"
     ],
     "slow_down_layer_time": [
-        "3"
+        "15"
     ],
     "slow_down_min_speed": [
         "20"
     ],
-    "textured_plate_temp": [
-        "90"
+    "enable_overhang_bridge_fan": [
+        "0"
     ],
-    "textured_plate_temp_initial_layer": [
-        "90"
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.025"
+    ],
+    "filament_flow_ratio": [
+        "0.95"
     ]
 }

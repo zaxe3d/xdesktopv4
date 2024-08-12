@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse PET-CF15 @Z4",
+    "inherits": "basf_ultrafuse_pet_cf15",
+    "from": "system",
+    "setting_id": "GFSA22_02",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

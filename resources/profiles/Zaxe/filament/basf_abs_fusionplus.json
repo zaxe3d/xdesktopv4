@@ -1,0 +1,50 @@
+{
+  "type": "filament",
+  "name": "basf_abs_fusionplus",
+  "inherits": "basf_ultrafuse_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA16",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "basf_abs_fusionplus"
+  ],
+  "filament_type": [
+      "ABS"
+  ],
+  "filament_vendor": [
+      "BASF"
+  ],
+  "enable_pressure_advance": [
+      "1"
+  ],
+  "pressure_advance": [
+      "0.049"
+  ],
+  "reduce_fan_stop_start_freq": [
+      "0"
+  ],
+  "fan_max_speed": [
+      "50"
+  ],
+  "fan_min_speed": [
+      "25"
+  ],
+  "slow_down_min_speed": [
+      "20"
+  ],
+  "slow_down_layer_time": [
+      "10"
+  ],
+  "nozzle_temperature_initial_layer": [
+      "260"
+  ],
+  "nozzle_temperature": [
+      "260"
+  ]
+}

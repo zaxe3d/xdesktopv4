@@ -1,0 +1,53 @@
+{
+  "type": "filament",
+  "name": "basf_ultrafuse_pc_abs",
+  "inherits": "basf_ultrafuse_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA15",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "basf_ultrafuse_pc_abs"
+  ],
+  "filament_type": [
+      "ABS"
+  ],
+  "filament_vendor": [
+      "BASF"
+  ],
+  "enable_pressure_advance": [
+      "1"
+  ],
+  "pressure_advance": [
+      "0.03"
+  ],
+  "nozzle_temperature_initial_layer": [
+      "270"
+  ],
+  "nozzle_temperature": [
+      "265"
+  ],
+  "filament_flow_ratio": [
+      "0.98"
+  ],
+  "filament_max_volumetric_speed": [
+      "12"
+  ],
+  "hot_plate_temp_initial_layer": [
+      "100"
+  ],
+  "hot_plate_temp": [
+      "110"
+  ],
+  "fan_max_speed": [
+      "60"
+  ],
+  "fan_min_speed": [
+      "60"
+  ]
+}

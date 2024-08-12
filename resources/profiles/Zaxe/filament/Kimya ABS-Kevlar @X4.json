@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Kimya ABS-Kevlar @X4",
+    "inherits": "kimya_abs_kevlar",
+    "from": "system",
+    "setting_id": "GFSA36_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolyLite PLA @Z4",
+    "inherits": "polymaker_polylite_pla",
+    "from": "system",
+    "setting_id": "GFSA27_02",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

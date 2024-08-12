@@ -5,7 +5,19 @@
   "instantiation": "false",
   "inherits": "fdm_filament_asa",
   "filament_id": "GFA08",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
   "filament_notes": [
-    "zaxe_asa"
+    "generic_asa"
+  ],
+  "filament_type": [
+      "ASA"
+  ],
+  "filament_vendor": [
+      "Generic"
   ]
 }
