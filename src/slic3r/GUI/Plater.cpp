@@ -5313,6 +5313,8 @@ unsigned int Plater::priv::update_background_process(bool force_validation, bool
         {
             if (cur_plate->can_slice()) {
                 //ready_to_slice = true;
+                auto main_frame = wxGetApp().mainframe;
+                main_frame->set_print_button_to_default(MainFrame::ModeSelectType(main_frame->get_last_slice_mode()));
                 this->main_frame->update_slice_print_status(MainFrame::eEventSliceUpdate, true);
                 process_completed_with_error = -1;
             }
