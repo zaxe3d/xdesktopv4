@@ -44,10 +44,10 @@ static std::vector<std::string> s_project_options {
 };
 
 //BBS: add BBL as default
-const char *PresetBundle::BBL_BUNDLE = "Custom";
-const char *PresetBundle::BBL_DEFAULT_PRINTER_MODEL = "MyKlipper 0.4 nozzle";
+const char *PresetBundle::BBL_BUNDLE = "Zaxe";
+const char *PresetBundle::BBL_DEFAULT_PRINTER_MODEL = "Zaxe Z3S - 0.4mm Revo HF nozzle";
 const char *PresetBundle::BBL_DEFAULT_PRINTER_VARIANT = "0.4";
-const char *PresetBundle::BBL_DEFAULT_FILAMENT = "My Generic PLA";
+const char *PresetBundle::BBL_DEFAULT_FILAMENT = "Zaxe PLA @Z3S";
 
 PresetBundle::PresetBundle()
     : prints(Preset::TYPE_PRINT, Preset::print_options(), static_cast<const PrintRegionConfig &>(FullPrintConfig::defaults()))
