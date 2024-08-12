@@ -29,7 +29,7 @@ public:
     void addMachine(std::string ip, int port, std::string id);
 
     wxPanel* scrolledArea() { return scrolled_area; }
-    std::shared_ptr<ZaxeArchive> get_archive(bool support_multiplate = true);
+    std::shared_ptr<ZaxeArchive> get_archive(bool support_multiplate = true, bool force_reset = false);
 
     enum class PrintMode { SinglePlate, AllPlates };
     bool print(NetworkMachine* machine, PrintMode mode);
