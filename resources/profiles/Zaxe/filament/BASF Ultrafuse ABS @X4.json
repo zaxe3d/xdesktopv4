@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse ABS @X4",
+    "inherits": "basf_ultrafuse_abs",
+    "from": "system",
+    "setting_id": "GFSA11_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

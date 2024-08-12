@@ -1,0 +1,26 @@
+{
+  "type": "filament",
+  "name": "polymaker_polylite_petg",
+  "inherits": "fdm_filament_petg",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA25",
+  "filament_cost": [
+    "36.29"
+  ],
+  "filament_density": [
+    "1.25"
+  ],
+  "filament_notes": [
+    "polymaker_polylite_petg"
+  ],
+  "filament_type": [
+    "PETG"
+  ],
+  "filament_vendor": [
+    "Polymaker"
+  ],
+  "filament_max_volumetric_speed": [
+    "7"
+  ]
+}

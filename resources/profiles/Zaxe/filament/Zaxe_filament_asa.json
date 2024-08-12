@@ -7,5 +7,47 @@
   "filament_id": "GFA02",
   "filament_notes": [
     "zaxe_asa"
+  ],
+  "fan_cooling_layer_time": [
+    "90"
+  ],
+  "fan_max_speed": [
+    "50"
+  ],
+  "fan_min_speed": [
+    "10"
+  ],
+  "hot_plate_temp": [
+    "95"
+  ],
+  "hot_plate_temp_initial_layer": [
+    "90"
+  ],
+  "slow_down_layer_time": [
+    "15"
+  ],
+  "slow_down_min_speed": [
+    "20"
+  ],
+  "filament_max_volumetric_speed": [
+    "12"
+  ],
+  "enable_overhang_bridge_fan": [
+      "0"
+  ],
+  "enable_pressure_advance": [
+      "1"
+  ],
+  "pressure_advance": [
+      "0.025"
+  ],
+  "filament_flow_ratio": [
+      "0.95"
+  ],
+  "nozzle_temperature": [
+      "260"
+  ],
+  "nozzle_temperature_initial_layer": [
+      "265"
   ]
 }

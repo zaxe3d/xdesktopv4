@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "kimya_abs_eds",
+  "inherits": "fdm_filament_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA37",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "kimya_abs_eds"
+  ],
+  "filament_type": [
+      "ABS"
+  ],
+  "filament_vendor": [
+      "Kimya"
+  ]
+}

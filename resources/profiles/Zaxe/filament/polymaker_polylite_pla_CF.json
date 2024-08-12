@@ -1,0 +1,29 @@
+{
+  "type": "filament",
+  "name": "polymaker_polylite_pla_CF",
+  "inherits": "polymaker_polylite_pla",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA26",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "polymaker_polylite_pla_CF"
+  ],
+  "filament_type": [
+      "PLA"
+  ],
+  "filament_vendor": [
+      "Polymaker"
+  ],
+  "filament_max_volumetric_speed": [
+      "8"
+  ],
+  "filament_flow_ratio": [
+      "0.9"
+  ]
+}

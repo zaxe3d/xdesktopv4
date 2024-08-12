@@ -8,10 +8,46 @@
   "filament_notes": [
     "zaxe_pla"
   ],
-  "filament_flow_ratio": [
-      "0.98"
+  "fan_cooling_layer_time": [
+    "100"
+  ],
+  "fan_max_speed": [
+    "100"
+  ],
+  "fan_min_speed": [
+    "100"
+  ],
+  "hot_plate_temp": [
+    "50"
+  ],
+  "hot_plate_temp_initial_layer": [
+    "55"
   ],
   "slow_down_layer_time": [
-      "8"
+    "8"
+  ],
+  "slow_down_min_speed": [
+    "10"
+  ],
+  "filament_max_volumetric_speed": [
+    "12"
+  ],
+  "enable_overhang_bridge_fan": [
+      "0"
+  ],
+  "enable_pressure_advance": [
+      "1"
+  ],
+  "pressure_advance": [
+      "0.036"
+  ],
+  "filament_flow_ratio": [
+      "0.95"
+  ],
+  "nozzle_temperature": [
+      "215"
+  ],
+  "nozzle_temperature_initial_layer": [
+      "215"
   ]
 }

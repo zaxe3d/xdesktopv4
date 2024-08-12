@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse PA @X4",
+    "inherits": "basf_ultrafuse_pa",
+    "from": "system",
+    "setting_id": "GFSA18_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

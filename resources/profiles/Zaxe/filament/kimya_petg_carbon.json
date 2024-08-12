@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "kimya_petg_carbon",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "fdm_filament_petg",
+  "filament_id": "GFA33",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "kimya_petg_carbon"
+  ],
+  "filament_type": [
+      "PETG"
+  ],
+  "filament_vendor": [
+      "Kimya"
+  ]
+}

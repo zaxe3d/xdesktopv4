@@ -1,0 +1,26 @@
+{
+  "type": "filament",
+  "name": "polymaker_polysonic_pla",
+  "inherits": "polymaker_polylite_pla",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA32",
+  "filament_cost": [
+    "0"
+  ],
+  "filament_density": [
+    "0"
+  ],
+  "filament_notes": [
+    "polymaker_polysonic_pla"
+  ],
+  "filament_type": [
+    "PolySonic PLA"
+  ],
+  "filament_vendor": [
+    "Polymaker"
+  ],
+  "filament_max_volumetric_speed": [
+      "18"
+  ]
+}

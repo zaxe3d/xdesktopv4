@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolyLite PETG @Z4",
+    "inherits": "polymaker_polylite_petg",
+    "from": "system",
+    "setting_id": "GFSA25_02",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

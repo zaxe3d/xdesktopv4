@@ -10,18 +10,6 @@
     "close_fan_the_first_x_layers": [
         "1"
     ],
-    "cool_plate_temp": [
-        "30"
-    ],
-    "cool_plate_temp_initial_layer": [
-        "30"
-    ],
-    "eng_plate_temp": [
-        "30"
-    ],
-    "eng_plate_temp_initial_layer": [
-        "30"
-    ],
     "fan_cooling_layer_time": [
         "100"
     ],
@@ -41,7 +29,7 @@
         "0.4"
     ],
     "filament_type": [
-        "TPU"
+        "FLEX"
     ],
     "hot_plate_temp": [
         "35"
@@ -50,10 +38,10 @@
         "35"
     ],
     "nozzle_temperature": [
-        "240"
+        "230"
     ],
     "nozzle_temperature_initial_layer": [
-        "240"
+        "235"
     ],
     "nozzle_temperature_range_high": [
         "250"
@@ -63,14 +51,5 @@
     ],
     "reduce_fan_stop_start_freq": [
         "1"
-    ],
-    "temperature_vitrification": [
-        "30"
-    ],
-    "textured_plate_temp": [
-        "35"
-    ],
-    "textured_plate_temp_initial_layer": [
-        "35"
     ]
 }

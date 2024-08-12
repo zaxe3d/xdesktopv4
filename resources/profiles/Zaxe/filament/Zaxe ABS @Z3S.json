@@ -5,27 +5,6 @@
     "from": "system",
     "setting_id": "GFSA01_01",
     "instantiation": "true",
-    "fan_cooling_layer_time": [
-        "100"
-    ],
-    "fan_max_speed": [
-        "60"
-    ],
-    "fan_min_speed": [
-        "15"
-    ],
-    "hot_plate_temp": [
-        "100"
-    ],
-    "hot_plate_temp_initial_layer": [
-        "100"
-    ],
-    "textured_plate_temp": [
-        "65"
-    ],
-    "textured_plate_temp_initial_layer": [
-        "65"
-    ],
     "compatible_printers": [
         "Zaxe Z3S - 0.4mm Revo HF nozzle",
         "Zaxe Z3S - 0.6mm Revo HF nozzle",
@@ -35,26 +14,5 @@
         "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
         "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle",
         "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle"
-    ],
-    "filament_flow_ratio": [
-        "0.98"
-    ],
-    "enable_pressure_advance": [
-        "1"
-    ],
-    "pressure_advance": [
-        "0.0285"
-    ],
-    "reduce_fan_stop_start_freq": [
-        "1"
-    ],
-    "slow_down_layer_time": [
-        "8"
-    ],
-    "overhang_fan_threshold": [
-        "75%"
-    ],
-    "filament_max_volumetric_speed": [
-        "15"
     ]
 }

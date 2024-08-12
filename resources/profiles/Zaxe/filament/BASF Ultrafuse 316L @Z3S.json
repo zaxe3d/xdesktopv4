@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "Basf Ultrafuse 316L @Z3S",
+    "inherits": "basf_ultrafuse_316l",
+    "from": "system",
+    "setting_id": "GFSA20_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle"
+    ]
+}
