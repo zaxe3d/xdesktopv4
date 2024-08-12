@@ -487,10 +487,10 @@ bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
     return false;
 }
 
-std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_multiplate)
+std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_multiplate, bool force_reset)
 {
     bool is_all_plates_selected = wxGetApp().plater()->get_preview_canvas3D()->is_all_plates_selected();
-    if (!archive || is_all_plates_selected || (archive && (!support_multiplate && archive->support_multiplate()))) {
+    if (force_reset || !archive || is_all_plates_selected || (archive && (!support_multiplate && archive->support_multiplate()))) {
         auto last_slice_mode = wxGetApp().mainframe->get_last_slice_mode();
         auto mode            = (support_multiplate && (is_all_plates_selected || last_slice_mode == MainFrame::ModeSelectType::eSliceAll)) ?
                                    PrintMode::AllPlates :
