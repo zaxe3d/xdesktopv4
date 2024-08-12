@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "colorfabb_pa_cf",
+  "inherits": "fdm_filament_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA45",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "colorfabb_pa_cf"
+  ],
+  "filament_type": [
+      "PA-CF"
+  ],
+  "filament_vendor": [
+      "ColorFabb"
+  ]
+}

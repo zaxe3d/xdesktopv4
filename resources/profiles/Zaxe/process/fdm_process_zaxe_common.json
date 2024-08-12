@@ -3,5 +3,7 @@
   "name": "fdm_process_zaxe_common",
   "from": "system",
   "instantiation": "false",
-  "inherits": "fdm_process_common"
+  "inherits": "fdm_process_common",
+  "brim_type": "no_brim",
+  "gcode_label_objects": "1"
 }

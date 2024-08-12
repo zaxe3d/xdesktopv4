@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "polymaker_polymax_petg_esd",
+  "inherits": "polymaker_polylite_petg",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA28",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "polymaker_polymax_petg_esd"
+  ],
+  "filament_type": [
+      "PETG"
+  ],
+  "filament_vendor": [
+      "Polymaker"
+  ]
+}

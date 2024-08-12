@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "kimya_asa",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "fdm_filament_asa",
+  "filament_id": "GFA34",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "kimya_asa"
+  ],
+  "filament_type": [
+      "ASA"
+  ],
+  "filament_vendor": [
+      "Kimya"
+  ]
+}

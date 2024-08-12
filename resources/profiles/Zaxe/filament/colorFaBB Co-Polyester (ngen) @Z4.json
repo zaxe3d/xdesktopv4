@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "colorFaBB Co-Polyester (ngen) @Z4",
+    "inherits": "colorfabb_co_polyester",
+    "from": "system",
+    "setting_id": "GFSA43_02",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "BASF ABS Fusion+ @Z4",
+    "inherits": "basf_abs_fusionplus",
+    "from": "system",
+    "setting_id": "GFSA16_02",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

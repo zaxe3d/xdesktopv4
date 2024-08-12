@@ -25,45 +25,48 @@
     "extruder_colour": [
         "#018001"
     ],
+    "thumbnails": [
+      "250x250"
+    ],
     "machine_max_acceleration_e": [
         "5000",
         "5000"
     ],
     "machine_max_acceleration_extruding": [
-        "20000",
-        "20000"
+        "6000",
+        "6000"
     ],
     "machine_max_acceleration_retracting": [
         "5000",
         "5000"
     ],
     "machine_max_acceleration_travel": [
-        "9000",
-        "9000"
+        "6000",
+        "6000"
     ],
     "machine_max_acceleration_x": [
-        "20000",
-        "20000"
+        "6000",
+        "6000"
     ],
     "machine_max_acceleration_y": [
-        "20000",
-        "20000"
+        "6000",
+        "6000"
     ],
     "machine_max_acceleration_z": [
-        "500",
-        "200"
+        "300",
+        "300"
     ],
     "machine_max_speed_e": [
         "30",
         "30"
     ],
     "machine_max_speed_x": [
-        "500",
-        "200"
+        "300",
+        "300"
     ],
     "machine_max_speed_y": [
-        "500",
-        "200"
+        "300",
+        "300"
     ],
     "machine_max_speed_z": [
         "20",

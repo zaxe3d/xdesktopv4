@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolyLite ABS @X4",
+    "inherits": "polymaker_polylite_abs",
+    "from": "system",
+    "setting_id": "GFSA23_03",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

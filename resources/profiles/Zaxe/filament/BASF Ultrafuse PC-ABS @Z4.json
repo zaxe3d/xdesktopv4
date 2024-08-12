@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse PC-ABS @Z4",
+    "inherits": "basf_ultrafuse_pc_abs",
+    "from": "system",
+    "setting_id": "GFSA15_02",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

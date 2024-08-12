@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "basf_ultrafuse_tpu_95A",
+  "from": "system",
+  "instantiation": "false",
+  "inherits": "fdm_filament_flex",
+  "filament_id": "GFA13",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "basf_ultrafuse_tpu_95A"
+  ],
+  "filament_type": [
+      "FLEX"
+  ],
+  "filament_vendor": [
+      "BASF"
+  ]
+}

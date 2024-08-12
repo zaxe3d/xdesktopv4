@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse 316L @X4",
+    "inherits": "basf_ultrafuse_316l",
+    "from": "system",
+    "setting_id": "GFSA20_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

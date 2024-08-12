@@ -5,7 +5,19 @@
   "instantiation": "false",
   "inherits": "fdm_filament_petg",
   "filament_id": "GFA10",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
   "filament_notes": [
-    "zaxe_petg"
+    "generic_petg"
+  ],
+  "filament_type": [
+      "PETG"
+  ],
+  "filament_vendor": [
+      "Generic"
   ]
 }

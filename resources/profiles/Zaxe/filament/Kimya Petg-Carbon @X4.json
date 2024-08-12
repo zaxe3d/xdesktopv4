@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Kimya Petg-Carbon @X4",
+    "inherits": "kimya_petg_carbon",
+    "from": "system",
+    "setting_id": "GFSA33_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

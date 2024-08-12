@@ -21,36 +21,36 @@
     "300"
   ],
   "machine_max_acceleration_x": [
-    "6500",
-    "6500"
+    "6000",
+    "6000"
   ],
   "machine_max_acceleration_y": [
-    "6500",
-    "5000"
+    "6000",
+    "6000"
   ],
   "machine_max_acceleration_z": [
-    "6500",
-    "6500"
+    "6000",
+    "6000"
   ],
   "machine_max_acceleration_e": [
-    "6500",
-    "6500"
+    "6000",
+    "6000"
   ],
   "machine_max_acceleration_extruding": [
-    "6500",
-    "6500"
+    "6000",
+    "6000"
   ],
   "machine_max_acceleration_retracting": [
     "1500",
     "1500"
   ],
   "machine_max_jerk_x": [
-    "8",
-    "8"
+    "5",
+    "5"
   ],
   "machine_max_jerk_y": [
-    "8",
-    "8"
+    "5",
+    "5"
   ],
   "machine_max_jerk_z": [
     "0.2",

@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "colorFaBB PA-CF @X4",
+    "inherits": "colorfabb_pa_cf",
+    "from": "system",
+    "setting_id": "GFSA45_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolyMide PA6-CF @Z4",
+    "inherits": "polymaker_polymide_pa6_cf",
+    "from": "system",
+    "setting_id": "GFSA29_02",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

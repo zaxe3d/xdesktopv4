@@ -5,13 +5,19 @@
   "from": "system",
   "instantiation": "false",
   "filament_id": "GFA06",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
   "filament_notes": [
-    "zaxe_pla"
+    "generic_pla"
   ],
-  "filament_flow_ratio": [
-      "0.98"
+  "filament_type": [
+      "PLA"
   ],
-  "slow_down_layer_time": [
-      "8"
+  "filament_vendor": [
+      "Generic"
   ]
 }

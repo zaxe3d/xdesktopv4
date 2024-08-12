@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Kimya ABS-EDS @X4",
+    "inherits": "kimya_abs_eds",
+    "from": "system",
+    "setting_id": "GFSA37_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

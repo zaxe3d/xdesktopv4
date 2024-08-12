@@ -36,6 +36,9 @@
         "240x240",
         "0x240"
     ],
+    "thumbnails": [
+      "250x250"
+    ],
     "printable_height": "260",
     "machine_load_filament_time": "28",
     "machine_unload_filament_time": "34",

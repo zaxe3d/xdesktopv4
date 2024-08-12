@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolyMax PETG-ESD @Z4",
+    "inherits": "polymaker_polymax_petg_esd",
+    "from": "system",
+    "setting_id": "GFSA28_02",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

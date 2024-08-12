@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "colorFaBB ASA @X4",
+    "inherits": "colorfabb_asa",
+    "from": "system",
+    "setting_id": "GFSA42_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

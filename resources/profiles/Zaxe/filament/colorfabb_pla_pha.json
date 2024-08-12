@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "colorfabb_pla_pha",
+  "inherits": "fdm_filament_pla",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA46",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "olorfabb_pla_pha"
+  ],
+  "filament_type": [
+      "PLA-PHA"
+  ],
+  "filament_vendor": [
+      "ColorFabb"
+  ]
+}

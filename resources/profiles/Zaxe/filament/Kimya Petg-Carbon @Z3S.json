@@ -1,0 +1,18 @@
+{
+    "type": "filament",
+    "name": "Kimya Petg-Carbon @Z3S",
+    "inherits": "kimya_petg_carbon",
+    "from": "system",
+    "setting_id": "GFSA33_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3S - 0.4mm Revo HF nozzle",
+        "Zaxe Z3S - 0.6mm Revo HF nozzle",
+        "Zaxe Z3S - 0.8mm Revo HF nozzle",
+        "Zaxe Z3S - 0.4mm Revo HF OBX nozzle",
+        "Zaxe Z3S - 0.8mm Revo HF OBX nozzle",
+        "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle"
+    ]
+}

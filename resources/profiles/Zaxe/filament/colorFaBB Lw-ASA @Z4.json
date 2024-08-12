@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "colorFaBB Lw-ASA @Z4",
+    "inherits": "colorfabb_lw_asa",
+    "from": "system",
+    "setting_id": "GFSA44_02",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe Z4 - 0.4mm nozzle"
+    ]
+}

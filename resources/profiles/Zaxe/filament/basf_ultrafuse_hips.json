@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "basf_ultrafuse_hips",
+  "inherits": "basf_ultrafuse_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA17",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "basf_ultrafuse_hips"
+  ],
+  "filament_type": [
+      "HIPS"
+  ],
+  "filament_vendor": [
+      "BASF"
+  ]
+}
