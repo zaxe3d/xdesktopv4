@@ -302,13 +302,17 @@ function FilterModelList(keyword) {
 
 function SelectPrinterAll( sVendor )
 {
-	$("input[vendor='"+sVendor+"']").prop("checked", true);
+	$("input[vendor='"+sVendor+"']").prop("checked", true).each(function() {
+		CheckBoxOnclick(this);
+	});
 }
 
 
 function SelectPrinterNone( sVendor )
 {
-	$("input[vendor='"+sVendor+"']").prop("checked", false);
+	$("input[vendor='"+sVendor+"']").prop("checked", false).each(function() {
+		CheckBoxOnclick(this);
+	});
 }
 
 
@@ -318,6 +322,8 @@ function GotoFilamentPage()
 	
 	if(nChoose>0)
 		window.open('../22/index.html','_self');
+	else
+		ShowNotice(1);
 }
 
 function OnExitFilter() {
