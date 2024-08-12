@@ -324,6 +324,8 @@ function GotoFilamentPage()
 	
 	if(nChoose>0)
 		window.open('../22/index.html','_self');
+	else
+		ShowNotice(1);
 }
 
 function OnExitFilter() {
