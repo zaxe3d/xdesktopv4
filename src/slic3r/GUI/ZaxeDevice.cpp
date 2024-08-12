@@ -271,7 +271,7 @@ wxSizer* ZaxeDevice::createPrintButton()
         } else {
             auto net_manager = dynamic_cast<NetworkMachineManager*>(GetParent()->GetParent());
             if (net_manager) {
-                auto archive = net_manager->get_archive(capabilities.canPrintMultiPlate());
+                auto archive = net_manager->get_archive(capabilities.canPrintMultiPlate(), true);
                 if (archive) {
                     print(archive);
                 }
