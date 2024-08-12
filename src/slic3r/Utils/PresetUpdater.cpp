@@ -738,7 +738,7 @@ void PresetUpdater::priv::sync_config()
 
                     // extract the file downloaded
                     BOOST_LOG_TRIVIAL(info) << "[Orca Updater]start to unzip the downloaded file " << download_file;
-                    if (!extract_file(download_file, cache_profile_path)) {
+                    if (!extract_file(download_file, cache_profile_path / "profiles")) {
                         BOOST_LOG_TRIVIAL(warning) << "[Orca Updater]extract downloaded file"
                                                    << " failed, path: " << download_file;
                         return;
