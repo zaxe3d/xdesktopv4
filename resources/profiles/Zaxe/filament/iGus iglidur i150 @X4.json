@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "iGus iglidur i150 @X4",
+    "inherits": "iglidur_i150",
+    "from": "system",
+    "setting_id": "GFSA42_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

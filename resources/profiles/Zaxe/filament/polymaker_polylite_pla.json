@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "polymaker_polylite_pla",
+  "inherits": "fdm_filament_pla",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA27",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "polymaker_polylite_pla"
+  ],
+  "filament_type": [
+      "PLA"
+  ],
+  "filament_vendor": [
+      "Polymaker"
+  ]
+}

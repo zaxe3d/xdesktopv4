@@ -1,0 +1,68 @@
+{
+  "type": "filament",
+  "name": "basf_ultrafuse_pet_cf15",
+  "inherits": "basf_ultrafuse_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA22",
+  "filament_cost": [
+    "0"
+  ],
+  "filament_density": [
+    "1.36"
+  ],
+  "filament_notes": [
+    "basf_ultrafuse_pet_cf15"
+  ],
+  "filament_type": [
+    "PET-CF15"
+  ],
+  "filament_vendor": [
+    "BASF"
+  ],
+  "fan_max_speed": [
+    "30"
+  ],
+  "fan_min_speed": [
+    "15"
+  ],
+  "filament_max_volumetric_speed": [
+    "8"
+  ],
+  "nozzle_temperature": [
+    "260"
+  ],
+  "nozzle_temperature_initial_layer": [
+    "260"
+  ],
+  "filament_flow_ratio": [
+    "0.6"
+  ],
+  "enable_pressure_advance": [
+    "1"
+  ],
+  "pressure_advance": [
+    "0.056"
+  ],
+  "min_print_speed": [
+    "15"
+  ],
+  "full_fan_speed_layer": [
+    "3"
+  ],
+  "slow_down_min_speed": [
+    "10"
+  ],
+  "fan_cooling_layer_time": [
+    "100"
+  ],
+  "reduce_fan_stop_start_freq": [
+    "0"
+  ],
+  "hot_plate_temp_initial_layer": [
+    "85"
+  ],
+  "hot_plate_temp": [
+    "85"
+  ]
+}

@@ -14,34 +14,16 @@
         "1.24"
     ],
     "filament_cost": [
-        "20"
-    ],
-    "cool_plate_temp": [
-        "35"
-    ],
-    "eng_plate_temp": [
         "0"
     ],
     "hot_plate_temp": [
         "55"
     ],
-    "textured_plate_temp": [
-        "55"
-    ],
-    "cool_plate_temp_initial_layer": [
-        "35"
-    ],
-    "eng_plate_temp_initial_layer": [
-        "0"
-    ],
     "hot_plate_temp_initial_layer": [
         "55"
     ],
-    "textured_plate_temp_initial_layer": [
-        "55"
-    ],
     "nozzle_temperature_initial_layer": [
-        "220"
+        "215"
     ],
     "reduce_fan_stop_start_freq": [
         "1"
@@ -56,7 +38,7 @@
         "1"
     ],
     "nozzle_temperature": [
-        "220"
+        "215"
     ],
     "temperature_vitrification": [
         "45"
@@ -71,9 +53,21 @@
         "20"
     ],
     "slow_down_layer_time": [
-        "4"
+        "10"
     ],
     "additional_cooling_fan_speed": [
         "70"
+    ],
+    "overhang_fan_speed": [
+        "65"
+    ],
+    "filament_flow_ratio": [
+        "0.97"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.03"
     ]
 }

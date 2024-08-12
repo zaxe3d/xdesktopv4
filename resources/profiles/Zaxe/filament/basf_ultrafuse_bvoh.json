@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "basf_ultrafuse_bvoh",
+  "inherits": "basf_ultrafuse_pla",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA21",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "basf_ultrafuse_bvoh"
+  ],
+  "filament_type": [
+      "BvOH"
+  ],
+  "filament_vendor": [
+      "BASF"
+  ]
+}

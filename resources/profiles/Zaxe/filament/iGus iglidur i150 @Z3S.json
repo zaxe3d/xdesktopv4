@@ -1,0 +1,39 @@
+{
+    "type": "filament",
+    "name": "iGus iglidur i150 @Z3S",
+    "inherits": "iglidur_i150",
+    "from": "system",
+    "setting_id": "GFSA42_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3S - 0.4mm Revo HF nozzle",
+        "Zaxe Z3S - 0.6mm Revo HF nozzle",
+        "Zaxe Z3S - 0.8mm Revo HF nozzle",
+        "Zaxe Z3S - 0.4mm Revo HF OBX nozzle",
+        "Zaxe Z3S - 0.8mm Revo HF OBX nozzle",
+        "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle"
+    ],
+    "filament_flow_ratio": [
+        "0.98"
+    ],
+    "enable_pressure_advance": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.0285"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "1"
+    ],
+    "slow_down_layer_time": [
+        "8"
+    ],
+    "overhang_fan_threshold": [
+        "75%"
+    ],
+    "filament_max_volumetric_speed": [
+        "15"
+    ]
+}

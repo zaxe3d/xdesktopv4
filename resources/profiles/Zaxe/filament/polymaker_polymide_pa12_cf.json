@@ -1,0 +1,17 @@
+{
+  "type": "filament",
+  "name": "polymaker_polymide_pa12_cf",
+  "inherits": "polymaker_polymide_pa6_cf",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA31",
+  "filament_notes": [
+    "polymaker_polymide_pa12_cf"
+  ],
+  "filament_type": [
+      "PA12-CF"
+  ],
+  "filament_vendor": [
+      "Polymaker"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "type": "filament",
+  "name": "basf_ultrafuse_pa",
+  "inherits": "basf_ultrafuse_abs",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA18",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "basf_ultrafuse_pa"
+  ],
+  "filament_type": [
+      "PA"
+  ],
+  "filament_vendor": [
+      "BASF"
+  ],
+  "enable_pressure_advance": [
+      "1"
+  ],
+  "pressure_advance": [
+      "0.545"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse HIPS @X4",
+    "inherits": "basf_ultrafuse_hips",
+    "from": "system",
+    "setting_id": "GFSA17_03",
+    "instantiation": "true",
+    "compatible_printers": [
+      "Zaxe X4 - 0.4mm nozzle"
+    ]
+}

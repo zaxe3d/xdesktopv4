@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "colorfabb_asa",
+  "inherits": "fdm_filament_asa",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA42",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "colorfabb_asa"
+  ],
+  "filament_type": [
+      "ASA"
+  ],
+  "filament_vendor": [
+      "ColorFabb"
+  ]
+}

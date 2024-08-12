@@ -1,0 +1,15 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse PET-CF15 @Z3S",
+    "inherits": "basf_ultrafuse_pet_cf15",
+    "from": "system",
+    "setting_id": "GFSA22_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3S - 0.4mm Revo HF OBX nozzle",
+        "Zaxe Z3S - 0.8mm Revo HF OBX nozzle",
+        "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle",
+        "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle"
+    ]
+}

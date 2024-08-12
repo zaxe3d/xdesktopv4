@@ -1,0 +1,23 @@
+{
+  "type": "filament",
+  "name": "polymaker_polymide_pa6_gf",
+  "inherits": "polymaker_polymide_pa6_cf",
+  "from": "system",
+  "instantiation": "false",
+  "filament_id": "GFA30",
+  "filament_cost": [
+      "0"
+  ],
+  "filament_density": [
+      "0"
+  ],
+  "filament_notes": [
+    "polymaker_polymide_pa6_gf"
+  ],
+  "filament_type": [
+      "PA6-GF"
+  ],
+  "filament_vendor": [
+      "Polymaker"
+  ]
+}
