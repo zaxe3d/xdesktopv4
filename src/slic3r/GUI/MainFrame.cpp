@@ -171,6 +171,38 @@ static const wxString ctrl = ("Ctrl+");
 static const wxString ctrl = _L("Ctrl+");
 #endif
 
+static bool remove_dir(const wxString& path)
+{
+    wxDir dir(path);
+
+    if (!dir.IsOpened()) {
+        return false;
+    }
+
+    wxString filename;
+    bool     cont = dir.GetFirst(&filename, wxEmptyString, wxDIR_FILES | wxDIR_DIRS);
+
+    while (cont) {
+        wxString fullPath = path + wxFileName::GetPathSeparator() + filename;
+
+        if (wxDir::Exists(fullPath)) {
+            if (!remove_dir(fullPath))
+                return false;
+        } else {
+            wxRemoveFile(fullPath);
+        }
+
+        cont = dir.GetNext(&filename);
+    }
+
+    dir.Close();
+
+    if (!wxRmdir(path))
+        return false;
+
+    return true;
+}
+
 MainFrame::MainFrame() :
 DPIFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, BORDERLESS_FRAME_STYLE, "mainframe")
     , m_printhost_queue_dlg(new PrintHostQueueDialog(this))
@@ -2246,6 +2278,27 @@ void MainFrame::init_menubar_as_editor()
         append_menu_item(fileMenu, wxID_EXIT, _L("Quit"), wxString::Format(_L("Quit")),
             [this](wxCommandEvent&) { Close(false); }, "", nullptr);
 #endif
+
+        fileMenu->AppendSeparator();
+
+        append_menu_item(
+            fileMenu, wxID_ANY, _L("Reset to default configurations"), _L("Reset to default configurations"),
+            [this](wxCommandEvent&) {
+                {
+                    wxString      title = wxString(SLIC3R_APP_NAME) + " - " + _L("Reset to default configurations");
+                    MessageDialog dialog(nullptr,
+                                         _L("If you reset to the default settings, the application will close, and the contents of the "
+                                            "plates will be lost.") +
+                                             "\n\n" + _L("Do you want to proceed?"),
+                                         title, wxICON_QUESTION | wxOK | wxCANCEL);
+                    if (dialog.ShowModal() == wxID_CANCEL)
+                        return;
+                }
+
+                remove_dir(wxStandardPaths::Get().GetUserDataDir());
+                std::exit(EXIT_SUCCESS);
+            },
+            "", nullptr, []() { return true; }, this);
     }
 
     // Edit menu
