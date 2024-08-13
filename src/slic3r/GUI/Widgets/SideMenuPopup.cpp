@@ -72,7 +72,11 @@ void SidePopup::Create(wxWindow* focus)
 
     wxSizer* sizer = new wxBoxSizer(wxVERTICAL);
     for (auto btn : btn_list) {
+#ifdef _WIN32
+        btn->SetCornerRadius(FromDIP(0));
+#else
         btn->SetCornerRadius(FromDIP(12));
+#endif
         btn->SetBackgroundColor(btn_bg);
         // btn->SetBackgroundColour(blue500);
         btn->SetTextColor(text_fg);
