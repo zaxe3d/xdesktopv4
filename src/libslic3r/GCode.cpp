@@ -4173,7 +4173,7 @@ LayerResult GCode::process_layer(
                         const auto gflavor = print.config().gcode_flavor.value;
                         if (gflavor == gcfKlipper) {
                             m_writer.set_object_start_str(std::string("EXCLUDE_OBJECT_START NAME=") +
-                                                          get_instance_name(&instance_to_print.print_object, inst.id) + "\n");
+                                                          get_instance_name(&instance_to_print.print_object, inst.id) + std::string(" ID=") + std::to_string(inst.unique_id) + "\n");
                         }
                         else if (gflavor == gcfMarlinLegacy || gflavor == gcfMarlinFirmware || gflavor == gcfRepRapFirmware) {
                             std::string str = std::string("M486 S") + std::to_string(inst.unique_id) + "\n";
@@ -4330,7 +4330,7 @@ LayerResult GCode::process_layer(
                         const auto gflavor = print.config().gcode_flavor.value;
                         if (gflavor == gcfKlipper) {
                             m_writer.set_object_end_str(std::string("EXCLUDE_OBJECT_END NAME=") +
-                                                        get_instance_name(&instance_to_print.print_object, inst.id) + "\n");
+                                                        get_instance_name(&instance_to_print.print_object, inst.id) + std::string(" ID=") + std::to_string(inst.unique_id) + "\n");
                         } else if (gflavor == gcfMarlinLegacy || gflavor == gcfMarlinFirmware || gflavor == gcfRepRapFirmware) {
                             m_writer.set_object_end_str(std::string("M486 S-1\n"));
                         }
@@ -6526,7 +6526,7 @@ std::string GCode::set_object_info(Print *print) {
                 auto center    = print->translate_to_print_space(Vec2d(bbox.center().x(), bbox.center().y()));
                 auto inst_name = get_instance_name(object, inst);
                 if (gflavor == gcfKlipper) {
-                    gcode << "EXCLUDE_OBJECT_DEFINE NAME=" << inst_name << " CENTER=" << center.x() << "," << center.y()
+                    gcode << "EXCLUDE_OBJECT_DEFINE NAME=" << inst_name << " ID=" << std::to_string(inst.unique_id) << " CENTER=" << center.x() << "," << center.y()
                           << " POLYGON=" << polygon_to_string(inst.get_convex_hull_2d(), print) << "\n";
                 } else if (gflavor == gcfMarlinLegacy || gflavor == gcfMarlinFirmware || gflavor == gcfRepRapFirmware) {
                     gcode << "M486 S" << std::to_string(inst.unique_id);
