@@ -1541,6 +1541,11 @@ void MainFrame::update_btn1(bool enable)
     m_mode_option_btn->SetBackgroundColor(enable ? is_hovered ? blue400 : blue500 : gray300);
     m_mode_option_btn->SetBackgroundColour(enable ? is_hovered ? blue400 : blue500 : gray300);
 
+    auto opt_client_pos  = m_mode_option_btn->ScreenToClient(mouse_pos);
+    auto opt_client_rect = m_mode_option_btn->GetClientRect();
+    bool is_opt_hovered  = opt_client_rect.Contains(opt_client_pos);
+    m_mode_option_btn->SetIcon(is_opt_hovered ? "zaxe_square_arrow_down_blue400" : "zaxe_square_arrow_down_blue500");
+
     Refresh();
 }
 
@@ -1578,12 +1583,15 @@ wxBoxSizer* MainFrame::create_side_tools()
 
     // m_publish_btn = new Button(this, _L("Upload"), "bar_publish", 0, FromDIP(16));
     m_mode_btn = new Button(this, _L("Slice plate"), "", wxBORDER_NONE);
-    m_mode_option_btn = new Button(this, "", "zaxe_square_arrow_down", wxBORDER_NONE, FromDIP(24));
+    m_mode_option_btn = new Button(this, "", "zaxe_square_arrow_down_blue500", wxBORDER_NONE, FromDIP(24));
 
     // m_publish_btn->Hide();
     m_mode_option_btn->Enable();
 
     m_btn1 = create_multi_btn(m_mode_btn, m_mode_option_btn);
+    wxGetApp().UpdateDarkUI(m_mode_btn);
+    wxGetApp().UpdateDarkUI(m_mode_option_btn);
+    wxGetApp().UpdateDarkUI(m_btn1);
 
     m_btn1->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {
         bool is_enabled = m_in_slicing_mode ? m_slice_enable : m_print_enable;
@@ -1601,6 +1609,20 @@ wxBoxSizer* MainFrame::create_side_tools()
         m_mode_btn->SetBackgroundColour(is_enabled ? blue500 : gray300);
         m_mode_option_btn->SetBackgroundColor(is_enabled ? blue500 : gray300);
         m_mode_option_btn->SetBackgroundColour(is_enabled ? blue500 : gray300);
+        Refresh();
+        e.Skip();
+    });
+
+    m_mode_option_btn->Bind(wxEVT_ENTER_WINDOW, [this](auto& e) {
+        m_mode_option_btn->SetIcon("zaxe_square_arrow_down_blue400");
+
+        Refresh();
+        e.Skip();
+    });
+
+    m_mode_option_btn->Bind(wxEVT_LEAVE_WINDOW, [this](auto& e) {
+        m_mode_option_btn->SetIcon("zaxe_square_arrow_down_blue500");
+
         Refresh();
         e.Skip();
     });
