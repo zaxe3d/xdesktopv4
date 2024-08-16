@@ -10,6 +10,9 @@
     "fan_cooling_layer_time": [
         "30"
     ],
+    "filament_density": [
+        "1.24"
+    ],
     "fan_max_speed": [
         "60"
     ],

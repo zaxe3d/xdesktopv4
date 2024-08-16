@@ -8,9 +8,6 @@
   "filament_cost": [
     "0"
   ],
-  "filament_density": [
-    "1.04"
-  ],
   "filament_notes": [
     "generic_abs"
   ],
@@ -24,10 +21,10 @@
     "1"
   ],
   "fan_min_speed": [
-    "10"
+    "25"
   ],
   "fan_max_speed": [
-    "80"
+    "65"
   ],
   "fan_cooling_layer_time": [
     "30"
