@@ -103,7 +103,7 @@ int TabCtrl::AppendItem(const wxString &item,
     btn->SetTextColor(StateColor(
         std::make_pair(0x6B6B6C, (int) StateColor::NotChecked),
         std::make_pair(*wxLIGHT_GREY, (int) StateColor::Normal)));
-    auto gray100 = wxColor("#F2F4F7");
+    auto gray100 = StateColor::darkModeColorFor(wxColor("#F2F4F7"));
     btn->SetBackgroundColor(gray100);
     btn->SetBackgroundColour(gray100);
     btn->SetCornerRadius(0);
