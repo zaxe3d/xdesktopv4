@@ -1,6 +1,6 @@
 {
   "name": "Zaxe",
-  "version": "02.00.05.00",
+  "version": "02.00.06.00",
   "url": "",
   "force_update": "0",
   "description": "Zaxe configurations",
@@ -68,8 +68,16 @@
       "sub_path": "process/zaxe_process_X4_0.4_nozzle_common.json"
     },
     {
+      "name": "zaxe_process_Z3S_0.4_nozzle_quality",
+      "sub_path": "process/zaxe_process_Z3S_0.4_nozzle_quality.json"
+    },
+    {
       "name": "0.05mm, Expert @Z3S 0.4mm",
       "sub_path": "process/0.05mm, Expert @Z3S 0.4mm.json"
+    },
+    {
+      "name": "0.05mm, Quality @Z3S 0.4mm",
+      "sub_path": "process/0.05mm, Quality @Z3S 0.4mm.json"
     },
     {
       "name": "0.05mm, Expert @X4 0.4mm",
@@ -80,12 +88,20 @@
       "sub_path": "process/0.10mm, High @Z3S 0.4mm.json"
     },
     {
+      "name": "0.10mm, Quality @Z3S 0.4mm",
+      "sub_path": "process/0.10mm, Quality @Z3S 0.4mm.json"
+    },
+    {
       "name": "0.10mm, High @X4 0.4mm",
       "sub_path": "process/0.10mm, High @X4 0.4mm.json"
     },
     {
       "name": "0.15mm, Recommended @Z3S 0.4mm",
       "sub_path": "process/0.15mm, Recommended @Z3S 0.4mm.json"
+    },
+    {
+      "name": "0.15mm, Quality @Z3S 0.4mm",
+      "sub_path": "process/0.15mm, Quality @Z3S 0.4mm.json"
     },
     {
       "name": "0.20mm, Normal @Z3S 0.4mm",
