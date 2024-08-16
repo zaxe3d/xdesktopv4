@@ -1,3 +1,7 @@
+///|/ Copyright (c) Zaxe 2018 - 2024 Gökhan Öniş @GO
+///|/
+///|/ XDesktop is released under the terms of the AGPLv3 or higher
+///|/
 #include "NetworkMachineManager.hpp"
 #include "GUI_App.hpp"
 #include "MainFrame.hpp" // for wxGetApp().app_config
