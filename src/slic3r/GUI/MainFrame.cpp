@@ -225,6 +225,10 @@ DPIFrame(NULL, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, BORDERLESS_FRAME_
     set_miniaturizable(GetHandle());
 #endif
 
+    blue400 = StateColor::darkModeColorFor(blue400);
+    blue500 = StateColor::darkModeColorFor(blue500);
+    gray300 = StateColor::darkModeColorFor(gray300);
+
     if (!wxGetApp().app_config->has("user_mode")) { 
         wxGetApp().app_config->set("user_mode", "simple");
         wxGetApp().app_config->set_bool("developer_mode", false);
