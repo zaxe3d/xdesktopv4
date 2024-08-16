@@ -1,4 +1,8 @@
 #ifndef slic3r_NetworkMachine_hpp_
+///|/ Copyright (c) Zaxe 2018 - 2024 Gökhan Öniş @GO
+///|/
+///|/ XDesktop is released under the terms of the AGPLv3 or higher
+///|/
 #define slic3r_NetworkMachine_hpp_
 
 #include "WebSocket.hpp"

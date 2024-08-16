@@ -1,3 +1,7 @@
+///|/ Copyright (c) Zaxe 2018 - 2024 Gökhan Öniş @GO
+///|/
+///|/ XDesktop is released under the terms of the AGPLv3 or higher
+///|/
 #include "NetworkMachine.hpp"
 #include <libslic3r/Utils.hpp>
 #include "Http.hpp"
