@@ -12,7 +12,7 @@
     "90"
   ],
   "fan_max_speed": [
-    "50"
+    "80"
   ],
   "fan_min_speed": [
     "10"
@@ -39,7 +39,7 @@
       "1"
   ],
   "pressure_advance": [
-      "0.025"
+      "0.031"
   ],
   "filament_flow_ratio": [
       "0.95"

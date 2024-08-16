@@ -13,5 +13,8 @@
   ],
   "filament_vendor": [
       "Polymaker"
+  ],
+  "filament_density": [
+      "1.06"
   ]
 }

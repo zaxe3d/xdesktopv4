@@ -8,6 +8,15 @@
   "filament_notes": [
     "zaxe_abs"
   ],
+  "enable_pressure_advance": [
+      "1"
+  ],
+  "pressure_advance": [
+      "0.0285"
+  ],
+  "filament_flow_ratio": [
+      "0.98"
+  ],
   "fan_cooling_layer_time": [
     "100"
   ],
@@ -15,13 +24,13 @@
     "60"
   ],
   "fan_min_speed": [
-    "15"
+    "25"
   ],
   "hot_plate_temp": [
     "105"
   ],
   "hot_plate_temp_initial_layer": [
-    "110"
+    "105"
   ],
   "slow_down_layer_time": [
     "4"
@@ -34,15 +43,6 @@
   ],
   "enable_overhang_bridge_fan": [
       "0"
-  ],
-  "enable_pressure_advance": [
-      "1"
-  ],
-  "pressure_advance": [
-      "0.0285"
-  ],
-  "filament_flow_ratio": [
-      "0.98"
   ],
   "nozzle_temperature": [
       "250"
