@@ -598,14 +598,9 @@ void ZaxeDevice::updatePrintInfo()
 
 void ZaxeDevice::onTemperatureUpdate()
 {
-    nozzle_temp_val->SetLabel(wxString::Format("%.1f "
-                                               "\xC2\xB0"
-                                               "C",
-                                               nm->attr->nozzle_temp));
-    plate_temp_val->SetLabel(wxString::Format("%.1f "
-                                              "\xC2\xB0"
-                                              "C",
-                                              nm->attr->bed_temp));
+    nozzle_temp_val->SetLabel(wxString::Format("%.1f %sC", nm->attr->nozzle_temp, wxString::FromUTF8("\xC2\xB0")));
+    plate_temp_val->SetLabel(wxString::Format("%.1f %sC", nm->attr->bed_temp, wxString::FromUTF8("\xC2\xB0")));
+
     Refresh();
 }
 
