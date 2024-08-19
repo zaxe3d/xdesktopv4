@@ -623,8 +623,8 @@ void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<Za
         split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
         string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
         string dM = boost::to_upper_copy(nm->attr->deviceModel);
-        auto   s  = pN.find(dM);
         boost::replace_all(dM, "PLUS", "+");
+        auto   s  = pN.find(dM);
         trim(pN);
 
         std::string sliced_info_model{};
@@ -762,8 +762,8 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
     split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
     string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
     string dM = boost::to_upper_copy(nm->attr->deviceModel);
-    auto   s  = pN.find(dM);
     boost::replace_all(dM, "PLUS", "+");
+    auto   s  = pN.find(dM);
     trim(pN);
 
     std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
