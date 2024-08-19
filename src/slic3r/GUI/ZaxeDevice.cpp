@@ -49,6 +49,8 @@ bool ZaxeDeviceCapabilities::canPrintMultiPlate() const
     return is_there(nm->attr->deviceModel, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 78);
 }
 
+bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->deviceModel, {"z1", "z3", "x1", "x2", "x3"}); };
+
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
 {
@@ -195,7 +197,7 @@ void ZaxeDevice::createAvatar()
 {
     avatar_rect = new RoundedRectangle(this, gray200, wxDefaultPosition, wxSize(FromDIP(75), FromDIP(75)), FromDIP(8), 1);
     wxGetApp().UpdateDarkUI(avatar_rect);
-    default_avatar = create_scaled_bitmap("zaxe_printer", avatar_rect, 48);
+    default_avatar = create_scaled_bitmap(get_cover_file_name(), avatar_rect, 48);
     avatar         = new wxStaticBitmap(avatar_rect, wxID_ANY, default_avatar, wxDefaultPosition, wxDefaultSize);
 
     auto avatar_sizer = new wxBoxSizer(wxVERTICAL);
@@ -624,7 +626,7 @@ void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<Za
         string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
         string dM = boost::to_upper_copy(nm->attr->deviceModel);
         boost::replace_all(dM, "PLUS", "+");
-        auto   s  = pN.find(dM);
+        auto s = pN.find(dM);
         trim(pN);
 
         std::string sliced_info_model{};
@@ -763,7 +765,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
     string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
     string dM = boost::to_upper_copy(nm->attr->deviceModel);
     boost::replace_all(dM, "PLUS", "+");
-    auto   s  = pN.find(dM);
+    auto s = pN.find(dM);
     trim(pN);
 
     std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
@@ -868,6 +870,16 @@ void ZaxeDevice::switch_cam_on()
         wxMessageBox("Need device firmware version at least v3.3.80 to comply.", "Need firmware update for this feautre.",
                      wxICON_INFORMATION);
     }
+}
+
+std::string ZaxeDevice::get_cover_file_name() const
+{
+    auto model_str = boost::to_lower_copy(nm->attr->deviceModel);
+    boost::replace_all(model_str, "plus", "+");
+    if (!capabilities.hasPrinterCover() || model_str == "z3s" || model_str == "z3+")
+        model_str = "z3";
+
+    return "zaxe_printer_" + model_str;
 }
 
 } // namespace Slic3r::GUI

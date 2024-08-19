@@ -30,6 +30,7 @@ public:
     bool hasSnapshot() const;
     bool canUnloadFilament() const;
     bool canPrintMultiPlate() const;
+    bool hasPrinterCover() const;
 
 private:
     NetworkMachine* nm;
@@ -141,5 +142,6 @@ private:
     void confirm(std::function<void()> cb, const wxString& question = _L("Are you sure?"));
 
     void switch_cam_on();
+    std::string get_cover_file_name() const;
 };
 } // namespace Slic3r::GUI
