@@ -1655,7 +1655,7 @@ wxBoxSizer* MainFrame::create_side_tools()
     m_mode_btn->Bind(wxEVT_BUTTON, [this](wxCommandEvent& event)
         {
             if(m_in_slicing_mode){
-                m_last_slice = m_slice_select;
+                m_last_slice_mode = m_slice_select;
                 //this->m_plater->select_view_3D("Preview");
                 m_plater->exit_gizmo();
                 m_plater->update(true, true);
