@@ -460,9 +460,9 @@ bool NetworkMachineManager::prepare_archive(PrintMode mode)
 bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
 {
     auto create_error_notification = []() {
-        wxGetApp()
-            .plater()
-            ->get_notification_manager()
+        auto _plater = wxGetApp().plater();
+        _plater->sidebar().show_carousel(true, true);
+        _plater->get_notification_manager()
             ->push_notification(NotificationType::CustomNotification, NotificationManager::NotificationLevel::WarningNotificationLevel,
                                 _u8L("Selected printer cannot be found in network, please select a printer from Zaxe Machine Carousel"));
     };
