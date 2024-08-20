@@ -7,8 +7,9 @@
 #include "libslic3r/ZaxeConfigHelper.hpp"
 
 #include <openssl/md5.h>
+#include <algorithm>
 
-#define ZAXE_FILE_VERSION "4.0.0"
+#define ZAXE_FILE_VERSION "4.0.1"
 
 namespace Slic3r {
 
@@ -153,6 +154,12 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     j["extruder_temperature"] = cfg.opt_int("nozzle_temperature_initial_layer", 0);
     j["bed_temperature"]     = print.config().option<ConfigOptionInts>(get_bed_temp_1st_layer_key(print.config().curr_bed_type))->get_at(0);
     j["standby_temperature"] = cfg.opt_int("nozzle_temperature", 0) + cfg.opt_int("standby_temperature_delta");
+
+    size_t total_layer_count = 0;
+    for (const PrintObject* print_object : print.objects()) {
+        total_layer_count = std::max(total_layer_count, print_object->total_layer_count());
+    }
+    j["total_layers"] = total_layer_count;
 
     std::vector<char> bytes;
     std::string       gcode;
