@@ -40,6 +40,8 @@
 #include <algorithm>
 #include <chrono>
 
+#include "libslic3r/ZaxeConfigHelper.hpp"
+
 namespace Slic3r {
 namespace GUI {
 
@@ -5554,7 +5556,13 @@ void GCodeViewer::render_legend(float &legend_height, int canvas_width, int canv
             ::sprintf(buf, imperial_units ? "%.2f in" : "%.2f m", ps.total_used_filament / /*1000*/koef);
             imgui.text(buf);
             ImGui::SameLine();
-            ::sprintf(buf, imperial_units ? "  %.2f oz" : "  %.2f g", ps.total_weight / unit_conver);
+            ::sprintf(buf, imperial_units ? "  %.2f oz" : " %.2f g", ps.total_weight / unit_conver);
+            imgui.text(buf);
+
+            auto& cfg                  = wxGetApp().plater()->get_partplate_list().get_curr_plate()->fff_print()->full_print_config();
+            auto  sliced_info_material = ZaxeConfigHelper::get_material(cfg);
+            ImGui::SameLine();
+            ::sprintf(buf, sliced_info_material.c_str());
             imgui.text(buf);
 
             //BBS: display cost of filaments
