@@ -1003,7 +1003,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     p->m_bpButton_set_filament = set_btn;
 
     bSizer39->Add(set_btn, 0, wxALIGN_CENTER);
-    bSizer39->AddStretchSpacer();
+    bSizer39->Add(15 * em / 10, 0, 0, 0, 0);
 
     // add filament content
     p->m_panel_filament_content = new wxPanel( p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
