@@ -11220,7 +11220,10 @@ void Plater::export_stl(bool extended, bool selection_only, bool multi_stls, boo
         if (dlg.ShowModal() == wxID_OK) {
             path = dlg.GetPath() + "/";
         }
+    } else {
+        path = p->get_export_file(FT_STL);
     }
+
     if (path.empty()) { return; }
     const std::string path_u8 = into_u8(path);
 
