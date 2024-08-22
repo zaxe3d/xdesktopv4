@@ -12,16 +12,16 @@
       "1"
   ],
   "pressure_advance": [
-      "0.0285"
+      "0.0335"
   ],
   "filament_flow_ratio": [
-      "0.98"
+      "0.95"
   ],
   "fan_cooling_layer_time": [
     "100"
   ],
   "fan_max_speed": [
-    "60"
+    "55"
   ],
   "fan_min_speed": [
     "25"
@@ -30,7 +30,7 @@
     "105"
   ],
   "hot_plate_temp_initial_layer": [
-    "105"
+    "100"
   ],
   "slow_down_layer_time": [
     "4"

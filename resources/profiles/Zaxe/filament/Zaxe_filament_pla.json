@@ -18,10 +18,10 @@
     "100"
   ],
   "hot_plate_temp": [
-    "50"
+    "55"
   ],
   "hot_plate_temp_initial_layer": [
-    "55"
+    "60"
   ],
   "slow_down_layer_time": [
     "8"
@@ -48,6 +48,6 @@
       "215"
   ],
   "nozzle_temperature_initial_layer": [
-      "215"
+      "220"
   ]
 }
