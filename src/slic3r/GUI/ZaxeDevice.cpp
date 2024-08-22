@@ -207,7 +207,10 @@ void ZaxeDevice::createAvatar()
     avatar_rect->Layout();
 
     if (capabilities.hasCam()) {
-        avatar_rect->Bind(wxEVT_LEFT_DCLICK, [&](auto& e) { switch_cam_on(); });
+        avatar->Bind(wxEVT_LEFT_DCLICK, [&](auto& e) {
+            switch_cam_on();
+            e.Skip();
+        });
     }
 }
 
@@ -349,7 +352,10 @@ wxSizer* ZaxeDevice::createIconButtons()
                                       });
     toggle_leds_btn->Show(capabilities.canToggleLeds());
 
-    camera_btn = create_icon_btn("zaxe_cam", _L("Camera"), [&](const auto&) { switch_cam_on(); });
+    camera_btn = create_icon_btn("zaxe_cam", _L("Camera"), [&](auto& e) {
+        switch_cam_on();
+        e.Skip();
+    });
     camera_btn->Show(capabilities.hasCam());
 
     auto sizer = new wxBoxSizer(wxHORIZONTAL);
@@ -849,23 +855,22 @@ void ZaxeDevice::onVersionCheck(const std::map<std::string, Semver>& latest_vers
 
 void ZaxeDevice::switch_cam_on()
 {
-    BOOST_LOG_TRIVIAL(info) << "Clicked on avatar trying to open stream on: " << nm->name;
-    if (nm->attr->firmwareVersion.GetMinor() >= 4 ||
-        (nm->attr->firmwareVersion.GetMinor() >= 3 && nm->attr->firmwareVersion.GetMicro() >= 80)) {
+    BOOST_LOG_TRIVIAL(info) << "Trying to open camera stream on: " << nm->name;
+    if (capabilities.get_version() >= Semver(3, 3, 80)) {
+#ifdef _WIN32
         wxFileName ffplay(wxStandardPaths::Get().GetExecutablePath());
         wxString   curExecPath(ffplay.GetPath());
 
-        wxExecute(
-#ifdef _WIN32
-            "cmd.exe /c ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) + ": " +
-                nm->name + "\" -x 720",
-            wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE
+        wxString ffplay_path = wxString::Format("%s\\ffplay.exe", curExecPath);
+        wxString command = wxString::Format("cmd.exe /c \"\"%s\" tcp://%s:5002 -window_title \"Zaxe %s: %s\" -x 720\"", ffplay_path, nm->ip,
+                                            boost::to_upper_copy(nm->attr->deviceModel), nm->name);
+        BOOST_LOG_TRIVIAL(info) << __func__ << ": " << command.ToStdString();
+        wxExecute(command, wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE);
 #else
-            curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) + ": " +
-                nm->name + "\" -x 720",
-            wxEXEC_ASYNC
+        wxExecute(curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) +
+                      ": " + nm->name + "\" -x 720",
+                  wxEXEC_ASYNC);
 #endif
-        );
     } else {
         wxMessageBox("Need device firmware version at least v3.3.80 to comply.", "Need firmware update for this feautre.",
                      wxICON_INFORMATION);

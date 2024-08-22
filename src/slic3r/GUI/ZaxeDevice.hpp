@@ -32,6 +32,8 @@ public:
     bool canPrintMultiPlate() const;
     bool hasPrinterCover() const;
 
+    Semver get_version() const { return version; }
+
 private:
     NetworkMachine* nm;
     Semver          version;
@@ -114,7 +116,7 @@ private:
     std::optional<Semver>  upstream_version;
     bool                   update_available{false};
 
-    enum class PrintBtnMode {Print, Prepare};
+    enum class PrintBtnMode { Print, Prepare };
     PrintBtnMode print_btn_mode{PrintBtnMode::Prepare};
 
     void     onTimer(wxTimerEvent& event);
@@ -141,7 +143,7 @@ private:
 
     void confirm(std::function<void()> cb, const wxString& question = _L("Are you sure?"));
 
-    void switch_cam_on();
+    void        switch_cam_on();
     std::string get_cover_file_name() const;
 };
 } // namespace Slic3r::GUI
