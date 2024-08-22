@@ -857,10 +857,9 @@ void ZaxeDevice::switch_cam_on()
 {
     BOOST_LOG_TRIVIAL(info) << "Trying to open camera stream on: " << nm->name;
     if (capabilities.get_version() >= Semver(3, 3, 80)) {
-#ifdef _WIN32
         wxFileName ffplay(wxStandardPaths::Get().GetExecutablePath());
         wxString   curExecPath(ffplay.GetPath());
-
+#ifdef _WIN32
         wxString ffplay_path = wxString::Format("%s\\ffplay.exe", curExecPath);
         wxString command = wxString::Format("cmd.exe /c \"\"%s\" tcp://%s:5002 -window_title \"Zaxe %s: %s\" -x 720\"", ffplay_path, nm->ip,
                                             boost::to_upper_copy(nm->attr->deviceModel), nm->name);

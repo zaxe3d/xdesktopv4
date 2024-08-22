@@ -7,11 +7,20 @@
   "compatible_printers": [
     "Zaxe Z3S - 0.4mm Revo HF nozzle"
   ],
-  "wall_loops":"5",
-  "sparse_infill_density":"45",
-  "outer_wall_speed":"150",
-  "sparse_infill_pattern":"gyroid",
+  "layer_height": "0.2",
+  "wall_loops": "5",
+  "sparse_infill_density": "45",
+  "outer_wall_speed": "150",
+  "sparse_infill_pattern": "honeycomb",
   "top_shell_layers": "6",
   "bottom_shell_layers": "5",
-    "layer_height":"0.2"
+  "accel_to_decel_enable": "0",
+  "default_acceleration": "4500",
+  "internal_solid_infill_acceleration": "4500",
+  "initial_layer_acceleration": "500",
+  "outer_wall_acceleration": "3000",
+  "sparse_infill_acceleration": "4500",
+  "top_surface_acceleration": "1500",
+  "inner_wall_acceleration": "4500",
+  "travel_acceleration": "4500"
 }
