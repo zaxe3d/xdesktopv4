@@ -18,7 +18,7 @@
     "inner_wall_speed": "500",
     "internal_solid_infill_acceleration": "6000",
     "internal_solid_infill_line_width": "0.42",
-    "internal_solid_infill_pattern": "concentric",
+    "internal_solid_infill_pattern": "monotonic",
     "internal_solid_infill_speed": "500",
     "is_custom_defined": "0",
     "line_width": "0.42",
