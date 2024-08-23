@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-06-27 11:06+0300\n"
+"POT-Creation-Date: 2024-08-23 10:21+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -4147,29 +4147,14 @@ msgstr "will be closed before creating a new model. Do you want to continue?"
 msgid "Slice plate"
 msgstr "Slice plate"
 
-msgid "Print plate"
-msgstr "Print plate"
-
 msgid "Slice all"
 msgstr "Slice all"
 
-msgid "Export G-code file"
-msgstr "Export G-code file"
+msgid "Export Zaxe code"
+msgstr ""
 
-msgid "Send"
-msgstr "Send"
-
-msgid "Export plate sliced file"
-msgstr "Export plate sliced file"
-
-msgid "Export all sliced file"
-msgstr "Export all sliced file"
-
-msgid "Print all"
-msgstr "Print all"
-
-msgid "Send all"
-msgstr "Send all"
+msgid "Print All"
+msgstr ""
 
 msgid "Keyboard Shortcuts"
 msgstr "Keyboard Shortcuts"
@@ -4300,6 +4285,9 @@ msgstr "Export Generic 3MF"
 msgid "Export 3mf file without using some 3mf-extensions"
 msgstr "Export 3mf file without using some 3mf-extensions"
 
+msgid "Export plate sliced file"
+msgstr "Export plate sliced file"
+
 msgid "Export current sliced file"
 msgstr "Export current sliced file"
 
@@ -4323,6 +4311,17 @@ msgstr "Export"
 
 msgid "Quit"
 msgstr "Quit"
+
+msgid "Reset to default configurations"
+msgstr ""
+
+msgid ""
+"If you reset to the default settings, the application will close, and the "
+"contents of the plates will be lost."
+msgstr ""
+
+msgid "Do you want to proceed?"
+msgstr ""
 
 msgid "Undo"
 msgstr "Undo"
@@ -4552,6 +4551,12 @@ msgstr ""
 
 msgid "Import result"
 msgstr "Import result"
+
+msgid "Slice All"
+msgstr ""
+
+msgid "Print plate"
+msgstr "Print plate"
 
 msgid "File is missing"
 msgstr "File is missing"
@@ -5386,6 +5391,9 @@ msgid "Search plate, object and part."
 msgstr ""
 
 msgid "Zaxe Machine Carousel"
+msgstr ""
+
+msgid "Unknown Preset"
 msgstr ""
 
 msgid ""
@@ -6459,6 +6467,9 @@ msgstr ""
 
 msgid "Click here if you can't connect to the printer"
 msgstr ""
+
+msgid "Send"
+msgstr "Send"
 
 msgid "send completed"
 msgstr "Send complete"
@@ -13951,7 +13962,14 @@ msgstr ""
 msgid "Can not find a Zaxe on the network"
 msgstr ""
 
-msgid "Print now"
+msgid ""
+"Selected printer cannot be found in network, please select a printer from "
+"Zaxe Machine Carousel"
+msgstr ""
+
+#, c-format, boost-format
+msgid ""
+"Current version: %s, Latest Version: %s. Do you want to update your printer?"
 msgstr ""
 
 msgid "Preheat"
@@ -13961,6 +13979,14 @@ msgid "Say Hi!"
 msgstr ""
 
 msgid "Unload filament"
+msgstr ""
+
+msgid "Toggle Leds"
+msgstr ""
+
+msgid ""
+"Turning off the LEDs will disable error detection (if it is on), are you "
+"sure?"
 msgstr ""
 
 msgid "Elapsed / Estimated time"
@@ -13999,6 +14025,15 @@ msgstr ""
 msgid "Processing"
 msgstr ""
 
+msgid "Update available"
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "Print now"
+msgstr ""
+
 msgid "Failed to start printing"
 msgstr ""
 
@@ -14009,6 +14044,12 @@ msgid "XDesktop: Confirmation"
 msgstr ""
 
 msgid "Not installed"
+msgstr ""
+
+msgid "To support multi plate print, update your printer"
+msgstr ""
+
+msgid "Feature not supported"
 msgstr ""
 
 msgid "Please insert a usb stick before start printing."
@@ -14384,6 +14425,18 @@ msgid ""
 "ABS, appropriately increasing the heatbed temperature can reduce the "
 "probability of warping."
 msgstr ""
+
+#~ msgid "Export G-code file"
+#~ msgstr "Export G-code file"
+
+#~ msgid "Export all sliced file"
+#~ msgstr "Export all sliced file"
+
+#~ msgid "Print all"
+#~ msgstr "Print all"
+
+#~ msgid "Send all"
+#~ msgstr "Send all"
 
 #~ msgid "The Orca Slicer needs an upgrade"
 #~ msgstr "Orca Slicer needs an update"
