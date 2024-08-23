@@ -7019,6 +7019,9 @@ msgstr "동적 유량 교정"
 msgid "Click here if you can't connect to the printer"
 msgstr "프린터에 연결할 수 없는 경우 여기를 클릭하세요"
 
+msgid "Send"
+msgstr "전송"
+
 msgid "send completed"
 msgstr "전송 완료"
 

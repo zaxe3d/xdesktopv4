@@ -7064,6 +7064,9 @@ msgstr "Áramlásdinamikai kalibrálás"
 msgid "Click here if you can't connect to the printer"
 msgstr "Kattints ide, ha nem tudsz csatlakozni a nyomtatóhoz"
 
+msgid "Send"
+msgstr "Küldés"
+
 msgid "send completed"
 msgstr "küldés befejezve"
 
@@ -16288,6 +16291,18 @@ msgstr ""
 #~ msgstr ""
 #~ "Megváltoztattál néhány beállítást.\n"
 #~ "Szeretnéd ezeket megtartani a másik beállításra való váltás után?"
+
+#~ msgid "Export G-code file"
+#~ msgstr "G-kód fájl exportálása"
+
+#~ msgid "Export all sliced file"
+#~ msgstr "Minden szeletelt fájl exportálása"
+
+#~ msgid "Print all"
+#~ msgstr "Összes nyomtatása"
+
+#~ msgid "Send all"
+#~ msgstr "Összes elküldése"
 
 #~ msgid "The Orca Slicer needs an upgrade"
 #~ msgstr "A Orca Slicert frissíteni kell"

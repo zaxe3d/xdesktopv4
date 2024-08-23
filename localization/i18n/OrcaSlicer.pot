@@ -6697,6 +6697,9 @@ msgstr ""
 msgid "Click here if you can't connect to the printer"
 msgstr ""
 
+msgid "Send"
+msgstr ""
+
 msgid "send completed"
 msgstr ""
 

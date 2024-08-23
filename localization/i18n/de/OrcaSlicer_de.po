@@ -7290,6 +7290,9 @@ msgid "Click here if you can't connect to the printer"
 msgstr ""
 "Klicken Sie hier, wenn Sie keine Verbindung zum Drucker herstellen können"
 
+msgid "Send"
+msgstr "Senden"
+
 msgid "send completed"
 msgstr "Senden abgeschlossen"
 

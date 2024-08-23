@@ -7292,6 +7292,9 @@ msgstr "Calibration du débit"
 msgid "Click here if you can't connect to the printer"
 msgstr "Connexion impossible à l’imprimante"
 
+msgid "Send"
+msgstr "Envoyer"
+
 msgid "send completed"
 msgstr "envoi terminé"
 

@@ -7060,6 +7060,9 @@ msgstr "Kalibrace Dynamiky Průtoku"
 msgid "Click here if you can't connect to the printer"
 msgstr "Klikněte sem, pokud se nemůžete připojit k tiskárně"
 
+msgid "Send"
+msgstr "Odeslat"
+
 msgid "send completed"
 msgstr "odeslat dokončeno"
 

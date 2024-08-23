@@ -7264,6 +7264,9 @@ msgstr "Calibración de Dinámicas de Flujo"
 msgid "Click here if you can't connect to the printer"
 msgstr "Presione aquí si no puede conectar a la impresora"
 
+msgid "Send"
+msgstr "Enviar"
+
 msgid "send completed"
 msgstr "Envío completo"
 

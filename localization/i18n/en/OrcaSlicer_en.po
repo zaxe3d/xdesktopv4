@@ -7005,6 +7005,9 @@ msgstr "Flow Dynamics Calibration"
 msgid "Click here if you can't connect to the printer"
 msgstr "Click here if you can't connect to the printer"
 
+msgid "Send"
+msgstr "Send"
+
 msgid "send completed"
 msgstr "Send complete"
 
@@ -16088,6 +16091,18 @@ msgstr ""
 #~ "You have changed some preset settings. \n"
 #~ "Would you like to keep these changed settings (new value) after switching "
 #~ "presets?"
+
+#~ msgid "Export G-code file"
+#~ msgstr "Export G-code file"
+
+#~ msgid "Export all sliced file"
+#~ msgstr "Export all sliced file"
+
+#~ msgid "Print all"
+#~ msgstr "Print all"
+
+#~ msgid "Send all"
+#~ msgstr "Send all"
 
 #~ msgid "The Orca Slicer needs an upgrade"
 #~ msgstr "Orca Slicer needs an update"

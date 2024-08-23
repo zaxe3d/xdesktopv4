@@ -6964,6 +6964,9 @@ msgstr "Flow Dynamics Calibration"
 msgid "Click here if you can't connect to the printer"
 msgstr "Click here if you can't connect to the printer"
 
+msgid "Send"
+msgstr "送信"
+
 msgid "send completed"
 msgstr "送信完了"
 
@@ -15942,6 +15945,18 @@ msgstr ""
 #~ "Would you like to keep these changed settings (new value) after switching "
 #~ "preset?"
 #~ msgstr "プリセットに変更がありあす。これらの変更を流用しますか？"
+
+#~ msgid "Export G-code file"
+#~ msgstr "G-codeをエクスポート"
+
+#~ msgid "Export all sliced file"
+#~ msgstr "エクスポート (全プレート)"
+
+#~ msgid "Print all"
+#~ msgstr "造形開始 (全プレート)"
+
+#~ msgid "Send all"
+#~ msgstr "送信 (全プレート)"
 
 #~ msgid "The Orca Slicer needs an upgrade"
 #~ msgstr "Orca Slicer をアップデートする必要があります"

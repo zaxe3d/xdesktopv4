@@ -7229,6 +7229,9 @@ msgstr "Calibratge de Dinàmiques de Flux"
 msgid "Click here if you can't connect to the printer"
 msgstr "Feu clic aquí si no us podeu connectar a la impressora"
 
+msgid "Send"
+msgstr "Enviar"
+
 msgid "send completed"
 msgstr "enviament completat"
 

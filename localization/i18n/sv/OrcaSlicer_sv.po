@@ -7018,6 +7018,9 @@ msgstr "Kalibrering av flödesdynamik"
 msgid "Click here if you can't connect to the printer"
 msgstr "Klicka här om du inte kan ansluta till printern"
 
+msgid "Send"
+msgstr "Skicka"
+
 msgid "send completed"
 msgstr "Skicka komplett"
 
@@ -16120,6 +16123,18 @@ msgstr ""
 #~ "Du har ändrat några inställningar.\n"
 #~ "Vill du behålla ändrade inställningar (nytt värde) när du byter "
 #~ "inställningar?"
+
+#~ msgid "Export G-code file"
+#~ msgstr "Exportera G-kod filen"
+
+#~ msgid "Export all sliced file"
+#~ msgstr "Exportera alla beredda filer"
+
+#~ msgid "Print all"
+#~ msgstr "Skriv ut allt"
+
+#~ msgid "Send all"
+#~ msgstr "Skicka alla"
 
 #~ msgid "The Orca Slicer needs an upgrade"
 #~ msgstr "Orca Slicer behöver uppdateras"

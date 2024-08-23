@@ -7262,6 +7262,9 @@ msgstr ""
 msgid "Click here if you can't connect to the printer"
 msgstr "Не удаётся подключиться к принтеру?"
 
+msgid "Send"
+msgstr "Отправить G-код стола на SD-карту"
+
 msgid "send completed"
 msgstr "отправка завершена"
 

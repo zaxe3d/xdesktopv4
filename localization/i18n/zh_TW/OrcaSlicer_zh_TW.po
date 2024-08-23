@@ -7089,6 +7089,9 @@ msgstr "動態流量校準"
 msgid "Click here if you can't connect to the printer"
 msgstr "如果無法連接到列印設備，請按一下此處"
 
+msgid "Send"
+msgstr "傳送"
+
 msgid "send completed"
 msgstr "傳送完成"
 
