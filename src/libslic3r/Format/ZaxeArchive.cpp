@@ -165,7 +165,6 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     }
     j["total_layers"] = total_layer_count;
 
-    std::vector<char> bytes;
     std::string       gcode;
     load_string_file(temp_gcode_output_path, gcode);
 

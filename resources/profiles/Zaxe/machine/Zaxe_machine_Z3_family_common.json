@@ -25,6 +25,7 @@
     "extruder_colour": [
         "#018001"
     ],
+    "thumbnails_format": "PNG",
     "thumbnails": [
       "250x250"
     ],
