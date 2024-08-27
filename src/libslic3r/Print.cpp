@@ -1502,7 +1502,7 @@ StringObjectException Print::validate(StringObjectException *warning, Polygons* 
                     warning_key = check_motion_ability_object_setting(jerk_to_check, max_jerk);
                if (!warning_key.empty()) {
                     warning->string = L(
-                        "The jerk setting exceeds the printer's maximum jerk (machine_max_jerk_x/machine_max_jerk_y).\nOrca will "
+                        "The jerk setting exceeds the printer's maximum jerk (machine_max_jerk_x/machine_max_jerk_y).\nXDesktop will "
                         "automatically cap the jerk speed to ensure it doesn't surpass the printer's capabilities.\nYou can adjust the "
                         "maximum jerk setting in your printer's configuration to get higher speeds.");
                     warning->opt_key = warning_key;
@@ -1542,7 +1542,7 @@ StringObjectException Print::validate(StringObjectException *warning, Polygons* 
                warning_key = check_motion_ability_object_setting(accel_to_check, max_accel);
                if (!warning_key.empty()) {
                     warning->string  = L("The acceleration setting exceeds the printer's maximum acceleration "
-                                          "(machine_max_acceleration_extruding).\nOrca will "
+                                          "(machine_max_acceleration_extruding).\nXDesktop will "
                                           "automatically cap the acceleration speed to ensure it doesn't surpass the printer's "
                                           "capabilities.\nYou can adjust the "
                                           "machine_max_acceleration_extruding value in your printer's configuration to get higher speeds.");
@@ -1558,7 +1558,7 @@ StringObjectException Print::validate(StringObjectException *warning, Polygons* 
                         if (!warning_key.empty()) {
                             warning->string = L(
                                 "The travel acceleration setting exceeds the printer's maximum travel acceleration "
-                                "(machine_max_acceleration_travel).\nOrca will "
+                                "(machine_max_acceleration_travel).\nXDesktop will "
                                 "automatically cap the travel acceleration speed to ensure it doesn't surpass the printer's "
                                 "capabilities.\nYou can adjust the "
                                 "machine_max_acceleration_travel value in your printer's configuration to get higher speeds.");

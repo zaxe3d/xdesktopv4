@@ -264,11 +264,9 @@ void BackgroundSlicingProcess::process_fff()
             }
 
             if (is_there(model, {"Z1", "Z2", "Z3", "Z4", "X4"})) {
+				// TODO zaxe: thumbnail size should be set via config values
                 GUI::wxGetApp().plater()->set_thumbnails_list_by_plate_index(
-                    m_fff_print->get_plate_index(),
-                    this->render_thumbnails(
-                        ThumbnailsParams{m_fff_print->full_print_config().option<ConfigOptionPoints>("thumbnails")->values, true, true,
-                                         false, true, m_fff_print->get_plate_index()}));
+                    plate_idx, this->render_thumbnails(ThumbnailsParams{{{250, 250}}, true, true, false, true, plate_idx}));
             }
         }
         if (! m_export_path.empty()) {

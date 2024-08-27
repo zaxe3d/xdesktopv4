@@ -2700,7 +2700,7 @@ struct Plater::priv
     std::vector<size_t> load_files(const std::vector<fs::path>& input_files, LoadStrategy strategy, bool ask_multi = false);
     std::vector<size_t> load_model_objects(const ModelObjectPtrs& model_objects, bool allow_negative_z = false, bool split_object = false);
 
-    fs::path get_export_file_path(GUI::FileType file_type);
+    fs::path get_export_file_path(GUI::FileType file_type, bool is_zaxe_file = false);
     wxString get_export_file(GUI::FileType file_type, bool zaxe_file_temp_export = false);
 
     // BBS
@@ -4937,7 +4937,7 @@ void Plater::priv::load_auxiliary_files()
     //wxGetApp().mainframe->m_project->Reload(auxiliary_path);
 }
 
-fs::path Plater::priv::get_export_file_path(GUI::FileType file_type)
+fs::path Plater::priv::get_export_file_path(GUI::FileType file_type, bool is_zaxe_file)
 {
     // Update printbility state of each of the ModelInstances.
     this->update_print_volume_state();
@@ -4949,7 +4949,7 @@ fs::path Plater::priv::get_export_file_path(GUI::FileType file_type)
     if (file_type == FT_3MF)
         // for 3mf take the path from the project filename, if any
         output_file = into_path(get_project_filename(".3mf"));
-    else if (file_type == FT_STL) {
+    else if (file_type == FT_STL && !is_zaxe_file) {
         if (obj_idx > 0 && obj_idx < this->model.objects.size() && selection.is_single_full_object()) {
             output_file = this->model.objects[obj_idx]->get_export_filename();
         }
@@ -5002,7 +5002,7 @@ wxString Plater::priv::get_export_file(GUI::FileType file_type, bool zaxe_file_t
         break;
     }
 
-    fs::path output_file = get_export_file_path(file_type);
+    fs::path output_file = get_export_file_path(file_type, zaxe_file_temp_export);
 
     wxString dlg_title;
     switch (file_type) {

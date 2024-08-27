@@ -319,7 +319,7 @@ public:
         if (!bmp.IsOk())
             return;
 
-		bool is_dark = wxGetApp().app_config->get("dark_color_mode") == "1";
+		// bool is_dark = wxGetApp().app_config->get("dark_color_mode") == "1";
 
         // use a memory DC to draw directly onto the bitmap
         wxMemoryDC memDc(bmp);
@@ -329,7 +329,7 @@ public:
 
 		// Logo
         BitmapCache bmp_cache;
-        wxBitmap logo_bmp = *bmp_cache.load_svg(is_dark ? "splash_logo_dark" : "splash_logo", width, height);  // use with full width & height
+        wxBitmap logo_bmp = *bmp_cache.load_svg("splash_logo", width, height);  // use with full width & height
         memDc.DrawBitmap(logo_bmp, 0, 0, true);
 
         // Version
