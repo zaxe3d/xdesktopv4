@@ -28,32 +28,32 @@ const wxString progress_uploading_color{"#00FF00"};
 
 ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm)
     : nm(_nm)
-    , version(Semver(nm->attr->firmwareVersion.GetMajor(), nm->attr->firmwareVersion.GetMinor(), nm->attr->firmwareVersion.GetMicro()))
+    , version(Semver(nm->attr->firmware_version.GetMajor(), nm->attr->firmware_version.GetMinor(), nm->attr->firmware_version.GetMicro()))
 {}
 // todo zaxe
-bool ZaxeDeviceCapabilities::hasRemoteUpdate() const { return is_there(nm->attr->deviceModel, {"z3"}) && version >= Semver(3, 5, 70); }
+bool ZaxeDeviceCapabilities::hasRemoteUpdate() const { return is_there(nm->attr->device_model, {"z3"}) && version >= Semver(3, 5, 70); }
 
 bool ZaxeDeviceCapabilities::canToggleLeds() const
 {
-    return is_there(nm->attr->deviceModel, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 70);
+    return is_there(nm->attr->device_model, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 70);
 }
 
-bool ZaxeDeviceCapabilities::hasStl() const { return is_there(nm->attr->deviceModel, {"z2", "z3", "z4", "x4"}); }
+bool ZaxeDeviceCapabilities::hasStl() const { return is_there(nm->attr->device_model, {"z2", "z3", "z4", "x4"}); }
 
-bool ZaxeDeviceCapabilities::hasThumbnails() const { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3", "z4", "x4"}); }
+bool ZaxeDeviceCapabilities::hasThumbnails() const { return is_there(nm->attr->device_model, {"z1", "z2", "z3", "z4", "x4"}); }
 
-bool ZaxeDeviceCapabilities::hasCam() const { return is_there(nm->attr->deviceModel, {"z2", "z3", "z4", "x4"}); }
+bool ZaxeDeviceCapabilities::hasCam() const { return is_there(nm->attr->device_model, {"z2", "z3", "z4", "x4"}); }
 
-bool ZaxeDeviceCapabilities::hasSnapshot() const { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3", "z4", "x4"}); }
+bool ZaxeDeviceCapabilities::hasSnapshot() const { return is_there(nm->attr->device_model, {"z1", "z2", "z3", "z4", "x4"}); }
 
-bool ZaxeDeviceCapabilities::canUnloadFilament() const { return is_there(nm->attr->deviceModel, {"z1", "z2", "z3", "z4", "x4"}); }
+bool ZaxeDeviceCapabilities::canUnloadFilament() const { return is_there(nm->attr->device_model, {"z1", "z2", "z3", "z4", "x4"}); }
 
 bool ZaxeDeviceCapabilities::canPrintMultiPlate() const
 {
-    return is_there(nm->attr->deviceModel, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 78);
+    return is_there(nm->attr->device_model, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 78);
 }
 
-bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->deviceModel, {"z1", "z3", "x1", "x2", "x3"}); };
+bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->device_model, {"z1", "z3", "x1", "x2", "x3"}); };
 
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
@@ -109,12 +109,12 @@ ZaxeDevice::~ZaxeDevice()
 
 void ZaxeDevice::onTimer(wxTimerEvent& event)
 {
-    printing_time_val->SetLabel(get_time_hms(wxDateTime::Now().GetTicks() - nm->attr->startTime) + " / " + nm->attr->estimatedTime);
+    printing_time_val->SetLabel(get_time_hms(wxDateTime::Now().GetTicks() - nm->attr->start_time) + " / " + nm->attr->estimated_time);
 }
 
 wxSizer* ZaxeDevice::createHeader()
 {
-    string model_str = boost::to_upper_copy(nm->attr->deviceModel);
+    string model_str = boost::to_upper_copy(nm->attr->device_model);
     boost::replace_all(model_str, "PLUS", "+");
 
     model_btn = new Button(this, wxString(model_str.c_str(), wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
@@ -249,7 +249,7 @@ wxSizer* ZaxeDevice::createStateInfo()
         if (update_available && capabilities.hasRemoteUpdate() && upstream_version.has_value()) {
             confirm([&] { nm->fw_update(); },
                     wxString::Format(_L("Current version: %s, Latest Version: %s. Do you want to update your printer?"),
-                                     nm->attr->firmwareVersion.ToString(), upstream_version.value().to_string_sf()));
+                                     nm->attr->firmware_version.ToString(), upstream_version.value().to_string_sf()));
         }
     });
 
@@ -377,7 +377,7 @@ wxSizer* ZaxeDevice::createIconButtons()
 
 wxSizer* ZaxeDevice::createVersionInfoSizer()
 {
-    version = new Label(this, nm->attr->firmwareVersion.GetVersionString(), wxALIGN_RIGHT);
+    version = new Label(this, nm->attr->firmware_version.GetVersionString(), wxALIGN_RIGHT);
     version->SetForegroundColour(gray500);
     version->SetFont(::Label::Body_10);
     wxGetApp().UpdateDarkUI(version);
@@ -400,7 +400,7 @@ wxSizer* ZaxeDevice::createDetailedInfo()
     wxFont normal_font = ::Label::Body_12;
 
     printing_file     = create_label(bold_font, _L("File"));
-    printing_file_val = create_label(normal_font, wxString(nm->attr->printingFile.c_str(), wxConvUTF8));
+    printing_file_val = create_label(normal_font, wxString(nm->attr->printing_file.c_str(), wxConvUTF8));
     printing_file_val->Wrap(FromDIP(200));
 
     printing_time     = create_label(bold_font, _L("Elapsed / Estimated time"));
@@ -410,7 +410,7 @@ wxSizer* ZaxeDevice::createDetailedInfo()
     material_val  = create_label(normal_font, "");
 
     auto nozzle = create_label(bold_font, _L("Nozzle"));
-    nozzle_val  = create_label(normal_font, nm->attr->isLite ? "-" : nm->attr->nozzle + "mm");
+    nozzle_val  = create_label(normal_font, nm->attr->is_lite ? "-" : nm->attr->nozzle + "mm");
 
     auto nozzle_temp = create_label(bold_font, _L("Nozzle Temp."));
     nozzle_temp_val  = create_label(normal_font, "");
@@ -421,7 +421,10 @@ wxSizer* ZaxeDevice::createDetailedInfo()
     auto ip_addr     = create_label(bold_font, _L("IP Address"));
     auto ip_addr_val = create_label(normal_font, nm->ip);
 
-    auto sizer = new wxFlexGridSizer(6, 2, FromDIP(5), FromDIP(15));
+    auto remaining_filament     = create_label(bold_font, _L("Remaining Filament"));
+    remaining_filament_val = create_label(normal_font, get_remaining_filament());
+
+    auto sizer = new wxFlexGridSizer(7, 2, FromDIP(5), FromDIP(15));
     sizer->Add(printing_file, 0, wxEXPAND);
     sizer->Add(printing_file_val, 0, wxEXPAND);
     sizer->Add(printing_time, 0, wxEXPAND);
@@ -436,6 +439,8 @@ wxSizer* ZaxeDevice::createDetailedInfo()
     sizer->Add(plate_temp_val, 0, wxEXPAND);
     sizer->Add(ip_addr, 0, wxEXPAND);
     sizer->Add(ip_addr_val, 0, wxEXPAND);
+    sizer->Add(remaining_filament, 0, wxEXPAND);
+    sizer->Add(remaining_filament_val, 0, wxEXPAND);
 
     sizer->Show(false);
 
@@ -544,8 +549,8 @@ void ZaxeDevice::updateStatusText()
     } else if (nm->states->printing) {
         desc = _L("Processing");
     } else if (capabilities.hasRemoteUpdate() && !nm->isBusy() && upstream_version.has_value() &&
-               upstream_version > Semver(nm->attr->firmwareVersion.GetMajor(), nm->attr->firmwareVersion.GetMinor(),
-                                         nm->attr->firmwareVersion.GetMicro())) {
+               upstream_version > Semver(nm->attr->firmware_version.GetMajor(), nm->attr->firmware_version.GetMinor(),
+                                         nm->attr->firmware_version.GetMicro())) {
         desc             = _L("Update available");
         desc_color       = "#F4B617";
         desc_icon        = "zaxe_warning_1";
@@ -634,7 +639,7 @@ void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<Za
         std::vector<string> sPV;
         split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
         string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
-        string dM = boost::to_upper_copy(nm->attr->deviceModel);
+        string dM = boost::to_upper_copy(nm->attr->device_model);
         boost::replace_all(dM, "PLUS", "+");
         auto s = pN.find(dM);
         trim(pN);
@@ -657,9 +662,9 @@ void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<Za
         std::string model_nozzle_arch = sliced_info_model + " " + sliced_info_nozzle;
 
         if ((s == std::string::npos || pN.length() != dM.length() + s) ||
-            (!nm->attr->isLite && nm->states->filamentPresent && nm->attr->material != "custom" &&
+            (!nm->attr->is_lite && nm->states->filamentPresent && nm->attr->material != "custom" &&
              nm->attr->material.compare(sliced_info_material) != 0) ||
-            (!nm->attr->isLite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch))) {
+            (!nm->attr->is_lite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch))) {
             print_btn_mode = PrintBtnMode::Prepare;
         } else {
             print_btn_mode = PrintBtnMode::Print;
@@ -730,17 +735,18 @@ void ZaxeDevice::confirm(function<void()> cb, const wxString& question)
 
 void ZaxeDevice::setMaterialLabel(const std::string& material_label)
 {
-    if (nm->attr->firmwareVersion.GetMajor() >= 3 && nm->attr->firmwareVersion.GetMinor() >= 5 && !nm->states->filamentPresent) {
+    if (nm->attr->firmware_version.GetMajor() >= 3 && nm->attr->firmware_version.GetMinor() >= 5 && !nm->states->filamentPresent) {
         material_val->SetLabel(_L("Not installed"));
     } else {
         material_val->SetLabel(wxString(material_label.c_str(), wxConvUTF8));
     }
+    remaining_filament_val->SetLabel(get_remaining_filament());
     Refresh();
 }
 
-void ZaxeDevice::setFilamentPresent(bool present) { setMaterialLabel(nm->attr->materialLabel); }
+void ZaxeDevice::setFilamentPresent(bool present) { setMaterialLabel(nm->attr->material_label); }
 
-void ZaxeDevice::setPin(bool has_pin) { nm->attr->hasPin = has_pin; }
+void ZaxeDevice::setPin(bool has_pin) { nm->attr->has_pin = has_pin; }
 
 void ZaxeDevice::setNozzle(const std::string& nozzle)
 {
@@ -748,7 +754,7 @@ void ZaxeDevice::setNozzle(const std::string& nozzle)
     Refresh();
 }
 
-void ZaxeDevice::setFileStart() { printing_file_val->SetLabel(wxString(nm->attr->printingFile.c_str(), wxConvUTF8)); }
+void ZaxeDevice::setFileStart() { printing_file_val->SetLabel(wxString(nm->attr->printing_file.c_str(), wxConvUTF8)); }
 
 bool ZaxeDevice::has(const wxString& search_text)
 {
@@ -773,7 +779,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
     std::vector<string> sPV;
     split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
     string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
-    string dM = boost::to_upper_copy(nm->attr->deviceModel);
+    string dM = boost::to_upper_copy(nm->attr->device_model);
     boost::replace_all(dM, "PLUS", "+");
     auto s = pN.find(dM);
     trim(pN);
@@ -781,7 +787,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
     std::string model_nozzle_attr = dM + " " + nm->attr->nozzle;
     std::string model_nozzle_arch = archive->get_info("model") + " " + archive->get_info("nozzle_diameter");
 
-    if (is_there(nm->attr->deviceModel, {"x3"}) && !nm->states->usbPresent) {
+    if (is_there(nm->attr->device_model, {"x3"}) && !nm->states->usbPresent) {
         wxMessageBox(_L("Please insert a usb stick before start printing."), _L("USB stick not found"), wxICON_ERROR);
         return false;
     }
@@ -793,7 +799,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
         return false;
     }
 
-    if (!nm->attr->isLite && nm->states->filamentPresent && nm->attr->material != "custom" &&
+    if (!nm->attr->is_lite && nm->states->filamentPresent && nm->attr->material != "custom" &&
         nm->attr->material.compare(archive->get_info("material")) != 0) {
         BOOST_LOG_TRIVIAL(warning) << "Wrong material type, filamentPresent: " << nm->states->filamentPresent
                                    << " deviceMaterial: " << nm->attr->material << " slicerMaterial: " << archive->get_info("material");
@@ -803,7 +809,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
         return false;
     }
 
-    if (!nm->states->filamentPresent && nm->attr->firmwareVersion.GetMajor() >= 3 && nm->attr->firmwareVersion.GetMinor() >= 5) {
+    if (!nm->states->filamentPresent && nm->attr->firmware_version.GetMajor() >= 3 && nm->attr->firmware_version.GetMinor() >= 5) {
         bool confirmed = false;
         confirm([&] { confirmed = true; }, _L("No filament sensed. Do you really want to continue "
                                               "printing?"));
@@ -811,7 +817,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
             return false;
     }
 
-    if (!nm->attr->isLite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch)) {
+    if (!nm->attr->is_lite && !case_insensitive_compare(model_nozzle_attr, model_nozzle_arch)) {
         BOOST_LOG_TRIVIAL(warning) << "Wrong nozzle type, deviceNozzle: " << model_nozzle_attr << " slicerNozzle: " << model_nozzle_arch;
         wxMessageBox(_L("Currently installed nozzle on device doesn't match with this "
                         "slice. Please reslice with the correct nozzle."),
@@ -828,7 +834,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
     }
 
     std::thread t([&, archive_path = archive->get_path()]() {
-        if (nm->attr->isLite) {
+        if (nm->attr->is_lite) {
             this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
                              translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
         } else {
@@ -851,7 +857,7 @@ void ZaxeDevice::onUploadDone()
 
 void ZaxeDevice::onVersionCheck(const std::map<std::string, Semver>& latest_versions)
 {
-    if (auto it = latest_versions.find(nm->attr->deviceModel); it != latest_versions.end()) {
+    if (auto it = latest_versions.find(nm->attr->device_model); it != latest_versions.end()) {
         upstream_version = it->second;
         updateStates();
     }
@@ -866,11 +872,11 @@ void ZaxeDevice::switch_cam_on()
 #ifdef _WIN32
         wxString ffplay_path = wxString::Format("%s\\ffplay.exe", curExecPath);
         wxString command = wxString::Format("cmd.exe /c \"\"%s\" tcp://%s:5002 -window_title \"Zaxe %s: %s\" -x 720\"", ffplay_path, nm->ip,
-                                            boost::to_upper_copy(nm->attr->deviceModel), nm->name);
+                                            boost::to_upper_copy(nm->attr->device_model), nm->name);
         BOOST_LOG_TRIVIAL(info) << __func__ << ": " << command.ToStdString();
         wxExecute(command, wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE);
 #else
-        wxExecute(curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->deviceModel) +
+        wxExecute(curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->device_model) +
                       ": " + nm->name + "\" -x 720",
                   wxEXEC_ASYNC);
 #endif
@@ -882,12 +888,17 @@ void ZaxeDevice::switch_cam_on()
 
 std::string ZaxeDevice::get_cover_file_name() const
 {
-    auto model_str = boost::to_lower_copy(nm->attr->deviceModel);
+    auto model_str = boost::to_lower_copy(nm->attr->device_model);
     boost::replace_all(model_str, "plus", "+");
     if (!capabilities.hasPrinterCover() || model_str == "z3s" || model_str == "z3+")
         model_str = "z3";
 
     return "zaxe_printer_" + model_str;
+}
+
+wxString ZaxeDevice::get_remaining_filament() const
+{
+    return (nm->states->filamentPresent && nm->attr->has_nfc_spool) ? wxString::Format("~%dm", nm->attr->remaining_filament) : "N/A";
 }
 
 } // namespace Slic3r::GUI

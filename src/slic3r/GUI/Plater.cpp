@@ -1263,9 +1263,9 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
             std::string printer{};
             if (nozzle_model.empty()) {
-                printer = (boost::format("Zaxe %1% - %2%mm nozzle") % boost::to_upper_copy(_nm->attr->deviceModel) % nozzle_size).str();
+                printer = (boost::format("Zaxe %1% - %2%mm nozzle") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_size).str();
             } else {
-                printer = (boost::format("Zaxe %1% - %2%mm %3% nozzle") % boost::to_upper_copy(_nm->attr->deviceModel) % nozzle_size %
+                printer = (boost::format("Zaxe %1% - %2%mm %3% nozzle") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_size %
                            nozzle_model)
                               .str();
             }
@@ -1282,11 +1282,11 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             }
 
             const auto& filaments = p->combos_filament.front()->GetValues();
-            if (auto it = std::find(filaments.begin(), filaments.end(), _nm->attr->materialLabel); it != filaments.end()) {
+            if (auto it = std::find(filaments.begin(), filaments.end(), _nm->attr->material_label); it != filaments.end()) {
                 p->combos_filament.front()->SelectAndNotify(std::distance(filaments.begin(), it));
             } else {
                 wxMessageBox(_L(wxString::Format("Material preset cannot be found, please add %s using Configuration Wizard and try again.",
-                                                 _nm->attr->materialLabel)),
+                                                 _nm->attr->material_label)),
                              _L("Unknown Preset"), wxICON_ERROR);
                 hide_preset_details = false;
             }

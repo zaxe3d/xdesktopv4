@@ -85,26 +85,27 @@ void NetworkMachine::onWSRead(string message)
         //BOOST_LOG_TRIVIAL(warning) << boost::format("Networkmachine event. [%1%:%2% - %3%]") % name % ip % event;
         if (event == "hello") {
             //name = pt.get<string>("name", name); // already got this from broadcast receiver. might be good for static ip.
-            attr->deviceModel = to_lower_copy(pt.get<string>("device_model", "x1"));
+            attr->device_model = to_lower_copy(pt.get<string>("device_model", "x1"));
             attr->material = to_lower_copy(pt.get<string>("material", "zaxe_abs"));
-            attr->materialLabel = get_material_label();
+            attr->material_label = get_material_label();
             attr->nozzle = pt.get<string>("nozzle", "0.4");
-            attr->isLite = is_there(attr->deviceModel, {"lite", "x3"});
-            attr->isHttp = pt.get<string>("protocol", "") == "http";
-            attr->isNoneTLS = is_there(attr->deviceModel, {"z2", "z3", "z4", "x4"}) || attr->isLite;
+            attr->is_lite = is_there(attr->device_model, {"lite", "x3"});
+            attr->is_http = pt.get<string>("protocol", "") == "http";
+            attr->is_none_TLS = is_there(attr->device_model, {"z2", "z3", "z4", "x4"}) || attr->is_lite;
             // printing
-            attr->printingFile = pt.get<string>("filename", "");
-            attr->elapsedTime = pt.get<float>("elapsed_time", 0);
-            attr->estimatedTime = pt.get<string>("estimated_time", "");
-            attr->startTime = wxDateTime::Now().GetTicks() - attr->elapsedTime;
-            if (!attr->isLite) {
-                attr->hasPin = to_lower_copy(pt.get<string>("has_pin", "false")) == "true";
-                attr->hasNFCSpool = to_lower_copy(pt.get<string>("has_nfc_spool", "false")) == "true";
-                attr->filamentColor = to_lower_copy(pt.get<string>("filament_color", "unknown"));
+            attr->printing_file = pt.get<string>("filename", "");
+            attr->elapsed_time = pt.get<float>("elapsed_time", 0);
+            attr->estimated_time = pt.get<string>("estimated_time", "");
+            attr->start_time = wxDateTime::Now().GetTicks() - attr->elapsed_time;
+            if (!attr->is_lite) {
+                attr->has_pin = to_lower_copy(pt.get<string>("has_pin", "false")) == "true";
+                attr->has_nfc_spool = to_lower_copy(pt.get<string>("has_nfc_spool", "false")) == "true";
+                attr->filament_color = to_lower_copy(pt.get<string>("filament_color", "unknown"));
+                attr->remaining_filament = pt.get<int>("filament_remaining", 0);
             }
             vector<string> fwV;
             split(fwV, to_lower_copy(pt.get<string>("version", "1.0.0")), is_any_of("."));
-            attr->firmwareVersion = wxVersionInfo("v", stoi(fwV[0]), stoi(fwV[1]), stoi(fwV[2]));
+            attr->firmware_version = wxVersionInfo("v", stoi(fwV[0]), stoi(fwV[1]), stoi(fwV[2]));
         }
         if (event == "hello" || event == "states_update") {
             // states
@@ -119,28 +120,28 @@ void NetworkMachine::onWSRead(string message)
             states->hasError       = states->ptreeStringtoBool(pt, "is_error");
             states->ledsSwitchedOn = states->ptreeStringtoBool(pt, "is_leds");
             states->updatingFw     = states->ptreeStringtoBool(pt, "is_downloading");
-            states->filamentPresent= attr->firmwareVersion.GetMinor() >= 3 && attr->firmwareVersion.GetMinor() >= 5 // Z3 and FW>=3.5
+            states->filamentPresent= attr->firmware_version.GetMinor() >= 3 && attr->firmware_version.GetMinor() >= 5 // Z3 and FW>=3.5
                                          ? states->ptreeStringtoBool(pt, "is_filament_present") : true;
         }
         if (event == "new_name")
             name = pt.get<string>("name", "Zaxe");
         if (event == "material_change") {
             attr->material = to_lower_copy(pt.get<string>("material", "zaxe_abs"));
-            attr->materialLabel = get_material_label();
+            attr->material_label = get_material_label();
         }
         if (event == "nozzle_change")
             attr->nozzle = pt.get<string>("nozzle", "0.4");
         if (event == "pin_change")
-            attr->hasPin = to_lower_copy(pt.get<string>("has_pin", "false")) == "true";
+            attr->has_pin = to_lower_copy(pt.get<string>("has_pin", "false")) == "true";
         if (event == "start_print") {
-            attr->printingFile = pt.get<string>("filename", "");
-            attr->elapsedTime = pt.get<float>("elapsed_time", 0);
-            attr->startTime = wxDateTime::Now().GetTicks() - attr->elapsedTime;
-            attr->estimatedTime = pt.get<string>("estimated_time", "");
+            attr->printing_file = pt.get<string>("filename", "");
+            attr->elapsed_time = pt.get<float>("elapsed_time", 0);
+            attr->start_time = wxDateTime::Now().GetTicks() - attr->elapsed_time;
+            attr->estimated_time = pt.get<string>("estimated_time", "");
         }
         if (event == "spool_data_change") {
-            attr->hasNFCSpool = to_lower_copy(pt.get<string>("has_nfc_spool", "false")) == "true";
-            attr->filamentColor = to_lower_copy(pt.get<string>("filament_color", "unknown"));
+            attr->has_nfc_spool = to_lower_copy(pt.get<string>("has_nfc_spool", "false")) == "true";
+            attr->filament_color = to_lower_copy(pt.get<string>("filament_color", "unknown"));
         }
         if (event == "temperature_update") {
             attr->nozzle_temp        = pt.get<float>("ext_temp", 0);
@@ -402,7 +403,7 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
     ::curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, static_cast<void *>(this));
     ::curl_easy_setopt(curl, CURLOPT_FTP_USE_EPSV, 0L);
 
-    if ( ! attr->isNoneTLS) {
+    if ( ! attr->is_none_TLS) {
         ::curl_easy_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_CONTROL);
         ::curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         ::curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
@@ -431,7 +432,7 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
 
 void NetworkMachine::upload(const char *filename, const char *uploadAs)
 {
-    if (attr->isHttp) {
+    if (attr->is_http) {
         uploadHTTP(filename, uploadAs);
     } else {
         uploadFTP(filename, uploadAs);
