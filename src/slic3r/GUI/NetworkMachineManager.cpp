@@ -333,11 +333,11 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
     } else if (event.event == "new_name") {
         dev->second->setName(event.nm->name);
     } else if (event.event == "material_change") {
-        dev->second->setMaterialLabel(event.nm->attr->materialLabel);
+        dev->second->setMaterialLabel(event.nm->attr->material_label);
     } else if (event.event == "nozzle_change") {
         dev->second->setNozzle(event.nm->attr->nozzle);
     } else if (event.event == "pin_change") {
-        dev->second->setPin(event.nm->attr->hasPin);
+        dev->second->setPin(event.nm->attr->has_pin);
     } else if (event.event == "start_print") {
         dev->second->setFileStart();
     } else if (event.event == "file_init_failed") {

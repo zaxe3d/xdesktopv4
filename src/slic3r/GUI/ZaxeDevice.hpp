@@ -108,6 +108,8 @@ private:
     Label*            printing_file_val{nullptr};
     Label*            printing_time{nullptr};
     Label*            printing_time_val{nullptr};
+    Label*            remaining_filament{nullptr};
+    Label*            remaining_filament_val{nullptr};
     wxSizer*          detailed_info_sizer{nullptr};
     Label*            version{nullptr};
 
@@ -149,5 +151,7 @@ private:
 
     void        switch_cam_on();
     std::string get_cover_file_name() const;
+
+    wxString get_remaining_filament() const;
 };
 } // namespace Slic3r::GUI

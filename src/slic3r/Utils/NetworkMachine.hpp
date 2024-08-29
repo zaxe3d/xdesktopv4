@@ -80,54 +80,54 @@ struct MachineStates { // states.
 
 struct MachineAttributes // attributes.
 {
-    string fileName;
+    string file_name;
     string nozzle;
-    string filamentColor;
-    string printingFile;
+    string filament_color;
+    string printing_file;
     string material;
-    string materialLabel;
-    string deviceModel;
-    bool hasPin;
-    bool hasNFCSpool;
-    bool isLite;
-    bool isHttp;
-    bool isNoneTLS;
-    bool snapshotURL;
-    float elapsedTime;
-    string estimatedTime;
-    int startTime;
-    int filamentRemaining;
+    string material_label;
+    string device_model;
+    bool has_pin;
+    bool has_nfc_spool;
+    int remaining_filament;
+    bool is_lite;
+    bool is_http;
+    bool is_none_TLS;
+    bool snapshot_URL;
+    float elapsed_time;
+    string estimated_time;
+    int start_time;
     float nozzle_temp;
     float target_nozzle_temp;
     float bed_temp;
     float target_bed_temp;
-    wxVersionInfo firmwareVersion;
+    wxVersionInfo firmware_version;
 
     inline std::string toString()
     {
         std::stringstream ss;
-        ss << "fileName: " << fileName << std::endl;
+        ss << "file_name: " << file_name << std::endl;
         ss << "nozzle: " << nozzle << std::endl;
-        ss << "filamentColor: " << filamentColor << std::endl;
-        ss << "printingFile: " << printingFile << std::endl;
+        ss << "filament_color: " << filament_color << std::endl;
+        ss << "printing_file: " << printing_file << std::endl;
         ss << "material: " << material << std::endl;
-        ss << "materialLabel: " << materialLabel << std::endl;
-        ss << "deviceModel: " << deviceModel << std::endl;
-        ss << "hasPin: " << hasPin << std::endl;
-        ss << "hasNFCSpool: " << hasNFCSpool << std::endl;
-        ss << "isLite: " << isLite << std::endl;
-        ss << "isHttp: " << isHttp << std::endl;
-        ss << "isNoneTLS: " << isNoneTLS << std::endl;
-        ss << "snapshotURL: " << snapshotURL << std::endl;
-        ss << "elapsedTime: " << elapsedTime << std::endl;
-        ss << "estimatedTime: " << estimatedTime << std::endl;
-        ss << "startTime: " << startTime << std::endl;
-        ss << "filamentRemaining: " << filamentRemaining << std::endl;
+        ss << "material_label: " << material_label << std::endl;
+        ss << "device_model: " << device_model << std::endl;
+        ss << "has_pin: " << has_pin << std::endl;
+        ss << "has_nfc_spool: " << has_nfc_spool << std::endl;
+        ss << "remaining_filament: " << remaining_filament << std::endl;
+        ss << "is_lite: " << is_lite << std::endl;
+        ss << "is_http: " << is_http << std::endl;
+        ss << "is_none_TLS: " << is_none_TLS << std::endl;
+        ss << "snapshot_URL: " << snapshot_URL << std::endl;
+        ss << "elapsed_time: " << elapsed_time << std::endl;
+        ss << "estimated_time: " << estimated_time << std::endl;
+        ss << "start_time: " << start_time << std::endl;
         ss << "nozzle_temp: " << nozzle_temp << std::endl;
         ss << "target_nozzle_temp: " << target_nozzle_temp << std::endl;
         ss << "bed_temp: " << bed_temp << std::endl;
         ss << "target_bed_temp: " << target_bed_temp << std::endl;
-        ss << "firmwareVersion: " << firmwareVersion.ToString() << std::endl;
+        ss << "firmware_version: " << firmware_version.ToString() << std::endl;
         return ss.str();
     }
 };
