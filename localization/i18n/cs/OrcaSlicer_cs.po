@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-27 15:18+0300\n"
+"POT-Creation-Date: 2024-08-29 13:30+0300\n"
 "PO-Revision-Date: 2023-09-30 15:15+0200\n"
 "Last-Translator: René Mošner <Renemosner@seznam.cz>\n"
 "Language-Team: \n"
@@ -15511,6 +15511,9 @@ msgid "Plate Temp."
 msgstr ""
 
 msgid "IP Address"
+msgstr ""
+
+msgid "Remaining Filament"
 msgstr ""
 
 msgid "Bed is occupied"

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-08-27 15:18+0300\n"
+"POT-Creation-Date: 2024-08-29 13:30+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -16383,6 +16383,9 @@ msgid "Plate Temp."
 msgstr ""
 
 msgid "IP Address"
+msgstr ""
+
+msgid "Remaining Filament"
 msgstr ""
 
 msgid "Bed is occupied"
