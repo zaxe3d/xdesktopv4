@@ -42,14 +42,19 @@ std::string generate_md5_checksum(const std::string& file_path)
     return boost::to_lower_copy(md5string.str());
 }
 
-std::ifstream::pos_type read_binary_into_buffer(const char* path, std::vector<char>& bytes)
+std::vector<char> read_binary_into_buffer(const std::string& file_path)
 {
-    std::ifstream           ifs(path, std::ios::in | std::ios::binary | std::ios::ate);
-    std::ifstream::pos_type fileSize = ifs.tellg(); // get the file size.
-    ifs.seekg(0, std::ios::beg);                    // seek to beginning.
-    bytes.resize(fileSize);                         // resize.
-    ifs.read(bytes.data(), fileSize);               // read.
-    return fileSize;
+    std::ifstream instream(file_path, std::ios::in | std::ios::binary);
+    if (!instream) {
+        throw std::runtime_error("Failed to open file: " + file_path);
+    }
+
+    std::vector<char> data((std::istreambuf_iterator<char>(instream)), std::istreambuf_iterator<char>());
+    if (instream.fail() && !instream.eof()) {
+        throw std::runtime_error("Failed to read file: " + file_path);
+    }
+
+    return data;
 }
 
 static void write_thumbnail(std::shared_ptr<Zipper> zipper, const ThumbnailData& data, const std::string& file_name)
@@ -165,7 +170,7 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     }
     j["total_layers"] = total_layer_count;
 
-    std::string       gcode;
+    std::string gcode;
     load_string_file(temp_gcode_output_path, gcode);
 
     auto zaxe_code_name = is_multi_plate ? boost::str(boost::format("data_%d.zaxe_code") % plate_idx) : "data.zaxe_code";
@@ -188,13 +193,15 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
         }
     }
 
-    boost::filesystem::path temp_path(temp_gcode_output_path);
     if (zipper && !model_path.empty() && is_there(dM, {"Z2", "Z3", "Z4", "X4"})) {
-        std::vector<char>       bytes;
-        std::ifstream::pos_type file_size = read_binary_into_buffer(model_path.c_str(), bytes);
-        auto                    stl_name  = is_multi_plate ? boost::str(boost::format("model_%d.stl") % plate_idx) : "model.stl";
-        zipper->add_entry(stl_name, bytes.data(), file_size);
-        j["stl"] = stl_name;
+        try {
+            auto bytes    = read_binary_into_buffer(model_path);
+            auto stl_name = is_multi_plate ? boost::str(boost::format("model_%d.stl") % plate_idx) : "model.stl";
+            zipper->add_entry(stl_name, bytes.data(), bytes.size());
+            j["stl"] = stl_name;
+        } catch (std::exception& e) {
+            BOOST_LOG_TRIVIAL(error) << "ZaxeArchive adding stl file failed: " << e.what();
+        }
     }
 
     if (is_multi_plate) {
