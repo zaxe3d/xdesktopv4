@@ -222,6 +222,7 @@ public:
         tpCalibration   = 5,
         tpAuxiliary     = 6,
         toDebugTool     = 7,
+        tpZaxeProfile   = 8,
     };
 
     //BBS: add slice&&print status update logic
@@ -424,6 +425,7 @@ public:
 wxDECLARE_EVENT(EVT_HTTP_ERROR, wxCommandEvent);
 wxDECLARE_EVENT(EVT_USER_LOGIN, wxCommandEvent);
 wxDECLARE_EVENT(EVT_USER_LOGIN_HANDLE, wxCommandEvent);
+wxDECLARE_EVENT(EVT_USER_LOGOUT_HANDLE, wxCommandEvent);
 wxDECLARE_EVENT(EVT_CHECK_PRIVACY_VER, wxCommandEvent);
 wxDECLARE_EVENT(EVT_CHECK_PRIVACY_SHOW, wxCommandEvent);
 wxDECLARE_EVENT(EVT_SHOW_IP_DIALOG, wxCommandEvent);

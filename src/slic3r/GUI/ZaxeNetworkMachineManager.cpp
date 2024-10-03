@@ -1,22 +1,14 @@
-///|/ Copyright (c) Zaxe 2018 - 2024 Gökhan Öniş @GO
-///|/
-///|/ XDesktop is released under the terms of the AGPLv3 or higher
-///|/
-#include "NetworkMachineManager.hpp"
+#include "ZaxeNetworkMachineManager.hpp"
 #include "GUI_App.hpp"
-#include "MainFrame.hpp" // for wxGetApp().app_config
 #include "I18N.hpp"
-#include "libslic3r/Utils.hpp"
-#include "ZaxeDevice.hpp"
+#include "nlohmann/json.hpp"
+#include "../Utils/ZaxeLocalMachine.hpp"
+#include "MainFrame.hpp"
 #include "NotificationManager.hpp"
 
 namespace Slic3r::GUI {
 
-NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
-    : wxPanel(parent, wxID_ANY, wxDefaultPosition, size)
-    , broadcast_receiver(std::make_unique<BroadcastReceiver>())
-    , network_machine_container(std::make_unique<NetworkMachineContainer>())
-
+ZaxeNetworkMachineManager::ZaxeNetworkMachineManager(wxWindow* parent, wxSize size) : wxPanel(parent, wxID_ANY, wxDefaultPosition, size)
 {
 #ifdef __WINDOWS__
     SetDoubleBuffered(true);
@@ -36,12 +28,94 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
     SetSizer(sizer);
     Layout();
 
-    network_machine_container->Bind(EVT_MACHINE_OPEN, &NetworkMachineManager::onMachineOpen, this);
-    network_machine_container->Bind(EVT_MACHINE_CLOSE, &NetworkMachineManager::onMachineClose, this);
-    network_machine_container->Bind(EVT_MACHINE_NEW_MESSAGE, &NetworkMachineManager::onMachineMessage, this);
-    network_machine_container->Bind(EVT_MACHINE_AVATAR_READY, &NetworkMachineManager::onMachineAvatarReady, this);
+    broadcast_receiver.Bind(EVT_BROADCAST_RECEIVED, &ZaxeNetworkMachineManager::onBroadcastReceived, this);
 
-    broadcast_receiver->Bind(EVT_BROADCAST_RECEIVED, &NetworkMachineManager::onBroadcastReceived, this);
+    wxGetApp().Bind(EVT_USER_LOGIN_HANDLE, [&](auto& e) {
+        auto agent = wxGetApp().getAgent();
+        if (agent) {
+            auto                     devices = agent->get_devices_of_user();
+            std::vector<std::string> serial_nums;
+            for (const auto& dev : devices) {
+                auto serial = dev.first;
+                auto j_str  = dev.second;
+                serial_nums.push_back(serial);
+                CallAfter([&, serial_no = serial, j_content = j_str]() {
+                    auto rm = findBySerial(remote_machines, serial_no);
+                    if (!rm) {
+                        auto remote_nm = std::make_shared<ZaxeRemoteMachine>(serial_no);
+                        remote_nm->init(j_content);
+                        onDeviceDetected(remote_nm);
+                        remote_nm->Bind(EVT_MACHINE_OPEN, [&, nm = remote_nm](auto& evt) {
+                            onDeviceDetected(nm);
+                            evt.Skip();
+                        });
+
+                        remote_nm->Bind(EVT_MACHINE_SWITCH, [&, rnm = remote_nm](auto& evt) {
+                            auto lm = findBySerial(local_machines, rnm->attr->serial_no);
+                            if (lm) {
+                                if (auto d_it = device_map.find(lm.value()->attr->serial_no); d_it != device_map.end()) {
+                                    (*d_it).second->switchNetworkMachine(lm.value());
+                                }
+                            } else {
+                                wxGetApp()
+                                    .plater()
+                                    ->get_notification_manager()
+                                    ->push_notification(NotificationType::CustomNotification,
+                                                        NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                                        _u8L("Printer has no local connection right now!"));
+                            }
+                            evt.Skip();
+                        });
+
+                        remote_nm->Bind(EVT_MACHINE_REMOTE_CMD, [](auto& evt) {
+                            auto msg    = evt.GetString();
+                            auto _agent = wxGetApp().getAgent();
+                            if (_agent) {
+                                _agent->send_message_to_zaxe_printer(msg.ToStdString());
+                            }
+                            evt.Skip();
+                        });
+
+                        remote_machines.emplace_back(remote_nm);
+                    }
+                });
+            }
+
+            agent->subscribe_to_printers(serial_nums, [&](const std::string& _serial, const std::string& _message) {
+                auto rm = findBySerial(remote_machines, _serial);
+                if (rm) {
+                    rm.value()->onWSRead(_message);
+                }
+            });
+        }
+        e.Skip();
+    });
+
+    wxGetApp().Bind(EVT_USER_LOGOUT_HANDLE, [&](auto& e) {
+        auto agent = wxGetApp().getAgent();
+        if (agent) {
+            agent->unsubscribe_from_printers();
+        }
+
+        remote_machines.clear();
+        for (auto d_it = device_map.begin(); d_it != device_map.end();) {
+            auto lnm = findBySerial(local_machines, d_it->first);
+            if (!lnm && d_it->second) {
+                delete d_it->second;
+                d_it->second = nullptr;
+                d_it         = device_map.erase(d_it);
+            } else {
+                d_it++;
+            }
+        }
+        warning_sizer->Show(device_map.empty());
+
+        scrolled_area->Layout();
+        scrolled_area->FitInside();
+        Layout();
+
+        e.Skip();
+    });
 
     checkVersions();
     version_check_timer = new wxTimer();
@@ -50,8 +124,13 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
     version_check_timer->Start(1'000 * 60 * 10);
 }
 
-NetworkMachineManager::~NetworkMachineManager()
+ZaxeNetworkMachineManager::~ZaxeNetworkMachineManager()
 {
+    auto agent = wxGetApp().getAgent();
+    if (agent) {
+        agent->unsubscribe_from_printers();
+    }
+
     if (version_check_timer) {
         version_check_timer->Stop();
         delete version_check_timer;
@@ -59,46 +138,107 @@ NetworkMachineManager::~NetworkMachineManager()
     }
 }
 
-void NetworkMachineManager::checkVersions()
+void ZaxeNetworkMachineManager::onDeviceDetected(std::shared_ptr<ZaxeNetworkMachine> nm)
 {
-    int timeout_sec = 15;
-    Http::get("https://software.zaxe.com/z3new/firmware.json")
-        .timeout_connect(timeout_sec)
-        .timeout_max(timeout_sec)
-        .on_error([&](std::string, std::string error, unsigned http_status) {
-            BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version: HTTP(" << http_status << ") " << error;
-        })
-        .on_complete([&](std::string body, unsigned http_status) {
-            if (http_status != 200) {
-                BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version: HTTP(" << http_status << ") " << body;
-                return;
-            }
+    // TODO zaxe
+    if(nm->attr->serial_no == "Unknown"){
+        return;
+    }
 
-            try {
-                boost::trim(body);
-                boost::property_tree::ptree root;
-                std::stringstream           json_stream(body);
-                boost::property_tree::read_json(json_stream, root);
+    auto it = device_map.find(nm->attr->serial_no);
+    if (it == device_map.end()) {
+        Freeze();
+        auto zd = new ZaxeDevice(scrolled_area);
+        zd->switchNetworkMachine(nm);
+        zd->onPrintButtonStateChanged(print_enable, archive);
+        zd->onVersionCheck(fw_versions);
+        device_map[nm->attr->serial_no] = zd;
+        applyFilters();
 
-                auto fw_latest     = Semver(root.get<std::string>("version"));
-                fw_versions["z3"]  = fw_latest;
-                fw_versions["z3s"] = fw_latest;
+        warning_sizer->Show(device_map.empty());
+        scrolled_area->GetSizer()->Add(zd, 0, wxEXPAND | wxALL, FromDIP(5));
+        Thaw();
 
-                CallAfter([&]() {
-                    for (auto& [ip, dev] : device_map) {
-                        if (dev) {
-                            dev->onVersionCheck(fw_versions);
-                        }
-                    }
-                });
-            } catch (...) {
-                BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version";
-            }
-        })
-        .perform();
+        scrolled_area->Layout();
+        scrolled_area->FitInside();
+        Layout();
+    } else if (!it->second->getNetworkMachine()->isAlive()) {
+        it->second->switchNetworkMachine(nm);
+    }
 }
 
-wxPanel* NetworkMachineManager::createFilterArea()
+void ZaxeNetworkMachineManager::onBroadcastReceived(wxCommandEvent& event)
+{
+    try {
+        auto        j  = nlohmann::json::parse(std::string(event.GetString().utf8_str().data()));
+        std::string ip = j.at("ip");
+
+        auto lm_it = std::find_if(local_machines.begin(), local_machines.end(), [&](const auto& lm) { return lm->get_ip() == ip; });
+
+        if (lm_it == local_machines.end()) {
+            auto local_nm = std::make_shared<ZaxeLocalMachine>(ip, j.at("port"), j.at("id"));
+            local_nm->Bind(EVT_MACHINE_OPEN, [&, lnm = local_nm](auto& evt) {
+                onDeviceDetected(lnm);
+                evt.Skip();
+            });
+
+            local_nm->Bind(EVT_MACHINE_CLOSE, [&, lnm = local_nm](auto& evt) {
+                local_machines.erase(std::remove_if(local_machines.begin(), local_machines.end(),
+                                                    [&](const auto& item) { return item->attr->serial_no == lnm->attr->serial_no; }),
+                                     local_machines.end());
+
+                auto rm = findBySerial(remote_machines, lnm->attr->serial_no);
+                if (!rm) {
+                    auto d_it = device_map.find(lnm->attr->serial_no);
+                    if (d_it == device_map.end()) {
+                        return;
+                    }
+                    if (d_it->second) {
+                        delete d_it->second;
+                        d_it->second = nullptr;
+                    }
+                    if (device_map.erase(lnm->attr->serial_no) == 0) {
+                        return;
+                    }
+
+                    warning_sizer->Show(device_map.empty());
+
+                    scrolled_area->Layout();
+                    scrolled_area->FitInside();
+                    Layout();
+                } else {
+                    auto d_it = device_map.find(lnm->attr->serial_no);
+                    if (d_it != device_map.end()) {
+                        (*d_it).second->switchNetworkMachine(rm.value());
+                    }
+                }
+                evt.Skip();
+            });
+
+            local_nm->Bind(EVT_MACHINE_SWITCH, [&, lnm = local_nm](auto& evt) {
+                auto rm = findBySerial(remote_machines, lnm->attr->serial_no);
+                if (rm) {
+                    if (auto d_it = device_map.find(rm.value()->attr->serial_no); d_it != device_map.end()) {
+                        (*d_it).second->switchNetworkMachine(rm.value());
+                    }
+                } else {
+                    wxGetApp()
+                        .plater()
+                        ->get_notification_manager()
+                        ->push_notification(NotificationType::CustomNotification,
+                                            NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                            _u8L("The printer does not have a local connection at the moment!"));
+                }
+                evt.Skip();
+            });
+            local_machines.emplace_back(local_nm);
+        }
+    } catch (const std::exception& ex) {
+        BOOST_LOG_TRIVIAL(warning) << __func__ << " - Failed: " << ex.what();
+    }
+}
+
+wxPanel* ZaxeNetworkMachineManager::createFilterArea()
 {
     auto panel = new wxPanel(this);
     panel->SetBackgroundColour(*wxWHITE);
@@ -192,7 +332,7 @@ wxPanel* NetworkMachineManager::createFilterArea()
     return panel;
 }
 
-wxPanel* NetworkMachineManager::createWarningArea()
+wxPanel* ZaxeNetworkMachineManager::createWarningArea()
 {
     auto panel = new wxPanel(this);
 
@@ -217,7 +357,7 @@ wxPanel* NetworkMachineManager::createWarningArea()
     return panel;
 }
 
-wxPanel* NetworkMachineManager::createScrolledArea()
+wxPanel* ZaxeNetworkMachineManager::createScrolledArea()
 {
     auto panel = new wxScrolled<wxPanel>(this);
 
@@ -231,9 +371,9 @@ wxPanel* NetworkMachineManager::createScrolledArea()
     return panel;
 }
 
-void NetworkMachineManager::enablePrintNowButton(bool enable)
+void ZaxeNetworkMachineManager::enablePrintNowButton(bool enable)
 {
-    for (auto& [ip, dev] : device_map) {
+    for (auto& [id, dev] : device_map) {
         if (!dev)
             continue;
         dev->onPrintButtonStateChanged(enable, archive);
@@ -242,125 +382,7 @@ void NetworkMachineManager::enablePrintNowButton(bool enable)
     print_enable = enable;
 }
 
-void NetworkMachineManager::onBroadcastReceived(wxCommandEvent& event)
-{
-    std::stringstream jsonStream;
-    jsonStream.str(std::string(event.GetString().utf8_str().data())); // wxString to std::string
-
-    boost::property_tree::ptree pt; // construct root obj.
-    boost::property_tree::read_json(jsonStream, pt);
-    try {
-        this->addMachine(pt.get<std::string>("ip"), pt.get<int>("port"), pt.get<std::string>("id"));
-    } catch (std::exception ex) {
-        BOOST_LOG_TRIVIAL(warning) << boost::format("Cannot parse broadcast message json: [%1%].") % ex.what();
-    }
-}
-
-void NetworkMachineManager::addMachine(std::string ip, int port, std::string id)
-{
-    auto machine = network_machine_container->addMachine(ip, port, id);
-}
-
-void NetworkMachineManager::onMachineOpen(MachineEvent& event)
-{
-    // Now we can add this to UI.
-    if (!event.nm || device_map.find(event.nm->ip) != device_map.end()) {
-        return;
-    }
-
-    BOOST_LOG_TRIVIAL(info) << boost::format("NetworkMachineManager - Connected to machine: [%1% - %2%].") % event.nm->name % event.nm->ip;
-
-    Freeze();
-    auto zd = new ZaxeDevice(event.nm, scrolled_area);
-    zd->onPrintButtonStateChanged(print_enable, archive);
-    zd->onVersionCheck(fw_versions);
-    device_map[event.nm->ip] = zd;
-    applyFilters();
-    warning_sizer->Show(device_map.empty());
-    scrolled_area->GetSizer()->Add(zd, 0, wxEXPAND | wxALL, FromDIP(5));
-    Thaw();
-
-    scrolled_area->Layout();
-    scrolled_area->FitInside();
-    Layout();
-}
-
-void NetworkMachineManager::onMachineClose(MachineEvent& event)
-{
-    if (!event.nm) {
-        return;
-    }
-
-    auto it = device_map.find(event.nm->ip);
-    if (it == device_map.end()) {
-        return;
-    }
-
-    if (it->second) {
-        delete it->second;
-        it->second = nullptr;
-    }
-
-    if (device_map.erase(event.nm->ip) == 0) {
-        return;
-    }
-
-    BOOST_LOG_TRIVIAL(info) << boost::format("NetworkMachineManager - Closing machine: [%1% - %2%].") % event.nm->name % event.nm->ip;
-    network_machine_container->removeMachine(event.nm->ip);
-    warning_sizer->Show(device_map.empty());
-
-    scrolled_area->Layout();
-    scrolled_area->FitInside();
-    Layout();
-}
-
-void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
-{
-    if (!event.nm) {
-        return;
-    }
-
-    auto dev = device_map.find(event.nm->ip);
-    if (dev == device_map.end() || dev->second == nullptr) {
-        return;
-    }
-
-    if (event.event == "states_update") {
-        dev->second->updateStates();
-    } else if (event.event == "print_progress" || event.event == "temperature_progress" || event.event == "calibration_progress") {
-        event.nm->progress = event.pt.get<float>("progress", 0);
-        dev->second->updateProgressValue();
-    } else if (event.event == "new_name") {
-        dev->second->setName(event.nm->name);
-    } else if (event.event == "material_change") {
-        dev->second->setMaterialLabel(event.nm->attr->material_label);
-    } else if (event.event == "nozzle_change") {
-        dev->second->setNozzle(event.nm->attr->nozzle);
-    } else if (event.event == "pin_change") {
-        dev->second->setPin(event.nm->attr->has_pin);
-    } else if (event.event == "start_print") {
-        dev->second->setFileStart();
-    } else if (event.event == "file_init_failed") {
-        dev->second->onPrintDenied();
-    } else if (event.event == "temperature_update") {
-        dev->second->onTemperatureUpdate();
-    } else if (event.event == "upload_done") {
-        dev->second->onUploadDone();
-    }
-}
-
-void NetworkMachineManager::onMachineAvatarReady(wxCommandEvent& event)
-{
-    string ip = event.GetString().ToStdString();
-    auto   it = device_map.find(ip);
-    if (it == device_map.end()) {
-        return;
-    }
-    // BOOST_LOG_TRIVIAL(debug) << boost::format("NetworkMachineManager - Avatar ready on machine: [%1%].") % ip;
-    it->second->onAvatarReady();
-}
-
-void NetworkMachineManager::applyFilters()
+void ZaxeNetworkMachineManager::applyFilters()
 {
     auto searchText = search_ctrl->GetTextCtrl()->GetValue();
 
@@ -386,7 +408,7 @@ void NetworkMachineManager::applyFilters()
     Layout();
 }
 
-bool NetworkMachineManager::prepare_archive(PrintMode mode)
+bool ZaxeNetworkMachineManager::prepare_archive(PrintMode mode)
 {
     auto& partplate_list    = wxGetApp().plater()->get_partplate_list();
     int   empty_plate_count = 0;
@@ -461,7 +483,7 @@ bool NetworkMachineManager::prepare_archive(PrintMode mode)
     return false;
 }
 
-bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
+bool ZaxeNetworkMachineManager::print(ZaxeNetworkMachine* machine, PrintMode mode)
 {
     auto create_error_notification = []() {
         auto _plater = wxGetApp().plater();
@@ -476,7 +498,7 @@ bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
         return false;
     }
 
-    auto it = device_map.find(machine->ip);
+    auto it = device_map.find(machine->attr->serial_no);
     if (it == device_map.end()) {
         create_error_notification();
         return false;
@@ -491,7 +513,7 @@ bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
     return false;
 }
 
-std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_multiplate, bool force_reset)
+std::shared_ptr<ZaxeArchive> ZaxeNetworkMachineManager::get_archive(bool support_multiplate, bool force_reset)
 {
     bool is_all_plates_selected = wxGetApp().plater()->get_preview_canvas3D()->is_all_plates_selected();
     if (force_reset || !archive || is_all_plates_selected || (archive && (!support_multiplate && archive->support_multiplate()))) {
@@ -507,4 +529,44 @@ std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_mul
 
     return archive;
 }
+
+void ZaxeNetworkMachineManager::checkVersions()
+{
+    int timeout_sec = 15;
+    Http::get("https://software.zaxe.com/z3new/firmware.json")
+        .timeout_connect(timeout_sec)
+        .timeout_max(timeout_sec)
+        .on_error([&](std::string, std::string error, unsigned http_status) {
+            BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version: HTTP(" << http_status << ") " << error;
+        })
+        .on_complete([&](std::string body, unsigned http_status) {
+            if (http_status != 200) {
+                BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version: HTTP(" << http_status << ") " << body;
+                return;
+            }
+
+            try {
+                boost::trim(body);
+                boost::property_tree::ptree root;
+                std::stringstream           json_stream(body);
+                boost::property_tree::read_json(json_stream, root);
+
+                auto fw_latest     = Semver(root.get<std::string>("version"));
+                fw_versions["z3"]  = fw_latest;
+                fw_versions["z3s"] = fw_latest;
+
+                CallAfter([&]() {
+                    for (auto& [ip, dev] : device_map) {
+                        if (dev) {
+                            dev->onVersionCheck(fw_versions);
+                        }
+                    }
+                });
+            } catch (...) {
+                BOOST_LOG_TRIVIAL(error) << "Error getting z3 fw version";
+            }
+        })
+        .perform();
+}
+
 } // namespace Slic3r::GUI

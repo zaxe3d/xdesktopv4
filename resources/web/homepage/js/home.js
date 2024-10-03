@@ -77,11 +77,11 @@ function Set_RecentFile_MouseRightBtn_Event()
 
 function SetLoginPanelVisibility(visible) {
   var leftBoard = document.getElementById("LeftBoard");
-  if (visible) {
+  //if (visible) {
     leftBoard.style.display = "block";
-  } else {
-    leftBoard.style.display = "none";
-  }
+  //} else {
+  //  leftBoard.style.display = "none";
+  //}
 }
 
 function HandleStudio( pVal )
@@ -160,6 +160,7 @@ function SetLoginInfo( strAvatar, strName )
 		//alert('Avatar is Same');
 	}
 	
+	$("#LogoutBtn").show();
 	$("#Login2").show();
 	$("#Login2").css("display","flex");
 }
@@ -375,6 +376,8 @@ function OnLogOut()
 	tSend['command']="homepage_logout";
 	
 	SendWXMessage( JSON.stringify(tSend) );	
+
+	$("#LogoutBtn").hide();
 }
 
 function BeginDownloadNetworkPlugin()

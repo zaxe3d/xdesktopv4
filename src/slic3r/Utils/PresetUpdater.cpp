@@ -798,27 +798,27 @@ bool PresetUpdater::priv::get_cached_plugins_version(std::string& cached_version
     std::string data_dir_str = data_dir();
     boost::filesystem::path data_dir_path(data_dir_str);
     auto cache_folder = data_dir_path / "ota";
-    std::string network_library, player_library, live555_library;
+    std::string network_library;//, player_library, live555_library;
     bool has_plugins = false;
 
 #if defined(_MSC_VER) || defined(_WIN32)
     network_library = cache_folder.string() + "/bambu_networking.dll";
-    player_library  = cache_folder.string() + "/BambuSource.dll";
-    live555_library = cache_folder.string() + "/live555.dll";
+    //player_library  = cache_folder.string() + "/BambuSource.dll";
+    //live555_library = cache_folder.string() + "/live555.dll";
 #elif defined(__WXMAC__)
-    network_library = cache_folder.string() + "/libbambu_networking.dylib";
-    player_library  = cache_folder.string() + "/libBambuSource.dylib";
-    live555_library = cache_folder.string() + "/liblive555.dylib";
+    network_library = cache_folder.string() + "/libzaxe_networking.dylib";
+    //player_library  = cache_folder.string() + "/libBambuSource.dylib";
+    //live555_library = cache_folder.string() + "/liblive555.dylib";
 #else
-    network_library = cache_folder.string() + "/libbambu_networking.so";
-    player_library  = cache_folder.string() + "/libBambuSource.so";
-    live555_library = cache_folder.string() + "/liblive555.so";
+    network_library = cache_folder.string() + "/libzaxe_networking.so";
+    //player_library  = cache_folder.string() + "/libBambuSource.so";
+    //live555_library = cache_folder.string() + "/liblive555.so";
 #endif
 
     std::string changelog_file = cache_folder.string() + "/network_plugins.json";
     if (boost::filesystem::exists(network_library)
-        && boost::filesystem::exists(player_library)
-        && boost::filesystem::exists(live555_library)
+        //&& boost::filesystem::exists(player_library)
+        //&& boost::filesystem::exists(live555_library)
         && boost::filesystem::exists(changelog_file))
     {
         has_plugins = true;
@@ -890,11 +890,11 @@ void PresetUpdater::priv::sync_plugins(std::string http_url, std::string plugin_
             auto player_library  = cache_folder / "BambuSource.dll";
             auto live555_library  = cache_folder / "live555.dll";
 #elif defined(__WXMAC__)
-            auto network_library = cache_folder / "libbambu_networking.dylib";
+            auto network_library = cache_folder / "libzaxe_networking.dylib";
             auto player_library = cache_folder / "libBambuSource.dylib";
             auto live555_library = cache_folder / "liblive555.dylib";
 #else
-            auto network_library = cache_folder / "libbambu_networking.so";
+            auto network_library = cache_folder / "libzaxe_networking.so";
             auto player_library = cache_folder / "libBambuSource.so";
             auto live555_library = cache_folder / "liblive555.so";
 #endif
