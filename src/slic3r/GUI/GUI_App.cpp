@@ -1110,7 +1110,7 @@ void GUI_App::shutdown()
 
 std::string GUI_App::get_http_url(std::string country_code, std::string path)
 {
-    std::string url;
+    /*
     if (country_code == "US") {
         url = "https://api.bambulab.com/";
     }
@@ -1129,7 +1129,9 @@ std::string GUI_App::get_http_url(std::string country_code, std::string path)
     else {
         url = "https://api.bambulab.com/";
     }
+    */
 
+    std::string url = "https://testing.zaxe.com:9006/";
     url += path.empty() ? "v1/iot-service/api/slicer/resource" : path;
     return url;
 }
@@ -1529,7 +1531,7 @@ void GUI_App::remove_old_networking_plugins()
 
 int GUI_App::updating_bambu_networking()
 {
-    DownloadProgressDialog dlg(_L("Downloading Bambu Network Plug-in"));
+    DownloadProgressDialog dlg(_L("Downloading Zaxe Network Plug-in"));
     dlg.ShowModal();
     return 0;
 }
@@ -2672,17 +2674,17 @@ void GUI_App::copy_network_if_available()
     player_library_dst  = plugin_folder.string() + "/BambuSource.dll";
     live555_library_dst = plugin_folder.string() + "/live555.dll";
 #elif defined(__WXMAC__)
-    network_library = cache_folder.string() + "/libbambu_networking.dylib";
+    network_library = cache_folder.string() + "/libzaxe_networking.dylib";
     player_library = cache_folder.string() + "/libBambuSource.dylib";
     live555_library = cache_folder.string() + "/liblive555.dylib";
-    network_library_dst = plugin_folder.string() + "/libbambu_networking.dylib";
+    network_library_dst = plugin_folder.string() + "/libzaxe_networking.dylib";
     player_library_dst = plugin_folder.string() + "/libBambuSource.dylib";
     live555_library_dst = plugin_folder.string() + "/liblive555.dylib";
 #else
-    network_library = cache_folder.string() + "/libbambu_networking.so";
+    network_library = cache_folder.string() + "/libzaxe_networking.so";
     player_library      = cache_folder.string() + "/libBambuSource.so";
     live555_library     = cache_folder.string() + "/liblive555.so";
-    network_library_dst = plugin_folder.string() + "/libbambu_networking.so";
+    network_library_dst = plugin_folder.string() + "/libzaxe_networking.so";
     player_library_dst  = plugin_folder.string() + "/libBambuSource.so";
     live555_library_dst = plugin_folder.string() + "/liblive555.so";
 #endif
@@ -2751,7 +2753,7 @@ __retry:
         if (check_networking_version()) {
             BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << ": on_init_network, compatibility version";
             auto bambu_source = Slic3r::NetworkAgent::get_bambu_source_entry();
-            if (!bambu_source) {
+            if (false /*!bambu_source*/) {
                 BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << ": can not get bambu source module!";
                 m_networking_compatible = false;
                 if (should_load_networking_plugin) {
@@ -3706,6 +3708,8 @@ void GUI_App::request_user_logout()
 
         GUI::wxGetApp().stop_sync_user_preset();
     }
+    auto evt = new wxCommandEvent(EVT_USER_LOGOUT_HANDLE);
+    wxQueueEvent(this, evt);
 }
 
 int GUI_App::request_user_unbind(std::string dev_id)
@@ -3922,16 +3926,16 @@ void GUI_App::handle_script_message(std::string msg)
 {
     try {
         json j = json::parse(msg);
-        if (j.contains("command")) {
-            wxString cmd = j["command"];
-            if (cmd == "user_login") {
+        if (j.contains("access_token")) {
+            //wxString cmd = j["command"];
+            //if (cmd == "user_login") {
                 if (m_agent) {
                     m_agent->change_user(j.dump());
                     if (m_agent->is_user_login()) {
                         request_user_login(1);
                     }
                 }
-            }
+            //}
         }
     }
     catch (...) {
@@ -4078,6 +4082,9 @@ void GUI_App::on_update_machine_list(wxCommandEvent &evt)
 
 void GUI_App::on_user_login_handle(wxCommandEvent &evt)
 {
+    // todo zaxe
+    return;
+
     if (!m_agent) { return; }
 
     int online_login = evt.GetInt();
@@ -4117,6 +4124,11 @@ void GUI_App::on_user_login(wxCommandEvent &evt)
 {
     if (!m_agent) { return; }
     int online_login = evt.GetInt();
+
+    // zaxe
+    request_user_handle(online_login);
+    return;
+
     // check privacy before handle
     check_privacy_version(online_login);
     check_track_enable();

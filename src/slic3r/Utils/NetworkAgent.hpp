@@ -110,6 +110,12 @@ typedef int (*func_get_model_mall_rating_result)(void *agent, int job_id, std::s
 typedef int (*func_get_mw_user_preference)(void *agent, std::function<void(std::string)> callback);
 typedef int (*func_get_mw_user_4ulist)(void *agent, int seed, int limit, std::function<void(std::string)> callback);
 
+typedef void (*func_get_devices_of_user)(void *agent, std::vector<std::pair<std::string, std::string>>&);
+typedef void (*func_subscribe_to_printers)(void *agent, std::vector<std::string> serial_nums, std::function<void(const std::string &, const std::string &)> func);
+typedef void (*func_unsubscribe_from_printers)(void *agent);
+typedef void (*func_send_message_to_zaxe_printer)(void *agent, const std::string&);
+typedef void (*func_send_print_job_to_zaxe_printer)(void *agent, const std::vector<uint8_t>&);
+
 //the NetworkAgent class
 class NetworkAgent
 {
@@ -225,6 +231,12 @@ public:
     int get_mw_user_preference(std::function<void(std::string)> callback);
     int get_mw_user_4ulist(int seed, int limit, std::function<void(std::string)> callback);
 
+    std::vector<std::pair<std::string, std::string>> get_devices_of_user();
+    void subscribe_to_printers(const std::vector<std::string>& serial_nums, std::function<void(const std::string &, const std::string &)> func);
+    void unsubscribe_from_printers();
+    void send_message_to_zaxe_printer(const std::string& msg);
+    void send_print_job_to_zaxe_printer(const std::vector<uint8_t>& msg);
+
 private:
     bool enable_track = false;
     void*                   network_agent { nullptr };
@@ -329,6 +341,12 @@ private:
 
     static func_get_mw_user_preference get_mw_user_preference_ptr;
     static func_get_mw_user_4ulist     get_mw_user_4ulist_ptr;
+
+    static func_get_devices_of_user get_devices_of_user_ptr;
+    static func_subscribe_to_printers subscribe_to_printers_ptr;
+    static func_unsubscribe_from_printers unsubscribe_from_printers_ptr;
+    static func_send_message_to_zaxe_printer send_message_to_zaxe_printer_ptr;
+    static func_send_print_job_to_zaxe_printer send_print_job_to_zaxe_printer_ptr;
 };
 
 }

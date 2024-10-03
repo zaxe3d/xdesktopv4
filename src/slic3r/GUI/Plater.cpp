@@ -152,7 +152,7 @@
 #include "CreatePresetsDialog.hpp"
 #include "FileArchiveDialog.hpp"
 
-#include "NetworkMachineManager.hpp"
+#include "ZaxeNetworkMachineManager.hpp"
 
 using boost::optional;
 namespace fs = boost::filesystem;
@@ -322,8 +322,8 @@ struct Sidebar::priv
 
     Button* mode_settings{nullptr};
     Button* mode_carousel{nullptr};
-    NetworkMachineManager* machine_manager{nullptr};
-    NetworkMachine* selected_zaxe_machine{nullptr};
+    ZaxeNetworkMachineManager* machine_manager{nullptr};
+    ZaxeNetworkMachine* selected_zaxe_machine{nullptr};
 
     wxPanel *scrolled;
     PlaterPresetComboBox *combo_print;
@@ -1198,7 +1198,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     z_mode_sizer->Add(p->mode_carousel, 1, wxEXPAND);
     z_mode_sizer->Add(p->mode_settings, 1, wxEXPAND);
 
-    p->machine_manager = new NetworkMachineManager(this, wxSize(GetSize().GetWidth(), -1));
+    p->machine_manager = new ZaxeNetworkMachineManager(this, wxSize(GetSize().GetWidth(), -1));
     p->machine_manager->scrolledArea()->Bind(wxEVT_BUTTON, [this](auto& e) {
         auto split_nozzle = [](const std::string& nozzle_str) -> std::pair<std::string, std::string> {
             size_t pos = nozzle_str.find_last_of(' ');
@@ -1212,7 +1212,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
         void* user_data = e.GetClientData();
         if (user_data) {
-            auto _nm                         = static_cast<NetworkMachine*>(user_data);
+            auto _nm                         = static_cast<ZaxeNetworkMachine*>(user_data);
             auto [nozzle_model, nozzle_size] = split_nozzle(_nm->attr->nozzle);
 
             std::string printer{};
@@ -2274,7 +2274,7 @@ void Sidebar::show_carousel(bool show, bool hide_preset_details)
     Refresh();
 }
 
-NetworkMachineManager* Sidebar::machine_manager()
+ZaxeNetworkMachineManager* Sidebar::machine_manager()
 {
     return p->machine_manager;
 }
@@ -9091,9 +9091,9 @@ void Sidebar::on_select_preset() {
     p->m_filament_label->SetLabel(filament);
 }
 
-bool Sidebar::print_plate() { return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::SinglePlate); }
+bool Sidebar::print_plate() { return machine_manager()->print(p->selected_zaxe_machine, ZaxeNetworkMachineManager::PrintMode::SinglePlate); }
 
-bool Sidebar::print_all() { return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::AllPlates); }
+bool Sidebar::print_all() { return machine_manager()->print(p->selected_zaxe_machine, ZaxeNetworkMachineManager::PrintMode::AllPlates); }
 
 // Plater / Public
 

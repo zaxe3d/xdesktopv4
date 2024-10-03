@@ -47,7 +47,7 @@ html, body {
 .LinkBtn
 {
 	font-size:12px;
-	color: #00ffea;	
+	color: #1200FF;	
 	cursor: pointer;
 }
 
@@ -179,7 +179,7 @@ body
 
 #LogoutBtn:hover
 {
-	background: #00f0d8;
+	background: #009ADE;
 	color: #fff;
 }
 

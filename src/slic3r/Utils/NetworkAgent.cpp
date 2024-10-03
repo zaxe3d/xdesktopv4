@@ -17,6 +17,7 @@ using namespace BBL;
 namespace Slic3r {
 
 #define BAMBU_SOURCE_LIBRARY "BambuSource"
+#define ZAXE_NETWORK_LIBRARY "zaxe_networking"
 
 #if defined(_MSC_VER) || defined(_WIN32)
 static HMODULE netwoking_module = NULL;
@@ -128,6 +129,12 @@ func_get_model_mall_rating_result   NetworkAgent::get_model_mall_rating_result_p
 func_get_mw_user_preference         NetworkAgent::get_mw_user_preference_ptr = nullptr;
 func_get_mw_user_4ulist             NetworkAgent::get_mw_user_4ulist_ptr     = nullptr;
 
+func_get_devices_of_user       NetworkAgent::get_devices_of_user_ptr       = nullptr;
+func_subscribe_to_printers     NetworkAgent::subscribe_to_printers_ptr     = nullptr;
+func_unsubscribe_from_printers NetworkAgent::unsubscribe_from_printers_ptr = nullptr;
+func_send_message_to_zaxe_printer   NetworkAgent::send_message_to_zaxe_printer_ptr   = nullptr;
+func_send_print_job_to_zaxe_printer   NetworkAgent::send_print_job_to_zaxe_printer_ptr   = nullptr;
+
 NetworkAgent::NetworkAgent(std::string log_dir)
 {
     if (create_agent_ptr) {
@@ -159,30 +166,30 @@ int NetworkAgent::initialize_network_module(bool using_backup)
 
     //first load the library
 #if defined(_MSC_VER) || defined(_WIN32)
-    library = plugin_folder.string() + "/" + std::string(BAMBU_NETWORK_LIBRARY) + ".dll";
+    library = plugin_folder.string() + "/" + std::string(ZAXE_NETWORK_LIBRARY) + ".dll";
     wchar_t lib_wstr[128];
     memset(lib_wstr, 0, sizeof(lib_wstr));
     ::MultiByteToWideChar(CP_UTF8, NULL, library.c_str(), strlen(library.c_str())+1, lib_wstr, sizeof(lib_wstr) / sizeof(lib_wstr[0]));
     netwoking_module = LoadLibrary(lib_wstr);
     /*if (!netwoking_module) {
-        library = std::string(BAMBU_NETWORK_LIBRARY) + ".dll";
+        library = std::string(ZAXE_NETWORK_LIBRARY) + ".dll";
         memset(lib_wstr, 0, sizeof(lib_wstr));
         ::MultiByteToWideChar(CP_UTF8, NULL, library.c_str(), strlen(library.c_str()) + 1, lib_wstr, sizeof(lib_wstr) / sizeof(lib_wstr[0]));
         netwoking_module = LoadLibrary(lib_wstr);
     }*/
 #else
     #if defined(__WXMAC__)
-    library = plugin_folder.string() + "/" + std::string("lib") + std::string(BAMBU_NETWORK_LIBRARY) + ".dylib";
+    library = plugin_folder.string() + "/" + std::string("lib") + std::string(ZAXE_NETWORK_LIBRARY) + ".dylib";
     #else
-    library = plugin_folder.string() + "/" + std::string("lib") + std::string(BAMBU_NETWORK_LIBRARY) + ".so";
+    library = plugin_folder.string() + "/" + std::string("lib") + std::string(ZAXE_NETWORK_LIBRARY) + ".so";
     #endif
     printf("loading network module at %s\n", library.c_str());
     netwoking_module = dlopen( library.c_str(), RTLD_LAZY);
     if (!netwoking_module) {
         /*#if defined(__WXMAC__)
-        library = std::string("lib") + BAMBU_NETWORK_LIBRARY + ".dylib";
+        library = std::string("lib") + ZAXE_NETWORK_LIBRARY + ".dylib";
         #else
-        library = std::string("lib") + BAMBU_NETWORK_LIBRARY + ".so";
+        library = std::string("lib") + ZAXE_NETWORK_LIBRARY + ".so";
         #endif*/
         //netwoking_module = dlopen( library.c_str(), RTLD_LAZY);
         char* dll_error = dlerror();
@@ -199,10 +206,23 @@ int NetworkAgent::initialize_network_module(bool using_backup)
     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(", successfully loaded library %1%, module %2%")%library %netwoking_module;
 
     //load the functions
-    check_debug_consistent_ptr        =  reinterpret_cast<func_check_debug_consistent>(get_network_function("bambu_network_check_debug_consistent"));
-    get_version_ptr                   =  reinterpret_cast<func_get_version>(get_network_function("bambu_network_get_version"));
     create_agent_ptr                  =  reinterpret_cast<func_create_agent>(get_network_function("bambu_network_create_agent"));
     destroy_agent_ptr                 =  reinterpret_cast<func_destroy_agent>(get_network_function("bambu_network_destroy_agent"));
+    get_bambulab_host_ptr             =  reinterpret_cast<func_get_bambulab_host>(get_network_function("bambu_network_get_bambulab_host"));
+    get_version_ptr                   =  reinterpret_cast<func_get_version>(get_network_function("bambu_network_get_version"));
+    change_user_ptr                   =  reinterpret_cast<func_change_user>(get_network_function("bambu_network_change_user"));
+    is_user_login_ptr                 =  reinterpret_cast<func_is_user_login>(get_network_function("bambu_network_is_user_login"));
+    build_login_cmd_ptr               =  reinterpret_cast<func_build_login_cmd>(get_network_function("bambu_network_build_login_cmd"));
+    build_logout_cmd_ptr              =  reinterpret_cast<func_build_logout_cmd>(get_network_function("bambu_network_build_logout_cmd"));
+    user_logout_ptr                   =  reinterpret_cast<func_user_logout>(get_network_function("bambu_network_user_logout"));
+    get_devices_of_user_ptr           =  reinterpret_cast<func_get_devices_of_user>(get_network_function("zaxe_network_get_devices_of_user"));
+    subscribe_to_printers_ptr         =  reinterpret_cast<func_subscribe_to_printers>(get_network_function("zaxe_network_subscribe_to_printers"));
+    unsubscribe_from_printers_ptr     =  reinterpret_cast<func_unsubscribe_from_printers>(get_network_function("zaxe_network_unsubscribe_from_printers"));
+    send_message_to_zaxe_printer_ptr  =  reinterpret_cast<func_send_message_to_zaxe_printer>(get_network_function("zaxe_network_send_message_to_printer"));
+    send_print_job_to_zaxe_printer_ptr  =  reinterpret_cast<func_send_print_job_to_zaxe_printer>(get_network_function("zaxe_network_send_print_job_to_printer"));
+
+    /*
+    check_debug_consistent_ptr        =  reinterpret_cast<func_check_debug_consistent>(get_network_function("bambu_network_check_debug_consistent"));
     init_log_ptr                      =  reinterpret_cast<func_init_log>(get_network_function("bambu_network_init_log"));
     set_config_dir_ptr                =  reinterpret_cast<func_set_config_dir>(get_network_function("bambu_network_set_config_dir"));
     set_cert_file_ptr                 =  reinterpret_cast<func_set_cert_file>(get_network_function("bambu_network_set_cert_file"));
@@ -235,21 +255,15 @@ int NetworkAgent::initialize_network_module(bool using_backup)
     disconnect_printer_ptr            =  reinterpret_cast<func_disconnect_printer>(get_network_function("bambu_network_disconnect_printer"));
     send_message_to_printer_ptr       =  reinterpret_cast<func_send_message_to_printer>(get_network_function("bambu_network_send_message_to_printer"));
     start_discovery_ptr               =  reinterpret_cast<func_start_discovery>(get_network_function("bambu_network_start_discovery"));
-    change_user_ptr                   =  reinterpret_cast<func_change_user>(get_network_function("bambu_network_change_user"));
-    is_user_login_ptr                 =  reinterpret_cast<func_is_user_login>(get_network_function("bambu_network_is_user_login"));
-    user_logout_ptr                   =  reinterpret_cast<func_user_logout>(get_network_function("bambu_network_user_logout"));
     get_user_id_ptr                   =  reinterpret_cast<func_get_user_id>(get_network_function("bambu_network_get_user_id"));
     get_user_name_ptr                 =  reinterpret_cast<func_get_user_name>(get_network_function("bambu_network_get_user_name"));
     get_user_avatar_ptr               =  reinterpret_cast<func_get_user_avatar>(get_network_function("bambu_network_get_user_avatar"));
     get_user_nickanme_ptr             =  reinterpret_cast<func_get_user_nickanme>(get_network_function("bambu_network_get_user_nickanme"));
-    build_login_cmd_ptr               =  reinterpret_cast<func_build_login_cmd>(get_network_function("bambu_network_build_login_cmd"));
-    build_logout_cmd_ptr              =  reinterpret_cast<func_build_logout_cmd>(get_network_function("bambu_network_build_logout_cmd"));
     build_login_info_ptr              =  reinterpret_cast<func_build_login_info>(get_network_function("bambu_network_build_login_info"));
     ping_bind_ptr                     =  reinterpret_cast<func_ping_bind>(get_network_function("bambu_network_ping_bind"));
     get_model_id_from_desgin_id_ptr   =  reinterpret_cast<func_get_model_id_from_desgin_id>(get_network_function("bambu_network_get_model_id_from_desgin_id"));
     bind_ptr                          =  reinterpret_cast<func_bind>(get_network_function("bambu_network_bind"));
     unbind_ptr                        =  reinterpret_cast<func_unbind>(get_network_function("bambu_network_unbind"));
-    get_bambulab_host_ptr             =  reinterpret_cast<func_get_bambulab_host>(get_network_function("bambu_network_get_bambulab_host"));
     get_user_selected_machine_ptr     =  reinterpret_cast<func_get_user_selected_machine>(get_network_function("bambu_network_get_user_selected_machine"));
     set_user_selected_machine_ptr     =  reinterpret_cast<func_set_user_selected_machine>(get_network_function("bambu_network_set_user_selected_machine"));
     start_print_ptr                   =  reinterpret_cast<func_start_print>(get_network_function("bambu_network_start_print"));
@@ -299,6 +313,7 @@ int NetworkAgent::initialize_network_module(bool using_backup)
 
     get_mw_user_preference_ptr = reinterpret_cast<func_get_mw_user_preference>(get_network_function("bambu_network_get_mw_user_preference"));
     get_mw_user_4ulist_ptr     = reinterpret_cast<func_get_mw_user_4ulist>(get_network_function("bambu_network_get_mw_user_4ulist")); 
+    */
 
     return 0;
 }
@@ -420,6 +435,12 @@ int NetworkAgent::unload_network_module()
     
     get_mw_user_preference_ptr        = nullptr;
     get_mw_user_4ulist_ptr            = nullptr;
+
+    get_devices_of_user_ptr           = nullptr;
+    subscribe_to_printers_ptr         = nullptr;
+    unsubscribe_from_printers_ptr     = nullptr;
+    send_message_to_zaxe_printer_ptr  = nullptr;
+    send_print_job_to_zaxe_printer_ptr= nullptr;
 
     return 0;
 }
@@ -1536,6 +1557,44 @@ int NetworkAgent::get_model_mall_rating_result(int job_id, std::string &rating_r
         if (ret) BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << boost::format(" error: network_agent=%1%, ret=%2%") % network_agent % ret;
     }
     return ret;
+}
+
+std::vector<std::pair<std::string, std::string>> NetworkAgent::get_devices_of_user()
+{
+    std::vector<std::pair<std::string, std::string>> ret;
+    if (network_agent && get_devices_of_user_ptr) {
+        get_devices_of_user_ptr(network_agent, ret);
+    }
+    return ret;
+}
+
+void NetworkAgent::subscribe_to_printers(const std::vector<std::string>&                             serial_nums,
+                                         std::function<void(const std::string&, const std::string&)> func)
+{
+    if (network_agent && subscribe_to_printers_ptr) {
+        subscribe_to_printers_ptr(network_agent, serial_nums, func);
+    }
+}
+
+void NetworkAgent::unsubscribe_from_printers()
+{
+    if (network_agent && unsubscribe_from_printers_ptr) {
+        unsubscribe_from_printers_ptr(network_agent);
+    }
+}
+
+void NetworkAgent::send_message_to_zaxe_printer(const std::string& msg)
+{
+    if (network_agent && send_message_to_zaxe_printer_ptr) {
+        send_message_to_zaxe_printer_ptr(network_agent, msg);
+    }
+}
+
+void NetworkAgent::send_print_job_to_zaxe_printer(const std::vector<uint8_t>& content)
+{
+    if (network_agent && send_print_job_to_zaxe_printer_ptr) {
+        send_print_job_to_zaxe_printer_ptr(network_agent, content);
+    }
 }
 
 } //namespace
