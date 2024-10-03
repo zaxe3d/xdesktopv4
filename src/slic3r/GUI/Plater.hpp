@@ -29,7 +29,7 @@
 #include "libslic3r/CutUtils.hpp"
 #include "libslic3r/FlushVolCalc.hpp"
 
-#include "NetworkMachineManager.hpp"
+#include "ZaxeNetworkMachineManager.hpp"
 
 #define FILAMENT_SYSTEM_COLORS_NUM      16
 
@@ -196,7 +196,7 @@ public:
     bool print_all();
 
     void                   show_carousel(bool show, bool hide_preset_details = false);
-    NetworkMachineManager* machine_manager();
+    ZaxeNetworkMachineManager* machine_manager();
     void                   on_select_preset();
 
 private:

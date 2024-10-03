@@ -3689,6 +3689,8 @@ void GUI_App::request_user_logout()
 
         GUI::wxGetApp().stop_sync_user_preset();
     }
+    auto evt = new wxCommandEvent(EVT_USER_LOGOUT_HANDLE);
+    wxQueueEvent(this, evt);
 }
 
 int GUI_App::request_user_unbind(std::string dev_id)
@@ -3905,16 +3907,16 @@ void GUI_App::handle_script_message(std::string msg)
 {
     try {
         json j = json::parse(msg);
-        if (j.contains("command")) {
-            wxString cmd = j["command"];
-            if (cmd == "user_login") {
+        if (j.contains("access_token")) {
+            //wxString cmd = j["command"];
+            //if (cmd == "user_login") {
                 if (m_agent) {
                     m_agent->change_user(j.dump());
                     if (m_agent->is_user_login()) {
                         request_user_login(1);
                     }
                 }
-            }
+            //}
         }
     }
     catch (...) {
@@ -4059,6 +4061,9 @@ void GUI_App::on_update_machine_list(wxCommandEvent &evt)
 
 void GUI_App::on_user_login_handle(wxCommandEvent &evt)
 {
+    // todo zaxe
+    return;
+
     if (!m_agent) { return; }
 
     int online_login = evt.GetInt();
@@ -4098,6 +4103,11 @@ void GUI_App::on_user_login(wxCommandEvent &evt)
 {
     if (!m_agent) { return; }
     int online_login = evt.GetInt();
+
+    // zaxe
+    request_user_handle(online_login);
+    return;
+
     // check privacy before handle
     check_privacy_version(online_login);
     check_track_enable();

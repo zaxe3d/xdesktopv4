@@ -77,6 +77,7 @@ wxDEFINE_EVENT(EVT_SELECT_TAB, wxCommandEvent);
 wxDEFINE_EVENT(EVT_HTTP_ERROR, wxCommandEvent);
 wxDEFINE_EVENT(EVT_USER_LOGIN, wxCommandEvent);
 wxDEFINE_EVENT(EVT_USER_LOGIN_HANDLE, wxCommandEvent);
+wxDEFINE_EVENT(EVT_USER_LOGOUT_HANDLE, wxCommandEvent);
 wxDEFINE_EVENT(EVT_CHECK_PRIVACY_VER, wxCommandEvent);
 wxDEFINE_EVENT(EVT_CHECK_PRIVACY_SHOW, wxCommandEvent);
 wxDEFINE_EVENT(EVT_SHOW_IP_DIALOG, wxCommandEvent);
@@ -1043,16 +1044,6 @@ void MainFrame::init_tabpanel() {
     });
 
     if (wxGetApp().is_editor()) {
-        m_webview         = new WebViewPanel(m_tabpanel);
-        m_webview->Hide();
-        /* TODO zaxe
-        Bind(EVT_LOAD_URL, [this](wxCommandEvent &evt) {
-            wxString url = evt.GetString();
-            select_tab(MainFrame::tpHome);
-            m_webview->load_url(url);
-        });
-        */
-        // m_tabpanel->AddPage(m_webview, "", "zaxe_logo_icon", "zaxe_logo_icon", false);
         m_param_panel = new ParamsPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBK_LEFT | wxTAB_TRAVERSAL);
     }
 
@@ -1095,6 +1086,18 @@ void MainFrame::init_tabpanel() {
     m_calibration->SetBackgroundColour(*wxWHITE);
     m_tabpanel->AddPage(m_calibration, _L("Calibration"), std::string("zaxe_tab_devices"), std::string("zaxe_tab_devices"), false);
 
+    if (wxGetApp().is_editor()) {
+        m_webview         = new WebViewPanel(m_tabpanel);
+        m_webview->Hide();
+        /* TODO zaxe
+        Bind(EVT_LOAD_URL, [this](wxCommandEvent &evt) {
+            wxString url = evt.GetString();
+            select_tab(MainFrame::tpHome);
+            m_webview->load_url(url);
+        });
+        */
+        m_tabpanel->AddPage(m_webview, "Profile", "zaxe_profile_circle", "zaxe_profile_circle", false);
+    }
     if (m_plater) {
         // load initial config
         auto full_config = wxGetApp().preset_bundle->full_config();

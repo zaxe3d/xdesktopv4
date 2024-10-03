@@ -55,7 +55,7 @@ ZUserLogin::ZUserLogin() : wxDialog((wxWindow *) (wxGetApp().mainframe), wxID_AN
         m_line_top->SetBackgroundColour(wxColour(166, 169, 170));
         m_sizer_main->Add(m_line_top, 0, wxEXPAND, 0);
 
-        auto* m_message = new wxStaticText(this, wxID_ANY, _L("Bambu Network plug-in not detected."), wxDefaultPosition, wxDefaultSize, 0);
+        auto* m_message = new wxStaticText(this, wxID_ANY, _L("Zaxe Network plug-in not detected."), wxDefaultPosition, wxDefaultSize, 0);
         m_message->SetForegroundColour(*wxBLACK);
         m_message->Wrap(FromDIP(360));
 
@@ -79,11 +79,13 @@ ZUserLogin::ZUserLogin() : wxDialog((wxWindow *) (wxGetApp().mainframe), wxID_AN
         TargetUrl = host_url + "/sign-in";
         m_networkOk = false;
 
+        /* TODO: Zaxe
         wxString strlang = wxGetApp().current_language_code_safe();
         if (strlang != "") {
             strlang.Replace("_", "-");
             TargetUrl = host_url + "/" + strlang + "/sign-in";
         }
+        */
 
         BOOST_LOG_TRIVIAL(info) << "login url = " << TargetUrl.ToStdString();
 
@@ -270,7 +272,10 @@ void ZUserLogin::OnScriptMessage(wxWebViewEvent &evt)
     wxString str_input = evt.GetString();
     try {
         json j = json::parse(into_u8(str_input));
+        wxGetApp().handle_script_message(j.dump());
+        Close();
 
+        /*
         wxString strCmd = j["command"];
 
         if (strCmd == "autotest_token")
@@ -316,6 +321,7 @@ void ZUserLogin::OnScriptMessage(wxWebViewEvent &evt)
             }
             return;
         }
+        */
     } catch (std::exception &e) {
         wxMessageBox(e.what(), "parse json failed", wxICON_WARNING);
         Close();

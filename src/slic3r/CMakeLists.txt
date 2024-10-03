@@ -564,12 +564,16 @@ set(SLIC3R_GUI_SOURCES
     Utils/SimplyPrint.cpp
     Utils/SimplyPrint.hpp
 
-    GUI/NetworkMachineManager.cpp
-    GUI/NetworkMachineManager.hpp
+    GUI/ZaxeNetworkMachineManager.cpp
+    GUI/ZaxeNetworkMachineManager.hpp
     GUI/ZaxeDevice.cpp
     GUI/ZaxeDevice.hpp
-    Utils/NetworkMachine.cpp
-    Utils/NetworkMachine.hpp
+    Utils/ZaxeNetworkMachine.cpp
+    Utils/ZaxeNetworkMachine.hpp
+    Utils/ZaxeLocalMachine.cpp
+    Utils/ZaxeLocalMachine.hpp
+    Utils/ZaxeRemoteMachine.cpp
+    Utils/ZaxeRemoteMachine.hpp
     Utils/BroadcastReceiver.cpp
     Utils/BroadcastReceiver.hpp
     Utils/WebSocket.cpp

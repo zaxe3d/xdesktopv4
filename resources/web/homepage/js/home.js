@@ -160,6 +160,7 @@ function SetLoginInfo( strAvatar, strName )
 		//alert('Avatar is Same');
 	}
 	
+	$("#LogoutBtn").show();
 	$("#Login2").show();
 	$("#Login2").css("display","flex");
 }
@@ -375,6 +376,8 @@ function OnLogOut()
 	tSend['command']="homepage_logout";
 	
 	SendWXMessage( JSON.stringify(tSend) );	
+
+	$("#LogoutBtn").hide();
 }
 
 function BeginDownloadNetworkPlugin()
