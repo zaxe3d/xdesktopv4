@@ -9,7 +9,6 @@ wxDEFINE_EVENT(EVT_MACHINE_OPEN, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_CLOSE, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_UPDATE, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_SWITCH, wxCommandEvent);
-wxDEFINE_EVENT(EVT_MACHINE_REMOTE_CMD, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_AVATAR_READY, wxCommandEvent);
 
 ZaxeNetworkMachine::ZaxeNetworkMachine() : states{std::make_shared<MachineStates>()}, attr{std::make_shared<MachineAttributes>()} {}

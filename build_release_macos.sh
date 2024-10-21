@@ -192,8 +192,7 @@ function build_slicer() {
         # delete .DS_Store file
         find ./XDesktop.app/ -name '.DS_Store' -delete
 
-        # todo: ffplay_arm64 has zstd dependency
-        cp ../../package/bin/ffplay_x86_64 ./XDesktop.app/Contents/MacOS/ffplay
+        cp ../../package/bin/ffplay_x86_64_7.1 ./XDesktop.app/Contents/MacOS/ffplay
 
         popd
     )

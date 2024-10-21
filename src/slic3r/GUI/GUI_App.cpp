@@ -347,7 +347,7 @@ public:
 
 		// Based on Text
         memDc.SetFont(m_constant_text.based_on_font);
-        auto bs_version = wxString::Format("Based on PrusaSlicer and BambuStudio").ToStdString();
+        auto bs_version = wxString::Format("Based on PrusaSlicer and OrcaSlicer").ToStdString();
         wxSize based_on_ext = memDc.GetTextExtent(bs_version);
         wxRect based_on_rect(
 			wxPoint(0, height - based_on_ext.GetHeight() * 2),
@@ -3384,7 +3384,7 @@ void GUI_App::ShowDownNetPluginDlg() {
         });
         if (iter != dialogStack.end())
             return;
-        DownloadProgressDialog dlg(_L("Downloading Bambu Network Plug-in"));
+        DownloadProgressDialog dlg(_L("Downloading Zaxe Network Plug-in"));
         dlg.ShowModal();
     } catch (std::exception &e) {
         ;
@@ -3910,18 +3910,17 @@ void GUI_App::handle_script_message(std::string msg)
     try {
         json j = json::parse(msg);
         if (j.contains("access_token")) {
-            //wxString cmd = j["command"];
-            //if (cmd == "user_login") {
-                if (m_agent) {
-                    m_agent->change_user(j.dump());
-                    if (m_agent->is_user_login()) {
-                        request_user_login(1);
-                    }
+            // wxString cmd = j["command"];
+            // if (cmd == "user_login") {
+            if (m_agent) {
+                m_agent->change_user(j.dump(), [&]() { wxGetApp().CallAfter([&] { wxGetApp().request_user_logout(); }); });
+                if (m_agent->is_user_login()) {
+                    request_user_login(1);
                 }
+            }
             //}
         }
-    }
-    catch (...) {
+    } catch (...) {
         ;
     }
 }

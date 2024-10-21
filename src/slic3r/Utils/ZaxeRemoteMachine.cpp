@@ -81,6 +81,10 @@ void ZaxeRemoteMachine::pause() { send_command("pause"); }
 
 void ZaxeRemoteMachine::resume() { send_command("resume"); }
 
+void ZaxeRemoteMachine::startStreaming() { send_command("start_streaming"); }
+
+void ZaxeRemoteMachine::stopStreaming() { send_command("stop_streaming"); }
+
 void ZaxeRemoteMachine::changeName(const char* new_name)
 {
     nlohmann::json data;
@@ -112,9 +116,10 @@ void ZaxeRemoteMachine::send_command(const std::string& command)
 
 void ZaxeRemoteMachine::send(const std::string& message)
 {
-    auto evt = new wxCommandEvent(EVT_MACHINE_REMOTE_CMD);
-    evt->SetString(message);
-    wxQueueEvent(this, evt);
+    auto agent = Slic3r::GUI::wxGetApp().getAgent();
+    if (agent) {
+        agent->send_message_to_zaxe_printer(message);
+    }
 }
 
 void ZaxeRemoteMachine::upload(const char* filepath, const char* /*uploadAs*/)
@@ -144,7 +149,7 @@ void ZaxeRemoteMachine::upload(const char* filepath, const char* /*uploadAs*/)
         wxQueueEvent(this, evt);
 
         std::string file_name = boost::filesystem::path(filepath).filename().string();
-        char file_name_padded[50];
+        char        file_name_padded[50];
         std::strncpy(file_name_padded, file_name.c_str(), 50);
         std::memset(file_name_padded + file_name.size(), '\0', 50 - file_name.size());
 
@@ -159,6 +164,29 @@ void ZaxeRemoteMachine::upload(const char* filepath, const char* /*uploadAs*/)
         byte_array.insert(byte_array.end(), file_content.begin(), file_content.end());
 
         agent->send_print_job_to_zaxe_printer(byte_array);
+    }
+}
+
+void ZaxeRemoteMachine::switchOnCam()
+{
+    BOOST_LOG_TRIVIAL(error) << "Trying to open remote camera stream on: " << name;
+
+    auto agent = Slic3r::GUI::wxGetApp().getAgent();
+    if (agent && attr->firmware_version >= Semver(3, 3, 80)) {
+        startStreaming();
+        wxFileName ffplay(wxStandardPaths::Get().GetExecutablePath());
+        wxString   curExecPath(ffplay.GetPath());
+
+        wxString tool_path =
+#ifdef _WIN32
+            wxString::Format("%s\\ffplay.exe", curExecPath);
+#else
+            wxString::Format("%s/ffplay", curExecPath);
+#endif
+        agent->connect_to_printer_cam(attr->serial_no, attr->device_model, name, tool_path.ToStdString());
+    } else {
+        wxMessageBox("Need device firmware version at least v3.3.80 to comply.", "Need firmware update for this feautre.",
+                     wxICON_INFORMATION);
     }
 }
 } // namespace Slic3r

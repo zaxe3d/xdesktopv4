@@ -43,7 +43,7 @@ typedef int (*func_connect_printer)(void *agent, std::string dev_id, std::string
 typedef int (*func_disconnect_printer)(void *agent);
 typedef int (*func_send_message_to_printer)(void *agent, std::string dev_id, std::string json_str, int qos);
 typedef bool (*func_start_discovery)(void *agent, bool start, bool sending);
-typedef int (*func_change_user)(void *agent, std::string user_info);
+typedef int (*func_change_user)(void *agent, std::string user_info, std::function<void(void)> on_fail_cb);
 typedef bool (*func_is_user_login)(void *agent);
 typedef int (*func_user_logout)(void *agent);
 typedef std::string (*func_get_user_id)(void *agent);
@@ -115,6 +115,7 @@ typedef void (*func_subscribe_to_printers)(void *agent, std::vector<std::string>
 typedef void (*func_unsubscribe_from_printers)(void *agent);
 typedef void (*func_send_message_to_zaxe_printer)(void *agent, const std::string&);
 typedef void (*func_send_print_job_to_zaxe_printer)(void *agent, const std::vector<uint8_t>&);
+typedef void (*func_connect_to_printer_cam)(void* agent, const std::string&, const std::string&, const std::string&, const std::string&);
 
 //the NetworkAgent class
 class NetworkAgent
@@ -165,7 +166,7 @@ public:
     int disconnect_printer();
     int send_message_to_printer(std::string dev_id, std::string json_str, int qos);
     bool start_discovery(bool start, bool sending);
-    int change_user(std::string user_info);
+    int change_user(std::string user_info, std::function<void(void)> on_fail_cb);
     bool is_user_login();
     int user_logout();
     std::string get_user_id();
@@ -236,6 +237,10 @@ public:
     void unsubscribe_from_printers();
     void send_message_to_zaxe_printer(const std::string& msg);
     void send_print_job_to_zaxe_printer(const std::vector<uint8_t>& msg);
+    void connect_to_printer_cam(const std::string& serial_no,
+                                          const std::string& model,
+                                          const std::string& name,
+                                          const std::string& tool_path);
 
 private:
     bool enable_track = false;
@@ -347,6 +352,7 @@ private:
     static func_unsubscribe_from_printers unsubscribe_from_printers_ptr;
     static func_send_message_to_zaxe_printer send_message_to_zaxe_printer_ptr;
     static func_send_print_job_to_zaxe_printer send_print_job_to_zaxe_printer_ptr;
+    static func_connect_to_printer_cam connect_to_printer_cam_ptr;
 };
 
 }
