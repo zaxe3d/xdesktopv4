@@ -26,12 +26,13 @@ public:
     void resume() override;
     void changeName(const char* new_name) override;
     void updateFirmware() override;
-    void switchOnCam() override {}
+    void switchOnCam() override;
     void downloadAvatar() override {}
+    
+    void startStreaming();
+    void stopStreaming();
 
     void upload(const char* filename, const char* uploadAs = "") override;
-
-    bool hasCam() const override { return false; }
 
 private:
     void send_command(const std::string& command);

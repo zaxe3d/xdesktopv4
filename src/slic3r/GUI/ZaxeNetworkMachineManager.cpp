@@ -67,15 +67,6 @@ ZaxeNetworkMachineManager::ZaxeNetworkMachineManager(wxWindow* parent, wxSize si
                             evt.Skip();
                         });
 
-                        remote_nm->Bind(EVT_MACHINE_REMOTE_CMD, [](auto& evt) {
-                            auto msg    = evt.GetString();
-                            auto _agent = wxGetApp().getAgent();
-                            if (_agent) {
-                                _agent->send_message_to_zaxe_printer(msg.ToStdString());
-                            }
-                            evt.Skip();
-                        });
-
                         remote_machines.emplace_back(remote_nm);
                     }
                 });
@@ -227,7 +218,7 @@ void ZaxeNetworkMachineManager::onBroadcastReceived(wxCommandEvent& event)
                         ->get_notification_manager()
                         ->push_notification(NotificationType::CustomNotification,
                                             NotificationManager::NotificationLevel::WarningNotificationLevel,
-                                            _u8L("The printer does not have a local connection at the moment!"));
+                                            _u8L("The printer does not have a remote connection at the moment!"));
                 }
                 evt.Skip();
             });
