@@ -154,7 +154,7 @@ function SetLoginInfo( strAvatar, strName )
 	
     let OriginAvatar=$("#UserAvatarIcon").prop("src");
 	if(strAvatar!=OriginAvatar)
-		$("#UserAvatarIcon").prop("src",strAvatar);
+		$("#UserAvatarIcon").prop("src","../image/logo.png");
 	else
 	{
 		//alert('Avatar is Same');
