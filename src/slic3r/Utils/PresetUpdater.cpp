@@ -845,12 +845,12 @@ bool PresetUpdater::priv::get_cached_plugins_version(std::string& cached_version
 
 void PresetUpdater::priv::sync_plugins(std::string http_url, std::string plugin_version)
 {
-    if (plugin_version == "00.00.00.00") {
+    if (plugin_version == "0.0.0.0" || plugin_version == "00.00.00.00") {
         BOOST_LOG_TRIVIAL(info) << "non need to sync plugins for there is no plugins currently.";
         return;
     }
-    std::string curr_version = SLIC3R_VERSION;
-    std::string using_version = curr_version.substr(0, 9) + "00";
+    std::string curr_version = SoftFever_VERSION;
+    std::string using_version = curr_version.substr(0, 5) + ".0";
 
     std::string cached_version;
     bool force_upgrade = false;
