@@ -930,53 +930,6 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     scrolled_sizer->Add(spliter_2, 0, wxEXPAND);
     scrolled_sizer->AddSpacer(FromDIP(10));
 
-    ScalableButton* add_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_add_circle_blue", wxEmptyString, wxDefaultSize,
-                                                 wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true, 18);
-    add_btn->SetToolTip(_L("Add one filament"));
-    add_btn->Bind(wxEVT_BUTTON, [this, scrolled_sizer](wxCommandEvent& e){
-        // Zaxe: limit filament choices to 4
-        if (p->combos_filament.size() >= 4)
-            return;
-
-        int filament_count = p->combos_filament.size() + 1;
-        wxColour new_col = Plater::get_next_color_for_filament();
-        std::string new_color = new_col.GetAsString(wxC2S_HTML_SYNTAX).ToStdString();
-        wxGetApp().preset_bundle->set_num_filaments(filament_count, new_color);
-        wxGetApp().plater()->on_filaments_change(filament_count);
-        wxGetApp().get_tab(Preset::TYPE_PRINT)->update();
-        wxGetApp().preset_bundle->export_selections(*wxGetApp().app_config);
-        auto_calc_flushing_volumes(filament_count - 1);
-    });
-    p->m_bpButton_add_filament = add_btn;
-
-    bSizer39->Add(add_btn, 0, wxALIGN_CENTER|wxALL, FromDIP(5));
-
-    ScalableButton* del_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_minus_circle_blue", wxEmptyString,
-                                                 wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true, 18);
-    del_btn->SetToolTip(_L("Remove last filament"));
-    del_btn->Bind(wxEVT_BUTTON, [this, scrolled_sizer](wxCommandEvent &e) {
-        if (p->combos_filament.size() <= 1)
-            return;
-
-        size_t filament_count = p->combos_filament.size() - 1;
-        if (wxGetApp().preset_bundle->is_the_only_edited_filament(filament_count) || (filament_count == 1)) {
-            wxGetApp().get_tab(Preset::TYPE_FILAMENT)->select_preset(wxGetApp().preset_bundle->filament_presets[0], false, "", true);
-        }
-
-        if (p->editing_filament >= filament_count) {
-            p->editing_filament = -1;
-        }
-
-        wxGetApp().preset_bundle->set_num_filaments(filament_count);
-        wxGetApp().plater()->on_filaments_change(filament_count);
-        wxGetApp().get_tab(Preset::TYPE_PRINT)->update();
-        wxGetApp().preset_bundle->export_selections(*wxGetApp().app_config);
-    });
-    p->m_bpButton_del_filament = del_btn;
-
-    bSizer39->Add(del_btn, 0, wxEXPAND | wxALIGN_CENTER_VERTICAL, FromDIP(5));
-    bSizer39->AddStretchSpacer();
-
     bSizer39->Add(p->m_filament_label, 0, wxALIGN_CENTER);
     bSizer39->AddStretchSpacer();
 
@@ -1037,11 +990,12 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     bSizer39->Hide(p->m_flushing_volume_btn);
     bSizer39->AddStretchSpacer();
 
-    ScalableButton* add_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "add_filament");
+    ScalableButton* add_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_add_circle_blue", wxEmptyString, wxDefaultSize,
+                                                 wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true, 18);
     add_btn->SetToolTip(_L("Add one filament"));
     add_btn->Bind(wxEVT_BUTTON, [this, scrolled_sizer](wxCommandEvent& e){
-        // Orca: limit filament choices to MAXIMUM_EXTRUDER_NUMBER
-        if (p->combos_filament.size() >= MAXIMUM_EXTRUDER_NUMBER)
+        // Zaxe: limit filament choices to 4
+        if (p->combos_filament.size() >= 4)
             return;
 
         int filament_count = p->combos_filament.size() + 1;
@@ -1056,9 +1010,9 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     p->m_bpButton_add_filament = add_btn;
 
     bSizer39->Add(add_btn, 0, wxALIGN_CENTER|wxALL, FromDIP(5));
-    bSizer39->Add(FromDIP(10), 0, 0, 0, 0 );
 
-    ScalableButton* del_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "delete_filament");
+    ScalableButton* del_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_minus_circle_blue", wxEmptyString,
+                                                 wxDefaultSize, wxDefaultPosition, wxBU_EXACTFIT | wxNO_BORDER, true, 18);
     del_btn->SetToolTip(_L("Remove last filament"));
     del_btn->Bind(wxEVT_BUTTON, [this, scrolled_sizer](wxCommandEvent &e) {
         if (p->combos_filament.size() <= 1)
@@ -1080,8 +1034,8 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     });
     p->m_bpButton_del_filament = del_btn;
 
-    bSizer39->Add(del_btn, 0, wxALIGN_CENTER_VERTICAL, FromDIP(5));
-    bSizer39->Add(FromDIP(20), 0, 0, 0, 0);
+    bSizer39->Add(del_btn, 0, wxEXPAND | wxALIGN_CENTER_VERTICAL, FromDIP(5));
+    bSizer39->AddStretchSpacer();
 
     ams_btn = new ScalableButton(p->m_panel_filament_title, wxID_ANY, "zaxe_ams_fila_sync", wxEmptyString, wxDefaultSize, wxDefaultPosition,
                                                  wxBU_EXACTFIT | wxNO_BORDER, false, 18);

@@ -4244,8 +4244,8 @@ void PrintConfigDef::init_fff_params()
 
     def = this->add("preheat_time", coFloat);
     def->label = L("Preheat time");
-    def->tooltip = L("To reduce the waiting time after tool change, Orca can preheat the next tool while the current tool is still in use. "
-                     "This setting specifies the time in seconds to preheat the next tool. Orca will insert a M104 command to preheat the tool in advance.");
+    def->tooltip = L("To reduce the waiting time after tool change, XDesktop can preheat the next tool while the current tool is still in use. "
+                     "This setting specifies the time in seconds to preheat the next tool. XDesktop will insert a M104 command to preheat the tool in advance.");
     def->sidetext = "s";
     def->min = 0;
     def->max = 120;
@@ -7456,12 +7456,12 @@ ReadWriteSlicingStatesConfigDef::ReadWriteSlicingStatesConfigDef()
     def = this->add("position", coFloats);
     def->label = L("Position");
     def->tooltip = L("Position of the extruder at the beginning of the custom G-code block. If the custom G-code travels somewhere else, "
-                     "it should write to this variable so OrcaSlicer knows where it travels from when it gets control back.");
+                     "it should write to this variable so XDesktop knows where it travels from when it gets control back.");
 
     def = this->add("e_retracted", coFloats);
     def->label = L("Retraction");
     def->tooltip = L("Retraction state at the beginning of the custom G-code block. If the custom G-code moves the extruder axis, "
-                     "it should write to this variable so OrcaSlicer de-retracts correctly when it gets control back.");
+                     "it should write to this variable so XDesktop de-retracts correctly when it gets control back.");
 
     def = this->add("e_restart_extra", coFloats);
     def->label = L("Extra de-retraction");

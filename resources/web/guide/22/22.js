@@ -2,7 +2,7 @@
 var m_ProfileItem;
 
 var FilamentPriority=new Array( "pla","abs","pet","tpu","pc");
-var VendorPriority=new Array("bambu lab","bambulab","bbl","kexcelled","polymaker","esun","generic");
+var VendorPriority=new Array("zaxe", "bambu lab","bambulab","bbl","kexcelled","polymaker","esun","generic");
   
 function OnInit()
 {
@@ -469,7 +469,7 @@ function ChooseDefaultFilament()
 		let OneFF=OneNode.getElementsByTagName("input")[0];
 		$(OneFF).prop("checked",false);
 		
-	    let filamentList=GetFilamentShortname(OneFF.getAttribute("filalist")); 
+	    let filamentList=OneFF.getAttribute("filalist"); 
 		//alert(filamentList);
 		let filamentArray=filamentList.split(';')
 		
@@ -561,9 +561,9 @@ function ReturnPreviewPage()
 {
 	//let nMode=m_ProfileItem["model"].length;
 	
-	if( nMode==1)
-		document.location.href="../1/index.html";
-	else
+	// if( nMode==1)
+	//	document.location.href="../1/index.html";
+	// else
 		document.location.href="../21/index.html";	
 }
 
