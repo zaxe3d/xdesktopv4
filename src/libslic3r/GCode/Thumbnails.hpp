@@ -75,6 +75,7 @@ inline void export_thumbnails_to_file(ThumbnailsGeneratorCallback&              
                         }
                         first_ColPic = false;
                     } 
+                    /* Zaxe: remove thumbnail data from gcode
                     else {
                         output("; THUMBNAIL_BLOCK_START\n");
                         std::string encoded;
@@ -96,6 +97,7 @@ inline void export_thumbnails_to_file(ThumbnailsGeneratorCallback&              
                         output((boost::format("; %s end\n") % compressed->tag()).str().c_str());
                         output("; THUMBNAIL_BLOCK_END\n\n");
                     }
+                    */
                     throw_if_canceled();
                 }
             }
