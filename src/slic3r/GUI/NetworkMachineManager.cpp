@@ -224,7 +224,8 @@ wxPanel* NetworkMachineManager::createScrolledArea()
     auto sizer = new wxBoxSizer(wxVERTICAL);
 
     panel->SetSizer(sizer);
-    panel->SetScrollRate(0, 5);
+    panel->SetScrollRate(0, 15);
+    panel->SetVirtualSize(sizer->GetSize());
 
     panel->Layout();
 
