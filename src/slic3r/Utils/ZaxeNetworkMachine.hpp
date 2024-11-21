@@ -157,6 +157,7 @@ protected:
     virtual void send(const std::string& message) = 0;
 
     wxBitmap avatar = wxNullBitmap;
+    bool hello_received = false;
 };
 
 wxDECLARE_EVENT(EVT_MACHINE_OPEN, wxCommandEvent);
@@ -164,4 +165,5 @@ wxDECLARE_EVENT(EVT_MACHINE_CLOSE, wxCommandEvent);
 wxDECLARE_EVENT(EVT_MACHINE_UPDATE, wxCommandEvent);
 wxDECLARE_EVENT(EVT_MACHINE_SWITCH, wxCommandEvent);
 wxDECLARE_EVENT(EVT_MACHINE_AVATAR_READY, wxCommandEvent);
+wxDECLARE_EVENT(EVT_MACHINE_REGISTER, wxCommandEvent);
 } // namespace Slic3r

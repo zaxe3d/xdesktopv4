@@ -60,6 +60,7 @@ private:
     Button*           model_btn_expanded{nullptr};
     Label*            device_name{nullptr};
     wxTextCtrl*       device_name_ctrl{nullptr};
+    Button*           register_to_me_btn{nullptr};
     Button*           nm_switch_btn{nullptr};
     Button*           expand_btn{nullptr};
     wxBitmap          default_avatar;
@@ -124,6 +125,7 @@ private:
 
     void onClose(wxCommandEvent& e);
     void onUpdateDevice(wxCommandEvent& e);
+    void updateRegisterToMeButton();
     void updateNetworkType();
     void updateProgressLine();
     void updateTimer();
@@ -134,6 +136,7 @@ private:
     void updatePrintInfo();
     void updateVersion();
     void updateIdentifier();
+    void updateModel();
 
     void applyDeviceName();
     void toggleDeviceNameWidgets();

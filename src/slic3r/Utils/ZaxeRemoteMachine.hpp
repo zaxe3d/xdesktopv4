@@ -28,6 +28,8 @@ public:
     void updateFirmware() override;
     void switchOnCam() override;
     void downloadAvatar() override {}
+
+    void requestHelloMessage();
     
     void startStreaming();
     void stopStreaming();

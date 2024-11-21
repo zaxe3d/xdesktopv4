@@ -50,6 +50,10 @@ void ZaxeRemoteMachine::onStateTimer(wxTimerEvent& e)
         wxQueueEvent(this, evt);
         prev_state = State::ONLINE;
     }
+
+    if (!hello_received) {
+        GUI::wxGetApp().CallAfter([&] { requestHelloMessage(); });
+    }
     e.Skip();
 }
 
@@ -58,7 +62,7 @@ bool ZaxeRemoteMachine::isAlive() const
     int  max_alive_period_sec = 10;
     auto currentTime          = std::chrono::steady_clock::now();
     auto duration             = std::chrono::duration_cast<std::chrono::seconds>(currentTime - lastEventTime);
-    return max_alive_period_sec > duration.count();
+    return hello_received && max_alive_period_sec > duration.count();
 }
 
 void ZaxeRemoteMachine::onWSRead(const std::string& message)
@@ -85,18 +89,14 @@ void ZaxeRemoteMachine::startStreaming() { send_command("start_streaming"); }
 
 void ZaxeRemoteMachine::stopStreaming() { send_command("stop_streaming"); }
 
+void ZaxeRemoteMachine::requestHelloMessage() { send_command("send_hello"); }
+
 void ZaxeRemoteMachine::changeName(const char* new_name)
 {
     nlohmann::json data;
     data["request"] = "change_name";
     data["name"]    = new_name;
-
-    nlohmann::json j;
-    j["event"]  = "user-command";
-    j["serial"] = attr->serial_no;
-    j["data"]   = data.dump();
-
-    send(j.dump());
+    send(data.dump());
 }
 
 void ZaxeRemoteMachine::updateFirmware() { send_command("fw_update"); }
@@ -105,20 +105,14 @@ void ZaxeRemoteMachine::send_command(const std::string& command)
 {
     nlohmann::json data;
     data["request"] = command;
-
-    nlohmann::json j;
-    j["event"]  = "user-command";
-    j["serial"] = attr->serial_no;
-    j["data"]   = data.dump();
-
-    send(j.dump());
+    send(data.dump());
 }
 
 void ZaxeRemoteMachine::send(const std::string& message)
 {
     auto agent = Slic3r::GUI::wxGetApp().getAgent();
     if (agent) {
-        agent->send_message_to_zaxe_printer(message);
+        agent->send_message_to_zaxe_printer(attr->serial_no, message);
     }
 }
 
@@ -126,44 +120,12 @@ void ZaxeRemoteMachine::upload(const char* filepath, const char* /*uploadAs*/)
 {
     auto agent = Slic3r::GUI::wxGetApp().getAgent();
     if (agent) {
-        auto read_binary_file = [](const std::string& file_path) {
-            std::ifstream file(file_path, std::ios::binary | std::ios::ate);
-            if (!file) {
-                throw std::runtime_error("Failed to open file: " + file_path);
-            }
-
-            std::streamsize file_size = file.tellg();
-            file.seekg(0, std::ios::beg);
-
-            std::vector<uint8_t> file_content(file_size);
-            if (!file.read(reinterpret_cast<char*>(file_content.data()), file_size)) {
-                throw std::runtime_error("Failed to read file content: " + file_path);
-            }
-
-            return file_content;
-        };
-
         states->uploading_zaxe_file = true;
         auto evt                    = new wxCommandEvent(EVT_MACHINE_UPDATE);
         evt->SetString("states_update");
         wxQueueEvent(this, evt);
 
-        std::string file_name = boost::filesystem::path(filepath).filename().string();
-        char        file_name_padded[50];
-        std::strncpy(file_name_padded, file_name.c_str(), 50);
-        std::memset(file_name_padded + file_name.size(), '\0', 50 - file_name.size());
-
-        char serial_padded[20];
-        std::strncpy(serial_padded, attr->serial_no.c_str(), 20);
-        std::memset(serial_padded + attr->serial_no.size(), '\0', 20 - attr->serial_no.size());
-
-        std::vector<uint8_t> file_content = read_binary_file(filepath);
-        std::vector<uint8_t> byte_array;
-        byte_array.insert(byte_array.end(), file_name_padded, file_name_padded + 50);
-        byte_array.insert(byte_array.end(), serial_padded, serial_padded + 20);
-        byte_array.insert(byte_array.end(), file_content.begin(), file_content.end());
-
-        agent->send_print_job_to_zaxe_printer(byte_array);
+        agent->send_print_job_to_zaxe_printer(attr->serial_no, filepath);
     }
 }
 

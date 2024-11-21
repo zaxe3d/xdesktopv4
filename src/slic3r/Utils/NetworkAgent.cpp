@@ -130,11 +130,15 @@ func_get_mw_user_preference         NetworkAgent::get_mw_user_preference_ptr = n
 func_get_mw_user_4ulist             NetworkAgent::get_mw_user_4ulist_ptr     = nullptr;
 
 func_get_devices_of_user       NetworkAgent::get_devices_of_user_ptr       = nullptr;
-func_subscribe_to_printers     NetworkAgent::subscribe_to_printers_ptr     = nullptr;
-func_unsubscribe_from_printers NetworkAgent::unsubscribe_from_printers_ptr = nullptr;
+func_init_messaging     NetworkAgent::init_messaging_ptr     = nullptr;
+func_stop_messaging NetworkAgent::stop_messaging_ptr = nullptr;
 func_send_message_to_zaxe_printer   NetworkAgent::send_message_to_zaxe_printer_ptr   = nullptr;
 func_send_print_job_to_zaxe_printer   NetworkAgent::send_print_job_to_zaxe_printer_ptr   = nullptr;
 func_connect_to_printer_cam   NetworkAgent::connect_to_printer_cam_ptr   = nullptr;
+func_register_printer_to_me   NetworkAgent::register_printer_to_me_ptr   = nullptr;
+func_set_on_msg_cb   NetworkAgent::set_on_msg_cb_ptr   = nullptr;
+func_set_on_fail_cb   NetworkAgent::set_on_fail_cb_ptr   = nullptr;
+func_subscribe_to_printer NetworkAgent::subscribe_to_printer_ptr   = nullptr;
 
 NetworkAgent::NetworkAgent(std::string log_dir)
 {
@@ -217,11 +221,15 @@ int NetworkAgent::initialize_network_module(bool using_backup)
     build_logout_cmd_ptr              =  reinterpret_cast<func_build_logout_cmd>(get_network_function("bambu_network_build_logout_cmd"));
     user_logout_ptr                   =  reinterpret_cast<func_user_logout>(get_network_function("bambu_network_user_logout"));
     get_devices_of_user_ptr           =  reinterpret_cast<func_get_devices_of_user>(get_network_function("zaxe_network_get_devices_of_user"));
-    subscribe_to_printers_ptr         =  reinterpret_cast<func_subscribe_to_printers>(get_network_function("zaxe_network_subscribe_to_printers"));
-    unsubscribe_from_printers_ptr     =  reinterpret_cast<func_unsubscribe_from_printers>(get_network_function("zaxe_network_unsubscribe_from_printers"));
+    init_messaging_ptr         =  reinterpret_cast<func_init_messaging>(get_network_function("zaxe_network_init_messaging"));
+    stop_messaging_ptr     =  reinterpret_cast<func_stop_messaging>(get_network_function("zaxe_network_stop_messaging"));
     send_message_to_zaxe_printer_ptr  =  reinterpret_cast<func_send_message_to_zaxe_printer>(get_network_function("zaxe_network_send_message_to_printer"));
     send_print_job_to_zaxe_printer_ptr  =  reinterpret_cast<func_send_print_job_to_zaxe_printer>(get_network_function("zaxe_network_send_print_job_to_printer"));
     connect_to_printer_cam_ptr          =  reinterpret_cast<func_connect_to_printer_cam>(get_network_function("zaxe_network_connect_to_printer_cam"));
+    register_printer_to_me_ptr          =  reinterpret_cast<func_register_printer_to_me>(get_network_function("zaxe_network_register_printer_to_me"));
+    set_on_msg_cb_ptr          =  reinterpret_cast<func_set_on_msg_cb>(get_network_function("zaxe_network_set_on_msg_cb"));
+    set_on_fail_cb_ptr          =  reinterpret_cast<func_set_on_fail_cb>(get_network_function("zaxe_network_set_on_fail_cb"));
+    subscribe_to_printer_ptr          =  reinterpret_cast<func_subscribe_to_printer>(get_network_function("zaxe_network_subscribe_to_printer"));
 
     /*
     check_debug_consistent_ptr        =  reinterpret_cast<func_check_debug_consistent>(get_network_function("bambu_network_check_debug_consistent"));
@@ -439,11 +447,15 @@ int NetworkAgent::unload_network_module()
     get_mw_user_4ulist_ptr            = nullptr;
 
     get_devices_of_user_ptr           = nullptr;
-    subscribe_to_printers_ptr         = nullptr;
-    unsubscribe_from_printers_ptr     = nullptr;
+    init_messaging_ptr                = nullptr;
+    stop_messaging_ptr     = nullptr;
     send_message_to_zaxe_printer_ptr  = nullptr;
     send_print_job_to_zaxe_printer_ptr= nullptr;
-    connect_to_printer_cam_ptr= nullptr;
+    connect_to_printer_cam_ptr        = nullptr;
+    register_printer_to_me_ptr        = nullptr;
+    set_on_msg_cb_ptr = nullptr;
+    set_on_fail_cb_ptr = nullptr;
+    subscribe_to_printer_ptr = nullptr;
 
     return 0;
 }
@@ -885,11 +897,11 @@ bool NetworkAgent::start_discovery(bool start, bool sending)
     return ret;
 }
 
-int  NetworkAgent::change_user(std::string user_info, std::function<void(void)> on_fail_cb)
+int  NetworkAgent::change_user(std::string user_info)
 {
     int ret = 0;
     if (network_agent && change_user_ptr) {
-        ret = change_user_ptr(network_agent, user_info, on_fail_cb);
+        ret = change_user_ptr(network_agent, user_info);
         if (ret)
             BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << boost::format(" error: network_agent=%1%, ret=%2%, user_info=%3%")%network_agent %ret %user_info ;
     }
@@ -1562,41 +1574,38 @@ int NetworkAgent::get_model_mall_rating_result(int job_id, std::string &rating_r
     return ret;
 }
 
-std::vector<std::pair<std::string, std::string>> NetworkAgent::get_devices_of_user()
+void NetworkAgent::get_devices_of_user(std::function<void(std::vector<std::pair<std::string, std::string>>&)> callback)
 {
-    std::vector<std::pair<std::string, std::string>> ret;
     if (network_agent && get_devices_of_user_ptr) {
-        get_devices_of_user_ptr(network_agent, ret);
+        get_devices_of_user_ptr(network_agent, callback);
     }
-    return ret;
 }
 
-void NetworkAgent::subscribe_to_printers(const std::vector<std::string>&                             serial_nums,
-                                         std::function<void(const std::string&, const std::string&)> func)
+void NetworkAgent::init_messaging(std::function<void(bool)> on_init_cb)
 {
-    if (network_agent && subscribe_to_printers_ptr) {
-        subscribe_to_printers_ptr(network_agent, serial_nums, func);
+    if (network_agent && init_messaging_ptr) {
+        init_messaging_ptr(network_agent, on_init_cb);
     }
 }
 
-void NetworkAgent::unsubscribe_from_printers()
+void NetworkAgent::stop_messaging()
 {
-    if (network_agent && unsubscribe_from_printers_ptr) {
-        unsubscribe_from_printers_ptr(network_agent);
+    if (network_agent && stop_messaging_ptr) {
+        stop_messaging_ptr(network_agent);
     }
 }
 
-void NetworkAgent::send_message_to_zaxe_printer(const std::string& msg)
+void NetworkAgent::send_message_to_zaxe_printer(const std::string& serial, const std::string& msg)
 {
     if (network_agent && send_message_to_zaxe_printer_ptr) {
-        send_message_to_zaxe_printer_ptr(network_agent, msg);
+        send_message_to_zaxe_printer_ptr(network_agent, serial, msg);
     }
 }
 
-void NetworkAgent::send_print_job_to_zaxe_printer(const std::vector<uint8_t>& content)
+void NetworkAgent::send_print_job_to_zaxe_printer(const std::string& serial, const std::string& filepath)
 {
     if (network_agent && send_print_job_to_zaxe_printer_ptr) {
-        send_print_job_to_zaxe_printer_ptr(network_agent, content);
+        send_print_job_to_zaxe_printer_ptr(network_agent, serial, filepath);
     }
 }
 
@@ -1607,6 +1616,34 @@ void NetworkAgent::connect_to_printer_cam(const std::string& serial_no,
 {
     if (network_agent && connect_to_printer_cam_ptr) {
         connect_to_printer_cam_ptr(network_agent, serial_no, model, name, tool_path);
+    }
+}
+
+void NetworkAgent::register_printer_to_me(const std::string& serial_no)
+{
+    if (network_agent && register_printer_to_me_ptr) {
+        register_printer_to_me_ptr(network_agent, serial_no);
+    }
+}
+
+void NetworkAgent::set_on_msg_cb(std::function<void(const std::string&, const std::string&)> cb)
+{
+    if (network_agent && set_on_msg_cb_ptr) {
+        set_on_msg_cb_ptr(network_agent, cb);
+    }
+}
+
+void NetworkAgent::set_on_fail_cb(std::function<void(void)> cb)
+{
+    if (network_agent && set_on_fail_cb_ptr) {
+        set_on_fail_cb_ptr(network_agent, cb);
+    }
+}
+
+void NetworkAgent::subscribe_to_printer(const std::string& serial_no)
+{
+    if (network_agent && subscribe_to_printer_ptr) {
+        subscribe_to_printer_ptr(network_agent, serial_no);
     }
 }
 

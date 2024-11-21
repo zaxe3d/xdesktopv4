@@ -26,6 +26,8 @@ public:
     std::shared_ptr<ZaxeArchive> get_archive(bool support_multiplate = true, bool force_reset = false);
     bool                         print(ZaxeNetworkMachine* machine, PrintMode mode);
 
+    bool hasRemoteMachine(const std::string& serial_no);
+
 private:
     enum class FilterState { SHOW_AVAILABLE, SHOW_BUSY, SHOW_ALL };
     FilterState filter_state{FilterState::SHOW_ALL};
@@ -44,8 +46,8 @@ private:
     wxBoxSizer* warning_sizer{nullptr};
     TextInput*  search_ctrl{nullptr};
 
-    bool                          print_enable{false};
-    std::shared_ptr<ZaxeArchive>  archive{nullptr};
+    bool                         print_enable{false};
+    std::shared_ptr<ZaxeArchive> archive{nullptr};
 
     wxTimer*                      version_check_timer;
     std::map<std::string, Semver> fw_versions;
@@ -53,6 +55,8 @@ private:
     wxPanel* createFilterArea();
     wxPanel* createWarningArea();
     wxPanel* createScrolledArea();
+
+    void prepareRemoteDevices(const std::vector<std::pair<std::string, std::string>> &devices);
 
     void onDeviceDetected(std::shared_ptr<ZaxeNetworkMachine> nm);
     void onBroadcastReceived(wxCommandEvent& event);

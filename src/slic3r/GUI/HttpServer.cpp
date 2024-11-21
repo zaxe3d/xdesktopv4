@@ -220,7 +220,7 @@ std::shared_ptr<HttpServer::Response> HttpServer::bbl_auth_handle_request(const 
             j["data"]["user"]["name"]       = user_name;
             j["data"]["user"]["account"]    = user_account;
             j["data"]["user"]["avatar"]     = user_avatar;
-            agent->change_user(j.dump(), [&]() { wxGetApp().CallAfter([&] { wxGetApp().request_user_logout(); }); });
+            agent->change_user(j.dump());
             if (agent->is_user_login()) {
                 wxGetApp().request_user_login(1);
             }

@@ -570,6 +570,8 @@ set(SLIC3R_GUI_SOURCES
     GUI/ZaxeNetworkMachineManager.hpp
     GUI/ZaxeDevice.cpp
     GUI/ZaxeDevice.hpp
+    GUI/ZaxeRegisterPrinterDialog.cpp
+    GUI/ZaxeRegisterPrinterDialog.hpp
     Utils/ZaxeNetworkMachine.cpp
     Utils/ZaxeNetworkMachine.hpp
     Utils/ZaxeLocalMachine.cpp

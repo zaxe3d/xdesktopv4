@@ -10,6 +10,7 @@ wxDEFINE_EVENT(EVT_MACHINE_CLOSE, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_UPDATE, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_SWITCH, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_AVATAR_READY, wxCommandEvent);
+wxDEFINE_EVENT(EVT_MACHINE_REGISTER, wxCommandEvent);
 
 ZaxeNetworkMachine::ZaxeNetworkMachine() : states{std::make_shared<MachineStates>()}, attr{std::make_shared<MachineAttributes>()} {}
 
@@ -122,7 +123,12 @@ void ZaxeNetworkMachine::handle_device_message(const std::string& message)
         }
 
         if (event == "print_progress" || event == "temperature_progress" || event == "calibration_progress") {
-            progress = j.value("progress", 0.f);
+            progress                    = j.value("progress", 0.f);
+            states->uploading_zaxe_file = false;
+        } else if (event == "upload_progress") {
+            progress                    = j.value("progress", 0.f);
+            states->uploading_zaxe_file = true;
+        }else  if (event == "upload_done") {
             states->uploading_zaxe_file = false;
         }
 
@@ -151,7 +157,8 @@ void ZaxeNetworkMachine::handle_device_message(const std::string& message)
         }
 
         if (event == "hello") {
-            auto evt = new wxCommandEvent(EVT_MACHINE_OPEN);
+            hello_received = true;
+            auto evt       = new wxCommandEvent(EVT_MACHINE_OPEN);
             wxQueueEvent(this, evt);
         } else {
             auto evt = new wxCommandEvent(EVT_MACHINE_UPDATE);

@@ -33,51 +33,18 @@ ZaxeNetworkMachineManager::ZaxeNetworkMachineManager(wxWindow* parent, wxSize si
     wxGetApp().Bind(EVT_USER_LOGIN_HANDLE, [&](auto& e) {
         auto agent = wxGetApp().getAgent();
         if (agent) {
-            auto                     devices = agent->get_devices_of_user();
-            std::vector<std::string> serial_nums;
-            for (const auto& dev : devices) {
-                auto serial = dev.first;
-                auto j_str  = dev.second;
-                serial_nums.push_back(serial);
-                CallAfter([&, serial_no = serial, j_content = j_str]() {
-                    auto rm = findBySerial(remote_machines, serial_no);
-                    if (!rm) {
-                        auto remote_nm = std::make_shared<ZaxeRemoteMachine>(serial_no);
-                        remote_nm->init(j_content);
-                        onDeviceDetected(remote_nm);
-                        remote_nm->Bind(EVT_MACHINE_OPEN, [&, nm = remote_nm](auto& evt) {
-                            onDeviceDetected(nm);
-                            evt.Skip();
-                        });
+            agent->get_devices_of_user([&](std::vector<std::pair<std::string, std::string>>& devices) {
+                CallAfter([&, devices]() { prepareRemoteDevices(devices); });
+            });
 
-                        remote_nm->Bind(EVT_MACHINE_SWITCH, [&, rnm = remote_nm](auto& evt) {
-                            auto lm = findBySerial(local_machines, rnm->attr->serial_no);
-                            if (lm) {
-                                if (auto d_it = device_map.find(lm.value()->attr->serial_no); d_it != device_map.end()) {
-                                    (*d_it).second->switchNetworkMachine(lm.value());
-                                }
-                            } else {
-                                wxGetApp()
-                                    .plater()
-                                    ->get_notification_manager()
-                                    ->push_notification(NotificationType::CustomNotification,
-                                                        NotificationManager::NotificationLevel::WarningNotificationLevel,
-                                                        _u8L("Printer has no local connection right now!"));
-                            }
-                            evt.Skip();
-                        });
-
-                        remote_machines.emplace_back(remote_nm);
-                    }
-                });
-            }
-
-            agent->subscribe_to_printers(serial_nums, [&](const std::string& _serial, const std::string& _message) {
+            agent->set_on_msg_cb([&](const std::string& _serial, const std::string& _message) {
                 auto rm = findBySerial(remote_machines, _serial);
                 if (rm) {
                     rm.value()->onWSRead(_message);
                 }
             });
+
+            agent->set_on_fail_cb([&]() { BOOST_LOG_TRIVIAL(error) << "ON FAIL!!!"; });
         }
         e.Skip();
     });
@@ -85,7 +52,7 @@ ZaxeNetworkMachineManager::ZaxeNetworkMachineManager(wxWindow* parent, wxSize si
     wxGetApp().Bind(EVT_USER_LOGOUT_HANDLE, [&](auto& e) {
         auto agent = wxGetApp().getAgent();
         if (agent) {
-            agent->unsubscribe_from_printers();
+            agent->stop_messaging();
         }
 
         remote_machines.clear();
@@ -119,7 +86,7 @@ ZaxeNetworkMachineManager::~ZaxeNetworkMachineManager()
 {
     auto agent = wxGetApp().getAgent();
     if (agent) {
-        agent->unsubscribe_from_printers();
+        agent->stop_messaging();
     }
 
     if (version_check_timer) {
@@ -129,10 +96,57 @@ ZaxeNetworkMachineManager::~ZaxeNetworkMachineManager()
     }
 }
 
+void ZaxeNetworkMachineManager::prepareRemoteDevices(const std::vector<std::pair<std::string, std::string>>& devices)
+{
+    std::vector<std::string> serial_nums;
+    for (const auto& dev : devices) {
+        auto serial_no = dev.first;
+        auto j_str     = dev.second;
+        serial_nums.push_back(serial_no);
+        auto rm = findBySerial(remote_machines, serial_no);
+        if (!rm) {
+            auto remote_nm = std::make_shared<ZaxeRemoteMachine>(serial_no);
+            remote_nm->init(j_str);
+            onDeviceDetected(remote_nm);
+            remote_nm->Bind(EVT_MACHINE_OPEN, [&, nm = remote_nm](auto& evt) {
+                onDeviceDetected(nm);
+                evt.Skip();
+            });
+
+            remote_nm->Bind(EVT_MACHINE_SWITCH, [&, rnm = remote_nm](auto& evt) {
+                auto lm = findBySerial(local_machines, rnm->attr->serial_no);
+                if (lm) {
+                    if (auto d_it = device_map.find(lm.value()->attr->serial_no); d_it != device_map.end()) {
+                        (*d_it).second->switchNetworkMachine(lm.value());
+                    }
+                } else {
+                    wxGetApp()
+                        .plater()
+                        ->get_notification_manager()
+                        ->push_notification(NotificationType::CustomNotification,
+                                            NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                            _u8L("Printer has no local connection right now!"));
+                }
+                evt.Skip();
+            });
+
+            remote_machines.emplace_back(remote_nm);
+        }
+    }
+
+    wxGetApp().getAgent()->init_messaging([serial_nums](bool ok) {
+        if (ok) {
+            for (const auto& serial : serial_nums) {
+                wxGetApp().getAgent()->subscribe_to_printer(serial);
+            }
+        }
+    });
+}
+
 void ZaxeNetworkMachineManager::onDeviceDetected(std::shared_ptr<ZaxeNetworkMachine> nm)
 {
     // TODO zaxe
-    if(nm->attr->serial_no == "Unknown"){
+    if (nm->attr->serial_no == "Unknown") {
         return;
     }
 
@@ -223,6 +237,13 @@ void ZaxeNetworkMachineManager::onBroadcastReceived(wxCommandEvent& event)
                 evt.Skip();
             });
             local_machines.emplace_back(local_nm);
+
+            local_nm->Bind(EVT_MACHINE_REGISTER, [&, lnm = local_nm](auto& evt) {
+                auto agent = wxGetApp().getAgent();
+                if (agent) {
+                    agent->register_printer_to_me(lnm->attr->serial_no);
+                }
+            });
         }
     } catch (const std::exception& ex) {
         BOOST_LOG_TRIVIAL(warning) << __func__ << " - Failed: " << ex.what();
@@ -559,6 +580,12 @@ void ZaxeNetworkMachineManager::checkVersions()
             }
         })
         .perform();
+}
+
+bool ZaxeNetworkMachineManager::hasRemoteMachine(const std::string& serial_no)
+{
+    auto rm = findBySerial(remote_machines, serial_no);
+    return rm != std::nullopt;
 }
 
 } // namespace Slic3r::GUI

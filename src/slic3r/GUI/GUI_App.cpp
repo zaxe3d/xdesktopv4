@@ -3930,7 +3930,7 @@ void GUI_App::handle_script_message(std::string msg)
             // wxString cmd = j["command"];
             // if (cmd == "user_login") {
             if (m_agent) {
-                m_agent->change_user(j.dump(), [&]() { wxGetApp().CallAfter([&] { wxGetApp().request_user_logout(); }); });
+                m_agent->change_user(j.dump());
                 if (m_agent->is_user_login()) {
                     request_user_login(1);
                 }

@@ -11,6 +11,7 @@
 #include "Plater.hpp"
 #include "GUI_App.hpp"
 #include "NotificationManager.hpp"
+#include "ZaxeRegisterPrinterDialog.hpp"
 
 #include <boost/algorithm/string.hpp>
 
@@ -117,17 +118,14 @@ void ZaxeDevice::onTimer(wxTimerEvent& event)
 
 wxSizer* ZaxeDevice::createHeader()
 {
-    string model_str = boost::to_upper_copy(nm->attr->device_model);
-    boost::replace_all(model_str, "PLUS", "+");
-
-    model_btn = new Button(this, wxString(model_str.c_str(), wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
+    model_btn = new Button(this, wxString("UNKNOWN", wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
     model_btn->SetPaddingSize(wxSize(4, 3));
     model_btn->SetTextColor(*wxWHITE);
     model_btn->SetBackgroundColor(gray500);
     wxGetApp().UpdateDarkUI(model_btn);
     model_btn->Show(!is_expanded);
 
-    model_btn_expanded = new Button(this, wxString(model_str.c_str(), wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
+    model_btn_expanded = new Button(this, wxString("UNKNOWN", wxConvUTF8), "", wxBORDER_NONE, FromDIP(24));
     model_btn_expanded->SetPaddingSize(wxSize(4, 3));
     model_btn_expanded->SetTextColor(*wxWHITE);
     model_btn_expanded->SetBackgroundColor(blue500);
@@ -146,6 +144,11 @@ wxSizer* ZaxeDevice::createHeader()
     wxGetApp().UpdateDarkUI(device_name_ctrl);
     device_name_ctrl_visible = false;
 
+    register_to_me_btn = new Button(this, "", "zaxe_add_circle_gray", wxBORDER_NONE, FromDIP(24));
+    register_to_me_btn->SetPaddingSize(wxSize(3, 3));
+    wxGetApp().UpdateDarkUI(register_to_me_btn);
+    register_to_me_btn->SetToolTip("Register To Me");
+
     wxString nm_switch_icon = (isRemoteDevice()) ? "zaxe_cloud_on" : "zaxe_cloud_off";
     nm_switch_btn           = new Button(this, "", nm_switch_icon, wxBORDER_NONE, FromDIP(24));
     nm_switch_btn->SetPaddingSize(wxSize(3, 3));
@@ -162,6 +165,7 @@ wxSizer* ZaxeDevice::createHeader()
     sizer->Add(device_name, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
     sizer->Add(device_name_ctrl, 10, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
     sizer->AddStretchSpacer(1);
+    sizer->Add(register_to_me_btn, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
     sizer->Add(nm_switch_btn, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
     sizer->Add(expand_btn, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
 
@@ -189,6 +193,15 @@ wxSizer* ZaxeDevice::createHeader()
         applyDeviceName();
         toggleDeviceNameWidgets();
         evt.Skip();
+    });
+
+    register_to_me_btn->Bind(wxEVT_BUTTON, [&](auto& e) {
+        RegisterPrinterDialog dlg(this, wxID_ANY, nm->name);
+        if (dlg.ShowModal() == wxID_OK) {
+            auto evt = new wxCommandEvent(EVT_MACHINE_REGISTER);
+            wxQueueEvent(nm.get(), evt);
+        }
+        e.Skip();
     });
 
     nm_switch_btn->Bind(wxEVT_BUTTON, [&](auto& e) {
@@ -474,7 +487,8 @@ void ZaxeDevice::onUpdateDevice(wxCommandEvent& e)
 
     if (event == "states_update" || event == "hello") {
         updateStates();
-    } else if (event == "print_progress" || event == "temperature_progress" || event == "calibration_progress") {
+    } else if (event == "print_progress" || event == "temperature_progress" || event == "calibration_progress" ||
+               event == "upload_progress") {
         updateStates();
         updateProgressValue();
     } else if (event == "new_name") {
@@ -508,7 +522,9 @@ void ZaxeDevice::onClose(wxCommandEvent& e)
 
 void ZaxeDevice::updateStates()
 {
+    updateModel();
     setName();
+    updateRegisterToMeButton();
     updateNetworkType();
     updateProgressLine();
     updateTimer();
@@ -539,10 +555,23 @@ void ZaxeDevice::updateNetworkType()
     nm_switch_btn->SetIcon(_icon);
 }
 
+void ZaxeDevice::updateRegisterToMeButton()
+{
+    bool show = false;
+
+    if (wxGetApp().getAgent() && !isRemoteDevice()) {
+        auto net_manager = dynamic_cast<ZaxeNetworkMachineManager*>(GetParent()->GetParent());
+        if (net_manager) {
+            show = !net_manager->hasRemoteMachine(nm->attr->serial_no);
+        }
+    }
+
+    register_to_me_btn->Show(show);
+}
+
 void ZaxeDevice::updateProgressLine()
 {
-    bool show = nm->isAlive() && nm->states->is_busy() && !nm->states->has_error && !nm->states->updating_fw &&
-                !(isRemoteDevice() && nm->states->uploading_zaxe_file);
+    bool show = nm->isAlive() && nm->states->is_busy() && !nm->states->has_error && !nm->states->updating_fw;
     progress_line->Show(show);
     updateProgressValue();
 
@@ -716,6 +745,14 @@ void ZaxeDevice::updateIdentifier()
             identifier_val->SetLabel(_lnm->get_ip());
         }
     }
+}
+
+void ZaxeDevice::updateModel()
+{
+    std::string model_str = boost::to_upper_copy(nm->attr->device_model);
+    boost::replace_all(model_str, "PLUS", "+");
+    model_btn->SetLabel(wxString(model_str.c_str(), wxConvUTF8));
+    model_btn_expanded->SetLabel(wxString(model_str.c_str(), wxConvUTF8));
 }
 
 void ZaxeDevice::onAvatarReady(wxCommandEvent& e)
