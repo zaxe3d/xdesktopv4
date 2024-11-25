@@ -32,7 +32,7 @@ ZaxeNetworkMachineManager::ZaxeNetworkMachineManager(wxWindow* parent, wxSize si
 
     wxGetApp().Bind(EVT_USER_LOGIN_HANDLE, [&](auto& e) {
         auto agent = wxGetApp().getAgent();
-        if (agent) {
+        if (agent && agent->is_user_login()) {
             agent->get_devices_of_user([&](std::vector<std::pair<std::string, std::string>>& devices) {
                 CallAfter([&, devices]() { prepareRemoteDevices(devices); });
             });
@@ -41,10 +41,30 @@ ZaxeNetworkMachineManager::ZaxeNetworkMachineManager(wxWindow* parent, wxSize si
                 auto rm = findBySerial(remote_machines, _serial);
                 if (rm) {
                     rm.value()->onWSRead(_message);
+                } else {
+                    try {
+                        auto        j = nlohmann::json::parse(_message);
+                        std::string event;
+                        j.at("event").get_to(event);
+                        if (event == "register_to_me") {
+                            bool ok;
+                            j.at("ok").get_to(ok);
+                            std::string msg;
+                            j.at("message").get_to(msg);
+                            auto level = ok ? NotificationManager::NotificationLevel::PrintInfoNotificationLevel :
+                                              NotificationManager::NotificationLevel::WarningNotificationLevel;
+                            wxGetApp().plater()->get_notification_manager()->push_notification(NotificationType::CustomNotification, level,
+                                                                                               _u8L(msg));
+                            if (ok) {
+                                addRemoteDevice(_serial, "", true);
+                            }
+                        }
+                    } catch (std::exception& e) {
+                    }
                 }
             });
 
-            agent->set_on_fail_cb([&]() { BOOST_LOG_TRIVIAL(error) << "ON FAIL!!!"; });
+            agent->set_on_fail_cb([&]() { wxGetApp().CallAfter([this] { wxGetApp().request_user_logout(); }); });
         }
         e.Skip();
     });
@@ -103,35 +123,7 @@ void ZaxeNetworkMachineManager::prepareRemoteDevices(const std::vector<std::pair
         auto serial_no = dev.first;
         auto j_str     = dev.second;
         serial_nums.push_back(serial_no);
-        auto rm = findBySerial(remote_machines, serial_no);
-        if (!rm) {
-            auto remote_nm = std::make_shared<ZaxeRemoteMachine>(serial_no);
-            remote_nm->init(j_str);
-            onDeviceDetected(remote_nm);
-            remote_nm->Bind(EVT_MACHINE_OPEN, [&, nm = remote_nm](auto& evt) {
-                onDeviceDetected(nm);
-                evt.Skip();
-            });
-
-            remote_nm->Bind(EVT_MACHINE_SWITCH, [&, rnm = remote_nm](auto& evt) {
-                auto lm = findBySerial(local_machines, rnm->attr->serial_no);
-                if (lm) {
-                    if (auto d_it = device_map.find(lm.value()->attr->serial_no); d_it != device_map.end()) {
-                        (*d_it).second->switchNetworkMachine(lm.value());
-                    }
-                } else {
-                    wxGetApp()
-                        .plater()
-                        ->get_notification_manager()
-                        ->push_notification(NotificationType::CustomNotification,
-                                            NotificationManager::NotificationLevel::WarningNotificationLevel,
-                                            _u8L("Printer has no local connection right now!"));
-                }
-                evt.Skip();
-            });
-
-            remote_machines.emplace_back(remote_nm);
-        }
+        addRemoteDevice(serial_no, j_str, false);
     }
 
     wxGetApp().getAgent()->init_messaging([serial_nums](bool ok) {
@@ -141,6 +133,42 @@ void ZaxeNetworkMachineManager::prepareRemoteDevices(const std::vector<std::pair
             }
         }
     });
+}
+
+void ZaxeNetworkMachineManager::addRemoteDevice(const std::string& serial_no, const std::string& init_msg, bool subscribe)
+{
+    auto rm = findBySerial(remote_machines, serial_no);
+    if (!rm) {
+        auto remote_nm = std::make_shared<ZaxeRemoteMachine>(serial_no);
+        remote_nm->init(init_msg);
+        onDeviceDetected(remote_nm);
+        remote_nm->Bind(EVT_MACHINE_OPEN, [&, nm = remote_nm](auto& evt) {
+            onDeviceDetected(nm);
+            evt.Skip();
+        });
+
+        remote_nm->Bind(EVT_MACHINE_SWITCH, [&, rnm = remote_nm](auto& evt) {
+            auto lm = findBySerial(local_machines, rnm->attr->serial_no);
+            if (lm) {
+                if (auto d_it = device_map.find(lm.value()->attr->serial_no); d_it != device_map.end()) {
+                    (*d_it).second->switchNetworkMachine(lm.value());
+                }
+            } else {
+                wxGetApp()
+                    .plater()
+                    ->get_notification_manager()
+                    ->push_notification(NotificationType::CustomNotification,
+                                        NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                        _u8L("Printer has no local connection right now!"));
+            }
+            evt.Skip();
+        });
+
+        remote_machines.emplace_back(remote_nm);
+        if (subscribe) {
+            wxGetApp().getAgent()->subscribe_to_printer(serial_no);
+        }
+    }
 }
 
 void ZaxeNetworkMachineManager::onDeviceDetected(std::shared_ptr<ZaxeNetworkMachine> nm)

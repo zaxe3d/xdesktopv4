@@ -57,6 +57,7 @@ private:
     wxPanel* createScrolledArea();
 
     void prepareRemoteDevices(const std::vector<std::pair<std::string, std::string>> &devices);
+    void addRemoteDevice(const std::string& serial_no, const std::string& init_msg, bool subscribe);
 
     void onDeviceDetected(std::shared_ptr<ZaxeNetworkMachine> nm);
     void onBroadcastReceived(wxCommandEvent& event);

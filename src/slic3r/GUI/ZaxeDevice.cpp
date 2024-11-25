@@ -1,7 +1,3 @@
-///|/ Copyright (c) Zaxe 2018 - 2024 Gökhan Öniş @GO
-///|/
-///|/ XDesktop is released under the terms of the AGPLv3 or higher
-///|/
 #include "ZaxeDevice.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -544,22 +540,28 @@ void ZaxeDevice::updateStates()
 
 void ZaxeDevice::updateNetworkType()
 {
-    wxString _icon    = "zaxe_cloud_off";
-    wxString _tooltip = "Local Connection";
-    if (isRemoteDevice()) {
-        _icon    = "zaxe_cloud_on";
-        _tooltip = "Cloud Connection";
-    }
+    auto agent = wxGetApp().getAgent();
+    if (agent && agent->is_user_login()) {
+        wxString _icon    = "zaxe_cloud_off";
+        wxString _tooltip = "Local Connection";
+        if (isRemoteDevice()) {
+            _icon    = "zaxe_cloud_on";
+            _tooltip = "Cloud Connection";
+        }
 
-    nm_switch_btn->SetToolTip(_tooltip);
-    nm_switch_btn->SetIcon(_icon);
+        nm_switch_btn->SetToolTip(_tooltip);
+        nm_switch_btn->SetIcon(_icon);
+    } else {
+        nm_switch_btn->Hide();
+    }
 }
 
 void ZaxeDevice::updateRegisterToMeButton()
 {
     bool show = false;
 
-    if (wxGetApp().getAgent() && !isRemoteDevice()) {
+    auto agent = wxGetApp().getAgent();
+    if (agent && agent->is_user_login() && !isRemoteDevice()) {
         auto net_manager = dynamic_cast<ZaxeNetworkMachineManager*>(GetParent()->GetParent());
         if (net_manager) {
             show = !net_manager->hasRemoteMachine(nm->attr->serial_no);
