@@ -335,13 +335,6 @@ void ZaxeDevice::createProgressLine()
 
     progress_line->SetSizer(sizer);
     progress_line->Layout();
-
-    nm->setUploadProgressCallback([&](int progress) {
-        if (progress <= 0 || progress >= 100) {
-            updateStates();
-        };
-        updateProgressValue();
-    });
 }
 
 wxSizer* ZaxeDevice::createIconButtons()
@@ -603,8 +596,14 @@ void ZaxeDevice::updateTimer()
 
 void ZaxeDevice::updateProgressValue()
 {
-    progress_bar->SetProgress(nm->progress);
-    progress_label->SetLabel(wxString::Format("%d%%", nm->progress));
+    int _progress = 0;
+    if (nm->states->uploading_zaxe_file) {
+        _progress = nm->upload_progress_info->progress;
+    } else {
+        _progress = nm->progress;
+    }
+    progress_bar->SetProgress(_progress);
+    progress_label->SetLabel(wxString::Format("%d%%", _progress));
     Layout();
     Refresh();
 }
@@ -656,7 +655,11 @@ void ZaxeDevice::updateStatusText()
     } else if (nm->states->printing) {
         desc = _L("Processing");
     } else if (nm->states->uploading_zaxe_file) {
-        desc = _L("Please wait...");
+        if (nm->upload_progress_info->transferred_size.empty() || nm->upload_progress_info->total_size.empty()) {
+            desc = _L("Please wait...");
+        } else {
+            desc = nm->upload_progress_info->transferred_size + " / " + nm->upload_progress_info->total_size;
+        }
     } else if (nm->hasRemoteUpdate() && !nm->states->is_busy() && upstream_version.has_value() &&
                upstream_version > nm->attr->firmware_version) {
         desc             = _L("Update available");

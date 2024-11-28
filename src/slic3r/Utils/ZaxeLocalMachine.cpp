@@ -4,6 +4,7 @@
 #include "nlohmann/json.hpp"
 #include <curl/curl.h>
 #include "Http.hpp"
+#include "../GUI/GUI_App.hpp"
 #include <boost/filesystem.hpp>
 
 namespace Slic3r {
@@ -47,16 +48,62 @@ size_t file_read_cb(char* buffer, size_t size, size_t nitems, void* userp)
 
 int xfercb(void* userp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow)
 {
-    if (ultotal <= 0.0)
-        return 0;
+    auto self       = static_cast<ZaxeLocalMachine*>(userp);
+    bool send_event = false;
+    if (ultotal <= 0.0 && self->upload_progress_info->progress != 0) {
+        self->upload_progress_info->progress         = 0;
+        self->upload_progress_info->total_size       = "";
+        self->upload_progress_info->transferred_size = "";
+        send_event                                   = true;
+    } else {
+        int progress = (int) (((double) ulnow / (double) ultotal) * 100);
+        if (progress != self->upload_progress_info->progress) {
+            auto size_formatted = [](auto completed_size_in_bytes, auto total_size_in_bytes) {
+                const double B          = 1.0;
+                const double KB         = B * 1024.0;
+                const double MB         = KB * 1024.0;
+                const double GB         = MB * 1024.0;
+                double       _completed = static_cast<double>(completed_size_in_bytes);
+                double       _total     = static_cast<double>(total_size_in_bytes);
+                double       unit_size  = B;
+                std::string  unit       = "B";
+                if (total_size_in_bytes >= GB) {
+                    unit_size = GB;
+                    unit      = "GB";
+                } else if (total_size_in_bytes >= MB) {
+                    unit_size = MB;
+                    unit      = "MB";
+                } else if (total_size_in_bytes >= KB) {
+                    unit_size = KB;
+                    unit      = "KB";
+                }
 
-    auto self = static_cast<ZaxeLocalMachine*>(userp);
+                std::ostringstream c_oss;
+                c_oss << std::fixed << std::setprecision(2) << static_cast<double>(_completed) / unit_size << " " << unit;
+                auto completed_str = c_oss.str();
 
-    int progress = (int) (((double) ulnow / (double) ultotal) * 100);
-    if (progress != self->progress && self->uploadProgressCallback != nullptr) {
-        self->progress = progress;
-        self->uploadProgressCallback(self->progress);
+                std::ostringstream t_oss;
+                t_oss << std::fixed << std::setprecision(2) << static_cast<double>(_total) / unit_size << " " << unit;
+                auto total_str = t_oss.str();
+
+                return std::make_pair(completed_str, total_str);
+            }(ulnow, ultotal);
+
+            self->upload_progress_info->progress         = progress;
+            self->upload_progress_info->total_size       = size_formatted.second;
+            self->upload_progress_info->transferred_size = size_formatted.first;
+            send_event                                   = true;
+        }
     }
+
+    if (send_event) {
+        GUI::wxGetApp().CallAfter([self]() {
+            auto evt = new wxCommandEvent(EVT_MACHINE_UPDATE);
+            evt->SetString("upload_progress");
+            wxQueueEvent(self, evt);
+        });
+    }
+
     return 0;
 }
 
@@ -217,9 +264,11 @@ void ZaxeLocalMachine::downloadSnapshot()
 
 void ZaxeLocalMachine::uploadHTTP(const char* filename, const char* uploadAs)
 {
-    std::string url             = "http://" + ip + "/upload.cgi:" + std::to_string(httpPort);
     states->uploading_zaxe_file = true;
-    auto http                   = Http::post(std::move(url));
+    xfercb(this, 0.0, 0.0, 0.0, 0.0);
+
+    std::string url  = "http://" + ip + "/upload.cgi:" + std::to_string(httpPort);
+    auto        http = Http::post(std::move(url));
     http.form_add_file("file", filename, uploadAs)
         .on_complete([&](std::string body, unsigned status) {
             states->uploading_zaxe_file = false;
@@ -253,15 +302,15 @@ void ZaxeLocalMachine::uploadFTP(const char* filename, const char* uploadAs)
     if (!curl)
         return;
 
+    states->uploading_zaxe_file = true;
+    xfercb(this, 0.0, 0.0, 0.0, 0.0);
+
     namespace fs                       = boost::filesystem;
     fs::path                      path = fs::path(filename);
     boost::system::error_code     ec;
     boost::uintmax_t              filesize = file_size(path, ec);
     std::unique_ptr<fs::ifstream> putFile;
 
-    states->uploading_zaxe_file = true;
-    progress                    = 0;
-    uploadProgressCallback(progress); // reset
     if (!ec) {
         putFile = std::make_unique<fs::ifstream>(path, ios_base::in | ios_base::binary);
         ::curl_easy_setopt(curl, CURLOPT_READDATA, (void*) (putFile.get()));
@@ -293,22 +342,20 @@ void ZaxeLocalMachine::uploadFTP(const char* filename, const char* uploadAs)
 #endif
     }
     res = curl_easy_perform(curl);
-    ::curl_free(encodedFilename);
-    ::curl_easy_cleanup(curl);
-    putFile.reset();
-    states->uploading_zaxe_file = false;
     if (CURLE_OK != res) {
         BOOST_LOG_TRIVIAL(warning)
             << boost::format("ZaxeLocalMachine - Couldn't connect to machine [%1% - %2%] for uploading print. ERROR_CODE: %3%") % name %
                    ip % res;
-        return;
     }
+    ::curl_free(encodedFilename);
+    ::curl_easy_cleanup(curl);
+    putFile.reset();
+    curl_global_cleanup();
 
-    auto evt = new wxCommandEvent(EVT_MACHINE_UPDATE);
+    states->uploading_zaxe_file = false;
+    auto evt                    = new wxCommandEvent(EVT_MACHINE_UPDATE);
     evt->SetString("upload_done");
     wxQueueEvent(this, evt);
-
-    curl_global_cleanup();
 }
 
 void ZaxeLocalMachine::upload(const char* filename, const char* uploadAs)

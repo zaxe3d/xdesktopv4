@@ -12,7 +12,11 @@ wxDEFINE_EVENT(EVT_MACHINE_SWITCH, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_AVATAR_READY, wxCommandEvent);
 wxDEFINE_EVENT(EVT_MACHINE_REGISTER, wxCommandEvent);
 
-ZaxeNetworkMachine::ZaxeNetworkMachine() : states{std::make_shared<MachineStates>()}, attr{std::make_shared<MachineAttributes>()} {}
+ZaxeNetworkMachine::ZaxeNetworkMachine()
+    : states{std::make_shared<MachineStates>()}
+    , attr{std::make_shared<MachineAttributes>()}
+    , upload_progress_info{std::make_shared<UploadProgressInfo>()}
+{}
 
 // todo zaxe
 bool ZaxeNetworkMachine::hasRemoteUpdate() const
@@ -126,9 +130,11 @@ void ZaxeNetworkMachine::handle_device_message(const std::string& message)
             progress                    = j.value("progress", 0.f);
             states->uploading_zaxe_file = false;
         } else if (event == "upload_progress") {
-            progress                    = j.value("progress", 0.f);
-            states->uploading_zaxe_file = true;
-        }else  if (event == "upload_done") {
+            upload_progress_info->progress         = j.value("progress", 0.f);
+            upload_progress_info->transferred_size = j.value("transferred_size", "");
+            upload_progress_info->total_size       = j.value("total_size", "");
+            states->uploading_zaxe_file            = true;
+        } else if (event == "upload_done") {
             states->uploading_zaxe_file = false;
         }
 

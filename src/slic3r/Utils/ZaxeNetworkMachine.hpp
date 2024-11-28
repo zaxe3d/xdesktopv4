@@ -104,6 +104,22 @@ struct MachineAttributes
     }
 };
 
+struct UploadProgressInfo
+{
+    std::string transferred_size;
+    std::string total_size;
+    int         progress{0};
+
+    inline std::string to_string()
+    {
+        std::stringstream ss;
+        ss << "progress: " << progress << std::endl;
+        ss << "transferred_size: " << transferred_size << std::endl;
+        ss << "total_size: " << total_size << std::endl;
+        return ss.str();
+    }
+};
+
 class ZaxeNetworkMachine : public std::enable_shared_from_this<ZaxeNetworkMachine>, public wxEvtHandler
 {
 public:
@@ -143,21 +159,18 @@ public:
 
     wxBitmap& getAvatar() { return avatar; }
 
-    typedef std::function<void(int percent)> progress_callback_t;
-    progress_callback_t                      uploadProgressCallback;
-    void                                     setUploadProgressCallback(progress_callback_t cb) { uploadProgressCallback = cb; }
-
-    std::shared_ptr<MachineStates>     states;
-    std::shared_ptr<MachineAttributes> attr;
-    std::string                        name;
-    int                                progress = 0;
+    std::shared_ptr<MachineStates>      states;
+    std::shared_ptr<MachineAttributes>  attr;
+    std::string                         name;
+    std::shared_ptr<UploadProgressInfo> upload_progress_info;
+    int                                 progress = 0;
 
 protected:
     void         handle_device_message(const std::string& message);
     virtual void send(const std::string& message) = 0;
 
-    wxBitmap avatar = wxNullBitmap;
-    bool hello_received = false;
+    wxBitmap avatar         = wxNullBitmap;
+    bool     hello_received = false;
 };
 
 wxDECLARE_EVENT(EVT_MACHINE_OPEN, wxCommandEvent);
