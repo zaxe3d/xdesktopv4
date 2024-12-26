@@ -315,13 +315,6 @@ void ZaxeDevice::createProgressLine()
 
     progress_line->SetSizer(sizer);
     progress_line->Layout();
-
-    nm->setUploadProgressCallback([&](int progress) {
-        if (progress <= 0 || progress >= 100) {
-            updateStates();
-        };
-        updateProgressValue();
-    });
 }
 
 wxSizer* ZaxeDevice::createIconButtons()
@@ -477,7 +470,7 @@ void ZaxeDevice::updateProgressLine()
 
     if (nm->states->calibrating) {
         progress_bar->SetProgressBackgroundColour(progress_calib_color);
-    } else if (nm->states->uploading) {
+    } else if (nm->states->uploading_zaxe_file) {
         progress_bar->SetProgressBackgroundColour(progress_uploading_color);
     } else if (nm->states->heating) {
         progress_bar->SetProgressBackgroundColour(progress_danger_color);
@@ -501,8 +494,15 @@ void ZaxeDevice::updateTimer()
 
 void ZaxeDevice::updateProgressValue()
 {
-    progress_bar->SetProgress(nm->progress);
-    progress_label->SetLabel(wxString::Format("%d%%", nm->progress));
+    int _progress = 0;
+    if (nm->states->uploading_zaxe_file) {
+        _progress = nm->upload_progress_info->progress;
+    } else {
+        _progress = nm->progress;
+    }
+    progress_bar->SetProgress(_progress);
+    progress_label->SetLabel(wxString::Format("%d%%", _progress));
+
     Layout();
     Refresh();
 }
@@ -533,7 +533,7 @@ void ZaxeDevice::updateStatusText()
         title = _L("Paused");
     } else if (nm->states->printing) {
         title = _L("Printing");
-    } else if (nm->states->uploading) {
+    } else if (nm->states->uploading_zaxe_file) {
         title = _L("Uploading");
     } else if (!nm->isBusy()) {
         title = _L("Ready to use");
@@ -555,6 +555,12 @@ void ZaxeDevice::updateStatusText()
         desc_color       = "#F4B617";
         desc_icon        = "zaxe_warning_1";
         update_available = true;
+    } else if (nm->states->uploading_zaxe_file) {
+        if (nm->upload_progress_info->transferred_size.empty() || nm->upload_progress_info->total_size.empty()) {
+            desc = _L("Please wait...");
+        } else {
+            desc = nm->upload_progress_info->transferred_size + " / " + nm->upload_progress_info->total_size;
+        }
     } else if (nm->states->updatingFw) {
         desc       = _L("In progress");
         desc_color = blue500;
@@ -591,7 +597,7 @@ void ZaxeDevice::updateIconButtons()
 {
     pause_btn->Show(!nm->states->updatingFw && nm->states->printing && !nm->states->paused && !nm->states->heating);
     resume_btn->Show(!nm->states->updatingFw && nm->states->printing && nm->states->paused && !nm->states->heating);
-    stop_btn->Show(!nm->states->updatingFw && nm->isBusy() && (nm->states->printing || !nm->states->uploading));
+    stop_btn->Show(!nm->states->updatingFw && nm->isBusy() && (nm->states->printing || !nm->states->uploading_zaxe_file));
 
     preheat_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
     preheat_btn->SetIcon(nm->states->preheat ? "zaxe_preheat_active" : "zaxe_preheat");
@@ -679,11 +685,11 @@ void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<Za
 void ZaxeDevice::onPrintDenied()
 {
     // Todo: uploading is already false, dialog is never constructed
-    if (nm->states->uploading) {
+    if (nm->states->uploading_zaxe_file) {
         RichMessageDialog dialog(GetParent(), _L("Failed to start printing"), _L("XDesktop: Unknown error"), wxICON_ERROR);
         dialog.ShowModal();
 
-        nm->states->uploading = false;
+        nm->states->uploading_zaxe_file = false;
         updateStates();
     }
 }

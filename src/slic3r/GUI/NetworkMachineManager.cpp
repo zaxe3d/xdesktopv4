@@ -328,8 +328,9 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
 
     if (event.event == "states_update") {
         dev->second->updateStates();
-    } else if (event.event == "print_progress" || event.event == "temperature_progress" || event.event == "calibration_progress") {
-        event.nm->progress = event.pt.get<float>("progress", 0);
+    } else if (event.event == "print_progress" || event.event == "temperature_progress" || event.event == "calibration_progress" ||
+               event.event == "upload_progress") {
+        dev->second->updateStates();
         dev->second->updateProgressValue();
     } else if (event.event == "new_name") {
         dev->second->setName(event.nm->name);

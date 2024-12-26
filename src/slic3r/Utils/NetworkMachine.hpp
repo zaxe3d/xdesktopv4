@@ -1,8 +1,8 @@
-#ifndef slic3r_NetworkMachine_hpp_
 ///|/ Copyright (c) Zaxe 2018 - 2024 Gökhan Öniş @GO
 ///|/
 ///|/ XDesktop is released under the terms of the AGPLv3 or higher
 ///|/
+#ifndef slic3r_NetworkMachine_hpp_
 #define slic3r_NetworkMachine_hpp_
 
 #include "WebSocket.hpp"
@@ -60,7 +60,7 @@ wxDECLARE_EVENT(EVT_MACHINE_NEW_MESSAGE, MachineNewMessageEvent);
 wxDECLARE_EVENT(EVT_MACHINE_AVATAR_READY, wxCommandEvent);
 
 struct MachineStates { // states.
-    bool uploading;
+    bool uploading_zaxe_file;
     bool calibrating;
     bool bedOccupied;
     bool bedDirty;
@@ -132,6 +132,21 @@ struct MachineAttributes // attributes.
     }
 };
 
+struct UploadProgressInfo
+{
+    std::string transferred_size;
+    std::string total_size;
+    int         progress{0};
+    inline std::string to_string()
+    {
+        std::stringstream ss;
+        ss << "progress: " << progress << std::endl;
+        ss << "transferred_size: " << transferred_size << std::endl;
+        ss << "total_size: " << total_size << std::endl;
+        return ss.str();
+    }
+};
+
 class NetworkMachine
 {
 public:
@@ -140,9 +155,6 @@ public:
 
     void run(); // start network machine by connecting to ws.
     void ftpRun(); // start downloading avatar in another thread.
-
-    typedef std::function<void(int percent)>  progress_callback_t;
-    progress_callback_t m_uploadProgressCallback;
 
     // Actions
     void unloadFilament();
@@ -167,18 +179,21 @@ public:
     int port; // port number of the web socket server on machine.
 
     int progress = 0;
+    std::shared_ptr<UploadProgressInfo> upload_progress_info;
+
+    wxEvtHandler* m_evtHandler; // parent event handler.
 
     MachineAttributes* attr; // attributes,
     MachineStates* states; // states,
     boost::thread runnerThread;
     boost::thread ftpThread;
-    void setUploadProgressCallback(progress_callback_t cb) { m_uploadProgressCallback = cb; }
+
     wxBitmap& getAvatar() {
         boost::lock_guard<boost::mutex> avatarlock(m_avatarMtx);
         return m_avatar;
     }
     bool isBusy() {
-        return states->printing || states->heating || states->calibrating || states->paused || states->uploading || states->updatingFw;
+        return states->printing || states->heating || states->calibrating || states->paused || states->uploading_zaxe_file || states->updatingFw;
     }
 private:
 #ifdef _WIN32
@@ -197,7 +212,6 @@ private:
     void request(const char* command); // does a request with intended command on device.
     void send(ptree pt); // sends ptree as json string to websocket (m_ws).
 
-    wxEvtHandler* m_evtHandler; // parent event handler.
     Websocket* m_ws; // websocket
     wxBitmap m_avatar; // avatar image via FTP.
     boost::mutex m_avatarMtx; // allows read operations on m_avatar without locking.

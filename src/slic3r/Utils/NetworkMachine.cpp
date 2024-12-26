@@ -5,6 +5,8 @@
 #include "NetworkMachine.hpp"
 #include <libslic3r/Utils.hpp>
 #include "Http.hpp"
+#include "../GUI/GUI_App.hpp"
+#include "..//GUI/NotificationManager.hpp"
 
 namespace fs = boost::filesystem;
 
@@ -14,15 +16,15 @@ wxDEFINE_EVENT(EVT_MACHINE_CLOSE, MachineEvent);
 wxDEFINE_EVENT(EVT_MACHINE_NEW_MESSAGE, MachineNewMessageEvent);
 wxDEFINE_EVENT(EVT_MACHINE_AVATAR_READY, wxCommandEvent);
 
-NetworkMachine::NetworkMachine(string ip, int port, string name, wxEvtHandler* hndlr) :
-    ip(ip),
-    port(port),
-    name(name),
-    m_evtHandler(hndlr),
-    attr(new MachineAttributes()),
-    states(new MachineStates())
-{
-}
+NetworkMachine::NetworkMachine(string ip, int port, string name, wxEvtHandler* hndlr)
+    : ip(ip)
+    , port(port)
+    , name(name)
+    , m_evtHandler(hndlr)
+    , attr(new MachineAttributes())
+    , states(new MachineStates())
+    , upload_progress_info{std::make_shared<UploadProgressInfo>()}
+{}
 
 void NetworkMachine::run()
 {
@@ -123,6 +125,14 @@ void NetworkMachine::onWSRead(string message)
             states->filamentPresent= attr->firmware_version.GetMinor() >= 3 && attr->firmware_version.GetMinor() >= 5 // Z3 and FW>=3.5
                                          ? states->ptreeStringtoBool(pt, "is_filament_present") : true;
         }
+
+        if (event == "print_progress" || event == "temperature_progress" || event == "calibration_progress") {
+            progress                    = static_cast<int>(pt.get<float>("progress", 0.f));
+            states->uploading_zaxe_file = false;
+        } else if (event == "upload_done") {
+            states->uploading_zaxe_file = false;
+        }
+
         if (event == "new_name")
             name = pt.get<string>("name", "Zaxe");
         if (event == "material_change") {
@@ -325,63 +335,109 @@ size_t file_read_cb(char *buffer, size_t size, size_t nitems, void *userp)
 
 int xfercb(void *userp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal, curl_off_t ulnow)
 {
-    if (ultotal <= 0.0) return 0;
-
     auto self = static_cast<NetworkMachine*>(userp);
 
-    int progress = (int)(((double)ulnow / (double)ultotal) * 100);
-    if (progress != self->progress && self->m_uploadProgressCallback != nullptr) {
-        self->progress = progress;
-        self->m_uploadProgressCallback(self->progress);
+    bool send_event = false;
+    if (ultotal <= 0.0 && self->upload_progress_info->progress != 0) {
+        self->upload_progress_info->progress         = 0;
+        self->upload_progress_info->total_size       = "";
+        self->upload_progress_info->transferred_size = "";
+        send_event                                   = true;
+    } else {
+        int progress = (int) (((double) ulnow / (double) ultotal) * 100);
+        if (progress == 0 || progress != self->upload_progress_info->progress) {
+            auto size_formatted = [](auto completed_size_in_bytes, auto total_size_in_bytes) {
+                const double B          = 1.0;
+                const double KB         = B * 1024.0;
+                const double MB         = KB * 1024.0;
+                const double GB         = MB * 1024.0;
+                double       _completed = static_cast<double>(completed_size_in_bytes);
+                double       _total     = static_cast<double>(total_size_in_bytes);
+                double       unit_size  = B;
+                std::string  unit       = "B";
+                if (total_size_in_bytes >= GB) {
+                    unit_size = GB;
+                    unit      = "GB";
+                } else if (total_size_in_bytes >= MB) {
+                    unit_size = MB;
+                    unit      = "MB";
+                } else if (total_size_in_bytes >= KB) {
+                    unit_size = KB;
+                    unit      = "KB";
+                }
+                std::ostringstream c_oss;
+                c_oss << std::fixed << std::setprecision(2) << static_cast<double>(_completed) / unit_size << " " << unit;
+                auto               completed_str = c_oss.str();
+                std::ostringstream t_oss;
+                t_oss << std::fixed << std::setprecision(2) << static_cast<double>(_total) / unit_size << " " << unit;
+                auto total_str = t_oss.str();
+                return std::make_pair(completed_str, total_str);
+            }(ulnow, ultotal);
+            self->upload_progress_info->progress         = progress;
+            self->upload_progress_info->total_size       = size_formatted.second;
+            self->upload_progress_info->transferred_size = size_formatted.first;
+            send_event                                   = true;
+        }
+
+        if (send_event) {
+            GUI::wxGetApp().CallAfter([self]() {
+                MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_progress", {}, self, wxID_ANY);
+                evt.SetEventObject(self->m_evtHandler);
+                wxPostEvent(self->m_evtHandler, evt);
+            });
+        }
     }
     return 0;
 }
 
-void NetworkMachine::uploadHTTP(const char *filename, const char *uploadAs)
+void NetworkMachine::uploadHTTP(const char* filename, const char* uploadAs)
 {
-    std::string url = "http://" + ip +
-                      "/upload.cgi:" + std::to_string(m_httpPort);
-    states->uploading = true;
-    auto http         = Http::post(std::move(url));
+    xfercb(this, 0.0, 0.0, 0.0, 0.0);
+    states->uploading_zaxe_file = true;
+    std::string url             = "http://" + ip + "/upload.cgi:" + std::to_string(m_httpPort);
+    auto        http            = Http::post(std::move(url));
     http.form_add_file("file", filename, uploadAs)
         .on_complete([&](std::string body, unsigned status) {
-            states->uploading = false;
-            MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done",
-                                       {}, this, wxID_ANY);
+            states->uploading_zaxe_file = false;
+            MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done", {}, this, wxID_ANY);
             evt.SetEventObject(this->m_evtHandler);
             wxPostEvent(this->m_evtHandler, evt);
         })
         .on_error([&](std::string body, std::string error, unsigned status) {
-            states->uploading = false;
-            BOOST_LOG_TRIVIAL(error)
-                << boost::format("%1%: Error uploading file: %2%, HTTP %3%, "
-                                 "body: `%4%`") %
-                       name % error % status % body;
+            states->uploading_zaxe_file = false;
+            MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done", {}, this, wxID_ANY);
+            evt.SetEventObject(this->m_evtHandler);
+            wxPostEvent(this->m_evtHandler, evt);
+            BOOST_LOG_TRIVIAL(error) << boost::format("%1%: Error uploading file: %2%, HTTP %3%, "
+                                                      "body: `%4%`") %
+                                            name % error % status % body;
         })
-        .on_progress([&](Http::Progress progress, bool &cancel) {
-            xfercb(static_cast<void *>(this), progress.dltotal,
-                   progress.dlnow, progress.ultotal, progress.ulnow);
+        .on_progress([&](Http::Progress progress, bool& cancel) {
+            xfercb(static_cast<void *>(this), progress.dltotal, progress.dlnow, progress.ultotal, progress.ulnow);
         })
         .perform_sync();
 }
 
 void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
 {
-    CURL *curl;
-    CURLcode res;
-
     curl_global_init(CURL_GLOBAL_DEFAULT);
-    curl = curl_easy_init();
+    auto curl = curl_easy_init();
 
-    if (!curl) return;
+    if (!curl) {
+        GUI::wxGetApp().plater()->get_notification_manager()->push_notification(GUI::NotificationType::CustomNotification,
+                                                                           GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                                                           _u8L("Print cannot be started, internal error."));
+        return;
+    }
+
+    states->uploading_zaxe_file = true;
+    xfercb(this, 0.0, 0.0, 0.0, 0.0);
+
     fs::path path = fs::path(filename);
     boost::system::error_code ec;
     boost::uintmax_t filesize = file_size(path, ec);
     std::unique_ptr<fs::ifstream> putFile;
 
-    states->uploading = true;
-    progress = 0;
-    m_uploadProgressCallback(progress); // reset
     if (!ec) {
         putFile = std::make_unique<fs::ifstream>(path, ios_base::in | ios_base::binary);
         ::curl_easy_setopt(curl, CURLOPT_READDATA, (void *) (putFile.get()));
@@ -412,18 +468,29 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
         ::curl_easy_setopt(curl, CURLOPT_SSL_CIPHER_LIST, "AES256-GCM-SHA384");
 #endif
     }
-    res = curl_easy_perform(curl);
-    ::curl_free(encodedFilename);
-    ::curl_easy_cleanup(curl);
-    putFile.reset();
-    states->uploading = false;
+    auto res = curl_easy_perform(curl);
     if (CURLE_OK != res) {
-        BOOST_LOG_TRIVIAL(warning) << boost::format("Networkmachine - Couldn't connect to machine [%1% - %2%] for uploading print. ERROR_CODE: %3%") % name % ip % res;
+        BOOST_LOG_TRIVIAL(warning) << boost::format(
+                                          "Networkmachine - Couldn't connect to machine [%1% - %2%] for uploading print. ERROR_CODE: %3%") %
+                                          name % ip % res;
+        GUI::wxGetApp().plater()->get_notification_manager()->push_notification(GUI::NotificationType::CustomNotification,
+                                                                           GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                                                           _u8L("Print cannot be started, internal error."));
+
+        states->uploading_zaxe_file = false;
+        MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "states_update", {}, this, wxID_ANY);
+        evt.SetEventObject(this->m_evtHandler);
+        wxPostEvent(this->m_evtHandler, evt);
         return;
     }
 
-    MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done", {},
-                               this, wxID_ANY);
+    ::curl_free(encodedFilename);
+    ::curl_easy_cleanup(curl);
+    putFile.reset();
+    curl_global_cleanup();
+
+    states->uploading_zaxe_file = false;
+    MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done", {}, this, wxID_ANY);
     evt.SetEventObject(this->m_evtHandler);
     wxPostEvent(this->m_evtHandler, evt);
 
