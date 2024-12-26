@@ -465,22 +465,31 @@ bool NetworkMachineManager::prepare_archive(PrintMode mode)
 
 bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
 {
-    auto create_error_notification = []() {
+    auto create_error_notification = [](const auto& text) {
         auto _plater = wxGetApp().plater();
         _plater->sidebar().show_carousel(true, true);
-        _plater->get_notification_manager()
-            ->push_notification(NotificationType::CustomNotification, NotificationManager::NotificationLevel::WarningNotificationLevel,
-                                _u8L("Selected printer cannot be found in network, please select a printer from Zaxe Machine Carousel"));
+        _plater->get_notification_manager()->push_notification(NotificationType::CustomNotification,
+                                                               NotificationManager::NotificationLevel::WarningNotificationLevel, text);
     };
 
     if (!machine) {
-        create_error_notification();
+        create_error_notification(_u8L("There is no selected printer, go to zaxe machine carousel and select a printer first"));
         return false;
+    }
+
+    if (machine->isBusy()) {
+        if (machine->states->uploading_zaxe_file) {
+            create_error_notification(_u8L("Uploading is in progress, please wait"));
+            return true;
+        } else {
+            create_error_notification(_u8L("Selected printer is not available right now"));
+            return false;
+        }
     }
 
     auto it = device_map.find(machine->ip);
     if (it == device_map.end()) {
-        create_error_notification();
+        create_error_notification(_u8L("Selected printer cannot be found in network, please select a printer from Zaxe Machine Carousel"));
         return false;
     }
 
