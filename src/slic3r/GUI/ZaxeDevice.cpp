@@ -559,7 +559,8 @@ void ZaxeDevice::updateStatusText()
         if (nm->upload_progress_info->transferred_size.empty() || nm->upload_progress_info->total_size.empty()) {
             desc = _L("Please wait...");
         } else {
-            desc = nm->upload_progress_info->transferred_size + " / " + nm->upload_progress_info->total_size;
+            desc = wxString::Format("%s / %s (%s)", nm->upload_progress_info->transferred_size, nm->upload_progress_info->total_size,
+                                    nm->upload_progress_info->transfer_speed);
         }
     } else if (nm->states->updatingFw) {
         desc       = _L("In progress");

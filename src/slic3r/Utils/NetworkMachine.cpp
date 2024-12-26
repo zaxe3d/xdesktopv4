@@ -373,9 +373,29 @@ int xfercb(void *userp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal
                 auto total_str = t_oss.str();
                 return std::make_pair(completed_str, total_str);
             }(ulnow, ultotal);
+
+            double upload_speed = 0.0;
+            curl_easy_getinfo(self->curl_handle, CURLINFO_SPEED_UPLOAD, &upload_speed);
+            auto speed_formatted = [](auto speed) {
+                std::ostringstream speed_oss;
+                const double       KBps       = 1024.0;
+                const double       MBps       = KBps * 1024.0;
+                std::string        speed_unit = "B/s";
+                if (speed >= MBps) {
+                    speed /= MBps;
+                    speed_unit = "MB/s";
+                } else if (speed >= KBps) {
+                    speed /= KBps;
+                    speed_unit = "KB/s";
+                }
+                speed_oss << std::fixed << std::setprecision(2) << speed << " " << speed_unit;
+                return speed_oss.str();
+            }(upload_speed);
+
             self->upload_progress_info->progress         = progress;
             self->upload_progress_info->total_size       = size_formatted.second;
             self->upload_progress_info->transferred_size = size_formatted.first;
+            self->upload_progress_info->transfer_speed   = speed_formatted;
             send_event                                   = true;
         }
 
@@ -420,13 +440,20 @@ void NetworkMachine::uploadHTTP(const char* filename, const char* uploadAs)
 
 void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
 {
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    auto curl = curl_easy_init();
+    Http::tls_global_init();
+    if (curl_handle) {
+        ::curl_easy_reset(curl_handle);
+    } else {
+        curl_handle = ::curl_easy_init();
+    }
 
-    if (!curl) {
-        GUI::wxGetApp().plater()->get_notification_manager()->push_notification(GUI::NotificationType::CustomNotification,
-                                                                           GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
-                                                                           _u8L("Print cannot be started, internal error."));
+    if (!curl_handle) {
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _u8L("Print cannot be started, internal error."));
         return;
     }
 
@@ -440,35 +467,35 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
 
     if (!ec) {
         putFile = std::make_unique<fs::ifstream>(path, ios_base::in | ios_base::binary);
-        ::curl_easy_setopt(curl, CURLOPT_READDATA, (void *) (putFile.get()));
-        ::curl_easy_setopt(curl, CURLOPT_INFILESIZE, filesize);
+        ::curl_easy_setopt(curl_handle, CURLOPT_READDATA, (void *) (putFile.get()));
+        ::curl_easy_setopt(curl_handle, CURLOPT_INFILESIZE, filesize);
     }
 
     std::string pFilename = *uploadAs ? uploadAs : path.filename().string();
-    char *encodedFilename = ::curl_easy_escape(curl, pFilename.c_str(), pFilename.length());
+    char *encodedFilename = ::curl_easy_escape(curl_handle, pFilename.c_str(), pFilename.length());
 
     std::string url = "ftp://" + ip + ":" + std::to_string(m_ftpPort) + "/" + std::string(encodedFilename);
-    ::curl_easy_setopt(curl, CURLOPT_USERNAME, "zaxe");
-    ::curl_easy_setopt(curl, CURLOPT_PASSWORD, "zaxe");
-    ::curl_easy_setopt(curl, CURLOPT_URL, url.c_str());
-    ::curl_easy_setopt(curl, CURLOPT_READFUNCTION, file_read_cb);
-    ::curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-    ::curl_easy_setopt(curl, CURLOPT_NOPROGRESS, 0L);
-    ::curl_easy_setopt(curl, CURLOPT_VERBOSE, get_logging_level() >= 5);
-    ::curl_easy_setopt(curl, CURLOPT_XFERINFOFUNCTION, xfercb);
-    ::curl_easy_setopt(curl, CURLOPT_PROGRESSDATA, static_cast<void *>(this));
-    ::curl_easy_setopt(curl, CURLOPT_FTP_USE_EPSV, 0L);
+    ::curl_easy_setopt(curl_handle, CURLOPT_USERNAME, "zaxe");
+    ::curl_easy_setopt(curl_handle, CURLOPT_PASSWORD, "zaxe");
+    ::curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
+    ::curl_easy_setopt(curl_handle, CURLOPT_READFUNCTION, file_read_cb);
+    ::curl_easy_setopt(curl_handle, CURLOPT_UPLOAD, 1L);
+    ::curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 0L);
+    ::curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, get_logging_level() >= 5);
+    ::curl_easy_setopt(curl_handle, CURLOPT_XFERINFOFUNCTION, xfercb);
+    ::curl_easy_setopt(curl_handle, CURLOPT_PROGRESSDATA, static_cast<void *>(this));
+    ::curl_easy_setopt(curl_handle, CURLOPT_FTP_USE_EPSV, 0L);
 
     if ( ! attr->is_none_TLS) {
-        ::curl_easy_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_CONTROL);
-        ::curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
-        ::curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
-        ::curl_easy_setopt(curl, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+        ::curl_easy_setopt(curl_handle, CURLOPT_USE_SSL, CURLUSESSL_CONTROL);
+        ::curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0L);
+        ::curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYHOST, 0L);
+        ::curl_easy_setopt(curl_handle, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
 #ifndef __WINDOWS__
-        ::curl_easy_setopt(curl, CURLOPT_SSL_CIPHER_LIST, "AES256-GCM-SHA384");
+        ::curl_easy_setopt(curl_handle, CURLOPT_SSL_CIPHER_LIST, "AES256-GCM-SHA384");
 #endif
     }
-    auto res = curl_easy_perform(curl);
+    auto res = curl_easy_perform(curl_handle);
     if (CURLE_OK != res) {
         BOOST_LOG_TRIVIAL(warning) << boost::format(
                                           "Networkmachine - Couldn't connect to machine [%1% - %2%] for uploading print. ERROR_CODE: %3%") %
@@ -481,20 +508,16 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
         MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "states_update", {}, this, wxID_ANY);
         evt.SetEventObject(this->m_evtHandler);
         wxPostEvent(this->m_evtHandler, evt);
-        return;
+    } else {
+        states->uploading_zaxe_file = false;
+        MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done", {}, this, wxID_ANY);
+        evt.SetEventObject(this->m_evtHandler);
+        wxPostEvent(this->m_evtHandler, evt);
     }
 
     ::curl_free(encodedFilename);
-    ::curl_easy_cleanup(curl);
-    putFile.reset();
-    curl_global_cleanup();
-
-    states->uploading_zaxe_file = false;
-    MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "upload_done", {}, this, wxID_ANY);
-    evt.SetEventObject(this->m_evtHandler);
-    wxPostEvent(this->m_evtHandler, evt);
-
-    curl_global_cleanup();
+    ::curl_easy_cleanup(curl_handle);
+    curl_handle = nullptr;
 }
 
 void NetworkMachine::upload(const char *filename, const char *uploadAs)

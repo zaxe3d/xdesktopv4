@@ -136,6 +136,7 @@ struct UploadProgressInfo
 {
     std::string transferred_size;
     std::string total_size;
+    std::string transfer_speed;
     int         progress{0};
     inline std::string to_string()
     {
@@ -143,6 +144,7 @@ struct UploadProgressInfo
         ss << "progress: " << progress << std::endl;
         ss << "transferred_size: " << transferred_size << std::endl;
         ss << "total_size: " << total_size << std::endl;
+        ss << "transfer_speed: " << transfer_speed << std::endl;
         return ss.str();
     }
 };
@@ -180,6 +182,7 @@ public:
 
     int progress = 0;
     std::shared_ptr<UploadProgressInfo> upload_progress_info;
+    CURL *curl_handle = nullptr;
 
     wxEvtHandler* m_evtHandler; // parent event handler.
 
