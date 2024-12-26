@@ -156,7 +156,7 @@ void ZaxeLocalMachine::changeName(const char* new_name)
 {
     nlohmann::json msg;
     msg["request"] = "change_name";
-    msg["name"]    = "new_name";
+    msg["name"]    = new_name;
     send(msg.dump());
 }
 
