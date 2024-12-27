@@ -110,14 +110,23 @@ void NetworkMachine::onWSRead(string message)
             attr->firmware_version = wxVersionInfo("v", stoi(fwV[0]), stoi(fwV[1]), stoi(fwV[2]));
         }
         if (event == "hello" || event == "states_update") {
-            // states
-            states->calibrating    = states->ptreeStringtoBool(pt, "is_calibrating");
-            states->bedOccupied    = states->ptreeStringtoBool(pt, "is_bed_occupied");
-            states->bedDirty       = states->ptreeStringtoBool(pt, "is_bed_dirty");
+            auto _calibrating  = states->ptreeStringtoBool(pt, "is_calibrating");
+            auto _bed_occupied = states->ptreeStringtoBool(pt, "is_bed_occupied");
+            auto _bed_dirty    = states->ptreeStringtoBool(pt, "is_bed_dirty");
+            auto _printing     = states->ptreeStringtoBool(pt, "is_printing");
+            auto _heating      = states->ptreeStringtoBool(pt, "is_heating");
+            if (_calibrating != states->calibrating || _bed_occupied != states->bedOccupied || _bed_dirty != states->bedDirty ||
+                _printing != states->printing || _heating != states->heating) {
+                downloadAvatar();
+            }
+
+            states->calibrating    = _calibrating;
+            states->bedOccupied    = _bed_occupied;
+            states->bedDirty       = _bed_dirty;
             states->usbPresent     = states->ptreeStringtoBool(pt, "is_usb_present");
             states->preheat        = states->ptreeStringtoBool(pt, "is_preheat");
-            states->printing       = states->ptreeStringtoBool(pt, "is_printing");
-            states->heating        = states->ptreeStringtoBool(pt, "is_heating");
+            states->printing       = _printing;
+            states->heating        = _heating;
             states->paused         = states->ptreeStringtoBool(pt, "is_paused");
             states->hasError       = states->ptreeStringtoBool(pt, "is_error");
             states->ledsSwitchedOn = states->ptreeStringtoBool(pt, "is_leds");
@@ -283,12 +292,10 @@ void NetworkMachine::ftpRun()
 {
     std::lock_guard<std::mutex> guard(m_ftp_mtx);
 
-    CURL *curl;
-    CURLcode res;
     struct response chunk = {0};
 
-    curl_global_init(CURL_GLOBAL_DEFAULT);
-    curl = curl_easy_init();
+    Http::tls_global_init();
+    auto curl = curl_easy_init();
 
     if (!curl) return;
 
@@ -300,7 +307,7 @@ void NetworkMachine::ftpRun()
     ::curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
     ::curl_easy_setopt(curl, CURLOPT_TIMEOUT, 5);
     ::curl_easy_setopt(curl, CURLOPT_FAILONERROR, 0);
-    res = curl_easy_perform(curl);
+    auto res = curl_easy_perform(curl);
 
     if (CURLE_OK != res) {
         ::curl_easy_cleanup(curl);
@@ -318,7 +325,6 @@ void NetworkMachine::ftpRun()
         wxPostEvent(this->m_evtHandler, evt);
     }
     ::curl_easy_cleanup(curl);
-    curl_global_cleanup();
 }
 
 size_t file_read_cb(char *buffer, size_t size, size_t nitems, void *userp)
