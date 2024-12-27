@@ -1241,8 +1241,9 @@ void MainFrame::show_device(bool bBBLPrinter) {
             });
         }
         m_printer_view->Show(false);
-        m_tabpanel->InsertPage(tpMonitor, m_printer_view, _L("Device"), std::string("zaxe_tab_devices"),
-                               std::string("zaxe_tab_devices"));
+        // TODO zaxe
+        // m_tabpanel->InsertPage(tpMonitor, m_printer_view, _L("Device"), std::string("zaxe_tab_devices"),
+        //                       std::string("zaxe_tab_devices"));
     }
 }
 
