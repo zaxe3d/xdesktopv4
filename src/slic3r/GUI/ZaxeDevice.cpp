@@ -585,7 +585,7 @@ void ZaxeDevice::updateAvatar()
 {
     if (capabilities.hasSnapshot()) {
         if (nm->states->heating || nm->states->printing || nm->states->calibrating || nm->states->bedOccupied) {
-            nm->downloadAvatar();
+            //nm->downloadAvatar();
         } else {
             avatar->SetBitmap(default_avatar);
             avatar_rect->Layout();
@@ -631,10 +631,12 @@ void ZaxeDevice::onTemperatureUpdate()
 void ZaxeDevice::onAvatarReady()
 {
     if (nm) {
-        auto scaled_avatar = nm->getAvatar().ConvertToImage().Scale(FromDIP(60), FromDIP(60), wxIMAGE_QUALITY_HIGH);
-        avatar->SetBitmap(scaled_avatar);
-        avatar_rect->Layout();
-        avatar_rect->Refresh();
+        if (nm->states->heating || nm->states->printing || nm->states->calibrating || nm->states->bedOccupied) {
+            auto scaled_avatar = nm->getAvatar().ConvertToImage().Scale(FromDIP(60), FromDIP(60), wxIMAGE_QUALITY_HIGH);
+            avatar->SetBitmap(scaled_avatar);
+            avatar_rect->Layout();
+            avatar_rect->Refresh();
+        }
     }
 }
 
