@@ -30,8 +30,8 @@ ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm)
     : nm(_nm)
     , version(Semver(nm->attr->firmware_version.GetMajor(), nm->attr->firmware_version.GetMinor(), nm->attr->firmware_version.GetMicro()))
 {}
-// todo zaxe
-bool ZaxeDeviceCapabilities::hasRemoteUpdate() const { return is_there(nm->attr->device_model, {"z3"}) && version >= Semver(3, 5, 70); }
+
+bool ZaxeDeviceCapabilities::hasRemoteUpdate() const { return is_there(nm->attr->device_model, {"z3", "z4", "x4"}); }
 
 bool ZaxeDeviceCapabilities::canToggleLeds() const
 {
@@ -246,10 +246,8 @@ wxSizer* ZaxeDevice::createStateInfo()
     sizer->Add(desc_sizer, 0, wxEXPAND | wxALL, FromDIP(1));
 
     status_desc_icon->Bind(wxEVT_BUTTON, [this](auto&) {
-        if (update_available && capabilities.hasRemoteUpdate() && upstream_version.has_value()) {
-            confirm([&] { nm->fw_update(); },
-                    wxString::Format(_L("Current version: %s, Latest Version: %s. Do you want to update your printer?"),
-                                     nm->attr->firmware_version.ToString(), upstream_version.value().to_string_sf()));
+        if (nm->states->has_update && capabilities.hasRemoteUpdate()) {
+            confirm([&] { nm->fw_update(); }, _L("Do you want to update your printer?"));
         }
     });
 
@@ -519,7 +517,6 @@ void ZaxeDevice::updateStatusText()
     wxString desc       = "";
     wxString desc_color = gray700;
     wxString desc_icon  = "";
-    update_available    = false;
 
     if (nm->states->updatingFw) {
         title = _L("Updating");
@@ -548,13 +545,10 @@ void ZaxeDevice::updateStatusText()
         desc_color = progress_success_color;
     } else if (nm->states->printing) {
         desc = _L("Processing");
-    } else if (capabilities.hasRemoteUpdate() && !nm->isBusy() && upstream_version.has_value() &&
-               upstream_version > Semver(nm->attr->firmware_version.GetMajor(), nm->attr->firmware_version.GetMinor(),
-                                         nm->attr->firmware_version.GetMicro())) {
+    } else if (nm->states->has_update && capabilities.hasRemoteUpdate() && !nm->isBusy()) {
         desc             = _L("Update available");
         desc_color       = "#F4B617";
         desc_icon        = "zaxe_warning_1";
-        update_available = true;
     } else if (nm->states->uploading_zaxe_file) {
         if (nm->upload_progress_info->transferred_size.empty() || nm->upload_progress_info->total_size.empty()) {
             desc = _L("Please wait...");
@@ -862,14 +856,6 @@ void ZaxeDevice::onUploadDone()
                                                                        NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
                                                                        _u8L("Your print job has been sent to the device. Printing will "
                                                                             "start shortly."));
-}
-
-void ZaxeDevice::onVersionCheck(const std::map<std::string, Semver>& latest_versions)
-{
-    if (auto it = latest_versions.find(nm->attr->device_model); it != latest_versions.end()) {
-        upstream_version = it->second;
-        updateStates();
-    }
 }
 
 void ZaxeDevice::switch_cam_on()

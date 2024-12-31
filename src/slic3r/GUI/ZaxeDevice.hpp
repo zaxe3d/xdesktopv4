@@ -17,8 +17,6 @@
 #include "libslic3r/Semver.hpp"
 #include "libslic3r/Format/ZaxeArchive.hpp"
 
-#include <optional>
-
 namespace Slic3r::GUI {
 
 class ZaxeDeviceCapabilities
@@ -57,7 +55,6 @@ public:
     void onAvatarReady();
     void onTemperatureUpdate();
     void onUploadDone();
-    void onVersionCheck(const std::map<std::string, Semver>& latest_versions);
 
     bool     isBusy();
     void     setName(const string& name);
@@ -119,8 +116,6 @@ private:
     bool is_print_btn_visible{false};
 
     ZaxeDeviceCapabilities capabilities;
-    std::optional<Semver>  upstream_version;
-    bool                   update_available{false};
 
     enum class PrintBtnMode { Print, Prepare };
     PrintBtnMode print_btn_mode{PrintBtnMode::Prepare};

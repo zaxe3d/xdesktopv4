@@ -73,9 +73,6 @@ private:
     bool        print_enable{false};
     FilterState filter_state{FilterState::SHOW_ALL};
 
-    wxTimer*                      version_check_timer;
-    std::map<std::string, Semver> fw_versions;
-
     std::shared_ptr<ZaxeArchive> archive{nullptr};
 };
 } // namespace GUI
