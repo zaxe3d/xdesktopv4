@@ -82,6 +82,8 @@ public:
     bool apply_config(AppConfig *app_config, PresetBundle *preset_bundle, const PresetUpdater *updater, bool& apply_keeped_changes);
     bool run();
 
+    void select(const GUI_App::elements_from_pages_t& element_list);
+
     void        StrReplace(std::string &strBase, std::string strSrc, std::string strDes);
     std::string w2s(wxString sSrc);
     void        GetStardardFilePath(std::string &FilePath);
