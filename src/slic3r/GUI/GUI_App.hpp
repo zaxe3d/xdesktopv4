@@ -638,6 +638,12 @@ public:
 
     void            open_web_page_localized(const std::string &http_address);
     bool            may_switch_to_SLA_preset(const wxString& caption);
+    struct elements_from_pages_t
+    {
+        std::vector<std::string>                          filaments;
+        std::vector<std::pair<std::string, std::string>>  printers;
+    };
+    void            run_wizard_batch(const elements_from_pages_t& element_list);
     bool            run_wizard(ConfigWizard::RunReason reason, ConfigWizard::StartPage start_page = ConfigWizard::SP_WELCOME);
     void            show_desktop_integration_dialog();
 

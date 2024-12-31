@@ -896,6 +896,76 @@ bool GuideFrame::run()
         return false;
 }
 
+void GuideFrame::select(const GUI_App::elements_from_pages_t& element_list)
+{
+    for (const auto& p : element_list.printers) {
+        BOOST_LOG_TRIVIAL(info) << "GuideFrame::select - new printer: " << p.first << " " << p.second;
+    }
+    for (const auto& f : element_list.filaments) {
+        BOOST_LOG_TRIVIAL(info) << "GuideFrame::select - new filament: " << f;
+    }
+
+    bool modified = false;
+
+    if (!element_list.filaments.empty()) {
+        std::string section = "filament";
+        if (m_ProfileJson.contains(section)) {
+            for (const auto& el : element_list.filaments) {
+                for (auto it = m_ProfileJson[section].begin(); it != m_ProfileJson[section].end(); ++it) {
+                    std::string preset_name = it.key();
+                    if (preset_name.rfind(el, 0) == 0) {
+                        m_ProfileJson[section][preset_name]["selected"] = 1;
+                        modified                                        = true;
+                    }
+                }
+            }
+        }
+    }
+
+    if (!element_list.printers.empty()) {
+        std::string section = "model";
+        if (m_ProfileJson.contains(section)) {
+            int nModel = m_ProfileJson[section].size();
+            for (const auto& el : element_list.printers) {
+                for (int m = 0; m < nModel; m++) {
+                    std::string model_name = m_ProfileJson[section][m]["model"];
+                    if (model_name.rfind(el.first, 0) == 0) {
+                        std::string nozzle_selected = m_ProfileJson[section][m]["nozzle_selected"];
+                        if (!nozzle_selected.empty()) {
+                            nozzle_selected += ";";
+                        }
+                        nozzle_selected += el.second;
+                        m_ProfileJson[section][m]["nozzle_selected"] = nozzle_selected;
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    if (!modified) {
+        return;
+    }
+
+    SaveProfile();
+
+    GUI_App& app = wxGetApp();
+    app.preset_bundle->export_selections(*app.app_config);
+
+    bool apply_keeped_changes = false;
+    if (!this->apply_config(app.app_config, app.preset_bundle, app.preset_updater, apply_keeped_changes)) {
+        BOOST_LOG_TRIVIAL(error) << "GuideFrame::select: cannot apply config";
+        return;
+    }
+
+    if (apply_keeped_changes) {
+        app.apply_keeped_preset_modifications();
+    }
+
+    app.app_config->set_legacy_datadir(false);
+    app.update_mode();
+}
+
 int GuideFrame::GetFilamentInfo( std::string VendorDirectory, json & pFilaList, std::string filepath, std::string &sVendor, std::string &sType)
 {
     //GetStardardFilePath(filepath);

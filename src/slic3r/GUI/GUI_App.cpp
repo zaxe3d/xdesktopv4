@@ -6276,6 +6276,23 @@ bool GUI_App::may_switch_to_SLA_preset(const wxString& caption)
     return true;
 }
 
+void GUI_App::run_wizard_batch(const GUI_App::elements_from_pages_t& element_list)
+{
+    if(!mainframe)
+    {
+        return;
+    }
+
+    {
+        long       pStyle = wxCAPTION | wxCLOSE_BOX | wxSYSTEM_MENU;
+        GuideFrame wizard(this, pStyle);
+        wizard.select(element_list);
+    }
+    load_current_presets();
+    update_publish_status();
+    mainframe->refresh_plugin_tips();
+}
+
 bool GUI_App::run_wizard(ConfigWizard::RunReason reason, ConfigWizard::StartPage start_page)
 {
     wxCHECK_MSG(mainframe != nullptr, false, "Internal error: Main frame not created / null");
