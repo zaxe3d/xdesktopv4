@@ -73,6 +73,7 @@ struct MachineStates { // states.
     bool filamentPresent;
     bool ledsSwitchedOn;
     bool updatingFw;
+    bool has_update;
     inline bool ptreeStringtoBool(ptree pt, string prop) {
         return pt.get<string>(prop, "False") == "True";
     }
