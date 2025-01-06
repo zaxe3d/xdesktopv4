@@ -375,7 +375,7 @@ bool NetworkMachineManager::prepare_archive(PrintMode mode)
         if (!is_multi_plate) {
             for (int i = 0; i < partplate_list.get_plate_count(); i++) {
                 auto plate = partplate_list.get_plate(i);
-                if (!plate->empty()) {
+                if (!plate->empty() && plate->is_slice_result_ready_for_export()) {
                     single_plate_file_name = boost::filesystem::path(plate->fff_print()->output_filename("")).stem().string();
                 }
             }
