@@ -11944,7 +11944,12 @@ void Plater::export_gcode(bool prefer_removable)
 
     bool isZaxe = wxGetApp().preset_bundle->printers.is_selected_preset_zaxe();
     if(isZaxe) {
-        default_output_file = sidebar().machine_manager()->get_archive(true, true)->get_path();
+        auto z_archive = sidebar().machine_manager()->get_archive(true, true);
+        if(!z_archive) {
+            BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << ": Zaxe archive is not ready!"; 
+            return;
+        }
+        default_output_file = z_archive->get_path();
     }
     AppConfig 				&appconfig 				 = *wxGetApp().app_config;
     RemovableDriveManager 	&removable_drive_manager = *wxGetApp().removable_drive_manager();
