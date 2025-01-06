@@ -43,7 +43,7 @@
         <string>BambuStudio Downloads</string>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>bambustudioopen</string>
+          <string>xdesktopopen</string>
         </array>
       </dict>
     </array>
