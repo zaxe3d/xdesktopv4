@@ -1889,7 +1889,7 @@ static boost::optional<Semver> parse_semver_from_ini(std::string path)
         if (start == std::string::npos)
             return boost::none;
     }
-    body = body.substr(start + 12);
+    body = body.substr(start + 10);
     size_t end = body.find_first_of(" \n");
     if (end < body.size())
         body.resize(end);
