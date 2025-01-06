@@ -28,12 +28,12 @@
   <array>
     <dict>
       <key>CFBundleURLName</key>
-      <string>orcasliceropen url</string>
+      <string>xdesktopopen url</string>
       <key>CFBundleURLSchemes</key>
       <array>
-        <string>orcasliceropen</string>
-        <string>orcaslicer</string>
-        <string>bambustudioopen</string>
+        <string>xdesktopopen</string>
+        <string>xdesktop</string>
+        <string>xdesktopsliceropen</string>
       </array>
     </dict>
   </array>
