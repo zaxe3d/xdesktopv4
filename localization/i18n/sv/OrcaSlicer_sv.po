@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 11:53+0300\n"
+"POT-Creation-Date: 2025-01-07 10:26+0300\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -3538,9 +3538,9 @@ msgstr ""
 
 #, c-format, boost-format
 msgid ""
-"Current chamber temperature is higher than the material's safe temperature,"
-"it may result in material softening and clogging.The maximum safe "
-"temperature for the material is %d"
+"Current chamber temperature is higher than the material's safe "
+"temperature,it may result in material softening and clogging.The maximum "
+"safe temperature for the material is %d"
 msgstr ""
 "Current chamber temperature is higher than the material's safe temperature; "
 "this may result in material softening and nozzle clogs.The maximum safe "
@@ -7772,9 +7772,10 @@ msgid ""
 "maximum fan speed according to layer printing time"
 msgstr ""
 "Del kylfläktens hastigheten kommer att börja gå med min hastighet när den "
-"beräknade lagringstiden inte är längre än lagringstiden i inställningarna."
-"När lager tiden är kortare än gräns värdet, ställer fläkthastigheten sig "
-"mellan lägsta och högsta fläkthastighet enligt lagrets utskriftstid"
+"beräknade lagringstiden inte är längre än lagringstiden i "
+"inställningarna.När lager tiden är kortare än gräns värdet, ställer "
+"fläkthastigheten sig mellan lägsta och högsta fläkthastighet enligt lagrets "
+"utskriftstid"
 
 msgid "Max fan speed threshold"
 msgstr "Max fläkt hastighets gräns"
@@ -11007,8 +11008,8 @@ msgid "mm/s² or %"
 msgstr "mm/s² or %"
 
 msgid ""
-"Acceleration of sparse infill. If the value is expressed as a percentage (e."
-"g. 100%), it will be calculated based on the default acceleration."
+"Acceleration of sparse infill. If the value is expressed as a percentage "
+"(e.g. 100%), it will be calculated based on the default acceleration."
 msgstr ""
 "Acceleration av gles utfyllnad. Om värdet uttrycks som en procentsats (t.ex. "
 "100%) kommer det att beräknas baserat på standard accelerationen."
@@ -13365,9 +13366,9 @@ msgid "Idle temperature"
 msgstr ""
 
 msgid ""
-"Nozzle temperature when the tool is currently not used in multi-tool setups."
-"This is only used when 'Ooze prevention' is active in Print Settings. Set to "
-"0 to disable."
+"Nozzle temperature when the tool is currently not used in multi-tool "
+"setups.This is only used when 'Ooze prevention' is active in Print Settings. "
+"Set to 0 to disable."
 msgstr ""
 
 msgid "X-Y hole compensation"
@@ -15856,6 +15857,166 @@ msgstr ""
 msgid "User cancelled."
 msgstr ""
 
+msgid "Available"
+msgstr ""
+
+msgid "Search printer, nozzle, material, ip address..."
+msgstr ""
+
+msgid "Can not find a Zaxe on the network"
+msgstr ""
+
+msgid ""
+"There is no selected printer, go to zaxe machine carousel and select a "
+"printer first"
+msgstr ""
+
+msgid "Uploading is in progress, please wait"
+msgstr ""
+
+msgid "Selected printer is not available right now"
+msgstr ""
+
+msgid ""
+"Selected printer cannot be found in network, please select a printer from "
+"Zaxe Machine Carousel"
+msgstr ""
+
+msgid "Do you want to update your printer?"
+msgstr ""
+
+msgid "Preheat"
+msgstr ""
+
+msgid "Say Hi!"
+msgstr ""
+
+msgid "Unload filament"
+msgstr ""
+
+msgid "Toggle Leds"
+msgstr ""
+
+msgid ""
+"Turning off the LEDs will disable error detection (if it is on), are you "
+"sure?"
+msgstr ""
+
+msgid "Elapsed / Estimated time"
+msgstr ""
+
+msgid "Material"
+msgstr ""
+
+msgid "Nozzle Temp."
+msgstr ""
+
+msgid "Plate Temp."
+msgstr ""
+
+msgid "IP Address"
+msgstr ""
+
+msgid "Remaining Filament"
+msgstr ""
+
+msgid "Bed is occupied"
+msgstr ""
+
+msgid "Heating"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Ready to use"
+msgstr ""
+
+msgid "Device is in error state!"
+msgstr ""
+
+msgid "Please take your print!"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Update available"
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "Print now"
+msgstr ""
+
+msgid "Failed to start printing"
+msgstr ""
+
+msgid "XDesktop: Unknown error"
+msgstr ""
+
+msgid "XDesktop: Confirmation"
+msgstr ""
+
+msgid "Not installed"
+msgstr ""
+
+msgid "To support multi plate print, update your printer"
+msgstr ""
+
+msgid "Feature not supported"
+msgstr ""
+
+msgid "Please insert a usb stick before start printing."
+msgstr ""
+
+msgid "USB stick not found"
+msgstr ""
+
+msgid "Device model does NOT match. Please reslice with the correct model."
+msgstr ""
+
+msgid "Wrong device model"
+msgstr ""
+
+msgid ""
+"Materials don't match with this device. Please reslice with the correct "
+"material."
+msgstr ""
+
+msgid "Wrong material type"
+msgstr ""
+
+msgid "No filament sensed. Do you really want to continue printing?"
+msgstr ""
+
+msgid ""
+"Currently installed nozzle on device doesn't match with this slice. Please "
+"reslice with the correct nozzle."
+msgstr ""
+
+msgid "Wrong nozzle type"
+msgstr ""
+
+msgid ""
+"Bed might not be ready for the next print. Please be sure it is clean before "
+"pressing YES!"
+msgstr ""
+
+msgid ""
+"Your print job has been sent to the device. Printing will start shortly."
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "Print cannot be started, internal error."
+msgstr ""
+
 #: resources/data/hints.ini: [hint:Precise wall]
 msgid ""
 "Precise wall\n"
@@ -16928,11 +17089,11 @@ msgstr ""
 #~ msgstr "Felsökningsnivå"
 
 #~ msgid ""
-#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, 5:"
-#~ "trace\n"
+#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, "
+#~ "5:trace\n"
 #~ msgstr ""
-#~ "Välj felsöknings nivå. 0:allvarlig, 1:fel, 2:varning, 3:info, 4:felsök, 5:"
-#~ "spåra\n"
+#~ "Välj felsöknings nivå. 0:allvarlig, 1:fel, 2:varning, 3:info, 4:felsök, "
+#~ "5:spåra\n"
 
 #~ msgid ""
 #~ "3D Scene Operations\n"

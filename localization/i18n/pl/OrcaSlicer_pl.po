@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OrcaSlicer 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 11:53+0300\n"
+"POT-Creation-Date: 2025-01-07 10:26+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Krzysztof Morga <tlumaczeniebs@gmail.com>\n"
 "Language-Team: \n"
@@ -3621,9 +3621,9 @@ msgstr ""
 
 #, c-format, boost-format
 msgid ""
-"Current chamber temperature is higher than the material's safe temperature,"
-"it may result in material softening and clogging.The maximum safe "
-"temperature for the material is %d"
+"Current chamber temperature is higher than the material's safe "
+"temperature,it may result in material softening and clogging.The maximum "
+"safe temperature for the material is %d"
 msgstr ""
 "Obecna temperatura komory jest wyższa niż bezpieczna temperatura dla "
 "filamentu, co może prowadzić do jego mięknięcia i zatykania. Maksymalna "
@@ -11637,8 +11637,8 @@ msgid "mm/s² or %"
 msgstr "mm/s² lub %"
 
 msgid ""
-"Acceleration of sparse infill. If the value is expressed as a percentage (e."
-"g. 100%), it will be calculated based on the default acceleration."
+"Acceleration of sparse infill. If the value is expressed as a percentage "
+"(e.g. 100%), it will be calculated based on the default acceleration."
 msgstr ""
 "Przyspieszenie na rzadkim wypełnieniu. Jeśli wartość jest wyrażona w "
 "procentach (np. 100%), będzie obliczana na podstawie domyślnego "
@@ -14409,9 +14409,9 @@ msgid "Idle temperature"
 msgstr "Temperatura w bezczynności"
 
 msgid ""
-"Nozzle temperature when the tool is currently not used in multi-tool setups."
-"This is only used when 'Ooze prevention' is active in Print Settings. Set to "
-"0 to disable."
+"Nozzle temperature when the tool is currently not used in multi-tool "
+"setups.This is only used when 'Ooze prevention' is active in Print Settings. "
+"Set to 0 to disable."
 msgstr ""
 "Temperatura dyszy, gdy narzędzie nie jest aktualnie używane w konfiguracjach "
 "wielonarzędziowych. Jest to używane tylko wtedy, gdy \"Zapobieganie "
@@ -15123,8 +15123,8 @@ msgstr "Podpory: rozprzestrzeniaj gałęzie na warstwie %d"
 msgid ""
 "Unknown file format. Input file must have .stl, .obj, .amf(.xml) extension."
 msgstr ""
-"Nieznany format pliku. Plik wejściowy musi mieć rozszerzenie .stl, .obj, ."
-"amf(.xml)."
+"Nieznany format pliku. Plik wejściowy musi mieć "
+"rozszerzenie .stl, .obj, .amf(.xml)."
 
 msgid "Loading of a model file failed."
 msgstr "Ładowanie pliku modelu nie powiodło się."
@@ -15134,8 +15134,8 @@ msgstr "Dostarczony plik nie mógł być odczytany, ponieważ jest pusty"
 
 msgid "Unknown file format. Input file must have .3mf or .zip.amf extension."
 msgstr ""
-"Nieznany format pliku. Plik wejściowy musi mieć rozszerzenie .3mf lub .zip."
-"amf."
+"Nieznany format pliku. Plik wejściowy musi mieć rozszerzenie .3mf "
+"lub .zip.amf."
 
 msgid "Canceled"
 msgstr "Anulowano"
@@ -17051,6 +17051,166 @@ msgstr "Wystąpił problem podczas próby logowania, proszę spróbować ponowni
 
 msgid "User cancelled."
 msgstr "Anulowane przez użytkownika."
+
+msgid "Available"
+msgstr ""
+
+msgid "Search printer, nozzle, material, ip address..."
+msgstr ""
+
+msgid "Can not find a Zaxe on the network"
+msgstr ""
+
+msgid ""
+"There is no selected printer, go to zaxe machine carousel and select a "
+"printer first"
+msgstr ""
+
+msgid "Uploading is in progress, please wait"
+msgstr ""
+
+msgid "Selected printer is not available right now"
+msgstr ""
+
+msgid ""
+"Selected printer cannot be found in network, please select a printer from "
+"Zaxe Machine Carousel"
+msgstr ""
+
+msgid "Do you want to update your printer?"
+msgstr ""
+
+msgid "Preheat"
+msgstr ""
+
+msgid "Say Hi!"
+msgstr ""
+
+msgid "Unload filament"
+msgstr ""
+
+msgid "Toggle Leds"
+msgstr ""
+
+msgid ""
+"Turning off the LEDs will disable error detection (if it is on), are you "
+"sure?"
+msgstr ""
+
+msgid "Elapsed / Estimated time"
+msgstr ""
+
+msgid "Material"
+msgstr ""
+
+msgid "Nozzle Temp."
+msgstr ""
+
+msgid "Plate Temp."
+msgstr ""
+
+msgid "IP Address"
+msgstr ""
+
+msgid "Remaining Filament"
+msgstr ""
+
+msgid "Bed is occupied"
+msgstr ""
+
+msgid "Heating"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Ready to use"
+msgstr ""
+
+msgid "Device is in error state!"
+msgstr ""
+
+msgid "Please take your print!"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Update available"
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "Print now"
+msgstr ""
+
+msgid "Failed to start printing"
+msgstr ""
+
+msgid "XDesktop: Unknown error"
+msgstr ""
+
+msgid "XDesktop: Confirmation"
+msgstr ""
+
+msgid "Not installed"
+msgstr ""
+
+msgid "To support multi plate print, update your printer"
+msgstr ""
+
+msgid "Feature not supported"
+msgstr ""
+
+msgid "Please insert a usb stick before start printing."
+msgstr ""
+
+msgid "USB stick not found"
+msgstr ""
+
+msgid "Device model does NOT match. Please reslice with the correct model."
+msgstr ""
+
+msgid "Wrong device model"
+msgstr ""
+
+msgid ""
+"Materials don't match with this device. Please reslice with the correct "
+"material."
+msgstr ""
+
+msgid "Wrong material type"
+msgstr ""
+
+msgid "No filament sensed. Do you really want to continue printing?"
+msgstr ""
+
+msgid ""
+"Currently installed nozzle on device doesn't match with this slice. Please "
+"reslice with the correct nozzle."
+msgstr ""
+
+msgid "Wrong nozzle type"
+msgstr ""
+
+msgid ""
+"Bed might not be ready for the next print. Please be sure it is clean before "
+"pressing YES!"
+msgstr ""
+
+msgid ""
+"Your print job has been sent to the device. Printing will start shortly."
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "Print cannot be started, internal error."
+msgstr ""
 
 #: resources/data/hints.ini: [hint:Precise wall]
 msgid ""
@@ -20246,10 +20406,10 @@ msgstr ""
 #~ msgstr "Pliki certyfikatów (.crt, .pem)|.crt;.pem|Wszystkie pliki|."
 
 #~ msgid ""
-#~ "Relative extrusion is recommended when using \"label_objects\" option."
-#~ "Some extruders work better with this option unchecked (absolute extrusion "
-#~ "mode). Wipe tower is only compatible with relative mode. It is always "
-#~ "enabled on BambuLab printers. Default is checked"
+#~ "Relative extrusion is recommended when using \"label_objects\" "
+#~ "option.Some extruders work better with this option unchecked (absolute "
+#~ "extrusion mode). Wipe tower is only compatible with relative mode. It is "
+#~ "always enabled on BambuLab printers. Default is checked"
 #~ msgstr ""
 #~ "Przy użyciu opcji \"label_objects\" zaleca się ekstruzję względną. "
 #~ "Niektóre ekstrudery działają lepiej, gdy ta opcja jest odznaczona (tryb "
@@ -20565,11 +20725,11 @@ msgstr ""
 #~ msgstr "Poziom debugowania"
 
 #~ msgid ""
-#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, 5:"
-#~ "trace\n"
+#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, "
+#~ "5:trace\n"
 #~ msgstr ""
-#~ "Ustawia poziom logowania debugowania. 0:fatal, 1:error, 2:warning, 3:"
-#~ "info, 4:debug, 5:trace\n"
+#~ "Ustawia poziom logowania debugowania. 0:fatal, 1:error, 2:warning, "
+#~ "3:info, 4:debug, 5:trace\n"
 
 #~ msgid "The selected preset: %1% is not found."
 #~ msgstr "Wybrana przędło: %1% nie została znaleziona."

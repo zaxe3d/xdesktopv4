@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 11:53+0300\n"
+"POT-Creation-Date: 2025-01-07 10:26+0300\n"
 "PO-Revision-Date: 2024-10-26 10:01+0900\n"
-"Last-Translator: ElectricalBoy <15651807+ElectricalBoy@users.noreply.github."
-"com>\n"
+"Last-Translator: ElectricalBoy "
+"<15651807+ElectricalBoy@users.noreply.github.com>\n"
 "Language-Team: crwusiz@gmail.com\n"
 "Language: ko_KR\n"
 "MIME-Version: 1.0\n"
@@ -3527,9 +3527,9 @@ msgstr ""
 
 #, c-format, boost-format
 msgid ""
-"Current chamber temperature is higher than the material's safe temperature,"
-"it may result in material softening and clogging.The maximum safe "
-"temperature for the material is %d"
+"Current chamber temperature is higher than the material's safe "
+"temperature,it may result in material softening and clogging.The maximum "
+"safe temperature for the material is %d"
 msgstr ""
 "현재 챔버 온도가 재료의 안전 온도보다 높으므로 재료가 부드러워지고 막힐 수 있"
 "습니다. 재료의 최대 안전 온도는 %d입니다"
@@ -11244,8 +11244,8 @@ msgid "mm/s² or %"
 msgstr "mm/s² 또는 %"
 
 msgid ""
-"Acceleration of sparse infill. If the value is expressed as a percentage (e."
-"g. 100%), it will be calculated based on the default acceleration."
+"Acceleration of sparse infill. If the value is expressed as a percentage "
+"(e.g. 100%), it will be calculated based on the default acceleration."
 msgstr ""
 "드문 채우기 가속도. 값이 백분율 (예. 100%)로 표시되면 기본 가속도를 기준으로 "
 "계산됩니다."
@@ -13846,9 +13846,9 @@ msgid "Idle temperature"
 msgstr "공회전 온도"
 
 msgid ""
-"Nozzle temperature when the tool is currently not used in multi-tool setups."
-"This is only used when 'Ooze prevention' is active in Print Settings. Set to "
-"0 to disable."
+"Nozzle temperature when the tool is currently not used in multi-tool "
+"setups.This is only used when 'Ooze prevention' is active in Print Settings. "
+"Set to 0 to disable."
 msgstr ""
 "도구가 현재 다중 도구 설정에서 사용되지 않을 때의 노즐 온도. 이는 인쇄 설정에"
 "서 '얼룩 방지'가 활성화된 경우에만 사용됩니다. 비활성화하려면 0으로 설정합니"
@@ -16365,6 +16365,166 @@ msgstr ""
 msgid "User cancelled."
 msgstr "사용자가 취소했습니다."
 
+msgid "Available"
+msgstr ""
+
+msgid "Search printer, nozzle, material, ip address..."
+msgstr ""
+
+msgid "Can not find a Zaxe on the network"
+msgstr ""
+
+msgid ""
+"There is no selected printer, go to zaxe machine carousel and select a "
+"printer first"
+msgstr ""
+
+msgid "Uploading is in progress, please wait"
+msgstr ""
+
+msgid "Selected printer is not available right now"
+msgstr ""
+
+msgid ""
+"Selected printer cannot be found in network, please select a printer from "
+"Zaxe Machine Carousel"
+msgstr ""
+
+msgid "Do you want to update your printer?"
+msgstr ""
+
+msgid "Preheat"
+msgstr ""
+
+msgid "Say Hi!"
+msgstr ""
+
+msgid "Unload filament"
+msgstr ""
+
+msgid "Toggle Leds"
+msgstr ""
+
+msgid ""
+"Turning off the LEDs will disable error detection (if it is on), are you "
+"sure?"
+msgstr ""
+
+msgid "Elapsed / Estimated time"
+msgstr ""
+
+msgid "Material"
+msgstr ""
+
+msgid "Nozzle Temp."
+msgstr ""
+
+msgid "Plate Temp."
+msgstr ""
+
+msgid "IP Address"
+msgstr ""
+
+msgid "Remaining Filament"
+msgstr ""
+
+msgid "Bed is occupied"
+msgstr ""
+
+msgid "Heating"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Ready to use"
+msgstr ""
+
+msgid "Device is in error state!"
+msgstr ""
+
+msgid "Please take your print!"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Update available"
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "Print now"
+msgstr ""
+
+msgid "Failed to start printing"
+msgstr ""
+
+msgid "XDesktop: Unknown error"
+msgstr ""
+
+msgid "XDesktop: Confirmation"
+msgstr ""
+
+msgid "Not installed"
+msgstr ""
+
+msgid "To support multi plate print, update your printer"
+msgstr ""
+
+msgid "Feature not supported"
+msgstr ""
+
+msgid "Please insert a usb stick before start printing."
+msgstr ""
+
+msgid "USB stick not found"
+msgstr ""
+
+msgid "Device model does NOT match. Please reslice with the correct model."
+msgstr ""
+
+msgid "Wrong device model"
+msgstr ""
+
+msgid ""
+"Materials don't match with this device. Please reslice with the correct "
+"material."
+msgstr ""
+
+msgid "Wrong material type"
+msgstr ""
+
+msgid "No filament sensed. Do you really want to continue printing?"
+msgstr ""
+
+msgid ""
+"Currently installed nozzle on device doesn't match with this slice. Please "
+"reslice with the correct nozzle."
+msgstr ""
+
+msgid "Wrong nozzle type"
+msgstr ""
+
+msgid ""
+"Bed might not be ready for the next print. Please be sure it is clean before "
+"pressing YES!"
+msgstr ""
+
+msgid ""
+"Your print job has been sent to the device. Printing will start shortly."
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "Print cannot be started, internal error."
+msgstr ""
+
 #: resources/data/hints.ini: [hint:Precise wall]
 msgid ""
 "Precise wall\n"
@@ -17048,9 +17208,9 @@ msgstr ""
 #~ msgstr ""
 #~ "Orca Slicer은 G코드 파일을 프린터 호스트에 업로드할 수 있습니다. 이 필드에"
 #~ "는 프린터 호스트 인스턴스의 호스트 이름, IP 주소 또는 URL이 포함되어야 합"
-#~ "니다. 기본 인증이 활성화된 HAProxy 뒤의 출력 호스트는 https://username:"
-#~ "password@your-octopi-address/ 형식의 URL에 사용자 이름과 암호를 입력하여 "
-#~ "액세스할 수 있습니다"
+#~ "니다. 기본 인증이 활성화된 HAProxy 뒤의 출력 호스트는 https://"
+#~ "username:password@your-octopi-address/ 형식의 URL에 사용자 이름과 암호를 "
+#~ "입력하여 액세스할 수 있습니다"
 
 #~ msgid ""
 #~ "Orca Slicer can upload G-code files to a printer host. This field should "
@@ -18082,10 +18242,10 @@ msgstr ""
 #~ msgstr "위키"
 
 #~ msgid ""
-#~ "Relative extrusion is recommended when using \"label_objects\" option."
-#~ "Some extruders work better with this option unchecked (absolute extrusion "
-#~ "mode). Wipe tower is only compatible with relative mode. It is always "
-#~ "enabled on BambuLab printers. Default is checked"
+#~ "Relative extrusion is recommended when using \"label_objects\" "
+#~ "option.Some extruders work better with this option unchecked (absolute "
+#~ "extrusion mode). Wipe tower is only compatible with relative mode. It is "
+#~ "always enabled on BambuLab printers. Default is checked"
 #~ msgstr ""
 #~ "상대적 압출은 \"label_objects\" 옵션(기타; 개체 이름표)을 사용할 때 권장됩"
 #~ "니다. 일부 압출기는 이 옵션을 해제하면 더 잘 작동합니다(절대 압출 모드). "
@@ -18476,8 +18636,8 @@ msgstr ""
 #~ msgstr "디버그 수준"
 
 #~ msgid ""
-#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, 5:"
-#~ "trace\n"
+#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, "
+#~ "5:trace\n"
 #~ msgstr ""
 #~ "디버그 로깅 수준을 설정합니다. 0:치명적, 1:오류, 2:경고, 3:정보, 4:디버"
 #~ "그, 5:추적\n"

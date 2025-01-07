@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 11:53+0300\n"
+"POT-Creation-Date: 2025-01-07 10:26+0300\n"
 "PO-Revision-Date: 2024-10-01 22:31+0300\n"
 "Last-Translator: GlauTech\n"
 "Language-Team: \n"
@@ -3598,9 +3598,9 @@ msgstr ""
 
 #, c-format, boost-format
 msgid ""
-"Current chamber temperature is higher than the material's safe temperature,"
-"it may result in material softening and clogging.The maximum safe "
-"temperature for the material is %d"
+"Current chamber temperature is higher than the material's safe "
+"temperature,it may result in material softening and clogging.The maximum "
+"safe temperature for the material is %d"
 msgstr ""
 "Mevcut hazne sıcaklığı malzemenin güvenli sıcaklığından yüksektir, "
 "malzemenin yumuşamasına ve tıkanmasına neden olabilir Malzeme için maksimum "
@@ -11646,8 +11646,8 @@ msgid "mm/s² or %"
 msgstr "mm/s² veya %"
 
 msgid ""
-"Acceleration of sparse infill. If the value is expressed as a percentage (e."
-"g. 100%), it will be calculated based on the default acceleration."
+"Acceleration of sparse infill. If the value is expressed as a percentage "
+"(e.g. 100%), it will be calculated based on the default acceleration."
 msgstr ""
 "Seyrek dolgunun hızlandırılması. Değer yüzde olarak ifade edilirse (örn. "
 "%100), varsayılan ivmeye göre hesaplanacaktır."
@@ -14395,9 +14395,9 @@ msgid "Idle temperature"
 msgstr "Boşta sıcaklık"
 
 msgid ""
-"Nozzle temperature when the tool is currently not used in multi-tool setups."
-"This is only used when 'Ooze prevention' is active in Print Settings. Set to "
-"0 to disable."
+"Nozzle temperature when the tool is currently not used in multi-tool "
+"setups.This is only used when 'Ooze prevention' is active in Print Settings. "
+"Set to 0 to disable."
 msgstr ""
 "Alet şu anda çoklu alet kurulumlarında kullanılmadığında püskürtme ucu "
 "sıcaklığı. Bu yalnızca Yazdırma Ayarlarında ‘Sızıntı önleme’ etkin olduğunda "
@@ -17030,6 +17030,178 @@ msgstr ""
 msgid "User cancelled."
 msgstr "Kullanıcı iptal edildi."
 
+msgid "Available"
+msgstr "Müsait"
+
+msgid "Search printer, nozzle, material, ip address..."
+msgstr "Printer, nozül, materyal, ip adresi ara..."
+
+msgid "Can not find a Zaxe on the network"
+msgstr "Ağa bağlı bir Zaxe bulunamadı"
+
+msgid ""
+"There is no selected printer, go to zaxe machine carousel and select a "
+"printer first"
+msgstr "Yazıcı seçmediniz, lütfen Zaxe Makina Parkurundan bir yazıcı seçiniz"
+
+msgid "Uploading is in progress, please wait"
+msgstr "Yükleme devam ediyor, lütfen bekleyin"
+
+msgid "Selected printer is not available right now"
+msgstr "Seçilen yazıcı şu anda kullanılamıyor"
+
+msgid ""
+"Selected printer cannot be found in network, please select a printer from "
+"Zaxe Machine Carousel"
+msgstr ""
+"Seçili yazıcı ağda bulunamadı, lütfen Zaxe Makina Parkurundan bir yazıcı "
+"seçiniz"
+
+msgid "Do you want to update your printer?"
+msgstr "Yazıcınızı güncellemek ister misiniz?"
+
+msgid "Preheat"
+msgstr "Ön Isıtma"
+
+msgid "Say Hi!"
+msgstr "El Salla!"
+
+msgid "Unload filament"
+msgstr "Filament çıkart"
+
+msgid "Toggle Leds"
+msgstr "Led Aç/Kapa"
+
+msgid ""
+"Turning off the LEDs will disable error detection (if it is on), are you "
+"sure?"
+msgstr ""
+"LED'leri kapatmak hata algılamayı devre dışı bırakacaktır (eğer açıksa), "
+"emin misiniz?"
+
+msgid "Elapsed / Estimated time"
+msgstr "Geçen / Tahmini süre"
+
+msgid "Material"
+msgstr "Materyal"
+
+msgid "Nozzle Temp."
+msgstr "Nozül Sıcaklığı"
+
+msgid "Plate Temp."
+msgstr "Tabla Sıcaklığı"
+
+msgid "IP Address"
+msgstr "IP Adresi"
+
+msgid "Remaining Filament"
+msgstr "Kalan Filament"
+
+msgid "Bed is occupied"
+msgstr "Tabla dolu"
+
+msgid "Heating"
+msgstr "Isıtılıyor"
+
+msgid "Paused"
+msgstr "Duraklatıldı"
+
+msgid "Ready to use"
+msgstr "Kullanıma hazır"
+
+msgid "Device is in error state!"
+msgstr "Cihaz hata durumunda!"
+
+msgid "Please take your print!"
+msgstr "Lütfen baskınızı alınız!"
+
+msgid "Processing"
+msgstr "İşleniyor"
+
+msgid "Update available"
+msgstr "Güncelleme mevcut"
+
+msgid "Please wait..."
+msgstr "Lütfen bekleyiniz..."
+
+msgid "In progress"
+msgstr "Devam etmekte"
+
+msgid "Print now"
+msgstr "Baskı Al!"
+
+msgid "Failed to start printing"
+msgstr "Yazdırma başlatılamadı"
+
+msgid "XDesktop: Unknown error"
+msgstr "XDesktop: Bilinmeyen hata"
+
+msgid "XDesktop: Confirmation"
+msgstr "XDesktop: Onay"
+
+msgid "Not installed"
+msgstr "Yüklü değil"
+
+msgid "To support multi plate print, update your printer"
+msgstr "Çoklu plaka baskısını desteklemek için yazıcınızı güncelleyin"
+
+msgid "Feature not supported"
+msgstr "Özellik desteklenmiyor"
+
+msgid "Please insert a usb stick before start printing."
+msgstr "Lütfen baskı vermeden önce bir USB bellek takın."
+
+msgid "USB stick not found"
+msgstr "USB bellek bulunamadı"
+
+msgid "Device model does NOT match. Please reslice with the correct model."
+msgstr ""
+"Cihaz modeli eşleşmiyor. Lütfen doğru cihaz modelini seçip tekrar "
+"dilimleyiniz."
+
+msgid "Wrong device model"
+msgstr "Hatalı cihaz modeli"
+
+msgid ""
+"Materials don't match with this device. Please reslice with the correct "
+"material."
+msgstr ""
+"Cihazdaki materyal ile baskıdaki materyal uyuşmuyor. Lütfen cihazdaki "
+"materyal ile tekrar dilimleyiniz."
+
+msgid "Wrong material type"
+msgstr "Yanlış materyal"
+
+msgid "No filament sensed. Do you really want to continue printing?"
+msgstr "Filament algılanamadı. Yine de baskıya devam etmek ister misiniz?"
+
+msgid ""
+"Currently installed nozzle on device doesn't match with this slice. Please "
+"reslice with the correct nozzle."
+msgstr ""
+"Cihazdaki nozül ile baskıda ki nozül uyuşmuyor. Lütfen cihazdaki nozül ile "
+"tekrar dilimleyiniz."
+
+msgid "Wrong nozzle type"
+msgstr "Yanlış nozül tipi"
+
+msgid ""
+"Bed might not be ready for the next print. Please be sure it is clean before "
+"pressing YES!"
+msgstr ""
+"Tabla bir sonraki baskı için hazır olmayabilir. Evet'e basmadan önce lütfen "
+"tablanın temiz olduğundan emin olunuz!"
+
+msgid ""
+"Your print job has been sent to the device. Printing will start shortly."
+msgstr "İşlem yazıcıya gönderildi, baskı en kısa zamanda başlatılacak."
+
+msgid "Are you sure?"
+msgstr "Emin misiniz?"
+
+msgid "Print cannot be started, internal error."
+msgstr "Baskı başlatılamadı, dahili hata."
+
 #: resources/data/hints.ini: [hint:Precise wall]
 msgid ""
 "Precise wall\n"
@@ -19024,10 +19196,10 @@ msgstr ""
 #~ msgstr "wiki"
 
 #~ msgid ""
-#~ "Relative extrusion is recommended when using \"label_objects\" option."
-#~ "Some extruders work better with this option unchecked (absolute extrusion "
-#~ "mode). Wipe tower is only compatible with relative mode. It is always "
-#~ "enabled on BambuLab printers. Default is checked"
+#~ "Relative extrusion is recommended when using \"label_objects\" "
+#~ "option.Some extruders work better with this option unchecked (absolute "
+#~ "extrusion mode). Wipe tower is only compatible with relative mode. It is "
+#~ "always enabled on BambuLab printers. Default is checked"
 #~ msgstr ""
 #~ "\"label_objects\" seçeneği kullanılırken göreceli ekstrüzyon önerilir. "
 #~ "Bazı ekstruderler bu seçeneğin işareti kaldırıldığında (mutlak ekstrüzyon "
@@ -19427,11 +19599,11 @@ msgstr ""
 #~ msgstr "Hata ayıklama düzeyi"
 
 #~ msgid ""
-#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, 5:"
-#~ "trace\n"
+#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, "
+#~ "5:trace\n"
 #~ msgstr ""
-#~ "Hata ayıklama günlüğü düzeyini ayarlar. 0:önemli, 1:hata, 2:uyarı, 3:"
-#~ "bilgi, 4:hata ayıklama, 5:izleme\n"
+#~ "Hata ayıklama günlüğü düzeyini ayarlar. 0:önemli, 1:hata, 2:uyarı, "
+#~ "3:bilgi, 4:hata ayıklama, 5:izleme\n"
 
 #, boost-format
 #~ msgid "The selected preset: %1% is not found."

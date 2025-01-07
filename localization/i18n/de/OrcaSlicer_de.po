@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-31 11:53+0300\n"
+"POT-Creation-Date: 2025-01-07 10:26+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Heiko Liebscher <hliebschergmail.com>\n"
 "Language-Team: \n"
@@ -3659,9 +3659,9 @@ msgstr ""
 
 #, c-format, boost-format
 msgid ""
-"Current chamber temperature is higher than the material's safe temperature,"
-"it may result in material softening and clogging.The maximum safe "
-"temperature for the material is %d"
+"Current chamber temperature is higher than the material's safe "
+"temperature,it may result in material softening and clogging.The maximum "
+"safe temperature for the material is %d"
 msgstr ""
 "Die aktuelle Kammer-Temperatur ist höher als die sichere Temperatur des "
 "Materials, dies kann zu Materialerweichung und Verstopfung führen. Die "
@@ -7758,8 +7758,8 @@ msgid ""
 "Layer height exceeds the limit in Printer Settings -> Extruder -> Layer "
 "height limits ,this may cause printing quality issues."
 msgstr ""
-"Die Schichthöhe überschreitet das Limit in Druckereinstellungen -> Extruder -"
-"> Schichthöhenlimits. Dies kann zu Problemen mit der Druckqualität führen."
+"Die Schichthöhe überschreitet das Limit in Druckereinstellungen -> Extruder "
+"-> Schichthöhenlimits. Dies kann zu Problemen mit der Druckqualität führen."
 
 msgid "Adjust to the set range automatically? \n"
 msgstr "Automatisch an den eingestellten Bereich anpassen? \n"
@@ -10927,8 +10927,8 @@ msgid ""
 "external surface finish. It can also cause the infill to shine through the "
 "external surfaces of the part."
 msgstr ""
-"Reihenfolge der Wand/Füllung. Wenn das Kontrollkästchen nicht aktiviert ist,"
-"werden die Wände zuerst gedruckt, was in den meisten Fällen am besten "
+"Reihenfolge der Wand/Füllung. Wenn das Kontrollkästchen nicht aktiviert "
+"ist,werden die Wände zuerst gedruckt, was in den meisten Fällen am besten "
 "funktioniert.\n"
 "\n"
 "Das Drucken der Füllung zuerst kann bei extremen Überhängen helfen, da die "
@@ -11768,16 +11768,16 @@ msgid ""
 "Acceleration of bridges. If the value is expressed as a percentage (e.g. "
 "50%), it will be calculated based on the outer wall acceleration."
 msgstr ""
-"Beschleunigung der Brücken. Wenn der Wert als Prozentwert angegeben wird (z."
-"B. 50%), wird er auf der Grundlage der Beschleunigung der Außenwand "
+"Beschleunigung der Brücken. Wenn der Wert als Prozentwert angegeben wird "
+"(z.B. 50%), wird er auf der Grundlage der Beschleunigung der Außenwand "
 "berechnet."
 
 msgid "mm/s² or %"
 msgstr "mm/s² or %"
 
 msgid ""
-"Acceleration of sparse infill. If the value is expressed as a percentage (e."
-"g. 100%), it will be calculated based on the default acceleration."
+"Acceleration of sparse infill. If the value is expressed as a percentage "
+"(e.g. 100%), it will be calculated based on the default acceleration."
 msgstr ""
 "Beschleunigung der spärlichen Innenfüllung. Wenn der Wert als Prozentwert "
 "angegeben wird (z.B. 100%), wird er auf der Grundlage der "
@@ -12143,8 +12143,8 @@ msgstr ""
 "aus, bevor die Geschwindigkeit auf die Zielgeschwindigkeit reduziert wird, "
 "um den Kühlventilator anzuschubsen.Dies ist bei Lüftern nützlich, bei denen "
 "eine niedrige PWM-Leistung möglicherweise nicht ausreicht, um den Lüfter vom "
-"Stillstand aus zu starten oder um den Lüfter schneller auf Touren zu bringen."
-"Setze den Wert auf 0, um diese Funktion zu deaktivieren."
+"Stillstand aus zu starten oder um den Lüfter schneller auf Touren zu "
+"bringen.Setze den Wert auf 0, um diese Funktion zu deaktivieren."
 
 msgid "Time cost"
 msgstr "Druckzeit Kosten"
@@ -13371,8 +13371,8 @@ msgstr ""
 "Geschwindigkeit der äußeren oder inneren Wände abweicht. Wenn die hier "
 "angegebene Geschwindigkeit höher ist als die Geschwindigkeit der äußeren "
 "oder inneren Wände, wird der Drucker auf die langsamere der beiden "
-"Geschwindigkeiten zurückgesetzt. Wenn sie als Prozentsatz angegeben wird (z."
-"B. 80%), wird die Geschwindigkeit auf der Grundlage der jeweiligen "
+"Geschwindigkeiten zurückgesetzt. Wenn sie als Prozentsatz angegeben wird "
+"(z.B. 80%), wird die Geschwindigkeit auf der Grundlage der jeweiligen "
 "Geschwindigkeit der äußeren oder inneren Wand berechnet. Der Standardwert "
 "ist auf 100% eingestellt."
 
@@ -14568,9 +14568,9 @@ msgid "Idle temperature"
 msgstr "Leerlauftemperatur"
 
 msgid ""
-"Nozzle temperature when the tool is currently not used in multi-tool setups."
-"This is only used when 'Ooze prevention' is active in Print Settings. Set to "
-"0 to disable."
+"Nozzle temperature when the tool is currently not used in multi-tool "
+"setups.This is only used when 'Ooze prevention' is active in Print Settings. "
+"Set to 0 to disable."
 msgstr ""
 "Düsentemperatur, wenn das Werkzeug in Mehrwerkzeug-Setups derzeit nicht "
 "verwendet wird. Dies wird nur verwendet, wenn die „Ausflussverhinderung“ in "
@@ -15288,8 +15288,8 @@ msgstr "Stützen: Verbreiten von Zweigen auf Ebene %d"
 msgid ""
 "Unknown file format. Input file must have .stl, .obj, .amf(.xml) extension."
 msgstr ""
-"Unbekanntes Dateiformat: Die Eingabedatei muss die Endung .stl, .obj oder ."
-"amf(.xml) haben."
+"Unbekanntes Dateiformat: Die Eingabedatei muss die Endung .stl, .obj "
+"oder .amf(.xml) haben."
 
 msgid "Loading of a model file failed."
 msgstr "Das Laden der Modelldatei ist fehlgeschlagen."
@@ -17242,6 +17242,166 @@ msgstr ""
 msgid "User cancelled."
 msgstr "Benutzer abgebrochen."
 
+msgid "Available"
+msgstr ""
+
+msgid "Search printer, nozzle, material, ip address..."
+msgstr ""
+
+msgid "Can not find a Zaxe on the network"
+msgstr ""
+
+msgid ""
+"There is no selected printer, go to zaxe machine carousel and select a "
+"printer first"
+msgstr ""
+
+msgid "Uploading is in progress, please wait"
+msgstr ""
+
+msgid "Selected printer is not available right now"
+msgstr ""
+
+msgid ""
+"Selected printer cannot be found in network, please select a printer from "
+"Zaxe Machine Carousel"
+msgstr ""
+
+msgid "Do you want to update your printer?"
+msgstr ""
+
+msgid "Preheat"
+msgstr ""
+
+msgid "Say Hi!"
+msgstr ""
+
+msgid "Unload filament"
+msgstr ""
+
+msgid "Toggle Leds"
+msgstr ""
+
+msgid ""
+"Turning off the LEDs will disable error detection (if it is on), are you "
+"sure?"
+msgstr ""
+
+msgid "Elapsed / Estimated time"
+msgstr ""
+
+msgid "Material"
+msgstr ""
+
+msgid "Nozzle Temp."
+msgstr ""
+
+msgid "Plate Temp."
+msgstr ""
+
+msgid "IP Address"
+msgstr ""
+
+msgid "Remaining Filament"
+msgstr ""
+
+msgid "Bed is occupied"
+msgstr ""
+
+msgid "Heating"
+msgstr ""
+
+msgid "Paused"
+msgstr ""
+
+msgid "Ready to use"
+msgstr ""
+
+msgid "Device is in error state!"
+msgstr ""
+
+msgid "Please take your print!"
+msgstr ""
+
+msgid "Processing"
+msgstr ""
+
+msgid "Update available"
+msgstr ""
+
+msgid "Please wait..."
+msgstr ""
+
+msgid "In progress"
+msgstr ""
+
+msgid "Print now"
+msgstr ""
+
+msgid "Failed to start printing"
+msgstr ""
+
+msgid "XDesktop: Unknown error"
+msgstr ""
+
+msgid "XDesktop: Confirmation"
+msgstr ""
+
+msgid "Not installed"
+msgstr ""
+
+msgid "To support multi plate print, update your printer"
+msgstr ""
+
+msgid "Feature not supported"
+msgstr ""
+
+msgid "Please insert a usb stick before start printing."
+msgstr ""
+
+msgid "USB stick not found"
+msgstr ""
+
+msgid "Device model does NOT match. Please reslice with the correct model."
+msgstr ""
+
+msgid "Wrong device model"
+msgstr ""
+
+msgid ""
+"Materials don't match with this device. Please reslice with the correct "
+"material."
+msgstr ""
+
+msgid "Wrong material type"
+msgstr ""
+
+msgid "No filament sensed. Do you really want to continue printing?"
+msgstr ""
+
+msgid ""
+"Currently installed nozzle on device doesn't match with this slice. Please "
+"reslice with the correct nozzle."
+msgstr ""
+
+msgid "Wrong nozzle type"
+msgstr ""
+
+msgid ""
+"Bed might not be ready for the next print. Please be sure it is clean before "
+"pressing YES!"
+msgstr ""
+
+msgid ""
+"Your print job has been sent to the device. Printing will start shortly."
+msgstr ""
+
+msgid "Are you sure?"
+msgstr ""
+
+msgid "Print cannot be started, internal error."
+msgstr ""
+
 #: resources/data/hints.ini: [hint:Precise wall]
 msgid ""
 "Precise wall\n"
@@ -17844,8 +18004,8 @@ msgstr ""
 #~ msgid ""
 #~ "If enabled, sets OrcaSlicer as default application to open .step files"
 #~ msgstr ""
-#~ "Wenn aktiviert, wird OrcaSlicer als Standardanwendung zum Öffnen von ."
-#~ "step-Dateien festgelegt"
+#~ "Wenn aktiviert, wird OrcaSlicer als Standardanwendung zum Öffnen "
+#~ "von .step-Dateien festgelegt"
 
 #~ msgid "Associate web links to OrcaSlicer"
 #~ msgstr "Web-Links mit OrcaSlicer verknüpfen"
@@ -19250,10 +19410,10 @@ msgstr ""
 #~ msgstr "wiki"
 
 #~ msgid ""
-#~ "Relative extrusion is recommended when using \"label_objects\" option."
-#~ "Some extruders work better with this option unchecked (absolute extrusion "
-#~ "mode). Wipe tower is only compatible with relative mode. It is always "
-#~ "enabled on BambuLab printers. Default is checked"
+#~ "Relative extrusion is recommended when using \"label_objects\" "
+#~ "option.Some extruders work better with this option unchecked (absolute "
+#~ "extrusion mode). Wipe tower is only compatible with relative mode. It is "
+#~ "always enabled on BambuLab printers. Default is checked"
 #~ msgstr ""
 #~ "Die relative Extrusion wird empfohlen, wenn die Option „label_objects“ "
 #~ "verwendet wird. Einige Extruder funktionieren besser, wenn diese Option "
@@ -19704,11 +19864,11 @@ msgstr ""
 #~ msgstr "Fehlersuchstufe"
 
 #~ msgid ""
-#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, 5:"
-#~ "trace\n"
+#~ "Sets debug logging level. 0:fatal, 1:error, 2:warning, 3:info, 4:debug, "
+#~ "5:trace\n"
 #~ msgstr ""
-#~ "Legt die Stufe der Fehlerprotokollierung fest. 0:fatal, 1:error, 2:"
-#~ "warning, 3:info, 4:debug, 5:trace\n"
+#~ "Legt die Stufe der Fehlerprotokollierung fest. 0:fatal, 1:error, "
+#~ "2:warning, 3:info, 4:debug, 5:trace\n"
 
 #, boost-format
 #~ msgid "The selected preset: %1% is not found."
