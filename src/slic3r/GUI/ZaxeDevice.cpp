@@ -143,6 +143,12 @@ wxSizer* ZaxeDevice::createHeader()
     wxGetApp().UpdateDarkUI(device_name_ctrl);
     device_name_ctrl_visible = false;
 
+    highlight_icon = new Button(this, "", "zaxe_magic_star", wxBORDER_NONE, FromDIP(24));
+    highlight_icon->SetPaddingSize(wxSize(3, 3));
+    highlight_icon->SetToolTip(_L("Selected printer"));
+    wxGetApp().UpdateDarkUI(highlight_icon);
+    highlight_icon->Hide();
+
     expand_btn = new Button(this, "", "zaxe_arrow_down", wxBORDER_NONE, FromDIP(24));
     expand_btn->SetPaddingSize(wxSize(3, 3));
     wxGetApp().UpdateDarkUI(expand_btn);
@@ -154,6 +160,7 @@ wxSizer* ZaxeDevice::createHeader()
     sizer->Add(device_name, 0, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
     sizer->Add(device_name_ctrl, 10, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
     sizer->AddStretchSpacer(1);
+    sizer->Add(highlight_icon, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
     sizer->Add(expand_btn, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
 
     device_name->Bind(wxEVT_LEFT_UP, [&](auto& evt) {
@@ -894,6 +901,13 @@ std::string ZaxeDevice::get_cover_file_name() const
 wxString ZaxeDevice::get_remaining_filament() const
 {
     return (nm->states->filamentPresent && nm->attr->has_nfc_spool) ? wxString::Format("~%dm", nm->attr->remaining_filament) : "N/A";
+}
+
+void ZaxeDevice::setSelected(bool is_selected)
+{
+    highlight_icon->Show(is_selected);
+    Layout();
+    Refresh();
 }
 
 } // namespace Slic3r::GUI

@@ -70,6 +70,8 @@ public:
 
     bool print(std::shared_ptr<ZaxeArchive> archive);
 
+    void setSelected(bool is_selected);
+
 private:
     NetworkMachine* nm;
     wxTimer*        timer;
@@ -109,6 +111,7 @@ private:
     Label*            remaining_filament_val{nullptr};
     wxSizer*          detailed_info_sizer{nullptr};
     Label*            version{nullptr};
+    Button*           highlight_icon{nullptr};
 
     bool device_name_ctrl_visible{false};
     bool is_expanded{false};

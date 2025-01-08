@@ -467,4 +467,11 @@ std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_mul
 
     return archive;
 }
+
+void NetworkMachineManager::setSelected(NetworkMachine* machine)
+{
+    for (auto& dev : device_map) {
+        dev.second->setSelected(dev.first == machine->ip);
+    }
+}
 } // namespace Slic3r::GUI

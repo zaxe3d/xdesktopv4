@@ -1320,6 +1320,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             }
 
             p->selected_zaxe_machine = _nm;
+            p->machine_manager->setSelected(_nm);
             show_carousel(false, hide_preset_details);
             wxGetApp().mainframe->set_print_button_to_default(MainFrame::ModeSelectType::eSlicePlate);
         }

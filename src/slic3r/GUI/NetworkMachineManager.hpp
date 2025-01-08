@@ -38,6 +38,8 @@ public:
     enum class PrintMode { SinglePlate, AllPlates };
     bool print(NetworkMachine* machine, PrintMode mode);
 
+    void setSelected(NetworkMachine* machine);
+
 private:
     enum class FilterState { SHOW_AVAILABLE, SHOW_BUSY, SHOW_ALL };
 
