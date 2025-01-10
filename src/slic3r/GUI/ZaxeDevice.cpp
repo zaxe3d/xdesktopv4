@@ -873,13 +873,13 @@ void ZaxeDevice::switch_cam_on()
         wxString   curExecPath(ffplay.GetPath());
 #ifdef _WIN32
         wxString ffplay_path = wxString::Format("%s\\ffplay.exe", curExecPath);
-        wxString command = wxString::Format("cmd.exe /c \"\"%s\" tcp://%s:5002 -window_title \"Zaxe %s: %s\" -x 720\"", ffplay_path, nm->ip,
-                                            boost::to_upper_copy(nm->attr->device_model), nm->name);
+        wxString command     = wxString::Format("cmd.exe /c \"\"%s\" tcp://%s:5002 -window_title \"Zaxe %s: %s\" -x 720 -alwaysontop\"",
+                                                ffplay_path, nm->ip, boost::to_upper_copy(nm->attr->device_model), nm->name);
         BOOST_LOG_TRIVIAL(info) << __func__ << ": " << command.ToStdString();
         wxExecute(command, wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE);
 #else
         wxExecute(curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->device_model) +
-                      ": " + nm->name + "\" -x 720",
+                      ": " + nm->name + "\" -x 720 -alwaysontop",
                   wxEXEC_ASYNC);
 #endif
     } else {
