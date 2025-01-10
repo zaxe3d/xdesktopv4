@@ -63,6 +63,7 @@
 #include "libslic3r/miniz_extension.hpp"
 #include "libslic3r/Utils.hpp"
 #include "libslic3r/Color.hpp"
+#include "libslic3r/Platform.hpp"
 
 #include "GUI.hpp"
 #include "GUI_Utils.hpp"
@@ -4326,6 +4327,34 @@ void GUI_App::check_new_version_sf(bool show_tips, int by_user)
             std::string best_release_content;
             std::string best_pre_content;
             const std::regex reg_num("([0-9]+)");
+
+            auto get_browser_download_url = [](const auto& _root) {
+                // TODO zaxe: add linux later
+                std::string tag{};
+                auto        _platform = platform();
+                if (_platform == Platform::Windows) {
+                    tag = "Windows";
+                } else if (_platform == Platform::OSX) {
+                    auto _platform_flavor = platform_flavor();
+                    if (_platform_flavor == PlatformFlavor::OSXOnArm) {
+                        tag = "arm64";
+                    } else {
+                        tag = "x86_64";
+                    }
+                }
+
+                if (tag.empty()) {
+                    return _root.template get<std::string>("html_url");
+                }
+                for (const auto& asset : _root.get_child("assets")) {
+                    std::string download_url = asset.second.template get<std::string>("browser_download_url");
+                    if (download_url.find(tag) != std::string::npos){
+                        return download_url;
+                    }
+                }
+                return _root.template get<std::string>("html_url");
+            };
+
             if (check_stable_only) {
                 std::string tag = root.get<std::string>("tag_name");
                 if (tag[0] == 'v')
@@ -4335,13 +4364,13 @@ void GUI_App::check_new_version_sf(bool show_tips, int by_user)
                 if (root.get<bool>("prerelease")) {
                     if (best_pre < tag_version) {
                         best_pre         = tag_version;
-                        best_pre_url     = root.get<std::string>("html_url");
+                        best_pre_url     = get_browser_download_url(root);
                         best_pre_content = root.get<std::string>("body");
                     }
                 } else {
                     if (best_release < tag_version) {
                         best_release         = tag_version;
-                        best_release_url     = root.get<std::string>("html_url");
+                        best_release_url     = get_browser_download_url(root);
                         best_release_content = root.get<std::string>("body");
                     }
                 }
@@ -4356,13 +4385,13 @@ void GUI_App::check_new_version_sf(bool show_tips, int by_user)
                     if (json_version.second.get<bool>("prerelease")) {
                         if (best_pre < tag_version) {
                             best_pre         = tag_version;
-                            best_pre_url     = json_version.second.get<std::string>("html_url");
+                            best_pre_url     = get_browser_download_url(json_version.second);
                             best_pre_content = json_version.second.get<std::string>("body");
                         }
                     } else {
                         if (best_release < tag_version) {
                             best_release         = tag_version;
-                            best_release_url     = json_version.second.get<std::string>("html_url");
+                            best_release_url     = get_browser_download_url(json_version.second);
                             best_release_content = json_version.second.get<std::string>("body");
                         }
                     }
