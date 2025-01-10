@@ -1324,14 +1324,14 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             };
 
             if (!is_printer_found) {
-                wxString question = _L(
-                    wxString::Format("Printer preset cannot be found, do you want to add %s using Configuration Wizard?", printer));
+                wxString question =
+                    wxString::Format(_L("Printer preset cannot be found, do you want to add %s using Configuration Wizard?"), printer);
                 ask_for_conf_wizard(question, ConfigWizard::SP_PRINTERS);
             }
             if (!is_filament_found) {
-                wxString question = _L(
-                    wxString::Format("Material preset cannot be found, do you want to add %s using Configuration Wizard?",
-                                     _nm->attr->material_label));
+                wxString question =
+                    wxString::Format(_L("Material preset cannot be found, do you want to add %s using Configuration Wizard?"),
+                                     _nm->attr->material_label);
 
                 ask_for_conf_wizard(question, ConfigWizard::SP_FILAMENTS);
             }
