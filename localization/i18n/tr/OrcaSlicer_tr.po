@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 10:26+0300\n"
+"POT-Creation-Date: 2025-01-10 20:25+0300\n"
 "PO-Revision-Date: 2024-10-01 22:31+0300\n"
 "Last-Translator: GlauTech\n"
 "Language-Team: \n"
@@ -5947,8 +5947,24 @@ msgstr "Arama plakası, nesne ve parça."
 msgid "Zaxe Machine Carousel"
 msgstr "Zaxe Makine Parkuru"
 
-msgid "Unknown Preset"
-msgstr "Bilinmeyen ön ayar"
+msgid "XDesktop: Confirmation"
+msgstr "XDesktop: Onay"
+
+#, c-format, boost-format
+msgid ""
+"Printer preset cannot be found, do you want to add %s using Configuration "
+"Wizard?"
+msgstr ""
+"Yazıcı ön ayarı bulunamadı, %s'yi Yapılandırma Sihirbazı ile eklemek ister "
+"misiniz?"
+
+#, c-format, boost-format
+msgid ""
+"Material preset cannot be found, do you want to add %s using Configuration "
+"Wizard?"
+msgstr ""
+"Malzeme ön ayarı bulunamadı, %s'yi Yapılandırma Sihirbazı ile eklemek ister "
+"misiniz?"
 
 msgid "Pellets"
 msgstr "Peletler"
@@ -17057,6 +17073,9 @@ msgstr ""
 "Seçili yazıcı ağda bulunamadı, lütfen Zaxe Makina Parkurundan bir yazıcı "
 "seçiniz"
 
+msgid "Selected printer"
+msgstr ""
+
 msgid "Do you want to update your printer?"
 msgstr "Yazıcınızı güncellemek ister misiniz?"
 
@@ -17135,9 +17154,6 @@ msgstr "Yazdırma başlatılamadı"
 
 msgid "XDesktop: Unknown error"
 msgstr "XDesktop: Bilinmeyen hata"
-
-msgid "XDesktop: Confirmation"
-msgstr "XDesktop: Onay"
 
 msgid "Not installed"
 msgstr "Yüklü değil"
@@ -17585,6 +17601,9 @@ msgstr ""
 "ABS gibi bükülmeye yatkın malzemelere baskı yaparken, ısıtma yatağı "
 "sıcaklığının uygun şekilde arttırılmasının bükülme olasılığını "
 "azaltabileceğini biliyor muydunuz?"
+
+#~ msgid "Unknown Preset"
+#~ msgstr "Bilinmeyen ön ayar"
 
 #~ msgid "Please check the network connection of the printer and ."
 #~ msgstr "Lütfen yazıcının ve XDesktop'ın ağ bağlantısını kontrol edin."

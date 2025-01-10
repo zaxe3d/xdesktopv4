@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-07 10:26+0300\n"
+"POT-Creation-Date: 2025-01-10 20:25+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -5922,7 +5922,19 @@ msgstr "Zoek plaat, object en onderdeel."
 msgid "Zaxe Machine Carousel"
 msgstr ""
 
-msgid "Unknown Preset"
+msgid "XDesktop: Confirmation"
+msgstr ""
+
+#, c-format, boost-format
+msgid ""
+"Printer preset cannot be found, do you want to add %s using Configuration "
+"Wizard?"
+msgstr ""
+
+#, c-format, boost-format
+msgid ""
+"Material preset cannot be found, do you want to add %s using Configuration "
+"Wizard?"
 msgstr ""
 
 msgid "Pellets"
@@ -16215,6 +16227,9 @@ msgid ""
 "Zaxe Machine Carousel"
 msgstr ""
 
+msgid "Selected printer"
+msgstr ""
+
 msgid "Do you want to update your printer?"
 msgstr ""
 
@@ -16290,9 +16305,6 @@ msgid "Failed to start printing"
 msgstr ""
 
 msgid "XDesktop: Unknown error"
-msgstr ""
-
-msgid "XDesktop: Confirmation"
 msgstr ""
 
 msgid "Not installed"
