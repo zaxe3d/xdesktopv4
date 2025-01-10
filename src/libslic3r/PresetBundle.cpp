@@ -1464,6 +1464,11 @@ const std::string& PresetBundle::get_preset_name_by_alias( const Preset::Type& p
     return presets.get_preset_name_by_alias(alias);
 }
 
+const std::string& PresetBundle::get_preset_name_by_material_label(const std::string& label, const std::string& suffix) const
+{
+    return filaments.get_preset_name_by_material_label(label, suffix);
+}
+
 //BBS: get filament required hrc by filament type
 const int PresetBundle::get_required_hrc_by_filament_type(const std::string& filament_type) const
 {

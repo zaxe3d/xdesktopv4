@@ -255,6 +255,9 @@ public:
     long long           updated_time{0};    //last updated time
     std::map<std::string, std::string> key_values;
 
+    // Zaxe
+    std::string get_material_label() const;
+
     static std::string  get_type_string(Preset::Type type);
     // get string type for iot
     static std::string  get_iot_type_string(Preset::Type type);
@@ -585,6 +588,9 @@ public:
 	const std::string*		get_preset_name_renamed(const std::string &old_name) const;
     bool                    is_alias_exist(const std::string &alias, Preset* preset = nullptr);
     void                    set_printer_hold_alias(const std::string &alias, Preset &preset);
+
+    // Zaxe
+    const std::string& 		get_preset_name_by_material_label(const std::string& label, const std::string& suffix) const;
 
 	// used to update preset_choice from Tab
 	const std::deque<Preset>&	get_presets() const	{ return m_presets; }

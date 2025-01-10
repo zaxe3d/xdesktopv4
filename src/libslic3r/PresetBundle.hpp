@@ -260,6 +260,7 @@ public:
     void                        load_installed_printers(const AppConfig &config);
 
     const std::string&          get_preset_name_by_alias(const Preset::Type& preset_type, const std::string& alias) const;
+    const std::string&          get_preset_name_by_material_label(const std::string& label, const std::string& suffix) const;
 
     const int                   get_required_hrc_by_filament_type(const std::string& filament_type) const;
     // Save current preset of a provided type under a new name. If the name is different from the old one,

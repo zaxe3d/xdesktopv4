@@ -48,6 +48,7 @@
 #include "Time.hpp"
 #include "PlaceholderParser.hpp"
 #include "libslic3r/GCode/Thumbnails.hpp"
+#include "libslic3r/ZaxeConfigHelper.hpp"
 
 using boost::property_tree::ptree;
 
@@ -293,6 +294,10 @@ std::vector<std::string> VendorProfile::families() const
     }
 
     return res;
+}
+
+std::string Preset::get_material_label() const {
+    return ZaxeConfigHelper::get_material(config);
 }
 
 // Suffix to be added to a modified preset name in the combo box.
@@ -2505,6 +2510,21 @@ const std::string& PresetCollection::get_preset_name_by_alias(const std::string&
         }
 		
     return alias;
+}
+
+const std::string& PresetCollection::get_preset_name_by_material_label(const std::string& label, const std::string& suffix) const
+{
+    for (const auto& e : m_map_alias_to_profile_name) {
+        auto preset_name = e.first;
+
+        auto it_preset = this->find_preset_internal(preset_name + " " + suffix);
+        if (it_preset != m_presets.end() && it_preset->get_material_label() == label &&
+            boost::algorithm::ends_with(it_preset->name, suffix)) {
+            return it_preset->name;
+        }
+    }
+
+    return label;
 }
 
 const std::string* PresetCollection::get_preset_name_renamed(const std::string &old_name) const

@@ -1242,6 +1242,8 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
                 printer_for_config_wizard = (boost::format("%1% %2%") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_model).str();
             }
 
+            std::string model_suffix = (boost::format("@%1%") % boost::to_upper_copy(_nm->attr->device_model)).str();
+
             bool is_printer_found    = false;
             bool is_filament_found   = false;
             bool hide_preset_details = true;
@@ -1257,7 +1259,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
                                                    wxGetApp().preset_bundle->get_preset_name_by_alias(Preset::TYPE_PRINTER,
                                                                                                       Preset::remove_suffix_modified(
                                                                                                           p.ToUTF8().data()));
-                                               return preset_name == current_printer_preset_name;
+                                               return case_insensitive_compare(preset_name, current_printer_preset_name);
                                            });
                     it != printers.end()) {
                     p->combo_printer->SelectAndNotify(std::distance(printers.begin(), it));
@@ -1267,24 +1269,29 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
                     hide_preset_details = false;
                 }
 
-                const auto& filaments = p->combos_filament.front()->GetValues();
-                std::string current_filament_preset_name =
-                    wxGetApp().preset_bundle->get_preset_name_by_alias(Preset::TYPE_FILAMENT,
-                                                                       Preset::remove_suffix_modified(_nm->attr->material_label));
-                if (auto it = std::find_if(filaments.begin(), filaments.end(),
-                                           [&](const auto& f) {
-                                               std::string preset_name =
-                                                   wxGetApp().preset_bundle->get_preset_name_by_alias(Preset::TYPE_FILAMENT,
-                                                                                                      Preset::remove_suffix_modified(
-                                                                                                          f.ToUTF8().data()));
-                                               return preset_name == current_filament_preset_name;
-                                           });
-                    it != filaments.end()) {
-                    p->combos_filament.front()->SelectAndNotify(std::distance(filaments.begin(), it));
-                    is_filament_found = true;
-                } else {
-                    is_filament_found   = false;
+                if (!_nm->states->filamentPresent || case_insensitive_compare(_nm->attr->material, "custom")) {
+                    is_filament_found   = true;
                     hide_preset_details = false;
+                } else {
+                    const auto& filaments                    = p->combos_filament.front()->GetValues();
+                    std::string current_filament_preset_name = wxGetApp().preset_bundle->get_preset_name_by_material_label(
+                        _nm->attr->material, model_suffix);
+                    if (auto it = std::find_if(filaments.begin(), filaments.end(),
+                                               [&](const auto& f) {
+                                                   std::string preset_name =
+                                                       wxGetApp().preset_bundle->get_preset_name_by_alias(Preset::TYPE_FILAMENT,
+                                                                                                          Preset::remove_suffix_modified(
+                                                                                                              f.ToUTF8().data()));
+
+                                                   return case_insensitive_compare(preset_name, current_filament_preset_name);
+                                               });
+                        it != filaments.end()) {
+                        p->combos_filament.front()->SelectAndNotify(std::distance(filaments.begin(), it));
+                        is_filament_found = true;
+                    } else {
+                        is_filament_found   = false;
+                        hide_preset_details = false;
+                    }
                 }
 
                 if (is_printer_found && is_filament_found) {
@@ -1295,28 +1302,38 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
                         new_elements.printers.push_back(std::make_pair(printer_for_config_wizard, nozzle_size));
 
                         std::string current_filament_preset_name =
-                            wxGetApp().preset_bundle->get_preset_name_by_alias(Preset::TYPE_FILAMENT,
-                                                                               Preset::remove_suffix_modified(_nm->attr->material_label));
+                            wxGetApp().preset_bundle->get_preset_name_by_material_label(_nm->attr->material, model_suffix);
                         new_elements.filaments.push_back(current_filament_preset_name);
                     } else if (!is_filament_found) {
                         std::string current_filament_preset_name =
-                            wxGetApp().preset_bundle->get_preset_name_by_alias(Preset::TYPE_FILAMENT,
-                                                                               Preset::remove_suffix_modified(_nm->attr->material_label));
+                            wxGetApp().preset_bundle->get_preset_name_by_material_label(_nm->attr->material, model_suffix);
                         new_elements.filaments.push_back(current_filament_preset_name);
                     }
                     wxGetApp().run_wizard_batch(new_elements);
                 }
             }
 
+            auto ask_for_conf_wizard = [&](auto _question, auto _page) {
+                RichMessageDialog dialog(GetParent(), _question, _L("XDesktop: Confirmation"), wxICON_QUESTION | wxYES_NO);
+                dialog.SetYesNoLabels(_L("Yes"), _L("No"));
+                int res = dialog.ShowModal();
+                if (res == wxID_YES) {
+                    wxGetApp().run_wizard(ConfigWizard::RR_USER, _page);
+                    on_select_preset();
+                }
+            };
+
             if (!is_printer_found) {
-                wxMessageBox(_L(wxString::Format("Printer preset cannot be found, please add %s using Configuration Wizard and try again.",
-                                                 printer)),
-                             _L("Unknown Preset"), wxICON_ERROR);
+                wxString question = _L(
+                    wxString::Format("Printer preset cannot be found, do you want to add %s using Configuration Wizard?", printer));
+                ask_for_conf_wizard(question, ConfigWizard::SP_PRINTERS);
             }
             if (!is_filament_found) {
-                wxMessageBox(_L(wxString::Format("Material preset cannot be found, please add %s using Configuration Wizard and try again.",
-                                                 _nm->attr->material_label)),
-                             _L("Unknown Preset"), wxICON_ERROR);
+                wxString question = _L(
+                    wxString::Format("Material preset cannot be found, do you want to add %s using Configuration Wizard?",
+                                     _nm->attr->material_label));
+
+                ask_for_conf_wizard(question, ConfigWizard::SP_FILAMENTS);
             }
 
             p->selected_zaxe_machine = _nm;
