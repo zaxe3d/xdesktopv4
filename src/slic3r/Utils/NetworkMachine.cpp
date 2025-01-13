@@ -198,7 +198,7 @@ void NetworkMachine::onWSRead(string message)
 void NetworkMachine::unloadFilament()
 {
     request("filament_unload");
-    _push_notification(_u8L("Filament unload"));
+    _push_notification(_u8L("Filament Unload"));
 }
 
 void NetworkMachine::sayHi()
