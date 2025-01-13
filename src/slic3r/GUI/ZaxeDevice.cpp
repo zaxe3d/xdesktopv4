@@ -149,6 +149,12 @@ wxSizer* ZaxeDevice::createHeader()
     wxGetApp().UpdateDarkUI(highlight_icon);
     highlight_icon->Hide();
 
+    lock_icon = new Button(this, "", "zaxe_lock", wxBORDER_NONE, FromDIP(24));
+    lock_icon->SetPaddingSize(wxSize(3, 3));
+    lock_icon->SetToolTip(_L("Pin Code Activated"));
+    wxGetApp().UpdateDarkUI(lock_icon);
+    lock_icon->Show(nm->attr->has_pin);
+
     expand_btn = new Button(this, "", "zaxe_arrow_down", wxBORDER_NONE, FromDIP(24));
     expand_btn->SetPaddingSize(wxSize(3, 3));
     wxGetApp().UpdateDarkUI(expand_btn);
@@ -161,6 +167,7 @@ wxSizer* ZaxeDevice::createHeader()
     sizer->Add(device_name_ctrl, 10, wxALIGN_LEFT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(1));
     sizer->AddStretchSpacer(1);
     sizer->Add(highlight_icon, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
+    sizer->Add(lock_icon, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
     sizer->Add(expand_btn, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
 
     device_name->Bind(wxEVT_LEFT_UP, [&](auto& evt) {
@@ -338,7 +345,7 @@ wxSizer* ZaxeDevice::createIconButtons()
 
     pause_btn   = create_icon_btn("zaxe_pause", _L("Pause"), [&](const auto&) { confirm([&] { nm->pause(); }); });
     resume_btn  = create_icon_btn("zaxe_resume", _L("Resume"), [&](const auto&) { confirm([&] { nm->resume(); }); });
-    stop_btn    = create_icon_btn("zaxe_stop", _L("Stop"), [&](const auto&) { confirm([&] { nm->cancel(); }); });
+    stop_btn    = create_icon_btn("zaxe_stop", _L("Stop"), [&](const auto&) { cancelViaPin(); });
     preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto&) { confirm([&] { nm->togglePreheat(); }); });
     say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto&) { nm->sayHi(); });
     unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto&) { confirm([&] { nm->unloadFilament(); }); });
@@ -756,8 +763,6 @@ void ZaxeDevice::setMaterialLabel(const std::string& material_label)
 
 void ZaxeDevice::setFilamentPresent(bool present) { setMaterialLabel(nm->attr->material_label); }
 
-void ZaxeDevice::setPin(bool has_pin) { nm->attr->has_pin = has_pin; }
-
 void ZaxeDevice::setNozzle(const std::string& nozzle)
 {
     nozzle_val->SetLabel(nm->attr->nozzle + "mm");
@@ -876,6 +881,13 @@ void ZaxeDevice::onUploadDone()
                                                                             "start shortly."));
 }
 
+void ZaxeDevice::onPinChanged()
+{
+    lock_icon->Show(nm->attr->has_pin);
+    Layout();
+    Refresh();
+}
+
 void ZaxeDevice::switch_cam_on()
 {
     BOOST_LOG_TRIVIAL(info) << "Trying to open camera stream on: " << nm->name;
@@ -921,4 +933,18 @@ void ZaxeDevice::setSelected(bool is_selected)
     Refresh();
 }
 
+void ZaxeDevice::cancelViaPin()
+{
+    if (nm->attr->has_pin) {
+        RichMessageDialog dialog(GetParent(), _L("Please enter the PIN code before sending the cancel command to the printer."),
+                                 _L("XDesktop: Confirmation"), wxICON_QUESTION | wxYES_NO);
+        dialog.ShowTextInput(_L("Pin Code"));
+        int res = dialog.ShowModal();
+        if (res == wxID_YES) {
+            nm->cancel(dialog.GetTextInputValue().ToStdString());
+        }
+    } else {
+        confirm([&] { nm->cancel(""); });
+    }
+}
 } // namespace Slic3r::GUI

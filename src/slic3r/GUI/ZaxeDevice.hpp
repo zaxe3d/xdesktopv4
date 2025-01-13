@@ -55,6 +55,7 @@ public:
     void onAvatarReady();
     void onTemperatureUpdate();
     void onUploadDone();
+    void onPinChanged();
 
     bool     isBusy();
     void     setName(const string& name);
@@ -63,7 +64,6 @@ public:
     void setMaterialLabel(const std::string& material_label);
     void setFilamentPresent(bool present);
     void setNozzle(const std::string& nozzle);
-    void setPin(bool has_pin);
     void setFileStart();
 
     bool has(const wxString& search_text);
@@ -112,6 +112,7 @@ private:
     wxSizer*          detailed_info_sizer{nullptr};
     Label*            version{nullptr};
     Button*           highlight_icon{nullptr};
+    Button*           lock_icon{nullptr};
 
     bool device_name_ctrl_visible{false};
     bool is_expanded{false};
@@ -146,6 +147,7 @@ private:
     void toggleDeviceNameWidgets();
 
     void confirm(std::function<void()> cb, const wxString& question = _L("Are you sure?"));
+    void cancelViaPin();
 
     void        switch_cam_on();
     std::string get_cover_file_name() const;

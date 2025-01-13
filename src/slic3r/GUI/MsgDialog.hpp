@@ -66,6 +66,7 @@ struct MsgDialog : DPIDialog
 	bool get_checkbox_state();
 	virtual void on_dpi_changed(const wxRect& suggested_rect);
 	void SetButtonLabel(wxWindowID btn_id, const wxString& label, bool set_focus = false);
+	void show_text_input(wxString const & title);
 
 protected:
 	enum {
@@ -90,9 +91,11 @@ protected:
 	wxBoxSizer *content_sizer;
 	wxBoxSizer *btn_sizer;
 	wxBoxSizer *m_dsa_sizer;
+	wxBoxSizer *rightsizer;
 	wxStaticBitmap *logo;
     MsgButtonsHash  m_buttons;
 	CheckBox* m_checkbox_dsa{nullptr};
+	TextInput* m_text_input{ nullptr };
 };
 
 
@@ -171,6 +174,7 @@ class RichMessageDialog : public MsgDialog
 	wxCheckBox* m_checkBox{ nullptr };
 	wxString	m_checkBoxText;
 	bool		m_checkBoxValue{ false };
+	wxString    m_textInputText;
 
 public:
 	// NOTE! Don't change a signature of contsrucor. It have to  be tha same as for wxRichMessageDialog
@@ -192,8 +196,14 @@ public:
 		m_checkBoxValue = checked;
 	}
 
+	void ShowTextInput(const wxString& textInputText)
+	{
+		m_textInputText = textInputText;
+	}
+
 	wxString	GetCheckBoxText()	const { return m_checkBoxText; }
 	bool		IsCheckBoxChecked() const;
+	wxString	GetTextInputValue()	const;
 
 // This part o fcode isported from the "wx\msgdlg.h"
 	using wxMD = wxMessageDialogBase;
