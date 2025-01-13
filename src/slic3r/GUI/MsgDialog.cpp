@@ -40,7 +40,7 @@ MsgDialog::MsgDialog(wxWindow *parent, const wxString &title, const wxString &he
 
     auto *main_sizer = new wxBoxSizer(wxVERTICAL);
 	auto *topsizer = new wxBoxSizer(wxHORIZONTAL);
-	auto *rightsizer = new wxBoxSizer(wxVERTICAL);
+	rightsizer = new wxBoxSizer(wxVERTICAL);
 
 	//auto *headtext = new wxStaticText(this, wxID_ANY, headline);
 	//headtext->SetFont(boldfont);
@@ -91,6 +91,24 @@ void MsgDialog::show_dsa_button(wxString const &title)
     m_text_dsa->SetFont(::Label::Body_13);
     m_text_dsa->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#323A3D")));
     btn_sizer->Layout();
+    Fit();
+}
+
+void MsgDialog::show_text_input(wxString const & title)
+{
+    m_text_input = new TextInput(this, "");
+    m_text_input->SetMinSize({FromDIP(70), -1});
+
+    auto  m_text_input_title = new wxStaticText(this, wxID_ANY, title, wxDefaultPosition, wxDefaultSize, 0);
+    m_text_input_title->SetFont(::Label::Body_13);
+    m_text_input_title->SetForegroundColour(StateColor::darkModeColorFor(wxColour("#323A3D")));
+
+    auto* _sizer = new wxBoxSizer(wxVERTICAL);
+    _sizer->Add(m_text_input_title, 0, wxALL | wxEXPAND | wxALIGN_CENTER, FromDIP(2));
+    _sizer->Add(m_text_input, 0, wxALL, FromDIP(2));
+
+    rightsizer->Add(_sizer, 1, wxEXPAND);
+    rightsizer->Layout();
     Fit();
 }
 
@@ -384,6 +402,9 @@ RichMessageDialog::RichMessageDialog(wxWindow* parent,
 
 int RichMessageDialog::ShowModal()
 {
+    if (!m_textInputText.IsEmpty()) {
+        show_text_input(m_textInputText);
+    }
     if (!m_checkBoxText.IsEmpty()) {
         show_dsa_button(m_checkBoxText);
         m_checkbox_dsa->SetValue(m_checkBoxValue);
@@ -399,6 +420,14 @@ bool RichMessageDialog::IsCheckBoxChecked() const
         return m_checkbox_dsa->GetValue();
 
     return m_checkBoxValue;
+}
+
+wxString RichMessageDialog::GetTextInputValue()	const
+{
+    if (m_text_input)
+        return m_text_input->GetTextCtrl()->GetValue();
+
+    return "";
 }
 #endif
 

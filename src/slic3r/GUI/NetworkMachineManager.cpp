@@ -288,7 +288,7 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
     } else if (event.event == "nozzle_change") {
         dev->second->setNozzle(event.nm->attr->nozzle);
     } else if (event.event == "pin_change") {
-        dev->second->setPin(event.nm->attr->has_pin);
+        dev->second->onPinChanged();
     } else if (event.event == "start_print") {
         dev->second->setFileStart();
     } else if (event.event == "file_init_failed") {

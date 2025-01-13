@@ -164,7 +164,7 @@ public:
     void sayHi();
     void togglePreheat();
     void toggleLeds();
-    void cancel();
+    void cancel(const std::string& pin);
     void pause();
     void resume();
     void uploadHTTP(const char *filename, const char *uploadAs = "");

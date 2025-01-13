@@ -207,9 +207,12 @@ void NetworkMachine::sayHi()
     _push_notification(_u8L("Say Hi"));
 }
 
-void NetworkMachine::cancel()
+void NetworkMachine::cancel(const std::string& pin)
 {
-    request("cancel");
+    ptree pt;
+    pt.put("request", "cancel");
+    pt.put("pin", pin);
+    send(pt);
     _push_notification(_u8L("Cancel"));
 }
 
