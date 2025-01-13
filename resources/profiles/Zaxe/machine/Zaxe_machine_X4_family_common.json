@@ -15,7 +15,7 @@
         "Zaxe PLA @X4"
     ],
     "best_object_pos": "0.5x0.5",
-    "default_print_profile": "0.15mm, Recommended @X4 0.4mm",
+    "default_print_profile": "0.20mm, Normal @X4 0.4mm",
     "extruder_colour": [
         "#018001"
     ],
@@ -32,13 +32,108 @@
     ],
     "printable_area": [
         "0x0",
-        "240x0",
-        "240x240",
-        "0x240"
+        "250x0",
+        "250x250",
+        "0x250"
     ],
     "thumbnails_format": "PNG",
     "thumbnails": [
-      "250x250"
+        "250x250"
+    ],
+    "machine_max_acceleration_e": [
+        "5000",
+        "5000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "6000",
+        "6000"
+    ],
+    "machine_max_acceleration_retracting": [
+        "5000",
+        "5000"
+    ],
+    "machine_max_acceleration_travel": [
+        "10000",
+        "10s000"
+    ],
+    "machine_max_acceleration_x": [
+        "10000",
+        "10000"
+    ],
+    "machine_max_acceleration_y": [
+        "10000",
+        "10000"
+    ],
+    "machine_max_acceleration_z": [
+        "300",
+        "300"
+    ],
+    "machine_max_speed_e": [
+        "30",
+        "30"
+    ],
+    "machine_max_speed_x": [
+        "600",
+        "600"
+    ],
+    "machine_max_speed_y": [
+        "600",
+        "600"
+    ],
+    "machine_max_speed_z": [
+        "20",
+        "20"
+    ],
+    "machine_max_jerk_e": [
+        "2.5",
+        "2.5"
+    ],
+    "machine_max_jerk_x": [
+        "20",
+        "20"
+    ],
+    "machine_max_jerk_y": [
+        "20",
+        "20"
+    ],
+    "machine_max_jerk_z": [
+        "3",
+        "3"
+    ],
+    "machine_min_extruding_rate": [
+        "0",
+        "0"
+    ],
+    "machine_min_travel_rate": [
+        "0",
+        "0"
+    ],
+    "retract_lift_below": [
+        "249"
+    ],
+    "retraction_minimum_travel": [
+        "1"
+    ],
+    "retract_before_wipe": [
+        "0%"
+    ],
+    "retraction_length": [
+        "0.3"
+    ],
+    "retract_length_toolchange": [
+        "2"
+    ],
+    "z_hop": [
+        "0.2"
+    ],
+    "retraction_speed": [
+        "30"
+    ],
+    "deretraction_speed": [
+        "30"
+    ],
+    "z_hop_types": [
+        "Auto Lift"
     ],
     "printable_height": "260",
     "machine_load_filament_time": "28",
@@ -47,6 +142,6 @@
     "scan_first_layer": "0",
     "upward_compatible_machine": [],
     "single_extruder_multi_material": "1",
-    "machine_start_gcode": "G28\nG29\nM83\nG1 E3 F150\nG90\nG1 Z5 F500\nG1 X20 Y20 F10000\nG1 Z0.4 F500\nG91\nM83\nG1 X80 E15 F500\nG90\nM82\nG92 E0\nM221",
+    "machine_start_gcode": "G28\nG29\nM83\nG1 E3 F150\nG90\nG1 Z5 F500\nG1 X10 Y10 F8000\nG1 Z0.4 F500\nG91\nM83\nG1 X80 E15 F500\nG90\nM82\nG92 E0\nM221",
     "machine_end_gcode": "G28 X0"
 }

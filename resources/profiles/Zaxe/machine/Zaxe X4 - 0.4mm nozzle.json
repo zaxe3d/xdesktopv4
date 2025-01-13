@@ -10,7 +10,7 @@
     ],
     "printer_model": "X4",
     "printer_variant": "0.4",
-    "default_print_profile": "0.15mm, Recommended @X4 0.4mm",
+    "default_print_profile": "0.20mm, Normal @X4 0.4mm",
     "min_layer_height": "0.05",
     "max_layer_height": "0.30",
     "machine_max_acceleration_e": [
