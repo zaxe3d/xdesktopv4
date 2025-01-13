@@ -6,9 +6,21 @@
 #include <libslic3r/Utils.hpp>
 #include "Http.hpp"
 #include "../GUI/GUI_App.hpp"
-#include "..//GUI/NotificationManager.hpp"
+#include "../GUI/NotificationManager.hpp"
 
 namespace fs = boost::filesystem;
+
+namespace {
+void _push_notification(const wxString& text)
+{
+    Slic3r::GUI::wxGetApp()
+        .plater()
+        ->get_notification_manager()
+        ->push_notification(Slic3r::GUI::NotificationType::CustomNotification,
+                            Slic3r::GUI::NotificationManager::NotificationLevel::PrintInfoShortNotificationLevel,
+                            wxString::Format(_L("%s command has been sent to printer!"), text).ToStdString());
+}
+} // namespace
 
 namespace Slic3r {
 wxDEFINE_EVENT(EVT_MACHINE_OPEN, MachineEvent);
@@ -186,36 +198,43 @@ void NetworkMachine::onWSRead(string message)
 void NetworkMachine::unloadFilament()
 {
     request("filament_unload");
+    _push_notification(_u8L("Filament unload"));
 }
 
 void NetworkMachine::sayHi()
 {
     request("say_hi");
+    _push_notification(_u8L("Say Hi"));
 }
 
 void NetworkMachine::cancel()
 {
     request("cancel");
+    _push_notification(_u8L("Cancel"));
 }
 
 void NetworkMachine::pause()
 {
     request("pause");
+    _push_notification(_u8L("Pause"));
 }
 
 void NetworkMachine::resume()
 {
     request("resume");
+    _push_notification(_u8L("Resume"));
 }
 
 void NetworkMachine::togglePreheat()
 {
     request("toggle_preheat");
+    _push_notification(_u8L("Toggle Preheat"));
 }
 
 void NetworkMachine::toggleLeds()
 {
     request("toggle_leds");
+    _push_notification(_u8L("Toggle Leds"));
 }
 
 void NetworkMachine::changeName(const char *new_name)
@@ -225,11 +244,13 @@ void NetworkMachine::changeName(const char *new_name)
     pt.put("request", "change_name");
     pt.put("name", new_name);
     send(pt);
+    _push_notification(_u8L("Change Name"));
 }
 
 void NetworkMachine::fw_update()
 {
     request("fw_update");
+    _push_notification(_u8L("Firmware Update"));
 }
 
 void NetworkMachine::request(const char* command)
