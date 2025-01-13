@@ -1337,7 +1337,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             }
 
             p->selected_zaxe_machine = _nm;
-            p->machine_manager->setSelected(_nm);
+            p->machine_manager->setSelected(p->selected_zaxe_machine);
             show_carousel(false, hide_preset_details);
             wxGetApp().mainframe->set_print_button_to_default(MainFrame::ModeSelectType::eSlicePlate);
         }
@@ -9192,9 +9192,17 @@ void Sidebar::on_select_preset() {
     p->m_filament_label->SetLabel(filament);
 }
 
-bool Sidebar::print_plate() { return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::SinglePlate); }
+bool Sidebar::print_plate()
+{
+    BOOST_LOG_TRIVIAL(info) << __func__ << ": " << __LINE__;
+    return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::SinglePlate);
+}
 
-bool Sidebar::print_all() { return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::AllPlates); }
+bool Sidebar::print_all()
+{
+    BOOST_LOG_TRIVIAL(info) << __func__ << ": " << __LINE__;
+    return machine_manager()->print(p->selected_zaxe_machine, NetworkMachineManager::PrintMode::AllPlates);
+}
 
 // Plater / Public
 

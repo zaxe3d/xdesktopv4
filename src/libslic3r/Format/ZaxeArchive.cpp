@@ -211,12 +211,12 @@ void ZaxeArchive::_append(const ThumbnailsList& thumbnails,
     }
 }
 
-void ZaxeArchive::prepare_file()
+bool ZaxeArchive::prepare_file()
 {
     BOOST_LOG_TRIVIAL(info) << "Preparing Zaxe file...";
 
     if (!zipper) {
-        return;
+        return false;
     }
 
     if (is_multi_plate) {
@@ -233,6 +233,7 @@ void ZaxeArchive::prepare_file()
 
     zipper->finalize();
     BOOST_LOG_TRIVIAL(info) << "Zaxe file generated successfully to: " << zipper->get_filename();
+    return true;
 }
 
 } // namespace Slic3r

@@ -405,8 +405,12 @@ bool NetworkMachineManager::prepare_archive(PrintMode mode)
             auto model_file = wxGetApp().plater()->get_model_path_by_plate_index(i);
             archive->append(thumnails, *fff_print, plate->get_tmp_gcode_path(), model_file);
         }
-        archive->prepare_file();
-        return true;
+        bool ret = archive->prepare_file();
+        if (!ret) {
+            BOOST_LOG_TRIVIAL(error) << __func__ << ": " << __LINE__ << " Preparing archive failed";
+        }
+
+        return ret;
     }
 
     return false;
@@ -439,6 +443,11 @@ bool NetworkMachineManager::print(NetworkMachine* machine, PrintMode mode)
     auto it = device_map.find(machine->ip);
     if (it == device_map.end()) {
         create_error_notification(_u8L("Selected printer cannot be found in network, please select a printer from Zaxe Machine Carousel"));
+        return false;
+    }
+
+    if (!it->second) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": " << __LINE__ << " Printer is null";
         return false;
     }
 
