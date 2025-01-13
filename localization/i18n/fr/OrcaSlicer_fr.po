@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-10 20:25+0300\n"
+"POT-Creation-Date: 2025-01-13 18:05+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Guislain Cyril, Thomas Lété\n"
@@ -17427,6 +17427,9 @@ msgstr ""
 msgid "Selected printer"
 msgstr ""
 
+msgid "Pin Code Activated"
+msgstr ""
+
 msgid "Do you want to update your printer?"
 msgstr ""
 
@@ -17553,7 +17556,30 @@ msgid ""
 "Your print job has been sent to the device. Printing will start shortly."
 msgstr ""
 
+msgid ""
+"Please enter the PIN code before sending the cancel command to the printer."
+msgstr ""
+
 msgid "Are you sure?"
+msgstr ""
+
+#, c-format, boost-format
+msgid "%s command has been sent to printer!"
+msgstr ""
+
+msgid "Filament Unload"
+msgstr ""
+
+msgid "Say Hi"
+msgstr ""
+
+msgid "Toggle Preheat"
+msgstr ""
+
+msgid "Change Name"
+msgstr ""
+
+msgid "Firmware Update"
 msgstr ""
 
 msgid "Print cannot be started, internal error."

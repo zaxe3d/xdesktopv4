@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-10 20:25+0300\n"
+"POT-Creation-Date: 2025-01-13 18:05+0300\n"
 "PO-Revision-Date: 2024-10-01 22:31+0300\n"
 "Last-Translator: GlauTech\n"
 "Language-Team: \n"
@@ -17074,7 +17074,10 @@ msgstr ""
 "seçiniz"
 
 msgid "Selected printer"
-msgstr ""
+msgstr "Seçili yazıcı"
+
+msgid "Pin Code Activated"
+msgstr "Pin Kodu Aktif"
 
 msgid "Do you want to update your printer?"
 msgstr "Yazıcınızı güncellemek ister misiniz?"
@@ -17212,8 +17215,31 @@ msgid ""
 "Your print job has been sent to the device. Printing will start shortly."
 msgstr "İşlem yazıcıya gönderildi, baskı en kısa zamanda başlatılacak."
 
+msgid ""
+"Please enter the PIN code before sending the cancel command to the printer."
+msgstr "Lütfen iptal komutu göndermeden önce pin kodunu giriniz."
+
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
+
+#, c-format, boost-format
+msgid "%s command has been sent to printer!"
+msgstr "%s komutu yazıcıya gönderildi!"
+
+msgid "Filament Unload"
+msgstr "Filament Çıkart"
+
+msgid "Say Hi"
+msgstr "El Salla"
+
+msgid "Toggle Preheat"
+msgstr "Ön ısıtma aç/kapa"
+
+msgid "Change Name"
+msgstr "İsim Değiştir"
+
+msgid "Firmware Update"
+msgstr "Yazılım Güncelleme"
 
 msgid "Print cannot be started, internal error."
 msgstr "Baskı başlatılamadı, dahili hata."
