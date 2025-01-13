@@ -340,7 +340,7 @@ wxSizer* ZaxeDevice::createIconButtons()
     resume_btn  = create_icon_btn("zaxe_resume", _L("Resume"), [&](const auto&) { confirm([&] { nm->resume(); }); });
     stop_btn    = create_icon_btn("zaxe_stop", _L("Stop"), [&](const auto&) { confirm([&] { nm->cancel(); }); });
     preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto&) { confirm([&] { nm->togglePreheat(); }); });
-    say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto&) { confirm([&] { nm->sayHi(); }); });
+    say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto&) { nm->sayHi(); });
     unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto&) { confirm([&] { nm->unloadFilament(); }); });
 
     toggle_leds_btn = create_icon_btn(nm->states->ledsSwitchedOn ? "zaxe_lights_on" : "zaxe_lights_off", _L("Toggle Leds"),
