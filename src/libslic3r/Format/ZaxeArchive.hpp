@@ -23,7 +23,7 @@ public:
                 const Print&          print,
                 const std::string&    temp_gcode_output_path,
                 const std::string&    model_path);
-    void prepare_file();
+    bool prepare_file();
     bool support_multiplate() const { return is_multi_plate; }
 
 protected:

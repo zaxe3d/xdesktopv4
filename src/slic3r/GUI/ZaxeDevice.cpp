@@ -777,7 +777,15 @@ bool ZaxeDevice::has(const wxString& search_text)
 
 bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
 {
+    BOOST_LOG_TRIVIAL(info) << __func__ << ": " << __LINE__;
+
+    if (!archive) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": " << __LINE__ << " Archive not ready!";
+        return false;
+    }
+
     if (!is_print_btn_visible) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": " << __LINE__ << " Print button should not be visible!";
         return false;
     }
 
@@ -798,11 +806,14 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
     std::string model_nozzle_arch = archive->get_info("model") + " " + archive->get_info("nozzle_diameter");
 
     if (is_there(nm->attr->device_model, {"x3"}) && !nm->states->usbPresent) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": " << __LINE__ << " USB stick is mandatory to print with this device!";
         wxMessageBox(_L("Please insert a usb stick before start printing."), _L("USB stick not found"), wxICON_ERROR);
         return false;
     }
 
     if (s == std::string::npos || pN.length() != dM.length() + s) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": " << __LINE__ << " Device model does NOT match!";
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": " << __LINE__ << " pN: " << pN << " dM: " << dM;
         wxMessageBox(_L("Device model does NOT match. Please reslice with "
                         "the correct model."),
                      _L("Wrong device model"), wxOK | wxICON_ERROR);
