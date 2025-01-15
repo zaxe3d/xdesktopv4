@@ -56,7 +56,7 @@ bool ZaxeDeviceCapabilities::canPrintMultiPlate() const
 bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->device_model, {"z1", "z3", "x1", "x2", "x3"}); };
 
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
-    : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), capabilities(_nm)
+    : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), highlight_timer(new wxTimer()), capabilities(_nm)
 {
     SetBackgroundColour(*wxWHITE);
     wxGetApp().UpdateDarkUI(this);
@@ -98,12 +98,30 @@ ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSiz
     Layout();
 
     timer->Bind(wxEVT_TIMER, [&](wxTimerEvent& evt) { onTimer(evt); });
+    highlight_timer->Bind(wxEVT_TIMER, [&, i = 0](wxTimerEvent& evt) mutable {
+        wxString icon = "zaxe_magic_star_100";
+        if (i == 1) {
+            icon = "zaxe_magic_star_300";
+        } else if (i == 2) {
+            icon = "zaxe_magic_star_500";
+        } else {
+            i = 0;
+        }
+
+        highlight_icon->SetIcon(icon);
+        Refresh();
+        i++;
+    });
 }
 
 ZaxeDevice::~ZaxeDevice()
 {
     if (timer->IsRunning()) {
         timer->Stop();
+    }
+
+    if (highlight_timer->IsRunning()) {
+        highlight_timer->Stop();
     }
 }
 
@@ -143,7 +161,7 @@ wxSizer* ZaxeDevice::createHeader()
     wxGetApp().UpdateDarkUI(device_name_ctrl);
     device_name_ctrl_visible = false;
 
-    highlight_icon = new Button(this, "", "zaxe_magic_star", wxBORDER_NONE, FromDIP(24));
+    highlight_icon = new Button(this, "", "zaxe_magic_star_100", wxBORDER_NONE, FromDIP(24));
     highlight_icon->SetPaddingSize(wxSize(3, 3));
     highlight_icon->SetToolTip(_L("Selected printer"));
     wxGetApp().UpdateDarkUI(highlight_icon);
@@ -206,6 +224,12 @@ wxSizer* ZaxeDevice::createHeader()
         updatePrintInfo();
         Layout();
         GetParent()->Layout();
+    });
+
+    highlight_icon->Bind(wxEVT_BUTTON, [&](auto& e) {
+        wxGetApp().plater()->get_notification_manager()->push_notification(NotificationType::CustomNotification,
+                                                                           NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
+                                                                           _u8L("Printer with blinking start is selected."));
     });
 
     return sizer;
@@ -928,6 +952,12 @@ wxString ZaxeDevice::get_remaining_filament() const
 
 void ZaxeDevice::setSelected(bool is_selected)
 {
+    if (is_selected && !highlight_timer->IsRunning()) {
+        highlight_timer->Start(400);
+    } else if (!is_selected && highlight_timer->IsRunning()) {
+        highlight_timer->Stop();
+    }
+
     highlight_icon->Show(is_selected);
     Layout();
     Refresh();

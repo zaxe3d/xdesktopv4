@@ -75,6 +75,7 @@ public:
 private:
     NetworkMachine* nm;
     wxTimer*        timer;
+    wxTimer*        highlight_timer;
 
     Button*           model_btn{nullptr};
     Button*           model_btn_expanded{nullptr};
