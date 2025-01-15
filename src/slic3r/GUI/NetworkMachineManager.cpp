@@ -233,6 +233,61 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
     scrolled_area->Layout();
     scrolled_area->FitInside();
     Layout();
+
+    zd->Bind(wxEVT_LEFT_DOWN, [&, _zd = zd](auto& event) {
+        dragging_zaxe_device = _zd;
+
+        if (dragging_zaxe_device) {
+            dragging_zaxe_device->SetWindowStyle(wxBORDER_SIMPLE);
+            Refresh();
+
+            CaptureMouse();
+        }
+    });
+
+    Bind(wxEVT_MOTION, [&](auto& event) {
+        if (!dragging_zaxe_device || !dragging_zaxe_device->GetParent() || !HasCapture()) {
+            return;
+        }
+
+        if (event.Dragging()) {
+            wxPoint mouse_pos = wxGetMousePosition();
+            for (size_t i = 0; i < scrolled_area->GetSizer()->GetItemCount(); ++i) {
+                wxSizerItem* sizer_item = scrolled_area->GetSizer()->GetItem(i);
+                if (!sizer_item || !sizer_item->GetWindow()) {
+                    continue;
+                }
+
+                wxWindow* item      = sizer_item->GetWindow();
+                wxRect    item_rect = item->GetScreenRect();
+
+                if (item == dragging_zaxe_device) {
+                    continue;
+                }
+
+                if (item_rect.Contains(mouse_pos)) {
+                    scrolled_area->GetSizer()->Detach(dragging_zaxe_device);
+                    scrolled_area->GetSizer()->Insert(i, dragging_zaxe_device, 0, wxALL | wxEXPAND, 5);
+                    scrolled_area->Layout();
+                    scrolled_area->FitInside();
+                    Layout();
+                    break;
+                }
+            }
+        }
+    });
+
+    Bind(wxEVT_LEFT_UP, [&](auto& event) {
+        if (HasCapture()) {
+            ReleaseMouse();
+        }
+        if (dragging_zaxe_device) {
+            dragging_zaxe_device->SetWindowStyle(0);
+            Refresh();
+        }
+
+        dragging_zaxe_device = nullptr;
+    });
 }
 
 void NetworkMachineManager::onMachineClose(MachineEvent& event)
@@ -480,7 +535,20 @@ std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_mul
 void NetworkMachineManager::setSelected(NetworkMachine* machine)
 {
     for (auto& dev : device_map) {
-        dev.second->setSelected(dev.first == machine->ip);
+        if(!dev.second){
+            continue;
+        }
+
+        bool is_selected = dev.first == machine->ip;
+        dev.second->setSelected(is_selected);
+
+        if(is_selected) {
+            scrolled_area->GetSizer()->Detach(dev.second);
+            scrolled_area->GetSizer()->Prepend(dev.second, 0, wxEXPAND | wxALL, FromDIP(5));
+            scrolled_area->Layout();
+            scrolled_area->FitInside();
+            Layout();
+        }
     }
 }
 } // namespace Slic3r::GUI
