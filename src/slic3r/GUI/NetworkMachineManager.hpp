@@ -72,6 +72,8 @@ private:
 
     std::unordered_map<std::string, ZaxeDevice*> device_map;
 
+    ZaxeDevice* dragging_zaxe_device{nullptr};
+
     bool        print_enable{false};
     FilterState filter_state{FilterState::SHOW_ALL};
 
