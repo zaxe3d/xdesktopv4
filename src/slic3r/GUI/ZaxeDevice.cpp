@@ -188,7 +188,7 @@ wxSizer* ZaxeDevice::createHeader()
     sizer->Add(lock_icon, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
     sizer->Add(expand_btn, 0, wxALIGN_RIGHT | wxALIGN_CENTER_VERTICAL | wxALL, FromDIP(3));
 
-    device_name->Bind(wxEVT_LEFT_UP, [&](auto& evt) {
+    device_name->Bind(wxEVT_LEFT_DOWN, [&](auto& evt) {
         toggleDeviceNameWidgets();
         device_name_ctrl->SetFocus();
         device_name_ctrl->SetInsertionPointEnd();
@@ -224,12 +224,13 @@ wxSizer* ZaxeDevice::createHeader()
         updatePrintInfo();
         Layout();
         GetParent()->Layout();
+        GetParent()->FitInside();
     });
 
     highlight_icon->Bind(wxEVT_BUTTON, [&](auto& e) {
         wxGetApp().plater()->get_notification_manager()->push_notification(NotificationType::CustomNotification,
                                                                            NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
-                                                                           _u8L("Printer with blinking start is selected."));
+                                                                           _u8L("Printer with blinking star is selected."));
     });
 
     return sizer;
