@@ -249,9 +249,12 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
         }
 
         if (event.Dragging()) {
-            if (!(dragging_zaxe_device->GetWindowStyle() & wxBORDER_SIMPLE)) {
-                dragging_zaxe_device->SetWindowStyle(wxBORDER_SIMPLE);
-                Refresh();
+            auto win_style = dragging_zaxe_device->GetWindowStyle();
+            if (!(win_style & wxBORDER_THEME)) {
+                dragging_zaxe_device->SetWindowStyle(win_style | wxBORDER_THEME);
+                scrolled_area->Layout();
+                scrolled_area->FitInside();
+                Layout();
             }
 
             wxPoint mouse_pos = wxGetMousePosition();
@@ -286,7 +289,8 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
             ReleaseMouse();
         }
         if (dragging_zaxe_device) {
-            dragging_zaxe_device->SetWindowStyle(0);
+            auto win_style = dragging_zaxe_device->GetWindowStyle();
+            dragging_zaxe_device->SetWindowStyle(win_style & ~wxBORDER_THEME);
             Refresh();
         }
 
