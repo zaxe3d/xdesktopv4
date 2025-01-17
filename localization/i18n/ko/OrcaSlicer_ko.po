@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-13 18:49+0300\n"
+"POT-Creation-Date: 2025-01-17 10:39+0300\n"
 "PO-Revision-Date: 2024-10-26 10:01+0900\n"
 "Last-Translator: ElectricalBoy "
 "<15651807+ElectricalBoy@users.noreply.github.com>\n"
@@ -16406,6 +16406,9 @@ msgid "Selected printer"
 msgstr ""
 
 msgid "Pin Code Activated"
+msgstr ""
+
+msgid "Printer with blinking star is selected."
 msgstr ""
 
 msgid "Do you want to update your printer?"

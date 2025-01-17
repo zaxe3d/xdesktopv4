@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-13 18:49+0300\n"
+"POT-Creation-Date: 2025-01-17 10:39+0300\n"
 "PO-Revision-Date: 2023-09-30 15:15+0200\n"
 "Last-Translator: René Mošner <Renemosner@seznam.cz>\n"
 "Language-Team: \n"
@@ -15968,6 +15968,9 @@ msgid "Selected printer"
 msgstr ""
 
 msgid "Pin Code Activated"
+msgstr ""
+
+msgid "Printer with blinking star is selected."
 msgstr ""
 
 msgid "Do you want to update your printer?"
