@@ -257,7 +257,7 @@ void NetworkMachineManager::onMachineOpen(MachineEvent& event)
             wxPoint mouse_pos = wxGetMousePosition();
             for (size_t i = 0; i < scrolled_area->GetSizer()->GetItemCount(); ++i) {
                 wxSizerItem* sizer_item = scrolled_area->GetSizer()->GetItem(i);
-                if (!sizer_item || !sizer_item->GetWindow()) {
+                if (!sizer_item || !sizer_item->IsShown() || !sizer_item->GetWindow()) {
                     continue;
                 }
 
