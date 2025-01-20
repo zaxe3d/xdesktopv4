@@ -103,6 +103,8 @@ struct MachineAttributes // attributes.
     float bed_temp;
     float target_bed_temp;
     wxVersionInfo firmware_version;
+    int current_layer;
+    int total_layers;
 
     inline std::string toString()
     {
@@ -129,6 +131,8 @@ struct MachineAttributes // attributes.
         ss << "bed_temp: " << bed_temp << std::endl;
         ss << "target_bed_temp: " << target_bed_temp << std::endl;
         ss << "firmware_version: " << firmware_version.ToString() << std::endl;
+        ss << "current_layer: " << current_layer << std::endl;
+        ss << "total_layers: " << total_layers << std::endl;
         return ss.str();
     }
 };

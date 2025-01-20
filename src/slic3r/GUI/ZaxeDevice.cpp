@@ -584,6 +584,9 @@ void ZaxeDevice::updateStatusText()
         desc_color = progress_success_color;
     } else if (nm->states->printing) {
         desc = _L("Processing");
+        if (nm->attr->total_layers >= 0 && nm->attr->current_layer >= 0) {
+            desc = wxString::Format("%s... %d/%d", desc, nm->attr->current_layer, nm->attr->total_layers);
+        }
     } else if (nm->states->has_update && capabilities.hasRemoteUpdate() && !nm->isBusy()) {
         desc             = _L("Update available");
         desc_color       = "#F4B617";
@@ -909,6 +912,12 @@ void ZaxeDevice::onUploadDone()
 void ZaxeDevice::onPinChanged()
 {
     lock_icon->Show(nm->attr->has_pin);
+    Layout();
+    Refresh();
+}
+
+void ZaxeDevice::onLayerChanged() {
+    updateStatusText();
     Layout();
     Refresh();
 }

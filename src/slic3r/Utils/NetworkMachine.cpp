@@ -120,6 +120,9 @@ void NetworkMachine::onWSRead(string message)
             vector<string> fwV;
             split(fwV, to_lower_copy(pt.get<string>("version", "1.0.0")), is_any_of("."));
             attr->firmware_version = wxVersionInfo("v", stoi(fwV[0]), stoi(fwV[1]), stoi(fwV[2]));
+
+            attr->current_layer = pt.get<int>("current_layer", -1);
+            attr->total_layers = pt.get<int>("total_layers", -1);
         }
         if (event == "hello" || event == "states_update") {
             auto _calibrating  = states->ptreeStringtoBool(pt, "is_calibrating");
@@ -180,6 +183,10 @@ void NetworkMachine::onWSRead(string message)
             attr->target_nozzle_temp = pt.get<float>("ext_temp_set", 0);
             attr->bed_temp           = pt.get<float>("bed_temp", 0);
             attr->target_bed_temp    = pt.get<float>("bed_temp_set", 0);
+        }
+        if (event == "layer_change") {
+            attr->current_layer = pt.get<int>("current", -1);
+            attr->total_layers = pt.get<int>("total", -1);
         }
         if (event == "hello") { // gather up all the events up untill here.
             MachineEvent evt(EVT_MACHINE_OPEN, this, wxID_ANY); // ? get window id here ?; // ? get window id here ?
