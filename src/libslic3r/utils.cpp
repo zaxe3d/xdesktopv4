@@ -1258,8 +1258,9 @@ std::string translate_chars(std::string text)
     std::size_t found;
     for (int i = 0; i < tbr.size(); i++) {
         found = wtext.find(tbr[i]);
-        if (found != std::string::npos)
-            wtext.replace(found, 1, std::wstring(1, rw[i]));
+        while((found = wtext.find(tbr[i])) != -1)
+            if (found != std::string::npos)
+                wtext.replace(found, 1, std::wstring(1, rw[i]));
     }
     return std::string(wtext.begin(), wtext.end());
 }
