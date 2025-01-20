@@ -56,6 +56,7 @@ public:
     void onTemperatureUpdate();
     void onUploadDone();
     void onPinChanged();
+    void onLayerChanged();
 
     bool     isBusy();
     void     setName(const string& name);

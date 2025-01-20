@@ -361,6 +361,8 @@ void NetworkMachineManager::onMachineMessage(MachineNewMessageEvent& event)
         dev->second->onTemperatureUpdate();
     } else if (event.event == "upload_done") {
         dev->second->onUploadDone();
+    } else if (event.event == "layer_change") {
+        dev->second->onLayerChanged();
     }
 }
 
