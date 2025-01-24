@@ -4,6 +4,7 @@
 ///|/
 #include "NetworkMachine.hpp"
 #include <libslic3r/Utils.hpp>
+#include <libslic3r/format.hpp>
 #include "Http.hpp"
 #include "../GUI/GUI_App.hpp"
 #include "../GUI/NotificationManager.hpp"
@@ -18,7 +19,7 @@ void _push_notification(const wxString& text)
         ->get_notification_manager()
         ->push_notification(Slic3r::GUI::NotificationType::CustomNotification,
                             Slic3r::GUI::NotificationManager::NotificationLevel::PrintInfoShortNotificationLevel,
-                            wxString::Format(_L("%s command has been sent to printer!"), text).ToStdString());
+                            Slic3r::format(_u8L("%s command has been sent to printer!"), text));
 }
 } // namespace
 
