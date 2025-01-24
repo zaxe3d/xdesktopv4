@@ -53,7 +53,7 @@ bool ZaxeDeviceCapabilities::canPrintMultiPlate() const
     return is_there(nm->attr->device_model, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 78);
 }
 
-bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->device_model, {"z1", "z3", "x1", "x2", "x3"}); };
+bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->device_model, {"z1", "z3", "x1", "x2", "x3", "x4"}); };
 
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), highlight_timer(new wxTimer()), capabilities(_nm)
