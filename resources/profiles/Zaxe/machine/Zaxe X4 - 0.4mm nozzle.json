@@ -91,7 +91,7 @@
         "0%"
     ],
     "retraction_length": [
-        "1"
+        "0.4"
     ],
     "retract_length_toolchange": [
         "2"
@@ -100,10 +100,10 @@
         "0.2"
     ],
     "retraction_speed": [
-        "45"
+        "30"
     ],
     "deretraction_speed": [
-        "45"
+        "30"
     ],
     "z_hop_types": [
         "Auto Lift"

@@ -24,10 +24,10 @@
     "60"
   ],
   "slow_down_layer_time": [
-    "8"
+    "4"
   ],
   "slow_down_min_speed": [
-    "10"
+    "20"
   ],
   "filament_max_volumetric_speed": [
     "12"
