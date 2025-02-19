@@ -9,16 +9,16 @@
     "Zaxe X4 - 0.4mm nozzle"
   ],
   "filament_max_volumetric_speed": [
-    "22"
+    "32"
   ],
   "pressure_advance": [
-    "0.036"
+    "0.058"
   ],
   "filament_flow_ratio": [
-    "0.98"
+    "1"
   ],
   "nozzle_temperature": [
-    "210"
+    "215"
   ],
   "nozzle_temperature_initial_layer": [
     "215"
