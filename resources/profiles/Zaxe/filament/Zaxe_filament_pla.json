@@ -18,16 +18,16 @@
     "100"
   ],
   "hot_plate_temp": [
-    "55"
+    "60"
   ],
   "hot_plate_temp_initial_layer": [
     "60"
   ],
   "slow_down_layer_time": [
-    "4"
+    "8"
   ],
   "slow_down_min_speed": [
-    "20"
+    "10"
   ],
   "filament_max_volumetric_speed": [
     "12"
