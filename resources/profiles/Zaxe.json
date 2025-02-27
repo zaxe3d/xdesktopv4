@@ -1,8 +1,8 @@
 {
   "name": "Zaxe",
-  "version": "02.00.13.00",
+  "version": "02.00.14.00",
   "url": "",
-  "force_update": "0",
+  "force_update": "1",
   "description": "Zaxe configurations",
   "machine_model_list": [
     {
