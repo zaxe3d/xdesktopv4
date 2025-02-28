@@ -142,6 +142,6 @@
     "scan_first_layer": "0",
     "upward_compatible_machine": [],
     "single_extruder_multi_material": "1",
-    "machine_start_gcode": "G28\nCLEAN_NOZZLE\nZAXE_SHAPER_CALIBRATE\nZXG29\nM83\nG1 E3 F150\nG90\nG1 Z5 F500\nG1 X253 Y10 F8000\nG1 Z0.4 F500\nG91\nM83\nG1 Y80 E15 F500\nG90\nM82\nG92 E0\nM221",
+    "machine_start_gcode": "G28\nCLEAN_NOZZLE\nZAXE_SHAPER_CALIBRATE\nZXG29\nG90\nG1 Z5 F500\nG1 X260 Y10 F8000\nM83\nG1 E23 F600\nG90\nG1 Z0.4 F500\nG91\nM83\nG1 Y80 E15 F500\nG90\nM82\nG92 E0\nM221",
     "machine_end_gcode": "G28 X0"
 }
