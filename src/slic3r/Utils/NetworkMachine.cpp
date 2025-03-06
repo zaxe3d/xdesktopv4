@@ -111,7 +111,7 @@ void NetworkMachine::onWSRead(string message)
             attr->printing_file = pt.get<string>("filename", "");
             attr->elapsed_time = pt.get<float>("elapsed_time", 0);
             attr->estimated_time = pt.get<string>("estimated_time", "");
-            attr->start_time = wxDateTime::Now().GetTicks() - attr->elapsed_time;
+            attr->start_time = wxDateTime::Now().GetTicks() - static_cast<time_t>(attr->elapsed_time);
             if (!attr->is_lite) {
                 attr->has_pin = to_lower_copy(pt.get<string>("has_pin", "false")) == "true";
                 attr->has_nfc_spool = to_lower_copy(pt.get<string>("has_nfc_spool", "false")) == "true";
@@ -171,8 +171,10 @@ void NetworkMachine::onWSRead(string message)
             attr->has_pin = to_lower_copy(pt.get<string>("has_pin", "false")) == "true";
         if (event == "start_print") {
             attr->printing_file = pt.get<string>("filename", "");
-            attr->elapsed_time = pt.get<float>("elapsed_time", 0);
-            attr->start_time = wxDateTime::Now().GetTicks() - attr->elapsed_time;
+        }
+        if (event == "start_print" || event == "resume_print") {
+            attr->elapsed_time   = pt.get<float>("elapsed_time", 0);
+            attr->start_time     = wxDateTime::Now().GetTicks() - static_cast<time_t>(attr->elapsed_time);
             attr->estimated_time = pt.get<string>("estimated_time", "");
         }
         if (event == "spool_data_change") {

@@ -451,8 +451,8 @@ wxSizer* ZaxeDevice::createDetailedInfo()
     auto ip_addr     = create_label(bold_font, _L("IP Address"));
     auto ip_addr_val = create_label(normal_font, nm->ip);
 
-    auto remaining_filament     = create_label(bold_font, _L("Remaining Filament"));
-    remaining_filament_val = create_label(normal_font, get_remaining_filament());
+    auto remaining_filament = create_label(bold_font, _L("Remaining Filament"));
+    remaining_filament_val  = create_label(normal_font, get_remaining_filament());
 
     auto sizer = new wxFlexGridSizer(7, 2, FromDIP(5), FromDIP(15));
     sizer->Add(printing_file, 0, wxEXPAND);
@@ -494,6 +494,7 @@ void ZaxeDevice::updateStates()
     updateAvatar();
     updateIconButtons();
     setFilamentPresent(nm->states->filamentPresent);
+    updatePrintInfo();
 
     Layout();
     Refresh();
@@ -519,12 +520,12 @@ void ZaxeDevice::updateProgressLine()
 
 void ZaxeDevice::updateTimer()
 {
-    if (!nm->states->bedOccupied && !nm->states->heating && !nm->states->paused && nm->states->printing) {
+    if (!nm->states->bedOccupied && !nm->states->heating && !nm->states->paused && !nm->states->hasError && nm->states->printing) {
         if (!timer->IsRunning()) {
             timer->Start(1000);
         }
     }
-    if (!nm->states->printing && timer->IsRunning()) {
+    if ((nm->states->hasError || nm->states->paused || !nm->states->printing) && timer->IsRunning()) {
         timer->Stop();
     }
 }
@@ -588,9 +589,9 @@ void ZaxeDevice::updateStatusText()
             desc = wxString::Format("%s... %d/%d", desc, nm->attr->current_layer, nm->attr->total_layers);
         }
     } else if (nm->states->has_update && capabilities.hasRemoteUpdate() && !nm->isBusy()) {
-        desc             = _L("Update available");
-        desc_color       = "#F4B617";
-        desc_icon        = "zaxe_warning_1";
+        desc       = _L("Update available");
+        desc_color = "#F4B617";
+        desc_icon  = "zaxe_warning_1";
     } else if (nm->states->uploading_zaxe_file) {
         if (nm->upload_progress_info->transferred_size.empty() || nm->upload_progress_info->total_size.empty()) {
             desc = _L("Please wait...");
@@ -621,7 +622,7 @@ void ZaxeDevice::updateAvatar()
 {
     if (capabilities.hasSnapshot()) {
         if (nm->states->heating || nm->states->printing || nm->states->calibrating || nm->states->bedOccupied) {
-            //nm->downloadAvatar();
+            // nm->downloadAvatar();
         } else {
             avatar->SetBitmap(default_avatar);
             avatar_rect->Layout();
@@ -797,7 +798,12 @@ void ZaxeDevice::setNozzle(const std::string& nozzle)
     Refresh();
 }
 
-void ZaxeDevice::setFileStart() { printing_file_val->SetLabel(wxString(nm->attr->printing_file.c_str(), wxConvUTF8)); }
+void ZaxeDevice::setFileStart()
+{
+    printing_file_val->SetLabel(wxString(nm->attr->printing_file.c_str(), wxConvUTF8));
+    Refresh();
+    Layout();
+}
 
 bool ZaxeDevice::has(const wxString& search_text)
 {
@@ -916,7 +922,8 @@ void ZaxeDevice::onPinChanged()
     Refresh();
 }
 
-void ZaxeDevice::onLayerChanged() {
+void ZaxeDevice::onLayerChanged()
+{
     updateStatusText();
     Layout();
     Refresh();

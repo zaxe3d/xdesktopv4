@@ -97,7 +97,7 @@ struct MachineAttributes // attributes.
     bool snapshot_URL;
     float elapsed_time;
     string estimated_time;
-    int start_time;
+    time_t start_time;
     float nozzle_temp;
     float target_nozzle_temp;
     float bed_temp;
