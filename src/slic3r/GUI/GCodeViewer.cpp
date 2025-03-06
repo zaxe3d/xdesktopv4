@@ -4339,7 +4339,7 @@ void GCodeViewer::render_all_plates_stats(const std::vector<const GCodeProcessor
         ImGui::SameLine();
         imgui.text(_u8L("Total time") + ":");
         ImGui::SameLine();
-        imgui.text(short_time(get_time_dhms(total_time_all_plates)));
+        imgui.text(short_time(get_time_dhms(total_time_all_plates)) + " + " + _u8L("Calibration") + " " + _u8L("Time"));
 
         ImGui::Dummy({ window_padding, window_padding });
         ImGui::SameLine();
@@ -5659,7 +5659,7 @@ void GCodeViewer::render_legend(float &legend_height, int canvas_width, int canv
         ImGui::SameLine();
         imgui.text(total_str + ":");
         ImGui::SameLine(max_len);
-        imgui.text(short_time(get_time_dhms(time_mode.time)));
+        imgui.text(short_time(get_time_dhms(time_mode.time))  + " + " + _u8L("Calibration") + " " + _u8L("Time"));
 
         auto show_mode_button = [this, &imgui, can_show_mode_button](const wxString& label, PrintEstimatedStatistics::ETimeMode mode) {
             if (can_show_mode_button(mode)) {
