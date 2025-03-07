@@ -506,7 +506,7 @@ void ZaxeDevice::updateProgressLine()
     progress_line->Show(show);
     updateProgressValue();
 
-    if (nm->states->calibrating) {
+    if (nm->states->is_calibrating()) {
         progress_bar->SetProgressBackgroundColour(progress_calib_color);
     } else if (nm->states->uploading_zaxe_file) {
         progress_bar->SetProgressBackgroundColour(progress_uploading_color);
@@ -562,7 +562,7 @@ void ZaxeDevice::updateStatusText()
         title = _L("Updating");
     } else if (nm->states->bedOccupied) {
         title = _L("Bed is occupied");
-    } else if (nm->states->calibrating) {
+    } else if (nm->states->is_calibrating()) {
         title = _L("Calibrating");
     } else if (nm->states->heating) {
         title = _L("Heating");
@@ -583,6 +583,7 @@ void ZaxeDevice::updateStatusText()
     } else if (!nm->isBusy() && nm->states->bedOccupied) {
         desc       = _L("Please take your print!");
         desc_color = progress_success_color;
+    } else if (nm->states->is_calibrating() || nm->states->heating) {
     } else if (nm->states->printing) {
         desc = _L("Processing");
         if (nm->attr->total_layers >= 0 && nm->attr->current_layer >= 0) {
@@ -653,8 +654,8 @@ void ZaxeDevice::updatePrintInfo()
     printing_file->Show(is_expanded && nm->states->printing);
     printing_file_val->Show(is_expanded && nm->states->printing);
 
-    printing_time->Show(is_expanded && nm->states->printing);
-    printing_time_val->Show(is_expanded && nm->states->printing);
+    printing_time->Show(is_expanded && nm->states->printing && !nm->states->is_calibrating());
+    printing_time_val->Show(is_expanded && nm->states->printing && !nm->states->is_calibrating());
 }
 
 void ZaxeDevice::onTemperatureUpdate()

@@ -2381,7 +2381,9 @@ void GCode::_do_export(Print& print, GCodeOutputStream &file, ThumbnailsGenerato
         file.write(m_writer.set_chamber_temperature(max_chamber_temp, true)); // set chamber_temperature
 
     // Write the custom start G-code
+    file.writeln("ZXMSGC 0");
     file.writeln(machine_start_gcode);
+    file.writeln("ZXMSGC 1");
 
     //BBS: gcode writer doesn't know where the real position of extruder is after inserting custom gcode
     m_writer.set_current_position_clear(false);
@@ -2667,7 +2669,9 @@ void GCode::_do_export(Print& print, GCodeOutputStream &file, ThumbnailsGenerato
                 file.writeln(this->placeholder_parser_process("filament_end_gcode", end_gcode, extruder_id, &config));
             }
         }
+        file.writeln("ZXMEGC 0");
         file.writeln(this->placeholder_parser_process("machine_end_gcode", print.config().machine_end_gcode, m_writer.extruder()->id(), &config));
+        file.writeln("ZXMEGC 1");
     }
     file.write(m_writer.update_progress(m_layer_count, m_layer_count, true)); // 100%
     file.write(m_writer.postamble());
