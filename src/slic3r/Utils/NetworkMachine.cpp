@@ -150,6 +150,7 @@ void NetworkMachine::onWSRead(string message)
             states->has_update     = states->ptreeStringtoBool(pt, "has_update");
             states->filamentPresent= attr->firmware_version.GetMinor() >= 3 && attr->firmware_version.GetMinor() >= 5 // Z3 and FW>=3.5
                                          ? states->ptreeStringtoBool(pt, "is_filament_present") : true;
+            states->machine_start_gcode_active = states->ptreeStringtoBool(pt, "is_machine_start_gcode_active");
         }
 
         if (event == "print_progress" || event == "temperature_progress" || event == "calibration_progress") {
@@ -169,14 +170,16 @@ void NetworkMachine::onWSRead(string message)
             attr->nozzle = pt.get<string>("nozzle", "0.4");
         if (event == "pin_change")
             attr->has_pin = to_lower_copy(pt.get<string>("has_pin", "false")) == "true";
+        
         if (event == "start_print") {
             attr->printing_file = pt.get<string>("filename", "");
         }
-        if (event == "start_print" || event == "resume_print") {
+        if (event == "start_print" || event == "sync_time_estimation") {
             attr->elapsed_time   = pt.get<float>("elapsed_time", 0);
             attr->start_time     = wxDateTime::Now().GetTicks() - static_cast<time_t>(attr->elapsed_time);
             attr->estimated_time = pt.get<string>("estimated_time", "");
         }
+    
         if (event == "spool_data_change") {
             attr->has_nfc_spool = to_lower_copy(pt.get<string>("has_nfc_spool", "false")) == "true";
             attr->filament_color = to_lower_copy(pt.get<string>("filament_color", "unknown"));
@@ -191,6 +194,7 @@ void NetworkMachine::onWSRead(string message)
             attr->current_layer = pt.get<int>("current", -1);
             attr->total_layers = pt.get<int>("total", -1);
         }
+
         if (event == "hello") { // gather up all the events up untill here.
             MachineEvent evt(EVT_MACHINE_OPEN, this, wxID_ANY); // ? get window id here ?; // ? get window id here ?
             evt.SetEventObject(this->m_evtHandler);

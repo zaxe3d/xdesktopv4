@@ -74,9 +74,13 @@ struct MachineStates { // states.
     bool ledsSwitchedOn;
     bool updatingFw;
     bool has_update;
+    bool machine_start_gcode_active;
+
     inline bool ptreeStringtoBool(ptree pt, string prop) {
         return pt.get<string>(prop, "False") == "True";
     }
+
+    bool is_calibrating() { return calibrating || (machine_start_gcode_active && printing && !heating); }
 };
 
 struct MachineAttributes // attributes.
