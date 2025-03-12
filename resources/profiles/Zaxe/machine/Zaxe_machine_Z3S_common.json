@@ -4,6 +4,10 @@
   "from": "system",
   "instantiation": "false",
   "inherits": "Zaxe_machine_Z3_family_common",
+  "default_filament_profile": [
+        "Zaxe PLA @Z3S"
+  ],
+  "default_print_profile": "0.15mm, Recommended @Z3S 0.4mm",
   "machine_max_speed_x": [
     "300",
     "300"

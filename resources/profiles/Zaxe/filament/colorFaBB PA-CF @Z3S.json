@@ -1,6 +1,6 @@
 {
     "type": "filament",
-    "name": "colorFaBB PA-CF",
+    "name": "colorFaBB PA-CF @Z3S",
     "inherits": "colorfabb_pa_cf",
     "from": "system",
     "setting_id": "GFSA45_01",

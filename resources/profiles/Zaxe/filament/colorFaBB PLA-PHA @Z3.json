@@ -1,0 +1,14 @@
+{
+    "type": "filament",
+    "name": "colorFaBB PLA-PHA @Z3",
+    "inherits": "colorfabb_pla_pha",
+    "from": "system",
+    "setting_id": "GFSA46_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}
+

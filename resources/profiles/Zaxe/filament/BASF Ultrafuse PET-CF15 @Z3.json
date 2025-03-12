@@ -1,0 +1,10 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse PET-CF15 @Z3",
+    "inherits": "basf_ultrafuse_pet_cf15",
+    "from": "system",
+    "setting_id": "GFSA22_01",
+    "instantiation": "true",
+    "compatible_printers": [
+    ]
+}

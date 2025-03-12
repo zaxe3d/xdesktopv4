@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "Kimya Petg-Carbon @Z3",
+    "inherits": "kimya_petg_carbon",
+    "from": "system",
+    "setting_id": "GFSA33_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}

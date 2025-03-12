@@ -1,0 +1,14 @@
+{
+    "type": "filament",
+    "name": "colorFaBB Pa Neat @Z3",
+    "inherits": "colorfabb_pa_neat",
+    "from": "system",
+    "setting_id": "GFSA47_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}
+

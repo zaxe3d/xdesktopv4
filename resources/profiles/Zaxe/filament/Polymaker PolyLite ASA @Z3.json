@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolyLite ASA @Z3",
+    "inherits": "polymaker_polylite_asa",
+    "from": "system",
+    "setting_id": "GFSA24_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}

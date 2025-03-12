@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "BASF Ultrafuse PA @Z3",
+    "inherits": "basf_ultrafuse_pa",
+    "from": "system",
+    "setting_id": "GFSA18_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}

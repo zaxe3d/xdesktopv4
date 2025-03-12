@@ -1,0 +1,10 @@
+{
+    "type": "filament",
+    "name": "Basf Ultrafuse 316L @Z3",
+    "inherits": "basf_ultrafuse_316l",
+    "from": "system",
+    "setting_id": "GFSA20_01",
+    "instantiation": "true",
+    "compatible_printers": [
+    ]
+}

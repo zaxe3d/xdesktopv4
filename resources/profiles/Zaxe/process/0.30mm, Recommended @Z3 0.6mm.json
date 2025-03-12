@@ -1,0 +1,11 @@
+{
+  "type": "process",
+  "name": "0.30mm, Recommended @Z3 0.6mm",
+  "from": "system",
+  "instantiation": "true",
+  "inherits": "zaxe_process_Z3_0.6_nozzle_common",
+  "compatible_printers": [
+    "Zaxe Z3 - 0.6mm nozzle"
+  ],
+  "layer_height":"0.3"
+}
