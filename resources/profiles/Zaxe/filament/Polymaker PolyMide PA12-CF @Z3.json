@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolyMide PA12-CF @Z3",
+    "inherits": "polymaker_polymide_pa12_cf",
+    "from": "system",
+    "setting_id": "GFSA31_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}

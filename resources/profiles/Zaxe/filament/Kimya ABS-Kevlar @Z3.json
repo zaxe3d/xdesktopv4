@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "Kimya ABS-Kevlar @Z3",
+    "inherits": "kimya_abs_kevlar",
+    "from": "system",
+    "setting_id": "GFSA36_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}

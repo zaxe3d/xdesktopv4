@@ -1,0 +1,12 @@
+{
+  "type": "machine_model",
+  "name": "Z3",
+  "model_id": "Z3",
+  "nozzle_diameter": "0.4;0.6;0.8",
+  "machine_tech": "FFF",
+  "family": "Z3",
+  "bed_model": "z3_bed_v3.stl",
+  "bed_texture": "",
+  "hotend_model": "",
+  "default_materials": "Zaxe ABS @Z3;Zaxe ASA @Z3;Zaxe FLEX @Z3;Zaxe PETG @Z3;Zaxe PLA @Z3"
+}

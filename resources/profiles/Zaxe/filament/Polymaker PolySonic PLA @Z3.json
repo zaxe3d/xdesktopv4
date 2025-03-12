@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "Polymaker PolySonic PLA @Z3",
+    "inherits": "polymaker_polysonic_pla",
+    "from": "system",
+    "setting_id": "GFSA32_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}

@@ -19,9 +19,9 @@
     "auxiliary_fan": "1",
     "bed_exclude_area": [],
     "default_filament_profile": [
-        "Zaxe PLA @Z3S"
+        "Zaxe PLA @Z3"
     ],
-    "default_print_profile": "0.15mm, Recommended @Z3S 0.4mm",
+    "default_print_profile": "0.15mm, Recommended @Z3 0.4mm",
     "extruder_colour": [
         "#018001"
     ],

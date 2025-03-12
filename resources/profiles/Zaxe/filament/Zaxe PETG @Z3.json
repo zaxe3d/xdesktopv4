@@ -1,0 +1,13 @@
+{
+    "type": "filament",
+    "name": "Zaxe PETG @Z3",
+    "inherits": "Zaxe_filament_petg",
+    "from": "system",
+    "setting_id": "GFSA04_01",
+    "instantiation": "true",
+    "compatible_printers": [
+        "Zaxe Z3 - 0.4mm nozzle",
+        "Zaxe Z3 - 0.6mm nozzle",
+        "Zaxe Z3 - 0.8mm nozzle"
+    ]
+}
