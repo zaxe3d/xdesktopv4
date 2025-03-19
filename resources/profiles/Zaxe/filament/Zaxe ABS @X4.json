@@ -1,11 +1,32 @@
 {
-    "type": "filament",
-    "name": "Zaxe ABS @X4",
-    "inherits": "Zaxe_filament_abs",
-    "from": "system",
-    "setting_id": "GFSA01_03",
-    "instantiation": "true",
-    "compatible_printers": [
-      "Zaxe X4 - 0.4mm nozzle"
-    ]
+  "type": "filament",
+  "name": "Zaxe ABS @X4",
+  "inherits": "Zaxe_filament_abs",
+  "from": "system",
+  "setting_id": "GFSA01_03",
+  "instantiation": "true",
+  "compatible_printers": [
+    "Zaxe X4 - 0.4mm nozzle"
+  ],
+  "filament_max_volumetric_speed": [
+    "24"
+  ],
+  "pressure_advance": [
+    "0.045"
+  ],
+  "filament_flow_ratio": [
+    "0.96"
+  ],
+  "nozzle_temperature": [
+    "255"
+  ],
+  "nozzle_temperature_initial_layer": [
+    "255"
+  ],
+  "hot_plate_temp": [
+    "100"
+  ],
+  "hot_plate_temp_initial_layer": [
+    "100"
+  ]
 }
