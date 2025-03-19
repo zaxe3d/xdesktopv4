@@ -7,5 +7,26 @@
   "instantiation": "true",
   "compatible_printers": [
     "Zaxe X4 - 0.4mm nozzle"
+  ],
+  "filament_max_volumetric_speed": [
+    "24"
+  ],
+  "pressure_advance": [
+    "0.04"
+  ],
+  "filament_flow_ratio": [
+    "0.98"
+  ],
+  "nozzle_temperature": [
+    "255"
+  ],
+  "nozzle_temperature_initial_layer": [
+    "255"
+  ],
+  "hot_plate_temp": [
+    "100"
+  ],
+  "hot_plate_temp_initial_layer": [
+    "100"
   ]
 }

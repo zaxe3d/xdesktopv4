@@ -24,30 +24,36 @@
     "60"
   ],
   "slow_down_layer_time": [
-    "8"
+    "4"
   ],
   "slow_down_min_speed": [
-    "10"
+    "20"
   ],
   "filament_max_volumetric_speed": [
     "12"
   ],
   "enable_overhang_bridge_fan": [
-      "0"
+    "1"
+  ],
+  "overhang_fan_speed": [
+    "100"
+  ],
+  "overhang_fan_threshold": [
+    "1"
   ],
   "enable_pressure_advance": [
-      "1"
+    "1"
   ],
   "pressure_advance": [
-      "0.036"
+    "0.036"
   ],
   "filament_flow_ratio": [
-      "0.95"
+    "0.95"
   ],
   "nozzle_temperature": [
-      "215"
+    "215"
   ],
   "nozzle_temperature_initial_layer": [
-      "220"
+    "220"
   ]
 }
