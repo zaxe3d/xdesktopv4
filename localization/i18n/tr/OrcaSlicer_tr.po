@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-17 10:39+0300\n"
+"POT-Creation-Date: 2025-03-20 16:39+0300\n"
 "PO-Revision-Date: 2024-10-01 22:31+0300\n"
 "Last-Translator: GlauTech\n"
 "Language-Team: \n"
@@ -4123,6 +4123,9 @@ msgstr "Toplam Tahmini"
 msgid "Total time"
 msgstr "Toplam süre"
 
+msgid "Time"
+msgstr "Zaman"
+
 msgid "Total cost"
 msgstr "Toplam tutar"
 
@@ -4137,9 +4140,6 @@ msgstr "itibaren"
 
 msgid "Color Scheme"
 msgstr "Renk Şeması"
-
-msgid "Time"
-msgstr "Zaman"
 
 msgid "Percent"
 msgstr "Yüzde"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-17 10:39+0300\n"
+"POT-Creation-Date: 2025-03-20 16:39+0300\n"
 "PO-Revision-Date: 2024-10-26 10:01+0900\n"
 "Last-Translator: ElectricalBoy "
 "<15651807+ElectricalBoy@users.noreply.github.com>\n"
@@ -4040,6 +4040,9 @@ msgstr "추정치 합계"
 msgid "Total time"
 msgstr "시간 합계"
 
+msgid "Time"
+msgstr "시간"
+
 msgid "Total cost"
 msgstr "총 비용"
 
@@ -4054,9 +4057,6 @@ msgstr "부터"
 
 msgid "Color Scheme"
 msgstr "색 구성표"
-
-msgid "Time"
-msgstr "시간"
 
 msgid "Percent"
 msgstr "퍼센트"

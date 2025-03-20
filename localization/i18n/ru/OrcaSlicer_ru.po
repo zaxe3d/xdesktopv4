@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OrcaSlicer V2.2.0-beta2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-17 10:39+0300\n"
+"POT-Creation-Date: 2025-03-20 16:39+0300\n"
 "PO-Revision-Date: 2024-09-25 22:36+0700\n"
 "Last-Translator: \n"
 "Language-Team: Andylg <andylg@yandex.ru>\n"
@@ -4198,6 +4198,9 @@ msgstr "Общая оценка"
 msgid "Total time"
 msgstr "Общее время печати"
 
+msgid "Time"
+msgstr "Время"
+
 msgid "Total cost"
 msgstr "Общая стоимость"
 
@@ -4212,9 +4215,6 @@ msgstr "с"
 
 msgid "Color Scheme"
 msgstr "Цветовая схема"
-
-msgid "Time"
-msgstr "Время"
 
 msgid "Percent"
 msgstr "%"

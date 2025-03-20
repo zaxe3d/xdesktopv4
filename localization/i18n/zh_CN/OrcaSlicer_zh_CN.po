@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slic3rPE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-17 10:39+0300\n"
+"POT-Creation-Date: 2025-03-20 16:39+0300\n"
 "PO-Revision-Date: 2024-07-28 07:12+0000\n"
 "Last-Translator: Handle <mail@bysb.net>\n"
 "Language-Team: \n"
@@ -3962,6 +3962,9 @@ msgstr "总预估"
 msgid "Total time"
 msgstr "总时间"
 
+msgid "Time"
+msgstr "时间"
+
 msgid "Total cost"
 msgstr "总成本"
 
@@ -3976,9 +3979,6 @@ msgstr "从"
 
 msgid "Color Scheme"
 msgstr "颜色方案"
-
-msgid "Time"
-msgstr "时间"
 
 msgid "Percent"
 msgstr "百分比"

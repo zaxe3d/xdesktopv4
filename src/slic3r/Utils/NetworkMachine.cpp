@@ -212,13 +212,13 @@ void NetworkMachine::onWSRead(string message)
 void NetworkMachine::unloadFilament()
 {
     request("filament_unload");
-    _push_notification(_u8L("Filament Unload"));
+    _push_notification(_L("Filament Unload"));
 }
 
 void NetworkMachine::sayHi()
 {
     request("say_hi");
-    _push_notification(_u8L("Say Hi"));
+    _push_notification(_L("Say Hi"));
 }
 
 void NetworkMachine::cancel(const std::string& pin)
@@ -227,31 +227,31 @@ void NetworkMachine::cancel(const std::string& pin)
     pt.put("request", "cancel");
     pt.put("pin", pin);
     send(pt);
-    _push_notification(_u8L("Cancel"));
+    _push_notification(_L("Cancel"));
 }
 
 void NetworkMachine::pause()
 {
     request("pause");
-    _push_notification(_u8L("Pause"));
+    _push_notification(_L("Pause"));
 }
 
 void NetworkMachine::resume()
 {
     request("resume");
-    _push_notification(_u8L("Resume"));
+    _push_notification(_L("Resume"));
 }
 
 void NetworkMachine::togglePreheat()
 {
     request("toggle_preheat");
-    _push_notification(_u8L("Toggle Preheat"));
+    _push_notification(_L("Toggle Preheat"));
 }
 
 void NetworkMachine::toggleLeds()
 {
     request("toggle_leds");
-    _push_notification(_u8L("Toggle Leds"));
+    _push_notification(_L("Toggle Leds"));
 }
 
 void NetworkMachine::changeName(const char *new_name)
@@ -261,13 +261,13 @@ void NetworkMachine::changeName(const char *new_name)
     pt.put("request", "change_name");
     pt.put("name", new_name);
     send(pt);
-    _push_notification(_u8L("Change Name"));
+    _push_notification(_L("Change Name"));
 }
 
 void NetworkMachine::fw_update()
 {
     request("fw_update");
-    _push_notification(_u8L("Firmware Update"));
+    _push_notification(_L("Firmware Update"));
 }
 
 void NetworkMachine::request(const char* command)
@@ -498,7 +498,7 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
             ->get_notification_manager()
             ->push_notification(GUI::NotificationType::CustomNotification,
                                 GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
-                                _u8L("Print cannot be started, internal error."));
+                                _L("Print cannot be started, internal error.").ToStdString());
         return;
     }
 
@@ -547,7 +547,7 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
                                           name % ip % res;
         GUI::wxGetApp().plater()->get_notification_manager()->push_notification(GUI::NotificationType::CustomNotification,
                                                                            GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
-                                                                           _u8L("Print cannot be started, internal error."));
+                                                                           _L("Print cannot be started, internal error.").ToStdString());
 
         states->uploading_zaxe_file = false;
         MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, "states_update", {}, this, wxID_ANY);
@@ -560,6 +560,83 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
         wxPostEvent(this->m_evtHandler, evt);
     }
 
+    ::curl_free(encodedFilename);
+    ::curl_easy_cleanup(curl_handle);
+    curl_handle = nullptr;
+}
+
+void NetworkMachine::uploadHTTPS(const char *filename, const char *uploadAs)
+{
+    Http::tls_global_init();
+    if (curl_handle) {
+        ::curl_easy_reset(curl_handle);
+    } else {
+        curl_handle = ::curl_easy_init();
+    }
+
+    if (!curl_handle) {
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("Print cannot be started, internal error.").ToStdString());
+        return;
+    }
+
+    states->uploading_zaxe_file = true;
+    xfercb(this, 0.0, 0.0, 0.0, 0.0);
+
+    fs::path path = fs::path(filename);
+    boost::system::error_code ec;
+    boost::uintmax_t filesize = file_size(path, ec);
+    
+    std::vector<char> fileData;
+    if (!ec) {
+        std::ifstream file(path.string() , std::ios::binary);
+        fileData.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    }
+
+    std::string pFilename = *uploadAs ? uploadAs : path.filename().string();
+    char *encodedFilename = ::curl_easy_escape(curl_handle, pFilename.c_str(), pFilename.length());
+
+    std::string url = "https://" + ip + ":" + std::to_string(m_httpsPort) + "/upload/" + std::string(encodedFilename);
+    
+    struct curl_slist *headers = nullptr;
+    headers = curl_slist_append(headers, "Content-Type: application/octet-stream");
+    headers = curl_slist_append(headers, "Expect:");
+    
+    ::curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
+    ::curl_easy_setopt(curl_handle, CURLOPT_USERPWD, "zaxe:zaxe");
+    ::curl_easy_setopt(curl_handle, CURLOPT_POST, 1L);
+    ::curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, headers);
+    ::curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, fileData.data());
+    ::curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDSIZE, fileData.size());
+    ::curl_easy_setopt(curl_handle, CURLOPT_NOPROGRESS, 0L);
+    ::curl_easy_setopt(curl_handle, CURLOPT_VERBOSE, get_logging_level() >= 5);
+    ::curl_easy_setopt(curl_handle, CURLOPT_XFERINFOFUNCTION, xfercb);
+    ::curl_easy_setopt(curl_handle, CURLOPT_PROGRESSDATA, static_cast<void *>(this));
+    ::curl_easy_setopt(curl_handle, CURLOPT_USE_SSL, CURLUSESSL_ALL);
+    ::curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYPEER, 0L);
+    ::curl_easy_setopt(curl_handle, CURLOPT_SSL_VERIFYHOST, 0L);
+    ::curl_easy_setopt(curl_handle, CURLOPT_SSLVERSION, CURL_SSLVERSION_TLSv1_2);
+
+    auto res = curl_easy_perform(curl_handle);
+    if (CURLE_OK != res) {
+        BOOST_LOG_TRIVIAL(warning) << boost::format(
+                                          "Networkmachine - Couldn't connect to server [%1% - %2%] for uploading print. ERROR_CODE: %3%") %
+                                          name % ip % res;
+        GUI::wxGetApp().plater()->get_notification_manager()->push_notification(GUI::NotificationType::CustomNotification,
+                                                                           GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                                                           _L("Print cannot be started, internal error.").ToStdString());
+    }
+    
+    states->uploading_zaxe_file = false;
+    MachineNewMessageEvent evt(EVT_MACHINE_NEW_MESSAGE, (res == CURLE_OK) ? "upload_done" : "states_update", {}, this, wxID_ANY);
+    evt.SetEventObject(this->m_evtHandler);
+    wxPostEvent(this->m_evtHandler, evt);
+    
+    curl_slist_free_all(headers);
     ::curl_free(encodedFilename);
     ::curl_easy_cleanup(curl_handle);
     curl_handle = nullptr;

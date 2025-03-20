@@ -177,6 +177,7 @@ public:
     void resume();
     void uploadHTTP(const char *filename, const char *uploadAs = "");
     void uploadFTP(const char *filename, const char *uploadAs = "");
+    void uploadHTTPS(const char *filename, const char *uploadAs = "");
     void upload(const char *filename, const char *uploadAs = "");
     void downloadAvatar();
     void changeName(const char *new_name);
@@ -211,9 +212,11 @@ private:
 #ifdef _WIN32
     USHORT m_httpPort = 80;
     USHORT m_ftpPort = 9494;
+    USHORT m_httpsPort = 9999;
 #else
     ushort m_httpPort = 80;
     ushort m_ftpPort = 9494;
+    ushort m_httpsPort = 9999;
 #endif
 
     // Websocket callbacks.

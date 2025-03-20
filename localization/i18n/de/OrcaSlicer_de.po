@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-17 10:39+0300\n"
+"POT-Creation-Date: 2025-03-20 16:39+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Heiko Liebscher <hliebschergmail.com>\n"
 "Language-Team: \n"
@@ -4197,6 +4197,9 @@ msgstr "Gesamtschätzung"
 msgid "Total time"
 msgstr "Gesamtdauer"
 
+msgid "Time"
+msgstr "Zeit"
+
 msgid "Total cost"
 msgstr "Geamtkosten"
 
@@ -4211,9 +4214,6 @@ msgstr "von"
 
 msgid "Color Scheme"
 msgstr "Farbschema"
-
-msgid "Time"
-msgstr "Zeit"
 
 msgid "Percent"
 msgstr "Prozent"
