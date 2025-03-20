@@ -230,7 +230,7 @@ wxSizer* ZaxeDevice::createHeader()
     highlight_icon->Bind(wxEVT_BUTTON, [&](auto& e) {
         wxGetApp().plater()->get_notification_manager()->push_notification(NotificationType::CustomNotification,
                                                                            NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
-                                                                           _u8L("Printer with blinking star is selected."));
+                                                                           _L("Printer with blinking star is selected.").ToStdString());
     });
 
     return sizer;
@@ -718,7 +718,7 @@ void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<Za
         }
     }
 
-    print_btn->SetLabel(print_btn_mode == PrintBtnMode::Prepare ? _L("Prepare") : L("Print now"));
+    print_btn->SetLabel(print_btn_mode == PrintBtnMode::Prepare ? _L("Prepare") : _L("Print now"));
     Layout();
     Refresh();
 }
@@ -912,8 +912,9 @@ void ZaxeDevice::onUploadDone()
     updateStates();
     wxGetApp().plater()->get_notification_manager()->push_notification(NotificationType::CustomNotification,
                                                                        NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
-                                                                       _u8L("Your print job has been sent to the device. Printing will "
-                                                                            "start shortly."));
+                                                                       _L("Your print job has been sent to the device. Printing will "
+                                                                          "start shortly.")
+                                                                           .ToStdString());
 }
 
 void ZaxeDevice::onPinChanged()
