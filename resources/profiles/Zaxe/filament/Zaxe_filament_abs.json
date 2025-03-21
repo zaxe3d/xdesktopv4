@@ -32,6 +32,12 @@
   "hot_plate_temp_initial_layer": [
     "100"
   ],
+  "textured_plate_temp": [
+    "105"
+  ],
+  "textured_plate_temp_initial_layer": [
+    "100"
+  ],
   "slow_down_layer_time": [
     "4"
   ],

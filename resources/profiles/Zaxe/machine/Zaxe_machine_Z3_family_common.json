@@ -5,6 +5,7 @@
     "from": "system",
     "instantiation": "false",
     "zaxe_bed_leveling": "1",
+    "support_multi_bed_types": "1",
     "nozzle_diameter": [
         "0.4"
     ],
