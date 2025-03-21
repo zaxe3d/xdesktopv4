@@ -753,7 +753,7 @@ BedType Preset::get_default_bed_type(PresetBundle* preset_bundle)
     } else if (model_id == "C11") {
         return BedType::btPEI;
     }
-    return BedType::btPEI;
+    return BedType::btPTE;
 }
 
 bool Preset::has_cali_lines(PresetBundle* preset_bundle)
