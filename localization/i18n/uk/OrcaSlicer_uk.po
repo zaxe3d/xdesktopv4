@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-20 16:39+0300\n"
+"POT-Creation-Date: 2025-03-21 14:42+0300\n"
 "PO-Revision-Date: 2024-06-30 23:05+0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -4575,6 +4575,12 @@ msgstr "Майстер налаштувань"
 
 msgid "Show Configuration Folder"
 msgstr "Показати папку конфігурації"
+
+msgid "Custom IP Configuration"
+msgstr ""
+
+msgid "Add / Remove manual devices by IP to machine carousel"
+msgstr ""
 
 msgid "Show Tip of the Day"
 msgstr "Показати Раду дня"
@@ -16776,6 +16782,15 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure?"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Remove Selection"
+msgstr ""
+
+msgid "Enter Custom IP"
 msgstr ""
 
 #, c-format, boost-format

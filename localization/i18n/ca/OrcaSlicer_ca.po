@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-20 16:39+0300\n"
+"POT-Creation-Date: 2025-03-21 14:42+0300\n"
 "PO-Revision-Date: 2024-07-07 18:43+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -4590,6 +4590,12 @@ msgstr "Assistent per a la instal·lació"
 
 msgid "Show Configuration Folder"
 msgstr "Mostra la Carpeta Configuració"
+
+msgid "Custom IP Configuration"
+msgstr ""
+
+msgid "Add / Remove manual devices by IP to machine carousel"
+msgstr ""
 
 msgid "Show Tip of the Day"
 msgstr "Mostra Consell del dia"
@@ -17002,6 +17008,15 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure?"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Remove Selection"
+msgstr ""
+
+msgid "Enter Custom IP"
 msgstr ""
 
 #, c-format, boost-format

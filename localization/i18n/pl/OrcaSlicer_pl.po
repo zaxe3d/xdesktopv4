@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OrcaSlicer 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-20 16:39+0300\n"
+"POT-Creation-Date: 2025-03-21 14:42+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Krzysztof Morga <tlumaczeniebs@gmail.com>\n"
 "Language-Team: \n"
@@ -4586,6 +4586,12 @@ msgstr "Kreator konfiguracji"
 
 msgid "Show Configuration Folder"
 msgstr "Pokaż folder konfiguracji"
+
+msgid "Custom IP Configuration"
+msgstr ""
+
+msgid "Add / Remove manual devices by IP to machine carousel"
+msgstr ""
 
 msgid "Show Tip of the Day"
 msgstr "Pokaż Poradę Dnia"
@@ -17229,6 +17235,15 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure?"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Remove Selection"
+msgstr ""
+
+msgid "Enter Custom IP"
 msgstr ""
 
 #, c-format, boost-format

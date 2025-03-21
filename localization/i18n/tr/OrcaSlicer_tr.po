@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-20 16:39+0300\n"
+"POT-Creation-Date: 2025-03-21 14:42+0300\n"
 "PO-Revision-Date: 2024-10-01 22:31+0300\n"
 "Last-Translator: GlauTech\n"
 "Language-Team: \n"
@@ -4561,6 +4561,12 @@ msgstr "Kurulum sihirbazı"
 
 msgid "Show Configuration Folder"
 msgstr "Yapılandırma Klasörünü Göster"
+
+msgid "Custom IP Configuration"
+msgstr "Özel IP Yapılandırması"
+
+msgid "Add / Remove manual devices by IP to machine carousel"
+msgstr "Makine karuseline IP ile manuel cihaz ekleme/kaldırma"
 
 msgid "Show Tip of the Day"
 msgstr "Günün İpucunu Göster"
@@ -17224,6 +17230,15 @@ msgstr "Lütfen iptal komutu göndermeden önce pin kodunu giriniz."
 
 msgid "Are you sure?"
 msgstr "Emin misiniz?"
+
+msgid "Add New"
+msgstr "Yeni Ekle"
+
+msgid "Remove Selection"
+msgstr "Seçili IP'yi sil"
+
+msgid "Enter Custom IP"
+msgstr "Özel IP tanımla"
 
 #, c-format, boost-format
 msgid "%s command has been sent to printer!"

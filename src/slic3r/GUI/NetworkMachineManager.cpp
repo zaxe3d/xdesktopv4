@@ -42,11 +42,14 @@ NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
     network_machine_container->Bind(EVT_MACHINE_AVATAR_READY, &NetworkMachineManager::onMachineAvatarReady, this);
 
     broadcast_receiver->Bind(EVT_BROADCAST_RECEIVED, &NetworkMachineManager::onBroadcastReceived, this);
+
+    for (const auto& ip : wxGetApp().app_config->get_custom_ips()) {
+        BOOST_LOG_TRIVIAL(info) << "Found custom ip: " << ip;
+        addMachine(ip, 9294, "Zaxe (m.)");
+    }
 }
 
-NetworkMachineManager::~NetworkMachineManager()
-{
-}
+NetworkMachineManager::~NetworkMachineManager() {}
 
 wxPanel* NetworkMachineManager::createFilterArea()
 {
@@ -546,14 +549,14 @@ std::shared_ptr<ZaxeArchive> NetworkMachineManager::get_archive(bool support_mul
 void NetworkMachineManager::setSelected(NetworkMachine* machine)
 {
     for (auto& dev : device_map) {
-        if(!dev.second){
+        if (!dev.second) {
             continue;
         }
 
         bool is_selected = dev.first == machine->ip;
         dev.second->setSelected(is_selected);
 
-        if(is_selected) {
+        if (is_selected) {
             scrolled_area->GetSizer()->Detach(dev.second);
             scrolled_area->GetSizer()->Prepend(dev.second, 0, wxEXPAND | wxALL, FromDIP(5));
             scrolled_area->Layout();

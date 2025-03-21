@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-20 16:39+0300\n"
+"POT-Creation-Date: 2025-03-21 14:42+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -4604,6 +4604,12 @@ msgstr "Setup Wizard"
 
 msgid "Show Configuration Folder"
 msgstr "Mostra cartella di configurazione"
+
+msgid "Custom IP Configuration"
+msgstr ""
+
+msgid "Add / Remove manual devices by IP to machine carousel"
+msgstr ""
 
 msgid "Show Tip of the Day"
 msgstr "Suggerimento del giorno"
@@ -16877,6 +16883,15 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure?"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Remove Selection"
+msgstr ""
+
+msgid "Enter Custom IP"
 msgstr ""
 
 #, c-format, boost-format

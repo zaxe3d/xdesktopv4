@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-20 16:39+0300\n"
+"POT-Creation-Date: 2025-03-21 14:42+0300\n"
 "PO-Revision-Date: 2024-10-26 10:01+0900\n"
 "Last-Translator: ElectricalBoy "
 "<15651807+ElectricalBoy@users.noreply.github.com>\n"
@@ -4476,6 +4476,12 @@ msgstr "설정 마법사"
 
 msgid "Show Configuration Folder"
 msgstr "설정 폴더 열기"
+
+msgid "Custom IP Configuration"
+msgstr ""
+
+msgid "Add / Remove manual devices by IP to machine carousel"
+msgstr ""
 
 msgid "Show Tip of the Day"
 msgstr "오늘의 팁 표시"
@@ -16542,6 +16548,15 @@ msgid ""
 msgstr ""
 
 msgid "Are you sure?"
+msgstr ""
+
+msgid "Add New"
+msgstr ""
+
+msgid "Remove Selection"
+msgstr ""
+
+msgid "Enter Custom IP"
 msgstr ""
 
 #, c-format, boost-format

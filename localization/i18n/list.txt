@@ -176,6 +176,8 @@ src/slic3r/GUI/NetworkMachineManager.cpp
 src/slic3r/GUI/NetworkMachineManager.hpp
 src/slic3r/GUI/ZaxeDevice.cpp
 src/slic3r/GUI/ZaxeDevice.hpp
+src/slic3r/GUI/CustomIPDialog.cpp
+src/slic3r/GUI/CustomIPDialog.hpp
 src/slic3r/Utils/NetworkMachine.cpp
 src/slic3r/Utils/NetworkMachine.hpp
 src/slic3r/Utils/BroadcastReceiver.cpp

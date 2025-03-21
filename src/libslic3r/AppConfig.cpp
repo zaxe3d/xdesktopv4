@@ -1116,6 +1116,47 @@ void AppConfig::set_recent_projects(const std::vector<std::string>& recent_proje
     }
 }
 
+std::vector<std::string> AppConfig::get_custom_ips() const
+{
+    std::vector<std::string> ret;
+    const auto               it = m_storage.find("custom_ips");
+    if (it != m_storage.end()) {
+        for (const std::map<std::string, std::string>::value_type& item : it->second) {
+            ret.push_back(item.second);
+        }
+    }
+    return ret;
+}
+
+bool AppConfig::set_custom_ips(const std::vector<std::string>& custom_ips)
+{
+    std::string section    = "custom_ips";
+    auto        it_section = m_storage.find(section);
+
+    if (it_section == m_storage.end()) {
+        if (custom_ips.empty())
+            return false;
+        it_section = m_storage.insert({section, {}}).first;
+    }
+
+    auto& dst = it_section->second;
+
+    std::map<std::string, std::string> src;
+    for (size_t i = 0; i < custom_ips.size(); ++i) {
+        const std::string key = std::to_string(i + 1);
+        if (dst[key] != custom_ips[i]) {
+            src[key] = custom_ips[i];
+        }
+    }
+
+    if (src.empty() && dst.size() == custom_ips.size())
+        return false;
+
+    dst     = std::move(src);
+    m_dirty = true;
+    return true;
+}
+
 void AppConfig::set_mouse_device(const std::string& name, double translation_speed, double translation_deadzone,
                                  float rotation_speed, float rotation_deadzone, double zoom_speed, bool swap_yz, bool invert_x, bool invert_y, bool invert_z, bool invert_yaw, bool invert_pitch, bool invert_roll)
 {
