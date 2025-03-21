@@ -70,6 +70,7 @@
 #endif // _WIN32
 #include <slic3r/GUI/CreatePresetsDialog.hpp>
 
+#include "CustomIPDialog.hpp"
 
 namespace Slic3r {
 namespace GUI {
@@ -2143,6 +2144,12 @@ static wxMenu* generate_help_menu()
     // Open Config Folder
     append_menu_item(helpMenu, wxID_ANY, _L("Show Configuration Folder"), _L("Show Configuration Folder"),
         [](wxCommandEvent&) { Slic3r::GUI::desktop_open_datadir_folder(); });
+
+    append_menu_item(helpMenu, wxID_ANY, _L("Custom IP Configuration"), _L("Add / Remove manual devices by IP to machine carousel"),
+                     [](wxCommandEvent&) {
+                         CustomIPDialog dlg;
+                         dlg.ShowModal();
+                     });
 
     append_menu_item(helpMenu, wxID_ANY, _L("Show Tip of the Day"), _L("Show Tip of the Day"), [](wxCommandEvent&) {
         wxGetApp().plater()->get_dailytips()->open();
