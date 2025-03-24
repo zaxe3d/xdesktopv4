@@ -230,7 +230,7 @@ wxSizer* ZaxeDevice::createHeader()
     highlight_icon->Bind(wxEVT_BUTTON, [&](auto& e) {
         wxGetApp().plater()->get_notification_manager()->push_notification(NotificationType::CustomNotification,
                                                                            NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
-                                                                           _L("Printer with blinking star is selected.").ToStdString());
+                                                                           _L("Printer with blinking star is selected.").ToUTF8().data());
     });
 
     return sizer;
@@ -914,7 +914,7 @@ void ZaxeDevice::onUploadDone()
                                                                        NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
                                                                        _L("Your print job has been sent to the device. Printing will "
                                                                           "start shortly.")
-                                                                           .ToStdString());
+                                                                           .ToUTF8().data());
 }
 
 void ZaxeDevice::onPinChanged()
