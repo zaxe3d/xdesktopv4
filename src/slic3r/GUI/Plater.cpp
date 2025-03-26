@@ -806,6 +806,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         combo_printer->edit_btn = edit_btn;
         p->combo_printer = combo_printer;
 
+        /*
         connection_btn = new ScalableButton(p->m_panel_printer_content, wxID_ANY, "monitor_signal_strong");
         connection_btn->SetBackgroundColour(*wxWHITE);
         connection_btn->SetToolTip(_L("Connection"));
@@ -814,14 +815,14 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
                 PhysicalPrinterDialog dlg(this->GetParent());
                 dlg.ShowModal();
             });
-
+        */
         wxBoxSizer* vsizer_printer = new wxBoxSizer(wxVERTICAL);
         wxBoxSizer* hsizer_printer = new wxBoxSizer(wxHORIZONTAL);
 
         vsizer_printer->AddSpacer(FromDIP(16));
         hsizer_printer->Add(combo_printer, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(SidebarProps::ContentMargin()));
         hsizer_printer->Add(edit_btn, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(SidebarProps::ElementSpacing()));
-        hsizer_printer->Add(connection_btn, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(SidebarProps::IconSpacing()));
+        //hsizer_printer->Add(connection_btn, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(SidebarProps::IconSpacing()));
         vsizer_printer->Add(printer_type_title, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(15));
         vsizer_printer->AddSpacer(FromDIP(3));
         vsizer_printer->Add(hsizer_printer, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(15));
@@ -1526,13 +1527,13 @@ void Sidebar::update_all_preset_comboboxes()
 
     if (preset_bundle.use_bbl_network()) {
         //only show connection button for not-BBL printer
-        connection_btn->Hide();
+        //connection_btn->Hide();
         //only show sync-ams button for BBL printer
         ams_btn->Show();
         //update print button default value for bbl or third-party printer
         p_mainframe->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
     } else {
-        connection_btn->Show();
+        //connection_btn->Show();
         ams_btn->Hide();
         auto print_btn_type = MainFrame::ModeSelectType::eSlicePlate;
         wxString url = cfg.opt_string("print_host_webui").empty() ? cfg.opt_string("print_host") : cfg.opt_string("print_host_webui");
