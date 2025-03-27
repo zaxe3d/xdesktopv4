@@ -57,6 +57,6 @@ std::string ZaxeConfigHelper::get_nozzle(const DynamicPrintConfig& cfg, bool upp
 
 std::string ZaxeConfigHelper::get_material(const DynamicPrintConfig& cfg)
 {
-    return get_cfg_value(cfg, "filament_notes", "0", true, ';'); // FIXME change this to filament code later.
+    return get_cfg_value(cfg, "filament_zid", "0", true, ';');
 }
 } // namespace Slic3r

@@ -1967,6 +1967,15 @@ void PrintConfigDef::init_fff_params()
     def->mode = comAdvanced;
     def->set_default_value(new ConfigOptionStrings { "" });
 
+    def = this->add("filament_zid", coStrings);
+    def->label = L("filament_zid");
+    def->tooltip = L("filament_zid");
+    def->multiline = true;
+    def->full_width = true;
+    def->height = 13;
+    def->mode = comAdvanced;
+    def->set_default_value(new ConfigOptionStrings { "" });
+
     //bbs
     def          = this->add("required_nozzle_HRC", coInts);
     def->label   = L("Required nozzle HRC");

@@ -6,6 +6,9 @@
   "inherits": "fdm_filament_asa",
   "filament_id": "GFA02",
   "filament_notes": [
+    ""
+  ],
+  "filament_zid": [
     "zaxe_asa"
   ],
   "fan_cooling_layer_time": [

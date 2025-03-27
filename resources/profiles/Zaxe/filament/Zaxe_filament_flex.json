@@ -6,6 +6,9 @@
   "inherits": "fdm_filament_flex",
   "filament_id": "GFA03",
   "filament_notes": [
+    ""
+  ],
+  "filament_zid": [
     "zaxe_flex"
   ],
   "fan_cooling_layer_time": [
