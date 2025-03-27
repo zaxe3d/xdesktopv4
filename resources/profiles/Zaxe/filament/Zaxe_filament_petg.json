@@ -6,6 +6,9 @@
     "inherits": "fdm_filament_petg",
     "filament_id": "GFA04",
     "filament_notes": [
+        ""
+    ],
+    "filament_zid": [
         "zaxe_petg"
     ],
     "enable_pressure_advance": [
