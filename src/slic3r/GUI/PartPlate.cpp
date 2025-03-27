@@ -40,6 +40,7 @@
 #include "slic3r/GUI/GUI.hpp"
 #include <imgui/imgui_internal.h>
 #include <wx/dcgraph.h>
+#include "MainFrame.hpp"
 using boost::optional;
 namespace fs = boost::filesystem;
 
@@ -3822,7 +3823,11 @@ int PartPlateList::delete_plate(int index)
 		wxGetApp().obj_list()->reload_all_plates();
 	}
 #endif
-	return ret;
+
+    if (get_plate_count() == 1) {
+        wxGetApp().mainframe->set_print_button_to_default(MainFrame::ModeSelectType::eSlicePlate);
+    }
+    return ret;
 }
 
 void PartPlateList::delete_selected_plate()
