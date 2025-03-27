@@ -1340,7 +1340,11 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             p->selected_zaxe_machine = _nm;
             p->machine_manager->setSelected(p->selected_zaxe_machine);
             show_carousel(false, hide_preset_details);
-            wxGetApp().mainframe->set_print_button_to_default(MainFrame::ModeSelectType::eSlicePlate);
+
+            MainFrame::ModeSelectType print_btn_type = wxGetApp().plater()->get_partplate_list().get_plate_count() == 1 ?
+                                                           MainFrame::ModeSelectType::eSlicePlate :
+                                                           MainFrame::ModeSelectType::eSliceAll;
+            wxGetApp().mainframe->set_print_button_to_default(print_btn_type);
         }
 
         e.Skip();
@@ -7437,6 +7441,8 @@ void Plater::priv::on_action_add_plate(SimpleEvent&)
         // BBS set default view
         //q->get_camera().select_view("topfront");
         q->get_camera().requires_zoom_to_plate = REQUIRES_ZOOM_TO_ALL_PLATE;
+
+        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::eSliceAll);
     }
 }
 

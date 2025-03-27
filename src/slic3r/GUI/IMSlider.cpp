@@ -6,6 +6,7 @@
 #define IMGUI_DEFINE_MATH_OPERATORS
 #endif
 #include <imgui/imgui_internal.h>
+#include "MainFrame.hpp"
 
 namespace Slic3r {
 
@@ -357,6 +358,8 @@ void IMSlider::post_ticks_changed_event(Type type)
 {
     m_tick_change_event_type = type;
     m_is_need_post_tick_changed_event = true;
+
+    wxGetApp().mainframe->set_print_button_to_default(MainFrame::ModeSelectType(wxGetApp().mainframe->get_last_slice_mode()));
 }
 
 void IMSlider::add_custom_gcode(std::string custom_gcode)
