@@ -584,6 +584,11 @@ wxBitmap *get_extruder_color_icon(std::string color, std::string label, int icon
         } else {
             if (rounded) {
                 dc.Clear();
+
+                dc.SetBrush(wxBrush(StateColor::darkModeColorFor(*wxWHITE)));
+                dc.SetPen(wxPen(StateColor::darkModeColorFor(*wxWHITE)));
+                dc.DrawRoundedRectangle(0, 0, icon_width, icon_height, 0);
+
                 dc.SetBrush(wxBrush(clr));
                 dc.SetPen(wxPen(clr));
                 int radius = std::min(icon_height, icon_width) / 2;
