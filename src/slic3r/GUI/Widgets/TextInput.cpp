@@ -63,7 +63,7 @@ void TextInput::Create(wxWindow *     parent,
     style &= ~wxRIGHT;
     state_handler.attach({&label_color, & text_color});
     state_handler.update_binds();
-    text_ctrl = new TextCtrl(this, wxID_ANY, text, {4, 4}, wxDefaultSize, style | wxBORDER_NONE | wxTE_PROCESS_ENTER);
+    text_ctrl = new TextCtrl(this, wxID_ANY, text, {icon_first ? 4 : 0, 4}, wxDefaultSize, style | wxBORDER_NONE | wxTE_PROCESS_ENTER);
     text_ctrl->SetFont(Label::Body_14);
     text_ctrl->SetInitialSize(text_ctrl->GetBestSize());
     text_ctrl->SetBackgroundColour(background_color.colorForStates(state_handler.states()));
@@ -165,18 +165,21 @@ void TextInput::DoSetSize(int x, int y, int width, int height, int sizeFlags)
     wxWindow::DoSetSize(x, y, width, height, sizeFlags);
     if (sizeFlags & wxSIZE_USE_EXISTING) return;
     wxSize size = GetSize();
-    wxPoint textPos = {5, 0};
+    wxPoint textPos = {this->icon_first ? 5 : 0, 0};
+    wxSize szIcon = {0, 0};
     if (this->icon.bmp().IsOk()) {
-        wxSize szIcon = this->icon.GetBmpSize();
-        textPos.x += szIcon.x;
+        szIcon = this->icon.GetBmpSize();
     }
     bool align_right = GetWindowStyle() & wxRIGHT;
     if (align_right)
         textPos.x += labelSize.x;
     if (text_ctrl) {
         wxSize textSize = text_ctrl->GetSize();
-        textSize.x = size.x - textPos.x - labelSize.x - 10;
+        textSize.x = size.x - textPos.x - labelSize.x - szIcon.x;
         text_ctrl->SetSize(textSize);
+        if (icon_first) {
+            textPos.x += szIcon.x;
+        }
         text_ctrl->SetPosition({textPos.x, (size.y - textSize.y) / 2});
     }
 }
@@ -206,7 +209,7 @@ void TextInput::render(wxDC& dc)
     wxSize size = GetSize();
     bool   align_right = GetWindowStyle() & wxRIGHT;
     // start draw
-    wxPoint pt = {5, 0};
+    wxPoint pt = {this->icon_first ? 5 : 0, 0};
 
     auto render_text = [&]() {
         auto text = wxWindow::GetLabel();
@@ -236,8 +239,10 @@ void TextInput::render(wxDC& dc)
     auto render_icon = [&]() {
         if (icon.bmp().IsOk()) {
             wxSize szIcon = icon.GetBmpSize();
-            if (!icon_first)
-                pt.x = size.x - szIcon.x - 2;
+            if (!icon_first) {
+                pt.x = size.x - szIcon.x;//- 2;
+            }
+                
             pt.y = (size.y - szIcon.y) / 2;
             dc.DrawBitmap(icon.bmp(), pt);
             pt.x += szIcon.x + 0;
