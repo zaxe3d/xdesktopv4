@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: 2024-06-01 21:51-0300\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese, Brazilian\n"
@@ -5946,9 +5946,6 @@ msgstr ""
 msgid "Click to edit preset"
 msgstr "Clique para editar o preset"
 
-msgid "Connection"
-msgstr "Conexão"
-
 msgid "Plate Type"
 msgstr "Tipo de mesa"
 
@@ -6650,20 +6647,6 @@ msgstr "Outros"
 
 msgid "Login Region"
 msgstr "Região de Login"
-
-msgid "Stealth Mode"
-msgstr "Modo Oculto"
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-"Isso interrompe a transmissão de dados para os serviços de nuvem de Bambu. "
-"Os usuários que não usam máquinas BBL ou usar modo LAN só podem ativar esta "
-"função com segurança."
-
-msgid "Enable network plugin"
-msgstr "Ativar plugin de rede"
 
 msgid "Check for stable updates only"
 msgstr "Verificar apenas atualizações estáveis"
@@ -10954,6 +10937,9 @@ msgstr "Observações do filamento"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "Você pode colocar suas observações sobre o filamento aqui."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "HRC do bico requerido"
@@ -17233,6 +17219,24 @@ msgstr ""
 "Você sabia que ao imprimir materiais propensos ao empenamento, como ABS, "
 "aumentar adequadamente a temperatura da mesa aquecida pode reduzir a "
 "probabilidade de empenamento?"
+
+#~ msgid "Connection"
+#~ msgstr "Conexão"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Modo Oculto"
+
+#~ msgid ""
+#~ "This stops the transmission of data to Bambu's cloud services. Users who "
+#~ "don't use BBL machines or use LAN mode only can safely turn on this "
+#~ "function."
+#~ msgstr ""
+#~ "Isso interrompe a transmissão de dados para os serviços de nuvem de "
+#~ "Bambu. Os usuários que não usam máquinas BBL ou usar modo LAN só podem "
+#~ "ativar esta função com segurança."
+
+#~ msgid "Enable network plugin"
+#~ msgstr "Ativar plugin de rede"
 
 #~ msgid ""
 #~ "Position of the extruder at the beginning of the custom G-code block. If "

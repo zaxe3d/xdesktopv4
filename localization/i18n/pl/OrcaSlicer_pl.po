@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OrcaSlicer 2.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Krzysztof Morga <tlumaczeniebs@gmail.com>\n"
 "Language-Team: \n"
@@ -5954,9 +5954,6 @@ msgstr ""
 msgid "Click to edit preset"
 msgstr "Kliknij, aby edytować profil"
 
-msgid "Connection"
-msgstr "Połączenie"
-
 msgid "Plate Type"
 msgstr "Typ Płyty"
 
@@ -6655,20 +6652,6 @@ msgstr "Inne"
 
 msgid "Login Region"
 msgstr "Region Logowania"
-
-msgid "Stealth Mode"
-msgstr "Tryb \"Niewidzialny\""
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-"Zatrzymuje to transmisję danych do chmury Bambu. Użytkownicy, którzy nie "
-"korzystają z maszyn BBL lub używają tylko trybu LAN, mogą bezpiecznie "
-"włączyć tę funkcję."
-
-msgid "Enable network plugin"
-msgstr "Włącz wtyczkę sieciową (BambuLab)"
 
 msgid "Check for stable updates only"
 msgstr "Sprawdzaj aktualizacje (tylko wersje stabilne)"
@@ -11197,6 +11180,9 @@ msgstr "Uwagi do filamentu"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "Tutaj możesz umieścić notatki dotyczące filamentu."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "Wymagana dysza HRC"
@@ -17629,6 +17615,24 @@ msgstr ""
 "Czy wiesz, że podczas drukowania filamentami podatnymi na odkształcenia, "
 "takimi jak ABS, odpowiednie zwiększenie temperatury podgrzewanej płyty może "
 "zmniejszyć prawdopodobieństwo odkształceń."
+
+#~ msgid "Connection"
+#~ msgstr "Połączenie"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Tryb \"Niewidzialny\""
+
+#~ msgid ""
+#~ "This stops the transmission of data to Bambu's cloud services. Users who "
+#~ "don't use BBL machines or use LAN mode only can safely turn on this "
+#~ "function."
+#~ msgstr ""
+#~ "Zatrzymuje to transmisję danych do chmury Bambu. Użytkownicy, którzy nie "
+#~ "korzystają z maszyn BBL lub używają tylko trybu LAN, mogą bezpiecznie "
+#~ "włączyć tę funkcję."
+
+#~ msgid "Enable network plugin"
+#~ msgstr "Włącz wtyczkę sieciową (BambuLab)"
 
 #~ msgid ""
 #~ "To reduce the waiting time after tool change, Orca can preheat the next "

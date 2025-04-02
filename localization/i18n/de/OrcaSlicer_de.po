@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Heiko Liebscher <hliebschergmail.com>\n"
 "Language-Team: \n"
@@ -6015,9 +6015,6 @@ msgstr ""
 msgid "Click to edit preset"
 msgstr "Klicken Sie hier, um das Profil zu bearbeiten"
 
-msgid "Connection"
-msgstr "Verbindung"
-
 msgid "Plate Type"
 msgstr "Druckbetttyp"
 
@@ -6733,20 +6730,6 @@ msgstr "Sonstiges"
 
 msgid "Login Region"
 msgstr "Login-Region"
-
-msgid "Stealth Mode"
-msgstr "Unsichtbarer Modus"
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-"Dies stoppt die Übertragung von Daten an die Cloud-Dienste von Bambu. "
-"Benutzer, die keine BBL-Maschinen verwenden oder nur den LAN-Modus "
-"verwenden, können diese Funktion sicher aktivieren."
-
-msgid "Enable network plugin"
-msgstr "Netzwerk-Plugin aktivieren"
 
 msgid "Check for stable updates only"
 msgstr "Nur nach stabilen Updates suchen"
@@ -11333,6 +11316,9 @@ msgstr "Filamentnotizen"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "Sie können hier Ihre Notizen zum Filament eintragen."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "Erforderliche Düse HRC"
@@ -17825,6 +17811,24 @@ msgstr ""
 "Wussten Sie, dass beim Drucken von Materialien, die zu Verwerfungen neigen, "
 "wie z.B. ABS, durch eine entsprechende Erhöhung der Heizbetttemperatur die "
 "Wahrscheinlichkeit von Verwerfungen verringert werden kann."
+
+#~ msgid "Connection"
+#~ msgstr "Verbindung"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Unsichtbarer Modus"
+
+#~ msgid ""
+#~ "This stops the transmission of data to Bambu's cloud services. Users who "
+#~ "don't use BBL machines or use LAN mode only can safely turn on this "
+#~ "function."
+#~ msgstr ""
+#~ "Dies stoppt die Übertragung von Daten an die Cloud-Dienste von Bambu. "
+#~ "Benutzer, die keine BBL-Maschinen verwenden oder nur den LAN-Modus "
+#~ "verwenden, können diese Funktion sicher aktivieren."
+
+#~ msgid "Enable network plugin"
+#~ msgstr "Netzwerk-Plugin aktivieren"
 
 #~ msgid ""
 #~ "To reduce the waiting time after tool change, Orca can preheat the next "

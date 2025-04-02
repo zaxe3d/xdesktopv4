@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: 2024-10-01 22:31+0300\n"
 "Last-Translator: GlauTech\n"
 "Language-Team: \n"
@@ -5926,9 +5926,6 @@ msgstr "Yazıcı Tipi"
 msgid "Click to edit preset"
 msgstr "Ön ayarı düzenlemek için tıklayın"
 
-msgid "Connection"
-msgstr "Bağlantı"
-
 msgid "Plate Type"
 msgstr "Plaka Tipi"
 
@@ -6635,20 +6632,6 @@ msgstr "Diğer"
 
 msgid "Login Region"
 msgstr "Giriş Bölgesi"
-
-msgid "Stealth Mode"
-msgstr "Gizli mod"
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-"Bu, Bambu’nun bulut hizmetlerine veri aktarımını durdurur. BBL makinelerini "
-"kullanmayan veya yalnızca LAN modunu kullanan kullanıcılar bu işlevi güvenle "
-"açabilir."
-
-msgid "Enable network plugin"
-msgstr "Ağ eklentisini etkinleştir"
 
 msgid "Check for stable updates only"
 msgstr "Yalnızca kararlı güncellemeleri kontrol edin"
@@ -11192,6 +11175,9 @@ msgstr "Filament Notları"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "Filament ile ilgili notlarınızı buraya yazabilirsiniz."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "Gerekli nozul HRC"
@@ -17645,6 +17631,24 @@ msgstr ""
 "ABS gibi bükülmeye yatkın malzemelere baskı yaparken, ısıtma yatağı "
 "sıcaklığının uygun şekilde arttırılmasının bükülme olasılığını "
 "azaltabileceğini biliyor muydunuz?"
+
+#~ msgid "Connection"
+#~ msgstr "Bağlantı"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Gizli mod"
+
+#~ msgid ""
+#~ "This stops the transmission of data to Bambu's cloud services. Users who "
+#~ "don't use BBL machines or use LAN mode only can safely turn on this "
+#~ "function."
+#~ msgstr ""
+#~ "Bu, Bambu’nun bulut hizmetlerine veri aktarımını durdurur. BBL "
+#~ "makinelerini kullanmayan veya yalnızca LAN modunu kullanan kullanıcılar "
+#~ "bu işlevi güvenle açabilir."
+
+#~ msgid "Enable network plugin"
+#~ msgstr "Ağ eklentisini etkinleştir"
 
 #~ msgid "Unknown Preset"
 #~ msgstr "Bilinmeyen ön ayar"

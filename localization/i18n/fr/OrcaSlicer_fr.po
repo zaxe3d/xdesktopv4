@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Guislain Cyril, Thomas Lété\n"
@@ -5996,9 +5996,6 @@ msgstr ""
 msgid "Click to edit preset"
 msgstr "Cliquez pour éditer le préréglage"
 
-msgid "Connection"
-msgstr "Connexion"
-
 msgid "Plate Type"
 msgstr "Type de plaque"
 
@@ -6717,21 +6714,6 @@ msgstr "Autre"
 
 msgid "Login Region"
 msgstr "Région d'origine"
-
-msgid "Stealth Mode"
-msgstr "Mode privé"
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-"Cette fonction interrompt la transmission des données vers les services en "
-"ligne de Bambu. Les utilisateurs qui n’utilisent pas de machines BBL ou qui "
-"utilisent uniquement le mode LAN peuvent activer cette fonction en toute "
-"sécurité."
-
-msgid "Enable network plugin"
-msgstr "Activer le plug-in réseau"
 
 msgid "Check for stable updates only"
 msgstr "Vérifier les mises à jour stables uniquement"
@@ -11393,6 +11375,9 @@ msgstr "Notes du filament"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "Vous pouvez mettre vos notes concernant le filament ici."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "Buse HRC requise"
@@ -17972,6 +17957,25 @@ msgstr ""
 "Saviez-vous que lors de l’impression de matériaux susceptibles de se "
 "déformer, tels que l’ABS, une augmentation appropriée de la température du "
 "plateau chauffant peut réduire la probabilité de déformation."
+
+#~ msgid "Connection"
+#~ msgstr "Connexion"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Mode privé"
+
+#~ msgid ""
+#~ "This stops the transmission of data to Bambu's cloud services. Users who "
+#~ "don't use BBL machines or use LAN mode only can safely turn on this "
+#~ "function."
+#~ msgstr ""
+#~ "Cette fonction interrompt la transmission des données vers les services "
+#~ "en ligne de Bambu. Les utilisateurs qui n’utilisent pas de machines BBL "
+#~ "ou qui utilisent uniquement le mode LAN peuvent activer cette fonction en "
+#~ "toute sécurité."
+
+#~ msgid "Enable network plugin"
+#~ msgstr "Activer le plug-in réseau"
 
 #~ msgid ""
 #~ "To reduce the waiting time after tool change, Orca can preheat the next "

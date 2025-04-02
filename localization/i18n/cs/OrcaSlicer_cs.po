@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: 2023-09-30 15:15+0200\n"
 "Last-Translator: René Mošner <Renemosner@seznam.cz>\n"
 "Language-Team: \n"
@@ -5843,9 +5843,6 @@ msgstr ""
 msgid "Click to edit preset"
 msgstr "Klikněte pro editaci přednastavení"
 
-msgid "Connection"
-msgstr "Připojení"
-
 msgid "Plate Type"
 msgstr "Typ Podložky"
 
@@ -6529,17 +6526,6 @@ msgstr "Ostatní"
 
 msgid "Login Region"
 msgstr "Región přihlášení"
-
-msgid "Stealth Mode"
-msgstr "Tajný Režim"
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-
-msgid "Enable network plugin"
-msgstr ""
 
 msgid "Check for stable updates only"
 msgstr ""
@@ -10652,6 +10638,9 @@ msgstr "Poznámky k filamentu"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "Zde můžete vložit poznámky týkající se filamentu."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "Požadovaná tryska HRC"
@@ -16474,6 +16463,12 @@ msgid ""
 "ABS, appropriately increasing the heatbed temperature can reduce the "
 "probability of warping."
 msgstr ""
+
+#~ msgid "Connection"
+#~ msgstr "Připojení"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Tajný Režim"
 
 #~ msgid ""
 #~ "Position of the extruder at the beginning of the custom G-code block. If "

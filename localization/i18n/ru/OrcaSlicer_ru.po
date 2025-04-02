@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OrcaSlicer V2.2.0-beta2\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: 2024-09-25 22:36+0700\n"
 "Last-Translator: \n"
 "Language-Team: Andylg <andylg@yandex.ru>\n"
@@ -6017,9 +6017,6 @@ msgstr ""
 msgid "Click to edit preset"
 msgstr "Нажмите, чтобы изменить профиль"
 
-msgid "Connection"
-msgstr "Подключиться"
-
 msgid "Plate Type"
 msgstr "Типа печатной пластины"
 
@@ -6716,20 +6713,6 @@ msgstr "Прочее"
 
 msgid "Login Region"
 msgstr "Регион входа"
-
-msgid "Stealth Mode"
-msgstr "Режим конфиденциальности (отключение телеметрии Bambulab)"
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-"Это остановит передачу данных в облачные сервисы Bambu. Пользователи, "
-"которые не используют принтеры BBL или используют режим «Только LAN», могут "
-"безопасно включить эту функцию."
-
-msgid "Enable network plugin"
-msgstr "Включить сетевой плагин"
 
 msgid "Check for stable updates only"
 msgstr "Уведомлять только о стабильных версиях программы"
@@ -11329,6 +11312,9 @@ msgstr "Примечание о прутке"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "Здесь вы можете написать свои заметки для текущей пластиковой нити."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "Необходимая твёрдость сопла"
@@ -17855,6 +17841,24 @@ msgstr ""
 "Знаете ли вы, что при печати материалами, склонными к короблению, таких как "
 "ABS, повышение температуры подогреваемого стола может снизить эту "
 "вероятность?"
+
+#~ msgid "Connection"
+#~ msgstr "Подключиться"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Режим конфиденциальности (отключение телеметрии Bambulab)"
+
+#~ msgid ""
+#~ "This stops the transmission of data to Bambu's cloud services. Users who "
+#~ "don't use BBL machines or use LAN mode only can safely turn on this "
+#~ "function."
+#~ msgstr ""
+#~ "Это остановит передачу данных в облачные сервисы Bambu. Пользователи, "
+#~ "которые не используют принтеры BBL или используют режим «Только LAN», "
+#~ "могут безопасно включить эту функцию."
+
+#~ msgid "Enable network plugin"
+#~ msgstr "Включить сетевой плагин"
 
 #~ msgid ""
 #~ "To reduce the waiting time after tool change, Orca can preheat the next "

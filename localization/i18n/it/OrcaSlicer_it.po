@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-21 14:42+0300\n"
+"POT-Creation-Date: 2025-04-02 11:43+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -5956,9 +5956,6 @@ msgstr ""
 msgid "Click to edit preset"
 msgstr "Clicca per modificare il preset"
 
-msgid "Connection"
-msgstr "Connessione"
-
 msgid "Plate Type"
 msgstr "Tipo di piatto"
 
@@ -6666,17 +6663,6 @@ msgstr "Altro"
 
 msgid "Login Region"
 msgstr "Regione di accesso"
-
-msgid "Stealth Mode"
-msgstr "Modalità invisibile"
-
-msgid ""
-"This stops the transmission of data to Bambu's cloud services. Users who "
-"don't use BBL machines or use LAN mode only can safely turn on this function."
-msgstr ""
-
-msgid "Enable network plugin"
-msgstr "Abilita plugin di rete"
 
 msgid "Check for stable updates only"
 msgstr "Verifica solo la disponibilità di aggiornamenti stabili"
@@ -10994,6 +10980,9 @@ msgstr "Note filamento"
 
 msgid "You can put your notes regarding the filament here."
 msgstr "È possibile inserire qui le note riguardanti il filamento."
+
+msgid "filament_zid"
+msgstr ""
 
 msgid "Required nozzle HRC"
 msgstr "Necessita nozzle HRC"
@@ -17278,6 +17267,15 @@ msgstr ""
 "Sapevi che quando si stampano materiali soggetti a deformazioni come l'ABS, "
 "aumentare in modo appropriato la temperatura del piano riscaldato può "
 "ridurre la probabilità di deformazione."
+
+#~ msgid "Connection"
+#~ msgstr "Connessione"
+
+#~ msgid "Stealth Mode"
+#~ msgstr "Modalità invisibile"
+
+#~ msgid "Enable network plugin"
+#~ msgstr "Abilita plugin di rete"
 
 #~ msgid ""
 #~ "Position of the extruder at the beginning of the custom G-code block. If "
