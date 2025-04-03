@@ -33,7 +33,7 @@
     "60"
   ],
   "slow_down_layer_time": [
-    "4"
+    "8"
   ],
   "slow_down_min_speed": [
     "20"
@@ -48,7 +48,7 @@
     "100"
   ],
   "overhang_fan_threshold": [
-    "1"
+    "50%"
   ],
   "enable_pressure_advance": [
     "1"
