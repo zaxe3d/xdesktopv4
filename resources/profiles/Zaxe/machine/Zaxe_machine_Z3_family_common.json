@@ -12,9 +12,9 @@
     "printer_variant": "0.4",
     "printable_area": [
         "0x0",
-        "405x0",
-        "405x305",
-        "0x305"
+        "400x0",
+        "400x300",
+        "0x300"
     ],
     "printable_height": "350",
     "auxiliary_fan": "1",
