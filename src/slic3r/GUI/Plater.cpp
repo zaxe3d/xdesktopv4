@@ -721,6 +721,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         // 1.1 create title bar resources
         p->m_panel_printer_title = new StaticBox(p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxBORDER_NONE);
         p->m_panel_printer_title->SetBackgroundColor(p->blue100);
+        //p->m_panel_printer_title->SetBackgroundColor2(0xF1F1F1);
 
         p->m_printer_icon = new ScalableButton(p->m_panel_printer_title, wxID_ANY, "zaxe_arrow_up_blue");
         p->m_text_printer_settings = new Label(p->m_panel_printer_title, _L("Printer"), LB_PROPAGATE_MOUSE_EVENT);
@@ -820,7 +821,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         wxBoxSizer* hsizer_printer = new wxBoxSizer(wxHORIZONTAL);
 
         vsizer_printer->AddSpacer(FromDIP(16));
-        hsizer_printer->Add(combo_printer, 1, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(SidebarProps::ContentMargin()));
+        hsizer_printer->Add(combo_printer, 1, wxALIGN_CENTER_VERTICAL, 0);
         hsizer_printer->Add(edit_btn, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(SidebarProps::ElementSpacing()));
         //hsizer_printer->Add(connection_btn, 0, wxALIGN_CENTER_VERTICAL | wxLEFT, FromDIP(SidebarProps::IconSpacing()));
         vsizer_printer->Add(printer_type_title, 0, wxEXPAND | wxLEFT | wxRIGHT, FromDIP(15));
@@ -869,10 +870,10 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
         int bed_type_idx = bed_type_value - 1;
         m_bed_type_list->Select(bed_type_idx);
-        bed_type_sizer->Add(bed_type_title, 0, wxLEFT | wxALIGN_CENTER_VERTICAL, FromDIP(SidebarProps::ContentMargin()));
-        bed_type_sizer->Add(m_bed_type_list, 1, wxLEFT | wxEXPAND, FromDIP(SidebarProps::ElementSpacing()));
-        bed_type_sizer->AddSpacer(FromDIP(SidebarProps::ContentMargin()));
-        vsizer_printer->Add(bed_type_sizer, 0, wxEXPAND | wxTOP, FromDIP(5));
+        vsizer_printer->AddSpacer(FromDIP(5));
+        vsizer_printer->Add(bed_type_title, 0, wxLEFT | wxRIGHT | wxEXPAND, FromDIP(15));
+        vsizer_printer->AddSpacer(FromDIP(3));
+        vsizer_printer->Add(m_bed_type_list, 0, wxLEFT | wxRIGHT | wxEXPAND, FromDIP(15));
         vsizer_printer->AddSpacer(FromDIP(16));
 
         auto& project_config = wxGetApp().preset_bundle->project_config;
@@ -894,11 +895,10 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     // add filament title
     p->m_panel_filament_title = new StaticBox(p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL | wxBORDER_NONE);
     p->m_panel_filament_title->SetBackgroundColor(p->blue100);
-    p->m_panel_filament_title->SetBackgroundColor2(0xF1F1F1);
-
-    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [&](wxMouseEvent& e) {
-        //if (e.GetPosition().x >
-        //    (p->m_flushing_volume_btn->IsShown() ? p->m_flushing_volume_btn->GetPosition().x : p->m_bpButton_add_filament->GetPosition().x))
+    //p->m_panel_filament_title->SetBackgroundColor2(0xF1F1F1);
+    p->m_panel_filament_title->Bind(wxEVT_LEFT_UP, [this](wxMouseEvent &e) {
+        //if (e.GetPosition().x > (p->m_flushing_volume_btn->IsShown()
+        //        ? p->m_flushing_volume_btn->GetPosition().x : (p->m_bpButton_add_filament->GetPosition().x - FromDIP(30)))) // ORCA exclude area of del button from titlebar collapse/expand feature to fix undesired collapse when user spams del filament button 
         //    return;
         on_filament_title_clicked(PresetContentResizeMode::TOGGLE);
         e.Skip();
@@ -911,21 +911,14 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
         on_filament_title_clicked(PresetContentResizeMode::TOGGLE); 
         e.Skip()
     ;});
-
+    
     p->m_staticText_filament_settings = new Label(p->m_panel_filament_title, _L("Filament"), LB_PROPAGATE_MOUSE_EVENT);
-    bSizer39->Add(p->m_filament_icon, 0, wxALIGN_CENTER | wxLEFT, FromDIP(SidebarProps::TitlebarMargin()));
-    bSizer39->AddSpacer(FromDIP(SidebarProps::ElementSpacing()));
-
     p->m_staticText_filament_settings->SetFont(Label::Head_14);
     p->m_staticText_filament_settings->SetForegroundColour(p->blue500);
-
-    p->m_filament_label = new Label(p->m_panel_filament_title, "");
-    p->m_filament_label->SetLabel(wxGetApp().preset_bundle->filaments.get_edited_preset_with_vendor_profile().preset.name);
-    p->m_filament_label->SetFont(Label::Body_10);
-    p->m_filament_label->SetForegroundColour(p->blue400);
-
-    bSizer39->Add(p->m_filament_icon, 0, wxALIGN_CENTER | wxLEFT | wxRIGHT, FromDIP(10));
-    bSizer39->Add( p->m_staticText_filament_settings, 0, wxALIGN_CENTER );
+    
+    bSizer39->Add(p->m_filament_icon, 0, wxALIGN_CENTRE | wxLEFT, FromDIP(SidebarProps::TitlebarMargin()));
+    bSizer39->AddSpacer(FromDIP(SidebarProps::ElementSpacing()));
+    bSizer39->Add(p->m_staticText_filament_settings, 0, wxALIGN_CENTER );
     bSizer39->AddStretchSpacer();
     bSizer39->SetMinSize(-1, FromDIP(30));
 
@@ -940,6 +933,10 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     scrolled_sizer->Add(spliter_2, 0, wxEXPAND);
     scrolled_sizer->AddSpacer(FromDIP(10));
 
+    p->m_filament_label = new Label(p->m_panel_filament_title, "");
+    p->m_filament_label->SetLabel(wxGetApp().preset_bundle->filaments.get_edited_preset_with_vendor_profile().preset.name);
+    p->m_filament_label->SetFont(Label::Body_10);
+    p->m_filament_label->SetForegroundColour(p->blue400);
     bSizer39->Add(p->m_filament_label, 0, wxALIGN_CENTER);
     bSizer39->AddStretchSpacer();
 
@@ -1005,6 +1002,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     add_btn->SetToolTip(_L("Add one filament"));
     add_btn->Bind(wxEVT_BUTTON, [this, scrolled_sizer](wxCommandEvent& e){
         // Zaxe: limit filament choices to 4
+        // Orca: limit filament choices to MAXIMUM_EXTRUDER_NUMBER
         if (p->combos_filament.size() >= 4)
             return;
 
@@ -1046,7 +1044,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
 
     bSizer39->Add(del_btn, 0, wxALIGN_CENTER | wxLEFT, FromDIP(SidebarProps::IconSpacing()));
     bSizer39->Add(add_btn, 0, wxALIGN_CENTER | wxLEFT, FromDIP(SidebarProps::IconSpacing())); // ORCA Moved add button after delete button to prevent add button position change when remove icon automatically hidden
-    bSizer39->AddSpacer(FromDIP(20));
+    bSizer39->AddStretchSpacer();
 
     if (p->combos_filament.size() <= 1) { // ORCA Fix Flushing button and Delete filament button not hidden on launch while only 1 filament exist
         bSizer39->Hide(p->m_flushing_volume_btn);
@@ -1076,7 +1074,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
     p->m_bpButton_set_filament = set_btn;
 
     bSizer39->Add(set_btn, 0, wxALIGN_CENTER | wxLEFT, FromDIP(SidebarProps::IconSpacing()));
-    bSizer39->AddStretchSpacer();
+    bSizer39->AddSpacer(FromDIP(SidebarProps::TitlebarMargin()));
 
     // add filament content
     p->m_panel_filament_content = new wxPanel( p->scrolled, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL );
@@ -4160,9 +4158,9 @@ std::vector<size_t> Plater::priv::load_files(const std::vector<fs::path>& input_
                     //     q->select_plate(0);
                     //     if (load_type != LoadType::LoadGeometry) {
                     //         if (en_3mf_file_type == En3mfType::From_BBS)
-                    //             show_info(q, _L("The 3mf is generated by old XDesktop, load geometry data only."), _L("Load 3mf"));
+                    //             show_info(q, _L("The 3mf is generated by old Orca Slicer, load geometry data only."), _L("Load 3mf"));
                     //         else
-                    //             show_info(q, _L("The 3mf is not supported by XDesktop, load geometry data only."), _L("Load 3mf"));
+                    //             show_info(q, _L("The 3mf is not supported by OrcaSlicer, load geometry data only."), _L("Load 3mf"));
                     //     }
                     //     for (ModelObject *model_object : model.objects) {
                     //         model_object->config.reset();
@@ -7377,7 +7375,6 @@ void Plater::priv::on_process_completed(SlicingProcessCompletedEvent &evt)
     if (is_finished)
     {
         BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(":finished, reload print soon");
-
         m_is_slicing = false;
         this->preview->reload_print(false);
         /* BBS if in publishing progress */
@@ -12239,7 +12236,6 @@ void Plater::export_stl(bool extended, bool selection_only, bool multi_stls, boo
     } else {
         path = p->get_export_file(FT_STL);
     }
-
     if (path.empty()) { return; }
     const std::string path_u8 = into_u8(path);
 
@@ -12920,7 +12916,6 @@ void Plater::reslice()
     {
         //slice next
         BOOST_LOG_TRIVIAL(warning) << __FUNCTION__ << boost::format(": in slicing all, current plate %1% already sliced, skip to next") % p->m_cur_slice_plate ;
-       
         SlicingProcessCompletedEvent evt(EVT_PROCESS_COMPLETED, 0,
             SlicingProcessCompletedEvent::Finished, nullptr);
         // Post the "complete" callback message, so that it will slice the next plate soon
