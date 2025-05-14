@@ -13,34 +13,12 @@
 #include "Widgets/Button.hpp"
 
 #include "../Utils/NetworkMachine.hpp"
+#include "../Utils/ZaxeDeviceCapabilities.hpp"
 #include "I18N.hpp"
 #include "libslic3r/Semver.hpp"
 #include "libslic3r/Format/ZaxeArchive.hpp"
 
 namespace Slic3r::GUI {
-
-class ZaxeDeviceCapabilities
-{
-public:
-    ZaxeDeviceCapabilities(NetworkMachine* _nm);
-
-    bool hasRemoteUpdate() const;
-    bool canToggleLeds() const;
-    bool hasStl() const;
-    bool hasThumbnails() const;
-    bool hasCam() const;
-    bool hasSnapshot() const;
-    bool canUnloadFilament() const;
-    bool canPrintMultiPlate() const;
-    bool hasPrinterCover() const;
-
-    Semver get_version() const { return version; }
-
-private:
-    NetworkMachine* nm;
-    Semver          version;
-};
-
 class ZaxeDevice : public wxPanel
 {
 public:

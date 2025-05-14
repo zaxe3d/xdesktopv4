@@ -26,35 +26,6 @@ const wxString progress_danger_color{"#F25A46"};
 const wxString progress_success_color{"#009BDF"};
 const wxString progress_uploading_color{"#00FF00"};
 
-ZaxeDeviceCapabilities::ZaxeDeviceCapabilities(NetworkMachine* _nm)
-    : nm(_nm)
-    , version(Semver(nm->attr->firmware_version.GetMajor(), nm->attr->firmware_version.GetMinor(), nm->attr->firmware_version.GetMicro()))
-{}
-
-bool ZaxeDeviceCapabilities::hasRemoteUpdate() const { return is_there(nm->attr->device_model, {"z3", "z4", "x4"}); }
-
-bool ZaxeDeviceCapabilities::canToggleLeds() const
-{
-    return is_there(nm->attr->device_model, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 70);
-}
-
-bool ZaxeDeviceCapabilities::hasStl() const { return is_there(nm->attr->device_model, {"z2", "z3", "z4", "x4"}); }
-
-bool ZaxeDeviceCapabilities::hasThumbnails() const { return is_there(nm->attr->device_model, {"z1", "z2", "z3", "z4", "x4"}); }
-
-bool ZaxeDeviceCapabilities::hasCam() const { return is_there(nm->attr->device_model, {"z2", "z3", "z4", "x4"}); }
-
-bool ZaxeDeviceCapabilities::hasSnapshot() const { return is_there(nm->attr->device_model, {"z1", "z2", "z3", "z4", "x4"}); }
-
-bool ZaxeDeviceCapabilities::canUnloadFilament() const { return is_there(nm->attr->device_model, {"z1", "z2", "z3", "z4", "x4"}); }
-
-bool ZaxeDeviceCapabilities::canPrintMultiPlate() const
-{
-    return is_there(nm->attr->device_model, {"z3", "z4", "x4"}) && version >= Semver(3, 5, 78);
-}
-
-bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->device_model, {"z1", "z3", "x1", "x2", "x3", "x4"}); };
-
 ZaxeDevice::ZaxeDevice(NetworkMachine* _nm, wxWindow* parent, wxPoint pos, wxSize size)
     : wxPanel(parent, wxID_ANY, pos, size), nm(_nm), timer(new wxTimer()), highlight_timer(new wxTimer()), capabilities(_nm)
 {

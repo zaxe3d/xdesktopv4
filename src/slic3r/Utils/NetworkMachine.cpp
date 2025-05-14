@@ -8,6 +8,7 @@
 #include "Http.hpp"
 #include "../GUI/GUI_App.hpp"
 #include "../GUI/NotificationManager.hpp"
+#include "ZaxeDeviceCapabilities.hpp"
 
 namespace fs = boost::filesystem;
 
@@ -457,6 +458,7 @@ int xfercb(void *userp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal
 
 void NetworkMachine::uploadHTTP(const char* filename, const char* uploadAs)
 {
+    BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
     xfercb(this, 0.0, 0.0, 0.0, 0.0);
     states->uploading_zaxe_file = true;
     std::string url             = "http://" + ip + "/upload.cgi:" + std::to_string(m_httpPort);
@@ -485,6 +487,7 @@ void NetworkMachine::uploadHTTP(const char* filename, const char* uploadAs)
 
 void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
 {
+    BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
     Http::tls_global_init();
     if (curl_handle) {
         ::curl_easy_reset(curl_handle);
@@ -567,6 +570,7 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
 
 void NetworkMachine::uploadHTTPS(const char *filename, const char *uploadAs)
 {
+    BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
     Http::tls_global_init();
     if (curl_handle) {
         ::curl_easy_reset(curl_handle);
@@ -642,12 +646,12 @@ void NetworkMachine::uploadHTTPS(const char *filename, const char *uploadAs)
     curl_handle = nullptr;
 }
 
-void NetworkMachine::upload(const char *filename, const char *uploadAs)
+void NetworkMachine::upload(const char* filename, const char* uploadAs)
 {
-    if (attr->is_http) {
-        uploadHTTP(filename, uploadAs);
-    } else {
-        uploadFTP(filename, uploadAs);
+    switch (ZaxeDeviceCapabilities(this).getUploadType()) {
+    case ZaxeDeviceCapabilities::UploadType::HTTP: uploadHTTP(filename, uploadAs); break;
+    case ZaxeDeviceCapabilities::UploadType::HTTPS: uploadHTTPS(filename, uploadAs); break;
+    case ZaxeDeviceCapabilities::UploadType::FTP: uploadFTP(filename, uploadAs); break;
     }
 }
 

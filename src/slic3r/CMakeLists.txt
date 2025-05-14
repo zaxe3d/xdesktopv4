@@ -585,6 +585,8 @@ set(SLIC3R_GUI_SOURCES
     Utils/BroadcastReceiver.hpp
     Utils/WebSocket.cpp
     Utils/WebSocket.hpp
+    Utils/ZaxeDeviceCapabilities.cpp
+    Utils/ZaxeDeviceCapabilities.hpp
 )
 
 if (WIN32)
