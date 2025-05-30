@@ -473,7 +473,7 @@ void ZaxeDevice::updateStates()
 
 void ZaxeDevice::updateProgressLine()
 {
-    bool show = nm->isBusy() && !nm->states->hasError && !nm->states->updatingFw;
+    bool show = nm->isBusy() && !nm->states->hasError && !nm->states->updatingFw && !nm->states->calibrating;
     progress_line->Show(show);
     updateProgressValue();
 
