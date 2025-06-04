@@ -561,6 +561,10 @@ void NetworkMachineManager::setSelected(NetworkMachine* machine)
             scrolled_area->GetSizer()->Prepend(dev.second, 0, wxEXPAND | wxALL, FromDIP(5));
             scrolled_area->Layout();
             scrolled_area->FitInside();
+            auto _scrolled_panel = dynamic_cast<wxScrolled<wxPanel>*>(scrolled_area);
+            if (_scrolled_panel) {
+                _scrolled_panel->Scroll(0, 0);
+            }
             Layout();
         }
     }
