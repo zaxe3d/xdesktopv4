@@ -915,8 +915,8 @@ void ZaxeDevice::switch_cam_on()
         BOOST_LOG_TRIVIAL(info) << __func__ << ": " << command.ToStdString();
         wxExecute(command, wxEXEC_ASYNC | wxEXEC_HIDE_CONSOLE);
 #else
-        wxExecute(curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " + boost::to_upper_copy(nm->attr->device_model) +
-                      ": " + nm->name + "\" -x 720 -alwaysontop",
+        wxExecute("nohup " + curExecPath + "/ffplay tcp://" + nm->ip + ":5002 -window_title \"Zaxe " +
+                      boost::to_upper_copy(nm->attr->device_model) + ": " + nm->name + "\" -x 720 -alwaysontop",
                   wxEXEC_ASYNC);
 #endif
     } else {
