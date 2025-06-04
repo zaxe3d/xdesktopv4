@@ -271,6 +271,12 @@ void NetworkMachine::fw_update()
     _push_notification(_L("Firmware Update"));
 }
 
+void NetworkMachine::set_bed_ready()
+{
+    request("set_bed_ready");
+    _push_notification(_L("Set Bed Ready"));
+}
+
 void NetworkMachine::request(const char* command)
 {
     ptree pt; // construct root obj.

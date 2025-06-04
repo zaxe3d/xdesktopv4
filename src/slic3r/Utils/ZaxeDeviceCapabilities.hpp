@@ -21,6 +21,7 @@ public:
     bool       canPrintMultiPlate() const;
     bool       hasPrinterCover() const;
     UploadType getUploadType() const;
+    bool       can_set_bed_state() const;
 
     Semver get_version() const { return version; }
 

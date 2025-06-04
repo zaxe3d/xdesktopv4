@@ -40,4 +40,6 @@ ZaxeDeviceCapabilities::UploadType ZaxeDeviceCapabilities::getUploadType() const
     }
     return UploadType::FTP;
 }
+
+bool ZaxeDeviceCapabilities::can_set_bed_state() const { return version >= Semver(5, 0, 0); }
 } // namespace Slic3r

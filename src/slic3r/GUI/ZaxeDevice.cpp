@@ -256,7 +256,13 @@ wxSizer* ZaxeDevice::createStateInfo()
     sizer->Add(desc_sizer, 0, wxEXPAND | wxALL, FromDIP(1));
 
     status_desc_icon->Bind(wxEVT_BUTTON, [this](auto&) {
-        if (nm->states->has_update && capabilities.hasRemoteUpdate()) {
+        if (nm->states->bedOccupied || nm->states->bedDirty) {
+            if (capabilities.can_set_bed_state()) {
+                confirm([&] { nm->set_bed_ready(); }, _L("Are you sure the build plate is clean?"));
+            } else {
+                confirm([] {}, _L("Bed might not be ready for the next print, please be sure it is clean."));
+            }
+        } else if (nm->states->has_update && capabilities.hasRemoteUpdate()) {
             confirm([&] { nm->fw_update(); }, _L("Do you want to update your printer?"));
         }
     });
@@ -491,7 +497,8 @@ void ZaxeDevice::updateProgressLine()
 
 void ZaxeDevice::updateTimer()
 {
-    if (!nm->states->bedOccupied && !nm->states->heating && !nm->states->paused && !nm->states->hasError && nm->states->printing) {
+    if (!nm->states->bedOccupied && !nm->states->bedDirty && !nm->states->heating && !nm->states->paused && !nm->states->hasError &&
+        nm->states->printing) {
         if (!timer->IsRunning()) {
             timer->Start(1000);
         }
@@ -518,7 +525,7 @@ void ZaxeDevice::updateProgressValue()
 
 void ZaxeDevice::updatePrintButton()
 {
-    is_print_btn_visible = !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError;
+    is_print_btn_visible = !nm->isBusy() && !nm->states->bedOccupied && !nm->states->bedDirty && !nm->states->hasError;
     print_btn->Show(is_print_btn_visible);
 }
 
@@ -533,6 +540,8 @@ void ZaxeDevice::updateStatusText()
         title = _L("Updating");
     } else if (nm->states->bedOccupied) {
         title = _L("Bed is occupied");
+    } else if (nm->states->bedDirty) {
+        title = _L("Bed might be occupied");
     } else if (nm->states->is_calibrating()) {
         title = _L("Calibrating");
     } else if (nm->states->heating) {
@@ -551,9 +560,10 @@ void ZaxeDevice::updateStatusText()
         desc       = _L("Device is in error state!");
         desc_color = "#E22005";
         desc_icon  = "zaxe_red_warning";
-    } else if (!nm->isBusy() && nm->states->bedOccupied) {
+    } else if (!nm->isBusy() && (nm->states->bedOccupied || nm->states->bedDirty)) {
         desc       = _L("Please take your print!");
         desc_color = progress_success_color;
+        desc_icon  = "zaxe_box_tick";
     } else if (nm->states->is_calibrating() || nm->states->heating) {
     } else if (nm->states->printing) {
         desc = _L("Processing");
@@ -609,12 +619,13 @@ void ZaxeDevice::updateIconButtons()
     resume_btn->Show(!nm->states->updatingFw && nm->states->printing && nm->states->paused && !nm->states->heating);
     stop_btn->Show(!nm->states->updatingFw && nm->isBusy() && (nm->states->printing || !nm->states->uploading_zaxe_file));
 
-    preheat_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+    preheat_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->bedDirty && !nm->states->hasError);
     preheat_btn->SetIcon(nm->states->preheat ? "zaxe_preheat_active" : "zaxe_preheat");
 
-    say_hi_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+    say_hi_btn->Show(!nm->isBusy() && !nm->states->bedOccupied && !nm->states->bedDirty && !nm->states->hasError);
 
-    unload_btn->Show(capabilities.canUnloadFilament() && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->hasError);
+    unload_btn->Show(capabilities.canUnloadFilament() && !nm->isBusy() && !nm->states->bedOccupied && !nm->states->bedDirty &&
+                     !nm->states->hasError);
 
     toggle_leds_btn->SetIcon(nm->states->ledsSwitchedOn ? "zaxe_lights_on" : "zaxe_lights_off");
     toggle_leds_btn->Show(!nm->states->updatingFw && capabilities.canToggleLeds());
@@ -857,14 +868,6 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
         return false;
     }
 
-    if (nm->states->bedDirty) {
-        bool confirmed = false;
-        confirm([&] { confirmed = true; }, _L("Bed might not be ready for the next print. Please be "
-                                              "sure it is clean before pressing YES!"));
-        if (!confirmed)
-            return false;
-    }
-
     std::thread t([&, archive_path = archive->get_path()]() {
         if (nm->attr->is_lite) {
             this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
@@ -885,7 +888,8 @@ void ZaxeDevice::onUploadDone()
                                                                        NotificationManager::NotificationLevel::PrintInfoNotificationLevel,
                                                                        _L("Your print job has been sent to the device. Printing will "
                                                                           "start shortly.")
-                                                                           .ToUTF8().data());
+                                                                           .ToUTF8()
+                                                                           .data());
 }
 
 void ZaxeDevice::onPinChanged()

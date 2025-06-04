@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-05-14 14:44+0300\n"
+"POT-Creation-Date: 2025-06-04 17:15+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15595,6 +15595,12 @@ msgstr ""
 msgid "Printer with blinking star is selected."
 msgstr ""
 
+msgid "Are you sure the build plate is clean?"
+msgstr ""
+
+msgid "Bed might not be ready for the next print, please be sure it is clean."
+msgstr ""
+
 msgid "Do you want to update your printer?"
 msgstr ""
 
@@ -15634,6 +15640,9 @@ msgid "Remaining Filament"
 msgstr ""
 
 msgid "Bed is occupied"
+msgstr ""
+
+msgid "Bed might be occupied"
 msgstr ""
 
 msgid "Heating"
@@ -15713,11 +15722,6 @@ msgid "Wrong nozzle type"
 msgstr ""
 
 msgid ""
-"Bed might not be ready for the next print. Please be sure it is clean before "
-"pressing YES!"
-msgstr ""
-
-msgid ""
 "Your print job has been sent to the device. Printing will start shortly."
 msgstr ""
 
@@ -15754,6 +15758,9 @@ msgid "Change Name"
 msgstr ""
 
 msgid "Firmware Update"
+msgstr ""
+
+msgid "Set Bed Ready"
 msgstr ""
 
 msgid "Print cannot be started, internal error."

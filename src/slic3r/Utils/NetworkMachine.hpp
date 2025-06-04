@@ -182,6 +182,7 @@ public:
     void downloadAvatar();
     void changeName(const char *new_name);
     void fw_update();
+    void set_bed_ready();
 
     void shutdown() { m_running = false; }
 
