@@ -1,6 +1,6 @@
 {
   "name": "Zaxe",
-  "version": "02.00.25.00",
+  "version": "02.00.26.00",
   "url": "",
   "force_update": "0",
   "description": "Zaxe configurations",
@@ -24,10 +24,6 @@
     {
       "name": "Z3",
       "sub_path": "machine/Z3.json"
-    },
-    {
-      "name": "Z4",
-      "sub_path": "machine/Z4.json"
     }
   ],
   "process_list": [
@@ -336,10 +332,6 @@
       "sub_path": "process/0.56mm, Fast @Z3S 0.8mm DIAMONDBACK.json"
     },
     {
-      "name": "0.15mm, Recommended @Z4 0.4mm",
-      "sub_path": "process/0.15mm, Recommended @Z4 0.4mm.json"
-    },
-    {
       "name": "0.15mm, Recommended @X4 0.4mm",
       "sub_path": "process/0.15mm, Recommended @X4 0.4mm.json"
     },
@@ -646,46 +638,6 @@
       "sub_path": "filament/Generic PETG @Z3.json"
     },
     {
-      "name": "Generic PLA @Z4",
-      "sub_path": "filament/Generic PLA @Z4.json"
-    },
-    {
-      "name": "Generic ABS @Z4",
-      "sub_path": "filament/Generic ABS @Z4.json"
-    },
-    {
-      "name": "Generic PETG @Z4",
-      "sub_path": "filament/Generic PETG @Z4.json"
-    },
-    {
-      "name": "Generic FLEX @Z4",
-      "sub_path": "filament/Generic FLEX @Z4.json"
-    },
-    {
-      "name": "Generic ASA @Z4",
-      "sub_path": "filament/Generic ASA @Z4.json"
-    },
-    {
-      "name": "Zaxe ABS @Z4",
-      "sub_path": "filament/Zaxe ABS @Z4.json"
-    },
-    {
-      "name": "Zaxe ASA @Z4",
-      "sub_path": "filament/Zaxe ASA @Z4.json"
-    },
-    {
-      "name": "Zaxe FLEX @Z4",
-      "sub_path": "filament/Zaxe FLEX @Z4.json"
-    },
-    {
-      "name": "Zaxe PETG @Z4",
-      "sub_path": "filament/Zaxe PETG @Z4.json"
-    },
-    {
-      "name": "Zaxe PLA @Z4",
-      "sub_path": "filament/Zaxe PLA @Z4.json"
-    },
-    {
       "name": "Zaxe ABS @X4",
       "sub_path": "filament/Zaxe ABS @X4.json"
     },
@@ -730,10 +682,6 @@
       "sub_path": "filament/BASF ABS Fusion+ @X4.json"
     },
     {
-      "name": "BASF ABS Fusion+ @Z4",
-      "sub_path": "filament/BASF ABS Fusion+ @Z4.json"
-    },
-    {
       "name": "BASF ABS Fusion+ @Z3S",
       "sub_path": "filament/BASF ABS Fusion+ @Z3S.json"
     },
@@ -750,10 +698,6 @@
       "sub_path": "filament/BASF Ultrafuse ABS @Z3.json"
     },
     {
-      "name": "BASF Ultrafuse ABS @Z4",
-      "sub_path": "filament/BASF Ultrafuse ABS @Z4.json"
-    },
-    {
       "name": "BASF Ultrafuse ABS @X4",
       "sub_path": "filament/BASF Ultrafuse ABS @X4.json"
     },
@@ -764,10 +708,6 @@
     {
       "name": "BASF Ultrafuse ASA @Z3",
       "sub_path": "filament/BASF Ultrafuse ASA @Z3.json"
-    },
-    {
-      "name": "BASF Ultrafuse ASA @Z4",
-      "sub_path": "filament/BASF Ultrafuse ASA @Z4.json"
     },
     {
       "name": "BASF Ultrafuse ASA @X4",
@@ -782,10 +722,6 @@
       "sub_path": "filament/BASF Ultrafuse TPU 95A @Z3.json"
     },
     {
-      "name": "BASF Ultrafuse TPU 95A @Z4",
-      "sub_path": "filament/BASF Ultrafuse TPU 95A @Z4.json"
-    },
-    {
       "name": "BASF Ultrafuse TPU 95A @X4",
       "sub_path": "filament/BASF Ultrafuse TPU 95A @X4.json"
     },
@@ -796,10 +732,6 @@
     {
       "name": "BASF Ultrafuse PLA @Z3",
       "sub_path": "filament/BASF Ultrafuse PLA @Z3.json"
-    },
-    {
-      "name": "BASF Ultrafuse PLA @Z4",
-      "sub_path": "filament/BASF Ultrafuse PLA @Z4.json"
     },
     {
       "name": "BASF Ultrafuse PLA @X4",
@@ -818,10 +750,6 @@
       "sub_path": "filament/BASF Ultrafuse HIPS @Z3.json"
     },
     {
-      "name": "BASF Ultrafuse HIPS @Z4",
-      "sub_path": "filament/BASF Ultrafuse HIPS @Z4.json"
-    },
-    {
       "name": "BASF Ultrafuse PA @X4",
       "sub_path": "filament/BASF Ultrafuse PA @X4.json"
     },
@@ -832,10 +760,6 @@
     {
       "name": "BASF Ultrafuse PA @Z3",
       "sub_path": "filament/BASF Ultrafuse PA @Z3.json"
-    },
-    {
-      "name": "BASF Ultrafuse PA @Z4",
-      "sub_path": "filament/BASF Ultrafuse PA @Z4.json"
     },
     {
       "name": "BASF Ultrafuse PP @X4",
@@ -850,10 +774,6 @@
       "sub_path": "filament/BASF Ultrafuse PP @Z3.json"
     },
     {
-      "name": "BASF Ultrafuse PP @Z4",
-      "sub_path": "filament/BASF Ultrafuse PP @Z4.json"
-    },
-    {
       "name": "BASF Ultrafuse 316L @X4",
       "sub_path": "filament/BASF Ultrafuse 316L @X4.json"
     },
@@ -864,10 +784,6 @@
     {
       "name": "BASF Ultrafuse 316L @Z3",
       "sub_path": "filament/BASF Ultrafuse 316L @Z3.json"
-    },
-    {
-      "name": "BASF Ultrafuse 316L @Z4",
-      "sub_path": "filament/BASF Ultrafuse 316L @Z4.json"
     },
     {
       "name": "BASF Ultrafuse BvOH @X4",
@@ -882,10 +798,6 @@
       "sub_path": "filament/BASF Ultrafuse BvOH @Z3.json"
     },
     {
-      "name": "BASF Ultrafuse BvOH @Z4",
-      "sub_path": "filament/BASF Ultrafuse BvOH @Z4.json"
-    },
-    {
       "name": "BASF Ultrafuse PET-CF15 @X4",
       "sub_path": "filament/BASF Ultrafuse PET-CF15 @X4.json"
     },
@@ -896,10 +808,6 @@
     {
       "name": "BASF Ultrafuse PET-CF15 @Z3",
       "sub_path": "filament/BASF Ultrafuse PET-CF15 @Z3.json"
-    },
-    {
-      "name": "BASF Ultrafuse PET-CF15 @Z4",
-      "sub_path": "filament/BASF Ultrafuse PET-CF15 @Z4.json"
     },
     {
       "name": "BASF Ultrafuse PC-ABS @X4",
@@ -914,10 +822,6 @@
       "sub_path": "filament/BASF Ultrafuse PC-ABS @Z3.json"
     },
     {
-      "name": "BASF Ultrafuse PC-ABS @Z4",
-      "sub_path": "filament/BASF Ultrafuse PC-ABS @Z4.json"
-    },
-    {
       "name": "Polymaker PolyLite PLA @X4",
       "sub_path": "filament/Polymaker PolyLite PLA @X4.json"
     },
@@ -928,10 +832,6 @@
     {
       "name": "Polymaker PolyLite PLA @Z3",
       "sub_path": "filament/Polymaker PolyLite PLA @Z3.json"
-    },
-    {
-      "name": "Polymaker PolyLite PLA @Z4",
-      "sub_path": "filament/Polymaker PolyLite PLA @Z4.json"
     },
     {
       "name": "Polymaker PolySonic PLA @X4",
@@ -946,10 +846,6 @@
       "sub_path": "filament/Polymaker PolySonic PLA @Z3.json"
     },
     {
-      "name": "Polymaker PolySonic PLA @Z4",
-      "sub_path": "filament/Polymaker PolySonic PLA @Z4.json"
-    },
-    {
       "name": "Polymaker PolyLite ABS @X4",
       "sub_path": "filament/Polymaker PolyLite ABS @X4.json"
     },
@@ -960,10 +856,6 @@
     {
       "name": "Polymaker PolyLite ABS @Z3",
       "sub_path": "filament/Polymaker PolyLite ABS @Z3.json"
-    },
-    {
-      "name": "Polymaker PolyLite ABS @Z4",
-      "sub_path": "filament/Polymaker PolyLite ABS @Z4.json"
     },
     {
       "name": "Polymaker PolyLite ASA @X4",
@@ -978,10 +870,6 @@
       "sub_path": "filament/Polymaker PolyLite ASA @Z3.json"
     },
     {
-      "name": "Polymaker PolyLite ASA @Z4",
-      "sub_path": "filament/Polymaker PolyLite ASA @Z4.json"
-    },
-    {
       "name": "Polymaker PolyLite PLA-CF @X4",
       "sub_path": "filament/Polymaker PolyLite PLA-CF @X4.json"
     },
@@ -992,10 +880,6 @@
     {
       "name": "Polymaker PolyLite PLA-CF @Z3",
       "sub_path": "filament/Polymaker PolyLite PLA-CF @Z3.json"
-    },
-    {
-      "name": "Polymaker PolyLite PLA-CF @Z4",
-      "sub_path": "filament/Polymaker PolyLite PLA-CF @Z4.json"
     },
     {
       "name": "Polymaker PolyLite PETG @X4",
@@ -1010,10 +894,6 @@
       "sub_path": "filament/Polymaker PolyLite PETG @Z3.json"
     },
     {
-      "name": "Polymaker PolyLite PETG @Z4",
-      "sub_path": "filament/Polymaker PolyLite PETG @Z4.json"
-    },
-    {
       "name": "Polymaker PolyMax PETG-ESD @X4",
       "sub_path": "filament/Polymaker PolyMax PETG-ESD @X4.json"
     },
@@ -1024,10 +904,6 @@
     {
       "name": "Polymaker PolyMax PETG-ESD @Z3",
       "sub_path": "filament/Polymaker PolyMax PETG-ESD @Z3.json"
-    },
-    {
-      "name": "Polymaker PolyMax PETG-ESD @Z4",
-      "sub_path": "filament/Polymaker PolyMax PETG-ESD @Z4.json"
     },
     {
       "name": "Polymaker PolyMide PA12-CF @X4",
@@ -1042,10 +918,6 @@
       "sub_path": "filament/Polymaker PolyMide PA12-CF @Z3.json"
     },
     {
-      "name": "Polymaker PolyMide PA12-CF @Z4",
-      "sub_path": "filament/Polymaker PolyMide PA12-CF @Z4.json"
-    },
-    {
       "name": "Polymaker PolyMide PA6-CF @X4",
       "sub_path": "filament/Polymaker PolyMide PA6-CF @X4.json"
     },
@@ -1056,10 +928,6 @@
     {
       "name": "Polymaker PolyMide PA6-CF @Z3",
       "sub_path": "filament/Polymaker PolyMide PA6-CF @Z3.json"
-    },
-    {
-      "name": "Polymaker PolyMide PA6-CF @Z4",
-      "sub_path": "filament/Polymaker PolyMide PA6-CF @Z4.json"
     },
     {
       "name": "Polymaker PolyMide PA6-GF @X4",
@@ -1074,10 +942,6 @@
       "sub_path": "filament/Polymaker PolyMide PA6-GF @Z3.json"
     },
     {
-      "name": "Polymaker PolyMide PA6-GF @Z4",
-      "sub_path": "filament/Polymaker PolyMide PA6-GF @Z4.json"
-    },
-    {
       "name": "Kimya ABS @X4",
       "sub_path": "filament/Kimya ABS @X4.json"
     },
@@ -1088,10 +952,6 @@
     {
       "name": "Kimya ABS @Z3",
       "sub_path": "filament/Kimya ABS @Z3.json"
-    },
-    {
-      "name": "Kimya ABS @Z4",
-      "sub_path": "filament/Kimya ABS @Z4.json"
     },
     {
       "name": "Kimya ABS-Carbon @X4",
@@ -1106,10 +966,6 @@
       "sub_path": "filament/Kimya ABS-Carbon @Z3.json"
     },
     {
-      "name": "Kimya ABS-Carbon @Z4",
-      "sub_path": "filament/Kimya ABS-Carbon @Z4.json"
-    },
-    {
       "name": "Kimya ABS-EDS @X4",
       "sub_path": "filament/Kimya ABS-EDS @X4.json"
     },
@@ -1120,10 +976,6 @@
     {
       "name": "Kimya ABS-EDS @Z3",
       "sub_path": "filament/Kimya ABS-EDS @Z3.json"
-    },
-    {
-      "name": "Kimya ABS-EDS @Z4",
-      "sub_path": "filament/Kimya ABS-EDS @Z4.json"
     },
     {
       "name": "Kimya ABS-Kevlar @X4",
@@ -1138,10 +990,6 @@
       "sub_path": "filament/Kimya ABS-Kevlar @Z3.json"
     },
     {
-      "name": "Kimya ABS-Kevlar @Z4",
-      "sub_path": "filament/Kimya ABS-Kevlar @Z4.json"
-    },
-    {
       "name": "Kimya ASA @X4",
       "sub_path": "filament/Kimya ASA @X4.json"
     },
@@ -1152,10 +1000,6 @@
     {
       "name": "Kimya ASA @Z3",
       "sub_path": "filament/Kimya ASA @Z3.json"
-    },
-    {
-      "name": "Kimya ASA @Z4",
-      "sub_path": "filament/Kimya ASA @Z4.json"
     },
     {
       "name": "Kimya Petg-Carbon @X4",
@@ -1170,10 +1014,6 @@
       "sub_path": "filament/Kimya Petg-Carbon @Z3.json"
     },
     {
-      "name": "Kimya Petg-Carbon @Z4",
-      "sub_path": "filament/Kimya Petg-Carbon @Z4.json"
-    },
-    {
       "name": "iGus iglidur i190 @X4",
       "sub_path": "filament/iGus iglidur i190 @X4.json"
     },
@@ -1184,10 +1024,6 @@
     {
       "name": "iGus iglidur i190 @Z3",
       "sub_path": "filament/iGus iglidur i190 @Z3.json"
-    },
-    {
-      "name": "iGus iglidur i190 @Z4",
-      "sub_path": "filament/iGus iglidur i190 @Z4.json"
     },
     {
       "name": "iGus iglidur i180-BL @X4",
@@ -1202,10 +1038,6 @@
       "sub_path": "filament/iGus iglidur i180-BL @Z3.json"
     },
     {
-      "name": "iGus iglidur i180-BL @Z4",
-      "sub_path": "filament/iGus iglidur i180-BL @Z4.json"
-    },
-    {
       "name": "iGus iglidur i151 @X4",
       "sub_path": "filament/iGus iglidur i151 @X4.json"
     },
@@ -1216,10 +1048,6 @@
     {
       "name": "iGus iglidur i151 @Z3",
       "sub_path": "filament/iGus iglidur i151 @Z3.json"
-    },
-    {
-      "name": "iGus iglidur i151 @Z4",
-      "sub_path": "filament/iGus iglidur i151 @Z4.json"
     },
     {
       "name": "iGus iglidur i150 @X4",
@@ -1234,10 +1062,6 @@
       "sub_path": "filament/iGus iglidur i150 @Z3.json"
     },
     {
-      "name": "iGus iglidur i150 @Z4",
-      "sub_path": "filament/iGus iglidur i150 @Z4.json"
-    },
-    {
       "name": "colorFaBB ASA @X4",
       "sub_path": "filament/colorFaBB ASA @X4.json"
     },
@@ -1248,10 +1072,6 @@
     {
       "name": "colorFaBB ASA @Z3",
       "sub_path": "filament/colorFaBB ASA @Z3.json"
-    },
-    {
-      "name": "colorFaBB ASA @Z4",
-      "sub_path": "filament/colorFaBB ASA @Z4.json"
     },
     {
       "name": "colorFaBB Co-Polyester (ngen) @X4",
@@ -1266,16 +1086,8 @@
       "sub_path": "filament/colorFaBB Co-Polyester (ngen) @Z3.json"
     },
     {
-      "name": "colorFaBB Co-Polyester (ngen) @Z4",
-      "sub_path": "filament/colorFaBB Co-Polyester (ngen) @Z4.json"
-    },
-    {
       "name": "colorFaBB Lw-ASA @X4",
       "sub_path": "filament/colorFaBB Lw-ASA @X4.json"
-    },
-    {
-      "name": "colorFaBB Lw-ASA @Z4",
-      "sub_path": "filament/colorFaBB Lw-ASA @Z4.json"
     },
     {
       "name": "colorFaBB Lw-ASA @Z3S",
@@ -1290,10 +1102,6 @@
       "sub_path": "filament/colorFaBB PLA-PHA @X4.json"
     },
     {
-      "name": "colorFaBB PLA-PHA @Z4",
-      "sub_path": "filament/colorFaBB PLA-PHA @Z4.json"
-    },
-    {
       "name": "colorFaBB PLA-PHA @Z3S",
       "sub_path": "filament/colorFaBB PLA-PHA @Z3S.json"
     },
@@ -1306,10 +1114,6 @@
       "sub_path": "filament/colorFaBB Pa Neat @X4.json"
     },
     {
-      "name": "colorFaBB Pa Neat @Z4",
-      "sub_path": "filament/colorFaBB Pa Neat @Z4.json"
-    },
-    {
       "name": "colorFaBB Pa Neat @Z3S",
       "sub_path": "filament/colorFaBB Pa Neat @Z3S.json"
     },
@@ -1320,10 +1124,6 @@
     {
       "name": "colorFaBB PA-CF @X4",
       "sub_path": "filament/colorFaBB PA-CF @X4.json"
-    },
-    {
-      "name": "colorFaBB PA-CF @Z4",
-      "sub_path": "filament/colorFaBB PA-CF @Z4.json"
     },
     {
       "name": "colorFaBB PA-CF @Z3S",
@@ -1354,10 +1154,6 @@
     {
       "name": "Zaxe_machine_Z3_common",
       "sub_path": "machine/Zaxe_machine_Z3_common.json"
-    },
-    {
-      "name": "Zaxe_machine_Z4_common",
-      "sub_path": "machine/Zaxe_machine_Z4_common.json"
     },
     {
       "name": "Zaxe_machine_X4_common",
@@ -1406,10 +1202,6 @@
     {
       "name": "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle",
       "sub_path": "machine/Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle.json"
-    },
-    {
-      "name": "Zaxe Z4 - 0.4mm nozzle",
-      "sub_path": "machine/Zaxe Z4 - 0.4mm nozzle.json"
     },
     {
       "name": "Zaxe X4 - 0.4mm nozzle",
