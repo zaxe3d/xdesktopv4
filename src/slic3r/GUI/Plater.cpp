@@ -1342,6 +1342,7 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             MainFrame::ModeSelectType print_btn_type = wxGetApp().plater()->get_partplate_list().get_plate_count() == 1 ?
                                                            MainFrame::ModeSelectType::eSlicePlate :
                                                            MainFrame::ModeSelectType::eSliceAll;
+            wxGetApp().mainframe->select_tab(size_t(MainFrame::tp3DEditor));
             wxGetApp().mainframe->set_print_button_to_default(print_btn_type);
         }
 
@@ -7276,6 +7277,8 @@ void Plater::priv::on_process_completed(SlicingProcessCompletedEvent &evt)
         BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(", cancel event, status: %1%") % evt.status();
         this->notification_manager->set_slicing_progress_canceled(_u8L("Slicing Canceled"));
         is_finished = true;
+        wxGetApp().mainframe->select_tab(size_t(MainFrame::tp3DEditor));
+        main_frame->set_print_button_to_default(MainFrame::ModeSelectType(main_frame->get_last_slice_mode()));
     }
 
     //BBS: set the current plater's slice result to valid
