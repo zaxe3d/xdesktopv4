@@ -258,9 +258,11 @@ wxSizer* ZaxeDevice::createStateInfo()
     status_desc_icon->Bind(wxEVT_BUTTON, [this](auto&) {
         if (nm->states->bedOccupied || nm->states->bedDirty) {
             if (capabilities.can_set_bed_state()) {
-                confirm([&] { nm->set_bed_ready(); }, _L("Are you sure the build plate is clean?"));
+                confirm([&] { nm->set_bed_ready(); },
+                        _L("The print bed might not be ready for the next print. Please ensure it is clean and press YES to continue."));
             } else {
-                confirm([] {}, _L("Bed might not be ready for the next print, please be sure it is clean."));
+                confirm([] {}, _L("The print bed might not be ready for the next print. Please ensure it is clean and press OK on the "
+                                  "printer screen to continue."));
             }
         } else if (nm->states->has_update && capabilities.hasRemoteUpdate()) {
             confirm([&] { nm->fw_update(); }, _L("Do you want to update your printer?"));
