@@ -1107,15 +1107,14 @@ void MainFrame::init_tabpanel() {
 
     if (wxGetApp().is_editor()) {
         m_webview         = new WebViewPanel(m_tabpanel);
-        m_webview->Hide();
-        /* TODO zaxe
+
         Bind(EVT_LOAD_URL, [this](wxCommandEvent &evt) {
             wxString url = evt.GetString();
             select_tab(MainFrame::tpHome);
             m_webview->load_url(url);
         });
-        */
-        // m_tabpanel->AddPage(m_webview, "", "zaxe_logo_icon", "zaxe_logo_icon", false);
+
+        m_tabpanel->AddPage(m_webview, "", "tab_home_active", "tab_home_active", false);
         m_param_panel = new ParamsPanel(m_tabpanel, wxID_ANY, wxDefaultPosition, wxDefaultSize, wxBK_LEFT | wxTAB_TRAVERSAL);
     }
 
