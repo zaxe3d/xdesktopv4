@@ -7,21 +7,22 @@ namespace Slic3r {
 class ZaxeDeviceCapabilities
 {
 public:
-    enum class UploadType { HTTP, HTTPS, FTP };
+    enum class TransferType { HTTP, HTTPS, FTP };
 
     ZaxeDeviceCapabilities(NetworkMachine* _nm);
 
-    bool       hasRemoteUpdate() const;
-    bool       canToggleLeds() const;
-    bool       hasStl() const;
-    bool       hasThumbnails() const;
-    bool       hasCam() const;
-    bool       hasSnapshot() const;
-    bool       canUnloadFilament() const;
-    bool       canPrintMultiPlate() const;
-    bool       hasPrinterCover() const;
-    UploadType getUploadType() const;
-    bool       can_set_bed_state() const;
+    bool         hasRemoteUpdate() const;
+    bool         canToggleLeds() const;
+    bool         hasStl() const;
+    bool         hasThumbnails() const;
+    bool         hasCam() const;
+    bool         hasSnapshot() const;
+    bool         canUnloadFilament() const;
+    bool         canPrintMultiPlate() const;
+    bool         hasPrinterCover() const;
+    TransferType getUploadType() const;
+    TransferType getSnapshotDownloadType() const;
+    bool         can_set_bed_state() const;
 
     Semver get_version() const { return version; }
 

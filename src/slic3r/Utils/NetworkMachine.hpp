@@ -166,6 +166,7 @@ public:
 
     void run(); // start network machine by connecting to ws.
     void ftpRun(); // start downloading avatar in another thread.
+    void snapshotDownload();
 
     // Actions
     void unloadFilament();
@@ -214,10 +215,12 @@ private:
     USHORT m_httpPort = 80;
     USHORT m_ftpPort = 9494;
     USHORT m_httpsPort = 9999;
+    USHORT m_snapshotPort = 9998;
 #else
     ushort m_httpPort = 80;
     ushort m_ftpPort = 9494;
     ushort m_httpsPort = 9999;
+    ushort m_snapshotPort = 9998;
 #endif
 
     // Websocket callbacks.

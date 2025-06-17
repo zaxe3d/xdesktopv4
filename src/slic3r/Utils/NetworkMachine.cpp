@@ -304,9 +304,15 @@ NetworkMachine::~NetworkMachine()
 
 void NetworkMachine::downloadAvatar()
 {
-    if (!m_running) return;
+    if (!m_running)
+        return;
 
-    ftpThread = boost::thread(&NetworkMachine::ftpRun, this);
+    ZaxeDeviceCapabilities capabilities(this);
+    if (capabilities.getSnapshotDownloadType() == ZaxeDeviceCapabilities::TransferType::FTP) {
+        ftpThread = boost::thread(&NetworkMachine::ftpRun, this);
+    } else {
+        ftpThread = boost::thread(&NetworkMachine::snapshotDownload, this);
+    }
     ftpThread.detach();
 }
 
@@ -371,6 +377,30 @@ void NetworkMachine::ftpRun()
         wxPostEvent(this->m_evtHandler, evt);
     }
     ::curl_easy_cleanup(curl);
+}
+
+void NetworkMachine::snapshotDownload()
+{
+    std::lock_guard<std::mutex> guard(m_ftp_mtx);
+
+    std::string  url  = "https://" + ip + ":" + std::to_string(m_snapshotPort) + "/snapshot";
+    Slic3r::Http http = Http::get(url);
+    http.header("accept", "image/png")
+        .on_complete([this](std::string body, unsigned int status) {
+            wxMemoryInputStream s(body.data(), body.size());
+            m_avatar = wxBitmap(wxImage(s, wxBITMAP_TYPE_PNG));
+
+            if (this->m_running && m_avatar.IsOk()) {
+                wxCommandEvent evt(EVT_MACHINE_AVATAR_READY, wxID_ANY);
+                evt.SetString(this->ip);
+                evt.SetEventObject(this->m_evtHandler);
+                wxPostEvent(this->m_evtHandler, evt);
+            }
+        })
+        .on_error([this](std::string body, std::string error, unsigned status) {
+            BOOST_LOG_TRIVIAL(info) << "download snapshot failed status:" << status << " error:" << error;
+        })
+        .perform();
 }
 
 size_t file_read_cb(char *buffer, size_t size, size_t nitems, void *userp)
@@ -655,9 +685,9 @@ void NetworkMachine::uploadHTTPS(const char *filename, const char *uploadAs)
 void NetworkMachine::upload(const char* filename, const char* uploadAs)
 {
     switch (ZaxeDeviceCapabilities(this).getUploadType()) {
-    case ZaxeDeviceCapabilities::UploadType::HTTP: uploadHTTP(filename, uploadAs); break;
-    case ZaxeDeviceCapabilities::UploadType::HTTPS: uploadHTTPS(filename, uploadAs); break;
-    case ZaxeDeviceCapabilities::UploadType::FTP: uploadFTP(filename, uploadAs); break;
+    case ZaxeDeviceCapabilities::TransferType::HTTP: uploadHTTP(filename, uploadAs); break;
+    case ZaxeDeviceCapabilities::TransferType::HTTPS: uploadHTTPS(filename, uploadAs); break;
+    case ZaxeDeviceCapabilities::TransferType::FTP: uploadFTP(filename, uploadAs); break;
     }
 }
 

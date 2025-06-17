@@ -31,14 +31,22 @@ bool ZaxeDeviceCapabilities::canPrintMultiPlate() const
 
 bool ZaxeDeviceCapabilities::hasPrinterCover() const { return is_there(nm->attr->device_model, {"z1", "z3", "x1", "x2", "x3", "x4"}); };
 
-ZaxeDeviceCapabilities::UploadType ZaxeDeviceCapabilities::getUploadType() const
+ZaxeDeviceCapabilities::TransferType ZaxeDeviceCapabilities::getUploadType() const
 {
     if (nm->attr->is_http) {
-        return UploadType::HTTP;
+        return TransferType::HTTP;
     } else if (version >= Semver(5, 0, 0)) {
-        return UploadType::HTTPS;
+        return TransferType::HTTPS;
     }
-    return UploadType::FTP;
+    return TransferType::FTP;
+}
+
+ZaxeDeviceCapabilities::TransferType ZaxeDeviceCapabilities::getSnapshotDownloadType() const
+{
+    if (version >= Semver(5, 0, 0)) {
+        return TransferType::HTTPS;
+    }
+    return TransferType::FTP;
 }
 
 bool ZaxeDeviceCapabilities::can_set_bed_state() const { return version >= Semver(5, 0, 0); }
