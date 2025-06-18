@@ -1564,7 +1564,7 @@ void Sidebar::update_all_preset_comboboxes()
         p->m_filament_icon->SetBitmap_("pellets");
     } else {
 		p->m_staticText_filament_settings->SetLabel(_L("Filament"));
-        p->m_filament_icon->SetBitmap_("filament");
+        // p->m_filament_icon->SetBitmap_("filament");
     }
 
     show_SEMM_buttons(cfg.opt_bool("single_extruder_multi_material"));
