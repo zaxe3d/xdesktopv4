@@ -517,7 +517,7 @@ void NetworkMachine::uploadHTTP(const char* filename, const char* uploadAs)
         .perform_sync();
 }
 
-void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
+void NetworkMachine::uploadFTP(const char *filename, const std::string& pin, const char *uploadAs)
 {
     BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
     Http::tls_global_init();
@@ -556,7 +556,7 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
 
     std::string url = "ftp://" + ip + ":" + std::to_string(m_ftpPort) + "/" + std::string(encodedFilename);
     ::curl_easy_setopt(curl_handle, CURLOPT_USERNAME, "zaxe");
-    ::curl_easy_setopt(curl_handle, CURLOPT_PASSWORD, "zaxe");
+    ::curl_easy_setopt(curl_handle, CURLOPT_PASSWORD, pin.c_str());
     ::curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
     ::curl_easy_setopt(curl_handle, CURLOPT_READFUNCTION, file_read_cb);
     ::curl_easy_setopt(curl_handle, CURLOPT_UPLOAD, 1L);
@@ -600,7 +600,7 @@ void NetworkMachine::uploadFTP(const char *filename, const char *uploadAs)
     curl_handle = nullptr;
 }
 
-void NetworkMachine::uploadHTTPS(const char *filename, const char *uploadAs)
+void NetworkMachine::uploadHTTPS(const char *filename, const std::string& pin, const char *uploadAs)
 {
     BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
     Http::tls_global_init();
@@ -641,9 +641,11 @@ void NetworkMachine::uploadHTTPS(const char *filename, const char *uploadAs)
     struct curl_slist *headers = nullptr;
     headers = curl_slist_append(headers, "Content-Type: application/octet-stream");
     headers = curl_slist_append(headers, "Expect:");
+
+    std::string user_pwd = "zaxe:" + pin;
     
     ::curl_easy_setopt(curl_handle, CURLOPT_URL, url.c_str());
-    ::curl_easy_setopt(curl_handle, CURLOPT_USERPWD, "zaxe:zaxe");
+    ::curl_easy_setopt(curl_handle, CURLOPT_USERPWD, user_pwd.c_str());
     ::curl_easy_setopt(curl_handle, CURLOPT_POST, 1L);
     ::curl_easy_setopt(curl_handle, CURLOPT_HTTPHEADER, headers);
     ::curl_easy_setopt(curl_handle, CURLOPT_POSTFIELDS, fileData.data());
@@ -678,12 +680,12 @@ void NetworkMachine::uploadHTTPS(const char *filename, const char *uploadAs)
     curl_handle = nullptr;
 }
 
-void NetworkMachine::upload(const char* filename, const char* uploadAs)
+void NetworkMachine::upload(const char* filename, const std::string& pin, const char* uploadAs)
 {
     switch (ZaxeDeviceCapabilities(this).getUploadType()) {
     case ZaxeDeviceCapabilities::TransferType::HTTP: uploadHTTP(filename, uploadAs); break;
-    case ZaxeDeviceCapabilities::TransferType::HTTPS: uploadHTTPS(filename, uploadAs); break;
-    case ZaxeDeviceCapabilities::TransferType::FTP: uploadFTP(filename, uploadAs); break;
+    case ZaxeDeviceCapabilities::TransferType::HTTPS: uploadHTTPS(filename, pin, uploadAs); break;
+    case ZaxeDeviceCapabilities::TransferType::FTP: uploadFTP(filename, pin, uploadAs); break;
     }
 }
 

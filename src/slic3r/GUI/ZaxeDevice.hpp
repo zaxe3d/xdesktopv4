@@ -2,6 +2,7 @@
 
 #include <wx/panel.h>
 #include <wx/statbmp.h>
+#include <optional>
 
 #include "Widgets/Label.hpp"
 #include "Widgets/ProgressBar.hpp"
@@ -124,6 +125,7 @@ private:
 
     void confirm(std::function<void()> cb, const wxString& question = _L("Are you sure?"));
     void cancelViaPin();
+    std::optional<std::string> getPin() const;
 
     void        switch_cam_on();
     std::string get_cover_file_name() const;

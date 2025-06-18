@@ -866,13 +866,18 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
         return false;
     }
 
-    std::thread t([&, archive_path = archive->get_path()]() {
+    std::optional<std::string> pin = std::nullopt;
+    if (capabilities.has_upload_pin_protection() && nm->attr->has_pin) {
+        pin = getPin();
+    }
+
+    std::thread t([&, archive_path = archive->get_path(), _pin = pin]() {
         if (nm->attr->is_lite) {
-            this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(),
+            this->nm->upload(wxGetApp().plater()->get_gcode_path().c_str(), _pin.value_or("zaxe"),
                              translate_chars(wxGetApp().plater()->get_filename().ToStdString()).c_str());
         } else {
             BOOST_LOG_TRIVIAL(info) << "Print started for " << nm->name;
-            this->nm->upload(archive_path.c_str());
+            this->nm->upload(archive_path.c_str(), _pin.value_or("zaxe"));
         }
     });
     t.detach(); // crusial. otherwise blocks main thread.
@@ -958,15 +963,26 @@ void ZaxeDevice::setSelected(bool is_selected)
 void ZaxeDevice::cancelViaPin()
 {
     if (nm->attr->has_pin) {
-        RichMessageDialog dialog(GetParent(), _L("Please enter the PIN code before sending the cancel command to the printer."),
-                                 _L("XDesktop: Confirmation"), wxICON_QUESTION | wxYES_NO);
-        dialog.ShowTextInput(_L("Pin Code"));
-        int res = dialog.ShowModal();
-        if (res == wxID_YES) {
-            nm->cancel(dialog.GetTextInputValue().ToStdString());
+        auto pin = getPin();
+        if (pin.has_value()) {
+            nm->cancel(pin.value());
         }
     } else {
         confirm([&] { nm->cancel(""); });
     }
+}
+
+std::optional<std::string> ZaxeDevice::getPin() const
+{
+    if (nm->attr->has_pin) {
+        RichMessageDialog dialog(GetParent(), _L("Please enter the PIN code before sending a command to the printer."),
+                                 _L("XDesktop: Confirmation"), wxICON_QUESTION | wxYES_NO);
+        dialog.ShowTextInput(_L("Pin Code"));
+        int res = dialog.ShowModal();
+        if (res == wxID_YES) {
+            return dialog.GetTextInputValue().ToStdString();
+        }
+    }
+    return std::nullopt; // No pin is set, return empty optional
 }
 } // namespace Slic3r::GUI

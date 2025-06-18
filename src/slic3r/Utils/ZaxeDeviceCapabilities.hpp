@@ -23,6 +23,7 @@ public:
     TransferType getUploadType() const;
     TransferType getSnapshotDownloadType() const;
     bool         can_set_bed_state() const;
+    bool         has_upload_pin_protection() const;
 
     Semver get_version() const { return version; }
 
