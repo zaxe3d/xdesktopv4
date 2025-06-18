@@ -1,6 +1,6 @@
 {
   "type": "machine",
-  "name": "Zaxe Z3 - 0.6mm nozzle",
+  "name": "Zaxe Z3 - 0.6 nozzle",
   "inherits": "Zaxe_machine_Z3_common",
   "from": "system",
   "setting_id": "GM023",

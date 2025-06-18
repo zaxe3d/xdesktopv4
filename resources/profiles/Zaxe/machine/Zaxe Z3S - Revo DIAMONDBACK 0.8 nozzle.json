@@ -1,7 +1,7 @@
 {
   "type": "machine",
-  "name": "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle",
-  "inherits": "Zaxe Z3S - 0.8mm Revo HF nozzle",
+  "name": "Zaxe Z3S - Revo DIAMONDBACK 0.8 nozzle",
+  "inherits": "Zaxe Z3S - Revo HF 0.8 nozzle",
   "from": "system",
   "setting_id": "GM026",
   "instantiation": "true",

@@ -132,7 +132,7 @@
         "Auto Lift"
     ],
     "nozzle_type": "brass",
-    "single_extruder_multi_material": "1",
+    "single_extruder_multi_material": "0",
     "machine_pause_gcode": "M601",
     "machine_start_gcode": "G28\nG30\nG29\nM83\nG1 E3 F150\nG90\nG1 Z5 F500\nG1 X20 Y0 F10000\nG1 Z0.4 F500\nG91\nM83\nG1 X40 E15 F500\nG90\nM82\nG92 E0\nM221",
     "layer_change_gcode" : ";NOTIFY_LAYER_CHANGE {layer_num+1}"

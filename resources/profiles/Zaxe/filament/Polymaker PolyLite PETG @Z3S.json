@@ -6,13 +6,13 @@
     "setting_id": "GFSA25_01",
     "instantiation": "true",
     "compatible_printers": [
-        "Zaxe Z3S - 0.4mm Revo HF nozzle",
-        "Zaxe Z3S - 0.6mm Revo HF nozzle",
-        "Zaxe Z3S - 0.8mm Revo HF nozzle",
-        "Zaxe Z3S - 0.4mm Revo HF OBX nozzle",
-        "Zaxe Z3S - 0.8mm Revo HF OBX nozzle",
-        "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
-        "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle",
-        "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle"
+        "Zaxe Z3S - Revo HF 0.4 nozzle",
+        "Zaxe Z3S - Revo HF 0.6 nozzle",
+        "Zaxe Z3S - Revo HF 0.8 nozzle",
+        "Zaxe Z3S - Revo HF OBX 0.4 nozzle",
+        "Zaxe Z3S - Revo HF OBX 0.8 nozzle",
+        "Zaxe Z3S - Revo DIAMONDBACK 0.4 nozzle",
+        "Zaxe Z3S - Revo DIAMONDBACK 0.6 nozzle",
+        "Zaxe Z3S - Revo DIAMONDBACK 0.8 nozzle"
     ]
 }

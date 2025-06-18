@@ -1,6 +1,6 @@
 {
   "name": "Zaxe",
-  "version": "02.00.27.00",
+  "version": "02.00.28.00",
   "url": "",
   "force_update": "0",
   "description": "Zaxe configurations",
@@ -1160,52 +1160,52 @@
       "sub_path": "machine/Zaxe_machine_X4_common.json"
     },
     {
-      "name": "Zaxe Z3S - 0.4mm Revo HF nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.4mm Revo HF nozzle.json"
+      "name": "Zaxe Z3S - Revo HF 0.4 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo HF 0.4 nozzle.json"
     },
     {
-      "name": "Zaxe Z3S - 0.6mm Revo HF nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.6mm Revo HF nozzle.json"
+      "name": "Zaxe Z3S - Revo HF 0.6 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo HF 0.6 nozzle.json"
     },
     {
-      "name": "Zaxe Z3S - 0.8mm Revo HF nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.8mm Revo HF nozzle.json"
+      "name": "Zaxe Z3S - Revo HF 0.8 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo HF 0.8 nozzle.json"
     },
     {
-      "name": "Zaxe Z3 - 0.4mm nozzle",
-      "sub_path": "machine/Zaxe Z3 - 0.4mm nozzle.json"
+      "name": "Zaxe Z3 - 0.4 nozzle",
+      "sub_path": "machine/Zaxe Z3 - 0.4 nozzle.json"
     },
     {
-      "name": "Zaxe Z3 - 0.6mm nozzle",
-      "sub_path": "machine/Zaxe Z3 - 0.6mm nozzle.json"
+      "name": "Zaxe Z3 - 0.6 nozzle",
+      "sub_path": "machine/Zaxe Z3 - 0.6 nozzle.json"
     },
     {
-      "name": "Zaxe Z3 - 0.8mm nozzle",
-      "sub_path": "machine/Zaxe Z3 - 0.8mm nozzle.json"
+      "name": "Zaxe Z3 - 0.8 nozzle",
+      "sub_path": "machine/Zaxe Z3 - 0.8 nozzle.json"
     },
     {
-      "name": "Zaxe Z3S - 0.4mm Revo HF OBX nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.4mm Revo HF OBX nozzle.json"
+      "name": "Zaxe Z3S - Revo HF OBX 0.4 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo HF OBX 0.4 nozzle.json"
     },
     {
-      "name": "Zaxe Z3S - 0.8mm Revo HF OBX nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.8mm Revo HF OBX nozzle.json"
+      "name": "Zaxe Z3S - Revo HF OBX 0.8 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo HF OBX 0.8 nozzle.json"
     },
     {
-      "name": "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle.json"
+      "name": "Zaxe Z3S - Revo DIAMONDBACK 0.4 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo DIAMONDBACK 0.4 nozzle.json"
     },
     {
-      "name": "Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.6mm Revo DIAMONDBACK nozzle.json"
+      "name": "Zaxe Z3S - Revo DIAMONDBACK 0.6 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo DIAMONDBACK 0.6 nozzle.json"
     },
     {
-      "name": "Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle",
-      "sub_path": "machine/Zaxe Z3S - 0.8mm Revo DIAMONDBACK nozzle.json"
+      "name": "Zaxe Z3S - Revo DIAMONDBACK 0.8 nozzle",
+      "sub_path": "machine/Zaxe Z3S - Revo DIAMONDBACK 0.8 nozzle.json"
     },
     {
-      "name": "Zaxe X4 - 0.4mm nozzle",
-      "sub_path": "machine/Zaxe X4 - 0.4mm nozzle.json"
+      "name": "Zaxe X4 - 0.4 nozzle",
+      "sub_path": "machine/Zaxe X4 - 0.4 nozzle.json"
     }
   ]
 }

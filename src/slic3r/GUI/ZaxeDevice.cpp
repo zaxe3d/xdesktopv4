@@ -1,7 +1,3 @@
-///|/ Copyright (c) Zaxe 2018 - 2024 Gökhan Öniş @GO
-///|/
-///|/ XDesktop is released under the terms of the AGPLv3 or higher
-///|/
 #include "ZaxeDevice.hpp"
 
 #include "libslic3r/Utils.hpp"
@@ -669,7 +665,7 @@ void ZaxeDevice::onPrintButtonStateChanged(bool print_enable, std::shared_ptr<Za
     } else {
         std::vector<string> sPV;
         split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
-        string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
+        string pN = sPV[0]; // ie: Zaxe Z3S - 0.6 nozzle -> Zaxe Z3S
         string dM = boost::to_upper_copy(nm->attr->device_model);
         boost::replace_all(dM, "PLUS", "+");
         auto s = pN.find(dM);
@@ -820,7 +816,7 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
 
     std::vector<string> sPV;
     split(sPV, GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name, is_any_of("-"));
-    string pN = sPV[0]; // ie: Zaxe Z3S - 0.6mm nozzle -> Zaxe Z3S
+    string pN = sPV[0]; // ie: Zaxe Z3S - 0.6 nozzle -> Zaxe Z3S
     string dM = boost::to_upper_copy(nm->attr->device_model);
     boost::replace_all(dM, "PLUS", "+");
     auto s = pN.find(dM);

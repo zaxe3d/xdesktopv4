@@ -1232,11 +1232,11 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             std::string printer{};
             std::string printer_for_config_wizard{};
             if (nozzle_model.empty()) {
-                printer = (boost::format("Zaxe %1% - %2%mm nozzle") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_size).str();
+                printer = (boost::format("Zaxe %1% - %2% nozzle") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_size).str();
                 printer_for_config_wizard = (boost::format("%1%") % boost::to_upper_copy(_nm->attr->device_model)).str();
             } else {
-                printer = (boost::format("Zaxe %1% - %2%mm %3% nozzle") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_size %
-                           nozzle_model)
+                printer = (boost::format("Zaxe %1% - %2% %3% nozzle") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_model %
+                        nozzle_size)
                               .str();
                 printer_for_config_wizard = (boost::format("%1% %2%") % boost::to_upper_copy(_nm->attr->device_model) % nozzle_model).str();
             }

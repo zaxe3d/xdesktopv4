@@ -1,9 +1,9 @@
 {
   "type": "machine",
-  "name": "Zaxe Z3S - 0.4mm Revo DIAMONDBACK nozzle",
+  "name": "Zaxe Z3S - Revo DIAMONDBACK 0.4 nozzle",
   "from": "system",
   "instantiation": "true",
-  "inherits": "Zaxe Z3S - 0.4mm Revo HF nozzle",
+  "inherits": "Zaxe Z3S - Revo HF 0.4 nozzle",
   "setting_id": "GM021",
   "printer_model": "Z3S Revo DIAMONDBACK",
   "nozzle_diameter": [

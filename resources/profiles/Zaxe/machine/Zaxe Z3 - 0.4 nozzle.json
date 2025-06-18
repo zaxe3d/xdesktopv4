@@ -1,21 +1,21 @@
 {
     "type": "machine",
-    "name": "Zaxe Z3S - 0.4mm Revo HF nozzle",
-    "inherits": "Zaxe_machine_Z3S_common",
+    "name": "Zaxe Z3 - 0.4 nozzle",
+    "inherits": "Zaxe_machine_Z3_common",
     "from": "system",
     "setting_id": "GM020",
     "instantiation": "true",
     "nozzle_diameter": [
         "0.4"
     ],
-    "printer_model": "Z3S Revo HF",
+    "printer_model": "Z3",
     "printer_variant": "0.4",
     "auxiliary_fan": "1",
     "bed_exclude_area": [],
     "default_filament_profile": [
-        "Zaxe PLA @Z3S"
+        "Zaxe PLA @Z3"
     ],
-    "default_print_profile": "0.15mm, Recommended @Z3S 0.4mm",
+    "default_print_profile": "0.15mm, Recommended @Z3 0.4mm",
     "extruder_clearance_height_to_rod": "25",
     "extruder_clearance_max_radius": "73",
     "extruder_clearance_radius": "73",
