@@ -206,9 +206,9 @@ void NetworkMachine::onWSRead(string message)
     }
 }
 
-void NetworkMachine::unloadFilament()
+void NetworkMachine::unloadFilament(const std::string& pin)
 {
-    request("filament_unload");
+    request("filament_unload", pin);
     _push_notification(_L("Filament Unload"));
 }
 
@@ -220,28 +220,25 @@ void NetworkMachine::sayHi()
 
 void NetworkMachine::cancel(const std::string& pin)
 {
-    ptree pt;
-    pt.put("request", "cancel");
-    pt.put("pin", pin);
-    send(pt);
+    request("cancel", pin);
     _push_notification(_L("Cancel"));
 }
 
-void NetworkMachine::pause()
+void NetworkMachine::pause(const std::string& pin)
 {
-    request("pause");
+    request("pause", pin);
     _push_notification(_L("Pause"));
 }
 
-void NetworkMachine::resume()
+void NetworkMachine::resume(const std::string& pin)
 {
-    request("resume");
+    request("resume", pin);
     _push_notification(_L("Resume"));
 }
 
-void NetworkMachine::togglePreheat()
+void NetworkMachine::togglePreheat(const std::string& pin)
 {
-    request("toggle_preheat");
+    request("toggle_preheat", pin);
     _push_notification(_L("Toggle Preheat"));
 }
 
@@ -273,10 +270,13 @@ void NetworkMachine::set_bed_ready()
     _push_notification(_L("Set Bed Ready"));
 }
 
-void NetworkMachine::request(const char* command)
+void NetworkMachine::request(const std::string& command, const std::string& pin)
 {
     ptree pt; // construct root obj.
     pt.put("request", command);
+    if(!pin.empty()) {
+        pt.put("pin", pin);
+    }
     send(pt);
 }
 

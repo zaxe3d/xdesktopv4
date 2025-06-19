@@ -125,6 +125,11 @@ private:
 
     void confirm(std::function<void()> cb, const wxString& question = _L("Are you sure?"));
     void cancelViaPin();
+    void togglePreheatViaPin();
+    void unloadFilamentViaPin();
+    void pauseViaPin();
+    void resumeViaPin();
+    void cmdViaPin(std::function<void(const std::string&)> func, bool force_pin = false);
     std::optional<std::string> getPin() const;
 
     void        switch_cam_on();

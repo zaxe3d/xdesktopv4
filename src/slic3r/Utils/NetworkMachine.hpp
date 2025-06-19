@@ -165,13 +165,13 @@ public:
     void snapshotDownload();
 
     // Actions
-    void unloadFilament();
+    void unloadFilament(const std::string& pin);
     void sayHi();
-    void togglePreheat();
+    void togglePreheat(const std::string& pin);
     void toggleLeds();
     void cancel(const std::string& pin);
-    void pause();
-    void resume();
+    void pause(const std::string& pin);
+    void resume(const std::string& pin);
     void uploadHTTP(const char *filename, const char *uploadAs = "");
     void uploadFTP(const char *filename, const std::string& pin, const char *uploadAs = "");
     void uploadHTTPS(const char *filename, const std::string& pin, const char *uploadAs = "");
@@ -224,7 +224,7 @@ private:
     void onWSRead(string message); // Websocket read message callback.
     void onWSError(string message); // Websocket error callback.
 
-    void request(const char* command); // does a request with intended command on device.
+    void request(const std::string& command, const std::string& pin = ""); // does a request with intended command on device.
     void send(ptree pt); // sends ptree as json string to websocket (m_ws).
 
     Websocket* m_ws; // websocket

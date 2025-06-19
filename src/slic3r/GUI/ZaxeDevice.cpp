@@ -343,12 +343,12 @@ wxSizer* ZaxeDevice::createIconButtons()
         return btn;
     };
 
-    pause_btn   = create_icon_btn("zaxe_pause", _L("Pause"), [&](const auto&) { confirm([&] { nm->pause(); }); });
-    resume_btn  = create_icon_btn("zaxe_resume", _L("Resume"), [&](const auto&) { confirm([&] { nm->resume(); }); });
+    pause_btn   = create_icon_btn("zaxe_pause", _L("Pause"), [&](const auto&) { pauseViaPin(); });
+    resume_btn  = create_icon_btn("zaxe_resume", _L("Resume"), [&](const auto&) { resumeViaPin(); });
     stop_btn    = create_icon_btn("zaxe_stop", _L("Stop"), [&](const auto&) { cancelViaPin(); });
-    preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto&) { confirm([&] { nm->togglePreheat(); }); });
+    preheat_btn = create_icon_btn("zaxe_preheat", _L("Preheat"), [&](const auto&) { togglePreheatViaPin(); });
     say_hi_btn  = create_icon_btn("zaxe_hello", _L("Say Hi!"), [&](const auto&) { nm->sayHi(); });
-    unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto&) { confirm([&] { nm->unloadFilament(); }); });
+    unload_btn  = create_icon_btn("zaxe_unload", _L("Unload filament"), [&](const auto&) { unloadFilamentViaPin(); });
 
     toggle_leds_btn = create_icon_btn(nm->states->ledsSwitchedOn ? "zaxe_lights_on" : "zaxe_lights_off", _L("Toggle Leds"),
                                       [&](const auto& evt) {
@@ -962,13 +962,38 @@ void ZaxeDevice::setSelected(bool is_selected)
 
 void ZaxeDevice::cancelViaPin()
 {
-    if (nm->attr->has_pin) {
+    cmdViaPin([&](const std::string& _pin) { nm->cancel(_pin); }, true);
+}
+
+void ZaxeDevice::togglePreheatViaPin()
+{
+    cmdViaPin([&](const std::string& _pin) { nm->togglePreheat(_pin); });
+}
+
+void ZaxeDevice::unloadFilamentViaPin()
+{
+    cmdViaPin([&](const std::string& _pin) { nm->unloadFilament(_pin); });
+}
+
+void ZaxeDevice::pauseViaPin()
+{
+    cmdViaPin([&](const std::string& _pin) { nm->pause(_pin); });
+}
+
+void ZaxeDevice::resumeViaPin()
+{
+    cmdViaPin([&](const std::string& _pin) { nm->resume(_pin); });
+}
+
+void ZaxeDevice::cmdViaPin(std::function<void(const std::string&)> func, bool force_pin)
+{
+    if ((force_pin || capabilities.has_upload_pin_protection()) && nm->attr->has_pin) {
         auto pin = getPin();
         if (pin.has_value()) {
-            nm->cancel(pin.value());
+            func(pin.value());
         }
     } else {
-        confirm([&] { nm->cancel(""); });
+        confirm([&] { func(""); });
     }
 }
 
