@@ -929,7 +929,19 @@ void GuideFrame::select(const GUI_App::elements_from_pages_t& element_list)
             for (const auto& el : element_list.printers) {
                 for (int m = 0; m < nModel; m++) {
                     std::string model_name = m_ProfileJson[section][m]["model"];
-                    if (model_name.rfind(el.first, 0) == 0) {
+
+                    bool is_match = false;
+                    if(model_name == el.first) {
+                        is_match = true;
+                    }
+                    else {
+                        std::string _el_first = el.first + " ";
+                        if (model_name.rfind(_el_first, 0) == 0) {
+                            is_match = true;
+                        }
+                    }
+
+                    if (is_match) {
                         std::string nozzle_selected = m_ProfileJson[section][m]["nozzle_selected"];
                         if (!nozzle_selected.empty()) {
                             nozzle_selected += ";";
