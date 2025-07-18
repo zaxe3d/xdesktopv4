@@ -869,6 +869,10 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
     std::optional<std::string> pin = std::nullopt;
     if (capabilities.has_upload_pin_protection() && nm->attr->has_pin) {
         pin = getPin();
+        if(!pin.has_value()) {
+            BOOST_LOG_TRIVIAL(warning) << "Pin code is not privided, cancel print";
+            return false;
+        }
     }
 
     std::thread t([&, archive_path = archive->get_path(), _pin = pin]() {
