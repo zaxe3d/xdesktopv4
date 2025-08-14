@@ -980,20 +980,20 @@ void GuideFrame::select(const GUI_App::elements_from_pages_t& element_list)
 
 int GuideFrame::GetFilamentInfo( std::string VendorDirectory, json & pFilaList, std::string filepath, std::string &sVendor, std::string &sType)
 {
-    //GetStardardFilePath(filepath);
-    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " GetFilamentInfo:VendorDirectory - " << VendorDirectory << ", Filepath - "<<filepath;
+    std::string VendorDir_safe = PathSanitizer::sanitize(VendorDirectory);
+    std::string filepath_safe = PathSanitizer::sanitize(filepath);
+    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " GetFilamentInfo:VendorDirectory - " << VendorDir_safe << ", Filepath - " << filepath_safe;
 
     try {
-        std::string contents;
-        LoadFile(filepath, contents);
-        BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << ": Json Contents: " << contents;
-        json jLocal = json::parse(contents);
+        boost::nowide::ifstream ifs(filepath);
+        json jLocal;
+        ifs >> jLocal;
 
         if (sVendor == "") {
             if (jLocal.contains("filament_vendor"))
                 sVendor = jLocal["filament_vendor"][0];
             else {
-                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << filepath << " - Not Contains filament_vendor";
+                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << filepath_safe << " - Not Contains filament_vendor";
             }
         }
 
@@ -1001,7 +1001,7 @@ int GuideFrame::GetFilamentInfo( std::string VendorDirectory, json & pFilaList, 
             if (jLocal.contains("filament_type"))
                 sType = jLocal["filament_type"][0];
             else {
-                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << filepath << " - Not Contains filament_type";
+                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << filepath_safe << " - Not Contains filament_type";
             }
         }
 
@@ -1016,9 +1016,9 @@ int GuideFrame::GetFilamentInfo( std::string VendorDirectory, json & pFilaList, 
                 }
 
                 std::string FPath = pFilaList[FName]["sub_path"];
-                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Before Format Inherits Path: VendorDirectory - " << VendorDirectory << ", sub_path - " << FPath;
-                wxString strNewFile = wxString::Format("%s%c%s", wxString(VendorDirectory.c_str(), wxConvUTF8), boost::filesystem::path::preferred_separator, FPath);
-                boost::filesystem::path inherits_path(into_u8(strNewFile));
+                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Before Format Inherits Path: VendorDirectory - " << VendorDir_safe << ", sub_path - " << FPath;
+                std::string strNewFile = VendorDirectory + "/" + FPath;
+                boost::filesystem::path inherits_path(strNewFile);
                 if (!boost::filesystem::exists(inherits_path))
                     inherits_path = (boost::filesystem::path(m_OrcaFilaLibPath) / boost::filesystem::path(FPath)).make_preferred();
 
@@ -1026,11 +1026,11 @@ int GuideFrame::GetFilamentInfo( std::string VendorDirectory, json & pFilaList, 
                 if (boost::filesystem::exists(inherits_path))
                     return GetFilamentInfo(VendorDirectory,pFilaList, inherits_path.string(), sVendor, sType);
                 else {
-                    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " inherits File Not Exist: " << inherits_path;
+                    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " inherits File Not Exist: " << PathSanitizer::sanitize(inherits_path.string());
                     return -1;
                 }
             } else {
-                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << filepath << " - Not Contains inherits";
+                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << filepath_safe << " - Not Contains inherits";
                 if (sType == "") {
                     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << "sType is Empty";
                     return -1;
@@ -1044,14 +1044,14 @@ int GuideFrame::GetFilamentInfo( std::string VendorDirectory, json & pFilaList, 
             return 0;
     }
     catch(nlohmann::detail::parse_error &err) {
-        BOOST_LOG_TRIVIAL(error) << __FUNCTION__<< ": parse "<<filepath <<" got a nlohmann::detail::parse_error, reason = " << err.what();
+        BOOST_LOG_TRIVIAL(error) << __FUNCTION__<< ": parse "<<filepath_safe <<" got a nlohmann::detail::parse_error, reason = " << err.what();
         return -1;
     }
     catch (std::exception &e)
     {
         // wxLogMessage("GUIDE: load_profile_error  %s ", e.what());
         // wxMessageBox(e.what(), "", MB_OK);
-        BOOST_LOG_TRIVIAL(error) << __FUNCTION__<< ": parse " << filepath <<" got exception: "<<e.what();
+        BOOST_LOG_TRIVIAL(error) << __FUNCTION__<< ": parse " << filepath_safe <<" got exception: "<<e.what();
         return -1;
     }
 
@@ -1225,14 +1225,13 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
     // wxString strFolder = strFilePath.BeforeLast(boost::filesystem::path::preferred_separator);
     boost::filesystem::path file_path(strFilePath);
     boost::filesystem::path vendor_dir = boost::filesystem::absolute(file_path.parent_path() / strVendor).make_preferred();
-    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(",  vendor path %1%.") % vendor_dir.string();
+    BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << boost::format(",  vendor path %1%.") % PathSanitizer::sanitize(vendor_dir.string());
     try {
         // wxLogMessage("GUIDE: json_path1  %s", w2s(strFilePath));
 
-        std::string contents;
-        LoadFile(strFilePath, contents);
-        // wxLogMessage("GUIDE: json_path1 content: %s", contents);
-        json jLocal = json::parse(contents);
+        boost::nowide::ifstream ifs(strFilePath);
+        json jLocal;
+        ifs >> jLocal;
         // wxLogMessage("GUIDE: json_path1 Loaded");
 
         // BBS:models
@@ -1253,10 +1252,9 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
             boost::filesystem::path sub_path = boost::filesystem::absolute(vendor_dir / s2).make_preferred();
             std::string             sub_file = sub_path.string();
 
-            // wxLogMessage("GUIDE: json_path2  %s", w2s(ModelFilePath));
-            LoadFile(sub_file, contents);
-            // wxLogMessage("GUIDE: json_path2 content: %s", contents);
-            json pm = json::parse(contents);
+            boost::nowide::ifstream ifs(sub_file);
+            json pm;
+            ifs >> pm;
             // wxLogMessage("GUIDE: json_path2  loaded");
 
             OneModel["vendor"]    = strVendor;
@@ -1294,8 +1292,9 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
             // wxString ModelFilePath = wxString::Format("%s\\%s\\%s", strFolder, strVendor, s2);
             boost::filesystem::path sub_path = boost::filesystem::absolute(vendor_dir / s2).make_preferred();
             std::string             sub_file = sub_path.string();
-            LoadFile(sub_file, contents);
-            json pm = json::parse(contents);
+            boost::nowide::ifstream ifs(sub_file);
+            json pm;
+            ifs >> pm;
 
             std::string strInstant = pm["instantiation"];
             if (strInstant.compare("true") == 0) {
@@ -1335,11 +1334,12 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
                 // wxString ModelFilePath = wxString::Format("%s\\%s\\%s", strFolder, strVendor, s2);
                 boost::filesystem::path sub_path = boost::filesystem::absolute(vendor_dir / s2).make_preferred();
                 std::string             sub_file = sub_path.string();
-                LoadFile(sub_file, contents);
-                json pm = json::parse(contents);
+                boost::nowide::ifstream ifs(sub_file);
+                json pm;
+                ifs >> pm;
                 
                 std::string strInstant = pm["instantiation"];
-                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << "Load Filament:" << s1 << ",Path:" << sub_file << ",instantiation?" << strInstant;
+                BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << "Load Filament:" << s1 << ",Path:" << PathSanitizer::sanitize(sub_file) << ",instantiation?" << strInstant;
 
                 if (strInstant == "true") {
                     std::string sV;
@@ -1395,20 +1395,21 @@ int GuideFrame::LoadProfileFamily(std::string strVendor, std::string strFilePath
             // wxString ModelFilePath = wxString::Format("%s\\%s\\%s", strFolder, strVendor, s2);
             boost::filesystem::path sub_path = boost::filesystem::absolute(vendor_dir / s2).make_preferred();
             std::string             sub_file = sub_path.string();
-            LoadFile(sub_file, contents);
-            json pm = json::parse(contents);
+            boost::nowide::ifstream ifs(sub_file);
+            json pm;
+            ifs >> pm;
 
             std::string bInstall = pm["instantiation"];
             if (bInstall == "true") { m_ProfileJson["process"].push_back(OneProcess); }
         }
 
     } catch (nlohmann::detail::parse_error &err) {
-        BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << ": parse " << strFilePath << " got a nlohmann::detail::parse_error, reason = " << err.what();
+        BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << ": parse " << PathSanitizer::sanitize(strFilePath) << " got a nlohmann::detail::parse_error, reason = " << err.what();
         return -1;
     } catch (std::exception &e) {
         // wxMessageBox(e.what(), "", MB_OK);
         // wxLogMessage("GUIDE: LoadFamily Error: %s", e.what());
-        BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << ": parse " << strFilePath << " got exception: " << e.what();
+        BOOST_LOG_TRIVIAL(error) << __FUNCTION__ << ": parse " << PathSanitizer::sanitize(strFilePath) << " got exception: " << e.what();
         return -1;
     }
 
@@ -1430,7 +1431,7 @@ void GuideFrame::StrReplace(std::string &strBase, std::string strSrc, std::strin
 
 std::string GuideFrame::w2s(wxString sSrc)
 {
-    return into_u8(sSrc);
+    return std::string(sSrc.mb_str());
 }
 
 void GuideFrame::GetStardardFilePath(std::string &FilePath) {
@@ -1445,7 +1446,7 @@ bool GuideFrame::LoadFile(std::string jPath, std::string &sContent)
         std::stringstream buffer;
         buffer << t.rdbuf();
         sContent=buffer.str();
-        BOOST_LOG_TRIVIAL(trace) << __FUNCTION__ << boost::format(", load %1% into buffer")% jPath;
+        BOOST_LOG_TRIVIAL(trace) << __FUNCTION__ << boost::format(", load %1% into buffer")% PathSanitizer::sanitize(jPath);
     }
     catch (std::exception &e)
     {

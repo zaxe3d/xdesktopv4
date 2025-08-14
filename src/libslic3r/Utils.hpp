@@ -240,6 +240,155 @@ inline std::string sanitize_filename(const std::string &filename){
     const std::regex special_chars("[/\\\\:*?\"<>|]");
     return std::regex_replace(filename, special_chars, "_");
 }
+
+class PathSanitizer
+{
+public:
+    static std::string sanitize(const std::string &path) {
+        return sanitize_impl(path);
+    }
+
+    static std::string sanitize(std::string &&path) {
+        return sanitize_impl(path);
+    }
+
+    static std::string sanitize(const char *path) {
+        return path ? sanitize_impl(std::string(path)) : "";
+    }
+
+    static std::string sanitize(const boost::filesystem::path &path) {
+        return sanitize_impl(path.string());
+    }
+
+private:
+    inline static size_t start_pos = std::string::npos;
+    inline static size_t id_start_pos = std::string::npos;
+    inline static size_t name_size = 0;
+    inline static std::string full;
+
+    static bool init_usrname_range()
+    {
+        if (start_pos != std::string::npos) {
+            return true;
+        }
+#ifdef _WIN32
+        const char *env = std::getenv("USERPROFILE");
+        const size_t len = strlen("\\AppData\\Roaming\\XDesktopv4\\user");
+#elif __APPLE__
+        const char *env = std::getenv("HOME");
+        const size_t len = strlen("/Library/Application Support/XDesktopv4/user");
+#elif __linux__
+        const char *env = std::getenv("HOME");
+        const size_t len = strlen("/.config/XDesktopv4/user");
+#else
+        // Unsupported platform, return raw input
+        return false;
+#endif
+        if (!env) {
+            return false;
+        }
+        full = std::string(env);
+        size_t sep_pos = full.find_last_of("\\/");
+        if (sep_pos == std::string::npos) {
+            return false;
+        }
+        start_pos = sep_pos + 1;
+        name_size = full.length() - start_pos;
+        id_start_pos = full.length() + len + 1;
+
+        if (name_size == 0) {
+            return false;
+        }
+        if (start_pos + name_size > full.length()) {
+            return false;
+        }
+        return true;
+    }
+
+    static inline std::string file_name(const std::string &name) {
+        return boost::filesystem::path(name).filename().string();
+    }
+
+    static std::string sanitize_impl(const std::string &raw)
+    {
+        if (!init_usrname_range()) {
+            return file_name(raw);
+        }
+
+        if (raw.length() < full.length() || raw.empty()) {
+            return file_name(raw);
+        }
+
+        std::string sanitized = raw;
+        if (raw[0] != full[0] || raw[full.length() - 1] != full[full.length() - 1]) {
+            if (std::isupper(raw[start_pos]) && std::tolower(raw[start_pos]) == full[start_pos]) {
+                sanitized.replace(start_pos, 12, std::string(12, '*'));
+                return sanitized;
+            }
+            return file_name(raw);
+        }
+
+        if (raw[start_pos + name_size] == '\\' || raw[start_pos + name_size] == '/') {
+            sanitized.replace(start_pos, name_size, std::string(name_size, '*'));
+        } else if (std::isupper(raw[start_pos]) && std::tolower(raw[start_pos]) == full[start_pos]) {
+            sanitized.replace(start_pos, 12, std::string(12, '*'));
+        } else {
+            return file_name(raw);
+        }
+        
+        if (id_start_pos != std::string::npos && id_start_pos < sanitized.length() && (sanitized[id_start_pos - 1] == '\\' || sanitized[id_start_pos - 1] == '/') &&
+            std::isdigit(sanitized[id_start_pos])) {
+            // If the ID part is present, sanitize it as well
+            size_t id_end_pos = sanitized.find_first_of("\\/", id_start_pos);
+            if (id_end_pos == std::string::npos) {
+                id_end_pos = sanitized.length();
+            }
+            sanitized.replace(id_start_pos, id_end_pos - id_start_pos, std::string(id_end_pos - id_start_pos, '*'));
+        }
+
+        return file_name(sanitized);
+    }
+
+    static std::string sanitize_impl(std::string &&raw)
+    {
+        if (!init_usrname_range()) {
+            return file_name(raw);
+        }
+
+        if (raw.length() < full.length() || raw.empty()) {
+            return std::move(file_name(raw));
+        }
+        
+        if (raw[0] != full[0] || raw[full.length() - 1] != full[full.length() - 1]) {
+            if (std::isupper(raw[start_pos]) && std::tolower(raw[start_pos]) == full[start_pos]) {
+                raw.replace(start_pos, 12, std::string(12, '*'));
+                return std::move(file_name(raw));
+            }
+            return std::move(file_name(raw));
+        }
+
+        if (raw[start_pos + name_size] == '\\' || raw[start_pos + name_size] == '/') {
+            raw.replace(start_pos, name_size, std::string(name_size, '*'));
+        } else if (std::isupper(raw[start_pos]) && std::tolower(raw[start_pos]) == full[start_pos]) {
+            raw.replace(start_pos, 12, std::string(12, '*'));
+        } else {
+            return std::move(file_name(raw));
+        }
+
+        if (id_start_pos != std::string::npos && id_start_pos < raw.length() && (raw[id_start_pos - 1] == '\\' || raw[id_start_pos - 1] == '/') &&
+            std::isdigit(raw[id_start_pos])) {
+            // If the ID part is present, sanitize it as well
+            size_t id_end_pos = raw.find_first_of("\\/", id_start_pos);
+            if (id_end_pos == std::string::npos) {
+                id_end_pos = raw.length();
+            }
+            raw.replace(id_start_pos, id_end_pos - id_start_pos, std::string(id_end_pos - id_start_pos, '*'));
+        }
+
+        return std::move(file_name(raw));
+    }
+};
+
 // File path / name / extension splitting utilities, working with UTF-8,
 // to be published to Perl.
 namespace PerlUtils {
