@@ -1018,7 +1018,7 @@ int GuideFrame::GetFilamentInfo( std::string VendorDirectory, json & pFilaList, 
                 std::string FPath = pFilaList[FName]["sub_path"];
                 BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << " Before Format Inherits Path: VendorDirectory - " << VendorDirectory << ", sub_path - " << FPath;
                 wxString strNewFile = wxString::Format("%s%c%s", wxString(VendorDirectory.c_str(), wxConvUTF8), boost::filesystem::path::preferred_separator, FPath);
-                boost::filesystem::path inherits_path(w2s(strNewFile));
+                boost::filesystem::path inherits_path(into_u8(strNewFile));
                 if (!boost::filesystem::exists(inherits_path))
                     inherits_path = (boost::filesystem::path(m_OrcaFilaLibPath) / boost::filesystem::path(FPath)).make_preferred();
 
@@ -1430,7 +1430,7 @@ void GuideFrame::StrReplace(std::string &strBase, std::string strSrc, std::strin
 
 std::string GuideFrame::w2s(wxString sSrc)
 {
-    return std::string(sSrc.mb_str());
+    return into_u8(sSrc);
 }
 
 void GuideFrame::GetStardardFilePath(std::string &FilePath) {
