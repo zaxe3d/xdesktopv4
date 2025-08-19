@@ -491,6 +491,20 @@ int xfercb(void *userp, curl_off_t dltotal, curl_off_t dlnow, curl_off_t ultotal
 void NetworkMachine::uploadHTTP(const char* filename, const char* uploadAs)
 {
     BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
+    
+    // Check if file exists
+    fs::path path = fs::path(filename);
+    if (!fs::exists(path)) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": File does not exist: " << filename;
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("File not found.").ToStdString());
+        return;
+    }
+    
     xfercb(this, 0.0, 0.0, 0.0, 0.0);
     states->uploading_zaxe_file = true;
     std::string url             = "http://" + ip + "/upload.cgi:" + std::to_string(m_httpPort);
@@ -520,6 +534,20 @@ void NetworkMachine::uploadHTTP(const char* filename, const char* uploadAs)
 void NetworkMachine::uploadFTP(const char *filename, const std::string& pin, const char *uploadAs)
 {
     BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
+    
+    // Check if file exists
+    fs::path path = fs::path(filename);
+    if (!fs::exists(path)) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": File does not exist: " << filename;
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("File not found.").ToStdString());
+        return;
+    }
+    
     Http::tls_global_init();
     if (curl_handle) {
         ::curl_easy_reset(curl_handle);
@@ -528,6 +556,7 @@ void NetworkMachine::uploadFTP(const char *filename, const std::string& pin, con
     }
 
     if (!curl_handle) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": Failed to initialize CURL handle";
         GUI::wxGetApp()
             .plater()
             ->get_notification_manager()
@@ -540,16 +569,41 @@ void NetworkMachine::uploadFTP(const char *filename, const std::string& pin, con
     states->uploading_zaxe_file = true;
     xfercb(this, 0.0, 0.0, 0.0, 0.0);
 
-    fs::path path = fs::path(filename);
     boost::system::error_code ec;
     boost::uintmax_t filesize = file_size(path, ec);
     std::unique_ptr<fs::ifstream> putFile;
 
-    if (!ec) {
-        putFile = std::make_unique<fs::ifstream>(path, ios_base::in | ios_base::binary);
-        ::curl_easy_setopt(curl_handle, CURLOPT_READDATA, (void *) (putFile.get()));
-        ::curl_easy_setopt(curl_handle, CURLOPT_INFILESIZE, filesize);
+    if (ec) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": Failed to get file size: " << ec.message();
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("Cannot read file.").ToStdString());
+        states->uploading_zaxe_file = false;
+        ::curl_easy_cleanup(curl_handle);
+        curl_handle = nullptr;
+        return;
     }
+
+    putFile = std::make_unique<fs::ifstream>(path, ios_base::in | ios_base::binary);
+    if (!putFile->is_open()) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": Failed to open file: " << filename;
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("Cannot open file.").ToStdString());
+        states->uploading_zaxe_file = false;
+        ::curl_easy_cleanup(curl_handle);
+        curl_handle = nullptr;
+        return;
+    }
+    
+    ::curl_easy_setopt(curl_handle, CURLOPT_READDATA, (void *) (putFile.get()));
+    ::curl_easy_setopt(curl_handle, CURLOPT_INFILESIZE, filesize);
 
     std::string pFilename = *uploadAs ? uploadAs : path.filename().string();
     char *encodedFilename = ::curl_easy_escape(curl_handle, pFilename.c_str(), pFilename.length());
@@ -595,7 +649,10 @@ void NetworkMachine::uploadFTP(const char *filename, const std::string& pin, con
         wxPostEvent(this->m_evtHandler, evt);
     }
 
-    ::curl_free(encodedFilename);
+    // Cleanup resources
+    if (encodedFilename) {
+        ::curl_free(encodedFilename);
+    }
     ::curl_easy_cleanup(curl_handle);
     curl_handle = nullptr;
 }
@@ -603,6 +660,20 @@ void NetworkMachine::uploadFTP(const char *filename, const std::string& pin, con
 void NetworkMachine::uploadHTTPS(const char *filename, const std::string& pin, const char *uploadAs)
 {
     BOOST_LOG_TRIVIAL(info) << __func__ << ": filename: " << filename << " upload as: " << uploadAs;
+    
+    // Check if file exists
+    fs::path path = fs::path(filename);
+    if (!fs::exists(path)) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": File does not exist: " << filename;
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("File not found.").ToStdString());
+        return;
+    }
+    
     Http::tls_global_init();
     if (curl_handle) {
         ::curl_easy_reset(curl_handle);
@@ -611,6 +682,7 @@ void NetworkMachine::uploadHTTPS(const char *filename, const std::string& pin, c
     }
 
     if (!curl_handle) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": Failed to initialize CURL handle";
         GUI::wxGetApp()
             .plater()
             ->get_notification_manager()
@@ -623,15 +695,41 @@ void NetworkMachine::uploadHTTPS(const char *filename, const std::string& pin, c
     states->uploading_zaxe_file = true;
     xfercb(this, 0.0, 0.0, 0.0, 0.0);
 
-    fs::path path = fs::path(filename);
     boost::system::error_code ec;
     boost::uintmax_t filesize = file_size(path, ec);
     
-    std::vector<char> fileData;
-    if (!ec) {
-        std::ifstream file(path.string() , std::ios::binary);
-        fileData.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    if (ec) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": Failed to get file size: " << ec.message();
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("Cannot read file.").ToStdString());
+        states->uploading_zaxe_file = false;
+        ::curl_easy_cleanup(curl_handle);
+        curl_handle = nullptr;
+        return;
     }
+    
+    std::vector<char> fileData;
+    std::ifstream file(path.string(), std::ios::binary);
+    if (!file.is_open()) {
+        BOOST_LOG_TRIVIAL(error) << __func__ << ": Failed to open file: " << filename;
+        GUI::wxGetApp()
+            .plater()
+            ->get_notification_manager()
+            ->push_notification(GUI::NotificationType::CustomNotification,
+                                GUI::NotificationManager::NotificationLevel::WarningNotificationLevel,
+                                _L("Cannot open file.").ToStdString());
+        states->uploading_zaxe_file = false;
+        ::curl_easy_cleanup(curl_handle);
+        curl_handle = nullptr;
+        return;
+    }
+    
+    fileData.assign((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+    file.close();
 
     std::string pFilename = *uploadAs ? uploadAs : path.filename().string();
     char *encodedFilename = ::curl_easy_escape(curl_handle, pFilename.c_str(), pFilename.length());
@@ -674,8 +772,13 @@ void NetworkMachine::uploadHTTPS(const char *filename, const std::string& pin, c
     evt.SetEventObject(this->m_evtHandler);
     wxPostEvent(this->m_evtHandler, evt);
     
-    curl_slist_free_all(headers);
-    ::curl_free(encodedFilename);
+    // Cleanup resources
+    if (headers) {
+        curl_slist_free_all(headers);
+    }
+    if (encodedFilename) {
+        ::curl_free(encodedFilename);
+    }
     ::curl_easy_cleanup(curl_handle);
     curl_handle = nullptr;
 }

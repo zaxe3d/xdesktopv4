@@ -5,8 +5,52 @@
 #include "libslic3r/Utils.hpp"
 #include "ZaxeDevice.hpp"
 #include "NotificationManager.hpp"
+#include "../Utils/ASCIIFolding.hpp"
 
 namespace Slic3r::GUI {
+
+// Comprehensive filename sanitization for cross-platform compatibility
+// Handles Turkish characters and other Unicode characters properly
+static std::string sanitize_filename_unicode(const std::string &filename) {
+    if (filename.empty()) {
+        return filename;
+    }
+    
+    // First normalize Unicode characters (NFC normalization)
+    std::string normalized = normalize_utf8_nfc(filename.c_str());
+    
+    // Convert Unicode characters to ASCII equivalents (handles Turkish characters)
+    std::string ascii_converted = fold_utf8_to_ascii(normalized, true);
+    
+    // Remove or replace problematic characters for filesystems
+    const std::regex special_chars("[/\\\\:*?\"<>|\\x00-\\x1f]");
+    std::string sanitized = std::regex_replace(ascii_converted, special_chars, "_");
+    
+    // Remove leading/trailing spaces and dots (Windows restriction)
+    sanitized = std::regex_replace(sanitized, std::regex("^[\\s.]+|[\\s.]+$"), "");
+    
+    // Replace multiple consecutive underscores with single underscore
+    sanitized = std::regex_replace(sanitized, std::regex("_+"), "_");
+    
+    // Remove leading/trailing underscores
+    sanitized = std::regex_replace(sanitized, std::regex("^_+|_+$"), "");
+    
+    // Ensure the filename is not empty after sanitization
+    if (sanitized.empty()) {
+        sanitized = "untitled";
+    }
+    
+    // Limit filename length (255 characters is safe for most filesystems)
+    if (sanitized.length() > 255) {
+        sanitized = sanitized.substr(0, 255);
+        // Remove trailing incomplete characters
+        while (!sanitized.empty() && (sanitized.back() & 0xC0) == 0x80) {
+            sanitized.pop_back();
+        }
+    }
+    
+    return sanitized;
+}
 
 NetworkMachineManager::NetworkMachineManager(wxWindow* parent, wxSize size)
     : wxPanel(parent, wxID_ANY, wxDefaultPosition, size)
@@ -447,10 +491,11 @@ bool NetworkMachineManager::prepare_archive(PrintMode mode)
         }
 
         std::string file_name      = (is_multi_plate || single_plate_file_name.empty()) ? multi_plate_file_name : single_plate_file_name;
+        std::string sanitized_file_name = sanitize_filename_unicode(file_name);
         std::string file_extension = is_multi_plate ? "zaxemp" : "zaxe";
         boost::filesystem::path _temp_path(wxStandardPaths::Get().GetTempDir().utf8_str().data());
         boost::filesystem::path archive_path(_temp_path);
-        archive_path /= (boost::format("%1%.%2%") % file_name % file_extension).str();
+        archive_path /= (boost::format("%1%.%2%") % sanitized_file_name % file_extension).str();
 
         archive    = std::make_shared<ZaxeArchive>(archive_path.string(), is_multi_plate);
         auto model = GUI::wxGetApp().preset_bundle->printers.get_selected_preset().name;
