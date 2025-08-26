@@ -55,4 +55,9 @@ bool ZaxeDeviceCapabilities::has_upload_pin_protection() const
 {
     return (is_there(nm->attr->device_model, {"z3"}) && version >= Semver(3, 6, 10) || version >= Semver(5, 0, 0));
 }
+
+bool ZaxeDeviceCapabilities::is_old_x4() const
+{
+    return is_there(nm->attr->device_model, {"x4"}) && version < Semver(5, 0, 0);
+}
 } // namespace Slic3r

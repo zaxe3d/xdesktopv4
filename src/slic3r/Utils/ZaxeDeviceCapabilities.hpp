@@ -24,6 +24,7 @@ public:
     TransferType getSnapshotDownloadType() const;
     bool         can_set_bed_state() const;
     bool         has_upload_pin_protection() const;
+    bool         is_old_x4() const;
 
     Semver get_version() const { return version; }
 

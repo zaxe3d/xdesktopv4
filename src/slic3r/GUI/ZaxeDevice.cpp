@@ -840,6 +840,12 @@ bool ZaxeDevice::print(std::shared_ptr<ZaxeArchive> archive)
         return false;
     }
 
+    if(capabilities.is_old_x4()) {
+        wxMessageBox(_L("Please update your printer."),
+                     _L("Incompatible device"), wxICON_ERROR);
+        return false;
+    }
+
     if (!nm->attr->is_lite && nm->states->filamentPresent && nm->attr->material != "custom" &&
         nm->attr->material.compare(archive->get_info("material")) != 0) {
         BOOST_LOG_TRIVIAL(warning) << "Wrong material type, filamentPresent: " << nm->states->filamentPresent

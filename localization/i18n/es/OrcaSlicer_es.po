@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-19 17:40+0300\n"
+"POT-Creation-Date: 2025-08-26 16:20+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Carlos Fco. Caruncho Serrano <puzzlero@gmail.com>\n"
 "Language-Team: \n"
@@ -17831,6 +17831,12 @@ msgstr ""
 msgid "Wrong device model"
 msgstr ""
 
+msgid "Please update your printer."
+msgstr ""
+
+msgid "Incompatible device"
+msgstr ""
+
 msgid ""
 "Materials don't match with this device. Please reslice with the correct "
 "material."
@@ -17891,7 +17897,16 @@ msgstr ""
 msgid "Set Bed Ready"
 msgstr ""
 
+msgid "File not found."
+msgstr ""
+
 msgid "Print cannot be started, internal error."
+msgstr ""
+
+msgid "Cannot read file."
+msgstr ""
+
+msgid "Cannot open file."
 msgstr ""
 
 #: resources/data/hints.ini: [hint:Precise wall]
