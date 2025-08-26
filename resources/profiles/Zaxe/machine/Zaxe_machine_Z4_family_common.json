@@ -1,0 +1,139 @@
+{
+    "type": "machine",
+    "name": "Zaxe_machine_Z4_family_common",
+    "inherits": "fdm_machine_common",
+    "from": "system",
+    "instantiation": "false",
+    "zaxe_bed_leveling": "1",
+    "support_multi_bed_types": "1",
+    "nozzle_diameter": [
+        "0.4"
+    ],
+    "printer_variant": "0.4",
+    "printable_area": [
+        "0x0",
+        "400x0",
+        "400x300",
+        "0x300"
+    ],
+    "printable_height": "350",
+    "auxiliary_fan": "1",
+    "bed_exclude_area": [],
+    "default_filament_profile": [
+        "Zaxe PLA @Z4"
+    ],
+    "default_print_profile": "0.15mm, Recommended @Z4 0.4mm",
+    "extruder_colour": [
+        "#018001"
+    ],
+    "thumbnails_format": "PNG",
+    "thumbnails": [
+      "250x250"
+    ],
+    "machine_max_acceleration_e": [
+        "5000",
+        "5000"
+    ],
+    "machine_max_acceleration_extruding": [
+        "6000",
+        "6000"
+    ],
+    "machine_max_acceleration_retracting": [
+        "5000",
+        "5000"
+    ],
+    "machine_max_acceleration_travel": [
+        "6000",
+        "6000"
+    ],
+    "machine_max_acceleration_x": [
+        "6000",
+        "6000"
+    ],
+    "machine_max_acceleration_y": [
+        "6000",
+        "6000"
+    ],
+    "machine_max_acceleration_z": [
+        "300",
+        "300"
+    ],
+    "machine_max_speed_e": [
+        "30",
+        "30"
+    ],
+    "machine_max_speed_x": [
+        "300",
+        "300"
+    ],
+    "machine_max_speed_y": [
+        "300",
+        "300"
+    ],
+    "machine_max_speed_z": [
+        "20",
+        "20"
+    ],
+    "machine_max_jerk_e": [
+        "2.5",
+        "2.5"
+    ],
+    "machine_max_jerk_x": [
+        "9",
+        "9"
+    ],
+    "machine_max_jerk_y": [
+        "9",
+        "9"
+    ],
+    "machine_max_jerk_z": [
+        "3",
+        "3"
+    ],
+    "machine_min_extruding_rate": [
+        "0",
+        "0"
+    ],
+    "machine_min_travel_rate": [
+        "0",
+        "0"
+    ],
+    "retract_lift_below": [
+        "249"
+    ],
+    "extruder_clearance_radius": "57",
+    "extruder_clearance_max_radius": "68",
+    "extruder_clearance_height_to_lid": "90",
+    "nozzle_volume": "107",
+    "printer_structure": "corexy",
+    "best_object_pos": "0.5x0.5",
+    "retraction_minimum_travel": [
+        "1"
+    ],
+    "retract_before_wipe": [
+        "0%"
+    ],
+    "retraction_length": [
+        "0.8"
+    ],
+    "retract_length_toolchange": [
+        "2"
+    ],
+    "z_hop": [
+        "0.2"
+    ],
+    "retraction_speed": [
+        "30"
+    ],
+    "deretraction_speed": [
+        "30"
+    ],
+    "z_hop_types": [
+        "Auto Lift"
+    ],
+    "nozzle_type": "brass",
+    "single_extruder_multi_material": "1",
+    "machine_pause_gcode": "M601",
+    "machine_start_gcode": "G28\nG30\nG29\nM83\nG1 E3 F150\nG90\nG1 Z5 F500\nG1 X20 Y0 F10000\nG1 Z0.4 F500\nG91\nM83\nG1 X40 E15 F500\nG90\nM82\nG92 E0\nM221",
+    "layer_change_gcode" : ";NOTIFY_LAYER_CHANGE {layer_num+1}"
+}

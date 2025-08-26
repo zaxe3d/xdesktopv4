@@ -10,14 +10,13 @@
     ],
     "printer_model": "Z4",
     "printer_variant": "0.4",
-    "auxiliary_fan": "0",
+    "auxiliary_fan": "1",
     "bed_exclude_area": [],
     "default_filament_profile": [
         "Zaxe PLA @Z4"
     ],
-    "default_print_profile": "0.15mm, Recommended @Z4 0.4mm",
+    "default_print_profile": "0.20mm, Normal @Z4 0.4mm",
     "extruder_clearance_height_to_rod": "25",
-    "min_layer_height":"0.05",
-    "max_layer_height":"0.30"
- 
+    "min_layer_height": "0.05",
+    "max_layer_height": "0.30"
 }

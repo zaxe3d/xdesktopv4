@@ -14,13 +14,16 @@
   "pressure_advance": [
     "0.04"
   ],
+  "slow_down_layer_time": [
+    "5"
+  ],
   "filament_flow_ratio": [
     "0.96"
   ],
   "nozzle_temperature": [
-    "205"
+    "215"
   ],
   "nozzle_temperature_initial_layer": [
-    "205"
+    "220"
   ]
 }
