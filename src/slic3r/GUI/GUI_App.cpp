@@ -6533,8 +6533,8 @@ void GUI_App::check_updates(const bool verbose)
             m_app_conf_exists = true;
 		}
 		else if (verbose && updater_result == PresetUpdater::R_NOOP) {
-			MsgNoUpdates dlg;
-			dlg.ShowModal();
+			// MsgNoUpdates dlg;
+			// dlg.ShowModal();
 		}
 	}
 	catch (const std::exception & ex) {
