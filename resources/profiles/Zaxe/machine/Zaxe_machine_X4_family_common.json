@@ -143,8 +143,8 @@
     "scan_first_layer": "0",
     "upward_compatible_machine": [],
     "single_extruder_multi_material": "0",
-    "machine_start_gcode": "ZXM403 T=[filament_type]\nG28\nCLEAN_NOZZLE\nZAXE_SHAPER_CALIBRATE\nZXG29\nG90\nG1 Z5 F500\nG1 X253 Y25 F8000\nM83\nG1 E23 F600\nG90\nG1 Z0.4 F500\nG91\nM83\nG1 Y80 E15 F500\nG90\nM82\nG92 E0\nM221",
+    "machine_start_gcode": "ZXM403 T=[filament_type]\nG28\nBED_PRESENCE\nM140 S[first_layer_bed_temperature]\nM104 S125\nM190 S[first_layer_bed_temperature]\nCLEAN_NOZZLE\nZAXE_SHAPER_CALIBRATE\nZXG29\nG90\nG1 Z5 F500\nG1 X253 Y25 F8000\nM109 S[first_layer_temperature]\nM83\nG1 E23 F600\nG90\nG1 Z0.4 F500\nG91\nM83\nG1 Y80 E15 F500\nG90\nM82\nG92 E0\nM221",
     "machine_pause_gcode": "M601",
-    "machine_end_gcode": "G28 X0",
+    "machine_end_gcode": "G28\nM104 S0\nM140 S0",
     "layer_change_gcode" : ";NOTIFY_LAYER_CHANGE {layer_num+1}"
 }
