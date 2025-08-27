@@ -6760,8 +6760,10 @@ void Plater::priv::set_current_panel(wxPanel* panel, bool no_slice)
             preview->reload_print(true);
 
             preview->set_as_dirty();*/
-            if (wxGetApp().is_editor() && !q->only_gcode_mode())
+            if (wxGetApp().is_editor() && !q->only_gcode_mode()) {
                 do_reslice();
+                q->update_all_plate_thumbnails(true);
+            }
         }
 
         // reset cached size to force a resize on next call to render() to keep imgui in synch with canvas size
