@@ -41,26 +41,32 @@
   "nozzle_temperature": [
     "260"
   ],
+  "nozzle_temperature_initial_layer": [
+      "250"
+  ],
   "hot_plate_temp": [
-    "105"
+    "100"
   ],
   "hot_plate_temp_initial_layer": [
-    "105"
+    "100"
   ],
   "textured_plate_temp": [
-    "105"
+    "100"
   ],
   "textured_plate_temp_initial_layer": [
-    "105"
+    "100"
   ],
   "enable_pressure_advance": [
     "1"
+  ], 
+  "filament_flow_ratio": [
+      "0.96"
   ],
   "pressure_advance": [
-    "0.025"
+    "0.0335"
   ],
   "filament_max_volumetric_speed": [
-    "15"
+    "11"
   ],
   "min_print_speed": [
     "20"

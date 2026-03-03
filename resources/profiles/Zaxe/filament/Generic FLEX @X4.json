@@ -7,5 +7,54 @@
   "instantiation": "true",
   "compatible_printers": [
     "Zaxe X4 - 0.4 nozzle"
-  ]
+  ],
+    "close_fan_the_first_x_layers": [
+        "1"
+    ],
+    "fan_cooling_layer_time": [
+        "100"
+    ],
+    "fan_min_speed": [
+        "100"
+    ],
+    "filament_cost": [
+        "20"
+    ],
+    "filament_density": [
+        "1.24"
+    ],
+    "filament_max_volumetric_speed": [
+        "3"
+    ],
+    "filament_retraction_length": [
+        "0.4"
+    ],
+    "filament_type": [
+        "FLEX"
+    ],
+    "hot_plate_temp": [
+        "35"
+    ],
+    "hot_plate_temp_initial_layer": [
+        "35"
+    ],
+    "nozzle_temperature": [
+        "230"
+    ],
+    "nozzle_temperature_initial_layer": [
+        "235"
+    ],
+    "nozzle_temperature_range_high": [
+        "250"
+    ],
+    "nozzle_temperature_range_low": [
+        "200"
+    ],
+    "reduce_fan_stop_start_freq": [
+        "1"
+    ],
+    "pressure_advance": [
+        "0.02"
+    ]
+    
 }

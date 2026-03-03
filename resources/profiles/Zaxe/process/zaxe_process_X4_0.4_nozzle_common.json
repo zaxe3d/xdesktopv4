@@ -71,5 +71,6 @@
   "initial_layer_jerk": "6",
   "travel_jerk": "6",
   "travel_speed": "650",
-  "top_solid_infill_flow_ratio": "0.98"
+  "top_solid_infill_flow_ratio": "0.98",
+  "precise_outer_wall": "1"
 }
