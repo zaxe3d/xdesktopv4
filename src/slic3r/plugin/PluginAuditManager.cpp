@@ -1568,7 +1568,8 @@ bool PluginAuditManager::request_permissions(const std::string& plugin_key, cons
     const auto collect_missing = [&missing_buckets, &state](AuditEventCategory category,
                                                             const std::vector<std::string>& requested_targets,
                                                             const std::vector<std::string>& granted_targets) {
-        // Only the filesystem buckets accept a tree grant; the others match verbatim.
+        // Only the filesystem buckets accept a tree grant. Network targets match by host and the
+        // remaining buckets verbatim.
         const bool tree_grant_bucket =
             category == AuditEventCategory::FsRead || category == AuditEventCategory::FsReadWrite;
         MissingBucket bucket{category, {}};
