@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: orcaslicerua\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 09:48-0300\n"
+"POT-Creation-Date: 2026-10-25 02:28+0800\n"
 "PO-Revision-Date: 2026-07-17 16:25+0300\n"
 "Last-Translator: Andrij Mizyk <andm1zyk@proton.me>\n"
 "Language-Team: Ukrainian\n"
@@ -1272,6 +1272,9 @@ msgstr "Встановити віддзеркалення"
 msgid "Embossed text"
 msgstr "Рельєфний текст"
 
+msgid "Default font"
+msgstr "Типовий шрифт"
+
 msgid "Enter emboss gizmo"
 msgstr "Ввести пристрій для тиснення"
 
@@ -1312,9 +1315,6 @@ msgstr "СУЧАСНИЙ"
 
 msgid "First font"
 msgstr "Перший шрифт"
-
-msgid "Default font"
-msgstr "Типовий шрифт"
 
 msgid "Advanced"
 msgstr "Розширені"
@@ -3035,9 +3035,6 @@ msgstr "Промивати в обʼєкт"
 msgid "Flush into objects' support"
 msgstr "Промивати у підтримки обʼєкта"
 
-msgid "Edit in Parameter Table"
-msgstr "Змінити в таблиці параметрів"
-
 msgid "Convert from Inches"
 msgstr "Конвертувати з дюймів"
 
@@ -3059,32 +3056,55 @@ msgstr "Зібрати вибрані обʼєкти в обʼєкт з кіль
 msgid "Assemble the selected objects into an object with single part"
 msgstr "Зібрати вибрані обʼєкти в обʼєкт в одне ціле"
 
+msgid "Along X Axis"
+msgstr "Вздовж осі X"
+
+msgid "Mirror along the X axis"
+msgstr ""
+
+msgid "Along Y Axis"
+msgstr "По осі Y"
+
+msgid "Mirror along the Y axis"
+msgstr ""
+
+msgid "Along Z Axis"
+msgstr "По осі Z"
+
+msgid "Mirror along the Z axis"
+msgstr ""
+
+# AI Translated
+msgid "Transform"
+msgstr "Перетворення"
+
+msgid "Split"
+msgstr "Розділити"
+
+msgid "To Objects"
+msgstr "На моделі"
+
+msgid "Split the selected object into multiple objects"
+msgstr "Розділити вибраний обʼєкт на кілька обʼєктів"
+
+msgid "To Parts"
+msgstr "На частини"
+
+msgid "Split the selected object into multiple parts"
+msgstr "Розділити вибрану модель на окремі частини"
+
 msgid "Mesh boolean"
 msgstr "Логічна сітка"
 
 msgid "Mesh boolean operations including union and subtraction"
 msgstr "Булеві операції з сіткою, включаючи обʼєднання та віднімання"
 
-msgid "Along X Axis"
-msgstr "Вздовж осі X"
+# AI Translated
+msgid "Modify"
+msgstr "Змінити"
 
-msgid "Mirror along the X Axis"
-msgstr "Відобразити по осі X"
-
-msgid "Along Y Axis"
-msgstr "По осі Y"
-
-msgid "Mirror along the Y Axis"
-msgstr "Відобразити по осі Y"
-
-msgid "Along Z Axis"
-msgstr "По осі Z"
-
-msgid "Mirror along the Z Axis"
-msgstr "Відобразити осі Z"
-
-msgid "Mirror object"
-msgstr "Відобразити модель"
+msgid "More"
+msgstr "Більше"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3145,29 +3165,18 @@ msgstr "Додати модель"
 msgid "Show Labels"
 msgstr "Показати підписи"
 
-msgid "To Objects"
-msgstr "На моделі"
-
-msgid "Split the selected object into multiple objects"
-msgstr "Розділити вибраний обʼєкт на кілька обʼєктів"
-
-msgid "To Parts"
-msgstr "На частини"
-
-msgid "Split the selected object into multiple parts"
-msgstr "Розділити вибрану модель на окремі частини"
-
-msgid "Split"
-msgstr "Розділити"
-
-msgid "Split the selected object"
-msgstr "Розділити вибраний обʼєкт"
+# AI Translated
+msgid "Instances"
+msgstr "Екземпляри"
 
 msgid "Auto orientation"
 msgstr "Автоматична орієнтація"
 
 msgid "Auto orient the object to improve print quality"
 msgstr "Автоматично орієнтуйте обʼєкт для покращення якості друку."
+
+msgid "Paste Process Settings"
+msgstr "Вставити налаштування процесу"
 
 msgid "Edit"
 msgstr "Змінити"
@@ -3206,11 +3215,11 @@ msgstr "Впорядкувати"
 msgid "Arrange current plate"
 msgstr "Впорядкувати поточну пластину"
 
-msgid "Reload All"
-msgstr "Перезавантажити все"
+msgid "Auto Rotate"
+msgstr "Авто-поворот"
 
-msgid "Reload all from disk"
-msgstr "Перезавантажити все з диска"
+msgid "Auto rotate current plate"
+msgstr "Автоповорот поточної пластини"
 
 # AI Translated
 msgid "Fix All"
@@ -3228,17 +3237,11 @@ msgstr "Виправити всі пластини"
 msgid "Fix all models on all plates"
 msgstr "Виправити всі моделі на всіх пластинах"
 
-msgid "Auto Rotate"
-msgstr "Авто-поворот"
+msgid "Reload All"
+msgstr "Перезавантажити все"
 
-msgid "Auto rotate current plate"
-msgstr "Автоповорот поточної пластини"
-
-msgid "Delete Plate"
-msgstr "Видалити пластину"
-
-msgid "Remove the selected plate"
-msgstr "Вилучити вибрану пластину"
+msgid "Reload all from disk"
+msgstr "Перезавантажити все з диска"
 
 msgid "Add instance"
 msgstr "Додати екземпляр"
@@ -3293,8 +3296,8 @@ msgstr "Змінити налаштування процесу"
 msgid "Copy Process Settings"
 msgstr "Копіювати налаштування процесу"
 
-msgid "Paste Process Settings"
-msgstr "Вставити налаштування процесу"
+msgid "Edit in Parameter Table"
+msgstr "Змінити в таблиці параметрів"
 
 msgid "Edit print parameters for a single object"
 msgstr "Змінити параметри друку для одного обʼєкта"
@@ -3316,6 +3319,12 @@ msgstr "Заблокувати"
 
 msgid "Edit Plate Name"
 msgstr "Змінити назву пластини"
+
+msgid "Delete Plate"
+msgstr "Видалити пластину"
+
+msgid "Remove the selected plate"
+msgstr "Вилучити вибрану пластину"
 
 msgid "Name"
 msgstr "Назва"
@@ -3676,9 +3685,6 @@ msgstr "Тип лінії"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "Сітка 1x1: %d мм"
-
-msgid "More"
-msgstr "Більше"
 
 msgid "Open Preferences"
 msgstr "Відкрийте налаштування."
@@ -4525,6 +4531,9 @@ msgstr "Плагін-скрипт пропущено."
 # AI Translated
 msgid "Script plugin finished."
 msgstr "Плагін-скрипт завершив роботу."
+
+msgid "Script plugin started."
+msgstr ""
 
 msgid "Printer"
 msgstr "Принтер"
@@ -5805,6 +5814,9 @@ msgstr "Якесь з розширень вводу некоректне"
 msgid "This parameter expects a valid template."
 msgstr "Цей параметр очікує правильного шаблону."
 
+msgid "Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, XxY, ... and separate multiple volumes with |."
+msgstr ""
+
 # AI Translated
 msgid "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per entry. Examples: 5, 5#2, 1,7,9, 5,9#2,18."
 msgstr "Некоректний шаблон. Використовуйте N, N#K або список через кому з необовʼязковим #K для кожного запису. Приклади: 5, 5#2, 1,7,9, 5,9#2,18."
@@ -6365,6 +6377,19 @@ msgstr "Ліве сопло: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%\n"
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "Праве сопло: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 
+msgid "Mirror object"
+msgstr "Відобразити модель"
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed. There is no free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed, so it was moved to free space on the plate."
+msgstr ""
+
 msgid "Tool move"
 msgstr "Інструмент Переміщення"
 
@@ -6608,7 +6633,7 @@ msgid "Size:"
 msgstr "Розмір:"
 
 # AI Translated
-#, c-format, boost-format
+#, boost-format
 msgid "Conflicts of G-code paths have been found at layer %d, Z = %.2lfmm. Please separate the conflicted objects farther (%s <-> %s)."
 msgstr "Виявлено конфлікти шляхів G-code на шарі %d, Z = %.2lf мм. Будь ласка, рознесіть конфліктуючі обʼєкти далі один від одного (%s <-> %s)."
 
@@ -7108,6 +7133,12 @@ msgstr "Показати &підписи"
 
 msgid "Show object labels in 3D scene."
 msgstr "Показати підписи обʼєктів на 3D-сцені"
+
+msgid "Show all collision volumes"
+msgstr ""
+
+msgid "Show the full height of every configured collision volume, including on an empty bed."
+msgstr ""
 
 msgid "Show &Overhang"
 msgstr "Показати &Виступ"
@@ -8542,10 +8573,6 @@ msgstr "Клацніть, щоб дізнатися більше."
 
 msgid "Cut connectors"
 msgstr "Вирізати зʼєднання"
-
-# AI Translated
-msgid "Instances"
-msgstr "Екземпляри"
 
 # AI Translated
 #, c-format, boost-format
@@ -10712,6 +10739,14 @@ msgstr ""
 "Статичні: світло нерухоме у світових координатах, тому тіні перераховуються лише за зміни сцени.\n"
 "За камерою: світло повертається разом із камерою, і тіні перераховуються в кожному кадрі, поки камера рухається."
 
+msgid "Glossy toolpaths"
+msgstr ""
+
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight of the plain view."
+msgstr ""
+
 msgid "Anti-aliasing"
 msgstr "Згладжування"
 
@@ -10894,6 +10929,12 @@ msgid ""
 msgstr ""
 "Наскільки яскраво відображаються затемнені шари, коли увімкнено параметр «Затемнювати нижні шари».\n"
 "99% — затемнення майже непомітне, 0% — шари стають чорними. Максимум обмежено 99%, оскільки 100% дорівнювало б вимкненню параметра."
+
+msgid "Translucent filaments"
+msgstr ""
+
+msgid "Draw the toolpaths of filaments whose color is partly transparent as see-through, as the 3D view draws their objects. Turn it off to draw every filament opaque."
+msgstr ""
 
 msgid "Login region"
 msgstr "Регіон входу"
@@ -12345,6 +12386,12 @@ msgstr "Параметри з цим значком можна налаштов�
 msgid "Click to reset all settings to the last saved preset."
 msgstr "Натисніть, щоб скинути всі налаштування до останнього збереженого пресету."
 
+msgid "This definition contains collision-volume syntax. Add it to the toolhead collision volumes for G-code checking and travel avoidance? The existing excluded bed area will be preserved."
+msgstr ""
+
+msgid "Add collision volumes"
+msgstr ""
+
 # AI Translated
 # Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "підготовча вежа"; align it once the term is settled.
 msgid "Prime tower is required for nozzle changing. There may be flaws on the model without prime tower. Are you sure you want to disable prime tower?"
@@ -12864,9 +12911,6 @@ msgstr "Шаблон власного G-code"
 
 msgid "Motion ability"
 msgstr "Здатність руху"
-
-msgid "Normal"
-msgstr "Нормальний"
 
 # AI Translated
 msgid "Resonance Compensation"
@@ -14293,6 +14337,17 @@ msgstr ""
 "Не вдалося експортувати G-code до %1%.\n"
 "Чи не заповнений диск?"
 
+#, boost-format
+msgid "A G-code move intersects a collision volume for extruder %1%. This may cause a printer collision."
+msgstr ""
+
+msgid "A G-code move intersects a collision volume. This may cause a printer collision."
+msgstr ""
+
+#, boost-format
+msgid "The intersecting move is at G-code line %1%. Its Z position is unknown after homing, so Orca checked it against every height."
+msgstr ""
+
 # AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
@@ -14605,6 +14660,14 @@ msgstr ""
 #, boost-format
 msgid "%1% is too close to exclusion area. There may be collisions when printing."
 msgstr "%1% знаходиться надто близько до забороненої зони, можливі зіткнення при друку."
+
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr ""
+
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr ""
 
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
@@ -15019,8 +15082,35 @@ msgstr "Упорядкований список виключених зон ст
 msgid "Excluded bed area"
 msgstr "Площа виключення столу"
 
-msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
-msgstr "Недрукована область у площині XY. Наприклад, у принтерах серії X1 використовується передня панель лівий кут для обрізання нитки під час змінинитки. Площа виражається як багатокутник по точках у такому форматі: \"XxY, XxY, ...\"."
+msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as a polygon in the format \"XxY, XxY, ...\". It constrains material and model placement, but allows machine travel. Configure toolhead collision volumes separately for G-code checking and travel avoidance."
+msgstr ""
+
+msgid "Toolhead collision volumes"
+msgstr ""
+
+msgid "Collision volumes used for model and generated-material exclusion, G-code checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate multiple volumes with \"|\". These volumes are additional to the excluded bed area. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+
+msgid "Collision volume behavior"
+msgstr ""
+
+msgid "Choose whether all nozzles use the same collision volumes, derive toolhead-relative volumes from each nozzle's XY offset, or configure independent volumes for every extruder. In individual mode, select each extruder on the Extruder page to configure its volumes."
+msgstr ""
+
+msgid "Shared"
+msgstr ""
+
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr ""
+
+msgid "Individual per extruder"
+msgstr ""
+
+msgid "Extruder collision volumes"
+msgstr ""
+
+msgid "Collision volumes used only by this extruder in individual mode. Use the same polygon and optional Z-range format as the shared collision volumes. Leave empty for no collision volumes on this extruder. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
 
 msgid "Bed custom texture"
 msgstr "Текстура користувача столу"
@@ -15261,6 +15351,12 @@ msgstr "Товщина нижньої оболонки"
 
 msgid "The number of bottom solid layers is increased when slicing if the thickness calculated by bottom shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and the thickness of the bottom shell is determined simply by the number of bottom shell layers."
 msgstr "Якщо під час нарізання загальна товщина шарів нижньої оболонки виявиться меншою за це значення, буде додано більше суцільних нижніх шарів. Це дозволяє уникнути занадто тонкої оболонки при малій висоті шару. Якщо значення 0, це налаштування вимкнено, і товщина нижньої оболонки визначається лише кількістю шарів нижньої оболонки"
+
+msgid "Bottom paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the bottom surface layer, that take the color painted on a bottom surface. Set to 0 to use the bottom shell layers. A value larger than the bottom shell also colors the sparse infill above the painted area."
+msgstr ""
 
 msgid "Apply gap fill"
 msgstr "Застосувати заповнення прогалин"
@@ -17721,13 +17817,19 @@ msgid "Arc fitting"
 msgstr "Дугові траекторії"
 
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted within the resolution, while sparse infill, supports and the wipe tower use fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which shortens the G-code of curved infill patterns without affecting the walls and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs back into line segments, which lowers the surface quality and can increase the print time."
 msgstr ""
-"Увімкніть цю опцію, щоб отримати файл G-code з ходами G2 і G3. Допуск на припасування такий самий, як і роздільна здатність.\n"
-"\n"
-"Примітка: Для машин з кліперним керуванням цю опцію рекомендується вимкнути. Klipper не використовує команди дуги, оскільки вони знову розбиваються прошивкою на сегменти ліній. Це призводить до зниження якості поверхні, оскільки сегменти ліній перетворюються на дуги слайсером, а потім знову на сегменти ліній прошивкою."
+
+msgid "Enabled"
+msgstr "Увімкнуто"
+
+msgid "Sparse infill only"
+msgstr ""
 
 msgid "Add line number"
 msgstr "Додати номер рядка"
@@ -18373,14 +18475,6 @@ msgstr "Цей G-code вставляється при кожній зміні ш
 # AI Translated
 msgid "Clumping detection G-code"
 msgstr "G-code виявлення налипання"
-
-# AI Translated
-msgid "Silent Mode"
-msgstr "Безшумний режим"
-
-# AI Translated
-msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
-msgstr "Чи підтримує машина безшумний режим, у якому вона використовує менше прискорення, щоб друкувати тихіше"
 
 msgid "Emit limits to G-code"
 msgstr "Обмеження на емітацію G-code"
@@ -19121,6 +19215,9 @@ msgstr "Тип Z-підйому"
 msgid "Type of Z-hop."
 msgstr "Тип Z-hop."
 
+msgid "Normal"
+msgstr "Нормальний"
+
 msgid "Slope"
 msgstr "Схил"
 
@@ -19270,10 +19367,8 @@ msgstr "Зазор шва"
 
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle diameter. The default value for this parameter is 10%."
 msgstr ""
-"Щоб зменшити видимість шва при екструзії із замкнутим контуром, контур переривається і коротшає на задану величину.\n"
-"Ця кількість може бути вказана в міліметрах або у відсотках від поточногодіаметр екструдера. Стандартне значення для цього параметра становить 10%."
 
 msgid "Scarf joint seam (beta)"
 msgstr "Шарфовий шов (бета)"
@@ -19452,9 +19547,6 @@ msgstr ""
 "Захисний екран буде корисним для захисту друку ABS або ASA від викривлення та відлипання від столу внаслідок протягу повітря. Зазвичай він потрібен для відкритих принтерів, які не мають закритої камери.\n"
 "\n"
 "Увімкнено = спідниця буде такої ж висоти, як і найвищий обʼєкт друку. Інакше буде застосовано параметр «Висота спідниці»."
-
-msgid "Enabled"
-msgstr "Увімкнуто"
 
 msgid "Skirt type"
 msgstr "Тип спідниці"
@@ -20496,6 +20588,12 @@ msgstr "Товщина верхньої оболонки"
 msgid "The number of top solid layers is increased when slicing if the thickness calculated by top shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and thickness of top shell is determined simply by the number of top shell layers."
 msgstr "Кількість верхніх суцільних шарів збільшується при нарізанні, якщо товщина, обчислена за шарами верхньої оболонки, менша за це значення. Це дозволяє уникнути занадто тонкої оболонки при невеликій висоті шару. 0 означає, що це налаштування вимкнено і товщина верхньої оболонки визначається лише кількістю шарів верхньої оболонки"
 
+msgid "Top paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the top surface layer, that take the color painted on a top surface. Set to 0 to use the top shell layers. A value larger than the top shell also colors the sparse infill below the painted area."
+msgstr ""
+
 # AI Translated
 msgid "Separated infills"
 msgstr "Роздільні заповнення"
@@ -21023,6 +21121,15 @@ msgstr "Ця опція автоматично визначає вузькі д�
 
 msgid "invalid value "
 msgstr "неправильне значення "
+
+msgid "Invalid collision volume definition."
+msgstr ""
+
+msgid "A nozzle offset is required for every extruder when toolhead-relative collision volumes are enabled."
+msgstr ""
+
+msgid "Invalid per-extruder collision volume definition."
+msgstr ""
 
 msgid "Invalid value when spiral vase mode is enabled: "
 msgstr "Неприпустиме значення при увімкненому режимі спіральної вази: "
@@ -21600,11 +21707,11 @@ msgstr "Загальна вартість 'Вежі Очищення'"
 msgid "Total cost of the material wasted on the wipe tower. Calculated from filament_cost value in Filament Settings."
 msgstr "Загальна вартість матеріалу, витраченого на вежу протирання. Обчислюється зі значення filament_cost у налаштуваннях філаменту."
 
-msgid "Wipe tower volume"
-msgstr "Обʼєм 'Вежі Очищення'"
+msgid "Total wipe tower filament"
+msgstr ""
 
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "Загальний обʼєм матеріалу видавленого в 'Вежу Очищення'."
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr ""
 
 msgid "Used filament"
 msgstr "Філамент, що використовується"
@@ -21827,9 +21934,8 @@ msgstr "Назва фізичного принтера, який викорис�
 msgid "Layer number"
 msgstr "Номер шару"
 
-# AI Translated
-msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
-msgstr "Індекс поточного шару. Нумерація з нуля (тобто перший шар має номер 0), окрім G-code зміни ролі екструзії, де нумерація починається з одиниці."
+msgid "Index of the current layer. The index is zero-based (first layer has index 0). Before the first layer starts, it is -1. In extrusion role change G-code, the index is one-based (first layer has index 1)."
+msgstr ""
 
 msgid "Layer Z"
 msgstr "Шар Z"
@@ -21846,24 +21952,181 @@ msgstr "Висота останнього шару над друкарським
 msgid "Filament extruder ID"
 msgstr "ID номер екструдера філаменту"
 
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "Поточний ідентифікатор екструдера. Те саме, що й current_extruder."
+msgid "In filament start G-code, the index of the filament that is being loaded. In filament end G-code, the index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At a tool change, filament end G-code gets the extruder index instead, unless the Type 1 wipe tower does the tool change. Machine end G-code gets the value from the last filament end G-code at the end of the print."
+msgstr ""
+
+msgid "Current filament ID"
+msgstr ""
+
+msgid "Index of the currently active filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current extruder ID"
+msgstr ""
+
+msgid "Index of the currently active physical extruder. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current nozzle ID"
+msgstr ""
+
+msgid "Index of the currently active nozzle. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Nozzle diameters"
+msgstr ""
+
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr ""
+
+msgid "Nozzle volume types"
+msgstr ""
+
+msgid "Nozzle volume variants indexed by nozzle ID."
+msgstr ""
+
+msgid "Retraction distance used when cutting filament."
+msgstr ""
+
+msgid "Long retraction when cut"
+msgstr ""
+
+msgid "Whether long retraction is used when cutting filament."
+msgstr ""
+
+msgid "Most-used physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder used most often on the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current Y acceleration limit"
+msgstr ""
+
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr ""
+
+msgid "Current accumulated mass"
+msgstr ""
+
+msgid "Accumulated printed mass at the current layer."
+msgstr ""
+
+msgid "Current layer mass"
+msgstr ""
+
+msgid "Printed mass of the previous layer."
+msgstr ""
+
+msgid "Current physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder active for the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Timelapse position X"
+msgstr ""
+
+msgid "Selected X position for timelapse capture."
+msgstr ""
+
+msgid "Timelapse position Y"
+msgstr ""
+
+msgid "Selected Y position for timelapse capture."
+msgstr ""
+
+msgid "Has timelapse safe position"
+msgstr ""
+
+msgid "Whether a safe timelapse position was found."
+msgstr ""
+
+msgid "Timelapse inline photo"
+msgstr ""
+
+msgid "Whether the timelapse photo is captured at the inline position."
+msgstr ""
+
+msgid "Farthest-point timelapse enabled"
+msgstr ""
+
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr ""
+
+msgid "Clear to X0"
+msgstr ""
+
+msgid "Whether the timelapse move is clear to X0."
+msgstr ""
 
 # AI Translated
 msgid "Previous extruder"
 msgstr "Попередній екструдер"
 
-# AI Translated
-msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
-msgstr "Індекс екструдера, який вивантажується. Індекс відраховується від нуля (перший екструдер має індекс 0)."
+msgid "Index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At the start of the print, when no filament is loaded yet, it is -1."
+msgstr ""
 
 # AI Translated
 msgid "Next extruder"
 msgstr "Наступний екструдер"
 
-# AI Translated
-msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
-msgstr "Індекс екструдера, який завантажується. Індекс відраховується від нуля (перший екструдер має індекс 0)."
+msgid "Index of the filament that is being loaded. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the outgoing filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the incoming filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next nozzle ID"
+msgstr ""
+
+msgid "Index of the nozzle associated with the incoming filament. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Next filament ID"
+msgstr ""
+
+msgid "Index of the incoming filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Old extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the outgoing extruder."
+msgstr ""
+
+msgid "New extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the incoming extruder."
+msgstr ""
+
+msgid "Filament nozzle-change retract length"
+msgstr ""
+
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr ""
+
+msgid "New extruder retracted length"
+msgstr ""
+
+msgid "Currently parked retraction length of the incoming extruder."
+msgstr ""
+
+msgid "Outer wall volumetric speed"
+msgstr ""
+
+msgid "Volumetric speed used for the outer wall."
+msgstr ""
 
 # AI Translated
 msgid "Relative e-axis"
@@ -21880,6 +22143,12 @@ msgstr "Кількість змін інструмента"
 # AI Translated
 msgid "The number of toolchanges throughout the print."
 msgstr "Кількість змін інструмента протягом друку."
+
+msgid "Toolchange Z"
+msgstr ""
+
+msgid "The Z position during the toolchange."
+msgstr ""
 
 # AI Translated
 msgid "Old retract length"
@@ -22064,6 +22333,78 @@ msgstr "Довжина промивки 4"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "Четверта довжина промивки."
+
+msgid "Flush length"
+msgstr ""
+
+msgid "Total flush length."
+msgstr ""
+
+msgid "Flush volumetric speeds"
+msgstr ""
+
+msgid "Flush volumetric speeds for each filament."
+msgstr ""
+
+msgid "Flush temperatures"
+msgstr ""
+
+msgid "Flush temperatures for each filament."
+msgstr ""
+
+msgid "Filament cooling before tower"
+msgstr ""
+
+msgid "Avoid wipe perimeter"
+msgstr ""
+
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr ""
+
+msgid "Wipe avoidance X"
+msgstr ""
+
+msgid "X position used to avoid the wipe area."
+msgstr ""
+
+msgid "Prime tower interface"
+msgstr ""
+
+msgid "Whether the current purge is for a prime-tower interface."
+msgstr ""
+
+msgid "Filament tower interface print temperature"
+msgstr ""
+
+msgid "Print temperature used for the filament tower interface."
+msgstr ""
+
+msgid "Wipe tower center X"
+msgstr ""
+
+msgid "X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the tower edge."
+msgstr ""
+
+msgid "Wipe tower center Y"
+msgstr ""
+
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr ""
+
+msgid "Wipe tower center position valid"
+msgstr ""
+
+msgid "Whether the print has a wipe tower."
+msgstr ""
+
+msgid "Nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "Nozzle temperature initial layer"
+msgstr ""
 
 # AI Translated
 msgid "Extrusion role"
@@ -22260,6 +22601,9 @@ msgstr "Не вдалося скомпілювати регулярний вир
 # AI Translated
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "Не вдається застосувати логічну операцію до нелогічних операндів."
+
+msgid "This value is known only after the G-code is generated. It can be printed, but not used in a calculation or a comparison."
+msgstr ""
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -26242,10 +26586,6 @@ msgid "Placement (transform / mirror / mate)"
 msgstr "Розміщення (перетворення / дзеркальне відображення / сполучення)"
 
 # AI Translated
-msgid "Transform"
-msgstr "Перетворення"
-
-# AI Translated
 msgid "Move and/or rotate an existing body"
 msgstr "Перемістити та/або повернути наявне тіло"
 
@@ -29489,10 +29829,6 @@ msgstr "Повторення"
 # AI Translated
 msgid "Reference"
 msgstr "Опорна геометрія"
-
-# AI Translated
-msgid "Modify"
-msgstr "Змінити"
 
 # AI Translated
 msgctxt "Design"
@@ -35975,19 +36311,6 @@ msgstr "невідома назва"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"Плагін «%s» запитує доступ на читання файлової системи до:\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "Дозволи плагіна"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -36080,23 +36403,21 @@ msgstr[3] ""
 "Плагін «%s» запитує дозвіл на видалення таких файлів:\n"
 "%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the listed hosts. It does not restrict ports. A URL with a path, query or port is covered only for that exact URL."
 msgstr ""
-"Плагін «%s» запитує дозвіл на HTTP-запит до:\n"
-"%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not restrict ports."
 msgstr ""
-"Плагін «%s» запитує дозвіл на відкриття мережевого зʼєднання з:\n"
-"%s"
 
 # AI Translated
 #, c-format, boost-format
@@ -36141,6 +36462,10 @@ msgstr "Плагін «%s» запитує дозвіл на подію ауди
 # AI Translated
 msgid "Plugin permission request"
 msgstr "Запит дозволу плагіна"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "Дозволи плагіна"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -36569,9 +36894,14 @@ msgstr "Видаляти й скасовувати підписку можна �
 msgid "Cannot unsubscribe your own plugins. Use Delete to remove the local files."
 msgstr "Не можна скасувати підписку на власні плагіни. Скористайтеся «Видалити», щоб вилучити локальні файли."
 
-# AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr "Запит плагіна на дозвіл читання файлової системи відхилено"
+msgid "Python interpreter is shutting down"
+msgstr ""
+
+msgid "Plugin system is shutting down."
+msgstr ""
+
+msgid "Plugin permission request denied"
+msgstr ""
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -37309,6 +37639,97 @@ msgid ""
 msgstr ""
 "Уникнення деформації\n"
 "Чи знаєте ви, що при друку матеріалами, схильними до деформації, такими як ABS, відповідне підвищення температури столу може зменшити ймовірність деформації?"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "Відобразити по осі X"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "Відобразити по осі Y"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "Відобразити осі Z"
+
+#~ msgid "Split the selected object"
+#~ msgstr "Розділити вибраний обʼєкт"
+
+#~ msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr "Недрукована область у площині XY. Наприклад, у принтерах серії X1 використовується передня панель лівий кут для обрізання нитки під час змінинитки. Площа виражається як багатокутник по точках у такому форматі: \"XxY, XxY, ...\"."
+
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+#~ msgstr ""
+#~ "Увімкніть цю опцію, щоб отримати файл G-code з ходами G2 і G3. Допуск на припасування такий самий, як і роздільна здатність.\n"
+#~ "\n"
+#~ "Примітка: Для машин з кліперним керуванням цю опцію рекомендується вимкнути. Klipper не використовує команди дуги, оскільки вони знову розбиваються прошивкою на сегменти ліній. Це призводить до зниження якості поверхні, оскільки сегменти ліній перетворюються на дуги слайсером, а потім знову на сегменти ліній прошивкою."
+
+# AI Translated
+#~ msgid "Silent Mode"
+#~ msgstr "Безшумний режим"
+
+# AI Translated
+#~ msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
+#~ msgstr "Чи підтримує машина безшумний режим, у якому вона використовує менше прискорення, щоб друкувати тихіше"
+
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "Щоб зменшити видимість шва при екструзії із замкнутим контуром, контур переривається і коротшає на задану величину.\n"
+#~ "Ця кількість може бути вказана в міліметрах або у відсотках від поточногодіаметр екструдера. Стандартне значення для цього параметра становить 10%."
+
+#~ msgid "Wipe tower volume"
+#~ msgstr "Обʼєм 'Вежі Очищення'"
+
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "Загальний обʼєм матеріалу видавленого в 'Вежу Очищення'."
+
+# AI Translated
+#~ msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
+#~ msgstr "Індекс поточного шару. Нумерація з нуля (тобто перший шар має номер 0), окрім G-code зміни ролі екструзії, де нумерація починається з одиниці."
+
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "Поточний ідентифікатор екструдера. Те саме, що й current_extruder."
+
+# AI Translated
+#~ msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "Індекс екструдера, який вивантажується. Індекс відраховується від нуля (перший екструдер має індекс 0)."
+
+# AI Translated
+#~ msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "Індекс екструдера, який завантажується. Індекс відраховується від нуля (перший екструдер має індекс 0)."
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Плагін «%s» запитує доступ на читання файлової системи до:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Плагін «%s» запитує дозвіл на HTTP-запит до:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Плагін «%s» запитує дозвіл на відкриття мережевого зʼєднання з:\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr "Запит плагіна на дозвіл читання файлової системи відхилено"
 
 # AI Translated
 # Needs human review: Not a known RAL name; translated literally.

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 09:48-0300\n"
+"POT-Creation-Date: 2026-10-25 02:28+0800\n"
 "PO-Revision-Date: 2026-06-19 13:40+0700\n"
 "Last-Translator: Icezaza\n"
 "Language-Team: Thai\n"
@@ -1277,6 +1277,9 @@ msgstr "ตั้งกระจก"
 msgid "Embossed text"
 msgstr "ข้อความนูน"
 
+msgid "Default font"
+msgstr "แบบอักษรเริ่มต้น"
+
 msgid "Enter emboss gizmo"
 msgstr "เข้าสู่ Gizmo ของนูน"
 
@@ -1317,9 +1320,6 @@ msgstr "ทันสมัย"
 
 msgid "First font"
 msgstr "แบบอักษรแรก"
-
-msgid "Default font"
-msgstr "แบบอักษรเริ่มต้น"
 
 msgid "Advanced"
 msgstr "ขั้นสูง"
@@ -3056,9 +3056,6 @@ msgstr "ไล่เส้นเข้าไปในวัตถุนี้"
 msgid "Flush into objects' support"
 msgstr "ไล่เส้นเข้าไปในส่วนรองรับของวัตถุ"
 
-msgid "Edit in Parameter Table"
-msgstr "แก้ไขในตารางพารามิเตอร์"
-
 msgid "Convert from Inches"
 msgstr "แปลงจากนิ้ว"
 
@@ -3080,32 +3077,55 @@ msgstr "ประกอบวัตถุที่เลือกให้เป
 msgid "Assemble the selected objects into an object with single part"
 msgstr "ประกอบวัตถุที่เลือกให้เป็นวัตถุที่มีส่วนเดียว"
 
+msgid "Along X Axis"
+msgstr "ตามแกน X"
+
+msgid "Mirror along the X axis"
+msgstr ""
+
+msgid "Along Y Axis"
+msgstr "ตามแกน Y"
+
+msgid "Mirror along the Y axis"
+msgstr ""
+
+msgid "Along Z Axis"
+msgstr "ตามแกน Z"
+
+msgid "Mirror along the Z axis"
+msgstr ""
+
+# AI Translated
+msgid "Transform"
+msgstr "แปลงรูป"
+
+msgid "Split"
+msgstr "แยก"
+
+msgid "To Objects"
+msgstr "เป็นวัตถุ"
+
+msgid "Split the selected object into multiple objects"
+msgstr "แยกวัตถุที่เลือกออกเป็นหลายวัตถุ"
+
+msgid "To Parts"
+msgstr "เป็นชิ้นส่วน"
+
+msgid "Split the selected object into multiple parts"
+msgstr "แยกวัตถุที่เลือกออกเป็นหลายส่วน"
+
 msgid "Mesh boolean"
 msgstr "บูลีนแบบตาข่าย"
 
 msgid "Mesh boolean operations including union and subtraction"
 msgstr "การดำเนินการบูลีนแบบ Mesh รวมถึงการรวมและการลบ"
 
-msgid "Along X Axis"
-msgstr "ตามแกน X"
+# AI Translated
+msgid "Modify"
+msgstr "ปรับแต่ง"
 
-msgid "Mirror along the X Axis"
-msgstr "กลับด้านตามแกน X"
-
-msgid "Along Y Axis"
-msgstr "ตามแกน Y"
-
-msgid "Mirror along the Y Axis"
-msgstr "กลับด้านตามแกน Y"
-
-msgid "Along Z Axis"
-msgstr "ตามแกน Z"
-
-msgid "Mirror along the Z Axis"
-msgstr "กลับด้านตามแกน Z"
-
-msgid "Mirror object"
-msgstr "กลับด้านวัตถุ"
+msgid "More"
+msgstr "เพิ่มเติม"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3166,29 +3186,18 @@ msgstr "เพิ่มโมเดล"
 msgid "Show Labels"
 msgstr "แสดงป้ายชื่อ"
 
-msgid "To Objects"
-msgstr "เป็นวัตถุ"
-
-msgid "Split the selected object into multiple objects"
-msgstr "แยกวัตถุที่เลือกออกเป็นหลายวัตถุ"
-
-msgid "To Parts"
-msgstr "เป็นชิ้นส่วน"
-
-msgid "Split the selected object into multiple parts"
-msgstr "แยกวัตถุที่เลือกออกเป็นหลายส่วน"
-
-msgid "Split"
-msgstr "แยก"
-
-msgid "Split the selected object"
-msgstr "แยกวัตถุที่เลือก"
+# AI Translated
+msgid "Instances"
+msgstr "อินสแตนซ์"
 
 msgid "Auto orientation"
 msgstr "การวางแนวอัตโนมัติ"
 
 msgid "Auto orient the object to improve print quality"
 msgstr "ปรับทิศทางวัตถุโดยอัตโนมัติเพื่อปรับปรุงคุณภาพการพิมพ์"
+
+msgid "Paste Process Settings"
+msgstr "วางการตั้งค่ากระบวนการ"
 
 msgid "Edit"
 msgstr "แก้ไข"
@@ -3227,11 +3236,11 @@ msgstr "จัดเรียง"
 msgid "Arrange current plate"
 msgstr "จัดจานปัจจุบัน"
 
-msgid "Reload All"
-msgstr "โหลดใหม่ทั้งหมด"
+msgid "Auto Rotate"
+msgstr "หมุนอัตโนมัติ"
 
-msgid "Reload all from disk"
-msgstr "โหลดใหม่ทั้งหมดจากดิสก์"
+msgid "Auto rotate current plate"
+msgstr "หมุนแผ่นปัจจุบันอัตโนมัติ"
 
 # AI Translated
 msgid "Fix All"
@@ -3249,17 +3258,11 @@ msgstr "ซ่อมทุกเพลต"
 msgid "Fix all models on all plates"
 msgstr "ซ่อมโมเดลทั้งหมดบนทุกเพลต"
 
-msgid "Auto Rotate"
-msgstr "หมุนอัตโนมัติ"
+msgid "Reload All"
+msgstr "โหลดใหม่ทั้งหมด"
 
-msgid "Auto rotate current plate"
-msgstr "หมุนแผ่นปัจจุบันอัตโนมัติ"
-
-msgid "Delete Plate"
-msgstr "ลบฐานพิมพ์"
-
-msgid "Remove the selected plate"
-msgstr "นำแผ่นที่เลือกออก"
+msgid "Reload all from disk"
+msgstr "โหลดใหม่ทั้งหมดจากดิสก์"
 
 msgid "Add instance"
 msgstr "เพิ่มอินสแตนซ์"
@@ -3314,8 +3317,8 @@ msgstr "แก้ไขการตั้งค่ากระบวนการ
 msgid "Copy Process Settings"
 msgstr "คัดลอกการตั้งค่ากระบวนการ"
 
-msgid "Paste Process Settings"
-msgstr "วางการตั้งค่ากระบวนการ"
+msgid "Edit in Parameter Table"
+msgstr "แก้ไขในตารางพารามิเตอร์"
 
 msgid "Edit print parameters for a single object"
 msgstr "แก้ไขพารามิเตอร์การพิมพ์สำหรับวัตถุเดียว"
@@ -3338,6 +3341,12 @@ msgstr "ล็อค"
 
 msgid "Edit Plate Name"
 msgstr "แก้ไขชื่อเพลท"
+
+msgid "Delete Plate"
+msgstr "ลบฐานพิมพ์"
+
+msgid "Remove the selected plate"
+msgstr "นำแผ่นที่เลือกออก"
 
 msgid "Name"
 msgstr "ชื่อ"
@@ -3695,9 +3704,6 @@ msgstr "ประเภทเส้น"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "1x1 ตาราง: %d มม"
-
-msgid "More"
-msgstr "เพิ่มเติม"
 
 msgid "Open Preferences"
 msgstr "เปิดการตั้งค่า"
@@ -4546,6 +4552,9 @@ msgstr "ข้ามปลั๊กอินสคริปต์แล้ว"
 # AI Translated
 msgid "Script plugin finished."
 msgstr "ปลั๊กอินสคริปต์ทำงานเสร็จแล้ว"
+
+msgid "Script plugin started."
+msgstr ""
 
 msgid "Printer"
 msgstr "เครื่องพิมพ์"
@@ -5797,6 +5806,9 @@ msgstr "ส่วนขยายบางส่วนในอินพุตไ
 msgid "This parameter expects a valid template."
 msgstr "พารามิเตอร์นี้ต้องการเทมเพลตที่ถูกต้อง"
 
+msgid "Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, XxY, ... and separate multiple volumes with |."
+msgstr ""
+
 msgid "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per entry. Examples: 5, 5#2, 1,7,9, 5,9#2,18."
 msgstr "รูปแบบไม่ถูกต้อง ใช้ N, N#K หรือรายการที่คั่นด้วยเครื่องหมายจุลภาคโดยมีตัวเลือก #K ให้เลือกต่อรายการ ตัวอย่าง: 5, 5#2, 1,7,9, 5,9#2,18"
 
@@ -6330,6 +6342,19 @@ msgstr "หัวฉีดด้านซ้าย: X:%1%-%2%, Y:%3%-%4%, Z:%5%-
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "หัวฉีดด้านขวา: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 
+msgid "Mirror object"
+msgstr "กลับด้านวัตถุ"
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed. There is no free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed, so it was moved to free space on the plate."
+msgstr ""
+
 msgid "Tool move"
 msgstr "การเคลื่อนย้ายเครื่องมือ"
 
@@ -6573,7 +6598,7 @@ msgid "Size:"
 msgstr "ขนาด:"
 
 # AI Translated
-#, c-format, boost-format
+#, boost-format
 msgid "Conflicts of G-code paths have been found at layer %d, Z = %.2lfmm. Please separate the conflicted objects farther (%s <-> %s)."
 msgstr "พบความขัดแย้งของเส้นทาง G-code ที่เลเยอร์ %d, Z = %.2lfmm โปรดแยกวัตถุที่ขัดแย้งกันให้ไกลออกไป (%s <-> %s)"
 
@@ -7059,6 +7084,12 @@ msgstr "แสดง&ป้ายชื่อ"
 
 msgid "Show object labels in 3D scene."
 msgstr "แสดงป้ายกำกับวัตถุในฉาก 3 มิติ"
+
+msgid "Show all collision volumes"
+msgstr ""
+
+msgid "Show the full height of every configured collision volume, including on an empty bed."
+msgstr ""
 
 msgid "Show &Overhang"
 msgstr "แสดง&โอเวอร์แฮงค์"
@@ -8459,10 +8490,6 @@ msgstr "คลิกเพื่อดูเพิ่มเติม"
 
 msgid "Cut connectors"
 msgstr "ตัดขั้วต่อ"
-
-# AI Translated
-msgid "Instances"
-msgstr "อินสแตนซ์"
 
 # AI Translated
 #, c-format, boost-format
@@ -10566,6 +10593,14 @@ msgstr ""
 "คงที่: แสงอยู่กับที่ในฉาก เงาจึงถูกคำนวณใหม่เฉพาะเมื่อฉากเปลี่ยนแปลง\n"
 "โคจร: แสงหมุนตามกล้อง โดยคำนวณเงาใหม่ทุกเฟรมที่กล้องเคลื่อนที่"
 
+msgid "Glossy toolpaths"
+msgstr ""
+
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight of the plain view."
+msgstr ""
+
 msgid "Anti-aliasing"
 msgstr "ต่อต้านนามแฝง"
 
@@ -10744,6 +10779,12 @@ msgid ""
 msgstr ""
 "ความสว่างในการแสดงผลของเลเยอร์ที่ถูกหรี่ เมื่อเปิดใช้งาน \"หรี่เลเยอร์ด้านล่าง\"\n"
 "99% คือหรี่ลงเพียงเล็กน้อย ส่วน 0% จะแสดงเป็นสีดำ ค่าสูงสุดถูกจำกัดไว้ที่ 99% เพราะ 100% จะให้ผลเหมือนกับการปิดตัวเลือกนี้"
+
+msgid "Translucent filaments"
+msgstr ""
+
+msgid "Draw the toolpaths of filaments whose color is partly transparent as see-through, as the 3D view draws their objects. Turn it off to draw every filament opaque."
+msgstr ""
 
 msgid "Login region"
 msgstr "เข้าสู่ระบบภูมิภาค"
@@ -12164,6 +12205,12 @@ msgstr "พารามิเตอร์ที่มีไอคอนนี้
 msgid "Click to reset all settings to the last saved preset."
 msgstr "คลิกเพื่อรีเซ็ตการตั้งค่าทั้งหมดเป็นค่าที่ตั้งไว้ล่วงหน้าที่บันทึกไว้ล่าสุด"
 
+msgid "This definition contains collision-volume syntax. Add it to the toolhead collision volumes for G-code checking and travel avoidance? The existing excluded bed area will be preserved."
+msgstr ""
+
+msgid "Add collision volumes"
+msgstr ""
+
 # AI Translated
 msgid "Prime tower is required for nozzle changing. There may be flaws on the model without prime tower. Are you sure you want to disable prime tower?"
 msgstr "จำเป็นต้องใช้ Prime Tower สำหรับการเปลี่ยนหัวฉีด อาจเกิดข้อบกพร่องบนโมเดลหากไม่มี Prime Tower คุณแน่ใจหรือไม่ว่าต้องการปิด Prime Tower?"
@@ -12663,9 +12710,6 @@ msgstr "เทมเพลต G-code ที่กำหนดเอง"
 
 msgid "Motion ability"
 msgstr "ความสามารถในการเคลื่อนไหว"
-
-msgid "Normal"
-msgstr "ปกติ"
 
 msgid "Resonance Compensation"
 msgstr "การชดเชยการสั่นพ้อง"
@@ -14034,6 +14078,17 @@ msgstr ""
 "ส่งออก G-code ไปยัง %1% ล้มเหลว\n"
 "ดิสก์เต็มหรือไม่?"
 
+#, boost-format
+msgid "A G-code move intersects a collision volume for extruder %1%. This may cause a printer collision."
+msgstr ""
+
+msgid "A G-code move intersects a collision volume. This may cause a printer collision."
+msgstr ""
+
+#, boost-format
+msgid "The intersecting move is at G-code line %1%. Its Z position is unknown after homing, so Orca checked it against every height."
+msgstr ""
+
 # AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
@@ -14343,6 +14398,14 @@ msgstr ""
 #, boost-format
 msgid "%1% is too close to exclusion area. There may be collisions when printing."
 msgstr "%1% อยู่ใกล้พื้นที่แยกมากเกินไป อาจเกิดการชนกันเมื่อพิมพ์"
+
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr ""
+
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr ""
 
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
@@ -14729,8 +14792,35 @@ msgstr "รายการพื้นที่ยกเว้นบนฐาน
 msgid "Excluded bed area"
 msgstr "พื้นที่ฐานพิมพ์ที่ยกเว้น"
 
-msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
-msgstr "พื้นที่ที่ไม่สามารถพิมพ์ได้ในระนาบ XY ตัวอย่างเช่น เครื่องพิมพ์ X1 ซีรีส์ใช้มุมซ้ายด้านหน้าเพื่อตัดเส้นพลาสติกระหว่างการเปลี่ยนเส้นพลาสติก พื้นที่จะแสดงเป็นรูปหลายเหลี่ยมตามจุดในรูปแบบต่อไปนี้: \"XxY, XxY, ...\""
+msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as a polygon in the format \"XxY, XxY, ...\". It constrains material and model placement, but allows machine travel. Configure toolhead collision volumes separately for G-code checking and travel avoidance."
+msgstr ""
+
+msgid "Toolhead collision volumes"
+msgstr ""
+
+msgid "Collision volumes used for model and generated-material exclusion, G-code checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate multiple volumes with \"|\". These volumes are additional to the excluded bed area. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+
+msgid "Collision volume behavior"
+msgstr ""
+
+msgid "Choose whether all nozzles use the same collision volumes, derive toolhead-relative volumes from each nozzle's XY offset, or configure independent volumes for every extruder. In individual mode, select each extruder on the Extruder page to configure its volumes."
+msgstr ""
+
+msgid "Shared"
+msgstr ""
+
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr ""
+
+msgid "Individual per extruder"
+msgstr ""
+
+msgid "Extruder collision volumes"
+msgstr ""
+
+msgid "Collision volumes used only by this extruder in individual mode. Use the same polygon and optional Z-range format as the shared collision volumes. Leave empty for no collision volumes on this extruder. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
 
 msgid "Bed custom texture"
 msgstr "พื้นผิวแบบกำหนดเองของฐานพิมพ์"
@@ -14984,6 +15074,12 @@ msgstr "ความหนาผนังด้านล่าง"
 # AI Translated
 msgid "The number of bottom solid layers is increased when slicing if the thickness calculated by bottom shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and the thickness of the bottom shell is determined simply by the number of bottom shell layers."
 msgstr "จำนวนเลเยอร์ทึบด้านล่างจะเพิ่มขึ้นเมื่อสไลซ์หากความหนาที่คำนวณโดยเลเยอร์ผนังด้านล่างบางกว่าค่านี้ วิธีนี้สามารถหลีกเลี่ยงไม่ให้ผนังบางเกินไปเมื่อความสูงเลเยอร์น้อย 0 หมายความว่าการตั้งค่านี้ถูกปิดใช้งาน และความหนาของผนังด้านล่างจะถูกกำหนดโดยเลเยอร์ผนังด้านล่างอย่างแน่นอน"
+
+msgid "Bottom paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the bottom surface layer, that take the color painted on a bottom surface. Set to 0 to use the bottom shell layers. A value larger than the bottom shell also colors the sparse infill above the painted area."
+msgstr ""
 
 msgid "Apply gap fill"
 msgstr "ใช้การเติมช่องว่าง"
@@ -17413,13 +17509,19 @@ msgid "Arc fitting"
 msgstr "ข้อต่อส่วนโค้ง"
 
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted within the resolution, while sparse infill, supports and the wipe tower use fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which shortens the G-code of curved infill patterns without affecting the walls and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs back into line segments, which lowers the surface quality and can increase the print time."
 msgstr ""
-"เปิดใช้งานสิ่งนี้เพื่อรับไฟล์ G-code ซึ่งมีการเคลื่อนไหว G2 และ G3 ความคลาดเคลื่อนในการติดตั้งจะเหมือนกับความละเอียด\n"
-"\n"
-"หมายเหตุ: สำหรับเครื่อง Klipper แนะนำให้ปิดการใช้งานตัวเลือกนี้ Klipper ไม่ได้รับประโยชน์จากคำสั่ง arc เนื่องจากคำสั่งเหล่านี้จะถูกแบ่งออกเป็นส่วนของบรรทัดอีกครั้งโดยเฟิร์มแวร์ ซึ่งส่งผลให้คุณภาพพื้นผิวลดลง เนื่องจากส่วนของเส้นถูกแปลงเป็นส่วนโค้งโดยตัวแบ่งส่วนข้อมูล จากนั้นเฟิร์มแวร์จะแปลงกลับไปยังส่วนของเส้นตรง"
+
+msgid "Enabled"
+msgstr "เปิดใช้"
+
+msgid "Sparse infill only"
+msgstr ""
 
 msgid "Add line number"
 msgstr "เพิ่มหมายเลขบรรทัด"
@@ -18026,12 +18128,6 @@ msgstr "G-code นี้จะถูกแทรกทุกครั้งท�
 
 msgid "Clumping detection G-code"
 msgstr "G-code การตรวจจับการจับตัวเป็นก้อน"
-
-msgid "Silent Mode"
-msgstr "โหมดเงียบ"
-
-msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
-msgstr "เครื่องรองรับโหมดเงียบซึ่งเครื่องใช้ความเร่งในการพิมพ์ต่ำกว่าหรือไม่"
 
 msgid "Emit limits to G-code"
 msgstr "ปล่อยขีดจำกัดให้กับ G-code"
@@ -18770,6 +18866,9 @@ msgstr "ประเภท Z-hop"
 msgid "Type of Z-hop."
 msgstr "ประเภทของ Z-hop"
 
+msgid "Normal"
+msgstr "ปกติ"
+
 msgid "Slope"
 msgstr "ความลาดชัน"
 
@@ -18920,10 +19019,8 @@ msgstr "ช่องว่างรอยตะเข็บ"
 
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle diameter. The default value for this parameter is 10%."
 msgstr ""
-"เพื่อลดการมองเห็นรอยตะเข็บในการอัดขึ้นรูปแบบวงปิด วงจะถูกขัดจังหวะและทำให้สั้นลงตามจำนวนที่ระบุ\n"
-"ปริมาณนี้สามารถระบุได้ในหน่วยมิลลิเมตรหรือเป็นเปอร์เซ็นต์ของเส้นผ่านศูนย์กลางของชุดดันเส้นในปัจจุบัน ค่าเริ่มต้นสำหรับพารามิเตอร์นี้คือ 10%"
 
 msgid "Scarf joint seam (beta)"
 msgstr "รอยต่อ Scarf (เบต้า)"
@@ -19104,9 +19201,6 @@ msgstr ""
 "แนวป้องกันลม (Draft Shield) มีประโยชน์ในการปกป้องงานพิมพ์ ABS หรือ ASA จากการบิดงอและการหลุดออกจากฐานพิมพ์เนื่องจากกระแสลม โดยทั่วไปจำเป็นต้องใช้กับเครื่องพิมพ์แบบเปิดเฟรมเท่านั้น กล่าวคือ ไม่มีกล่องหุ้ม\n"
 "\n"
 "เปิดใช้งาน = เส้นล้อมชิ้นงานสูงเท่ากับวัตถุที่พิมพ์สูงสุด มิฉะนั้น จะใช้ 'ความสูงของเส้นล้อมชิ้นงาน'"
-
-msgid "Enabled"
-msgstr "เปิดใช้"
 
 msgid "Skirt type"
 msgstr "ประเภทเส้นล้อมชิ้นงาน"
@@ -20117,6 +20211,12 @@ msgstr "ความหนาผนังด้านบน"
 msgid "The number of top solid layers is increased when slicing if the thickness calculated by top shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and thickness of top shell is determined simply by the number of top shell layers."
 msgstr "จำนวนเลเยอร์ทึบด้านบนจะเพิ่มขึ้นเมื่อสไลซ์หากความหนาที่คำนวณโดยเลเยอร์ผนังด้านบนบางกว่าค่านี้ วิธีนี้สามารถหลีกเลี่ยงไม่ให้ผนังบางเกินไปเมื่อความสูงเลเยอร์น้อย 0 หมายความว่าการตั้งค่านี้ถูกปิดใช้งาน และความหนาของผนังด้านบนถูกกำหนดโดยเลเยอร์ผนังด้านบนอย่างแน่นอน"
 
+msgid "Top paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the top surface layer, that take the color painted on a top surface. Set to 0 to use the top shell layers. A value larger than the top shell also colors the sparse infill below the painted area."
+msgstr ""
+
 # AI Translated
 msgid "Separated infills"
 msgstr "ไส้ในแบบแยก"
@@ -20635,6 +20735,15 @@ msgstr "ตัวเลือกนี้จะตรวจจับพื้น
 
 msgid "invalid value "
 msgstr "ค่าไม่ถูกต้อง"
+
+msgid "Invalid collision volume definition."
+msgstr ""
+
+msgid "A nozzle offset is required for every extruder when toolhead-relative collision volumes are enabled."
+msgstr ""
+
+msgid "Invalid per-extruder collision volume definition."
+msgstr ""
 
 msgid "Invalid value when spiral vase mode is enabled: "
 msgstr "ค่าไม่ถูกต้องเมื่อเปิดใช้งานโหมดแจกันเกลียว:"
@@ -21200,11 +21309,11 @@ msgstr "ต้นทุน Wipe Tower ทั้งหมด"
 msgid "Total cost of the material wasted on the wipe tower. Calculated from filament_cost value in Filament Settings."
 msgstr "ต้นทุนรวมของวัสดุที่เสียไปบน Wipe Tower คำนวณจากค่า fil_cost ในการตั้งค่า เส้นพลาสติก"
 
-msgid "Wipe tower volume"
-msgstr "เช็ดปริมาตรทาวเวอร์"
+msgid "Total wipe tower filament"
+msgstr ""
 
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "ปริมาตรเส้นพลาสติกทั้งหมดที่อัดบน Wipe Tower"
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr ""
 
 msgid "Used filament"
 msgstr "เส้นพลาสติกที่ใช้แล้ว"
@@ -21429,9 +21538,8 @@ msgstr "ชื่อของเครื่องพิมพ์ฟิสิค
 msgid "Layer number"
 msgstr "หมายเลขเลเยอร์"
 
-# AI Translated
-msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
-msgstr "ดัชนีของเลเยอร์ปัจจุบัน เริ่มนับจาก 0 (เช่น เลเยอร์แรกคือหมายเลข 0) ยกเว้นใน G-code เปลี่ยนประเภทการพิมพ์ (Extrusion role) ซึ่งจะเริ่มนับจาก 1"
+msgid "Index of the current layer. The index is zero-based (first layer has index 0). Before the first layer starts, it is -1. In extrusion role change G-code, the index is one-based (first layer has index 1)."
+msgstr ""
 
 msgid "Layer Z"
 msgstr "เลเยอร์ Z"
@@ -21449,24 +21557,181 @@ msgstr "ความสูงของเลเยอร์สุดท้าย
 msgid "Filament extruder ID"
 msgstr "ID ชุดดันเส้นเส้นพลาสติก"
 
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "รหัสชุดดันเส้นปัจจุบัน เช่นเดียวกับ current_extruder"
+msgid "In filament start G-code, the index of the filament that is being loaded. In filament end G-code, the index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At a tool change, filament end G-code gets the extruder index instead, unless the Type 1 wipe tower does the tool change. Machine end G-code gets the value from the last filament end G-code at the end of the print."
+msgstr ""
+
+msgid "Current filament ID"
+msgstr ""
+
+msgid "Index of the currently active filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current extruder ID"
+msgstr ""
+
+msgid "Index of the currently active physical extruder. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current nozzle ID"
+msgstr ""
+
+msgid "Index of the currently active nozzle. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Nozzle diameters"
+msgstr ""
+
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr ""
+
+msgid "Nozzle volume types"
+msgstr ""
+
+msgid "Nozzle volume variants indexed by nozzle ID."
+msgstr ""
+
+msgid "Retraction distance used when cutting filament."
+msgstr ""
+
+msgid "Long retraction when cut"
+msgstr ""
+
+msgid "Whether long retraction is used when cutting filament."
+msgstr ""
+
+msgid "Most-used physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder used most often on the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current Y acceleration limit"
+msgstr ""
+
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr ""
+
+msgid "Current accumulated mass"
+msgstr ""
+
+msgid "Accumulated printed mass at the current layer."
+msgstr ""
+
+msgid "Current layer mass"
+msgstr ""
+
+msgid "Printed mass of the previous layer."
+msgstr ""
+
+msgid "Current physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder active for the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Timelapse position X"
+msgstr ""
+
+msgid "Selected X position for timelapse capture."
+msgstr ""
+
+msgid "Timelapse position Y"
+msgstr ""
+
+msgid "Selected Y position for timelapse capture."
+msgstr ""
+
+msgid "Has timelapse safe position"
+msgstr ""
+
+msgid "Whether a safe timelapse position was found."
+msgstr ""
+
+msgid "Timelapse inline photo"
+msgstr ""
+
+msgid "Whether the timelapse photo is captured at the inline position."
+msgstr ""
+
+msgid "Farthest-point timelapse enabled"
+msgstr ""
+
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr ""
+
+msgid "Clear to X0"
+msgstr ""
+
+msgid "Whether the timelapse move is clear to X0."
+msgstr ""
 
 # AI Translated
 msgid "Previous extruder"
 msgstr "ชุดดันเส้นก่อนหน้า"
 
-# AI Translated
-msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
-msgstr "ดัชนีของชุดดันเส้นที่กำลังถอนเส้น ดัชนีเริ่มจากศูนย์ (ชุดดันเส้นแรกมีดัชนี 0)"
+msgid "Index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At the start of the print, when no filament is loaded yet, it is -1."
+msgstr ""
 
 # AI Translated
 msgid "Next extruder"
 msgstr "ชุดดันเส้นถัดไป"
 
-# AI Translated
-msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
-msgstr "ดัชนีของชุดดันเส้นที่กำลังโหลด ดัชนีเริ่มจากศูนย์ (ชุดดันเส้นแรกมีดัชนี 0)"
+msgid "Index of the filament that is being loaded. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the outgoing filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the incoming filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next nozzle ID"
+msgstr ""
+
+msgid "Index of the nozzle associated with the incoming filament. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Next filament ID"
+msgstr ""
+
+msgid "Index of the incoming filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Old extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the outgoing extruder."
+msgstr ""
+
+msgid "New extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the incoming extruder."
+msgstr ""
+
+msgid "Filament nozzle-change retract length"
+msgstr ""
+
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr ""
+
+msgid "New extruder retracted length"
+msgstr ""
+
+msgid "Currently parked retraction length of the incoming extruder."
+msgstr ""
+
+msgid "Outer wall volumetric speed"
+msgstr ""
+
+msgid "Volumetric speed used for the outer wall."
+msgstr ""
 
 # AI Translated
 msgid "Relative e-axis"
@@ -21483,6 +21748,12 @@ msgstr "จำนวนการเปลี่ยนเครื่องมื
 # AI Translated
 msgid "The number of toolchanges throughout the print."
 msgstr "จำนวนการเปลี่ยนเครื่องมือตลอดการพิมพ์"
+
+msgid "Toolchange Z"
+msgstr ""
+
+msgid "The Z position during the toolchange."
+msgstr ""
 
 # AI Translated
 msgid "Old retract length"
@@ -21667,6 +21938,78 @@ msgstr "ความยาวไล่เส้น 4"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "ความยาวไล่เส้นครั้งที่สี่"
+
+msgid "Flush length"
+msgstr ""
+
+msgid "Total flush length."
+msgstr ""
+
+msgid "Flush volumetric speeds"
+msgstr ""
+
+msgid "Flush volumetric speeds for each filament."
+msgstr ""
+
+msgid "Flush temperatures"
+msgstr ""
+
+msgid "Flush temperatures for each filament."
+msgstr ""
+
+msgid "Filament cooling before tower"
+msgstr ""
+
+msgid "Avoid wipe perimeter"
+msgstr ""
+
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr ""
+
+msgid "Wipe avoidance X"
+msgstr ""
+
+msgid "X position used to avoid the wipe area."
+msgstr ""
+
+msgid "Prime tower interface"
+msgstr ""
+
+msgid "Whether the current purge is for a prime-tower interface."
+msgstr ""
+
+msgid "Filament tower interface print temperature"
+msgstr ""
+
+msgid "Print temperature used for the filament tower interface."
+msgstr ""
+
+msgid "Wipe tower center X"
+msgstr ""
+
+msgid "X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the tower edge."
+msgstr ""
+
+msgid "Wipe tower center Y"
+msgstr ""
+
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr ""
+
+msgid "Wipe tower center position valid"
+msgstr ""
+
+msgid "Whether the print has a wipe tower."
+msgstr ""
+
+msgid "Nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "Nozzle temperature initial layer"
+msgstr ""
 
 # AI Translated
 msgid "Extrusion role"
@@ -21863,6 +22206,9 @@ msgstr "คอมไพล์ regex ล้มเหลว"
 # AI Translated
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "ไม่สามารถใช้การดำเนินการเชิงตรรกะกับตัวถูกดำเนินการที่ไม่ใช่บูลีนได้"
+
+msgid "This value is known only after the G-code is generated. It can be printed, but not used in a calculation or a comparison."
+msgstr ""
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -25792,10 +26138,6 @@ msgid "Placement (transform / mirror / mate)"
 msgstr "การจัดวาง (แปลงรูป / กลับด้าน / เมท)"
 
 # AI Translated
-msgid "Transform"
-msgstr "แปลงรูป"
-
-# AI Translated
 msgid "Move and/or rotate an existing body"
 msgstr "ย้ายและ/หรือหมุนบอดี้ที่มีอยู่"
 
@@ -28953,10 +29295,6 @@ msgstr "ทำซ้ำ"
 # AI Translated
 msgid "Reference"
 msgstr "อ้างอิง"
-
-# AI Translated
-msgid "Modify"
-msgstr "ปรับแต่ง"
 
 # AI Translated
 msgctxt "Design"
@@ -35367,19 +35705,6 @@ msgstr "ไม่ทราบชื่อ"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"ปลั๊กอิน \"%s\" ขอสิทธิ์อ่านระบบไฟล์ที่:\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "สิทธิ์ของปลั๊กอิน"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -35436,23 +35761,21 @@ msgstr[0] ""
 "ปลั๊กอิน \"%s\" กำลังขอลบไฟล์ต่อไปนี้:\n"
 "%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the listed hosts. It does not restrict ports. A URL with a path, query or port is covered only for that exact URL."
 msgstr ""
-"ปลั๊กอิน \"%s\" กำลังขอส่งคำขอ HTTP ไปยัง:\n"
-"%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not restrict ports."
 msgstr ""
-"ปลั๊กอิน \"%s\" กำลังขอเปิดการเชื่อมต่อเครือข่ายไปยัง:\n"
-"%s"
 
 # AI Translated
 #, c-format, boost-format
@@ -35488,6 +35811,10 @@ msgstr "ปลั๊กอิน \"%s\" กำลังขอสิทธิ์�
 # AI Translated
 msgid "Plugin permission request"
 msgstr "คำขอสิทธิ์ของปลั๊กอิน"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "สิทธิ์ของปลั๊กอิน"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -35916,9 +36243,14 @@ msgstr "ลบและยกเลิกการติดตามได้เ
 msgid "Cannot unsubscribe your own plugins. Use Delete to remove the local files."
 msgstr "ไม่สามารถยกเลิกการติดตามปลั๊กอินของคุณเองได้ ใช้ \"ลบ\" เพื่อนำไฟล์ในเครื่องออก"
 
-# AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr "คำขอสิทธิ์อ่านระบบไฟล์ของปลั๊กอินถูกปฏิเสธ"
+msgid "Python interpreter is shutting down"
+msgstr ""
+
+msgid "Plugin system is shutting down."
+msgstr ""
+
+msgid "Plugin permission request denied"
+msgstr ""
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -36652,6 +36984,95 @@ msgid ""
 msgstr ""
 "หลีกเลี่ยงการบิดเบี้ยว\n"
 "คุณรู้หรือไม่ว่าเมื่อพิมพ์วัสดุที่มีแนวโน้มที่จะเกิดการบิดเบี้ยว เช่น ABS การเพิ่มอุณหภูมิฐานพิมพ์อย่างเหมาะสมสามารถลดความน่าจะเป็นของการบิดเบี้ยวได้"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "กลับด้านตามแกน X"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "กลับด้านตามแกน Y"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "กลับด้านตามแกน Z"
+
+#~ msgid "Split the selected object"
+#~ msgstr "แยกวัตถุที่เลือก"
+
+#~ msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr "พื้นที่ที่ไม่สามารถพิมพ์ได้ในระนาบ XY ตัวอย่างเช่น เครื่องพิมพ์ X1 ซีรีส์ใช้มุมซ้ายด้านหน้าเพื่อตัดเส้นพลาสติกระหว่างการเปลี่ยนเส้นพลาสติก พื้นที่จะแสดงเป็นรูปหลายเหลี่ยมตามจุดในรูปแบบต่อไปนี้: \"XxY, XxY, ...\""
+
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+#~ msgstr ""
+#~ "เปิดใช้งานสิ่งนี้เพื่อรับไฟล์ G-code ซึ่งมีการเคลื่อนไหว G2 และ G3 ความคลาดเคลื่อนในการติดตั้งจะเหมือนกับความละเอียด\n"
+#~ "\n"
+#~ "หมายเหตุ: สำหรับเครื่อง Klipper แนะนำให้ปิดการใช้งานตัวเลือกนี้ Klipper ไม่ได้รับประโยชน์จากคำสั่ง arc เนื่องจากคำสั่งเหล่านี้จะถูกแบ่งออกเป็นส่วนของบรรทัดอีกครั้งโดยเฟิร์มแวร์ ซึ่งส่งผลให้คุณภาพพื้นผิวลดลง เนื่องจากส่วนของเส้นถูกแปลงเป็นส่วนโค้งโดยตัวแบ่งส่วนข้อมูล จากนั้นเฟิร์มแวร์จะแปลงกลับไปยังส่วนของเส้นตรง"
+
+#~ msgid "Silent Mode"
+#~ msgstr "โหมดเงียบ"
+
+#~ msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
+#~ msgstr "เครื่องรองรับโหมดเงียบซึ่งเครื่องใช้ความเร่งในการพิมพ์ต่ำกว่าหรือไม่"
+
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "เพื่อลดการมองเห็นรอยตะเข็บในการอัดขึ้นรูปแบบวงปิด วงจะถูกขัดจังหวะและทำให้สั้นลงตามจำนวนที่ระบุ\n"
+#~ "ปริมาณนี้สามารถระบุได้ในหน่วยมิลลิเมตรหรือเป็นเปอร์เซ็นต์ของเส้นผ่านศูนย์กลางของชุดดันเส้นในปัจจุบัน ค่าเริ่มต้นสำหรับพารามิเตอร์นี้คือ 10%"
+
+#~ msgid "Wipe tower volume"
+#~ msgstr "เช็ดปริมาตรทาวเวอร์"
+
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "ปริมาตรเส้นพลาสติกทั้งหมดที่อัดบน Wipe Tower"
+
+# AI Translated
+#~ msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
+#~ msgstr "ดัชนีของเลเยอร์ปัจจุบัน เริ่มนับจาก 0 (เช่น เลเยอร์แรกคือหมายเลข 0) ยกเว้นใน G-code เปลี่ยนประเภทการพิมพ์ (Extrusion role) ซึ่งจะเริ่มนับจาก 1"
+
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "รหัสชุดดันเส้นปัจจุบัน เช่นเดียวกับ current_extruder"
+
+# AI Translated
+#~ msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "ดัชนีของชุดดันเส้นที่กำลังถอนเส้น ดัชนีเริ่มจากศูนย์ (ชุดดันเส้นแรกมีดัชนี 0)"
+
+# AI Translated
+#~ msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "ดัชนีของชุดดันเส้นที่กำลังโหลด ดัชนีเริ่มจากศูนย์ (ชุดดันเส้นแรกมีดัชนี 0)"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "ปลั๊กอิน \"%s\" ขอสิทธิ์อ่านระบบไฟล์ที่:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "ปลั๊กอิน \"%s\" กำลังขอส่งคำขอ HTTP ไปยัง:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "ปลั๊กอิน \"%s\" กำลังขอเปิดการเชื่อมต่อเครือข่ายไปยัง:\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr "คำขอสิทธิ์อ่านระบบไฟล์ของปลั๊กอินถูกปฏิเสธ"
 
 # AI Translated
 #~ msgid "Dalmatian yellow"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Slic3rPE\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 09:48-0300\n"
+"POT-Creation-Date: 2026-10-25 02:28+0800\n"
 "PO-Revision-Date: 2026-06-11 12:37-0300\n"
 "Last-Translator: Handle <mail@bysb.net>\n"
 "Language-Team: \n"
@@ -1254,6 +1254,9 @@ msgstr "设置镜像"
 msgid "Embossed text"
 msgstr "浮雕文字"
 
+msgid "Default font"
+msgstr "默认字体"
+
 msgid "Enter emboss gizmo"
 msgstr "进入浮雕小工具"
 
@@ -1294,9 +1297,6 @@ msgstr "现代"
 
 msgid "First font"
 msgstr "第一个字体"
-
-msgid "Default font"
-msgstr "默认字体"
 
 msgid "Advanced"
 msgstr "高级"
@@ -3077,9 +3077,6 @@ msgstr "冲刷到这个对象"
 msgid "Flush into objects' support"
 msgstr "冲刷到对象的支撑"
 
-msgid "Edit in Parameter Table"
-msgstr "在参数表格中编辑"
-
 msgid "Convert from Inches"
 msgstr "从英寸转换"
 
@@ -3101,32 +3098,56 @@ msgstr "组合所选对象为一个多零件对象"
 msgid "Assemble the selected objects into an object with single part"
 msgstr "组合所选对象为一个单零件对象"
 
+msgid "Along X Axis"
+msgstr "沿 X 轴"
+
+msgid "Mirror along the X axis"
+msgstr ""
+
+msgid "Along Y Axis"
+msgstr "沿 Y 轴"
+
+msgid "Mirror along the Y axis"
+msgstr ""
+
+msgid "Along Z Axis"
+msgstr "沿 Z 轴"
+
+msgid "Mirror along the Z axis"
+msgstr ""
+
+# AI Translated
+msgid "Transform"
+msgstr "变换"
+
+msgid "Split"
+msgstr "拆分"
+
+msgid "To Objects"
+msgstr "拆分到对象"
+
+msgid "Split the selected object into multiple objects"
+msgstr "拆分所选对象为多个对象"
+
+# AI Translated
+msgid "To Parts"
+msgstr "拆分到零件"
+
+msgid "Split the selected object into multiple parts"
+msgstr "拆分所选对象为多个零件"
+
 msgid "Mesh boolean"
 msgstr "网格布尔运算"
 
 msgid "Mesh boolean operations including union and subtraction"
 msgstr "包括并集和差集的网格布尔运算"
 
-msgid "Along X Axis"
-msgstr "沿 X 轴"
+# AI Translated
+msgid "Modify"
+msgstr "修改"
 
-msgid "Mirror along the X Axis"
-msgstr "沿X轴镜像"
-
-msgid "Along Y Axis"
-msgstr "沿 Y 轴"
-
-msgid "Mirror along the Y Axis"
-msgstr "沿Y轴镜像"
-
-msgid "Along Z Axis"
-msgstr "沿 Z 轴"
-
-msgid "Mirror along the Z Axis"
-msgstr "沿Z轴镜像"
-
-msgid "Mirror object"
-msgstr "镜像对象"
+msgid "More"
+msgstr "详情"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3187,30 +3208,18 @@ msgstr "添加模型"
 msgid "Show Labels"
 msgstr "显示标签"
 
-msgid "To Objects"
-msgstr "拆分到对象"
-
-msgid "Split the selected object into multiple objects"
-msgstr "拆分所选对象为多个对象"
-
 # AI Translated
-msgid "To Parts"
-msgstr "拆分到零件"
-
-msgid "Split the selected object into multiple parts"
-msgstr "拆分所选对象为多个零件"
-
-msgid "Split"
-msgstr "拆分"
-
-msgid "Split the selected object"
-msgstr "拆分所选对象"
+msgid "Instances"
+msgstr "实例"
 
 msgid "Auto orientation"
 msgstr "自动朝向"
 
 msgid "Auto orient the object to improve print quality"
 msgstr "自动调整对象朝向以提高打印质量。"
+
+msgid "Paste Process Settings"
+msgstr "粘贴工艺参数"
 
 msgid "Edit"
 msgstr "编辑"
@@ -3252,11 +3261,11 @@ msgstr "自动摆放"
 msgid "Arrange current plate"
 msgstr "自动摆放当前盘"
 
-msgid "Reload All"
-msgstr "重新加载全部"
+msgid "Auto Rotate"
+msgstr "自动朝向"
 
-msgid "Reload all from disk"
-msgstr "从磁盘重新加载全部"
+msgid "Auto rotate current plate"
+msgstr "在当前盘执行自动朝向"
 
 # AI Translated
 msgid "Fix All"
@@ -3274,17 +3283,11 @@ msgstr "修复所有盘"
 msgid "Fix all models on all plates"
 msgstr "修复所有盘上的所有模型"
 
-msgid "Auto Rotate"
-msgstr "自动朝向"
+msgid "Reload All"
+msgstr "重新加载全部"
 
-msgid "Auto rotate current plate"
-msgstr "在当前盘执行自动朝向"
-
-msgid "Delete Plate"
-msgstr "删除盘"
-
-msgid "Remove the selected plate"
-msgstr "删除所选盘"
+msgid "Reload all from disk"
+msgstr "从磁盘重新加载全部"
 
 msgid "Add instance"
 msgstr "增加实例"
@@ -3344,8 +3347,8 @@ msgstr "编辑工艺参数"
 msgid "Copy Process Settings"
 msgstr "复制工艺参数"
 
-msgid "Paste Process Settings"
-msgstr "粘贴工艺参数"
+msgid "Edit in Parameter Table"
+msgstr "在参数表格中编辑"
 
 msgid "Edit print parameters for a single object"
 msgstr "编辑单个对象的打印参数"
@@ -3368,6 +3371,12 @@ msgstr "锁定"
 
 msgid "Edit Plate Name"
 msgstr "编辑盘名"
+
+msgid "Delete Plate"
+msgstr "删除盘"
+
+msgid "Remove the selected plate"
+msgstr "删除所选盘"
 
 msgid "Name"
 msgstr "名称"
@@ -3713,9 +3722,6 @@ msgstr "走线类型"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "1x1 网格：%d mm"
-
-msgid "More"
-msgstr "详情"
 
 msgid "Open Preferences"
 msgstr "打开首选项"
@@ -4558,6 +4564,9 @@ msgstr "已跳过脚本插件。"
 # AI Translated
 msgid "Script plugin finished."
 msgstr "脚本插件已完成。"
+
+msgid "Script plugin started."
+msgstr ""
 
 msgid "Printer"
 msgstr "打印机"
@@ -5875,6 +5884,9 @@ msgstr "输入中的某些扩展名无效"
 msgid "This parameter expects a valid template."
 msgstr "此参数需要有效的模板"
 
+msgid "Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, XxY, ... and separate multiple volumes with |."
+msgstr ""
+
 msgid "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per entry. Examples: 5, 5#2, 1,7,9, 5,9#2,18."
 msgstr "无效的模式。请使用 N、N#K 或逗号分隔的列表（每个条目可选择性地添加 #K）。示例：5, 5#2, 1,7,9, 5,9#2,18。"
 
@@ -6445,6 +6457,19 @@ msgstr "左喷嘴：X：%1%-%2%，Y：%3%-%4%，Z：%5%-%6%\n"
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "右喷嘴：X：%1%-%2%，Y：%3%-%4%，Z：%5%-%6%"
 
+msgid "Mirror object"
+msgstr "镜像对象"
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed. There is no free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed, so it was moved to free space on the plate."
+msgstr ""
+
 # AI Translated
 msgid "Tool move"
 msgstr "工具移动"
@@ -6699,7 +6724,7 @@ msgstr "体积："
 msgid "Size:"
 msgstr "尺寸："
 
-#, c-format, boost-format
+#, boost-format
 msgid "Conflicts of G-code paths have been found at layer %d, Z = %.2lfmm. Please separate the conflicted objects farther (%s <-> %s)."
 msgstr "发现G-code路径在层%d，高度为%.2lf mm处有冲突。请将有冲突的对象分离得更远(%s <-> %s)。"
 
@@ -7206,6 +7231,12 @@ msgstr "显示名称"
 
 msgid "Show object labels in 3D scene."
 msgstr "在3D场景中显示对象名称"
+
+msgid "Show all collision volumes"
+msgstr ""
+
+msgid "Show the full height of every configured collision volume, including on an empty bed."
+msgstr ""
 
 msgid "Show &Overhang"
 msgstr "显示悬垂高亮"
@@ -8651,10 +8682,6 @@ msgstr "点击查看详情。"
 
 msgid "Cut connectors"
 msgstr "切割连接件"
-
-# AI Translated
-msgid "Instances"
-msgstr "实例"
 
 # AI Translated
 #, c-format, boost-format
@@ -10819,6 +10846,14 @@ msgstr ""
 "静态：光源在世界中保持固定，因此仅在场景变化时重新计算阴影。\n"
 "环绕：光源随相机转动，相机移动时每一帧都会重新计算阴影。"
 
+msgid "Glossy toolpaths"
+msgstr ""
+
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight of the plain view."
+msgstr ""
+
 msgid "Anti-aliasing"
 msgstr "抗锯齿"
 
@@ -10997,6 +11032,12 @@ msgid ""
 msgstr ""
 "启用“调暗下方图层”时，被调暗的图层以多高的亮度显示。\n"
 "99% 表示几乎不变暗，0% 表示显示为纯黑。上限为 99%，因为 100% 与关闭该选项的效果相同。"
+
+msgid "Translucent filaments"
+msgstr ""
+
+msgid "Draw the toolpaths of filaments whose color is partly transparent as see-through, as the 3D view draws their objects. Turn it off to draw every filament opaque."
+msgstr ""
 
 msgid "Login region"
 msgstr "登录区域"
@@ -12441,6 +12482,12 @@ msgstr "带有此图标的参数可以按喷嘴分别设置。"
 msgid "Click to reset all settings to the last saved preset."
 msgstr "点击以将所有设置还原到最后一次保存的版本。"
 
+msgid "This definition contains collision-volume syntax. Add it to the toolhead collision volumes for G-code checking and travel avoidance? The existing excluded bed area will be preserved."
+msgstr ""
+
+msgid "Add collision volumes"
+msgstr ""
+
 # AI Translated
 msgid "Prime tower is required for nozzle changing. There may be flaws on the model without prime tower. Are you sure you want to disable prime tower?"
 msgstr "切换喷嘴需要擦拭塔，否则打印件上可能会有瑕疵。您确定要关闭擦拭塔吗？"
@@ -12963,9 +13010,6 @@ msgstr "模板自定义G-code"
 
 msgid "Motion ability"
 msgstr "移动能力"
-
-msgid "Normal"
-msgstr "普通"
 
 msgid "Resonance Compensation"
 msgstr "共振补偿"
@@ -14376,6 +14420,17 @@ msgstr ""
 "导出 G-code 到 %1% 失败。\n"
 "磁盘是否已满？"
 
+#, boost-format
+msgid "A G-code move intersects a collision volume for extruder %1%. This may cause a printer collision."
+msgstr ""
+
+msgid "A G-code move intersects a collision volume. This may cause a printer collision."
+msgstr ""
+
+#, boost-format
+msgid "The intersecting move is at G-code line %1%. Its Z position is unknown after homing, so Orca checked it against every height."
+msgstr ""
+
 # AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
@@ -14690,6 +14745,14 @@ msgstr ""
 #, boost-format
 msgid "%1% is too close to exclusion area. There may be collisions when printing."
 msgstr "%1%离屏蔽区域太近，可能会发生碰撞。"
+
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr ""
+
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr ""
 
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
@@ -15096,9 +15159,35 @@ msgstr "按并联工具头数量排列的热床排除区域有序列表。第 1 
 msgid "Excluded bed area"
 msgstr "不可打印区域"
 
-# AI Translated
-msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
-msgstr "XY平面上的不可打印区域。例如，X1系列打印机在换料过程中，会使用左前角区域来切断耗材丝。这个多边形区域由以下格式的点表示：\"XxY, XxY, ...\""
+msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as a polygon in the format \"XxY, XxY, ...\". It constrains material and model placement, but allows machine travel. Configure toolhead collision volumes separately for G-code checking and travel avoidance."
+msgstr ""
+
+msgid "Toolhead collision volumes"
+msgstr ""
+
+msgid "Collision volumes used for model and generated-material exclusion, G-code checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate multiple volumes with \"|\". These volumes are additional to the excluded bed area. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+
+msgid "Collision volume behavior"
+msgstr ""
+
+msgid "Choose whether all nozzles use the same collision volumes, derive toolhead-relative volumes from each nozzle's XY offset, or configure independent volumes for every extruder. In individual mode, select each extruder on the Extruder page to configure its volumes."
+msgstr ""
+
+msgid "Shared"
+msgstr ""
+
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr ""
+
+msgid "Individual per extruder"
+msgstr ""
+
+msgid "Extruder collision volumes"
+msgstr ""
+
+msgid "Collision volumes used only by this extruder in individual mode. Use the same polygon and optional Z-range format as the shared collision volumes. Leave empty for no collision volumes on this extruder. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
 
 msgid "Bed custom texture"
 msgstr "自定义热床纹理"
@@ -15343,6 +15432,12 @@ msgstr "底部外壳厚度"
 # AI Translated
 msgid "The number of bottom solid layers is increased when slicing if the thickness calculated by bottom shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and the thickness of the bottom shell is determined simply by the number of bottom shell layers."
 msgstr "如果由底部外壳层数算出的厚度小于这个数值，那么切片时将自动增加底部外壳层数。这能够避免当层高很小时，底部外壳过薄。0表示关闭这个设置，同时底部外壳的厚度完全由底部外壳层数决定。"
+
+msgid "Bottom paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the bottom surface layer, that take the color painted on a bottom surface. Set to 0 to use the bottom shell layers. A value larger than the bottom shell also colors the sparse infill above the painted area."
+msgstr ""
 
 # AI Translated
 msgid "Apply gap fill"
@@ -17858,15 +17953,20 @@ msgstr "开启这个设置，对象在切片后将得到精准的 Z 高度。此
 msgid "Arc fitting"
 msgstr "圆弧拟合"
 
-# AI Translated
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted within the resolution, while sparse infill, supports and the wipe tower use fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which shortens the G-code of curved infill patterns without affecting the walls and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs back into line segments, which lowers the surface quality and can increase the print time."
 msgstr ""
-"启用后，导出的 G-code 将包含 G2 和 G3 指令。圆弧拟合的公差与分辨率相同。\n"
-"\n"
-"请注意：对于使用 Klipper 固件的打印机，建议禁用此选项。Klipper 不会从圆弧指令中受益，因为固件会再次将其分割为线段。切片软件将线段转换为圆弧后，固件又将其转换回线段，会导致表面质量下降。"
+
+msgid "Enabled"
+msgstr "启用"
+
+msgid "Sparse infill only"
+msgstr ""
 
 msgid "Add line number"
 msgstr "标注行号"
@@ -18489,13 +18589,6 @@ msgstr "在每次换层抬升Z高度之后插入这段G-code。"
 
 msgid "Clumping detection G-code"
 msgstr "结块检测 G-code"
-
-# AI Translated
-msgid "Silent Mode"
-msgstr "静音模式"
-
-msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
-msgstr "机器是否支持使用低加速度打印的静音模式。"
 
 msgid "Emit limits to G-code"
 msgstr "写入限制到G-code"
@@ -19246,6 +19339,9 @@ msgstr "Z抬升类型"
 msgid "Type of Z-hop."
 msgstr "Z轴抬升类型。"
 
+msgid "Normal"
+msgstr "普通"
+
 msgid "Slope"
 msgstr "梯形"
 
@@ -19399,13 +19495,10 @@ msgstr "此选项会根据内墙深度使接缝向后移动，形成锯齿形模
 msgid "Seam gap"
 msgstr "接缝间隔"
 
-# AI Translated
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle diameter. The default value for this parameter is 10%."
 msgstr ""
-"为了降低闭环挤出中接缝的可见性，环会被打断并缩短指定的长度。\n"
-"该长度可以用毫米或当前挤出机直径的百分比指定。此参数的默认值为10%。"
 
 msgid "Scarf joint seam (beta)"
 msgstr "斜拼接缝（试验）"
@@ -19593,9 +19686,6 @@ msgstr ""
 "风挡对于保护ABS或ASA打印件免受风力的影响，防止翘曲和从热床上脱落是非常有用的。通常只有在没有封箱的开放式打印机上才需要。\n"
 "\n"
 "启用 = 裙边的高度与最高的打印对象一样高。否则的话会使用'裙边高度'。"
-
-msgid "Enabled"
-msgstr "启用"
 
 msgid "Skirt type"
 msgstr "裙边类型"
@@ -20664,6 +20754,12 @@ msgstr "顶部外壳厚度"
 msgid "The number of top solid layers is increased when slicing if the thickness calculated by top shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and thickness of top shell is determined simply by the number of top shell layers."
 msgstr "如果由顶部外壳层数算出的厚度小于这个数值，那么切片时将自动增加顶部外壳层数。这能够避免当层高很小时，顶部外壳过薄。0 表示关闭这个设置，同时顶部外壳的厚度完全由顶部外壳层数决定。"
 
+msgid "Top paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the top surface layer, that take the color painted on a top surface. Set to 0 to use the top shell layers. A value larger than the top shell also colors the sparse infill below the painted area."
+msgstr ""
+
 # AI Translated
 msgid "Separated infills"
 msgstr "分离式填充"
@@ -21199,6 +21295,15 @@ msgstr "此选项用于自动识别内部实心填充中的狭窄区域。开启
 
 msgid "invalid value "
 msgstr "无效值 "
+
+msgid "Invalid collision volume definition."
+msgstr ""
+
+msgid "A nozzle offset is required for every extruder when toolhead-relative collision volumes are enabled."
+msgstr ""
+
+msgid "Invalid per-extruder collision volume definition."
+msgstr ""
 
 # AI Translated
 msgid "Invalid value when spiral vase mode is enabled: "
@@ -21797,12 +21902,11 @@ msgstr "擦拭塔总成本"
 msgid "Total cost of the material wasted on the wipe tower. Calculated from filament_cost value in Filament Settings."
 msgstr "擦拭塔上浪费的材料的总成本。根据耗材丝设置中的 filament_cost 值计算。"
 
-msgid "Wipe tower volume"
-msgstr "擦拭塔体积"
+msgid "Total wipe tower filament"
+msgstr ""
 
-# AI Translated
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "擦拭塔上已挤出耗材丝的总体积。"
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr ""
 
 # AI Translated
 msgid "Used filament"
@@ -22034,9 +22138,8 @@ msgstr "用于切片的物理打印机的名称。"
 msgid "Layer number"
 msgstr "层编号"
 
-# AI Translated
-msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
-msgstr "当前层的索引。从 0 开始（即首层为 0），但在挤出类型更换 G-code 中从 1 开始。"
+msgid "Index of the current layer. The index is zero-based (first layer has index 0). Before the first layer starts, it is -1. In extrusion role change G-code, the index is one-based (first layer has index 1)."
+msgstr ""
 
 msgid "Layer Z"
 msgstr "层的 Z 坐标"
@@ -22056,24 +22159,181 @@ msgstr "最后一层在热床上方的高度。"
 msgid "Filament extruder ID"
 msgstr "耗材丝挤出机ID"
 
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "当前挤出机ID，与current_extruder相同"
+msgid "In filament start G-code, the index of the filament that is being loaded. In filament end G-code, the index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At a tool change, filament end G-code gets the extruder index instead, unless the Type 1 wipe tower does the tool change. Machine end G-code gets the value from the last filament end G-code at the end of the print."
+msgstr ""
+
+msgid "Current filament ID"
+msgstr ""
+
+msgid "Index of the currently active filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current extruder ID"
+msgstr ""
+
+msgid "Index of the currently active physical extruder. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current nozzle ID"
+msgstr ""
+
+msgid "Index of the currently active nozzle. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Nozzle diameters"
+msgstr ""
+
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr ""
+
+msgid "Nozzle volume types"
+msgstr ""
+
+msgid "Nozzle volume variants indexed by nozzle ID."
+msgstr ""
+
+msgid "Retraction distance used when cutting filament."
+msgstr ""
+
+msgid "Long retraction when cut"
+msgstr ""
+
+msgid "Whether long retraction is used when cutting filament."
+msgstr ""
+
+msgid "Most-used physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder used most often on the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current Y acceleration limit"
+msgstr ""
+
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr ""
+
+msgid "Current accumulated mass"
+msgstr ""
+
+msgid "Accumulated printed mass at the current layer."
+msgstr ""
+
+msgid "Current layer mass"
+msgstr ""
+
+msgid "Printed mass of the previous layer."
+msgstr ""
+
+msgid "Current physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder active for the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Timelapse position X"
+msgstr ""
+
+msgid "Selected X position for timelapse capture."
+msgstr ""
+
+msgid "Timelapse position Y"
+msgstr ""
+
+msgid "Selected Y position for timelapse capture."
+msgstr ""
+
+msgid "Has timelapse safe position"
+msgstr ""
+
+msgid "Whether a safe timelapse position was found."
+msgstr ""
+
+msgid "Timelapse inline photo"
+msgstr ""
+
+msgid "Whether the timelapse photo is captured at the inline position."
+msgstr ""
+
+msgid "Farthest-point timelapse enabled"
+msgstr ""
+
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr ""
+
+msgid "Clear to X0"
+msgstr ""
+
+msgid "Whether the timelapse move is clear to X0."
+msgstr ""
 
 # AI Translated
 msgid "Previous extruder"
 msgstr "上一个挤出机"
 
-# AI Translated
-msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
-msgstr "正在卸载的挤出机的索引。索引从零开始（第一个挤出机的索引为 0）。"
+msgid "Index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At the start of the print, when no filament is loaded yet, it is -1."
+msgstr ""
 
 # AI Translated
 msgid "Next extruder"
 msgstr "下一个挤出机"
 
-# AI Translated
-msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
-msgstr "正在装载的挤出机的索引。索引从零开始（第一个挤出机的索引为 0）。"
+msgid "Index of the filament that is being loaded. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the outgoing filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the incoming filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next nozzle ID"
+msgstr ""
+
+msgid "Index of the nozzle associated with the incoming filament. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Next filament ID"
+msgstr ""
+
+msgid "Index of the incoming filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Old extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the outgoing extruder."
+msgstr ""
+
+msgid "New extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the incoming extruder."
+msgstr ""
+
+msgid "Filament nozzle-change retract length"
+msgstr ""
+
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr ""
+
+msgid "New extruder retracted length"
+msgstr ""
+
+msgid "Currently parked retraction length of the incoming extruder."
+msgstr ""
+
+msgid "Outer wall volumetric speed"
+msgstr ""
+
+msgid "Volumetric speed used for the outer wall."
+msgstr ""
 
 # AI Translated
 msgid "Relative e-axis"
@@ -22090,6 +22350,12 @@ msgstr "换工具头次数"
 # AI Translated
 msgid "The number of toolchanges throughout the print."
 msgstr "整个打印过程中的换工具头次数。"
+
+msgid "Toolchange Z"
+msgstr ""
+
+msgid "The Z position during the toolchange."
+msgstr ""
 
 # AI Translated
 msgid "Old retract length"
@@ -22274,6 +22540,78 @@ msgstr "冲刷长度 4"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "第四次冲刷长度。"
+
+msgid "Flush length"
+msgstr ""
+
+msgid "Total flush length."
+msgstr ""
+
+msgid "Flush volumetric speeds"
+msgstr ""
+
+msgid "Flush volumetric speeds for each filament."
+msgstr ""
+
+msgid "Flush temperatures"
+msgstr ""
+
+msgid "Flush temperatures for each filament."
+msgstr ""
+
+msgid "Filament cooling before tower"
+msgstr ""
+
+msgid "Avoid wipe perimeter"
+msgstr ""
+
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr ""
+
+msgid "Wipe avoidance X"
+msgstr ""
+
+msgid "X position used to avoid the wipe area."
+msgstr ""
+
+msgid "Prime tower interface"
+msgstr ""
+
+msgid "Whether the current purge is for a prime-tower interface."
+msgstr ""
+
+msgid "Filament tower interface print temperature"
+msgstr ""
+
+msgid "Print temperature used for the filament tower interface."
+msgstr ""
+
+msgid "Wipe tower center X"
+msgstr ""
+
+msgid "X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the tower edge."
+msgstr ""
+
+msgid "Wipe tower center Y"
+msgstr ""
+
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr ""
+
+msgid "Wipe tower center position valid"
+msgstr ""
+
+msgid "Whether the print has a wipe tower."
+msgstr ""
+
+msgid "Nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "Nozzle temperature initial layer"
+msgstr ""
 
 # AI Translated
 msgid "Extrusion role"
@@ -22472,6 +22810,9 @@ msgstr "正则表达式编译失败"
 # AI Translated
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "无法对非布尔操作数应用逻辑运算。"
+
+msgid "This value is known only after the G-code is generated. It can be printed, but not used in a calculation or a comparison."
+msgstr ""
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -26562,10 +26903,6 @@ msgid "Placement (transform / mirror / mate)"
 msgstr "放置（变换 / 镜像 / 配合）"
 
 # AI Translated
-msgid "Transform"
-msgstr "变换"
-
-# AI Translated
 msgid "Move and/or rotate an existing body"
 msgstr "移动和/或旋转现有实体"
 
@@ -29724,10 +30061,6 @@ msgstr "重复"
 # AI Translated
 msgid "Reference"
 msgstr "参考"
-
-# AI Translated
-msgid "Modify"
-msgstr "修改"
 
 # AI Translated
 msgctxt "Design"
@@ -36142,19 +36475,6 @@ msgstr "未知名称"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"插件“%s”请求读取文件系统中的以下位置：\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "插件权限"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -36211,23 +36531,21 @@ msgstr[0] ""
 "插件“%s”正在请求删除以下文件：\n"
 "%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the listed hosts. It does not restrict ports. A URL with a path, query or port is covered only for that exact URL."
 msgstr ""
-"插件“%s”正在请求向以下地址发送 HTTP 请求：\n"
-"%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not restrict ports."
 msgstr ""
-"插件“%s”正在请求打开到以下地址的网络连接：\n"
-"%s"
 
 # AI Translated
 #, c-format, boost-format
@@ -36263,6 +36581,10 @@ msgstr "插件“%s”正在请求 Python 审计事件“%s”的权限。"
 # AI Translated
 msgid "Plugin permission request"
 msgstr "插件权限请求"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "插件权限"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -36690,9 +37012,14 @@ msgstr "只能删除并取消订阅云端插件。"
 msgid "Cannot unsubscribe your own plugins. Use Delete to remove the local files."
 msgstr "无法取消订阅您自己的插件。请使用“删除”来移除本地文件。"
 
-# AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr "插件文件系统读取权限请求被拒绝"
+msgid "Python interpreter is shutting down"
+msgstr ""
+
+msgid "Plugin system is shutting down."
+msgstr ""
+
+msgid "Plugin permission request denied"
+msgstr ""
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -37446,6 +37773,100 @@ msgid ""
 msgstr ""
 "避免翘曲\n"
 "您知道吗？打印ABS这类易翘曲材料时，适当提高热床温度可以降低翘曲的概率。"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "沿X轴镜像"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "沿Y轴镜像"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "沿Z轴镜像"
+
+#~ msgid "Split the selected object"
+#~ msgstr "拆分所选对象"
+
+# AI Translated
+#~ msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr "XY平面上的不可打印区域。例如，X1系列打印机在换料过程中，会使用左前角区域来切断耗材丝。这个多边形区域由以下格式的点表示：\"XxY, XxY, ...\""
+
+# AI Translated
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+#~ msgstr ""
+#~ "启用后，导出的 G-code 将包含 G2 和 G3 指令。圆弧拟合的公差与分辨率相同。\n"
+#~ "\n"
+#~ "请注意：对于使用 Klipper 固件的打印机，建议禁用此选项。Klipper 不会从圆弧指令中受益，因为固件会再次将其分割为线段。切片软件将线段转换为圆弧后，固件又将其转换回线段，会导致表面质量下降。"
+
+# AI Translated
+#~ msgid "Silent Mode"
+#~ msgstr "静音模式"
+
+#~ msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
+#~ msgstr "机器是否支持使用低加速度打印的静音模式。"
+
+# AI Translated
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "为了降低闭环挤出中接缝的可见性，环会被打断并缩短指定的长度。\n"
+#~ "该长度可以用毫米或当前挤出机直径的百分比指定。此参数的默认值为10%。"
+
+#~ msgid "Wipe tower volume"
+#~ msgstr "擦拭塔体积"
+
+# AI Translated
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "擦拭塔上已挤出耗材丝的总体积。"
+
+# AI Translated
+#~ msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
+#~ msgstr "当前层的索引。从 0 开始（即首层为 0），但在挤出类型更换 G-code 中从 1 开始。"
+
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "当前挤出机ID，与current_extruder相同"
+
+# AI Translated
+#~ msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "正在卸载的挤出机的索引。索引从零开始（第一个挤出机的索引为 0）。"
+
+# AI Translated
+#~ msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "正在装载的挤出机的索引。索引从零开始（第一个挤出机的索引为 0）。"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "插件“%s”请求读取文件系统中的以下位置：\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "插件“%s”正在请求向以下地址发送 HTTP 请求：\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "插件“%s”正在请求打开到以下地址的网络连接：\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr "插件文件系统读取权限请求被拒绝"
 
 # AI Translated
 # Needs human review: RAL 1007 is “Daffodil yellow” (水仙黄); the English name in the palette looks wrong. Recheck once the source name is fixed.

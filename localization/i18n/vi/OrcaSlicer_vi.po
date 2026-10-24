@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-19 09:48-0300\n"
+"POT-Creation-Date: 2026-10-25 02:28+0800\n"
 "PO-Revision-Date: 2025-10-02 17:43+0700\n"
 "Last-Translator: \n"
 "Language-Team: hainguyen.ts13@gmail.com\n"
@@ -1323,6 +1323,9 @@ msgstr "Đặt gương"
 msgid "Embossed text"
 msgstr "Chữ emboss"
 
+msgid "Default font"
+msgstr "Font mặc định"
+
 msgid "Enter emboss gizmo"
 msgstr "Vào chế độ emboss gizmo"
 
@@ -1370,9 +1373,6 @@ msgstr "MODERN"
 
 msgid "First font"
 msgstr "Font đầu tiên"
-
-msgid "Default font"
-msgstr "Font mặc định"
 
 msgid "Advanced"
 msgstr "Nâng cao"
@@ -3187,9 +3187,6 @@ msgstr "Flush vào vật thể này"
 msgid "Flush into objects' support"
 msgstr "Flush vào support của vật thể"
 
-msgid "Edit in Parameter Table"
-msgstr "Chỉnh sửa trong bảng tham số"
-
 msgid "Convert from Inches"
 msgstr "Chuyển đổi từ inch"
 
@@ -3211,6 +3208,43 @@ msgstr "Lắp ráp các vật thể đã chọn thành vật thể có nhiều p
 msgid "Assemble the selected objects into an object with single part"
 msgstr "Lắp ráp các vật thể đã chọn thành vật thể có một phần"
 
+msgid "Along X Axis"
+msgstr "Dọc trục X"
+
+msgid "Mirror along the X axis"
+msgstr ""
+
+msgid "Along Y Axis"
+msgstr "Dọc trục Y"
+
+msgid "Mirror along the Y axis"
+msgstr ""
+
+msgid "Along Z Axis"
+msgstr "Dọc trục Z"
+
+msgid "Mirror along the Z axis"
+msgstr ""
+
+# AI Translated
+msgid "Transform"
+msgstr "Biến đổi"
+
+msgid "Split"
+msgstr "Tách"
+
+msgid "To Objects"
+msgstr "Thành vật thể"
+
+msgid "Split the selected object into multiple objects"
+msgstr "Tách vật thể đã chọn thành nhiều vật thể"
+
+msgid "To Parts"
+msgstr "Thành phần"
+
+msgid "Split the selected object into multiple parts"
+msgstr "Tách vật thể đã chọn thành nhiều phần"
+
 # AI Translated
 msgid "Mesh boolean"
 msgstr "Boolean lưới"
@@ -3218,26 +3252,12 @@ msgstr "Boolean lưới"
 msgid "Mesh boolean operations including union and subtraction"
 msgstr "Các thao tác mesh boolean bao gồm hợp và trừ"
 
-msgid "Along X Axis"
-msgstr "Dọc trục X"
+# AI Translated
+msgid "Modify"
+msgstr "Sửa đổi"
 
-msgid "Mirror along the X Axis"
-msgstr "Lật dọc trục X"
-
-msgid "Along Y Axis"
-msgstr "Dọc trục Y"
-
-msgid "Mirror along the Y Axis"
-msgstr "Lật dọc trục Y"
-
-msgid "Along Z Axis"
-msgstr "Dọc trục Z"
-
-msgid "Mirror along the Z Axis"
-msgstr "Lật dọc trục Z"
-
-msgid "Mirror object"
-msgstr "Lật vật thể"
+msgid "More"
+msgstr "Thêm"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3298,29 +3318,19 @@ msgstr "Thêm model"
 msgid "Show Labels"
 msgstr "Hiện nhãn"
 
-msgid "To Objects"
-msgstr "Thành vật thể"
-
-msgid "Split the selected object into multiple objects"
-msgstr "Tách vật thể đã chọn thành nhiều vật thể"
-
-msgid "To Parts"
-msgstr "Thành phần"
-
-msgid "Split the selected object into multiple parts"
-msgstr "Tách vật thể đã chọn thành nhiều phần"
-
-msgid "Split"
-msgstr "Tách"
-
-msgid "Split the selected object"
-msgstr "Tách vật thể đã chọn"
+# AI Translated
+msgid "Instances"
+msgstr "Các instance"
 
 msgid "Auto orientation"
 msgstr "Tự động định hướng"
 
 msgid "Auto orient the object to improve print quality"
 msgstr "Tự động định hướng vật thể để cải thiện chất lượng in."
+
+# AI Translated
+msgid "Paste Process Settings"
+msgstr "Dán cài đặt Process"
 
 msgid "Edit"
 msgstr "Chỉnh sửa"
@@ -3363,11 +3373,11 @@ msgstr "Sắp xếp"
 msgid "Arrange current plate"
 msgstr "sắp xếp plate hiện tại"
 
-msgid "Reload All"
-msgstr "Tải lại tất cả"
+msgid "Auto Rotate"
+msgstr "Tự động xoay"
 
-msgid "Reload all from disk"
-msgstr "tải lại tất cả từ ổ đĩa"
+msgid "Auto rotate current plate"
+msgstr "tự động xoay plate hiện tại"
 
 # AI Translated
 msgid "Fix All"
@@ -3385,17 +3395,11 @@ msgstr "Sửa tất cả plate"
 msgid "Fix all models on all plates"
 msgstr "Sửa tất cả mô hình trên mọi plate"
 
-msgid "Auto Rotate"
-msgstr "Tự động xoay"
+msgid "Reload All"
+msgstr "Tải lại tất cả"
 
-msgid "Auto rotate current plate"
-msgstr "tự động xoay plate hiện tại"
-
-msgid "Delete Plate"
-msgstr "Xóa plate"
-
-msgid "Remove the selected plate"
-msgstr "Xóa plate đã chọn"
+msgid "Reload all from disk"
+msgstr "tải lại tất cả từ ổ đĩa"
 
 # AI Translated
 msgid "Add instance"
@@ -3461,9 +3465,8 @@ msgstr "Chỉnh sửa cài đặt process"
 msgid "Copy Process Settings"
 msgstr "Sao chép cài đặt Process"
 
-# AI Translated
-msgid "Paste Process Settings"
-msgstr "Dán cài đặt Process"
+msgid "Edit in Parameter Table"
+msgstr "Chỉnh sửa trong bảng tham số"
 
 msgid "Edit print parameters for a single object"
 msgstr "Chỉnh sửa tham số in cho một vật thể"
@@ -3486,6 +3489,12 @@ msgstr "Khóa"
 
 msgid "Edit Plate Name"
 msgstr "Chỉnh sửa tên plate"
+
+msgid "Delete Plate"
+msgstr "Xóa plate"
+
+msgid "Remove the selected plate"
+msgstr "Xóa plate đã chọn"
 
 msgid "Name"
 msgstr "Tên"
@@ -3849,9 +3858,6 @@ msgstr "Loại đường"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "Lưới 1x1: %d mm"
-
-msgid "More"
-msgstr "Thêm"
 
 msgid "Open Preferences"
 msgstr "Mở tùy chọn."
@@ -4758,6 +4764,9 @@ msgstr "Đã bỏ qua plugin script."
 # AI Translated
 msgid "Script plugin finished."
 msgstr "Plugin script đã chạy xong."
+
+msgid "Script plugin started."
+msgstr ""
 
 msgid "Printer"
 msgstr "Máy in"
@@ -6098,6 +6107,9 @@ msgstr "Một số phần mở rộng trong đầu vào không hợp lệ"
 msgid "This parameter expects a valid template."
 msgstr "Tham số này mong đợi một mẫu hợp lệ."
 
+msgid "Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, XxY, ... and separate multiple volumes with |."
+msgstr ""
+
 msgid "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per entry. Examples: 5, 5#2, 1,7,9, 5,9#2,18."
 msgstr "Mẫu không hợp lệ. Dùng N, N#K, hoặc danh sách phân cách dấu phẩy với tùy chọn #K mỗi mục. Ví dụ: 5, 5#2, 1,7,9, 5,9#2,18."
 
@@ -6663,6 +6675,19 @@ msgstr "Đầu phun trái: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%\n"
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "Đầu phun phải: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 
+msgid "Mirror object"
+msgstr "Lật vật thể"
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed. There is no free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+
+#. TRN %1% is the plate number.
+#, boost-format
+msgid "The prime tower on plate %1% no longer fits where it was placed, so it was moved to free space on the plate."
+msgstr ""
+
 msgid "Tool move"
 msgstr "Công cụ di chuyển"
 
@@ -6915,7 +6940,7 @@ msgstr "Thể tích:"
 msgid "Size:"
 msgstr "Kích thước:"
 
-#, c-format, boost-format
+#, boost-format
 msgid "Conflicts of G-code paths have been found at layer %d, Z = %.2lfmm. Please separate the conflicted objects farther (%s <-> %s)."
 msgstr "Đã tìm thấy xung đột đường đi G-code tại lớp %d, Z = %.2lfmm. Vui lòng tách các vật thể xung đột ra xa hơn (%s <-> %s)."
 
@@ -7419,6 +7444,12 @@ msgstr "Hiện &nhãn"
 
 msgid "Show object labels in 3D scene."
 msgstr "Hiện nhãn vật thể trong cảnh 3D."
+
+msgid "Show all collision volumes"
+msgstr ""
+
+msgid "Show the full height of every configured collision volume, including on an empty bed."
+msgstr ""
 
 msgid "Show &Overhang"
 msgstr "Hiện &overhang"
@@ -8884,10 +8915,6 @@ msgstr "Nhấn để xem thêm."
 
 msgid "Cut connectors"
 msgstr "Cắt connector"
-
-# AI Translated
-msgid "Instances"
-msgstr "Các instance"
 
 # AI Translated
 #, c-format, boost-format
@@ -11130,6 +11157,14 @@ msgstr ""
 "Tĩnh: nguồn sáng cố định trong không gian, nên bóng đổ chỉ được tính lại khi cảnh thay đổi.\n"
 "Quay quanh: nguồn sáng xoay theo camera, tính lại bóng đổ ở mỗi khung hình khi camera di chuyển."
 
+msgid "Glossy toolpaths"
+msgstr ""
+
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight of the plain view."
+msgstr ""
+
 msgid "Anti-aliasing"
 msgstr "Anti-aliasing"
 
@@ -11316,6 +11351,12 @@ msgid ""
 msgstr ""
 "Mức độ sáng khi hiển thị các lớp bị làm mờ nếu bật \"Làm mờ các lớp bên dưới\".\n"
 "99% gần như không tối đi, 0% khiến chúng đen hoàn toàn. Giới hạn ở 99% vì 100% sẽ giống hệt như tắt tùy chọn này."
+
+msgid "Translucent filaments"
+msgstr ""
+
+msgid "Draw the toolpaths of filaments whose color is partly transparent as see-through, as the 3D view draws their objects. Turn it off to draw every filament opaque."
+msgstr ""
 
 # AI Translated
 msgid "Login region"
@@ -12823,6 +12864,12 @@ msgstr "Các thông số có biểu tượng này có thể được cấu hình
 msgid "Click to reset all settings to the last saved preset."
 msgstr "Nhấp để đặt lại tất cả cài đặt về preset đã lưu cuối cùng."
 
+msgid "This definition contains collision-volume syntax. Add it to the toolhead collision volumes for G-code checking and travel avoidance? The existing excluded bed area will be preserved."
+msgstr ""
+
+msgid "Add collision volumes"
+msgstr ""
+
 # AI Translated
 msgid "Prime tower is required for nozzle changing. There may be flaws on the model without prime tower. Are you sure you want to disable prime tower?"
 msgstr "Prime tower là bắt buộc khi đổi đầu phun. Nếu không có prime tower, mô hình có thể bị lỗi. Bạn có chắc muốn tắt prime tower không?"
@@ -13316,9 +13363,6 @@ msgstr "Mẫu G-code tùy chỉnh"
 
 msgid "Motion ability"
 msgstr "Khả năng chuyển động"
-
-msgid "Normal"
-msgstr "Bình thường"
 
 # AI Translated
 msgid "Resonance Compensation"
@@ -14769,6 +14813,17 @@ msgstr ""
 "Xuất G-code ra %1% thất bại.\n"
 "Ổ đĩa có bị đầy không?"
 
+#, boost-format
+msgid "A G-code move intersects a collision volume for extruder %1%. This may cause a printer collision."
+msgstr ""
+
+msgid "A G-code move intersects a collision volume. This may cause a printer collision."
+msgstr ""
+
+#, boost-format
+msgid "The intersecting move is at G-code line %1%. Its Z position is unknown after homing, so Orca checked it against every height."
+msgstr ""
+
 # AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
@@ -15083,6 +15138,14 @@ msgstr ""
 #, boost-format
 msgid "%1% is too close to exclusion area. There may be collisions when printing."
 msgstr "%1% quá gần vùng loại trừ, có thể có va chạm khi in."
+
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr ""
+
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr ""
 
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
@@ -15477,8 +15540,35 @@ msgstr "Danh sách có thứ tự các vùng loại trừ trên bàn in theo s�
 msgid "Excluded bed area"
 msgstr "Vùng loại trừ bàn in"
 
-msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
-msgstr "Vùng không thể in trong mặt phẳng XY. Ví dụ, máy in dòng X1 sử dụng góc trái phía trước để cắt filament trong quá trình thay filament. Vùng được biểu thị dưới dạng đa giác bằng các điểm theo định dạng sau: \"XxY, XxY, ...\""
+msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as a polygon in the format \"XxY, XxY, ...\". It constrains material and model placement, but allows machine travel. Configure toolhead collision volumes separately for G-code checking and travel avoidance."
+msgstr ""
+
+msgid "Toolhead collision volumes"
+msgstr ""
+
+msgid "Collision volumes used for model and generated-material exclusion, G-code checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate multiple volumes with \"|\". These volumes are additional to the excluded bed area. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+
+msgid "Collision volume behavior"
+msgstr ""
+
+msgid "Choose whether all nozzles use the same collision volumes, derive toolhead-relative volumes from each nozzle's XY offset, or configure independent volumes for every extruder. In individual mode, select each extruder on the Extruder page to configure its volumes."
+msgstr ""
+
+msgid "Shared"
+msgstr ""
+
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr ""
+
+msgid "Individual per extruder"
+msgstr ""
+
+msgid "Extruder collision volumes"
+msgstr ""
+
+msgid "Collision volumes used only by this extruder in individual mode. Use the same polygon and optional Z-range format as the shared collision volumes. Leave empty for no collision volumes on this extruder. Automatic arrangement conservatively uses the bounding box of a non-convex volume."
+msgstr ""
 
 msgid "Bed custom texture"
 msgstr "Kết cấu bàn in tùy chỉnh"
@@ -15717,6 +15807,12 @@ msgstr "Độ dày vỏ dưới"
 
 msgid "The number of bottom solid layers is increased when slicing if the thickness calculated by bottom shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and the thickness of the bottom shell is determined simply by the number of bottom shell layers."
 msgstr "Số lượng lớp đặc dưới được tăng lên khi slice nếu độ dày tính bằng lớp vỏ dưới mỏng hơn giá trị này. Điều này có thể tránh vỏ quá mỏng khi chiều cao lớp nhỏ. 0 có nghĩa là cài đặt này bị tắt và độ dày vỏ dưới được xác định tuyệt đối bởi lớp vỏ dưới."
+
+msgid "Bottom paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the bottom surface layer, that take the color painted on a bottom surface. Set to 0 to use the bottom shell layers. A value larger than the bottom shell also colors the sparse infill above the painted area."
+msgstr ""
 
 msgid "Apply gap fill"
 msgstr "Áp dụng lấp khe"
@@ -18167,13 +18263,19 @@ msgid "Arc fitting"
 msgstr "Khớp cung"
 
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted within the resolution, while sparse infill, supports and the wipe tower use fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which shortens the G-code of curved infill patterns without affecting the walls and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs back into line segments, which lowers the surface quality and can increase the print time."
 msgstr ""
-"Bật điều này để có file G-code có chuyển động G2 và G3. Dung sai khớp  giống như độ phân giải.\n"
-"\n"
-"Lưu ý: Đối với máy Klipper, tùy chọn này được khuyến nghị tắt. Klipper không được lợi từ lệnh cung vì chúng được chia lại thành các đoạn đường bởi firmware. Điều này dẫn đến giảm chất lượng bề mặt  vì các đoạn đường được chuyển đổi thành cung bởi slicer và sau đó quay lại thành các đoạn đường bởi firmware."
+
+msgid "Enabled"
+msgstr "Đã bật"
+
+msgid "Sparse infill only"
+msgstr ""
 
 msgid "Add line number"
 msgstr "Thêm số dòng"
@@ -18792,13 +18894,6 @@ msgstr "G-code này được chèn vào mỗi lần thay đổi lớp sau khi n�
 # AI Translated
 msgid "Clumping detection G-code"
 msgstr "G-code phát hiện vón cục"
-
-# AI Translated
-msgid "Silent Mode"
-msgstr "Chế độ im lặng"
-
-msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
-msgstr "Máy có hỗ trợ chế độ im lặng trong đó máy sử dụng gia tốc thấp hơn để in hay không."
 
 msgid "Emit limits to G-code"
 msgstr "Phát giới hạn ra G-code"
@@ -19534,6 +19629,9 @@ msgstr "Loại Z-hop"
 msgid "Type of Z-hop."
 msgstr "Loại của Z-hop."
 
+msgid "Normal"
+msgstr "Bình thường"
+
 msgid "Slope"
 msgstr "Dốc"
 
@@ -19686,10 +19784,8 @@ msgstr "Khe đường nối"
 
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle diameter. The default value for this parameter is 10%."
 msgstr ""
-"Để giảm khả năng nhìn thấy đường nối trong đùn vòng kín, vòng bị gián đoạn và rút ngắn bởi một lượng được chỉ định.\n"
-"Lượng này có thể được chỉ định bằng milimét hoặc dưới dạng phần trăm của đường kính extruder hiện tại. Giá trị mặc định cho tham số này là 10%."
 
 msgid "Scarf joint seam (beta)"
 msgstr "Đường nối khớp vát (beta)"
@@ -19866,9 +19962,6 @@ msgstr ""
 "Tấm chắn gió hữu ích để bảo vệ bản in ABS hoặc ASA khỏi cong vênh và tách khỏi bàn in do gió lùa. Nó thường chỉ cần với máy in khung mở, tức là không có vỏ bọc.\n"
 "\n"
 "Đã bật = viền cao bằng đối tượng được in cao nhất. Ngược lại 'Chiều cao viền' được sử dụng."
-
-msgid "Enabled"
-msgstr "Đã bật"
 
 msgid "Skirt type"
 msgstr "Loại viền"
@@ -20879,6 +20972,12 @@ msgstr "Độ dày vỏ trên"
 msgid "The number of top solid layers is increased when slicing if the thickness calculated by top shell layers is thinner than this value. This can avoid having too thin a shell when layer height is small. 0 means that this setting is disabled and thickness of top shell is determined simply by the number of top shell layers."
 msgstr "Số lượng lớp đặc trên được tăng lên khi slice nếu độ dày được tính bởi lớp vỏ trên mỏng hơn giá trị này. Điều này có thể tránh vỏ quá mỏng khi chiều cao lớp nhỏ. 0 có nghĩa là cài đặt này bị tắt và độ dày vỏ trên được xác định tuyệt đối bởi lớp vỏ trên."
 
+msgid "Top paint penetration layers"
+msgstr ""
+
+msgid "The number of layers, including the top surface layer, that take the color painted on a top surface. Set to 0 to use the top shell layers. A value larger than the top shell also colors the sparse infill below the painted area."
+msgstr ""
+
 # AI Translated
 msgid "Separated infills"
 msgstr "Infill tách biệt"
@@ -21404,6 +21503,15 @@ msgstr "Tùy chọn này sẽ tự động phát hiện vùng infill đặc bên
 
 msgid "invalid value "
 msgstr "giá trị không hợp lệ "
+
+msgid "Invalid collision volume definition."
+msgstr ""
+
+msgid "A nozzle offset is required for every extruder when toolhead-relative collision volumes are enabled."
+msgstr ""
+
+msgid "Invalid per-extruder collision volume definition."
+msgstr ""
 
 msgid "Invalid value when spiral vase mode is enabled: "
 msgstr "Giá trị không hợp lệ khi chế độ bình xoắn ốc được bật: "
@@ -21978,13 +22086,11 @@ msgstr "Tổng chi phí wipe tower"
 msgid "Total cost of the material wasted on the wipe tower. Calculated from filament_cost value in Filament Settings."
 msgstr "Tổng chi phí vật liệu bị lãng phí trên wipe tower. Được tính từ giá trị filament_cost trong Cài đặt filament."
 
-# AI Translated
-msgid "Wipe tower volume"
-msgstr "Thể tích wipe tower"
+msgid "Total wipe tower filament"
+msgstr ""
 
-# AI Translated
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "Tổng thể tích filament được đùn trên wipe tower."
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr ""
 
 # AI Translated
 msgid "Used filament"
@@ -22209,9 +22315,8 @@ msgstr "Tên của máy in vật lý được sử dụng để slice."
 msgid "Layer number"
 msgstr "Số lớp"
 
-# AI Translated
-msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
-msgstr "Chỉ số của lớp hiện tại. Bắt đầu từ 0 (tức lớp đầu tiên là số 0), ngoại trừ trong G-code đổi vai trò đùn, nơi chỉ số bắt đầu từ 1."
+msgid "Index of the current layer. The index is zero-based (first layer has index 0). Before the first layer starts, it is -1. In extrusion role change G-code, the index is one-based (first layer has index 1)."
+msgstr ""
 
 msgid "Layer Z"
 msgstr "Lớp Z"
@@ -22228,24 +22333,181 @@ msgstr "Chiều cao của lớp cuối cùng phía trên bàn in."
 msgid "Filament extruder ID"
 msgstr "ID extruder filament"
 
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "ID extruder hiện tại. Giống như current_extruder."
+msgid "In filament start G-code, the index of the filament that is being loaded. In filament end G-code, the index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At a tool change, filament end G-code gets the extruder index instead, unless the Type 1 wipe tower does the tool change. Machine end G-code gets the value from the last filament end G-code at the end of the print."
+msgstr ""
+
+msgid "Current filament ID"
+msgstr ""
+
+msgid "Index of the currently active filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current extruder ID"
+msgstr ""
+
+msgid "Index of the currently active physical extruder. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current nozzle ID"
+msgstr ""
+
+msgid "Index of the currently active nozzle. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Nozzle diameters"
+msgstr ""
+
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr ""
+
+msgid "Nozzle volume types"
+msgstr ""
+
+msgid "Nozzle volume variants indexed by nozzle ID."
+msgstr ""
+
+msgid "Retraction distance used when cutting filament."
+msgstr ""
+
+msgid "Long retraction when cut"
+msgstr ""
+
+msgid "Whether long retraction is used when cutting filament."
+msgstr ""
+
+msgid "Most-used physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder used most often on the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Current Y acceleration limit"
+msgstr ""
+
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr ""
+
+msgid "Current accumulated mass"
+msgstr ""
+
+msgid "Accumulated printed mass at the current layer."
+msgstr ""
+
+msgid "Current layer mass"
+msgstr ""
+
+msgid "Printed mass of the previous layer."
+msgstr ""
+
+msgid "Current physical extruder ID"
+msgstr ""
+
+msgid "Index of the physical extruder active for the current layer. The index is zero-based (first extruder has index 0)."
+msgstr ""
+
+msgid "Timelapse position X"
+msgstr ""
+
+msgid "Selected X position for timelapse capture."
+msgstr ""
+
+msgid "Timelapse position Y"
+msgstr ""
+
+msgid "Selected Y position for timelapse capture."
+msgstr ""
+
+msgid "Has timelapse safe position"
+msgstr ""
+
+msgid "Whether a safe timelapse position was found."
+msgstr ""
+
+msgid "Timelapse inline photo"
+msgstr ""
+
+msgid "Whether the timelapse photo is captured at the inline position."
+msgstr ""
+
+msgid "Farthest-point timelapse enabled"
+msgstr ""
+
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr ""
+
+msgid "Clear to X0"
+msgstr ""
+
+msgid "Whether the timelapse move is clear to X0."
+msgstr ""
 
 # AI Translated
 msgid "Previous extruder"
 msgstr "Extruder trước"
 
-# AI Translated
-msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
-msgstr "Chỉ số của extruder đang được tháo. Chỉ số dựa trên không (extruder đầu tiên có chỉ số 0)."
+msgid "Index of the filament that is being unloaded. The index is zero-based (first filament has index 0). At the start of the print, when no filament is loaded yet, it is -1."
+msgstr ""
 
 # AI Translated
 msgid "Next extruder"
 msgstr "Extruder kế tiếp"
 
-# AI Translated
-msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
-msgstr "Chỉ số của extruder đang được nạp. Chỉ số dựa trên không (extruder đầu tiên có chỉ số 0)."
+msgid "Index of the filament that is being loaded. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Current hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the outgoing filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next hotend"
+msgstr ""
+
+msgid "Zero-based extruder index of the incoming filament. On Bambu printers it is -1, or the nozzle ID when a filament moves between nozzles across layers."
+msgstr ""
+
+msgid "Next nozzle ID"
+msgstr ""
+
+msgid "Index of the nozzle associated with the incoming filament. The index is zero-based (first nozzle has index 0)."
+msgstr ""
+
+msgid "Next filament ID"
+msgstr ""
+
+msgid "Index of the incoming filament. The index is zero-based (first filament has index 0)."
+msgstr ""
+
+msgid "Old extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the outgoing extruder."
+msgstr ""
+
+msgid "New extruder variant"
+msgstr ""
+
+msgid "Nozzle-volume variant of the incoming extruder."
+msgstr ""
+
+msgid "Filament nozzle-change retract length"
+msgstr ""
+
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr ""
+
+msgid "New extruder retracted length"
+msgstr ""
+
+msgid "Currently parked retraction length of the incoming extruder."
+msgstr ""
+
+msgid "Outer wall volumetric speed"
+msgstr ""
+
+msgid "Volumetric speed used for the outer wall."
+msgstr ""
 
 # AI Translated
 msgid "Relative e-axis"
@@ -22262,6 +22524,12 @@ msgstr "Số lần đổi công cụ"
 # AI Translated
 msgid "The number of toolchanges throughout the print."
 msgstr "Số lần đổi công cụ trong suốt bản in."
+
+msgid "Toolchange Z"
+msgstr ""
+
+msgid "The Z position during the toolchange."
+msgstr ""
 
 # AI Translated
 msgid "Old retract length"
@@ -22446,6 +22714,78 @@ msgstr "Độ dài xả 4"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "Độ dài xả thứ tư."
+
+msgid "Flush length"
+msgstr ""
+
+msgid "Total flush length."
+msgstr ""
+
+msgid "Flush volumetric speeds"
+msgstr ""
+
+msgid "Flush volumetric speeds for each filament."
+msgstr ""
+
+msgid "Flush temperatures"
+msgstr ""
+
+msgid "Flush temperatures for each filament."
+msgstr ""
+
+msgid "Filament cooling before tower"
+msgstr ""
+
+msgid "Avoid wipe perimeter"
+msgstr ""
+
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr ""
+
+msgid "Wipe avoidance X"
+msgstr ""
+
+msgid "X position used to avoid the wipe area."
+msgstr ""
+
+msgid "Prime tower interface"
+msgstr ""
+
+msgid "Whether the current purge is for a prime-tower interface."
+msgstr ""
+
+msgid "Filament tower interface print temperature"
+msgstr ""
+
+msgid "Print temperature used for the filament tower interface."
+msgstr ""
+
+msgid "Wipe tower center X"
+msgstr ""
+
+msgid "X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the tower edge."
+msgstr ""
+
+msgid "Wipe tower center Y"
+msgstr ""
+
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr ""
+
+msgid "Wipe tower center position valid"
+msgstr ""
+
+msgid "Whether the print has a wipe tower."
+msgstr ""
+
+msgid "Nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr ""
+
+msgid "Nozzle temperature initial layer"
+msgstr ""
 
 # AI Translated
 msgid "Extrusion role"
@@ -22643,6 +22983,9 @@ msgstr "Biên dịch biểu thức chính quy thất bại"
 # Needs human review: Source says 'operators' but means operands (the values operated on); translated as 'toán hạng'.
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "Không thể áp dụng phép toán logic cho các toán hạng không phải boolean."
+
+msgid "This value is known only after the G-code is generated. It can be printed, but not used in a calculation or a comparison."
+msgstr ""
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -26790,10 +27133,6 @@ msgid "Placement (transform / mirror / mate)"
 msgstr "Định vị (biến đổi / lấy đối xứng / lắp ghép)"
 
 # AI Translated
-msgid "Transform"
-msgstr "Biến đổi"
-
-# AI Translated
 msgid "Move and/or rotate an existing body"
 msgstr "Di chuyển và/hoặc xoay một khối hiện có"
 
@@ -29951,10 +30290,6 @@ msgstr "Lặp lại"
 # AI Translated
 msgid "Reference"
 msgstr "Tham chiếu"
-
-# AI Translated
-msgid "Modify"
-msgstr "Sửa đổi"
 
 # AI Translated
 msgctxt "Design"
@@ -36365,19 +36700,6 @@ msgstr "tên không xác định"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"Plugin \"%s\" yêu cầu quyền đọc hệ thống file tại:\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "Quyền của plugin"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -36434,23 +36756,21 @@ msgstr[0] ""
 "Plugin \"%s\" đang yêu cầu xóa file sau:\n"
 "%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the listed hosts. It does not restrict ports. A URL with a path, query or port is covered only for that exact URL."
 msgstr ""
-"Plugin \"%s\" đang yêu cầu gửi một yêu cầu HTTP đến:\n"
-"%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not restrict ports."
 msgstr ""
-"Plugin \"%s\" đang yêu cầu mở một kết nối mạng đến:\n"
-"%s"
 
 # AI Translated
 #, c-format, boost-format
@@ -36486,6 +36806,10 @@ msgstr "Plugin \"%s\" đang yêu cầu quyền cho sự kiện audit Python \"%s
 # AI Translated
 msgid "Plugin permission request"
 msgstr "Yêu cầu quyền của plugin"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "Quyền của plugin"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -36912,9 +37236,14 @@ msgstr "Chỉ có thể xóa và hủy đăng ký các plugin đám mây."
 msgid "Cannot unsubscribe your own plugins. Use Delete to remove the local files."
 msgstr "Không thể hủy đăng ký plugin của chính bạn. Dùng Xóa để gỡ các file cục bộ."
 
-# AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr "Yêu cầu quyền đọc hệ thống file của plugin bị từ chối"
+msgid "Python interpreter is shutting down"
+msgstr ""
+
+msgid "Plugin system is shutting down."
+msgstr ""
+
+msgid "Plugin permission request denied"
+msgstr ""
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -37648,6 +37977,98 @@ msgid ""
 msgstr ""
 "Tránh cong vênh\n"
 "Bạn có biết rằng khi in vật liệu dễ cong vênh như ABS, tăng nhiệt độ bàn nóng một cách thích hợp có thể giảm xác suất cong vênh không?"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "Lật dọc trục X"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "Lật dọc trục Y"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "Lật dọc trục Z"
+
+#~ msgid "Split the selected object"
+#~ msgstr "Tách vật thể đã chọn"
+
+#~ msgid "Unprintable area in XY plane. For example, X1 Series printers use the front left corner to cut filament during filament change. The area is expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr "Vùng không thể in trong mặt phẳng XY. Ví dụ, máy in dòng X1 sử dụng góc trái phía trước để cắt filament trong quá trình thay filament. Vùng được biểu thị dưới dạng đa giác bằng các điểm theo định dạng sau: \"XxY, XxY, ...\""
+
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. Klipper does not benefit from arc commands as these are split again into line segments by the firmware. This results in a reduction in surface quality as line segments are converted to arcs by the slicer and then back to line segments by the firmware."
+#~ msgstr ""
+#~ "Bật điều này để có file G-code có chuyển động G2 và G3. Dung sai khớp  giống như độ phân giải.\n"
+#~ "\n"
+#~ "Lưu ý: Đối với máy Klipper, tùy chọn này được khuyến nghị tắt. Klipper không được lợi từ lệnh cung vì chúng được chia lại thành các đoạn đường bởi firmware. Điều này dẫn đến giảm chất lượng bề mặt  vì các đoạn đường được chuyển đổi thành cung bởi slicer và sau đó quay lại thành các đoạn đường bởi firmware."
+
+# AI Translated
+#~ msgid "Silent Mode"
+#~ msgstr "Chế độ im lặng"
+
+#~ msgid "Whether the machine supports silent mode in which machine uses lower acceleration to print more quietly"
+#~ msgstr "Máy có hỗ trợ chế độ im lặng trong đó máy sử dụng gia tốc thấp hơn để in hay không."
+
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "Để giảm khả năng nhìn thấy đường nối trong đùn vòng kín, vòng bị gián đoạn và rút ngắn bởi một lượng được chỉ định.\n"
+#~ "Lượng này có thể được chỉ định bằng milimét hoặc dưới dạng phần trăm của đường kính extruder hiện tại. Giá trị mặc định cho tham số này là 10%."
+
+# AI Translated
+#~ msgid "Wipe tower volume"
+#~ msgstr "Thể tích wipe tower"
+
+# AI Translated
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "Tổng thể tích filament được đùn trên wipe tower."
+
+# AI Translated
+#~ msgid "Index of the current layer. Zero-based (i.e. first layer is number 0), except in extrusion role change G-code, where it is one-based."
+#~ msgstr "Chỉ số của lớp hiện tại. Bắt đầu từ 0 (tức lớp đầu tiên là số 0), ngoại trừ trong G-code đổi vai trò đùn, nơi chỉ số bắt đầu từ 1."
+
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "ID extruder hiện tại. Giống như current_extruder."
+
+# AI Translated
+#~ msgid "Index of the extruder that is being unloaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "Chỉ số của extruder đang được tháo. Chỉ số dựa trên không (extruder đầu tiên có chỉ số 0)."
+
+# AI Translated
+#~ msgid "Index of the extruder that is being loaded. The index is zero based (first extruder has index 0)."
+#~ msgstr "Chỉ số của extruder đang được nạp. Chỉ số dựa trên không (extruder đầu tiên có chỉ số 0)."
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Plugin \"%s\" yêu cầu quyền đọc hệ thống file tại:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Plugin \"%s\" đang yêu cầu gửi một yêu cầu HTTP đến:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "Plugin \"%s\" đang yêu cầu mở một kết nối mạng đến:\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr "Yêu cầu quyền đọc hệ thống file của plugin bị từ chối"
 
 # AI Translated
 #~ msgid "Dalmatian yellow"
