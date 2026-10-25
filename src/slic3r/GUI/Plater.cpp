@@ -14348,9 +14348,8 @@ PlateBBoxData Plater::priv::generate_first_layer_bbox()
     for (auto obj : objects)
     {
         auto bb_scaled = obj->get_first_layer_bbox(data.area, data.layer_height, data.name);
+        // get_first_layer_bbox() is already plate-local, unlike the wipe tower corners below.
         auto bb = unscaled(bb_scaled);
-        bb.min -= orig2d;
-        bb.max -= orig2d;
         bbox_all.merge(bb);
         data.area *= (SCALING_FACTOR * SCALING_FACTOR); // unscale area
         data.id = obj->id().id;
