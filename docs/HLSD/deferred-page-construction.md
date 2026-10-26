@@ -129,9 +129,15 @@ Tab in object mode, otherwise the global preset Tab. Results show the first line
 the registry description beneath the option name, with the complete description in
 the tooltip. Availability text is not part of fuzzy name matching. The Speed Dial
 keeps settings with a recorded hidden reason in its catalog and prepends their
-restrictions to its detail strip. Selecting a recorded hidden setting displays its
-explanation instead of trying to focus an invisible input. Settings hidden only by
-an unrecorded row restriction retain the Speed Dial's existing filtering.
+restrictions to its detail strip. Settings hidden only by an unrecorded row
+restriction retain the Speed Dial's existing filtering.
+
+A page's rules run only while that page is shown, and the registry keys carry no
+extruder index, so a listed restriction reflects the configuration and extruder of
+the last time its page was shown. Navigation therefore never trusts it: selecting a
+setting from search or the Speed Dial opens its page (and extruder), reruns that
+page's rules, and only a setting still hidden then displays its explanation instead
+of focusing an invisible input.
 
 ### The 3D view's GL resources
 

@@ -604,12 +604,16 @@ name settings from the same index and skip a changed key the index lacks; only t
 availability descriptions and `Sidebar::jump_to_option` use that same owner. The settings search
 shows recorded restrictions below the result title and in its tooltip without changing fuzzy name
 matching. The Speed Dial retains recorded hidden settings and puts their explanations in the detail
-strip; choosing one displays the reason. Restrictions absent from the registry keep their existing
-row filter.
+strip. Restrictions absent from the registry keep their existing row filter.
 
 `Sidebar::jump_to_option(key, type, category)` → (model tab if it has the key, else switch to global) →
-`Tab::activate_option`, which selects the page by translated category, focuses the field and blinks it
+`Tab::activate_option`, which selects the page by translated category, reruns `toggle_options()`,
+then either shows the registry's hidden reason or focuses the field and blinks it
 (`get_custom_ctrl_with_blinking_ptr`). `Tab::apply_searcher()` refreshes the index for one tab.
+
+Pitfall: the registry is only as fresh as the last `toggle_options()` of the page owning the key, and
+its keys carry no extruder index. A check made before navigating refuses settings that a printer edit
+or another extruder has made visible; check after the page and extruder are selected and the rules rerun.
 
 Pitfalls:
 - **Rule:** Create tab groups with a non-empty English title; a key that should be findable must be on a tab.

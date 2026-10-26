@@ -2685,15 +2685,6 @@ void Tab::update_wiping_button_visibility() {
 
 void Tab::activate_option(const std::string& opt_key, const wxString& category)
 {
-    const std::string key = opt_key.substr(0, opt_key.find('#'));
-    if (m_option_state_registry.hidden_reason(key)) {
-        const wxString description = m_option_state_registry.description(key);
-        wxGetApp().CallAfter([description] {
-            if (!wxGetApp().is_closing())
-                show_info(wxGetApp().mainframe, description, _L("Setting unavailable"));
-        });
-        return;
-    }
     wxString page_title = translate_category(category, m_type);
 
     auto cur_item = m_tabctrl->GetFirstVisibleItem();
@@ -2730,6 +2721,20 @@ void Tab::activate_option(const std::string& opt_key, const wxString& category)
 
         m_tabctrl->SelectItem(cur_item);
         break;
+    }
+
+    // The registry holds what the rules decided when a page was last shown, for the extruder shown
+    // then. Rerun the rules of the page now selected, so the check reflects the current configuration.
+    if (m_active_page && m_active_page->title() != "Dependencies")
+        toggle_options();
+    const std::string key = opt_key.substr(0, opt_key.find('#'));
+    if (m_option_state_registry.hidden_reason(key)) {
+        const wxString description = m_option_state_registry.description(key);
+        wxGetApp().CallAfter([description] {
+            if (!wxGetApp().is_closing())
+                show_info(wxGetApp().mainframe, description, _L("Setting unavailable"));
+        });
+        return;
     }
 
     auto set_focus = [](wxWindow* win) {

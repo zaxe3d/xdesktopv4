@@ -360,11 +360,6 @@ struct SettingAction : AppAction
 
     AppActionRunResult run(const std::string& /*param*/) const override
     {
-        if (Tab* tab = get_tab_for_option(opt_key, type)) {
-            const std::string key = opt_key.substr(0, opt_key.find('#'));
-            if (tab->option_state_registry().hidden_reason(key))
-                return {AppActionRunResult::Level::Info, tab->option_state_registry().description(key)};
-        }
         wxGetApp().sidebar().jump_to_option(opt_key, type, category);
         return {AppActionRunResult::Level::Success};
     }
