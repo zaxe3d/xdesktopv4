@@ -112,19 +112,33 @@ Two more consumer-side facts worth knowing:
 
 Klipper printers have no single tray-id protocol of their own, so
 `MoonrakerPrinterAgent::fetch_moonraker_filament_data` reads Moonraker's `lane_data`
-database namespace instead: one JSON object per lane (`lane1`, `lane2`, ...), written
-by whichever MMU host integration or companion tool manages that printer's lanes.
-For each lane it tries, in order: the lane's `filament_id` against every compatible
-preset's `filament_id`; then its `setting_id` against a preset's `filament_id` or
+database namespace instead: one JSON object per lane, written by whichever MMU
+host integration or companion tool manages that printer's lanes. For each lane it
+tries, in order: the lane's `filament_id` against every compatible preset's
+`filament_id`; then its `setting_id` against a preset's `filament_id` or
 `setting_id` (`PresetCollection::filament_id_by_id` in `Preset.cpp` implements both
 passes); falling back to the existing filament-type lookup if neither resolves.
 
-`lane_data`'s schema is not standardized across the Klipper ecosystem — it is
-whatever the host integration that owns a printer's lanes chooses to write. Some
-integrations send only `material`/`color`, which resolves by type alone;
-`filament_id`/`setting_id` only resolve a preset when the integration populates
-them with an actual Orca id rather than an id from some unrelated database, since
-an id that matches nothing simply falls through to the next pass, the same as a
+### `lane_data` field reference
+
+`lane_data`'s top-level keys (`lane1`, `lane2`, ...) are arbitrary and never read —
+only the fields inside each entry's value matter, and its schema is not
+standardized across the Klipper ecosystem: a host integration writes whichever of
+these fields it is able to populate, and any field it omits is treated exactly
+like one that does not resolve a preset — matching just moves to the next pass.
+
+| Field | Type | Required | Used for |
+| --- | --- | --- | --- |
+| `lane` | string holding a non-negative integer | yes — an entry without one is dropped entirely, not just unmatched | the tray's slot index (0-based); independent of the entry's own key |
+| `filament_id` | string | no | first-tier match: must equal a compatible preset's `filament_id` to resolve |
+| `setting_id` | string | no | second-tier match, tried only if `filament_id` did not resolve: must equal a compatible preset's `filament_id` or `setting_id` |
+| `material` | string | no | the type-based fallback match once neither id resolves; also what marks the lane as loaded (empty means empty lane) |
+| `color` | string | no | display only, not used for matching |
+| `bed_temp`, `nozzle_temp` | integer | no | display/print-setup hints only, not used for matching |
+
+An id is only useful here when it is actually one of ours: a value from an
+unrelated system — a spool tracker's own internal record id, for example — will
+simply not equal any preset's `filament_id`/`setting_id` and falls through like a
 field the integration never sent. A user preset carries neither id by default, so
 a lane naming one by name alone resolves by type until presets have their own way
 to declare an id.
