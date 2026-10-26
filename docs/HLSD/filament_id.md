@@ -61,19 +61,21 @@ tray's. On a miss it falls back by filament type: a system `Generic <type>` pres
 failing that, any compatible system preset, else the slot is skipped — every fallback
 selection surfaces a user-visible notice.
 
-Today only the Bambu AMS integration follows this pattern end to end — the device itself
+Today the Bambu AMS integration follows this pattern end to end — the device itself
 reports the id, `BBLPrinterAgent` translates it out of Bambu's catalog into ours, and the
-pipeline does all the matching. The other device integrations still synthesize a preset id
-client-side in their agents (by type, brand, or color lookups against the loaded presets)
-before the pipeline runs; they are intended to converge on the same pattern, with the
-device-reported tray material id flowing through the shared matcher.
+pipeline does all the matching. Klipper lanes follow it whenever the host integration supplies
+our id (see [Moonraker `lane_data`](#moonraker-lane_data)). The other device integrations, and
+Klipper lanes without an id, still synthesize a preset id client-side in their agents (by type,
+brand, or color lookups against the loaded presets) before the pipeline runs; they are intended
+to converge on the same pattern, with the device-reported tray material id flowing through the
+shared matcher.
 
 | Ecosystem | Where the tray id comes from today |
 | --- | --- |
 | Bambu AMS | the device itself (RFID / user tray setting), in Bambu's own `GF*` catalog; `BBLPrinterAgent` rewrites it into our id before the matcher sees it (see [The Bambu catalog map](#the-bambu-catalog-map)) |
 | Qidi box | composed at runtime as `QD_<series>_<vendor>_<typeidx>` — vendor and type indices from the device's per-slot saved variables, the series digit inferred client-side from the printer model/name. No preset carries a `QD_*` value, so the slot currently resolves by filament type; mapping the composed id onto the filament's minted id belongs in the agent |
 | Creality CFS | runtime brand/type scoring returns the winning preset's id |
-| Klipper (Moonraker `lane_data`) | the lane's `filament_id`/`setting_id` from Moonraker's `lane_data` database namespace, where the host integration populates them (see [Moonraker `lane_data` matching](#moonraker-lane_data-matching)); otherwise runtime lookup by filament type |
+| Klipper (AFC / Happy Hare) | the lane's `filament_id` in Moonraker's `lane_data` namespace, when the host integration writes one of ours (see [Moonraker `lane_data`](#moonraker-lane_data)); otherwise runtime lookup by filament type |
 | Snapmaker | runtime color/vendor/type match |
 
 Tray-to-preset matching is printer-scoped, but **several consumers match globally by id alone,
@@ -108,40 +110,30 @@ Two more consumer-side facts worth knowing:
   failing one survive, and every vendor bundle whose filaments inherit from the library is
   then discarded for want of a base). CI's structure check catches this before it ships.
 
-## Moonraker `lane_data` matching
+## Moonraker `lane_data`
 
-Klipper printers have no single tray-id protocol of their own, so
-`MoonrakerPrinterAgent::fetch_moonraker_filament_data` reads Moonraker's `lane_data`
-database namespace instead: one JSON object per lane, written by whichever MMU
-host integration or companion tool manages that printer's lanes. For each lane it
-tries, in order: the lane's `filament_id` against every compatible preset's
-`filament_id`; then its `setting_id` against a preset's `filament_id` or
-`setting_id` (`PresetCollection::filament_id_by_id` in `Preset.cpp` implements both
-passes); falling back to the existing filament-type lookup if neither resolves.
-
-### `lane_data` field reference
-
-`lane_data`'s top-level keys (`lane1`, `lane2`, ...) are arbitrary and never read —
-only the fields inside each entry's value matter, and its schema is not
-standardized across the Klipper ecosystem: a host integration writes whichever of
-these fields it is able to populate, and any field it omits is treated exactly
-like one that does not resolve a preset — matching just moves to the next pass.
+Klipper has no tray-id protocol of its own, so `MoonrakerPrinterAgent` reads Moonraker's
+`lane_data` database namespace instead: one JSON object per lane, written by whichever MMU host
+integration or companion tool manages the printer's lanes (AFC, Happy Hare, spoolman-lane-sync).
+The schema is not standardized across the Klipper ecosystem. The agent reads these fields of each
+entry and never the entry's own key (`lane1`, `lane2`, ...):
 
 | Field | Type | Required | Used for |
 | --- | --- | --- | --- |
-| `lane` | string holding a non-negative integer | yes — an entry without one is dropped entirely, not just unmatched | the tray's slot index (0-based); independent of the entry's own key |
-| `filament_id` | string | no | first-tier match: must equal a compatible preset's `filament_id` to resolve |
-| `setting_id` | string | no | second-tier match, tried only if `filament_id` did not resolve: must equal a compatible preset's `filament_id` or `setting_id` |
-| `material` | string | no | the type-based fallback match once neither id resolves; also what marks the lane as loaded (empty means empty lane) |
-| `color` | string | no | display only, not used for matching |
-| `bed_temp`, `nozzle_temp` | integer | no | display/print-setup hints only, not used for matching |
+| `lane` | string holding a non-negative integer | yes — an entry without one is dropped | the tray's 0-based slot index |
+| `material` | string | no | the filament type; an empty one marks the lane as empty |
+| `filament_id` | string | no | the tray id handed to the shared matcher |
+| `color` | string | no | the tray color |
+| `bed_temp`, `nozzle_temp` | integer | no | temperature hints for the tray |
 
-An id is only useful here when it is actually one of ours: a value from an
-unrelated system — a spool tracker's own internal record id, for example — will
-simply not equal any preset's `filament_id`/`setting_id` and falls through like a
-field the integration never sent. A user preset carries neither id by default, so
-a lane naming one by name alone resolves by type until presets have their own way
-to declare an id.
+A lane's `filament_id` reaches the shared matcher unchanged, as a Bambu tray's translated id
+does, so it resolves only when a compatible root preset carries it. Bambu's own `GF*` codes miss:
+only `BBLPrinterAgent` translates them. A lane whose id misses takes the matcher's type fallback
+and its notice; a lane without one is matched by `material` in the agent
+(`PresetCollection::filament_id_by_type`) before the matcher runs.
+
+Only a JSON string counts as an id. Happy Hare writes Spoolman's numeric filament record id under
+`filament_id`, and the agent treats it as absent.
 
 ## Do I need a new id? The one-question test
 

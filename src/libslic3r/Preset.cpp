@@ -3877,26 +3877,6 @@ std::string PresetCollection::filament_id_by_type(const std::string& filament_ty
     return preset(first_visible_idx_by_type(filament_type)).filament_id;
 }
 
-std::string PresetCollection::filament_id_by_id(const std::string& id) const
-{
-    if (id.empty())
-        return {};
-    size_t start = m_default_suppressed ? m_num_default_presets : 0;
-    // First pass: match by filament_id (e.g. "GFL00")
-    for (size_t i = start; i < m_presets.size(); ++i) {
-        const auto& p = m_presets[i];
-        if (p.is_visible && p.is_compatible && p.filament_id == id)
-            return p.filament_id;
-    }
-    // Second pass: match by setting_id (e.g. "OGFSA04") — most presets have this even without filament_id
-    for (size_t i = start; i < m_presets.size(); ++i) {
-        const auto& p = m_presets[i];
-        if (p.is_visible && p.is_compatible && p.setting_id == id)
-            return p.filament_id.empty() ? p.setting_id : p.filament_id;
-    }
-    return {};
-}
-
 std::vector<std::string> PresetCollection::diameters_of_selected_printer()
 {
     std::set<std::string> diameters;

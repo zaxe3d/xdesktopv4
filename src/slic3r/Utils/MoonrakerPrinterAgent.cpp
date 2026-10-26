@@ -856,17 +856,11 @@ bool MoonrakerPrinterAgent::fetch_moonraker_filament_data(std::vector<AmsTrayDat
         tray.bed_temp = safe_json_int(lane_obj, "bed_temp");
         tray.nozzle_temp = safe_json_int(lane_obj, "nozzle_temp");
         tray.has_filament = !tray.tray_type.empty();
+        // A lane's filament_id goes to AMS sync as the tray id, which matches it like a Bambu tray's
+        // and falls back to the material type when no compatible preset carries it. Only a string
+        // counts: Happy Hare writes Spoolman's numeric filament record id under the same key.
+        tray.tray_info_idx = safe_json_string(lane_obj, "filament_id");
         auto* bundle = GUI::wxGetApp().preset_bundle;
-        // Try to match preset by filament_id, then setting_id from lane_data (spoolman-lane-sync
-        // stores the OrcaSlicer preset name/id in setting_id; filament_id may be a raw Spoolman DB id).
-        // Falls back to material-type matching if no preset found.
-        std::string lane_filament_id = safe_json_string(lane_obj, "filament_id");
-        std::string lane_setting_id  = safe_json_string(lane_obj, "setting_id");
-        tray.tray_info_idx = "";
-        if (!lane_filament_id.empty() && bundle)
-            tray.tray_info_idx = bundle->filaments.filament_id_by_id(lane_filament_id);
-        if (tray.tray_info_idx.empty() && !lane_setting_id.empty() && bundle)
-            tray.tray_info_idx = bundle->filaments.filament_id_by_id(lane_setting_id);
         if (tray.tray_info_idx.empty())
             tray.tray_info_idx = bundle
                 ? bundle->filaments.filament_id_by_type(tray.tray_type)
