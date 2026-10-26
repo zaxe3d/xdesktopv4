@@ -101,6 +101,7 @@ set(SLIC3R_GUI_SOURCES
     GUI/ConfigValueFormatter.hpp
     GUI/ConfigWizard.cpp
     GUI/ConfigWizard.hpp
+    GUI/ConfigWizardTypes.hpp
     GUI/ConfigWizard_private.hpp
     GUI/ConnectPrinter.cpp
     GUI/ConnectPrinter.hpp
@@ -222,6 +223,7 @@ set(SLIC3R_GUI_SOURCES
     GUI/Gizmos/GLGizmoUtils.hpp
     GUI/GLCanvas3D.cpp
     GUI/GLCanvas3D.hpp
+    GUI/SequentialPrintClearance.hpp
     GUI/GLModel.cpp
     GUI/GLModel.hpp
     GUI/GLSelectionRectangle.cpp
@@ -438,6 +440,8 @@ set(SLIC3R_GUI_SOURCES
     GUI/OpenGLManager.hpp
     GUI/OptionsGroup.cpp
     GUI/OptionsGroup.hpp
+    GUI/OptionStateRegistry.hpp
+    GUI/OptionStateRegistry.cpp
     GUI/ParamsDialog.cpp
     GUI/ParamsDialog.hpp
     GUI/ParamsPanel.cpp
@@ -689,10 +693,13 @@ set(SLIC3R_GUI_SOURCES
     plugin/host/PluginHostUi.hpp
     plugin/host/PluginPages.cpp
     plugin/host/PluginPages.hpp
+    plugin/host/PluginResourceTextures.cpp
+    plugin/host/PluginResourceTextures.hpp
     plugin/CloudPluginService.cpp
     plugin/CloudPluginService.hpp
     plugin/PluginFsUtils.cpp
     plugin/PluginFsUtils.hpp
+    plugin/PluginJsonPy.hpp
     plugin/PluginConfig.cpp
     plugin/PluginConfig.hpp
     plugin/PluginLoader.cpp
@@ -712,6 +719,9 @@ set(SLIC3R_GUI_SOURCES
     plugin/pluginTypes/pages/PagesPluginCapability.hpp
     plugin/pluginTypes/pages/PagesPluginCapability.cpp
     plugin/pluginTypes/pages/PagesPluginCapabilityTrampoline.hpp
+    plugin/pluginTypes/resourceTexture/ResourceTexturePluginCapability.hpp
+    plugin/pluginTypes/resourceTexture/ResourceTexturePluginCapability.cpp
+    plugin/pluginTypes/resourceTexture/ResourceTexturePluginCapabilityTrampoline.hpp
     plugin/pluginTypes/script/ScriptPluginCapability.hpp
     plugin/pluginTypes/script/ScriptPluginCapability.cpp
     plugin/pluginTypes/script/ScriptPluginCapabilityTrampoline.hpp
@@ -722,6 +732,7 @@ set(SLIC3R_GUI_SOURCES
     pchheader.hpp
     Utils/ASCIIFolding.cpp
     Utils/ASCIIFolding.hpp
+    Utils/AsioUtils.hpp
     Utils/AstroBox.cpp
     Utils/AstroBox.hpp
     Utils/bambu_networking.hpp
@@ -884,6 +895,8 @@ if (APPLE)
             GUI/DeepLinkHandlerMac.mm
             GUI/DeepLinkHandlerMac.h
             GUI/GUI_UtilsMac.mm
+            GUI/MacIME.mm
+            GUI/MacIME.hpp
         )
     FIND_LIBRARY(DISKARBITRATION_LIBRARY DiskArbitration)
 endif ()
