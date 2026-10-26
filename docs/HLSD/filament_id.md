@@ -73,7 +73,7 @@ device-reported tray material id flowing through the shared matcher.
 | Bambu AMS | the device itself (RFID / user tray setting), in Bambu's own `GF*` catalog; `BBLPrinterAgent` rewrites it into our id before the matcher sees it (see [The Bambu catalog map](#the-bambu-catalog-map)) |
 | Qidi box | composed at runtime as `QD_<series>_<vendor>_<typeidx>` — vendor and type indices from the device's per-slot saved variables, the series digit inferred client-side from the printer model/name. No preset carries a `QD_*` value, so the slot currently resolves by filament type; mapping the composed id onto the filament's minted id belongs in the agent |
 | Creality CFS | runtime brand/type scoring returns the winning preset's id |
-| Klipper (Moonraker `lane_data`) | the lane's `filament_id`/`setting_id`/name from Moonraker's `lane_data` database namespace, where the host integration populates them (see [Moonraker `lane_data` matching](#moonraker-lane_data-matching)); otherwise runtime lookup by filament type |
+| Klipper (Moonraker `lane_data`) | the lane's `filament_id`/`setting_id` from Moonraker's `lane_data` database namespace, where the host integration populates them (see [Moonraker `lane_data` matching](#moonraker-lane_data-matching)); otherwise runtime lookup by filament type |
 | Snapmaker | runtime color/vendor/type match |
 
 Tray-to-preset matching is printer-scoped, but **several consumers match globally by id alone,
@@ -116,19 +116,18 @@ database namespace instead: one JSON object per lane (`lane1`, `lane2`, ...), wr
 by whichever MMU host integration or companion tool manages that printer's lanes.
 For each lane it tries, in order: the lane's `filament_id` against every compatible
 preset's `filament_id`; then its `setting_id` against a preset's `filament_id` or
-`setting_id`; then its name against a preset's name, first exact, then
-case-insensitively with the `@...` variant suffix stripped
-(`PresetCollection::filament_id_by_id_or_name` in `Preset.cpp` implements the id
-and name passes); falling back to the existing filament-type lookup if none of
-those resolve.
+`setting_id` (`PresetCollection::filament_id_by_id` in `Preset.cpp` implements both
+passes); falling back to the existing filament-type lookup if neither resolves.
 
 `lane_data`'s schema is not standardized across the Klipper ecosystem — it is
 whatever the host integration that owns a printer's lanes chooses to write. Some
-integrations send only `material`/`color`, which resolves by type alone; some also
-send a name; `filament_id`/`setting_id` only resolve a preset when the integration
-populates them with an actual Orca id rather than an id from some unrelated
-database, since an id that matches nothing simply falls through to the next pass,
-the same as a field the integration never sent.
+integrations send only `material`/`color`, which resolves by type alone;
+`filament_id`/`setting_id` only resolve a preset when the integration populates
+them with an actual Orca id rather than an id from some unrelated database, since
+an id that matches nothing simply falls through to the next pass, the same as a
+field the integration never sent. A user preset carries neither id by default, so
+a lane naming one by name alone resolves by type until presets have their own way
+to declare an id.
 
 ## Do I need a new id? The one-question test
 
