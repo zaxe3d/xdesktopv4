@@ -99,6 +99,8 @@
 #include "Widgets/StaticLine.hpp"
 #include "Widgets/HyperLink.hpp"
 #include "Widgets/Button.hpp"
+#include "Plater.hpp"
+#include "MsgDialog.hpp"
 
 namespace Slic3r {
 namespace GUI {
