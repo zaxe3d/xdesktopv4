@@ -233,6 +233,7 @@
 #include "SendMultiMachinePage.hpp"
 #include "SendToPrinter.hpp"
 #include "ConfigWizard.hpp"
+#include "ConfigWizardTypes.hpp"
 #include "SyncAmsInfoDialog.hpp"
 #include "../Utils/ASCIIFolding.hpp"
 #include "../Utils/UndoRedo.hpp"
@@ -2825,7 +2826,7 @@ Sidebar::Sidebar(Plater *parent)
 
         p->m_printer_icon->Bind(wxEVT_BUTTON, [](wxCommandEvent& e) {
             //auto wizard_t = new ConfigWizard(wxGetApp().mainframe);
-            //wizard_t->run(ConfigWizard::RR_USER, ConfigWizard::SP_CUSTOM);
+            //wizard_t->run(RunReason::RR_USER, StartPage::SP_CUSTOM);
             });
 
         // ORCA use connect button on titlebar
@@ -2848,7 +2849,7 @@ Sidebar::Sidebar(Plater *parent)
             // p->editing_filament = -1;
             // wxGetApp().params_dialog()->Popup();
             // wxGetApp().get_tab(Preset::TYPE_FILAMENT)->restore_last_select_item();
-            wxGetApp().run_wizard(ConfigWizard::RR_USER, ConfigWizard::SP_PRINTERS);
+            wxGetApp().run_wizard(RunReason::RR_USER, StartPage::SP_PRINTERS);
             });
 
         wxBoxSizer* h_sizer_title = new wxBoxSizer(wxHORIZONTAL);
@@ -3378,7 +3379,7 @@ Sidebar::Sidebar(Plater *parent)
         p->editing_filament = -1;
         // wxGetApp().params_dialog()->Popup();
         // wxGetApp().get_tab(Preset::TYPE_FILAMENT)->restore_last_select_item();
-        wxGetApp().run_wizard(ConfigWizard::RR_USER, ConfigWizard::SP_FILAMENTS);
+        wxGetApp().run_wizard(RunReason::RR_USER, StartPage::SP_FILAMENTS);
         });
     p->m_bpButton_set_filament = set_btn;
 
