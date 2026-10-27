@@ -30,6 +30,8 @@
 #include <vector>
 
 #include <catch2/catch_test_macros.hpp>
+#include <catch2/generators/catch_generators.hpp>
+#include "slic3r/Utils/CloudDeleteQueue.hpp"
 #include "slic3r/Utils/ICloudServiceAgent.hpp"
 #include "slic3r/Utils/OrcaCloudServiceAgent.hpp"
 #include "slic3r/Utils/bambu_networking.hpp"
@@ -94,8 +96,9 @@ class LoopbackServer
 {
 public:
     // Session answers every request with the body given to set_session_body(), as the token endpoint
-    // does, after 200 ms so the client is still waiting when the test makes its next call.
-    enum class Mode { Ok, Unavailable, Silent, Session };
+    // does, after 200 ms so the client is still waiting when the test makes its next call. Reply answers
+    // at once with the status and body given to set_reply().
+    enum class Mode { Ok, Unavailable, Silent, Session, Reply };
 
     struct Request
     {
@@ -121,6 +124,14 @@ public:
     {
         std::lock_guard<std::mutex> lock(m_mutex);
         m_session_body = std::move(body);
+    }
+
+    // `status` is the status line after the HTTP version, e.g. "404 Not Found".
+    void set_reply(std::string status, std::string body)
+    {
+        std::lock_guard<std::mutex> lock(m_mutex);
+        m_reply_status = std::move(status);
+        m_reply_body   = std::move(body);
     }
 
     bool wait_for_accepts(size_t count, std::chrono::milliseconds timeout)
@@ -186,6 +197,10 @@ private:
                 std::lock_guard<std::mutex> lock(m_mutex);
                 *response = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: " +
                             std::to_string(m_session_body.size()) + "\r\nConnection: close\r\n\r\n" + m_session_body;
+            } else if (mode == Mode::Reply) {
+                std::lock_guard<std::mutex> lock(m_mutex);
+                *response = "HTTP/1.1 " + m_reply_status + "\r\nContent-Type: application/json\r\nContent-Length: " +
+                            std::to_string(m_reply_body.size()) + "\r\nConnection: close\r\n\r\n" + m_reply_body;
             } else {
                 *response = mode == Mode::Ok ?
                     "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-Length: 11\r\nConnection: close\r\n\r\n{\"ok\":true}" :
@@ -220,6 +235,8 @@ private:
     std::vector<Request>                     m_requests;
     std::vector<std::shared_ptr<Connection>> m_connections;
     std::string                              m_session_body;
+    std::string                              m_reply_status;
+    std::string                              m_reply_body;
 };
 
 // A JWT whose only claim is {"exp":4102444800} (2100-01-01); the agent reads nothing else from it.
@@ -566,4 +583,199 @@ TEST_CASE_METHOD(HealthCheckFixture, "A token request made while start() refresh
         if (boost::starts_with(request.request_line, "POST /auth/v1/token"))
             ++token_posts;
     CHECK(token_posts == 1);
+}
+
+namespace {
+
+// An Orca cloud profile id; the cloud names profiles by UUID.
+constexpr const char* PROFILE_ID = "3f9c1d2e-8b7a-4c55-9e10-6a2b4c8d1f07";
+
+// A loopback URL nothing listens on, so a request to it fails before any HTTP exchange.
+std::string closed_port_url()
+{
+    boost::asio::io_context io;
+    tcp::acceptor           acceptor(io, tcp::endpoint(boost::asio::ip::make_address("127.0.0.1"), 0));
+    const unsigned short    port = acceptor.local_endpoint().port();
+    acceptor.close();
+    return "http://127.0.0.1:" + std::to_string(port);
+}
+
+} // namespace
+
+TEST_CASE_METHOD(HealthCheckFixture, "Deleting a profile succeeds once the cloud has no such profile", "[OrcaCloudServiceAgent]")
+{
+    // Deleted now, nothing to delete, or the gateway's own answer that this account owns no such profile.
+    const auto [status, body] = GENERATE(table<std::string, std::string>({
+        {"200 OK", R"({"status":"ok","deleted":["3f9c1d2e-8b7a-4c55-9e10-6a2b4c8d1f07"]})"},
+        {"204 No Content", ""},
+        {"404 Not Found", R"({"status":"failed","failed":["3f9c1d2e-8b7a-4c55-9e10-6a2b4c8d1f07"]})"},
+    }));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply(status, body);
+
+    CHECK(agent->delete_setting(PROFILE_ID) == BAMBU_NETWORK_SUCCESS);
+    const auto requests = server.requests();
+    REQUIRE(requests.size() == 1);
+    CHECK(boost::starts_with(requests[0].request_line, std::string("DELETE /api/v1/sync/delete?resource=profiles&id=") + PROFILE_ID));
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "Deleting a profile fails on any other answer, so it is tried again", "[OrcaCloudServiceAgent]")
+{
+    // A 404 the gateway didn't write, for example from a proxy, says nothing about the profile.
+    const auto [status, body] = GENERATE(table<std::string, std::string>({
+        {"404 Not Found", "<html>Not Found</html>"},
+        {"400 Bad Request", R"({"error":"invalid_request"})"},
+        {"500 Internal Server Error", ""},
+        {"207 Multi-Status", R"({"status":"partial_failure"})"},
+        // Malformed bodies and a status of the wrong type are retried, not fatal.
+        {"404 Not Found", R"({"status":null})"},
+        {"404 Not Found", R"({"status":404})"},
+        {"404 Not Found", R"({"status":)"},
+    }));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply(status, body);
+
+    CHECK(agent->delete_setting(PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "Deleting an id that can't name a cloud profile succeeds without a request", "[OrcaCloudServiceAgent]")
+{
+    // A system preset's 16-character id, an older short one, and an empty id.
+    const std::string id = GENERATE(as<std::string>{}, "RcBNzytWgwRrwXXz", "OGFSA04", "");
+
+    CHECK(agent->delete_setting(id) == BAMBU_NETWORK_SUCCESS);
+    CHECK(server.requests().empty());
+}
+
+TEST_CASE("A delete that can't reach the server fails and reports status 0, not 404", "[OrcaCloudServiceAgent]")
+{
+    ScopedEnvVar       no_proxy{"no_proxy", "127.0.0.1"};
+    ScopedTemporaryDir dir{"orca-delete"};
+    CallbackLog        log;
+    auto               agent = make_file_backed_agent(dir.path());
+    agent->set_api_base_url(closed_port_url());
+    agent->set_on_http_error_fn([&log](CloudEvent, unsigned http_code, std::string) { log.add_http_error(http_code); });
+
+    CHECK(agent->delete_setting(PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
+    CHECK(log.http_errors == std::vector<unsigned>{0});
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "A delete goes out only while the session belongs to its account", "[OrcaCloudServiceAgent]")
+{
+    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply("204 No Content", "");
+
+    CHECK(agent->delete_setting_as("B", PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
+    CHECK(server.requests().empty());
+
+    CHECK(agent->delete_setting_as("A", PROFILE_ID) == BAMBU_NETWORK_SUCCESS);
+    CHECK(server.requests().size() == 1);
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "A delete is not retried after a 401 when the refreshed session is another account's", "[OrcaCloudServiceAgent]")
+{
+    // A's session, whose stored refresh now yields B's session, as after another instance signed in as B.
+    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"refresh_token", "refresh-a"}, {"user_id", "A"}}, false));
+    LoopbackServer auth_server;
+    auth_server.set_session_body(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"refresh_token", "refresh-b"}, {"user_id", "B"}}.dump());
+    auth_server.set_mode(LoopbackServer::Mode::Session);
+    agent->set_auth_base_url(auth_server.url());
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply("401 Unauthorized", R"({"error":"unauthorized"})");
+
+    CHECK(agent->delete_setting_as("A", PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
+    CHECK(server.requests().size() == 1);
+    CHECK(agent->get_user_id() == "B");
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "Unsubscribing a bundle succeeds only on a 2xx answer", "[OrcaCloudServiceAgent]")
+{
+    const auto [status, expected] = GENERATE(table<std::string, bool>({
+        {"200 OK", true},
+        {"204 No Content", true},
+        {"404 Not Found", false},
+        {"500 Internal Server Error", false},
+    }));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply(status, "");
+
+    CHECK(agent->unsubscribe_bundle("bundle-1") == expected);
+}
+
+TEST_CASE("Unsubscribing a bundle fails when the server can't be reached", "[OrcaCloudServiceAgent]")
+{
+    ScopedEnvVar       no_proxy{"no_proxy", "127.0.0.1"};
+    ScopedTemporaryDir dir{"orca-unsubscribe"};
+    auto               agent = make_file_backed_agent(dir.path());
+    agent->set_api_base_url(closed_port_url());
+
+    CHECK_FALSE(agent->unsubscribe_bundle("bundle-1"));
+}
+
+namespace {
+
+// A signed-in account's preset folder holding one deleted preset's .info file, and the queue it scans into.
+struct DeletedPresetFixture : HealthCheckFixture
+{
+    explicit DeletedPresetFixture(const std::string& setting_id)
+    {
+        fs::create_directories(info_path.parent_path());
+        fs::ofstream(info_path) << "sync_info = delete\nuser_id = A\nsetting_id = " << setting_id << "\n";
+        queue.start_session("A");
+    }
+
+    // One sync start: the orphaned-.info scan, then a pass through the agent.
+    void sync()
+    {
+        REQUIRE(queue_orphaned_info_files(queue, queue.generation(), user_dir.string()));
+        queue.send_due(
+            [] { return CloudDeleteQueue::Clock::now(); }, [] { return std::string("A"); },
+            [this](const CloudDeleteQueue::Entry& entry) { return agent->delete_setting(entry.setting_id) == BAMBU_NETWORK_SUCCESS; },
+            [](const CloudDeleteQueue::Entry& entry) { remove_info_file(entry.info_path); });
+    }
+
+    ScopedTemporaryDir presets{"orca-deleted-preset"};
+    fs::path           user_dir  = presets.path() / "user" / "A";
+    fs::path           info_path = user_dir / "filament" / "PETG Fast.info";
+    CloudDeleteQueue   queue;
+};
+
+} // namespace
+
+TEST_CASE("A delete for an id that can't name a cloud profile is dropped with its .info", "[OrcaCloudServiceAgent]")
+{
+    // A system preset's id, queued by a printer delete in an earlier version.
+    DeletedPresetFixture fixture("RcBNzytWgwRrwXXz");
+
+    fixture.sync();
+
+    CHECK(fixture.server.requests().empty());
+    CHECK_FALSE(fs::exists(fixture.info_path));
+    CHECK(fixture.queue.size() == 0);
+}
+
+TEST_CASE("A delete the gateway answers with a verified 404 is not sent again", "[OrcaCloudServiceAgent]")
+{
+    DeletedPresetFixture fixture(PROFILE_ID);
+    fixture.server.set_mode(LoopbackServer::Mode::Reply);
+    fixture.server.set_reply("404 Not Found", R"({"status":"failed","failed":["3f9c1d2e-8b7a-4c55-9e10-6a2b4c8d1f07"]})");
+
+    fixture.sync();
+    fixture.sync();
+
+    CHECK(fixture.server.requests().size() == 1);
+    CHECK_FALSE(fs::exists(fixture.info_path));
+    CHECK(fixture.queue.size() == 0);
+}
+
+TEST_CASE("A delete that fails to reach the gateway keeps its .info for a later attempt", "[OrcaCloudServiceAgent]")
+{
+    DeletedPresetFixture fixture(PROFILE_ID);
+    fixture.agent->set_api_base_url(closed_port_url());
+
+    fixture.sync();
+
+    CHECK(fs::exists(fixture.info_path));
+    CHECK(fixture.queue.size() == 1);
 }

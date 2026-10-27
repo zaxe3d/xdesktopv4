@@ -253,6 +253,12 @@ public:
     int get_setting_list(std::string bundle_version, ProgressFn pro_fn = nullptr, WasCancelledFn cancel_fn = nullptr) override;
     int get_setting_list2(std::string bundle_version, CheckFn chk_fn, ProgressFn pro_fn = nullptr, WasCancelledFn cancel_fn = nullptr) override;
     int delete_setting(std::string setting_id) override;
+    // delete_setting() sent only with `user_id`'s token. A token refresh can load another account's
+    // session (another instance may have signed in as someone else), so the account is checked whenever
+    // the token is read, including for the retry after a 401. When the session belongs to another
+    // account nothing is sent, and the delete counts as failed, to be tried again. An empty user_id sends
+    // with the current session, as delete_setting() does.
+    int delete_setting_as(const std::string& user_id, const std::string& setting_id);
 
     // ========================================================================
     // ICloudServiceAgent Interface Implementation - Cloud User Services
@@ -405,7 +411,8 @@ private:
     int http_get(const std::string& path, std::string* response_body, unsigned int* http_code);
     int http_post(const std::string& path, const std::string& body, std::string* response_body, unsigned int* http_code);
     int http_put(const std::string& path, const std::string& body, std::string* response_body, unsigned int* http_code);
-    int http_delete(const std::string& path, std::string* response_body, unsigned int* http_code);
+    // A non-empty `required_user_id` sends the request only while the session belongs to that account.
+    int http_delete(const std::string& path, std::string* response_body, unsigned int* http_code, const std::string& required_user_id = {});
     std::map<std::string, std::string> data_headers();
     RefreshResult attempt_refresh_after_unauthorized(const std::string& reason);
 

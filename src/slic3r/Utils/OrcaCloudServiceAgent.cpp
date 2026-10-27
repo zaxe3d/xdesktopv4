@@ -1379,24 +1379,37 @@ int OrcaCloudServiceAgent::get_setting_list2(std::string bundle_version, CheckFn
     return success ? BAMBU_NETWORK_SUCCESS : BAMBU_NETWORK_ERR_GET_SETTING_LIST_FAILED;
 }
 
-int OrcaCloudServiceAgent::delete_setting(std::string setting_id)
+int OrcaCloudServiceAgent::delete_setting(std::string setting_id) { return delete_setting_as({}, setting_id); }
+
+int OrcaCloudServiceAgent::delete_setting_as(const std::string& user_id, const std::string& setting_id)
 {
+    // Cloud profiles are named by UUIDs. Any other id, such as a system preset's setting_id, names
+    // nothing in the cloud, so there is nothing to delete and no request to send.
+    if (!is_uuid(setting_id)) {
+        BOOST_LOG_TRIVIAL(info) << "OrcaCloudServiceAgent: delete_setting skipped, not a cloud profile id: " << setting_id;
+        return BAMBU_NETWORK_SUCCESS;
+    }
+
     std::string path = std::string(ORCA_SYNC_DELETE_PATH) + "?resource=" + ORCA_SYNC_PROFILE_TABLE + "&id=" + setting_id;
     std::string response;
     unsigned int http_code = 0;
 
-    int result = http_delete(path, &response, &http_code);
+    http_delete(path, &response, &http_code, user_id);
 
-    // Treat 204 as success: the setting is already gone from cloud, which is our goal.
-    if (http_code == 204) {
+    // 200 deleted the profile and 204 says there was nothing to delete. A 404 is final only when the
+    // gateway itself answered it: {"status":"failed"} means this account owns no profile with this id.
+    // Anything else, a network failure included, is worth another attempt.
+    if (http_code == 200 || http_code == 204)
         return BAMBU_NETWORK_SUCCESS;
+    if (http_code == 404) {
+        const json body = json::parse(response, nullptr, false);
+        if (body.is_object()) {
+            const auto status = body.find("status");
+            if (status != body.end() && status->is_string() && status->get<std::string>() == "failed")
+                return BAMBU_NETWORK_SUCCESS;
+        }
     }
-
-    if (result != BAMBU_NETWORK_SUCCESS || http_code >= 400) {
-        return BAMBU_NETWORK_ERR_DEL_SETTING_FAILED;
-    }
-
-    return BAMBU_NETWORK_SUCCESS;
+    return BAMBU_NETWORK_ERR_DEL_SETTING_FAILED;
 }
 
 // ============================================================================
@@ -2395,20 +2408,30 @@ int OrcaCloudServiceAgent::http_put(const std::string& path, const std::string& 
     return (res.success && !suppress) ? BAMBU_NETWORK_SUCCESS : BAMBU_NETWORK_ERR_CONNECT_FAILED;
 }
 
-int OrcaCloudServiceAgent::http_delete(const std::string& path, std::string* response_body, unsigned int* http_code)
+int OrcaCloudServiceAgent::http_delete(const std::string& path, std::string* response_body, unsigned int* http_code, const std::string& required_user_id)
 {
     std::string url = api_base_url + path;
     BOOST_LOG_TRIVIAL(trace) << "OrcaCloudServiceAgent: DELETE " << url;
 
     ensure_token_fresh("http_delete_" + path);
 
+    bool wrong_account = false;
     auto perform = [&]() {
         HttpResult result;
         try {
+            // The token and the account it belongs to are read together, so the check can't go stale
+            // before the token is used.
+            std::string token;
+            {
+                std::lock_guard<std::mutex> lock(session_mutex);
+                wrong_account = !required_user_id.empty() && session.user_id != required_user_id;
+                token         = session.access_token;
+            }
+            if (wrong_account)
+                return result;
+
             auto http = Http::del(url);
             http.tls_verify(true);
-
-            std::string token = get_access_token();
 
             auto headers = data_headers();
             for (const auto& pair : headers) {
@@ -2425,8 +2448,9 @@ int OrcaCloudServiceAgent::http_delete(const std::string& path, std::string* res
                     result.body    = resp_body;
                 })
                 .on_error([&](std::string resp_body, std::string error, unsigned resp_status) {
+                    // A network failure keeps status 0, so callers can't mistake it for the server's 404.
                     result.success = false;
-                    result.status  = resp_status == 0 ? 404 : resp_status;
+                    result.status  = resp_status;
                     result.body    = resp_body;
                     BOOST_LOG_TRIVIAL(error) << "OrcaCloudServiceAgent: HTTP error - " << error;
                 })
@@ -2446,6 +2470,11 @@ int OrcaCloudServiceAgent::http_delete(const std::string& path, std::string* res
         *response_body = res.body;
     if (http_code)
         *http_code = res.status;
+
+    if (wrong_account) {
+        BOOST_LOG_TRIVIAL(info) << "OrcaCloudServiceAgent: DELETE " << path << " not sent, the session no longer belongs to the requesting account";
+        return BAMBU_NETWORK_ERR_CONNECT_FAILED;
+    }
 
     if (!suppress && (!res.success || res.status >= 400)) {
         invoke_http_error_callback(res.status, res.body);
@@ -3203,11 +3232,7 @@ bool OrcaCloudServiceAgent::unsubscribe_bundle(const std::string& bundle_id)
     unsigned int http_code = 0;
 
     int result = http_delete(path, &response, &http_code);
-    if (http_code >= 400) {
-        return false;
-    }
-
-    return true;
+    return result == BAMBU_NETWORK_SUCCESS && http_code < 400;
 }
 
 std::string OrcaCloudServiceAgent::get_bundle_url(const std::string& bundle_id) const

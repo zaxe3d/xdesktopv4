@@ -7667,7 +7667,7 @@ bool Tab::select_preset(
                     }
                 }
             }
-            if (!current_preset.setting_id.empty()) {
+            if (current_preset.is_user() && !current_preset.setting_id.empty()) {
                 wxGetApp().delete_preset_from_cloud(current_preset.setting_id, current_preset.file);
             }
             BOOST_LOG_TRIVIAL(info) << "delete preset = " << current_preset.name << ", setting_id = " << current_preset.setting_id;
@@ -7775,13 +7775,20 @@ bool Tab::select_preset(
         }
 
         if (delete_third_printer) {
-            wxGetApp().CallAfter([filament_presets, process_presets]() {
+            // The presets were collected from the account loaded now. If another account's presets load
+            // before this runs, its same-named presets must not be deleted, nor these queued under it.
+            const uint64_t preset_session = wxGetApp().user_preset_session();
+            wxGetApp().CallAfter([filament_presets, process_presets, preset_session]() {
+                if (wxGetApp().user_preset_session() != preset_session) {
+                    BOOST_LOG_TRIVIAL(info) << "account changed before the presets of the deleted printer were removed; skipping";
+                    return;
+                }
                 PresetBundle *preset_bundle     = wxGetApp().preset_bundle;
                 std::string   old_filament_name = preset_bundle->filaments.get_edited_preset().name;
                 std::string   old_process_name  = preset_bundle->prints.get_edited_preset().name;
 
                 for (const Preset &preset : filament_presets) {
-                    if (!preset.setting_id.empty()) {
+                    if (preset.is_user() && !preset.setting_id.empty()) {
                         wxGetApp().delete_preset_from_cloud(preset.setting_id, preset.file);
                     }
                     BOOST_LOG_TRIVIAL(info) << "delete filament preset = " << preset.name << ", setting_id = " << preset.setting_id;
@@ -7789,7 +7796,7 @@ bool Tab::select_preset(
                 }
 
                 for (const Preset &preset : process_presets) {
-                    if (!preset.setting_id.empty()) {
+                    if (preset.is_user() && !preset.setting_id.empty()) {
                         wxGetApp().delete_preset_from_cloud(preset.setting_id, preset.file);
                     }
                     BOOST_LOG_TRIVIAL(info) << "delete print preset = " << preset.name << ", setting_id = " << preset.setting_id;
