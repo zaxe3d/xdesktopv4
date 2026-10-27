@@ -8255,11 +8255,13 @@ void Tab::save_preset(std::string name /*= ""*/, bool detach, bool save_to_proje
     if (new_preset) {
         exist_preset = true;
     }
+    // Saving under the name of another existing preset replaces it with a preset made afresh, as a new name does.
+    const bool made_afresh = !exist_preset || name != curr_preset_name;
 
     // Orca: check if compatible_printers exists and is not empty, set it to the current printer if it is empty
     // Ensures that custom filaments based on system are not accidentally allowed for all printers
     // Can still be set for all after creation
-    if (m_presets->type() == Preset::TYPE_FILAMENT && !exist_preset && edited_preset.is_system) {
+    if (m_presets->type() == Preset::TYPE_FILAMENT && made_afresh && edited_preset.is_system) {
         Preset* _curr_printer = const_cast<Preset*>(&wxGetApp().preset_bundle->printers.get_selected_preset_base());
         ConfigOptionStrings* compatible_printers = m_config->option<ConfigOptionStrings>("compatible_printers");
         if (nullptr != _curr_printer && compatible_printers && compatible_printers->values.empty())
@@ -8299,7 +8301,7 @@ void Tab::save_preset(std::string name /*= ""*/, bool detach, bool save_to_proje
     on_presets_changed();
 
     //BBS if create a new prset name, preset changed from preset name to new preset name
-    if (!exist_preset) {
+    if (made_afresh) {
         wxGetApp().plater()->sidebar().update_presets_from_to(m_type, curr_preset_name, new_preset->name);
     }
 
