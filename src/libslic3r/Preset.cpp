@@ -2479,7 +2479,15 @@ void PresetCollection::save_user_presets(const std::string& dir_path, const std:
         if (!preset->is_user()) continue;
         if (preset->sync_info != "save") continue;
         preset->sync_info.clear();
+        fs::path old_file(preset->file);
         preset->file = path_for_preset(*preset);
+        // A cloud update can give a root preset a parent or take it away, which moves its file between base and this
+        // folder. The files at the old place would load as a second copy of the preset, so they go before the save.
+        if (!old_file.empty() && old_file.make_preferred().lexically_normal() != fs::path(preset->file).make_preferred().lexically_normal()) {
+            InstanceLock instance_lock(user_presets_lock_path());
+            boost::nowide::remove(old_file.string().c_str());
+            boost::nowide::remove(old_file.replace_extension(".info").string().c_str());
+        }
 
         //BBS: only save difference for user preset
         std::string inherits = Preset::inherits(preset->config);
