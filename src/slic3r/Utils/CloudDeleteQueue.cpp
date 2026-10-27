@@ -2,6 +2,8 @@
 
 #include <algorithm>
 #include <chrono>
+#include <cstddef>
+#include <cstdint>
 #include <functional>
 #include <mutex>
 #include <optional>
@@ -9,6 +11,7 @@
 #include <utility>
 
 #include <boost/algorithm/string/trim.hpp>
+#include <boost/filesystem/directory.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/log/trivial.hpp>
