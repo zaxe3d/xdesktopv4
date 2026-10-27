@@ -1239,6 +1239,36 @@ TEST_CASE("The selected preset is its own base when its parent is not loaded", "
     CHECK(printers.get_selected_preset_base().name == "Orphan Printer");
 }
 
+TEST_CASE("A printer's own presets are the user presets made for it alone", "[Preset]")
+{
+    PresetCollection filaments(Preset::TYPE_FILAMENT, Preset::filament_options(),
+                               static_cast<const PrintRegionConfig &>(FullPrintConfig::defaults()));
+    // load_preset() inserts in name order, so each preset is adjusted before the next one is added.
+    auto add = [&filaments](const std::string &name, std::vector<std::string> compatible_printers) -> Preset & {
+        Preset &preset = add_inmemory_preset(filaments, name);
+        preset.config.option<ConfigOptionStrings>("compatible_printers", true)->values = std::move(compatible_printers);
+        return preset;
+    };
+    add("Made For It", {"My Printer"});
+    add("Also For Other", {"My Printer", "Other Printer"});
+    add("For Other", {"Other Printer"});
+    add("Unrestricted", {});
+    add("By Condition", {}).config.option<ConfigOptionString>("compatible_printers_condition", true)->value = "nozzle_diameter[0]==0.4";
+    add("System For It", {"My Printer"}).is_system = true;
+    add("Bundle For It", {"My Printer"}).bundle_id = "bundle";
+    add("Project For It", {"My Printer"}).is_project_embedded = true;
+
+    auto names_for = [&filaments](const std::string &printer) {
+        std::vector<std::string> names;
+        for (const Preset *preset : filaments.get_user_presets_for_printer(printer))
+            names.push_back(preset->name);
+        return names;
+    };
+    CHECK(names_for("My Printer") == std::vector<std::string>{"Made For It"});
+    CHECK(names_for("Other Printer") == std::vector<std::string>{"For Other"});
+    CHECK(names_for("Unknown Printer").empty());
+}
+
 TEST_CASE("Renamed parent is normalized into a loaded preset's inherits", "[Preset][Rename]")
 {
     ScopedTemporaryDir   temp_dir;

@@ -3331,6 +3331,21 @@ bool PresetCollection::clone_presets_for_filament(Preset const *const &     pres
         force_rewritten);
 }
 
+std::vector<Preset const *> PresetCollection::get_user_presets_for_printer(const std::string &printer_name) const
+{
+    std::vector<Preset const *> presets;
+    for (const Preset &preset : m_presets) {
+        if (!preset.is_user())
+            continue;
+        const auto *compatible_printers = preset.config.option<ConfigOptionStrings>("compatible_printers");
+        if (compatible_printers != nullptr && !compatible_printers->values.empty() &&
+            std::all_of(compatible_printers->values.begin(), compatible_printers->values.end(),
+                        [&printer_name](const std::string &name) { return name == printer_name; }))
+            presets.push_back(&preset);
+    }
+    return presets;
+}
+
 std::map<std::string, std::vector<Preset const *>> PresetCollection::get_filament_presets() const
 {
     std::map<std::string, std::vector<Preset const *>> filament_presets;
