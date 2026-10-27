@@ -397,6 +397,7 @@ private:
         bool         success{false};
         unsigned int status{0};
         std::string  body;
+        std::string  etag;
     };
 
     // Applies the "retry once on 401" policy for the data HTTP methods.
@@ -408,7 +409,10 @@ private:
                               const std::string& reason);
 
     // HTTP request helpers
-    int http_get(const std::string& path, std::string* response_body, unsigned int* http_code);
+    // A non-empty `if_none_match` makes the request conditional, so the server may answer 304 with no
+    // body. `etag`, when given, receives the answer's ETag, or an empty string if it has none.
+    int http_get(const std::string& path, std::string* response_body, unsigned int* http_code,
+                 const std::string& if_none_match = {}, std::string* etag = nullptr);
     int http_post(const std::string& path, const std::string& body, std::string* response_body, unsigned int* http_code);
     int http_put(const std::string& path, const std::string& body, std::string* response_body, unsigned int* http_code);
     // A non-empty `required_user_id` sends the request only while the session belongs to that account.
@@ -464,6 +468,16 @@ private:
     OnLoginCompleteHandler on_login_complete_handler;
     SessionInfo session;
     mutable std::mutex session_mutex;
+
+    // The last subscription list the server sent, kept so a poll can revalidate it and reuse it on a
+    // 304. It belongs to the account that received it and is dropped at sign-out.
+    struct SubscriptionsCache {
+        std::string user_id;
+        std::string etag;
+        std::string body;
+    };
+    SubscriptionsCache subscriptions_cache;
+    std::mutex subscriptions_cache_mutex;
 
     // Refresh diagnostics (see docs/analysis/refresh_token_already_used.md). Epoch seconds so the
     // refresh-failure log can report token staleness without holding a lock or logging any token.

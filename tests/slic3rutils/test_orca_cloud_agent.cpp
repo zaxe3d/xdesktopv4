@@ -3,6 +3,7 @@
 #include <catch2/catch_all.hpp>
 
 #include <boost/algorithm/string/predicate.hpp>
+#include <boost/algorithm/string/trim.hpp>
 #include <boost/asio/buffer.hpp>
 #include <boost/asio/io_context.hpp>
 #include <boost/asio/ip/address.hpp>
@@ -97,13 +98,14 @@ class LoopbackServer
 public:
     // Session answers every request with the body given to set_session_body(), as the token endpoint
     // does, after 200 ms so the client is still waiting when the test makes its next call. Reply answers
-    // at once with the status and body given to set_reply().
+    // at once with the status, body and ETag given to set_reply().
     enum class Mode { Ok, Unavailable, Silent, Session, Reply };
 
     struct Request
     {
         std::string request_line;
         bool        has_authorization{false};
+        std::string if_none_match;
     };
 
     LoopbackServer() : m_acceptor(m_io, tcp::endpoint(boost::asio::ip::make_address("127.0.0.1"), 0))
@@ -126,12 +128,14 @@ public:
         m_session_body = std::move(body);
     }
 
-    // `status` is the status line after the HTTP version, e.g. "404 Not Found".
-    void set_reply(std::string status, std::string body)
+    // `status` is the status line after the HTTP version, e.g. "404 Not Found". An empty `etag` sends
+    // no ETag header.
+    void set_reply(std::string status, std::string body, std::string etag = {})
     {
         std::lock_guard<std::mutex> lock(m_mutex);
         m_reply_status = std::move(status);
         m_reply_body   = std::move(body);
+        m_reply_etag   = std::move(etag);
     }
 
     bool wait_for_accepts(size_t count, std::chrono::milliseconds timeout)
@@ -182,8 +186,11 @@ private:
             std::string  line;
             std::getline(in, line);
             request.request_line = line.substr(0, line.find('\r'));
-            while (std::getline(in, line) && line != "\r")
+            while (std::getline(in, line) && line != "\r") {
                 request.has_authorization |= boost::istarts_with(line, "authorization:");
+                if (boost::istarts_with(line, "if-none-match:"))
+                    request.if_none_match = boost::trim_copy(line.substr(14));
+            }
             {
                 std::lock_guard<std::mutex> lock(m_mutex);
                 m_requests.push_back(request);
@@ -199,7 +206,8 @@ private:
                             std::to_string(m_session_body.size()) + "\r\nConnection: close\r\n\r\n" + m_session_body;
             } else if (mode == Mode::Reply) {
                 std::lock_guard<std::mutex> lock(m_mutex);
-                *response = "HTTP/1.1 " + m_reply_status + "\r\nContent-Type: application/json\r\nContent-Length: " +
+                const std::string etag = m_reply_etag.empty() ? std::string() : "ETag: " + m_reply_etag + "\r\n";
+                *response = "HTTP/1.1 " + m_reply_status + "\r\nContent-Type: application/json\r\n" + etag + "Content-Length: " +
                             std::to_string(m_reply_body.size()) + "\r\nConnection: close\r\n\r\n" + m_reply_body;
             } else {
                 *response = mode == Mode::Ok ?
@@ -237,6 +245,7 @@ private:
     std::string                              m_session_body;
     std::string                              m_reply_status;
     std::string                              m_reply_body;
+    std::string                              m_reply_etag;
 };
 
 // A JWT whose only claim is {"exp":4102444800} (2100-01-01); the agent reads nothing else from it.
@@ -711,6 +720,105 @@ TEST_CASE("Unsubscribing a bundle fails when the server can't be reached", "[Orc
     agent->set_api_base_url(closed_port_url());
 
     CHECK_FALSE(agent->unsubscribe_bundle("bundle-1"));
+}
+
+namespace {
+
+constexpr const char* SUBSCRIPTIONS_V1 = R"({"data":[{"id":"bundle-1","version":"1.0"}],"not_found":["gone"],"unauthorised":["private"]})";
+constexpr const char* SUBSCRIPTIONS_V2 = R"({"data":[{"id":"bundle-1","version":"2.0"}],"not_found":[],"unauthorised":[]})";
+
+struct SubscriptionPoll
+{
+    int                                              result{-1};
+    std::vector<std::pair<std::string, std::string>> bundles;
+    std::vector<std::string>                         not_found;
+    std::vector<std::string>                         unauthorized;
+};
+
+SubscriptionPoll poll_subscriptions(OrcaCloudServiceAgent& agent)
+{
+    SubscriptionPoll poll;
+    poll.result = agent.get_subscribed_bundles(&poll.bundles, poll.not_found, poll.unauthorized);
+    return poll;
+}
+
+} // namespace
+
+TEST_CASE_METHOD(HealthCheckFixture, "A subscription poll answered 304 returns the list received last", "[OrcaCloudServiceAgent]")
+{
+    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply("200 OK", SUBSCRIPTIONS_V1, R"(W/"v1")");
+    const SubscriptionPoll first = poll_subscriptions(*agent);
+    REQUIRE(first.result == 0);
+    CHECK(first.bundles == std::vector<std::pair<std::string, std::string>>{{"bundle-1", "1.0"}});
+
+    server.set_reply("304 Not Modified", "", R"(W/"v1")");
+    const SubscriptionPoll second = poll_subscriptions(*agent);
+    CHECK(second.result == 0);
+    CHECK(second.bundles == first.bundles);
+    CHECK(second.not_found == std::vector<std::string>{"gone"});
+    CHECK(second.unauthorized == std::vector<std::string>{"private"});
+    CHECK(log.http_errors.empty());
+
+    const auto requests = server.requests();
+    REQUIRE(requests.size() == 2);
+    CHECK(requests[0].if_none_match.empty());
+    CHECK(requests[1].if_none_match == R"(W/"v1")");
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "A changed subscription list replaces the one received before", "[OrcaCloudServiceAgent]")
+{
+    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply("200 OK", SUBSCRIPTIONS_V1, R"(W/"v1")");
+    REQUIRE(poll_subscriptions(*agent).result == 0);
+
+    server.set_reply("200 OK", SUBSCRIPTIONS_V2, R"(W/"v2")");
+    const SubscriptionPoll changed = poll_subscriptions(*agent);
+    CHECK(changed.result == 0);
+    CHECK(changed.bundles == std::vector<std::pair<std::string, std::string>>{{"bundle-1", "2.0"}});
+
+    server.set_reply("304 Not Modified", "", R"(W/"v2")");
+    CHECK(poll_subscriptions(*agent).bundles == changed.bundles);
+    const auto requests = server.requests();
+    REQUIRE(requests.size() == 3);
+    CHECK(requests[2].if_none_match == R"(W/"v2")");
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "A subscription list is revalidated only for the account that received it", "[OrcaCloudServiceAgent]")
+{
+    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply("200 OK", SUBSCRIPTIONS_V1, R"(W/"v1")");
+    REQUIRE(poll_subscriptions(*agent).result == 0);
+
+    SECTION("another account signs in")
+    {
+        REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "B"}}, false));
+    }
+    SECTION("the account signs out and back in")
+    {
+        agent->user_logout(false);
+        REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
+    }
+
+    server.set_reply("200 OK", SUBSCRIPTIONS_V2, R"(W/"v2")");
+    CHECK(poll_subscriptions(*agent).result == 0);
+    const auto requests = server.requests();
+    REQUIRE(requests.size() == 2);
+    CHECK(requests[1].if_none_match.empty());
+}
+
+TEST_CASE_METHOD(HealthCheckFixture, "A 304 for a subscription list never received fails", "[OrcaCloudServiceAgent]")
+{
+    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
+    server.set_mode(LoopbackServer::Mode::Reply);
+    server.set_reply("304 Not Modified", "", R"(W/"v1")");
+
+    const SubscriptionPoll poll = poll_subscriptions(*agent);
+    CHECK(poll.result != 0);
+    CHECK(poll.bundles.empty());
 }
 
 namespace {

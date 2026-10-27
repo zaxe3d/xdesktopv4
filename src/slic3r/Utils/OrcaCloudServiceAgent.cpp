@@ -9,6 +9,8 @@
 #include "libslic3r/AppConfig.hpp"
 
 #include <atomic>
+#include <boost/algorithm/string/predicate.hpp>
+#include <boost/algorithm/string/trim.hpp>
 #include <boost/asio.hpp>
 #include <boost/asio/ip/tcp.hpp>
 #include <boost/asio/io_context.hpp>
@@ -505,6 +507,22 @@ bool aes256gcm_decrypt(const std::string& b64_payload, const std::vector<unsigne
     plain.resize(plain_len);
     plaintext.assign(reinterpret_cast<char*>(plain.data()), plain.size());
     return true;
+}
+
+// The ETag of the last response in `headers`, which holds every header line curl received for the
+// request, those of any redirect included. Empty if that response has none.
+std::string etag_from_headers(const std::string& headers)
+{
+    std::string        etag;
+    std::istringstream lines(headers);
+    std::string        line;
+    while (std::getline(lines, line)) {
+        if (boost::istarts_with(line, "HTTP/"))
+            etag.clear(); // a status line starts the next response
+        else if (boost::istarts_with(line, "etag:"))
+            etag = boost::trim_copy(line.substr(5));
+    }
+    return etag;
 }
 
 } // namespace
@@ -2170,6 +2188,10 @@ void OrcaCloudServiceAgent::clear_session(bool all_backends)
         std::lock_guard<std::mutex> lock(session_mutex);
         session = SessionInfo{};
     }
+    {
+        std::lock_guard<std::mutex> lock(subscriptions_cache_mutex);
+        subscriptions_cache = SubscriptionsCache{};
+    }
     clear_user_secret(all_backends);
 }
 
@@ -2221,7 +2243,8 @@ bool OrcaCloudServiceAgent::resolve_unauthorized(HttpResult& res,
     return rr == RefreshResult::Transient;
 }
 
-int OrcaCloudServiceAgent::http_get(const std::string& path, std::string* response_body, unsigned int* http_code)
+int OrcaCloudServiceAgent::http_get(const std::string& path, std::string* response_body, unsigned int* http_code,
+                                    const std::string& if_none_match, std::string* etag)
 {
     std::string url = api_base_url + path;
     BOOST_LOG_TRIVIAL(trace) << "OrcaCloudServiceAgent: GET " << url;
@@ -2245,6 +2268,11 @@ int OrcaCloudServiceAgent::http_get(const std::string& path, std::string* respon
             if (!token.empty()) {
                 http.header("Authorization", "Bearer " + token);
             }
+
+            if (!if_none_match.empty())
+                http.header("If-None-Match", if_none_match);
+            if (etag != nullptr)
+                http.on_header_callback([&result](std::string received) { result.etag = etag_from_headers(received); });
 
             http.on_complete([&](std::string body, unsigned resp_status) {
                     result.success = true;
@@ -2273,6 +2301,8 @@ int OrcaCloudServiceAgent::http_get(const std::string& path, std::string* respon
         *response_body = res.body;
     if (http_code)
         *http_code = res.status;
+    if (etag)
+        *etag = res.etag;
 
     if (!suppress && (!res.success || res.status >= 400)) {
         invoke_http_error_callback(res.status, res.body);
@@ -3248,10 +3278,28 @@ int OrcaCloudServiceAgent::get_subscribed_bundles(std::vector<std::pair<std::str
     std::string response_body;
     unsigned int http_code = 0;
 
-    // GET /api/v1/bundles
-    int result = http_get("/api/v1/subscriptions", &response_body, &http_code);
+    // Revalidate the list this account received last. The gateway's weak ETag is a hash of the body,
+    // so a 304 stands for exactly the remembered body.
+    const std::string user_id = get_user_id();
+    std::string       if_none_match;
+    {
+        std::lock_guard<std::mutex> lock(subscriptions_cache_mutex);
+        if (!user_id.empty() && subscriptions_cache.user_id == user_id)
+            if_none_match = subscriptions_cache.etag;
+    }
 
-    if (result != 0 || http_code != 200) {
+    std::string etag;
+    int result = http_get(ORCA_SUBSCRIPTIONS_PATH, &response_body, &http_code, if_none_match, &etag);
+
+    const bool not_modified = result == 0 && http_code == 304;
+    if (not_modified) {
+        std::lock_guard<std::mutex> lock(subscriptions_cache_mutex);
+        if (if_none_match.empty() || subscriptions_cache.user_id != user_id || subscriptions_cache.etag != if_none_match) {
+            BOOST_LOG_TRIVIAL(error) << "get_subscribed_bundles failed: 304 without the list it refers to";
+            return -1;
+        }
+        response_body = subscriptions_cache.body;
+    } else if (result != 0 || http_code != 200) {
         BOOST_LOG_TRIVIAL(error) << "get_subscribed_bundles failed: http_code=" << http_code << ", response=" << response_body;
         return result != 0 ? result : http_code;
     }
@@ -3289,7 +3337,16 @@ int OrcaCloudServiceAgent::get_subscribed_bundles(std::vector<std::pair<std::str
             bundles->push_back(std::make_pair(bundle_json["id"].get<std::string>(), bundle_json["version"].get<std::string>()));
         }
 
-        BOOST_LOG_TRIVIAL(info) << "get_subscribed_bundles: loaded " << bundles->size() << " bundles";
+        // Kept only while the session is still the account that asked, so a sign-out during the
+        // request doesn't leave the list behind.
+        if (!not_modified) {
+            const bool keep = !etag.empty() && !user_id.empty() && get_user_id() == user_id;
+            std::lock_guard<std::mutex> lock(subscriptions_cache_mutex);
+            subscriptions_cache = keep ? SubscriptionsCache{user_id, etag, response_body} : SubscriptionsCache{};
+        }
+
+        BOOST_LOG_TRIVIAL(info) << "get_subscribed_bundles: loaded " << bundles->size() << " bundles"
+                                << (not_modified ? " (unchanged)" : "");
         return 0;
 
     } catch (const std::exception& e) {
