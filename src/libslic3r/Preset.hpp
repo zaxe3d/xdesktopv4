@@ -661,7 +661,8 @@ public:
 
     // User presets made for one printer alone, as clone_presets_for_printer() makes them: every entry of
     // their compatible_printers is that printer. They are deleted together with that printer. Presets
-    // that also list other printers, or are not limited by printer name, are shared and kept.
+    // that also list other printers, or are not limited by printer name, are shared and kept, and so is
+    // every preset a kept preset inherits from.
     std::vector<Preset const *> get_user_presets_for_printer(const std::string &printer_name) const;
 
     std::map<std::string, std::vector<Preset const *>> get_filament_presets() const;

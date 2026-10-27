@@ -1419,14 +1419,8 @@ int OrcaCloudServiceAgent::delete_setting_as(const std::string& user_id, const s
     // Anything else, a network failure included, is worth another attempt.
     if (http_code == 200 || http_code == 204)
         return BAMBU_NETWORK_SUCCESS;
-    if (http_code == 404) {
-        const json body = json::parse(response, nullptr, false);
-        if (body.is_object()) {
-            const auto status = body.find("status");
-            if (status != body.end() && status->is_string() && status->get<std::string>() == "failed")
-                return BAMBU_NETWORK_SUCCESS;
-        }
-    }
+    if (http_code == 404 && get_json_string_field(json::parse(response, nullptr, false), "status") == "failed")
+        return BAMBU_NETWORK_SUCCESS;
     return BAMBU_NETWORK_ERR_DEL_SETTING_FAILED;
 }
 
@@ -2271,8 +2265,11 @@ int OrcaCloudServiceAgent::http_get(const std::string& path, std::string* respon
 
             if (!if_none_match.empty())
                 http.header("If-None-Match", if_none_match);
+            // The callback runs once per header line with every header received so far, so only the
+            // last call's headers are kept and read.
+            std::string received_headers;
             if (etag != nullptr)
-                http.on_header_callback([&result](std::string received) { result.etag = etag_from_headers(received); });
+                http.on_header_callback([&received_headers](std::string received) { received_headers = std::move(received); });
 
             http.on_complete([&](std::string body, unsigned resp_status) {
                     result.success = true;
@@ -2287,6 +2284,8 @@ int OrcaCloudServiceAgent::http_get(const std::string& path, std::string* respon
                 })
                 .timeout_max(30)
                 .perform_sync();
+            if (etag != nullptr)
+                result.etag = etag_from_headers(received_headers);
 
         } catch (const std::exception& e) {
             BOOST_LOG_TRIVIAL(error) << "OrcaCloudServiceAgent: http_get exception - " << e.what();
@@ -3261,8 +3260,7 @@ bool OrcaCloudServiceAgent::unsubscribe_bundle(const std::string& bundle_id)
     std::string response;
     unsigned int http_code = 0;
 
-    int result = http_delete(path, &response, &http_code);
-    return result == BAMBU_NETWORK_SUCCESS && http_code < 400;
+    return http_delete(path, &response, &http_code) == BAMBU_NETWORK_SUCCESS;
 }
 
 std::string OrcaCloudServiceAgent::get_bundle_url(const std::string& bundle_id) const

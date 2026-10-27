@@ -3250,6 +3250,8 @@ bool PresetCollection::clone_presets(std::vector<Preset const *> const &presets,
         preset.is_external = false;
         preset.is_visible = true;
         preset.is_project_embedded = false;
+        // A clone is the user's own preset, even when it was made from a bundle's.
+        preset.bundle_id.clear();
         modifier(preset, m_type);
         if (find_preset(preset.name) && !force_rewritten) {
             failures.push_back(preset.name);
@@ -3342,6 +3344,21 @@ std::vector<Preset const *> PresetCollection::get_user_presets_for_printer(const
             std::all_of(compatible_printers->values.begin(), compatible_printers->values.end(),
                         [&printer_name](const std::string &name) { return name == printer_name; }))
             presets.push_back(&preset);
+    }
+    // A preset that a kept preset inherits from is kept too, since a preset whose parent is gone fails to
+    // load. Each one kept can in turn keep its own parent, so this repeats until nothing changes.
+    for (bool kept_one = true; kept_one;) {
+        kept_one = false;
+        for (const Preset &preset : m_presets) {
+            if (preset.inherits().empty() || std::find(presets.begin(), presets.end(), &preset) != presets.end())
+                continue;
+            auto parent = std::find_if(presets.begin(), presets.end(),
+                                       [&preset](const Preset *candidate) { return candidate->name == preset.inherits(); });
+            if (parent != presets.end()) {
+                presets.erase(parent);
+                kept_one = true;
+            }
+        }
     }
     return presets;
 }

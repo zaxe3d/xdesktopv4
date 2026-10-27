@@ -9490,31 +9490,24 @@ void GUI_App::load_current_presets(bool active_preset_combox/*= false*/, bool ch
 // Sends the due cloud deletes of the signed-in account. Runs on the preset sync thread.
 void GUI_App::process_delete_presets()
 {
-    if (!m_agent)
+    const auto orca = get_orca_cloud_agent(m_agent);
+    if (!orca)
         return;
-    m_cloud_delete_queue.send_due(
-        [] { return CloudDeleteQueue::Clock::now(); }, [this] { return m_agent->get_user_id(); },
-        [this](const CloudDeleteQueue::Entry& entry) {
-            auto       orca = get_orca_cloud_agent(m_agent);
-            const bool gone = orca && orca->delete_setting_as(entry.owner, entry.setting_id) == BAMBU_NETWORK_SUCCESS;
-            if (!gone)
-                BOOST_LOG_TRIVIAL(info) << "delete setting = " << entry.setting_id << " failed, will retry";
-            return gone;
-        },
-        [this](const CloudDeleteQueue::Entry& entry) {
-            // The cloud has no such profile any more, so the .info that kept the delete pending can go.
-            remove_info_file(entry.info_path);
-            m_create_preset_blocked = { false, false, false, false, false, false };
-            BOOST_LOG_TRIVIAL(trace) << "sync_preset: sync operation: delete success! setting id = " << entry.setting_id;
-        });
+    send_cloud_deletes(m_cloud_delete_queue, *orca, [this](const CloudDeleteQueue::Entry& entry) {
+        m_create_preset_blocked = { false, false, false, false, false, false };
+        BOOST_LOG_TRIVIAL(trace) << "sync_preset: sync operation: delete success! setting id = " << entry.setting_id;
+    });
 }
 
-void GUI_App::delete_preset_from_cloud(std::string setting_id, std::string preset_file_path)
+void GUI_App::delete_preset_from_cloud(const Preset& preset)
 {
-    fs::path info_path = fs::path(preset_file_path);
+    // System, bundle and project presets, and user presets never uploaded, name no cloud profile of this account.
+    if (!preset.is_user() || preset.setting_id.empty())
+        return;
+    fs::path info_path = fs::path(preset.file);
     info_path.replace_extension("info");
     // No owner given: the delete belongs to the session's account, whose presets the UI shows.
-    m_cloud_delete_queue.add(m_cloud_delete_queue.generation(), setting_id, info_path.string(), {});
+    m_cloud_delete_queue.add(m_cloud_delete_queue.generation(), preset.setting_id, info_path.string(), {});
 }
 
 // Scan for orphaned .info files on startup

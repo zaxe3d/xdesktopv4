@@ -711,7 +711,8 @@ public:
     //BBS: add preset combox re-active logic
     void            load_current_presets(bool active_preset_combox = false, bool check_printer_presets = true);
     void            process_delete_presets();
-    void            delete_preset_from_cloud(std::string setting_id, std::string preset_file_path);
+    // Queues the cloud delete of a user preset synced to the signed-in account; any other preset is ignored.
+    void            delete_preset_from_cloud(const Preset& preset);
     void            scan_orphaned_info_files();
     // Changes whenever the signed-in account whose presets are loaded changes.
     uint64_t        user_preset_session() const { return m_cloud_delete_queue.generation(); }

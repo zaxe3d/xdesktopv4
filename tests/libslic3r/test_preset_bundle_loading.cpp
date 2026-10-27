@@ -1269,6 +1269,48 @@ TEST_CASE("A printer's own presets are the user presets made for it alone", "[Pr
     CHECK(names_for("Unknown Printer").empty());
 }
 
+TEST_CASE("A printer's own preset stays while a kept preset inherits from it", "[Preset]")
+{
+    PresetCollection filaments(Preset::TYPE_FILAMENT, Preset::filament_options(),
+                               static_cast<const PrintRegionConfig &>(FullPrintConfig::defaults()));
+    auto add = [&filaments](const std::string &name, const std::string &inherits, std::vector<std::string> compatible_printers) {
+        add_inmemory_preset(filaments, name, inherits).config.option<ConfigOptionStrings>("compatible_printers", true)->values =
+            std::move(compatible_printers);
+    };
+    // Root <- Middle <- Shared: Shared also lists another printer, so it is kept along with its parents.
+    add("Root", "", {"My Printer"});
+    add("Middle", "Root", {"My Printer"});
+    add("Shared", "Middle", {"My Printer", "Other Printer"});
+    // Alone <- Child: both are made for the printer alone, so both go with it.
+    add("Alone", "", {"My Printer"});
+    add("Child", "Alone", {"My Printer"});
+
+    std::vector<std::string> names;
+    for (const Preset *preset : filaments.get_user_presets_for_printer("My Printer"))
+        names.push_back(preset->name);
+    CHECK(names == std::vector<std::string>{"Alone", "Child"});
+}
+
+TEST_CASE("A preset cloned from a bundle's for a new printer is the user's own", "[Preset]")
+{
+    ScopedTemporaryDir temp_dir;
+    PresetCollection   filaments(Preset::TYPE_FILAMENT, Preset::filament_options(),
+                                 static_cast<const PrintRegionConfig &>(FullPrintConfig::defaults()));
+    PresetsConfigSubstitutions substitutions;
+    filaments.load_presets(temp_dir.path().string(), PRESET_FILAMENT_NAME, substitutions, ForwardCompatibilitySubstitutionRule::Disable);
+    boost::filesystem::create_directories(temp_dir.path() / PRESET_FILAMENT_NAME / "base");
+    add_inmemory_preset(filaments, "Bundle PLA @Template").bundle_id = "bundle";
+
+    std::vector<std::string> failures;
+    REQUIRE(filaments.clone_presets_for_printer({filaments.find_preset("Bundle PLA @Template")}, failures, "My Printer",
+                                                [](const std::string &) { return std::string("GFU01"); }));
+
+    const std::vector<Preset const *> own = filaments.get_user_presets_for_printer("My Printer");
+    REQUIRE(own.size() == 1);
+    CHECK(own[0]->name == "Bundle PLA @My Printer");
+    CHECK(own[0]->is_user());
+}
+
 TEST_CASE("Renamed parent is normalized into a loaded preset's inherits", "[Preset][Rename]")
 {
     ScopedTemporaryDir   temp_dir;

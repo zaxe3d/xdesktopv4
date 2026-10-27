@@ -7650,22 +7650,18 @@ bool Tab::select_preset(
             // A custom printer takes the filament and process presets made for it alone with it
             if (m_preset_bundle && m_presets->get_preset_base(current_preset) == &current_preset && printer_tab && !current_preset.is_system && !current_preset.is_from_bundle()) {
                 delete_third_printer = true;
-                for (const Preset *preset : m_preset_bundle->filaments.get_user_presets_for_printer(current_preset.name)) {
-                    if (preset->inherits() != "")
-                        filament_presets.push_front(*preset);
-                    else
-                        filament_presets.push_back(*preset);
-                }
-                for (const Preset *preset : m_preset_bundle->prints.get_user_presets_for_printer(current_preset.name)) {
-                    if (preset->inherits() != "")
-                        process_presets.push_front(*preset);
-                    else
-                        process_presets.push_back(*preset);
-                }
+                auto collect = [&current_preset](const PresetCollection &presets, std::deque<Preset> &collected) {
+                    for (const Preset *preset : presets.get_user_presets_for_printer(current_preset.name)) {
+                        if (preset->inherits() != "")
+                            collected.push_front(*preset);
+                        else
+                            collected.push_back(*preset);
+                    }
+                };
+                collect(m_preset_bundle->filaments, filament_presets);
+                collect(m_preset_bundle->prints, process_presets);
             }
-            if (current_preset.is_user() && !current_preset.setting_id.empty()) {
-                wxGetApp().delete_preset_from_cloud(current_preset.setting_id, current_preset.file);
-            }
+            wxGetApp().delete_preset_from_cloud(current_preset);
             BOOST_LOG_TRIVIAL(info) << "delete preset = " << current_preset.name << ", setting_id = " << current_preset.setting_id;
             BOOST_LOG_TRIVIAL(info) << boost::format("will delete current preset...");
             m_presets->delete_current_preset();
@@ -7784,17 +7780,13 @@ bool Tab::select_preset(
                 std::string   old_process_name  = preset_bundle->prints.get_edited_preset().name;
 
                 for (const Preset &preset : filament_presets) {
-                    if (preset.is_user() && !preset.setting_id.empty()) {
-                        wxGetApp().delete_preset_from_cloud(preset.setting_id, preset.file);
-                    }
+                    wxGetApp().delete_preset_from_cloud(preset);
                     BOOST_LOG_TRIVIAL(info) << "delete filament preset = " << preset.name << ", setting_id = " << preset.setting_id;
                     preset_bundle->filaments.delete_preset(preset.name);
                 }
 
                 for (const Preset &preset : process_presets) {
-                    if (preset.is_user() && !preset.setting_id.empty()) {
-                        wxGetApp().delete_preset_from_cloud(preset.setting_id, preset.file);
-                    }
+                    wxGetApp().delete_preset_from_cloud(preset);
                     BOOST_LOG_TRIVIAL(info) << "delete print preset = " << preset.name << ", setting_id = " << preset.setting_id;
                     preset_bundle->prints.delete_preset(preset.name);
                 }

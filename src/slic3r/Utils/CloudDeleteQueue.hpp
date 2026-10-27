@@ -12,6 +12,8 @@
 
 namespace Slic3r {
 
+class OrcaCloudServiceAgent;
+
 // Cloud preset deletes waiting to be sent. Deleting a synced preset in the UI and the scan for orphaned
 // .info files add them; the preset sync thread sends them.
 //
@@ -101,5 +103,12 @@ bool queue_orphaned_info_files(CloudDeleteQueue& queue, uint64_t generation, con
 
 // Removes a confirmed delete's .info file, under the lock other instances take to edit user presets.
 void remove_info_file(const std::string& info_path);
+
+// One pass of `queue` through `agent`: sends the signed-in account's due deletes, each only with its
+// owner's token, and removes the .info file of every delete the cloud confirms before handing the entry
+// to `on_gone`.
+void send_cloud_deletes(CloudDeleteQueue&                                          queue,
+                        OrcaCloudServiceAgent&                                     agent,
+                        const std::function<void(const CloudDeleteQueue::Entry&)>& on_gone = {});
 
 } // namespace Slic3r

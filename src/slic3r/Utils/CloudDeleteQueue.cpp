@@ -9,18 +9,19 @@
 #include <optional>
 #include <string>
 #include <utility>
+#include <vector>
 
-#include <boost/algorithm/string/trim.hpp>
 #include <boost/filesystem/directory.hpp>
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
 #include <boost/log/trivial.hpp>
 #include <boost/nowide/cstdio.hpp>
-#include <boost/nowide/fstream.hpp>
 #include <boost/system/error_code.hpp>
 
 #include "libslic3r/InstanceLock.hpp"
 #include "libslic3r/Preset.hpp"
+#include "OrcaCloudServiceAgent.hpp"
+#include "bambu_networking.hpp"
 
 namespace Slic3r {
 
@@ -34,29 +35,6 @@ CloudDeleteQueue::Clock::duration retry_wait(int failures)
     // Capped before shifting, so a long run of failures can't overflow the shift.
     const int doublings = std::min(failures - 1, 6);
     return std::min<CloudDeleteQueue::Clock::duration>(first * (1 << doublings), longest);
-}
-
-// Value of one "key = value" line of a .info file, or "" when the key is missing.
-std::string read_info_value(const std::string& info_file_path, const std::string& key)
-{
-    boost::nowide::ifstream file(info_file_path);
-    if (!file.is_open())
-        return "";
-
-    std::string line;
-    while (std::getline(file, line)) {
-        const size_t pos = line.find('=');
-        if (pos == std::string::npos)
-            continue;
-        std::string name = line.substr(0, pos);
-        boost::algorithm::trim(name);
-        if (name != key)
-            continue;
-        std::string value = line.substr(pos + 1);
-        boost::algorithm::trim(value);
-        return value;
-    }
-    return "";
 }
 
 } // namespace
@@ -150,8 +128,13 @@ size_t CloudDeleteQueue::size() const
 bool queue_orphaned_info_files(CloudDeleteQueue& queue, uint64_t generation, const std::string& user_dir)
 {
     namespace fs = boost::filesystem;
+    std::vector<fs::path> preset_dirs;
     for (const char* type : {PRESET_PRINT_NAME, PRESET_FILAMENT_NAME, PRESET_PRINTER_NAME}) {
-        const fs::path type_dir = fs::path(user_dir) / type;
+        preset_dirs.push_back(fs::path(user_dir) / type);
+        // Presets with no parent, custom printers and the presets made for them among them, are kept in base/.
+        preset_dirs.push_back(fs::path(user_dir) / type / "base");
+    }
+    for (const fs::path& type_dir : preset_dirs) {
         if (!fs::exists(type_dir))
             continue;
 
@@ -164,21 +147,21 @@ bool queue_orphaned_info_files(CloudDeleteQueue& queue, uint64_t generation, con
                 continue;
             fs::path preset_file = info_file;
             preset_file.replace_extension(".json");
+            // Most .info files sit beside their preset; only the rest are read, and only those need the lock.
+            if (fs::exists(preset_file))
+                continue;
 
             // Read under the lock, so a remove_files() in another instance is seen whole or not at all;
             // the queue's own mutex is taken after the lock is released.
-            std::string setting_id;
-            std::string owner;
+            Preset info(Preset::TYPE_INVALID, "");
             {
                 InstanceLock instance_lock(user_presets_lock_path());
-                if (!fs::exists(preset_file)) {
-                    setting_id = read_info_value(info_file.string(), "setting_id");
-                    owner      = read_info_value(info_file.string(), "user_id");
-                }
+                if (!fs::exists(preset_file))
+                    info.load_info(info_file.string());
             }
-            if (setting_id.empty())
+            if (info.setting_id.empty())
                 continue;
-            if (!queue.add(generation, setting_id, info_file.string(), owner)) {
+            if (!queue.add(generation, info.setting_id, info_file.string(), info.user_id)) {
                 BOOST_LOG_TRIVIAL(info) << "queue_orphaned_info_files: account changed, scan of " << user_dir << " abandoned";
                 return false;
             }
@@ -197,6 +180,26 @@ void remove_info_file(const std::string& info_path)
     InstanceLock instance_lock(user_presets_lock_path());
     boost::nowide::remove(info_path.c_str());
     BOOST_LOG_TRIVIAL(info) << "Deleted .info file after cloud confirmation: " << info_path;
+}
+
+void send_cloud_deletes(CloudDeleteQueue&                                          queue,
+                        OrcaCloudServiceAgent&                                     agent,
+                        const std::function<void(const CloudDeleteQueue::Entry&)>& on_gone)
+{
+    queue.send_due(
+        [] { return CloudDeleteQueue::Clock::now(); }, [&agent] { return agent.get_user_id(); },
+        [&agent](const CloudDeleteQueue::Entry& entry) {
+            const bool gone = agent.delete_setting_as(entry.owner, entry.setting_id) == BAMBU_NETWORK_SUCCESS;
+            if (!gone)
+                BOOST_LOG_TRIVIAL(info) << "delete setting = " << entry.setting_id << " failed, will retry";
+            return gone;
+        },
+        [&on_gone](const CloudDeleteQueue::Entry& entry) {
+            // The cloud has no such profile any more, so the .info that kept the delete pending can go.
+            remove_info_file(entry.info_path);
+            if (on_gone)
+                on_gone(entry);
+        });
 }
 
 } // namespace Slic3r

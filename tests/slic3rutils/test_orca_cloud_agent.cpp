@@ -128,14 +128,17 @@ public:
         m_session_body = std::move(body);
     }
 
-    // `status` is the status line after the HTTP version, e.g. "404 Not Found". An empty `etag` sends
-    // no ETag header.
+    // Switches to Reply mode. `status` is the status line after the HTTP version, e.g. "404 Not Found".
+    // An empty `etag` sends no ETag header.
     void set_reply(std::string status, std::string body, std::string etag = {})
     {
-        std::lock_guard<std::mutex> lock(m_mutex);
-        m_reply_status = std::move(status);
-        m_reply_body   = std::move(body);
-        m_reply_etag   = std::move(etag);
+        {
+            std::lock_guard<std::mutex> lock(m_mutex);
+            m_reply_status = std::move(status);
+            m_reply_body   = std::move(body);
+            m_reply_etag   = std::move(etag);
+        }
+        m_mode = Mode::Reply;
     }
 
     bool wait_for_accepts(size_t count, std::chrono::milliseconds timeout)
@@ -315,6 +318,12 @@ struct HealthCheckFixture
 
     // Defers callbacks the way the GUI's CallAfter does, instead of running them on the worker.
     void queue_callbacks() { agent->set_queue_on_main_fn([this](std::function<void()> task) { log.add_queued(std::move(task)); }); }
+
+    // Signs `user_id` in with an access token that doesn't expire, so no refresh is attempted.
+    void sign_in(const std::string& user_id)
+    {
+        REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", user_id}}, false));
+    }
 
     // Starts the next health check, retrying while a call is still folded into the previous one:
     // its callback fires before the worker thread finishes.
@@ -619,7 +628,6 @@ TEST_CASE_METHOD(HealthCheckFixture, "Deleting a profile succeeds once the cloud
         {"204 No Content", ""},
         {"404 Not Found", R"({"status":"failed","failed":["3f9c1d2e-8b7a-4c55-9e10-6a2b4c8d1f07"]})"},
     }));
-    server.set_mode(LoopbackServer::Mode::Reply);
     server.set_reply(status, body);
 
     CHECK(agent->delete_setting(PROFILE_ID) == BAMBU_NETWORK_SUCCESS);
@@ -641,7 +649,6 @@ TEST_CASE_METHOD(HealthCheckFixture, "Deleting a profile fails on any other answ
         {"404 Not Found", R"({"status":404})"},
         {"404 Not Found", R"({"status":)"},
     }));
-    server.set_mode(LoopbackServer::Mode::Reply);
     server.set_reply(status, body);
 
     CHECK(agent->delete_setting(PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
@@ -656,14 +663,9 @@ TEST_CASE_METHOD(HealthCheckFixture, "Deleting an id that can't name a cloud pro
     CHECK(server.requests().empty());
 }
 
-TEST_CASE("A delete that can't reach the server fails and reports status 0, not 404", "[OrcaCloudServiceAgent]")
+TEST_CASE_METHOD(HealthCheckFixture, "A delete that can't reach the server fails and reports status 0, not 404", "[OrcaCloudServiceAgent]")
 {
-    ScopedEnvVar       no_proxy{"no_proxy", "127.0.0.1"};
-    ScopedTemporaryDir dir{"orca-delete"};
-    CallbackLog        log;
-    auto               agent = make_file_backed_agent(dir.path());
     agent->set_api_base_url(closed_port_url());
-    agent->set_on_http_error_fn([&log](CloudEvent, unsigned http_code, std::string) { log.add_http_error(http_code); });
 
     CHECK(agent->delete_setting(PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
     CHECK(log.http_errors == std::vector<unsigned>{0});
@@ -671,8 +673,7 @@ TEST_CASE("A delete that can't reach the server fails and reports status 0, not 
 
 TEST_CASE_METHOD(HealthCheckFixture, "A delete goes out only while the session belongs to its account", "[OrcaCloudServiceAgent]")
 {
-    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
-    server.set_mode(LoopbackServer::Mode::Reply);
+    sign_in("A");
     server.set_reply("204 No Content", "");
 
     CHECK(agent->delete_setting_as("B", PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
@@ -690,7 +691,6 @@ TEST_CASE_METHOD(HealthCheckFixture, "A delete is not retried after a 401 when t
     auth_server.set_session_body(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"refresh_token", "refresh-b"}, {"user_id", "B"}}.dump());
     auth_server.set_mode(LoopbackServer::Mode::Session);
     agent->set_auth_base_url(auth_server.url());
-    server.set_mode(LoopbackServer::Mode::Reply);
     server.set_reply("401 Unauthorized", R"({"error":"unauthorized"})");
 
     CHECK(agent->delete_setting_as("A", PROFILE_ID) != BAMBU_NETWORK_SUCCESS);
@@ -706,17 +706,13 @@ TEST_CASE_METHOD(HealthCheckFixture, "Unsubscribing a bundle succeeds only on a 
         {"404 Not Found", false},
         {"500 Internal Server Error", false},
     }));
-    server.set_mode(LoopbackServer::Mode::Reply);
     server.set_reply(status, "");
 
     CHECK(agent->unsubscribe_bundle("bundle-1") == expected);
 }
 
-TEST_CASE("Unsubscribing a bundle fails when the server can't be reached", "[OrcaCloudServiceAgent]")
+TEST_CASE_METHOD(HealthCheckFixture, "Unsubscribing a bundle fails when the server can't be reached", "[OrcaCloudServiceAgent]")
 {
-    ScopedEnvVar       no_proxy{"no_proxy", "127.0.0.1"};
-    ScopedTemporaryDir dir{"orca-unsubscribe"};
-    auto               agent = make_file_backed_agent(dir.path());
     agent->set_api_base_url(closed_port_url());
 
     CHECK_FALSE(agent->unsubscribe_bundle("bundle-1"));
@@ -746,8 +742,7 @@ SubscriptionPoll poll_subscriptions(OrcaCloudServiceAgent& agent)
 
 TEST_CASE_METHOD(HealthCheckFixture, "A subscription poll answered 304 returns the list received last", "[OrcaCloudServiceAgent]")
 {
-    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
-    server.set_mode(LoopbackServer::Mode::Reply);
+    sign_in("A");
     server.set_reply("200 OK", SUBSCRIPTIONS_V1, R"(W/"v1")");
     const SubscriptionPoll first = poll_subscriptions(*agent);
     REQUIRE(first.result == 0);
@@ -769,8 +764,7 @@ TEST_CASE_METHOD(HealthCheckFixture, "A subscription poll answered 304 returns t
 
 TEST_CASE_METHOD(HealthCheckFixture, "A changed subscription list replaces the one received before", "[OrcaCloudServiceAgent]")
 {
-    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
-    server.set_mode(LoopbackServer::Mode::Reply);
+    sign_in("A");
     server.set_reply("200 OK", SUBSCRIPTIONS_V1, R"(W/"v1")");
     REQUIRE(poll_subscriptions(*agent).result == 0);
 
@@ -788,19 +782,18 @@ TEST_CASE_METHOD(HealthCheckFixture, "A changed subscription list replaces the o
 
 TEST_CASE_METHOD(HealthCheckFixture, "A subscription list is revalidated only for the account that received it", "[OrcaCloudServiceAgent]")
 {
-    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
-    server.set_mode(LoopbackServer::Mode::Reply);
+    sign_in("A");
     server.set_reply("200 OK", SUBSCRIPTIONS_V1, R"(W/"v1")");
     REQUIRE(poll_subscriptions(*agent).result == 0);
 
     SECTION("another account signs in")
     {
-        REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "B"}}, false));
+        sign_in("B");
     }
     SECTION("the account signs out and back in")
     {
         agent->user_logout(false);
-        REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
+        sign_in("A");
     }
 
     server.set_reply("200 OK", SUBSCRIPTIONS_V2, R"(W/"v2")");
@@ -812,8 +805,7 @@ TEST_CASE_METHOD(HealthCheckFixture, "A subscription list is revalidated only fo
 
 TEST_CASE_METHOD(HealthCheckFixture, "A 304 for a subscription list never received fails", "[OrcaCloudServiceAgent]")
 {
-    REQUIRE(agent->set_user_session(nlohmann::json{{"access_token", FAR_FUTURE_JWT}, {"user_id", "A"}}, false));
-    server.set_mode(LoopbackServer::Mode::Reply);
+    sign_in("A");
     server.set_reply("304 Not Modified", "", R"(W/"v1")");
 
     const SubscriptionPoll poll = poll_subscriptions(*agent);
@@ -830,6 +822,7 @@ struct DeletedPresetFixture : HealthCheckFixture
     {
         fs::create_directories(info_path.parent_path());
         fs::ofstream(info_path) << "sync_info = delete\nuser_id = A\nsetting_id = " << setting_id << "\n";
+        sign_in("A");
         queue.start_session("A");
     }
 
@@ -837,10 +830,7 @@ struct DeletedPresetFixture : HealthCheckFixture
     void sync()
     {
         REQUIRE(queue_orphaned_info_files(queue, queue.generation(), user_dir.string()));
-        queue.send_due(
-            [] { return CloudDeleteQueue::Clock::now(); }, [] { return std::string("A"); },
-            [this](const CloudDeleteQueue::Entry& entry) { return agent->delete_setting(entry.setting_id) == BAMBU_NETWORK_SUCCESS; },
-            [](const CloudDeleteQueue::Entry& entry) { remove_info_file(entry.info_path); });
+        send_cloud_deletes(queue, *agent);
     }
 
     ScopedTemporaryDir presets{"orca-deleted-preset"};
@@ -866,7 +856,6 @@ TEST_CASE("A delete for an id that can't name a cloud profile is dropped with it
 TEST_CASE("A delete the gateway answers with a verified 404 is not sent again", "[OrcaCloudServiceAgent]")
 {
     DeletedPresetFixture fixture(PROFILE_ID);
-    fixture.server.set_mode(LoopbackServer::Mode::Reply);
     fixture.server.set_reply("404 Not Found", R"({"status":"failed","failed":["3f9c1d2e-8b7a-4c55-9e10-6a2b4c8d1f07"]})");
 
     fixture.sync();

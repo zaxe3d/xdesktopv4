@@ -305,22 +305,27 @@ TEST_CASE("A scan queues the delete each orphaned .info file records", "[CloudDe
     // Deleted presets: their .json is gone and the .info stays until the cloud confirms.
     write_file(user_dir / "filament" / "PETG.info", "sync_info = delete\nuser_id = A\nsetting_id = u1\n");
     write_file(user_dir / "process" / "Draft.info", "sync_info = delete\nsetting_id = u2\n");
-    // A preset that still exists, and a .info with no setting_id.
+    // A custom printer, which as a preset with no parent is kept in base/.
+    write_file(user_dir / "machine" / "base" / "My Printer.info", "sync_info = delete\nuser_id = A\nsetting_id = u4\n");
+    // A preset that still exists, and .info files with no setting_id or the "null" one older versions wrote.
     write_file(user_dir / "filament" / "PLA.info", "user_id = A\nsetting_id = u3\n");
     write_file(user_dir / "filament" / "PLA.json", "{}");
     write_file(user_dir / "machine" / "Voron.info", "user_id = A\n");
+    write_file(user_dir / "machine" / "Ender.info", "user_id = A\nsetting_id = null\n");
 
     CloudDeleteQueue queue;
     queue.start_session("A");
     REQUIRE(queue_orphaned_info_files(queue, queue.generation(), user_dir.string()));
 
     const CloudDeleteQueue::Batch batch = queue.due(T0);
-    REQUIRE(batch.entries.size() == 2);
+    REQUIRE(batch.entries.size() == 3);
     CHECK(batch.entries[0].setting_id == "u1");
     CHECK(batch.entries[0].info_path == (user_dir / "filament" / "PETG.info").string());
     // Without a user_id, the .info belongs to the account whose folder holds it.
     CHECK(batch.entries[1].setting_id == "u2");
     CHECK(batch.entries[1].owner == "A");
+    CHECK(batch.entries[2].setting_id == "u4");
+    CHECK(batch.entries[2].info_path == (user_dir / "machine" / "base" / "My Printer.info").string());
 }
 
 TEST_CASE("A scan that started before an account switch queues nothing", "[CloudDeleteQueue]")
