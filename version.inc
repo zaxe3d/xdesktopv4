@@ -11,25 +11,20 @@ if(NOT DEFINED BBL_INTERNAL_TESTING)
 set(BBL_INTERNAL_TESTING "0")
 endif()
 
-# XDesktop Beta: development/test builds use a config folder separate from the installed XDesktop.
-#   XDESKTOP_BETA=1 (default) -> macOS: ~/Library/Application Support/XDesktopv4Beta
-#   XDESKTOP_BETA=0 (release) -> macOS: ~/Library/Application Support/XDesktopv4
-# Release builds must pass -DXDESKTOP_BETA=0.
-if(NOT DEFINED XDESKTOP_BETA)
-set(XDESKTOP_BETA "1")
-endif()
-if(XDESKTOP_BETA)
-set(XDESKTOP_BETA "1")
-set(XDESKTOP_DATA_DIR_NAME "XDesktopv4Beta")
-else()
-set(XDESKTOP_BETA "0")
-set(XDESKTOP_DATA_DIR_NAME "XDesktopv4")
-endif()
 set(SoftFever_VERSION "4.4.0-beta1")
 string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)"
        SoftFever_VERSION_MATCH ${SoftFever_VERSION})
 set(XDESKTOP_VERSION_MAJOR ${CMAKE_MATCH_1})
 set(XDESKTOP_VERSION_MINOR ${CMAKE_MATCH_2})
 set(XDESKTOP_VERSION_PATCH ${CMAKE_MATCH_3})
+
+# The config folder name follows the version: a pre-release version (anything with "-",
+# e.g. 4.4.0-beta1 or 4.4.0-rc1) uses XDesktopv4Beta, so it never touches the settings
+# of an installed release, which uses XDesktopv4.
+if(SoftFever_VERSION MATCHES "-")
+set(XDESKTOP_DATA_DIR_NAME "XDesktopv4Beta")
+else()
+set(XDESKTOP_DATA_DIR_NAME "XDesktopv4")
+endif()
 
 set(SLIC3R_VERSION "01.10.01.50")
