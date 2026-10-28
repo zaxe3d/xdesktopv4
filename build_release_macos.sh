@@ -188,7 +188,7 @@ function build_slicer() {
             cmake --build . --config "$BUILD_CONFIG" --target "$SLICER_BUILD_TARGET" -j8
         )
 
-        echo "        echo "      with gettext..."
+        echo "Verify localization with gettext..."
         (
             cd "$PROJECT_DIR"
             ./scripts/run_gettext.sh
