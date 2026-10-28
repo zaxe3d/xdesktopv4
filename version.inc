@@ -25,7 +25,7 @@ else()
 set(XDESKTOP_BETA "0")
 set(XDESKTOP_DATA_DIR_NAME "XDesktopv4")
 endif()
-set(SoftFever_VERSION "4.3.2")
+set(SoftFever_VERSION "4.4.0-beta1")
 string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)"
        SoftFever_VERSION_MATCH ${SoftFever_VERSION})
 set(XDESKTOP_VERSION_MAJOR ${CMAKE_MATCH_1})
