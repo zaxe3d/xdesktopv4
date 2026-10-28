@@ -28,3 +28,7 @@ set(XDESKTOP_DATA_DIR_NAME "XDesktopv4")
 endif()
 
 set(SLIC3R_VERSION "01.10.01.50")
+
+if (NOT DEFINED ORCA_UPDATER_SIG_KEY)
+    set(ORCA_UPDATER_SIG_KEY "" CACHE STRING "Base64url encoded updater signature key")
+endif()
