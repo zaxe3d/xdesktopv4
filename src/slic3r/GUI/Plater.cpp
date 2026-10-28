@@ -1337,9 +1337,9 @@ Sidebar::Sidebar(Plater *parent, wxBoxSizer* side_tools)
             p->machine_manager->setSelected(p->selected_zaxe_machine);
             show_carousel(false, hide_preset_details);
 
-            MainFrame::ModeSelectType print_btn_type = wxGetApp().plater()->get_partplate_list().get_plate_count() == 1 ?
-                                                           MainFrame::ModeSelectType::eSlicePlate :
-                                                           MainFrame::ModeSelectType::eSliceAll;
+            MainFrame::SliceSelectType print_btn_type = wxGetApp().plater()->get_partplate_list().get_plate_count() == 1 ?
+                                                           MainFrame::SliceSelectType::eSlicePlate :
+                                                           MainFrame::SliceSelectType::eSliceAll;
             wxGetApp().mainframe->select_tab(size_t(MainFrame::tp3DEditor));
             wxGetApp().mainframe->set_print_button_to_default(print_btn_type);
         }
@@ -1532,11 +1532,11 @@ void Sidebar::update_all_preset_comboboxes()
         //only show sync-ams button for BBL printer
         ams_btn->Show();
         //update print button default value for bbl or third-party printer
-        p_mainframe->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
+        p_mainframe->set_print_button_to_default(MainFrame::PrintSelectType::ePrintPlate);
     } else {
         //connection_btn->Show();
         ams_btn->Hide();
-        auto print_btn_type = MainFrame::ModeSelectType::eSlicePlate;
+        auto print_btn_type = MainFrame::SliceSelectType::eSlicePlate;
         wxString url = cfg.opt_string("print_host_webui").empty() ? cfg.opt_string("print_host") : cfg.opt_string("print_host_webui");
         wxString apikey;
         if(url.empty())
@@ -1547,7 +1547,7 @@ void Sidebar::update_all_preset_comboboxes()
             const auto host_type = cfg.option<ConfigOptionEnum<PrintHostType>>("host_type")->value;
             if (cfg.has("printhost_apikey") && (host_type != htSimplyPrint))
                 apikey = cfg.opt_string("printhost_apikey");
-            print_btn_type = MainFrame::ModeSelectType::eSlicePlate;
+            print_btn_type = MainFrame::SliceSelectType::eSlicePlate;
         }
 
         p_mainframe->load_printer_url(url, apikey);
@@ -5786,7 +5786,7 @@ unsigned int Plater::priv::update_background_process(bool force_validation, bool
             if (cur_plate->can_slice()) {
                 //ready_to_slice = true;
                 auto main_frame = wxGetApp().mainframe;
-                main_frame->set_print_button_to_default(MainFrame::ModeSelectType(main_frame->get_last_slice_mode()));
+                main_frame->set_print_button_to_default(MainFrame::SliceSelectType(main_frame->get_last_slice_mode()));
                 this->main_frame->update_slice_print_status(MainFrame::eEventSliceUpdate, true);
                 process_completed_with_error = -1;
             }
@@ -7340,7 +7340,7 @@ void Plater::priv::on_process_completed(SlicingProcessCompletedEvent &evt)
         this->notification_manager->set_slicing_progress_canceled(_u8L("Slicing Canceled"));
         is_finished = true;
         wxGetApp().mainframe->select_tab(size_t(MainFrame::tp3DEditor));
-        main_frame->set_print_button_to_default(MainFrame::ModeSelectType(main_frame->get_last_slice_mode()));
+        main_frame->set_print_button_to_default(MainFrame::SliceSelectType(main_frame->get_last_slice_mode()));
     }
 
     //BBS: set the current plater's slice result to valid
@@ -7504,7 +7504,7 @@ void Plater::priv::on_action_add_plate(SimpleEvent&)
         //q->get_camera().select_view("topfront");
         q->get_camera().requires_zoom_to_plate = REQUIRES_ZOOM_TO_ALL_PLATE;
 
-        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::eSliceAll);
+        main_frame->set_print_button_to_default(MainFrame::SliceSelectType::eSliceAll);
     }
 }
 
@@ -7543,8 +7543,8 @@ void Plater::priv::on_action_slice_plate(SimpleEvent&)
         q->reslice();
         q->select_view_3D("Preview");
 
-        main_frame->set_last_slice_mode(MainFrame::ModeSelectType::eSlicePlate);
-        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
+        main_frame->set_last_slice_mode(MainFrame::SliceSelectType::eSlicePlate);
+        main_frame->set_print_button_to_default(MainFrame::PrintSelectType::ePrintPlate);
     }
 }
 
@@ -7572,8 +7572,8 @@ void Plater::priv::on_action_slice_all(SimpleEvent&)
         //BBS: wish to select all plates stats item
         preview->get_canvas3d()->_update_select_plate_toolbar_stats_item(true);
 
-        main_frame->set_last_slice_mode(MainFrame::ModeSelectType::eSliceAll);
-        main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintAll);
+        main_frame->set_last_slice_mode(MainFrame::SliceSelectType::eSliceAll);
+        main_frame->set_print_button_to_default(MainFrame::PrintSelectType::ePrintAll);
     }
 }
 
@@ -7712,8 +7712,8 @@ void Plater::priv::on_action_select_sliced_plate(wxCommandEvent &evt)
     }
     q->select_sliced_plate(evt.GetInt());
 
-    main_frame->set_last_slice_mode(MainFrame::ModeSelectType::eSlicePlate);
-    main_frame->set_print_button_to_default(MainFrame::ModeSelectType::ePrintPlate);
+    main_frame->set_last_slice_mode(MainFrame::SliceSelectType::eSlicePlate);
+    main_frame->set_print_button_to_default(MainFrame::PrintSelectType::ePrintPlate);
 }
 
 void Plater::priv::on_action_print_all(SimpleEvent&)

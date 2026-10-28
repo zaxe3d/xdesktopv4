@@ -3591,9 +3591,9 @@ void MainFrame::on_config_changed(DynamicPrintConfig* config) const
         m_plater->on_config_change(*config); // propagate config change events to the plater
 }
 
-void MainFrame::set_print_button_to_default(ModeSelectType select_type)
+void MainFrame::set_print_button_to_default(SliceSelectType select_type)
 {
-     if (select_type == ModeSelectType::eSlicePlate) {
+     if (select_type == SliceSelectType::eSlicePlate) {
         m_mode_btn->SetLabel(_L("Slice plate"));
         m_slice_select = eSlicePlate;
         m_in_slicing_mode = true;
@@ -3602,7 +3602,7 @@ void MainFrame::set_print_button_to_default(ModeSelectType select_type)
         m_mode_btn->Enable(m_slice_enable);
         update_btn1(m_slice_enable);
         this->Layout();
-    } else  if (select_type == ModeSelectType::eSliceAll) {
+    } else  if (select_type == SliceSelectType::eSliceAll) {
         m_mode_btn->SetLabel(_L("Slice All"));
         m_slice_select = eSliceAll;
         m_in_slicing_mode = true;
@@ -3612,7 +3612,11 @@ void MainFrame::set_print_button_to_default(ModeSelectType select_type)
         update_btn1(m_slice_enable);
         this->Layout();
     }
-    if (select_type == ModeSelectType::ePrintPlate) {
+}
+
+void MainFrame::set_print_button_to_default(PrintSelectType select_type)
+{
+    if (select_type == PrintSelectType::ePrintPlate) {
         m_mode_btn->SetLabel(_L("Print plate"));
         m_print_select = ePrintPlate;
         m_in_slicing_mode = false;
@@ -3622,7 +3626,7 @@ void MainFrame::set_print_button_to_default(ModeSelectType select_type)
         wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
         update_btn1(m_print_enable);
         this->Layout();
-    } else if (select_type == ModeSelectType::ePrintAll) {
+    } else if (select_type == PrintSelectType::ePrintAll) {
         m_mode_btn->SetLabel(_L("Print All"));
         m_print_select = ePrintAll;
         m_in_slicing_mode = false;
@@ -3632,7 +3636,7 @@ void MainFrame::set_print_button_to_default(ModeSelectType select_type)
         wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
         update_btn1(m_print_enable);
         this->Layout();
-    } else if (select_type == ModeSelectType::eExportGcode) {
+    } else if (select_type == PrintSelectType::eExportGcode) {
         m_mode_btn->SetLabel(_L("Export Zaxe code"));
         m_print_select = eExportGcode;
         m_in_slicing_mode = false;

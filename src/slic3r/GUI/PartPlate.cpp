@@ -3841,7 +3841,7 @@ int PartPlateList::delete_plate(int index)
 #endif
 
     if (get_plate_count() == 1) {
-        wxGetApp().mainframe->set_print_button_to_default(MainFrame::ModeSelectType::eSlicePlate);
+        wxGetApp().mainframe->set_print_button_to_default(MainFrame::SliceSelectType::eSlicePlate);
     }
     return ret;
 }

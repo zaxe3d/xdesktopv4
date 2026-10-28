@@ -198,13 +198,12 @@ protected:
 
 public:
 
-    enum ModeSelectType
+    // Zaxe: public so that the slice mode can be set from Plater, IMSlider, PartPlate
+    // and NetworkMachineManager (upstream keeps this enum private).
+    enum SliceSelectType
     {
         eSliceAll = 0,
         eSlicePlate = 1,
-        ePrintAll = 2,
-        ePrintPlate = 3,
-        eExportGcode = 4
     };
 
     MainFrame();
@@ -234,7 +233,6 @@ public:
         eEventPrintUpdate = 4
     };
 
-/*
     // BBS GUI refactor
     enum PrintSelectType {
         ePrintAll            = 0,
@@ -248,7 +246,7 @@ public:
         eExportAllSlicedFile = 8,
         ePrintMultiMachine   = 9
     };
-*/
+
     void update_layout();
 
 	// Called when closing the application and when switching the application language.
@@ -329,7 +327,9 @@ public:
     void        select_view(const std::string& direction);
     // Propagate changed configuration from the Tab to the Plater and save changes to the AppConfig
     void        on_config_changed(DynamicPrintConfig* cfg) const ;
-    void        set_print_button_to_default(ModeSelectType select_type);
+    void        set_print_button_to_default(PrintSelectType select_type);
+    // Zaxe: the single bottom button also switches between slice modes
+    void        set_print_button_to_default(SliceSelectType select_type);
 
     bool can_save() const;
     bool can_save_as() const;
