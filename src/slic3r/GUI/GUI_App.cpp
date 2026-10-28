@@ -1935,7 +1935,8 @@ void GUI_App::init_app_config()
 
     //SetAppName(SLIC3R_APP_KEY);
 //	SetAppName(SLIC3R_APP_KEY "-alpha");
-    SetAppName(SLIC3R_APP_KEY "v4");
+    // XDesktop: beta builds use a separate config folder (XDesktopv4Beta) and never touch the installed release. See version.inc
+    SetAppName(XDESKTOP_DATA_DIR_NAME);
 //	SetAppDisplayName(SLIC3R_APP_NAME);
 
 	// Set the Slic3r data directory at the Slic3r XS module.

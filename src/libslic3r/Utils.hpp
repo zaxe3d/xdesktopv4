@@ -273,13 +273,13 @@ private:
         }
 #ifdef _WIN32
         const char *env = std::getenv("USERPROFILE");
-        const size_t len = strlen("\\AppData\\Roaming\\XDesktopv4\\user");
+        const size_t len = strlen("\\AppData\\Roaming\\" XDESKTOP_DATA_DIR_NAME "\\user");
 #elif __APPLE__
         const char *env = std::getenv("HOME");
-        const size_t len = strlen("/Library/Application Support/XDesktopv4/user");
+        const size_t len = strlen("/Library/Application Support/" XDESKTOP_DATA_DIR_NAME "/user");
 #elif __linux__
         const char *env = std::getenv("HOME");
-        const size_t len = strlen("/.config/XDesktopv4/user");
+        const size_t len = strlen("/.config/" XDESKTOP_DATA_DIR_NAME "/user");
 #else
         // Unsupported platform, return raw input
         return false;

@@ -10,6 +10,21 @@ endif()
 if(NOT DEFINED BBL_INTERNAL_TESTING)
 set(BBL_INTERNAL_TESTING "0")
 endif()
+
+# XDesktop Beta: development/test builds use a config folder separate from the installed XDesktop.
+#   XDESKTOP_BETA=1 (default) -> macOS: ~/Library/Application Support/XDesktopv4Beta
+#   XDESKTOP_BETA=0 (release) -> macOS: ~/Library/Application Support/XDesktopv4
+# Release builds must pass -DXDESKTOP_BETA=0.
+if(NOT DEFINED XDESKTOP_BETA)
+set(XDESKTOP_BETA "1")
+endif()
+if(XDESKTOP_BETA)
+set(XDESKTOP_BETA "1")
+set(XDESKTOP_DATA_DIR_NAME "XDesktopv4Beta")
+else()
+set(XDESKTOP_BETA "0")
+set(XDESKTOP_DATA_DIR_NAME "XDesktopv4")
+endif()
 set(SoftFever_VERSION "4.3.2")
 string(REGEX MATCH "^([0-9]+)\\.([0-9]+)\\.([0-9]+)"
        SoftFever_VERSION_MATCH ${SoftFever_VERSION})
