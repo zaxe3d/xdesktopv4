@@ -2751,9 +2751,8 @@ wxMenu* MainFrame::generate_help_menu()
             dlg.ShowModal();
         });
 
-    if (wxGetApp().is_editor())
-        append_menu_item(helpMenu, wxID_ANY, _L("Benchmark 3D Scene"), _L("Measure how fast the 3D scene renders in Prepare and Preview"),
-            [](wxCommandEvent&) { run_scene_benchmark(); });
+    // Zaxe: the upstream "Benchmark 3D Scene" entry replaces the project with an Orca sample and is not part of
+    // the XDesktop flow (rule 3.5); its menu entry is not added (run_scene_benchmark() stays available).
 
     helpMenu->AppendSeparator();
 
