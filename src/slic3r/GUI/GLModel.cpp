@@ -11,8 +11,29 @@
 #include "libslic3r/BuildVolume.hpp"
 #include "libslic3r/Geometry/ConvexHull.hpp"
 
+#include <Eigen/Core>
+#include <algorithm>
+#include <Eigen/Geometry>
 #include <boost/filesystem/operations.hpp>
 #include <boost/algorithm/string/predicate.hpp>
+#include <vector>
+#include "libslic3r/Point.hpp"
+#include <cstddef>
+#include <cassert>
+#include <cfloat>
+#include <utility>
+#include "libslic3r/AppConfig.hpp"
+#include <cstdint>
+#include <string>
+#include <exception>
+#include "slic3r/GUI/OpenGLManager.hpp"
+#include "libslic3r/BoundingBox.hpp"
+#include <limits>
+#include "libslic3r/Geometry/Circle.hpp"
+#include <cmath>
+#include <math.h>
+#include <cstdlib>
+#include "libslic3r/Geometry.hpp"
 
 #if defined(L)
 #undef L
@@ -456,11 +477,11 @@ void GLModel::init_from(const indexed_triangle_set& its)
     data.reserve_vertices(3 * its.indices.size());
     data.reserve_indices(3 * its.indices.size());
 
-    // Read user preference: smooth normals enabled
-    const bool realistic_mode = wxGetApp().app_config != nullptr && wxGetApp().app_config->get_bool(SETTING_OPENGL_REALISTIC_MODE);
-    const bool smooth_normals_enabled = wxGetApp().app_config != nullptr && wxGetApp().app_config->get_bool(SETTING_OPENGL_PHONG_SMOOTH_NORMALS);
+    // CLI thumbnail generation can initialize models without a wx application.
+    const bool smooth_normals_enabled = wxApp::GetInstance() != nullptr && wxGetApp().app_config != nullptr &&
+                                        wxGetApp().app_config->get_bool(SETTING_OPENGL_PHONG_SMOOTH_NORMALS);
 
-    if (realistic_mode && smooth_normals_enabled) {
+    if (smooth_normals_enabled) {
         // Use per-corner smooth normals (via IGL)
         using MapMatrixXfUnaligned = Eigen::Map<const Eigen::Matrix<float, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor | Eigen::DontAlign>>;
         using MapMatrixXiUnaligned = Eigen::Map<const Eigen::Matrix<int, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor | Eigen::DontAlign>>;

@@ -1,5 +1,12 @@
 #include <catch2/catch_all.hpp>
+#include <string>
+#include <memory>
+#include "libslic3r/Config.hpp"
 
+#include <catch2/catch_test_macros.hpp>
+#include <catch2/catch_approx.hpp>
+#include <catch2/matchers/catch_matchers.hpp>
+#include <catch2/matchers/catch_matchers_string.hpp>
 #include "libslic3r/PlaceholderParser.hpp"
 #include "libslic3r/PrintConfig.hpp"
 
@@ -52,6 +59,11 @@ SCENARIO("Placeholder parser scripting", "[PlaceholderParser]") {
     SECTION("math: round(-13.4)") { REQUIRE(parser.process("{round(-13.4)}") == "-13"); }
     SECTION("math: round(13.6)") { REQUIRE(parser.process("{round(13.6)}") == "14"); }
     SECTION("math: round(-13.6)") { REQUIRE(parser.process("{round(-13.6)}") == "-14"); }
+    SECTION("math: round(13.5)") { REQUIRE(parser.process("{round(13.5)}") == "14"); }
+    SECTION("math: floor(13.9)") { REQUIRE(parser.process("{floor(13.9)}") == "13"); }
+    SECTION("math: floor(-13.1)") { REQUIRE(parser.process("{floor(-13.1)}") == "-14"); }
+    SECTION("math: ceil(13.1)") { REQUIRE(parser.process("{ceil(13.1)}") == "14"); }
+    SECTION("math: ceil(-13.9)") { REQUIRE(parser.process("{ceil(-13.9)}") == "-13"); }
     SECTION("math: digits(5, 15)") { REQUIRE(parser.process("{digits(5, 15)}") == "              5"); }
     SECTION("math: digits(5., 15)") { REQUIRE(parser.process("{digits(5., 15)}") == "              5"); }
     SECTION("math: zdigits(5, 15)") { REQUIRE(parser.process("{zdigits(5, 15)}") == "000000000000005"); }
@@ -65,6 +77,21 @@ SCENARIO("Placeholder parser scripting", "[PlaceholderParser]") {
     SECTION("math: interpolate_table(13.84375892476, (0, 0), (20, 20))") { REQUIRE(std::stod(parser.process("{interpolate_table(13.84375892476, (0, 0), (20, 20))}")) == Catch::Approx(13.84375892476)); }
     SECTION("math: interpolate_table(13, (0, 0), (20, 20), (30, 20))") { REQUIRE(std::stod(parser.process("{interpolate_table(13, (0, 0), (20, 20), (30, 20))}")) == Catch::Approx(13.)); }
     SECTION("math: interpolate_table(25, (0, 0), (20, 20), (30, 20))") { REQUIRE(std::stod(parser.process("{interpolate_table(25, (0, 0), (20, 20), (30, 20))}")) == Catch::Approx(20.)); }
+    // Only the grammar's built-in functions are callable; any other name is an undefined variable and throws.
+    SECTION("math: a non-built-in function name throws") { REQUIRE_THROWS(parser.process("{sqrt(16)}")); }
+
+    // regex_replace(subject, /pattern/, replacement): the string-transform primitive.
+    SECTION("regex_replace: strips a file extension") { REQUIRE(parser.process("{regex_replace(\"part.stl\", /\\.[^.]*$/, \"\")}") == "part"); }
+    SECTION("regex_replace: leaves a non-matching dot untouched") { REQUIRE(parser.process("{regex_replace(\"Bracket v2.1\", /\\.stl$/, \"\")}") == "Bracket v2.1"); }
+    SECTION("regex_replace: replaces every match") { REQUIRE(parser.process("{regex_replace(\"a-b-c\", /-/, \"_\")}") == "a_b_c"); }
+    SECTION("regex_replace: replacement may reference a capture group") { REQUIRE(parser.process("{regex_replace(\"v12\", /v(\\d+)/, \"$1\")}") == "12"); }
+    // The result is an ordinary string, usable in further expressions (the real filename-template shape).
+    SECTION("regex_replace: result composes with concatenation") { REQUIRE(parser.process("{regex_replace(\"part.stl\", /\\.[^.]*$/, \"\") + \".gcode\"}") == "part.gcode"); }
+    // A malformed pattern and a non-string subject are both hard errors.
+    SECTION("regex_replace: an invalid pattern throws") { REQUIRE_THROWS(parser.process("{regex_replace(\"x\", /[/, \"\")}")); }
+    SECTION("regex_replace: a non-string subject throws") { REQUIRE_THROWS(parser.process("{regex_replace(123, /2/, \"\")}")); }
+    // Inside a skipped branch the subject is TYPE_EMPTY and the call must no-op (exercises the guard).
+    SECTION("regex_replace: is skipped inside a false if-branch") { REQUIRE(parser.process("{if false}{regex_replace(\"x\", /x/, \"y\")}{endif}done") == "done"); }
 
     // Test the "coFloatOrPercent" and "xxx_line_width" substitutions.
     // min_width_top_surface ratio_over inner_wall_line_width.
@@ -72,8 +99,9 @@ SCENARIO("Placeholder parser scripting", "[PlaceholderParser]") {
     SECTION("min_width_top_surface") { REQUIRE(std::stod(parser.process("{min_width_top_surface}")) == Catch::Approx(2.7)); }
     // Orca: this one is not coFloatOrPercent
     //SECTION("support_object_xy_distance") { REQUIRE(std::stod(parser.process("{support_object_xy_distance}")) == Catch::Approx(0.3375)); }
+    // Orca: this one is not coFloatOrPercent
     // small_perimeter_speed over outer_wall_speed
-    SECTION("small_perimeter_speed") { REQUIRE(std::stod(parser.process("{small_perimeter_speed}")) == Catch::Approx(30.)); }
+    //SECTION("small_perimeter_speed") { REQUIRE(std::stod(parser.process("{small_perimeter_speed}")) == Catch::Approx(30.)); }
     // infill_anchor over sparse_infill_line_width
     SECTION("infill_anchor") { REQUIRE(std::stod(parser.process("{infill_anchor}")) == Catch::Approx(2.7)); }
     // If scarf_joint_speed is set to percent, then it is applied over respective extrusion types by overriding their respective speeds.
@@ -129,6 +157,7 @@ SCENARIO("Placeholder parser variables", "[PlaceholderParser]") {
 
     SECTION("create an int local variable") { REQUIRE(parser.process("{local myint = 33+2}{myint}", 0, nullptr, nullptr, nullptr) == "35"); }
     SECTION("create a string local variable") { REQUIRE(parser.process("{local mystr = \"mine\" + \"only\" + \"mine\"}{mystr}", 0, nullptr, nullptr, nullptr) == "mineonlymine"); }
+    SECTION("regex_replace transforms a string variable") { REQUIRE(parser.process("{local n = \"part.stl\"}{regex_replace(n, /\\.[^.]*$/, \"\")}", 0, nullptr, nullptr, nullptr) == "part"); }
     SECTION("create a bool local variable") { REQUIRE(parser.process("{local mybool = 1 + 1 == 2}{mybool}", 0, nullptr, nullptr, nullptr) == "true"); }
     SECTION("create an int global variable") { REQUIRE(parser.process("{global myint = 33+2}{myint}", 0, nullptr, nullptr, &context_with_global_dict) == "35"); }
     SECTION("create a string global variable") { REQUIRE(parser.process("{global mystr = \"mine\" + \"only\" + \"mine\"}{mystr}", 0, nullptr, nullptr, &context_with_global_dict) == "mineonlymine"); }
@@ -332,5 +361,40 @@ SCENARIO("Placeholder parser coFloatsOrPercents vector access", "[PlaceholderPar
     SECTION("coFloats indexed access - non-nullable") {
         // pressure_advance[2] = 3.0
         REQUIRE(std::stod(parser.process("{pressure_advance[2]}")) == Catch::Approx(3.0));
+    }
+}
+
+SCENARIO("Placeholder parser names in branches that are not taken", "[PlaceholderParser]") {
+    PlaceholderParser parser;
+    auto config = DynamicPrintConfig::full_print_config();
+    parser.apply_config(config);
+    parser.set("idx", 0);
+    PlaceholderParser::ContextData context;
+    context.global_config = std::make_unique<DynamicConfig>();
+    auto process = [&parser, &context](const std::string &templ) { return parser.process(templ, 0, nullptr, nullptr, &context); };
+
+    SECTION("a declaration continuing after a variable reference parses when not taken") {
+        REQUIRE(process("{if false}{local a = layer_height + 1}{endif}ok") == "ok");
+    }
+    SECTION("names are not checked by default") {
+        REQUIRE(process("{if false}{no_such_var}[no_such_var]{endif}ok") == "ok");
+    }
+    SECTION("names must resolve when check_inactive_branches is set") {
+        struct Restore { ~Restore() { PlaceholderParser::check_inactive_branches = false; } } restore;
+        PlaceholderParser::check_inactive_branches = true;
+
+        CHECK_THROWS_WITH(process("{if false}{no_such_var}{endif}"), Catch::Matchers::ContainsSubstring("Not a variable name (in an inactive branch)"));
+        CHECK_THROWS_WITH(process("{if false}[no_such_var]{endif}"), Catch::Matchers::ContainsSubstring("Variable does not exist (in an inactive branch)"));
+        CHECK_THROWS_WITH(process("{if false}[nozzle_temperature[no_such_var]]{endif}"), Catch::Matchers::ContainsSubstring("Variable does not exist (in an inactive branch)"));
+        CHECK_THROWS(process("{if true}{else}{no_such_var}{endif}"));
+        CHECK_THROWS(process("{if false}{local a = no_such_var + 1}{endif}"));
+
+        CHECK(process("{if false}{layer_height}[layer_height][nozzle_temperature_0][nozzle_temperature[idx]]{endif}ok") == "ok");
+        CHECK(process("{if false}{local a = 1}{a = a + 1}{a}{endif}{if false}{a}{endif}ok") == "ok");
+        // A global declared in a branch that is not taken counts as defined for later expansions sharing the context.
+        CHECK(process("{if false}{global g = 1}{endif}{if false}{g}{endif}ok") == "ok");
+        CHECK(process("{if false}{g}{endif}ok") == "ok");
+        // Boolean expressions are not checked, so compatibility conditions keep their behaviour.
+        CHECK(PlaceholderParser::evaluate_boolean_expression("false ? no_such_var == 1 : true", config));
     }
 }

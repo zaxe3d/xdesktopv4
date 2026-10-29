@@ -7,10 +7,20 @@
 #include "Widgets/Button.hpp"
 
 //BBS set font size
-#include "Widgets/Label.hpp"
 
+#include <wx/bookctrl.h>
+#include <cmath>
+#include <cstddef>
+#include <utility>
+#include <string>
+#include <algorithm>
 #include <wx/button.h>
+#include <wx/colour.h>
+#include <wx/dcclient.h>
+#include <wx/event.h>
+#include <wx/gdicmn.h>
 #include <wx/sizer.h>
+#include <wx/window.h>
 
 wxDEFINE_EVENT(wxCUSTOMEVT_NOTEBOOK_SEL_CHANGED, wxCommandEvent);
 
@@ -64,7 +74,7 @@ ButtonsListCtrl::ButtonsListCtrl(wxWindow *parent, wxBoxSizer* side_tools) :
 
     // BBS: disable custom paint
     //this->Bind(wxEVT_PAINT, &ButtonsListCtrl::OnPaint, this);
-    Bind(wxEVT_SYS_COLOUR_CHANGED, [this](auto& e){
+    Bind(wxEVT_SYS_COLOUR_CHANGED, [](auto& e){
     });
 }
 
@@ -128,11 +138,11 @@ void ButtonsListCtrl::Rescale()
 
 void ButtonsListCtrl::SetSelection(int sel)
 {
-    if (m_selection == sel)
+    if (m_selection == sel && sel >= 0 && sel < static_cast<int>(m_pageButtons.size()))
         return;
     // BBS: change button color
     // wxColour selected_btn_bg("#009688");    // Gradient #009688
-    if (m_selection >= 0) {
+    if (m_selection >= 0 && m_selection < static_cast<int>(m_pageButtons.size())) {
         StateColor bg_color = StateColor(
         std::pair{wxColour(107, 107, 107), (int) StateColor::Hovered},
         std::pair<wxColour, int>{"#475467", StateColor::Normal});
@@ -140,9 +150,15 @@ void ButtonsListCtrl::SetSelection(int sel)
         StateColor text_color = StateColor(
         std::pair{wxColour(254,254, 254), (int) StateColor::Normal}
         );
-        m_pageButtons[m_selection]->SetSelected(false);
         m_pageButtons[m_selection]->SetTextColor(text_color);
     }
+
+    if (sel < 0 || sel >= static_cast<int>(m_pageButtons.size())) {
+        m_selection = -1;
+        Refresh();
+        return;
+    }
+
     m_selection = sel;
 
     StateColor bg_color = StateColor(
@@ -153,13 +169,12 @@ void ButtonsListCtrl::SetSelection(int sel)
     StateColor text_color = StateColor(
         std::pair{wxColour(254, 254, 254), (int) StateColor::Normal}
         );
-    m_pageButtons[m_selection]->SetSelected(true);
     m_pageButtons[m_selection]->SetTextColor(text_color);
     
     Refresh();
 }
 
-bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /* = false*/, const std::string &bmp_name /* = ""*/, const std::string &inactive_bmp_name)
+bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /* = false*/, const std::string &bmp_name /* = ""*/, const wxBitmap &bmp /* = wxNullBitmap */)
 {
 #if __WXOSX__
     auto _parent = this;
@@ -168,6 +183,9 @@ bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /*
 #endif
     Button* btn = new Button(_parent, text.empty() ? text : " " + text, bmp_name, wxNO_BORDER | wxVERTICAL, FromDIP(36));
     btn->SetCornerRadius(0);
+
+    if (bmp_name.empty() && bmp.IsOk())
+        btn->SetIcon(bmp);
 
     // int em = em_unit(this);
     //BBS set size for button
@@ -181,8 +199,6 @@ bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /*
     StateColor text_color = StateColor(
         std::pair{wxColour(254,254, 254), (int) StateColor::Normal});
     btn->SetTextColor(text_color);
-    btn->SetInactiveIcon(inactive_bmp_name);
-    btn->SetSelected(false);
     btn->Bind(wxEVT_BUTTON, [this, btn](wxCommandEvent& event) {
         if (auto it = std::find(m_pageButtons.begin(), m_pageButtons.end(), btn); it != m_pageButtons.end()) {
             auto sel = it - m_pageButtons.begin();
@@ -197,6 +213,7 @@ bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /*
     Slic3r::GUI::wxGetApp().UpdateDarkUI(btn);
     m_pageButtons.insert(m_pageButtons.begin() + n, btn);
     m_pageLabels.insert(m_pageLabels.begin() + n, text); // ORCA
+    m_pageIcons.insert(m_pageIcons.begin() + n, bmp_name);
     m_buttons_sizer->Insert(n, btn, wxSizerFlags().Expand().Border(wxBOTTOM, 1));
     m_buttons_sizer->SetRows(m_buttons_sizer->GetRows() + 1);
     m_sizer->Layout();
@@ -205,9 +222,18 @@ bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /*
 
 void ButtonsListCtrl::RemovePage(size_t n)
 {
+    if (n >= m_pageButtons.size())
+        return;
+
+    if (m_selection == static_cast<int>(n))
+        m_selection = -1;
+    else if (m_selection > static_cast<int>(n))
+        --m_selection;
+
     Button* btn = m_pageButtons[n];
     m_pageButtons.erase(m_pageButtons.begin() + n);
     m_pageLabels.erase(m_pageLabels.begin() + n); // ORCA
+    m_pageIcons.erase(m_pageIcons.begin() + n);
     m_buttons_sizer->Remove(n);
 #if __WXOSX__
     RemoveChild(btn);
@@ -244,13 +270,37 @@ void ButtonsListCtrl::SetCompact(size_t n, bool compact)
     int em = em_unit(this);
     Button* btn = m_pageButtons[n];
     btn->SetMinSize({(compact ? 40 : 136) * em / 10, 36 * em / 10});
-    btn->SetLabel(compact ? "" : (" " +  m_pageLabels[n]));
+    btn->SetLabel(compact ? "" : m_pageLabels[n]);
 }
 
 wxString ButtonsListCtrl::GetPageText(size_t n) const
 {
     Button* btn = m_pageButtons[n];
     return btn->GetLabel();
+}
+
+// ORCA
+wxString ButtonsListCtrl::GetPageLabel(size_t n) const
+{
+    return n < m_pageLabels.size() ? m_pageLabels[n] : wxString();
+}
+
+// ORCA
+void ButtonsListCtrl::SetOverflowButton(wxWindow* button)
+{
+    if (m_overflow_button == button)
+        return;
+
+    if (m_overflow_button != nullptr)
+        m_sizer->Detach(m_overflow_button);
+
+    m_overflow_button = button;
+
+    if (m_overflow_button != nullptr)
+        // Right after the tab buttons (index 0), ahead of any stretch spacer / side_tools.
+        m_sizer->Insert(1, m_overflow_button, 0, wxALIGN_CENTER_VERTICAL | wxLEFT | wxBOTTOM, m_btn_margin);
+
+    m_sizer->Layout();
 }
 
 //#endif // _WIN32
@@ -265,6 +315,8 @@ void Notebook::Init()
     m_showEffect = m_hideEffect = wxSHOW_EFFECT_NONE;
 
     m_showTimeout = m_hideTimeout = 0;
+
+    m_pageNames.clear();
 
     /* On Linux, Gstreamer wxMediaCtrl does not seem to get along well with
      * 32-bit X11 visuals (the overlay does not work).  Is this a wxWindows

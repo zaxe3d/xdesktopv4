@@ -1,16 +1,25 @@
 #ifndef slic3r_MsgDialog_hpp_
 #define slic3r_MsgDialog_hpp_
 
+#include <cstddef>
+#include <functional>
+#include "slic3r/GUI/Widgets/Label.hpp"
 #include <string>
 #include <unordered_map>
 #include "GUI_Utils.hpp"
+#include <vector>
 #include <wx/dialog.h>
+#include <wx/event.h>
 #include <wx/font.h>
 #include <wx/bitmap.h>
+#include <wx/hashmap.h>
+#include <wx/gdicmn.h>
 #include <wx/msgdlg.h>
 #include <wx/richmsgdlg.h>
+#include <wx/string.h>
 #include <wx/textctrl.h>
 #include <wx/statline.h>
+#include <wx/translation.h>
 #include "Widgets/Button.hpp"
 #include "Widgets/CheckBox.hpp"
 #include "Widgets/TextInput.hpp"
@@ -68,6 +77,10 @@ struct MsgDialog : DPIDialog
 	virtual void on_dpi_changed(const wxRect& suggested_rect);
 	void SetButtonLabel(wxWindowID btn_id, const wxString& label, bool set_focus = false);
 	void show_text_input(wxString const & title);
+	// Public wrapper around add_button — lets callers append custom-labelled choice buttons to an
+	// already-constructed dialog (used by the H2C rack hotend "Jump to the upgrade page" prompt).
+	// Purely additive; existing dialogs are unaffected.
+	void AddButton(wxWindowID btn_id, const wxString& label, bool set_focus = false) { add_button(btn_id, set_focus, label); }
 
 protected:
 	enum {
@@ -105,9 +118,9 @@ protected:
 class ErrorDialog : public MsgDialog
 {
 public:
-	// If monospaced_font is true, the error message is displayed using html <code><pre></pre></code> tags,
-	// so that the code formatting will be preserved. This is useful for reporting errors from the placeholder parser.
-	ErrorDialog(wxWindow *parent, const wxString &temp_msg, bool courier_font);
+	// If has_code_excerpts is true, code excerpts (a source line and the caret line below it) render
+	// monospaced so the caret aligns. Used for placeholder-parser errors.
+	ErrorDialog(wxWindow *parent, const wxString &temp_msg, bool has_code_excerpts);
 	ErrorDialog(ErrorDialog &&) = delete;
 	ErrorDialog(const ErrorDialog &) = delete;
 	ErrorDialog &operator=(ErrorDialog &&) = delete;
@@ -176,7 +189,6 @@ public:
 // Generic rich message dialog, used intead of wxRichMessageDialog
 class RichMessageDialog : public MsgDialog
 {
-	wxCheckBox* m_checkBox{ nullptr };
 	wxString	m_checkBoxText;
 	bool		m_checkBoxValue{ false };
 	wxString    m_textInputText;
@@ -422,7 +434,6 @@ private:
     wxString      m_new_keys;
     Button *      m_update_btn = nullptr;
     Button *      m_later_btn  = nullptr;
-    wxStaticText *m_msg_text   = nullptr;
 };
 
 
@@ -442,6 +453,32 @@ private:
 
 public:
     bool m_show_again{false};
+};
+
+// Multi-item filament-blacklist warning dialog with per-item wiki links. Replaces the plain
+// MessageDialog used for warnings so stacked accumulate-all warnings render with their own
+// optional Wiki link.
+struct FilamentWarningInfo
+{
+   wxString info_msg;
+   wxString wiki_url;
+};
+
+class FilamentWarningDialog : public MsgDialog
+{
+public:
+    FilamentWarningDialog(wxWindow *parent, const wxString &title, std::vector<FilamentWarningInfo> infos);
+    FilamentWarningDialog(FilamentWarningDialog &&)                 = delete;
+    FilamentWarningDialog(const FilamentWarningDialog &)            = delete;
+    FilamentWarningDialog &operator=(FilamentWarningDialog &&)      = delete;
+    FilamentWarningDialog &operator=(const FilamentWarningDialog &) = delete;
+    virtual ~FilamentWarningDialog()                                = default;
+
+private:
+    void BuildContent();
+
+private:
+    std::vector<FilamentWarningInfo> m_messages;
 };
 
 }

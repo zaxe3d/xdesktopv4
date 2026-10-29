@@ -1,10 +1,20 @@
 #include "RecenterDialog.hpp"
 #include "GUI_App.hpp"
+#include "slic3r/GUI/GUI_Utils.hpp"
 #include <slic3r/GUI/I18N.hpp>
+#include <wx/colour.h>
+#include "slic3r/GUI/Widgets/Button.hpp"
+#include <wx/dcclient.h>
+#include <wx/dc.h>
 #include <wx/dcgraph.h>
 #include <wx/dcmemory.h>
 #include <slic3r/GUI/Widgets/Label.hpp>
 #include <slic3r/GUI/Widgets/DialogButtons.hpp>
+#include <wx/event.h>
+#include <wx/string.h>
+#include <wx/gdicmn.h>
+#include <wx/sizer.h>
+#include <wx/panel.h>
 
 #define BORDER FromDIP(25)
 #define DRAW_PANEL_SIZE wxSize(FromDIP(475), FromDIP(100))
@@ -18,8 +28,11 @@ RecenterDialog::RecenterDialog(wxWindow* parent, wxWindowID id, const wxString& 
     std::string icon_path = (boost::format("%1%/images/XDesktopTitle.ico") % resources_dir()).str();
     SetIcon(wxIcon(encode_path(icon_path.c_str()), wxBITMAP_TYPE_ICO));
 
-    hint1 = _L("Please home all axes (click ");
-    hint2 = _L(") to locate the toolhead's position. This prevents device moving beyond the printable boundary and causing equipment wear.");
+    // TRN %1% marks where the Home button icon is drawn; keep it in the translation.
+    const wxString hint = _L("Please home all axes (click %1%) to locate the toolhead's position. This prevents device moving beyond the printable boundary and causing equipment wear.");
+    const int      icon_pos = hint.Find("%1%");
+    hint1 = icon_pos == wxNOT_FOUND ? hint : hint.Left(icon_pos);
+    hint2 = icon_pos == wxNOT_FOUND ? wxString() : hint.Mid(icon_pos + 3);
 
     init_bitmap();
 
