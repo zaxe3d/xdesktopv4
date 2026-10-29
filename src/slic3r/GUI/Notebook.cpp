@@ -215,6 +215,7 @@ bool ButtonsListCtrl::InsertPage(size_t n, const wxString &text, bool bSelect /*
     });
     Slic3r::GUI::wxGetApp().UpdateDarkUI(btn);
     m_pageButtons.insert(m_pageButtons.begin() + n, btn);
+    m_pageLabels.insert(m_pageLabels.begin() + n, text); // ORCA
     m_buttons_sizer->Insert(n, btn, wxSizerFlags().Expand().Border(wxBOTTOM, 1));
     m_buttons_sizer->SetRows(m_buttons_sizer->GetRows() + 1);
     m_sizer->Layout();
@@ -225,6 +226,7 @@ void ButtonsListCtrl::RemovePage(size_t n)
 {
     Button* btn = m_pageButtons[n];
     m_pageButtons.erase(m_pageButtons.begin() + n);
+    m_pageLabels.erase(m_pageLabels.begin() + n); // ORCA
     m_buttons_sizer->Remove(n);
 #if __WXOSX__
     RemoveChild(btn);
@@ -251,6 +253,17 @@ void ButtonsListCtrl::SetPageText(size_t n, const wxString& strText)
 {
     Button* btn = m_pageButtons[n];
     btn->SetLabel(strText);
+    if(!strText.empty())  // ORCA
+        m_pageLabels[n] = strText;
+}
+
+// ORCA
+void ButtonsListCtrl::SetCompact(size_t n, bool compact)
+{
+    int em = em_unit(this);
+    Button* btn = m_pageButtons[n];
+    btn->SetMinSize({(compact ? 40 : 136) * em / 10, 36 * em / 10});
+    btn->SetLabel(compact ? "" : (" " +  m_pageLabels[n]));
 }
 
 wxString ButtonsListCtrl::GetPageText(size_t n) const

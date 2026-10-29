@@ -2,7 +2,10 @@
 #include "Label.hpp"
 
 #include <wx/dcgraph.h>
-
+#include <wx/tipwin.h>
+#ifdef __APPLE__
+#include "libslic3r/MacUtils.hpp"
+#endif
 BEGIN_EVENT_TABLE(Button, StaticBox)
 
 EVT_LEFT_DOWN(Button::mouseDown)
@@ -29,10 +32,10 @@ Button::Button()
         std::make_pair(0xF0F0F1, (int) StateColor::Disabled),
         std::make_pair(0x52c7b8, (int) StateColor::Hovered | StateColor::Checked),
         std::make_pair(0x009ADE, (int) StateColor::Checked),
-        std::make_pair(*wxLIGHT_GREY, (int) StateColor::Hovered), 
+        std::make_pair(*wxLIGHT_GREY, (int) StateColor::Hovered),
         std::make_pair(*wxWHITE, (int) StateColor::Normal));
     text_color       = StateColor(
-        std::make_pair(*wxLIGHT_GREY, (int) StateColor::Disabled), 
+        std::make_pair(*wxLIGHT_GREY, (int) StateColor::Disabled),
         std::make_pair(*wxBLACK, (int) StateColor::Normal));
 }
 
@@ -45,6 +48,8 @@ Button::Button(wxWindow* parent, wxString text, wxString icon, long style, int i
 bool Button::Create(wxWindow* parent, wxString text, wxString icon, long style, int iconSize, wxWindowID btn_id)
 {
     StaticBox::Create(parent, btn_id, wxDefaultPosition, wxDefaultSize, style);
+    // Zaxe: the left sidebar creates its buttons with wxVERTICAL; upstream uses the vertical flag for this
+    vertical = (style & wxVERTICAL) != 0;
     state_handler.attach({&text_color});
     state_handler.update_binds();
     //BBS set default font
@@ -60,9 +65,11 @@ bool Button::Create(wxWindow* parent, wxString text, wxString icon, long style, 
 
 void Button::SetLabel(const wxString& label)
 {
-    wxWindow::SetLabel(label);
-    messureSize();
-    Refresh();
+    if (label != wxWindow::GetLabel()) {
+        wxWindow::SetLabel(label);
+        messureSize();
+        Refresh();
+    }
 }
 
 bool Button::SetFont(const wxFont& font)
@@ -75,15 +82,19 @@ bool Button::SetFont(const wxFont& font)
 
 void Button::SetIcon(const wxString& icon)
 {
+    auto tmpBitmap = ScalableBitmap(this, icon.ToStdString(), this->active_icon.px_cnt());
     if (!icon.IsEmpty()) {
         //BBS set button icon default size to 20
-        this->active_icon = ScalableBitmap(this, icon.ToStdString(), this->active_icon.px_cnt());
+        if (!tmpBitmap.bmp().IsSameAs(this->active_icon.bmp())) {
+            this->active_icon = tmpBitmap;
+            Refresh();
+        }
     }
     else
     {
         this->active_icon = ScalableBitmap();
+        Refresh();
     }
-    Refresh();
 }
 
 void Button::SetInactiveIcon(const wxString &icon)
@@ -100,6 +111,12 @@ void Button::SetInactiveIcon(const wxString &icon)
 void Button::SetMinSize(const wxSize& size)
 {
     minSize = size;
+    messureSize();
+}
+
+void Button::SetMaxSize(const wxSize& size)
+{
+    wxWindow::SetMaxSize(size);
     messureSize();
 }
 
@@ -148,7 +165,12 @@ bool Button::GetValue() const { return state_handler.states() & StateHandler::Ch
 
 void Button::SetCenter(bool isCenter)
 {
-    this->isCenter = isCenter;
+    this->isCenter = isCenter; }
+
+void Button::SetVertical(bool vertical)
+{
+    this->vertical = vertical;
+    messureSize();
 }
 
 //                           Background                                             Foreground                       Border on focus
@@ -200,19 +222,24 @@ void Button::SetStyle(const ButtonStyle style, const ButtonType type)
                    style == ButtonStyle::Disabled ? btn_disabled :
                                                     btn_regular  ;
 
-    this->SetBackgroundColor(StateColor(
-        std::pair(wxColour(clr_arr[3]), (int)StateColor::NotHovered),
+    auto bg_color = StateColor(
         std::pair(wxColour(clr_arr[0]), (int)StateColor::Disabled),
         std::pair(wxColour(clr_arr[1]), (int)StateColor::Pressed),
         std::pair(wxColour(clr_arr[2]), (int)StateColor::Hovered),
         std::pair(wxColour(clr_arr[3]), (int)StateColor::Normal),
         std::pair(wxColour(clr_arr[4]), (int)StateColor::Enabled)
-    ));
-    this->SetBorderColor(StateColor(
-        std::pair(wxColour(clr_arr[3]), (int)StateColor::NotFocused),
+    );
+    bg_color.setTakeFocusedAsHovered(false);
+    this->SetBackgroundColor(bg_color);
+    wxColour focus_clr = clr_arr[is_dark ? 8 : 9];
+    auto border_color = StateColor(
         std::pair(wxColour(clr_arr[0]), (int)StateColor::Disabled),
-        std::pair(wxColour(clr_arr[is_dark ? 8 : 9]), (int)StateColor::Focused)
-    ));
+        std::pair(wxColour(clr_arr[2]), (int)(StateColor::Hovered | ~StateColor::Focused)),
+        std::pair(wxColour(focus_clr ), (int)StateColor::Focused),
+        std::pair(wxColour(clr_arr[3]), (int)StateColor::Normal)
+    );
+    border_color.setTakeFocusedAsHovered(false);
+    this->SetBorderColor(border_color);
     this->SetTextColor(StateColor(
         std::pair(wxColour(clr_arr[5]), (int)StateColor::Disabled),
         std::pair(wxColour(clr_arr[7]), (int)StateColor::Hovered),
@@ -236,6 +263,8 @@ void Button::Rescale()
 
     if(m_has_style)
         SetStyle(m_style, m_type);
+
+    Refresh();
 }
 
 void Button::paintEvent(wxPaintEvent& evt)
@@ -258,45 +287,46 @@ void Button::render(wxDC& dc)
     dc.SetBrush(*wxTRANSPARENT_BRUSH);
     // calc content size
     wxSize szIcon;
-    wxSize szContent = textSize.GetSize();
+    wxSize textSize = this->textSize.GetSize();
 
     ScalableBitmap icon;
     if (m_selected || ((states & (int)StateColor::State::Hovered) != 0))
         icon = active_icon;
     else
         icon = inactive_icon;
-    int padding = 5;
-
-    bool is_vertical = (GetWindowStyle() & wxVERTICAL) != 0;
-
+    wxSize padding = this->paddingSize;
+    int spacing = 5;
+    // Wrap text
+    auto text = GetLabel();
+    if (vertical && textSize.x + padding.x * 2 > size.x) {
+        Label::split_lines(dc, size.x - padding.x * 2, text, text, 2);
+        textSize = dc.GetMultiLineTextExtent(text);
+        if (padding.x * 2 + textSize.x > size.x) {
+            text = wxControl::Ellipsize(text, dc, wxELLIPSIZE_END, size.x - padding.x * 2);
+            textSize = dc.GetMultiLineTextExtent(text);
+        }
+    }
+    auto szContent = textSize;
     if (icon.bmp().IsOk()) {
         if (szContent.y > 0) {
-            // BBS norrow size between text and icon
-            if (is_vertical) {
-                szContent.y += padding;
-            } else {
-                szContent.x += padding;
-            }
+            //BBS norrow size between text and icon
+            if (vertical)
+                szContent.y += spacing;
+            else
+                szContent.x += spacing;
         }
         szIcon = icon.GetBmpSize();
-        if (is_vertical) {
+        if (vertical) {
             szContent.y += szIcon.y;
-            if (szIcon.x > szContent.x)
-                szContent.x = szIcon.x;
-            if (szContent.y > size.y) {
-                int d = std::min(padding, szContent.y - size.y);
-                padding -= d;
-                szContent.y -= d;
-            }
+            if (szIcon.x > szContent.x) szContent.x = szIcon.x;
         } else {
             szContent.x += szIcon.x;
-            if (szIcon.y > szContent.y)
-                szContent.y = szIcon.y;
-            if (szContent.x > size.x) {
-                int d = std::min(padding, szContent.x - size.x);
-                padding -= d;
-                szContent.x -= d;
-            }
+            if (szIcon.y > szContent.y) szContent.y = szIcon.y;
+        }
+        if (szContent.x > size.x) {
+            int d = std::min(padding.x, (szContent.x - size.x) / 2);
+            padding.x -= d;
+            szContent.x -= d;
         }
     }
     // move to center
@@ -309,29 +339,27 @@ void Button::render(wxDC& dc)
     // start draw
     wxPoint pt = rcContent.GetLeftTop();
     if (icon.bmp().IsOk()) {
-        if (is_vertical) {
+        if (vertical)
             pt.x += (rcContent.width - szIcon.x) / 2;
-            dc.DrawBitmap(icon.bmp(), pt);
-            // BBS norrow size between text and icon
-            pt.y += szIcon.y + padding;
+        else
+            pt.y += (rcContent.height - szIcon.y) / 2;
+        dc.DrawBitmap(icon.bmp(), pt);
+        //BBS norrow size between text and icon
+        if (vertical) {
+            pt.y += szIcon.y + spacing;
             pt.x = rcContent.x;
         } else {
-            pt.y += (rcContent.height - szIcon.y) / 2;
-            dc.DrawBitmap(icon.bmp(), pt);
-            // BBS norrow size between text and icon
-            pt.x += szIcon.x + padding;
+            pt.x += szIcon.x + spacing;
             pt.y = rcContent.y;
         }
     }
-    auto text = GetLabel();
     if (!text.IsEmpty()) {
-        if (pt.x + textSize.width > size.x)
-            text = wxControl::Ellipsize(text, dc, wxELLIPSIZE_END, size.x - pt.x);
-
-        if (is_vertical) {
-            pt.x += (rcContent.width - textSize.width) / 2;
+        if (vertical) {
+            pt.x += (rcContent.width - textSize.x) / 2;
         } else {
-            pt.y += (rcContent.height - textSize.height) / 2;
+            if (pt.x + textSize.x > size.x)
+                text = wxControl::Ellipsize(text, dc, wxELLIPSIZE_END, size.x - pt.x);
+            pt.y += (rcContent.height - textSize.y) / 2;
         }
         dc.SetTextForeground(text_color.colorForStates(states));
 #if 0
@@ -340,7 +368,12 @@ void Button::render(wxDC& dc)
         dc.DrawRectangle(pt, textSize.GetSize());
 #endif
 #ifdef __WXOSX__
-        pt.y -= textSize.x / 2;
+        pt.y -= this->textSize.x / 2;
+#endif
+#ifdef __APPLE__
+        if (Slic3r::is_mac_version_15()) {
+        pt.y -= FromDIP(1);
+    }
 #endif
         dc.DrawText(text, pt);
     }
@@ -351,50 +384,52 @@ void Button::messureSize()
     wxClientDC dc(this);
     dc.GetTextExtent(GetLabel(), &textSize.width, &textSize.height, &textSize.x, &textSize.y);
     wxSize szContent = textSize.GetSize();
-    bool is_vertical = (GetWindowStyle() & wxVERTICAL) != 0;
     if (this->active_icon.bmp().IsOk()) {
         if (szContent.y > 0) {
             //BBS norrow size between text and icon
-            if (is_vertical) {
+            if (vertical)
                 szContent.y += 5;
-            } else {
+            else
                 szContent.x += 5;
-            }
         }
         wxSize szIcon = this->active_icon.GetBmpSize();
-        if (is_vertical) {
+        if (vertical) {
             szContent.y += szIcon.y;
-            if (szIcon.x > szContent.x)
-                szContent.x = szIcon.x;
+            if (szIcon.x > szContent.x) szContent.x = szIcon.x;
         } else {
             szContent.x += szIcon.x;
-            if (szIcon.y > szContent.y)
-                szContent.y = szIcon.y;
+            if (szIcon.y > szContent.y) szContent.y = szIcon.y;
         }
     }
     wxSize size = szContent + paddingSize * 2;
-    if (is_vertical) {
-        if (minSize.GetWidth() > 0) {
+    if (GetWindowStyle() & wxVERTICAL) {
+        // Zaxe: vertical (left sidebar) buttons keep their minimum width and grow in height with the content
+        if (minSize.GetWidth() > 0)
             size.SetWidth(minSize.GetWidth());
-        }
 
-        if (minSize.GetHeight() > size.GetHeight()) {
+        if (minSize.GetHeight() > size.GetHeight())
             wxWindow::SetMinSize(minSize);
-        } else {
+        else
             wxWindow::SetMinSize(size);
-        }
+        return;
+    }
 
-    } else {
-        if (minSize.GetHeight() > 0) {
-            size.SetHeight(minSize.GetHeight());
-        }
+    if (minSize.GetHeight() > 0)
+        size.SetHeight(minSize.GetHeight());
 
-        if (minSize.GetWidth() > size.GetWidth()) {
-            wxWindow::SetMinSize(minSize);
-        } else {
-            wxWindow::SetMinSize(size);
+    if (auto w = GetMaxWidth(); w > 0 && size.GetWidth() > w) {
+        size.SetWidth(GetMaxWidth());
+
+        const wxString& tip_str = GetToolTipText();
+        if (tip_str.IsEmpty()) {
+            SetToolTip(GetLabel());
         }
     }
+
+    if (minSize.GetWidth() > size.GetWidth())
+        wxWindow::SetMinSize(minSize);
+    else
+        wxWindow::SetMinSize(size);
 }
 
 void Button::mouseDown(wxMouseEvent& event)
@@ -434,7 +469,7 @@ void Button::keyDownUp(wxKeyEvent &event)
         return;
     }
     if (event.GetEventType() == wxEVT_KEY_DOWN &&
-        (event.GetKeyCode() == WXK_TAB || event.GetKeyCode() == WXK_LEFT || event.GetKeyCode() == WXK_RIGHT 
+        (event.GetKeyCode() == WXK_TAB || event.GetKeyCode() == WXK_LEFT || event.GetKeyCode() == WXK_RIGHT
         || event.GetKeyCode() == WXK_UP || event.GetKeyCode() == WXK_DOWN))
         HandleAsNavigationKey(event);
     else
@@ -468,3 +503,73 @@ WXLRESULT Button::MSWWindowProc(WXUINT nMsg, WXWPARAM wParam, WXLPARAM lParam)
 #endif
 
 bool Button::AcceptsFocus() const { return canFocus; }
+
+void Button::EnableTooltipEvenDisabled()
+{
+#if defined(_MSC_VER) || defined(_WIN32)
+    auto parent = this->GetParent();
+    if (parent)
+    {
+        parent->Bind(wxEVT_MOTION, &Button::OnParentMotion, this);
+        parent->Bind(wxEVT_LEAVE_WINDOW, &Button::OnParentLeave, this);
+    };
+#endif
+};
+
+void Button::OnParentMotion(wxMouseEvent& event)
+{
+    auto parent = this->GetParent();
+    if (!parent) return event.Skip();
+
+    wxPoint pos = parent->ClientToScreen(event.GetPosition());
+    wxRect screen_rect = this->GetScreenRect();
+    wxString tip = this->GetToolTipText();
+    if (!tip.IsEmpty() && !this->IsEnabled() && screen_rect.Contains(pos))
+    {
+        if (!tipWindow)
+        {
+            tipWindow = new wxTipWindow(this, tip);
+            tipWindow->Bind(wxEVT_DESTROY, [this](wxEvent& event) { this->tipWindow = nullptr;});
+            tipWindow->Enable(false);
+        }
+
+        if (tipWindow->GetLabel() != tip)
+        {
+            tipWindow->SetLabel(tip);
+        }
+
+        tipWindow->Position(wxGetMousePosition(), wxSize(0, 0));
+        tipWindow->Popup();
+    }
+    else
+    {
+        if (tipWindow)
+        {
+            delete tipWindow;
+            tipWindow = nullptr;
+        }
+    }
+
+    event.Skip();
+}
+
+void Button::OnParentLeave(wxMouseEvent& event)
+{
+    auto parent = this->GetParent();
+    if (!parent) return event.Skip();
+
+    if (tipWindow)
+    {
+        wxPoint pos = parent->ClientToScreen(event.GetPosition());
+        wxRect screen_rect = this->GetScreenRect();
+        wxString tip = this->GetToolTipText();
+        if (!screen_rect.Contains(pos))
+        {
+            tipWindow->Dismiss();
+            delete tipWindow;
+            tipWindow = nullptr;
+        }
+    }
+
+    event.Skip();
+}

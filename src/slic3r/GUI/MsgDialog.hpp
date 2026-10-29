@@ -14,6 +14,7 @@
 #include "Widgets/Button.hpp"
 #include "Widgets/CheckBox.hpp"
 #include "Widgets/TextInput.hpp"
+#include "Widgets/HyperLink.hpp"
 #include "BBLStatusBar.hpp"
 #include "BBLStatusBarSend.hpp"
 #include "libslic3r/Semver.hpp"
@@ -79,7 +80,7 @@ protected:
 		VERT_SPACING = 15,//TO
 	};
 
-	MsgDialog(wxWindow *parent, const wxString &title, const wxString &headline, long style = wxOK, wxBitmap bitmap = wxNullBitmap);
+	MsgDialog(wxWindow *parent, const wxString &title, const wxString &headline, long style = wxOK, wxBitmap bitmap = wxNullBitmap, const wxString &forward_str = "");
 	// returns pointer to created button
 	Button* add_button(wxWindowID btn_id, bool set_focus = false, const wxString& label = wxString());
 	// returns pointer to found button or NULL
@@ -96,6 +97,7 @@ protected:
     MsgButtonsHash  m_buttons;
 	CheckBox* m_checkbox_dsa{nullptr};
 	TextInput* m_text_input{ nullptr };
+    wxString  m_forward_str;
 };
 
 
@@ -105,7 +107,7 @@ class ErrorDialog : public MsgDialog
 public:
 	// If monospaced_font is true, the error message is displayed using html <code><pre></pre></code> tags,
 	// so that the code formatting will be preserved. This is useful for reporting errors from the placeholder parser.
-	ErrorDialog(wxWindow *parent, const wxString &msg, bool courier_font);
+	ErrorDialog(wxWindow *parent, const wxString &temp_msg, bool courier_font);
 	ErrorDialog(ErrorDialog &&) = delete;
 	ErrorDialog(const ErrorDialog &) = delete;
 	ErrorDialog &operator=(ErrorDialog &&) = delete;
@@ -157,10 +159,13 @@ class MessageDialog : public MsgDialog
 {
 public:
 	// NOTE! Don't change a signature of contsrucor. It have to  be tha same as for wxMessageDialog
-	MessageDialog(	wxWindow *parent,
-		            const wxString& message,
-		            const wxString& caption = wxEmptyString,
-		            long style = wxOK);
+    MessageDialog(wxWindow       *parent,
+                  const wxString &message,
+                  const wxString &caption     = wxEmptyString,
+                  long            style       = wxOK,
+                  const wxString &forward_str = "",
+                  const wxString &link_text   = "",
+                  std::function<void(const wxString &)> link_callback = nullptr);
 	MessageDialog(MessageDialog&&) = delete;
 	MessageDialog(const MessageDialog&) = delete;
 	MessageDialog &operator=(MessageDialog&&) = delete;
@@ -430,9 +435,9 @@ public:
 
 private:
     Label* m_text_basic;
-    wxHyperlinkCtrl* m_link_server_state;
+    HyperLink* m_link_server_state; // ORCA
     Label* m_text_proposal;
-    wxHyperlinkCtrl* m_text_wiki;
+    HyperLink* m_text_wiki; // ORCA
     Button *         m_button_confirm;
 
 public:
