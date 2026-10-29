@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 22:06+0300\n"
+"POT-Creation-Date: 2026-10-29 23:22+0300\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -881,18 +881,23 @@ msgstr "Kijelölés"
 msgid "Plate"
 msgstr "Tálca"
 
+# AI Translated
+# Needs human review: Glossary cell empty for hu; reused the catalog's 'Elosztás' (Distribute left-right etc.)
 msgid "Distribute"
-msgstr ""
+msgstr "Elosztás"
 
 # AI Translated
 msgid "Coordinate system used for transform actions."
 msgstr "A transzformációs műveletekhez használt koordináta-rendszer."
 
+# AI Translated
+# Needs human review: Tooltip in the object manipulation panel; check it reads right next to the align buttons
 msgid "Reference for alignment"
-msgstr ""
+msgstr "Igazítás referenciája"
 
+# AI Translated
 msgid "Select at least 3 parts or objects"
-msgstr ""
+msgstr "Válassz ki legalább 3 tárgyat vagy objektumot"
 
 # AI Translated
 msgid "Align left"
@@ -946,8 +951,11 @@ msgstr "Elosztás fel-le irányban"
 msgid "Drop"
 msgstr "Lehelyezés"
 
+# AI Translated
 msgid "Move the selection along Z so that its lowest point touches the bed."
 msgstr ""
+"A kijelölés mozgatása Z mentén úgy, hogy a legalacsonyabb pontja érintse az "
+"asztalt."
 
 # AI Translated
 msgid "Absolute"
@@ -1371,6 +1379,9 @@ msgstr "Tükrözés beállítása"
 msgid "Embossed text"
 msgstr "Dombornyomott szöveg"
 
+msgid "Default font"
+msgstr "Az alapértelmezett nyomtató"
+
 msgid "Enter emboss gizmo"
 msgstr "Belépés a dombornyomás gizmóba"
 
@@ -1411,9 +1422,6 @@ msgstr "MODERN"
 
 msgid "First font"
 msgstr "Első betűtípus"
-
-msgid "Default font"
-msgstr "Az alapértelmezett nyomtató"
 
 msgid "Advanced"
 msgstr "Haladó"
@@ -1863,7 +1871,7 @@ msgid "Stroke of shape (%1%) contains unsupported: %2%."
 msgstr "Az alakzat körvonala (%1%) nem támogatott elemet tartalmaz: %2%."
 
 # AI Translated
-msgid "Not valid state please report reproduction steps on github"
+msgid "Not valid state please report reproduction steps on GitHub"
 msgstr ""
 "Érvénytelen állapot, kérlek, jelentsd a reprodukálás lépéseit a GitHubon"
 
@@ -1872,11 +1880,11 @@ msgid "No embossed file"
 msgstr "Nincs dombornyomott fájl"
 
 # AI Translated
-msgid "Missing svg file in embossed shape"
+msgid "Missing SVG file in embossed shape"
 msgstr "Hiányzik az SVG fájl a dombornyomott alakzatból"
 
 # AI Translated
-msgid "Missing data of svg file"
+msgid "Missing data of SVG file"
 msgstr "Hiányoznak az SVG fájl adatai"
 
 msgid "Face the camera"
@@ -2207,17 +2215,23 @@ msgstr "Belépés az összeállítás gizmóba"
 msgid "Leaving Assembly gizmo"
 msgstr "Kilépés az összeállítás gizmóból"
 
+# AI Translated
 msgid "Parts of a cut object cannot be moved"
-msgstr ""
+msgstr "A vágott objektum tárgyai nem mozgathatók"
 
+# AI Translated
 msgid "Aligning to the plate is available in X and Y only"
-msgstr ""
+msgstr "A tálcához igazítás csak X és Y irányban érhető el"
 
+# AI Translated
 msgid "Turn off Auto-Drop for the selected objects to move them in Z"
 msgstr ""
+"Kapcsold ki a kijelölt objektumok automatikus leejtését, hogy Z irányban "
+"mozgathasd őket"
 
+# AI Translated
 msgid "All selected objects must be on the same plate"
-msgstr ""
+msgstr "Az összes kijelölt objektumnak ugyanazon a tálcán kell lennie"
 
 msgid "Shift+"
 msgstr "Shift+"
@@ -3288,9 +3302,6 @@ msgstr "Öblítés ebbe a tárgyba"
 msgid "Flush into objects' support"
 msgstr "Öblítés a tárgyak támaszába"
 
-msgid "Edit in Parameter Table"
-msgstr "Szerkesztés a paramétertáblában"
-
 msgid "Convert from Inches"
 msgstr "Átváltás hüvelykről"
 
@@ -3313,6 +3324,43 @@ msgid "Assemble the selected objects into an object with single part"
 msgstr ""
 "Összeállítja a kijelölt objektumokat egy egyetlen részből álló objektummá"
 
+msgid "Along X Axis"
+msgstr "X-tengely mentén"
+
+msgid "Mirror along the X axis"
+msgstr "Tükrözés az X-tengely mentén"
+
+msgid "Along Y Axis"
+msgstr "Y-tengely mentén"
+
+msgid "Mirror along the Y axis"
+msgstr "Tükrözés az Y-tengely mentén"
+
+msgid "Along Z Axis"
+msgstr "Z-tengely mentén"
+
+msgid "Mirror along the Z axis"
+msgstr "Tükrözés a Z-tengely mentén"
+
+# AI Translated
+msgid "Transform"
+msgstr "Transzformálás"
+
+msgid "Split"
+msgstr "Szétválaszt"
+
+msgid "To Objects"
+msgstr "Objektumokra"
+
+msgid "Split the selected object into multiple objects"
+msgstr "Szétválasztja a kijelölt objektumot több objektumra"
+
+msgid "To Parts"
+msgstr "Tárgyakra"
+
+msgid "Split the selected object into multiple parts"
+msgstr "Szétválasztja a kijelölt objektumot több tárgyra"
+
 msgid "Mesh boolean"
 msgstr "Modellháló logikai műveletek"
 
@@ -3321,26 +3369,12 @@ msgstr ""
 "Modellhálóval kapcsolatos logikai műveletek, mint például az egyesítés és "
 "kivonás"
 
-msgid "Along X Axis"
-msgstr "X-tengely mentén"
+# AI Translated
+msgid "Modify"
+msgstr "Módosítás"
 
-msgid "Mirror along the X Axis"
-msgstr "Tükrözés az X-tengely mentén"
-
-msgid "Along Y Axis"
-msgstr "Y-tengely mentén"
-
-msgid "Mirror along the Y Axis"
-msgstr "Tükrözés az Y-tengely mentén"
-
-msgid "Along Z Axis"
-msgstr "Z-tengely mentén"
-
-msgid "Mirror along the Z Axis"
-msgstr "Tükrözés a Z-tengely mentén"
-
-msgid "Mirror object"
-msgstr "Objektum tükrözése"
+msgid "More"
+msgstr "Több"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3401,23 +3435,9 @@ msgstr "Modellek hozzáadása"
 msgid "Show Labels"
 msgstr "Címkék megjelenítése"
 
-msgid "To Objects"
-msgstr "Objektumokra"
-
-msgid "Split the selected object into multiple objects"
-msgstr "Szétválasztja a kijelölt objektumot több objektumra"
-
-msgid "To Parts"
-msgstr "Tárgyakra"
-
-msgid "Split the selected object into multiple parts"
-msgstr "Szétválasztja a kijelölt objektumot több tárgyra"
-
-msgid "Split"
-msgstr "Szétválaszt"
-
-msgid "Split the selected object"
-msgstr "Szétválasztja a kijelölt objektumot"
+# AI Translated
+msgid "Instances"
+msgstr "Példányok"
 
 msgid "Auto orientation"
 msgstr "Automatikus orientáció"
@@ -3425,6 +3445,9 @@ msgstr "Automatikus orientáció"
 msgid "Auto orient the object to improve print quality"
 msgstr ""
 "Az objektum automatikus tájolása a nyomtatási minőség javítása érdekében."
+
+msgid "Paste Process Settings"
+msgstr "Folyamatbeállítások beillesztése"
 
 msgid "Edit"
 msgstr "Szerkesztés"
@@ -3463,11 +3486,20 @@ msgstr "Elrendezés"
 msgid "Arrange current plate"
 msgstr "Aktuális tálca elrendezése"
 
-msgid "Reload All"
-msgstr "Összes újratöltése"
+msgid "Auto Rotate"
+msgstr "Automatikus forgatás"
 
-msgid "Reload all from disk"
-msgstr "Összes újratöltése lemezről"
+msgid "Auto rotate current plate"
+msgstr "Aktuális tálca automatikus forgatása"
+
+msgid "Name"
+msgstr "Név"
+
+msgid "All Plates"
+msgstr "Összes tálca"
+
+msgid "Order By"
+msgstr ""
 
 # AI Translated
 msgid "Fix All"
@@ -3485,17 +3517,11 @@ msgstr "Összes tálca javítása"
 msgid "Fix all models on all plates"
 msgstr "Az összes tálca összes modelljének javítása"
 
-msgid "Auto Rotate"
-msgstr "Automatikus forgatás"
+msgid "Reload All"
+msgstr "Összes újratöltése"
 
-msgid "Auto rotate current plate"
-msgstr "Aktuális tálca automatikus forgatása"
-
-msgid "Delete Plate"
-msgstr "Tálca törlése"
-
-msgid "Remove the selected plate"
-msgstr "Kiválasztott tálca eltávolítása"
+msgid "Reload all from disk"
+msgstr "Összes újratöltése lemezről"
 
 msgid "Add instance"
 msgstr "Példány hozzáadása"
@@ -3529,11 +3555,8 @@ msgstr "Klónozás"
 msgid "Simplify Model"
 msgstr "Modell egyszerűsítése"
 
-msgid "Subdivision mesh"
-msgstr "Háló felosztása"
-
-msgid "(Lost color)"
-msgstr "(Elveszett szín)"
+msgid "Subdivision mesh (Lost color)"
+msgstr "Háló felosztása (Elveszett szín)"
 
 msgid "Center"
 msgstr "Közép"
@@ -3552,8 +3575,8 @@ msgstr "Folyamatbeállítások szerkesztése"
 msgid "Copy Process Settings"
 msgstr "Folyamatbeállítások másolása"
 
-msgid "Paste Process Settings"
-msgstr "Folyamatbeállítások beillesztése"
+msgid "Edit in Parameter Table"
+msgstr "Szerkesztés a paramétertáblában"
 
 msgid "Edit print parameters for a single object"
 msgstr "Nyomtatási paraméterek szerkesztése egy objektumhoz"
@@ -3576,8 +3599,11 @@ msgstr "Lezárás"
 msgid "Edit Plate Name"
 msgstr "Tálca nevének szerkesztése"
 
-msgid "Name"
-msgstr "Név"
+msgid "Delete Plate"
+msgstr "Tálca törlése"
+
+msgid "Remove the selected plate"
+msgstr "Kiválasztott tálca eltávolítása"
 
 msgid "Fila."
 msgstr "Fila."
@@ -3690,6 +3716,23 @@ msgstr "Hiba!"
 
 msgid "Failed to get the model data in the current file."
 msgstr "Nem sikerült beolvasni a modelladatokat az aktuális fájlba."
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+# AI Translated
+msgid "Z"
+msgstr "Z"
+
+#. TRN Size of a torus (ring): the diameter of its hole and the thickness of the ring.
+msgid "Inner diameter"
+msgstr ""
+
+msgid "Tube diameter"
+msgstr ""
 
 # AI Translated
 msgid "Add primitive"
@@ -3968,9 +4011,6 @@ msgstr "Vonaltípus"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "1x1 rács: %d mm"
-
-msgid "More"
-msgstr "Több"
 
 msgid "Open Preferences"
 msgstr "Beállítások megnyitása"
@@ -4754,8 +4794,8 @@ msgstr "G-kód fájl küldése MicroSD-kártyára"
 msgid "Successfully sent. Close current page in %s s"
 msgstr "Sikeresen elküldve. Az oldal bezárul %s mp-en belül"
 
-msgid "Storage needs to be inserted before sending to printer."
-msgstr "A nyomtatóra küldés előtt be kell helyezni egy tárolót."
+msgid "Insert storage or free up space before sending to the printer."
+msgstr ""
 
 msgid ""
 "Sending G-code file over LAN, but the Storage in the printer is abnormal and "
@@ -4978,6 +5018,10 @@ msgstr "Szkriptbővítmény kihagyva."
 # AI Translated
 msgid "Script plugin finished."
 msgstr "Szkriptbővítmény befejeződött."
+
+# AI Translated
+msgid "Script plugin started."
+msgstr "A szkriptbővítmény elindult."
 
 msgid "Printer"
 msgstr "Nyomtató"
@@ -5534,7 +5578,7 @@ msgid "Unknown C++ exception."
 msgstr "Ismeretlen C++ kivétel."
 
 # AI Translated
-msgid "Processing G-Code from previous file…"
+msgid "Processing G-code from previous file…"
 msgstr "G-code feldolgozása egy előző fájlból..."
 
 msgid "Slicing complete"
@@ -5955,12 +5999,549 @@ msgstr ""
 "Nem - Tiltsd le az Arachne falgenerátort, és állítsd a bolyhos felületet "
 "[Eltolás] módra"
 
+msgid ""
+"Set the maximum volumetric extrusion rate slope above zero to use extrusion "
+"rate smoothing."
+msgstr ""
+
+msgid ""
+"Arc fitting is unavailable for belt printers and when extrusion rate "
+"smoothing is enabled."
+msgstr ""
+
+msgid "Set wall loops above zero to use this setting."
+msgstr ""
+
+msgid "This setting is hidden because sparse infill density is zero."
+msgstr ""
+
+msgid ""
+"Infill anchors require nonzero sparse infill density and a pattern other "
+"than Concentric or Spiral Inset."
+msgstr ""
+
+msgid ""
+"Enable infill combination and use nonzero sparse infill density to show this "
+"setting."
+msgstr ""
+
+msgid ""
+"Select Gyroid, TPMS-D or TPMS-FK infill with sparse infill density greater "
+"than zero and less than 100%."
+msgstr ""
+
+msgid ""
+"Enable adaptive density for Gyroid, TPMS-D or TPMS-FK infill with sparse "
+"infill density greater than zero and less than 100%."
+msgstr ""
+
+msgid ""
+"Select Gyroid infill with nonzero sparse infill density and disable adaptive "
+"density to use this setting."
+msgstr ""
+
+msgid "The selected sparse infill pattern does not support multiline infill."
+msgstr ""
+
+msgid "The Line infill pattern does not support infill anchors."
+msgstr ""
+
+msgid ""
+"Select an infill pattern other than Line and set the maximum infill anchor "
+"length above zero."
+msgstr ""
+
+msgid ""
+"Select the Cross Zag or Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "Select the Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+
+msgid ""
+"Select the Zig Zag, Cross Zag or Locked Zag sparse infill pattern to use "
+"this setting."
+msgstr ""
+
+msgid ""
+"Select 3D Honeycomb infill with nonzero sparse infill density to use this "
+"setting."
+msgstr ""
+
+msgid "Enable spiral vase mode to use this setting."
+msgstr ""
+
+msgid "Enable spiral vase mode and spiral smoothing to use this setting."
+msgstr ""
+
+msgid ""
+"This setting requires top shell layers, or more than one bottom shell layer "
+"in spiral vase mode."
+msgstr ""
+
+msgid "This setting requires a top shell with nonzero top surface density."
+msgstr ""
+
+msgid "Set bottom shell layers above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use nonzero sparse infill density and an infill pattern and multiline "
+"setting that support infill smoothing."
+msgstr ""
+
+msgid "Set top surface expansion above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use a top or bottom shell with the Archimedean Chords or Octagram Spiral "
+"surface pattern."
+msgstr ""
+
+msgid "The selected sparse infill pattern does not support separated infills."
+msgstr ""
+
+msgid ""
+"Use a top shell with nonzero surface density and the Concentric, Spiral "
+"Inset, Archimedean Chords or Octagram Spiral surface pattern."
+msgstr ""
+
+msgid ""
+"Use bottom shell layers and the Concentric, Spiral Inset, Archimedean Chords "
+"or Octagram Spiral surface pattern."
+msgstr ""
+
+msgid ""
+"Use nonzero sparse infill density or top or bottom shell layers to edit this "
+"setting."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and set top shell layers above zero to edit top "
+"shell thickness."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and set bottom shell layers above zero to edit "
+"bottom shell thickness."
+msgstr ""
+
+msgid ""
+"Set default acceleration above zero to edit acceleration for individual "
+"extrusion roles."
+msgstr ""
+
+msgid "This setting requires the Marlin firmware G-code flavor."
+msgstr ""
+
+msgid ""
+"Jerk settings are unavailable while the printer uses junction deviation."
+msgstr ""
+
+msgid ""
+"Set the printer junction deviation limit above zero with the Marlin firmware "
+"G-code flavor to edit this setting."
+msgstr ""
+
+msgid ""
+"Set default jerk above zero to edit jerk for individual extrusion roles."
+msgstr ""
+
+msgid "Use a non-belt printer with skirt loops above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use a non-belt printer with skirt loops above zero and disable the full-"
+"height draft shield to edit skirt height."
+msgstr ""
+
+msgid "Skirts are unavailable for belt printers."
+msgstr ""
+
+msgid "Select a brim type other than No brim to use this setting."
+msgstr ""
+
+msgid "Enable a brim on a printer without a tilted belt to use this setting."
+msgstr ""
+
+msgid ""
+"Select a brim type with an editable width, or enable a brim on a tilted belt "
+"printer."
+msgstr ""
+
+msgid "This setting requires a belt printer with a tilted slicing plane."
+msgstr ""
+
+msgid ""
+"Enable a brim on a belt printer with a tilted slicing plane to use this "
+"setting."
+msgstr ""
+
+msgid "Enable walls or a brim to select the wall filament."
+msgstr ""
+
 # AI Translated
 msgid "Brim ear radius"
 msgstr "Peremfül sugara"
 
 msgid "Brim width"
 msgstr "Perem szélessége"
+
+msgid "Set brim width above zero to edit brim ear detection."
+msgstr ""
+
+msgid ""
+"Use painted brim ears or set brim width above zero to edit this setting."
+msgstr ""
+
+msgid ""
+"Select automatic brim ears on a printer without a tilted belt to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Select automatic or painted brim ears on a printer without a tilted belt to "
+"use this setting."
+msgstr ""
+
+msgid ""
+"Enable elephant foot compensation or set elephant foot layer density below "
+"100% to use this setting."
+msgstr ""
+
+msgid "Rafts are unavailable for belt printers."
+msgstr ""
+
+msgid "Enable support to edit this setting."
+msgstr ""
+
+msgid "Enable support or add raft layers to edit this setting."
+msgstr ""
+
+msgid "Select an automatic support type to edit the threshold angle."
+msgstr ""
+
+msgid ""
+"Select an automatic support type and set the threshold angle to zero to edit "
+"threshold overlap."
+msgstr ""
+
+msgid "Threshold overlap is unavailable for tree supports."
+msgstr ""
+
+msgid ""
+"Enable tree supports and select a style other than Organic or Default to "
+"show this setting."
+msgstr ""
+
+msgid ""
+"Enable tree supports with the Organic or Default style to show this setting."
+msgstr ""
+
+msgid ""
+"Independent support layer height is unavailable for organic tree supports."
+msgstr ""
+
+msgid ""
+"Enable tree supports and turn off automatic brim width to edit the tree "
+"support brim width."
+msgstr ""
+
+msgid "Enable tree supports to show the maximum bridge length."
+msgstr ""
+
+msgid ""
+"Tree supports use maximum bridge length instead of the bridge support "
+"setting."
+msgstr ""
+
+msgid "Enable automatic tree supports to show this setting."
+msgstr ""
+
+msgid ""
+"Set top or bottom support interface layers above zero to edit this setting."
+msgstr ""
+
+msgid ""
+"Enable a raft, or enable supports with top interface layers, to use support "
+"ironing."
+msgstr ""
+
+msgid ""
+"Enable support ironing with a raft or top support interface layers to show "
+"this setting."
+msgstr ""
+
+msgid ""
+"Set top or bottom support interface layers above zero to edit interface "
+"spacing."
+msgstr ""
+
+msgid ""
+"Support ironing requires a solid interface, so interface spacing cannot be "
+"edited."
+msgstr ""
+
+msgid "Enable walls, a skirt or a brim to edit inner wall line width."
+msgstr ""
+
+msgid "Enable support, a raft, or a skirt to select the support filament."
+msgstr ""
+
+msgid "Add raft layers to show raft contact distance."
+msgstr ""
+
+msgid ""
+"Raft contact distance is unavailable when the top support Z distance is zero."
+msgstr ""
+
+msgid "Add raft layers to show raft expansion."
+msgstr ""
+
+msgid ""
+"Slim, Strong and Hybrid tree supports use first layer expansion instead of "
+"raft expansion."
+msgstr ""
+
+msgid ""
+"Add a raft or choose a tree support style other than Slim or Strong to edit "
+"first layer expansion."
+msgstr ""
+
+msgid "Enable ironing to use this setting."
+msgstr ""
+
+msgid "Enable ironing with the Rectilinear pattern to edit ironing angles."
+msgstr ""
+
+msgid "Enable ironing or support ironing to edit ironing speed."
+msgstr ""
+
+msgid "Enable Z contouring to use this setting."
+msgstr ""
+
+msgid "Print order cannot be edited when the print sequence is By object."
+msgstr ""
+
+msgid "This setting is unavailable for Bambu Lab printers."
+msgstr ""
+
+msgid "This setting is unavailable in single extruder multimaterial mode."
+msgstr ""
+
+msgid "Enable ooze prevention to use this setting."
+msgstr ""
+
+msgid ""
+"Enable ooze prevention and use a positive number of preheat steps to show "
+"this setting."
+msgstr ""
+
+msgid ""
+"Enable the belt purge tower in the belt printer settings to use this setting."
+msgstr ""
+
+msgid "Enable the prime tower on a non-belt printer to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and tower interface features on a non-belt printer to "
+"use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and select wipe tower Type 2 on a non-Bambu, non-belt "
+"printer."
+msgstr ""
+
+msgid ""
+"Enable the prime tower on a non-belt printer and turn off skipping sparse "
+"tower layers to use layer combination."
+msgstr ""
+
+msgid ""
+"Enable the prime tower with Rib walls on a non-belt printer to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable a Type 2 prime tower with Cone walls on a non-Bambu, non-belt printer."
+msgstr ""
+
+msgid ""
+"Enable the prime tower on a non-belt printer and choose a wall type other "
+"than Rib to edit tower width."
+msgstr ""
+
+msgid ""
+"Enable a Type 2 prime tower on a non-Bambu, non-belt printer and disable "
+"single extruder multimaterial mode."
+msgstr ""
+
+msgid "Select Cyclic tool change ordering to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and either disable purging in the prime tower or "
+"disable single extruder multimaterial mode."
+msgstr ""
+
+msgid "Enable the prime tower to use this setting."
+msgstr ""
+
+msgid ""
+"Enable avoiding crossing walls to edit the maximum travel detour distance."
+msgstr ""
+
+msgid "Enable setting other flow ratios to use this setting."
+msgstr ""
+
+msgid "Enable slowing down for overhangs to use this setting."
+msgstr ""
+
+msgid ""
+"This setting is available in object settings rather than global print "
+"settings."
+msgstr ""
+
+msgid ""
+"Select a specific support interface filament and use the default support "
+"filament to show this setting."
+msgstr ""
+
+msgid "Enable fuzzy skin to use this setting."
+msgstr ""
+
+msgid "Enable fuzzy skin with Ripple noise to use this setting."
+msgstr ""
+
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic or Ripple to "
+"edit noise scale."
+msgstr ""
+
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic, Voronoi or "
+"Ripple to edit noise octaves."
+msgstr ""
+
+msgid "Enable fuzzy skin with Perlin or Billow noise to edit persistence."
+msgstr ""
+
+msgid "Select the Arachne wall generator to use this setting."
+msgstr ""
+
+msgid "Thin wall detection is unavailable with the Arachne wall generator."
+msgstr ""
+
+msgid "Disable role-based wipe speed to edit wipe speed manually."
+msgstr ""
+
+msgid "Enable inward wiping to edit inward wipe distance."
+msgstr ""
+
+msgid "This setting requires the Klipper G-code flavor."
+msgstr ""
+
+msgid "Enable acceleration to deceleration to edit its factor."
+msgstr ""
+
+msgid ""
+"Enable excluding objects with the Klipper G-code flavor to edit the outline "
+"tolerance."
+msgstr ""
+
+msgid "Enable making overhangs printable to use this setting."
+msgstr ""
+
+msgid ""
+"Enable only one wall on top surfaces with top shell layers, or use Arachne "
+"with a minimum wall length factor above 0.5."
+msgstr ""
+
+msgid "Enable converting holes to polyholes to use this setting."
+msgstr ""
+
+msgid "Enable overhang wall detection to use this setting."
+msgstr ""
+
+msgid "Reverse overhang direction is unavailable in spiral vase mode."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and enable reverse overhang direction to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable overhang wall detection and reverse overhang direction, disable "
+"spiral vase mode, and turn off reversing internal perimeters only."
+msgstr ""
+
+msgid "This setting requires a Bambu Lab printer."
+msgstr ""
+
+msgid "Enable small area infill flow compensation to edit its model."
+msgstr ""
+
+msgid "Scarf seams are unavailable in spiral vase mode and for belt printers."
+msgstr ""
+
+msgid ""
+"Enable scarf seams on a non-belt printer with spiral vase mode disabled to "
+"use this setting."
+msgstr ""
+
+msgid "Disable scarfing the entire loop to edit the minimum scarf length."
+msgstr ""
+
+msgid ""
+"Enable conditional scarf seams on a non-belt printer with spiral vase mode "
+"disabled to use this setting."
+msgstr ""
+
+msgid "Enable beam interlocking to use this setting."
+msgstr ""
+
+msgid "Disable beam interlocking to edit segmented region interlocking depth."
+msgstr ""
+
+msgid "Select the Lateral Lattice sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "Select the Lightning sparse infill pattern to use this setting."
+msgstr ""
+
+msgid ""
+"Infill rotation templates are unavailable for Adaptive Cubic and Support "
+"Cubic infill."
+msgstr ""
+
+msgid ""
+"Clear the sparse infill rotation template and choose a pattern other than "
+"Adaptive Cubic or Support Cubic to edit infill direction."
+msgstr ""
+
+msgid ""
+"Clear the solid infill rotation template to edit solid infill direction."
+msgstr ""
+
+msgid "Select the Lateral Honeycomb sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "The selected printer does not support wrapping detection."
+msgstr ""
+
+msgid "Enable the pad to edit this setting."
+msgstr ""
+
+msgid "Enable the pad around the object to edit this setting."
+msgstr ""
+
+msgid ""
+"Enable support and disable the pad around the object to edit object "
+"elevation."
+msgstr ""
 
 msgid ""
 "Spiral mode only works when wall loops is 1, support is disabled, clumping "
@@ -6470,6 +7051,15 @@ msgstr "A bemenetben szereplő néhány kiterjesztés érvénytelen"
 
 msgid "This parameter expects a valid template."
 msgstr "Ez a paraméter érvényes sablont vár."
+
+# AI Translated
+msgid ""
+"Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, "
+"XxY, ... and separate multiple volumes with |."
+msgstr ""
+"Érvénytelen ütközési térfogat formátum. Használd az XxY, XxY, ... vagy a "
+"ZMIN..ZMAX;XxY, XxY, ... formátumot, és a több térfogatot a | karakterrel "
+"válaszd el."
 
 msgid ""
 "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per "
@@ -7050,6 +7640,35 @@ msgstr "Bal fúvóka: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%\n"
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "Jobb fúvóka: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 
+msgid ""
+"The position or size of some models exceeds the assigned extruder's "
+"printable range. Please check and adjust the part's position or size to fit "
+"the printable range."
+msgstr ""
+
+msgid "Mirror object"
+msgstr "Objektum tükrözése"
+
+# AI Translated
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed. There is no "
+"free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+"A(z) %1% tálcán lévő törlőtorony már nem fér el ott, ahová helyezték. A "
+"tálcán nincs több szabad hely számára, ezért egy tárgyra került."
+
+# AI Translated
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed, so it was "
+"moved to free space on the plate."
+msgstr ""
+"A(z) %1% tálcán lévő törlőtorony már nem fér el ott, ahová helyezték, ezért "
+"a tálca egy szabad helyére került."
+
 msgid "Tool move"
 msgstr "Fej mozgatása"
 
@@ -7167,9 +7786,6 @@ msgstr "Összes szeletelése"
 msgid "Failed"
 msgstr "Sikertelen"
 
-msgid "All Plates"
-msgstr "Összes tálca"
-
 msgid "Stats"
 msgstr "Statisztika"
 
@@ -7229,8 +7845,10 @@ msgstr "Tengelyek"
 msgid "Gridlines"
 msgstr "Rácsvonalak"
 
+# AI Translated
+# Needs human review: Glossary cell empty for hu; check the term for this view mode
 msgid "Focus mode"
-msgstr ""
+msgstr "Fókuszmód"
 
 msgid "Labels"
 msgstr "Címkék"
@@ -7316,33 +7934,35 @@ msgstr "2 vagy több TPU filament egyidejű nyomtatása nem támogatott."
 msgid "Tool %d"
 msgstr "%d. eszköz"
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable range of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable range of the %2%."
 msgstr[0] ""
-"A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
-"túllépi a(z) %s nyomtatható tartományát."
+"A(z) %1% filament a(z) %2% helyre van téve, de a generált G-code útvonal "
+"túllépi a(z) %2% nyomtatható tartományát."
 msgstr[1] ""
-"A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
-"túllépi a(z) %s nyomtatható tartományát."
+"A(z) %1% filamentek a(z) %2% helyre vannak téve, de a generált G-code "
+"útvonal túllépi a(z) %2% nyomtatható tartományát."
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable height of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable height of the %2%."
 msgstr[0] ""
-"A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
-"túllépi a(z) %s nyomtatható magasságát."
+"A(z) %1% filament a(z) %2% helyre van téve, de a generált G-code útvonal "
+"túllépi a(z) %2% nyomtatható magasságát."
 msgstr[1] ""
-"A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
-"túllépi a(z) %s nyomtatható magasságát."
+"A(z) %1% filamentek a(z) %2% helyre vannak téve, de a generált G-code "
+"útvonal túllépi a(z) %2% nyomtatható magasságát."
 
 msgid "Open wiki for more information."
 msgstr "További információért nyisd meg a Wiki oldalt."
@@ -7544,16 +8164,6 @@ msgstr ""
 
 msgid "Open Network Test"
 msgstr "Hálózati teszt megnyitása"
-
-# AI Translated
-msgid "Benchmark 3D Scene"
-msgstr "3D jelenet teljesítménymérése"
-
-# AI Translated
-msgid "Measure how fast the 3D scene renders in Prepare and Preview"
-msgstr ""
-"Méri, milyen gyorsan jelenik meg a 3D jelenet az Előkészítés és az Előnézet "
-"fülön"
 
 msgid "Show Tip of the Day"
 msgstr "A nap tippjének megjelenítése"
@@ -7815,11 +8425,29 @@ msgstr "Ablakelrendezés visszaállítása"
 msgid "Reset to default window layout"
 msgstr "Visszaállítás az alapértelmezett ablakelrendezésre"
 
+msgid "Show 3Dconnexion Settings"
+msgstr ""
+
+msgid "Show/Hide 3Dconnexion devices settings dialog"
+msgstr "3Dconnexion-eszközbeállítások párbeszédablak megjelenítése/elrejtése"
+
 msgid "Show &Labels"
 msgstr "Címkék megjelenítése"
 
 msgid "Show object labels in 3D scene."
 msgstr "Objektumcímkék megjelenítése a 3D-térben"
+
+# AI Translated
+msgid "Show all collision volumes"
+msgstr "Minden ütközési térfogat megjelenítése"
+
+# AI Translated
+msgid ""
+"Show the full height of every configured collision volume, including on an "
+"empty bed."
+msgstr ""
+"Minden beállított ütközési térfogat teljes magasságának megjelenítése, üres "
+"asztalon is."
 
 msgid "Show &Overhang"
 msgstr "&Túlnyúlás megjelenítése"
@@ -8180,6 +8808,9 @@ msgstr "Letöltés"
 
 msgid "Download selected files from printer."
 msgstr "Kiválasztott fájlok letöltése a nyomtatóról."
+
+msgid "Select all files in the list for batch management."
+msgstr ""
 
 msgid "Batch manage files."
 msgstr "Fájlok kötegelt kezelése."
@@ -9157,6 +9788,10 @@ msgid "Troubleshoot Center"
 msgstr "Hibaelhárító központ"
 
 # AI Translated
+msgid "Benchmark 3D Scene"
+msgstr "3D jelenet teljesítménymérése"
+
+# AI Translated
 msgid "About OrcaSlicer"
 msgstr "Az OrcaSlicer névjegye"
 
@@ -9332,10 +9967,6 @@ msgid "Cut connectors"
 msgstr "Vágási csatlakozók"
 
 # AI Translated
-msgid "Instances"
-msgstr "Példányok"
-
-# AI Translated
 #, c-format, boost-format
 msgid "Instance %d"
 msgstr "%d. példány"
@@ -9399,6 +10030,20 @@ msgid ""
 msgstr ""
 "Ehhez a típushoz nem érhető el bővítményképesség.\n"
 "A használathoz engedélyezz vagy telepíts néhányat."
+
+msgid "Hidden by the current configuration."
+msgstr ""
+
+#, boost-format
+msgid "Hidden: %1%"
+msgstr ""
+
+msgid "Disabled by the current configuration."
+msgstr ""
+
+#, boost-format
+msgid "Disabled: %1%"
+msgstr ""
 
 # AI Translated
 msgid ""
@@ -9680,6 +10325,9 @@ msgstr "Összes objektum beállításainak megtekintése"
 
 msgid "Material settings"
 msgstr "Anyagbeállítások"
+
+msgid "The process flow ratio cannot be edited in this panel."
+msgstr ""
 
 # AI Translated
 msgid ""
@@ -11445,6 +12093,19 @@ msgstr "Használd a bal oldalon lévő ablakgombokat"
 msgid "(Requires restart)"
 msgstr "(Újraindítást igényel)"
 
+#. TRN "GPU" is the graphics card; the option only matters on computers that have two of them.
+msgid "Render on the discrete GPU"
+msgstr ""
+
+#. TRN DRI_PRIME is an environment variable name and must stay as it is.
+msgid ""
+"On a computer with two GPUs, run OrcaSlicer on the discrete GPU instead of "
+"the one that drives the display. Some Wayland systems cannot show frames "
+"rendered on the other GPU, or fail to open the window at all. Turn this off "
+"if the 3D view stays empty; if OrcaSlicer no longer starts, start it once "
+"with DRI_PRIME=0 in the environment to get back here."
+msgstr ""
+
 msgid "Downloads folder"
 msgstr "Letöltések mappa"
 
@@ -11733,6 +12394,14 @@ msgstr ""
 msgid "Auto arrange plate after cloning"
 msgstr "Tálca automatikus elrendezése klónozás után"
 
+msgid "Show options when adding a primitive"
+msgstr ""
+
+msgid ""
+"If enabled, a dialog asks for the dimensions of a primitive shape before it "
+"is added."
+msgstr ""
+
 msgid "Auto slice after changes"
 msgstr "Automatikus szeletelés módosítások után"
 
@@ -11992,6 +12661,21 @@ msgstr ""
 "Keringő: a fény a kamerával együtt fordul, és az árnyékok a kamera mozgása "
 "közben minden képkockánál újraszámolódnak."
 
+# AI Translated
+msgid "Glossy toolpaths"
+msgstr "Fényes szerszámutak"
+
+# AI Translated
+# Needs human review: 'Plain view' (the non-realistic view) is rendered 'alapnézet' and the specular 'highlight' 'fénypont'. Check both read right.
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight "
+"of the plain view."
+msgstr ""
+"Valósághű nézetben az Előnézet szerszámútjait fényes műanyagként emeli ki.\n"
+"Kikapcsolva az áttetsző filament matt, az átlátszatlan pedig megtartja az "
+"alapnézet fénypontját."
+
 msgid "Anti-aliasing"
 msgstr "Élsimítás"
 
@@ -12208,6 +12892,20 @@ msgstr ""
 "A 99% alig sötétít, a 0% feketére vált. A felső határ 99%, mert a 100% "
 "ugyanaz lenne, mint az opció kikapcsolása."
 
+# AI Translated
+msgid "Translucent filaments"
+msgstr "Áttetsző filamentek"
+
+# AI Translated
+msgid ""
+"Draw the toolpaths of filaments whose color is partly transparent as see-"
+"through, as the 3D view draws their objects. Turn it off to draw every "
+"filament opaque."
+msgstr ""
+"A részben átlátszó színű filamentek szerszámútjait áttetszően rajzolja ki, "
+"ahogyan a 3D nézet az objektumaikat. Kapcsold ki, hogy minden filament "
+"átlátszatlanul jelenjen meg."
+
 msgid "Login region"
 msgstr "Régió"
 
@@ -12369,15 +13067,22 @@ msgstr ""
 "Megjeleníti a nem kompatibilis vagy nem támogatott beállításokat a nyomtató- "
 "és filamentlegördülő listákban. Ezek a beállítások nem választhatók ki."
 
+# AI Translated
 msgid "Export statistics with G-code"
-msgstr ""
+msgstr "Statisztika exportálása G-code-dal"
 
+# AI Translated
 msgid ""
 "If enabled, exporting a G-code file also writes its statistics as JSON next "
 "to it, as <name>.statistics.json, and an exported sliced 3MF file holds them "
 "inside: print time, filament and feature totals, and the same per layer and "
 "per object."
 msgstr ""
+"Ha be van kapcsolva, a G-code fájl exportálásakor annak statisztikája is "
+"JSON-ként kiíródik mellé <name>.statistics.json néven, az exportált "
+"szeletelt 3MF fájl pedig belül tartalmazza: a nyomtatási időt, a filament- "
+"és vonaltípus-összesítőket, valamint ugyanezeket rétegenként és "
+"objektumonként."
 
 # AI Translated
 msgid "Experimental Features"
@@ -12564,6 +13269,31 @@ msgstr "Nem kompatibilis"
 
 msgid "The selected preset is null!"
 msgstr "A kiválasztott beállítás nulla!"
+
+msgid "Changing one dimension changes the others in proportion."
+msgstr ""
+
+# AI Translated
+msgid "Save these settings as default"
+msgstr "Beállítások mentése alapértelmezettként"
+
+msgid ""
+"If enabled, these dimensions are used for this shape from now on, also when "
+"this dialog is not shown."
+msgstr ""
+
+msgid ""
+"If enabled, shapes are added at their default size without asking. The "
+"dialog can be turned back on in Preferences."
+msgstr ""
+
+# AI Translated
+msgid "The size must be greater than zero"
+msgstr "A méretnek nagyobbnak kell lennie nullánál"
+
+# AI Translated
+msgid "Invalid numeric input."
+msgstr "Érvénytelen számérték."
 
 # AI Translated
 msgctxt "Layer range"
@@ -12767,6 +13497,15 @@ msgstr "A(z) \"%1%\" már létezik és nem kompatibilis a jelenlegi nyomtatóval
 
 msgid "Please note that saving will overwrite the current preset."
 msgstr "Figyelem, a mentési művelet lecseréli ezt a beállítást"
+
+msgid "control characters are not allowed."
+msgstr ""
+
+msgid "The name is a reserved system name."
+msgstr ""
+
+msgid "The name is too long."
+msgstr ""
 
 msgid "The name cannot be the same as a preset alias name."
 msgstr "A név nem lehet azonos egy beállítás alias névvel."
@@ -13395,6 +14134,10 @@ msgstr "Nem sikerült feltölteni a fájlt a nyomtató tárhelyére. Próbáld �
 msgid "Send Failed"
 msgstr "Sikertelen küldés"
 
+# AI Translated
+msgid "No available printers"
+msgstr "Nincs elérhető nyomtató"
+
 msgid "The name length exceeds the limit."
 msgstr "A név hossza meghaladja a korlátot."
 
@@ -13669,8 +14412,8 @@ msgstr "LAN-on történő nyomtatás előtt be kell helyezni a tárolót."
 msgid "Storage is in abnormal state or is in read-only mode."
 msgstr "A tároló rendellenes állapotban van vagy csak olvasható módban van."
 
-msgid "Storage needs to be inserted before printing."
-msgstr "Nyomtatás előtt be kell helyezni a tárolót."
+msgid "Insert storage or free up space before printing."
+msgstr ""
 
 msgid "Cannot send the print job to a printer whose firmware must be updated."
 msgstr ""
@@ -13790,9 +14533,6 @@ msgstr ""
 
 msgid "The selected printer is incompatible with the chosen printer presets."
 msgstr "A nyomtató nem kompatibilis a kiválasztott nyomtatóbeállításokkal."
-
-msgid "Storage needs to be inserted before send to printer."
-msgstr "Nyomtatóra küldés előtt be kell helyezni a tárolót."
 
 msgid "The printer is required to be in the same LAN as XDesktop."
 msgstr ""
@@ -14002,6 +14742,20 @@ msgid "Click to reset all settings to the last saved preset."
 msgstr ""
 "Kattints az összes beállítás utolsó mentett változatának visszaállításához."
 
+# AI Translated
+msgid ""
+"This definition contains collision-volume syntax. Add it to the toolhead "
+"collision volumes for G-code checking and travel avoidance? The existing "
+"excluded bed area will be preserved."
+msgstr ""
+"Ez a definíció ütközési térfogat szintaxist tartalmaz. Hozzáadod a "
+"szerszámfej ütközési térfogataihoz a G-code ellenőrzéséhez és a mozgások "
+"ütközéselkerüléséhez? A meglévő kizárt asztalterület megmarad."
+
+# AI Translated
+msgid "Add collision volumes"
+msgstr "Ütközési térfogatok hozzáadása"
+
 msgid ""
 "Prime tower is required for nozzle changing. There may be flaws on the model "
 "without prime tower. Are you sure you want to disable prime tower?"
@@ -14176,6 +14930,9 @@ msgstr ""
 "helyezz el a tálcán egy \"Időfelvétel törlőtornyot\". Ehhez kattints jobb "
 "gombbal a tálca egy üres részére, majd válaszd a \"Primitív hozzáadása\" -> "
 "\"Időfelvétel törlőtorony\" lehetőséget."
+
+msgid "Setting unavailable"
+msgstr ""
 
 msgid ""
 "A copy of the current system preset will be created, which will be detached "
@@ -14357,8 +15114,16 @@ msgstr "Bővítmény konfigurációja"
 msgid "Notes"
 msgstr "Megjegyzések"
 
+msgid "The selected printer does not support multiple bed types."
+msgstr ""
+
 msgid "Frequent"
 msgstr "Gyakori"
+
+msgid ""
+"Custom filament print order is unavailable while the plate contains mixed-"
+"color filaments."
+msgstr ""
 
 #, c-format, boost-format
 msgid ""
@@ -14383,6 +15148,21 @@ msgstr "Beállítások felülbírálása"
 
 msgid "Retraction when switching material"
 msgstr "Visszahúzás anyagváltáskor"
+
+msgid ""
+"Set the filament retraction length above zero, or use the printer's value, "
+"to edit this setting."
+msgstr ""
+
+msgid ""
+"The printer profile must allow filament overrides for long retraction when "
+"cutting."
+msgstr ""
+
+msgid ""
+"Allow long retraction when cutting in the printer profile and enable it in "
+"the filament profile to use this setting."
+msgstr ""
 
 msgid "Basic information"
 msgstr "Alapinformációk"
@@ -14559,6 +15339,74 @@ msgstr "Kompatibilis nyomtatók"
 msgid "Compatible process profiles"
 msgstr "Kompatibilis folyamatprofilok"
 
+msgid "Enable cooling for overhangs and bridges to edit this setting."
+msgstr ""
+
+msgid "Enable slowing down for layer cooling to use this setting."
+msgstr ""
+
+msgid ""
+"Set the number of initial layers without cooling to zero to override the "
+"first layer fan speed."
+msgstr ""
+
+msgid "Enable the auxiliary fan in the printer profile to use this setting."
+msgstr ""
+
+msgid "The selected printer does not support air filtration."
+msgstr ""
+
+msgid "Activate air filtration to edit this setting."
+msgstr ""
+
+msgid ""
+"Activate air filtration and enable it during printing to edit the exhaust "
+"fan speed."
+msgstr ""
+
+msgid ""
+"Activate air filtration and enable it on completion to edit the exhaust fan "
+"speed."
+msgstr ""
+
+msgid "Enable pressure advance to use this setting."
+msgstr ""
+
+msgid ""
+"Select this bed type or enable support for multiple bed types in the printer "
+"profile to show its temperature settings."
+msgstr ""
+
+msgid ""
+"Enable pressure advance and adaptive pressure advance to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the pellet printer option in the printer profile to use this setting."
+msgstr ""
+
+msgid "Filament diameter is unavailable for pellet printers."
+msgstr ""
+
+msgid "The selected printer does not support chamber temperature control."
+msgstr ""
+
+msgid ""
+"Set nonzero volumetric speed coefficients before enabling adaptive "
+"volumetric speed."
+msgstr ""
+
+msgid "Enable multitool ramming to edit this setting."
+msgstr ""
+
+msgid "This setting requires a Bambu Lab printer with multiple extruders."
+msgstr ""
+
+msgid ""
+"Use a Bambu Lab printer with multiple extruders and enable long retraction "
+"when the extruder changes."
+msgstr ""
+
 msgid "Printable space"
 msgstr "Nyomtatási terület"
 
@@ -14639,9 +15487,6 @@ msgstr "Sablon egyedi G-kód"
 
 msgid "Motion ability"
 msgstr "Géplimitek"
-
-msgid "Normal"
-msgstr "Normál"
 
 msgid "Resonance Compensation"
 msgstr "Rezonancia kompenzáció"
@@ -14741,6 +15586,80 @@ msgstr "Rétegmagasság limitek"
 msgid "Z-Hop"
 msgstr "Z-emelés"
 
+msgid ""
+"Power loss recovery requires a Bambu Lab printer or the Marlin firmware G-"
+"code flavor."
+msgstr ""
+
+msgid "Build plate tilt is derived from the belt tilt on belt printers."
+msgstr ""
+
+msgid "Enable belt printer mode to use this setting."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode and select a belt rotation axis to edit its angle."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode and select Expert or Developer settings visibility "
+"to use this setting."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode, select Expert or Developer settings visibility, "
+"and decouple the machine frame tilt to edit its angle."
+msgstr ""
+
+msgid "Enable support for parallel printheads to edit their count."
+msgstr ""
+
+msgid "Collision volume mode selection requires multiple extruders."
+msgstr ""
+
+msgid ""
+"Select a shared collision volume mode or use a single-extruder printer to "
+"edit this setting."
+msgstr ""
+
+msgid "Enable the auxiliary fan to edit its direction."
+msgstr ""
+
+msgid ""
+"Air filtration and the cooling filter are alternative accessories; disable "
+"cooling filter support to use air filtration."
+msgstr ""
+
+msgid ""
+"Enable cooling filter support in the printer profile to use this setting."
+msgstr ""
+
+msgid "Enable belt printer mode to use the belt purge tower."
+msgstr ""
+
+msgid ""
+"Wipe tower type selection is unavailable for Bambu Lab printers and belt "
+"printers."
+msgstr ""
+
+msgid "Select wipe tower Type 2 on a non-Bambu printer to use this setting."
+msgstr ""
+
+msgid "Extruder count cannot be edited in single extruder multimaterial mode."
+msgstr ""
+
+msgid ""
+"Enable single extruder multimaterial mode to use manual filament changes."
+msgstr ""
+
+msgid ""
+"Enable single extruder multimaterial mode with wipe tower Type 2 on a non-"
+"Bambu printer to use this setting."
+msgstr ""
+
+msgid "Enable IDEX/IQEX printer mode to use this setting."
+msgstr ""
+
 # AI Translated
 msgid "Front-left"
 msgstr "Bal első"
@@ -14757,6 +15676,51 @@ msgstr "Bal hátsó"
 msgid "Rear-right"
 msgstr "Jobb hátsó"
 
+msgid ""
+"Use multiple extruders with wipe tower Type 2 on a non-Bambu printer and "
+"disable single extruder multimaterial mode."
+msgstr ""
+
+msgid ""
+"Set retraction length above zero or enable firmware retraction to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"The extruder printable area and height are fixed by the printer profile."
+msgstr ""
+
+msgid "This setting is shown for printers with exactly two extruders."
+msgstr ""
+
+msgid ""
+"Select per-extruder collision volumes on a printer with multiple extruders "
+"to edit this setting."
+msgstr ""
+
+msgid ""
+"Retraction length is controlled by the firmware while firmware retraction is "
+"enabled."
+msgstr ""
+
+msgid "Enable retraction and set Z hop above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Set retraction length above zero and disable firmware retraction to edit "
+"this setting."
+msgstr ""
+
+msgid ""
+"Enable retraction and wiping, and set retract after wipe below 100% to edit "
+"retract before wipe."
+msgstr ""
+
+msgid ""
+"Enable retraction and wiping, and set retract before wipe below 100% to edit "
+"retract after wipe."
+msgstr ""
+
 # AI Translated
 msgid ""
 "The Retract before wipe option could be only 100% when using the Firmware "
@@ -14771,6 +15735,64 @@ msgstr ""
 
 msgid "Firmware Retraction"
 msgstr "Firmware-ben megadott visszahúzás"
+
+msgid "Enable retraction and wiping to edit wipe distance."
+msgstr ""
+
+msgid "This setting requires multiple extruders."
+msgstr ""
+
+msgid ""
+"Use multiple extruders and set tool change retraction length above zero to "
+"edit this setting."
+msgstr ""
+
+msgid ""
+"Disable firmware retraction and allow long retraction when cutting to use "
+"this setting."
+msgstr ""
+
+msgid "Enable long retraction when cutting to edit the retraction distance."
+msgstr ""
+
+msgid "Select a Z hop type other than Normal to edit travel slope."
+msgstr ""
+
+msgid ""
+"Travel acceleration limits are unavailable for the Marlin legacy and Klipper "
+"G-code flavors."
+msgstr ""
+
+msgid ""
+"Jerk limits are unavailable while Marlin uses nonzero junction deviation."
+msgstr ""
+
+msgid ""
+"Emitting machine limits requires the Marlin legacy, Marlin or RepRapFirmware "
+"G-code flavor."
+msgstr ""
+
+msgid "Enable resonance avoidance to edit its speed range."
+msgstr ""
+
+msgid ""
+"This input shaping setting requires the Marlin or RepRapFirmware G-code "
+"flavor."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits to G-code to emit input shaping settings."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits and input shaping to G-code to edit this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits and input shaping to G-code with the Marlin "
+"firmware G-code flavor to edit separate Y-axis values."
+msgstr ""
 
 msgid ""
 "Switching to a printer with different extruder types or numbers will discard "
@@ -14836,6 +15858,11 @@ msgstr ""
 # AI Translated
 msgid "Are you sure you want to delete the selected preset?"
 msgstr "Biztosan törlöd a kiválasztott beállítást?"
+
+msgid ""
+"Select \"All\" to edit the compatibility condition instead of using an "
+"explicit profile list."
+msgstr ""
 
 msgid "Select printers"
 msgstr "Nyomtatók kiválasztása"
@@ -14955,6 +15982,9 @@ msgid "Click to drop current modifications and reset to saved value."
 msgstr ""
 "Kattints a gombra az aktuális módosítás elvetéséhez és a mentett értékre "
 "való visszaállításhoz."
+
+msgid "Material print speed cannot be edited for the SL1 printer."
+msgstr ""
 
 msgid "Process Settings"
 msgstr "Folyamatbeállítások"
@@ -15724,8 +16754,8 @@ msgid "Global"
 msgstr "Globális"
 
 # AI Translated
-msgid "Available anywhere in the window, even while typing in a text field."
-msgstr "Az ablakban bárhol elérhető, szövegmezőbe gépelés közben is."
+msgid "Available anywhere in the window."
+msgstr "Az ablak bármely pontján elérhető."
 
 # AI Translated
 msgid "Run favorite 1 to 10"
@@ -15844,10 +16874,6 @@ msgstr "A(z) %s ehhez van rendelve: %s. Átrendeled ehhez: %s?"
 #, c-format, boost-format
 msgid "The default %s is assigned to %s. Reassign it to %s?"
 msgstr "Az alapértelmezett %s ehhez van rendelve: %s. Átrendeled ehhez: %s?"
-
-# AI Translated
-msgid "Global shortcuts also apply while typing."
-msgstr "A globális gyorsbillentyűk gépelés közben is működnek."
 
 # AI Translated
 msgid "A key that types a character cannot be a global shortcut."
@@ -16228,6 +17254,33 @@ msgstr ""
 "Megtelt a lemez?"
 
 # AI Translated
+#. TRN %1% is the extruder number counted from 1.
+#, boost-format
+msgid ""
+"A G-code move intersects a collision volume for extruder %1%. This may cause "
+"a printer collision."
+msgstr ""
+"Egy G-code mozgás metszi a(z) %1%. extruder ütközési térfogatát. Ez a "
+"nyomtató ütközését okozhatja."
+
+# AI Translated
+msgid ""
+"A G-code move intersects a collision volume. This may cause a printer "
+"collision."
+msgstr ""
+"Egy G-code mozgás metszi egy ütközési térfogatot. Ez a nyomtató ütközését "
+"okozhatja."
+
+# AI Translated
+#, boost-format
+msgid ""
+"The intersecting move is at G-code line %1%. Its Z position is unknown after "
+"homing, so Orca checked it against every height."
+msgstr ""
+"A metsző mozgás a G-code %1%. sorában van. A Z pozíciója alaphelyzetbe állás "
+"után ismeretlen, ezért az Orca minden magasságra ellenőrizte."
+
+# AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
 msgid ""
@@ -16387,9 +17440,10 @@ msgstr ""
 msgid "Seam placement may differ from expected."
 msgstr "A varrat elhelyezése eltérhet a várttól."
 
+# AI Translated
 #, boost-format
 msgid "Failed to write the G-code statistics to %1%."
-msgstr ""
+msgstr "Nem sikerült a G-code statisztikát a(z) %1% helyre írni."
 
 msgid "Internal Bridge"
 msgstr "Belső híd"
@@ -16660,6 +17714,18 @@ msgstr ""
 "%1% túl közel van a tiltott területhez, a nyomtatás során előfordulhatnak "
 "ütközések."
 
+# AI Translated
+#. TRN %1% is the object name.
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr "A(z) %1% metszi az összes elérhető extruder ütközési térfogatát."
+
+# AI Translated
+#. TRN %1% is the object name, %2% the extruder number counted from 1.
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr "A(z) %1% metszi a(z) %2%. extruder ütközési térfogatát."
+
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
 msgstr ""
@@ -16763,6 +17829,11 @@ msgstr ""
 
 msgid "No extrusions under current settings."
 msgstr "A jelenlegi beállításokkal nincsenek extrudálások."
+
+#. TRN %1% is the filament number as shown in the filament list, starting from 1.
+#, boost-format
+msgid "The flow ratio of filament %1% must be greater than 0."
+msgstr ""
 
 # AI Translated
 msgid ""
@@ -17347,14 +18418,88 @@ msgstr ""
 msgid "Excluded bed area"
 msgstr "Asztal kizárási terület"
 
+# AI Translated
 msgid ""
 "Unprintable area in XY plane. For example, X1 Series printers use the front "
 "left corner to cut filament during filament change. The area is expressed as "
-"polygon by points in following format: \"XxY, XxY, ...\""
+"a polygon in the format \"XxY, XxY, ...\". It constrains material and model "
+"placement, but allows machine travel. Configure toolhead collision volumes "
+"separately for G-code checking and travel avoidance."
 msgstr ""
-"A nyomtatásra nem használható terület az XY síkban. Az X1 nyomtatók például "
-"a bal első sarkot használják a filament elvágására filamentcserét követően. "
-"A terület sokszögként van meghatározva a következő formátumban: XxY, XxY, ..."
+"Nem nyomtatható terület az XY síkon. Például az X1 sorozatú nyomtatók a bal "
+"első sarkot használják a filament elvágására filamentcsere közben. A "
+"területet sokszögként kell megadni az \"XxY, XxY, ...\" formátumban. "
+"Korlátozza az anyag és a modell elhelyezését, de megengedi a gép mozgását. "
+"Állítsd be külön a szerszámfej ütközési térfogatait a G-code ellenőrzéséhez "
+"és a mozgások ütközéselkerüléséhez."
+
+# AI Translated
+msgid "Toolhead collision volumes"
+msgstr "Szerszámfej ütközési térfogatai"
+
+# AI Translated
+msgid ""
+"Collision volumes used for model and generated-material exclusion, G-code "
+"checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height "
+"polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate "
+"multiple volumes with \"|\". These volumes are additional to the excluded "
+"bed area. Automatic arrangement conservatively uses the bounding box of a "
+"non-convex volume."
+msgstr ""
+"A modell és a generált anyag kizárásához, a G-code ellenőrzéséhez és a "
+"mozgások ütközéselkerüléséhez használt ütközési térfogatok. Teljes magasságú "
+"sokszöghöz használja az \"XxY, XxY, ...\", Z irányban korlátozott "
+"térfogathoz a \"ZMIN..ZMAX;XxY, XxY, ...\" formátumot. A több térfogatot a "
+"\"|\" karakterrel válaszd el. Ezek a térfogatok a kizárt asztalterületen "
+"felül érvényesek. Az automatikus elrendezés óvatosan a nem konvex térfogat "
+"befoglaló dobozát használja."
+
+# AI Translated
+msgid "Collision volume behavior"
+msgstr "Ütközési térfogatok működése"
+
+# AI Translated
+msgid ""
+"Choose whether all nozzles use the same collision volumes, derive toolhead-"
+"relative volumes from each nozzle's XY offset, or configure independent "
+"volumes for every extruder. In individual mode, select each extruder on the "
+"Extruder page to configure its volumes."
+msgstr ""
+"Válaszd ki, hogy minden fúvóka ugyanazokat az ütközési térfogatokat "
+"használja-e, a szerszámfejhez viszonyított térfogatokat az egyes fúvókák XY "
+"eltolásából kell-e származtatni, vagy minden extrudernek egyedi térfogatokat "
+"kell beállítani. Egyedi módban az egyes extrudereket az Extruder oldalon "
+"kiválasztva állíthatod be a térfogataikat."
+
+# AI Translated
+#. TRN Collision volume modes: one set for all nozzles, one set moved by each nozzle's XY offset, or one set per extruder.
+msgid "Shared by all nozzles"
+msgstr "Közös minden fúvóka számára"
+
+# AI Translated
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr "Szerszámfejhez viszonyított (fúvókaeltolások)"
+
+# AI Translated
+msgid "Individual per extruder"
+msgstr "Egyedi extrudereként"
+
+# AI Translated
+msgid "Extruder collision volumes"
+msgstr "Extruder ütközési térfogatai"
+
+# AI Translated
+msgid ""
+"Collision volumes used only by this extruder in individual mode. Use the "
+"same polygon and optional Z-range format as the shared collision volumes. "
+"Leave empty for no collision volumes on this extruder. Automatic arrangement "
+"conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+"Csak ez az extruder használja ezeket az ütközési térfogatokat egyedi módban. "
+"Használd ugyanazt a sokszög- és opcionális Z-tartomány formátumot, mint a "
+"közös ütközési térfogatoknál. Hagyd üresen, ha ennek az extrudernek nincs "
+"ütközési térfogata. Az automatikus elrendezés óvatosan a nem konvex térfogat "
+"befoglaló dobozát használja."
 
 msgid "Bed custom texture"
 msgstr "Egyedi tárgyasztal textúra"
@@ -17730,6 +18875,23 @@ msgstr ""
 "legyen a héj, ha a rétegmagasság kicsi. A 0 azt jelenti, hogy ez a beállítás "
 "ki van kapcsolva, és az alsó héj vastagságát egyszerűen az alsó héjrétegek "
 "száma határozza meg."
+
+# AI Translated
+# Needs human review: 'Paint' is the Color Painting feature (Színfestés). Check 'színfestés-behatolási' reads right for 'paint penetration' (the layers that take the painted color).
+msgid "Bottom paint penetration layers"
+msgstr "Alsó színfestés-behatolási rétegek"
+
+# AI Translated
+msgid ""
+"The number of layers, including the bottom surface layer, that take the "
+"color painted on a bottom surface. Set to 0 to use the bottom shell layers. "
+"A value larger than the bottom shell also colors the sparse infill above the "
+"painted area."
+msgstr ""
+"Az alsó felületre festett színt felvevő rétegek száma, az alsó felületi "
+"réteget is beleértve. 0-ra állítva az alsó héjrétegek számát használja. Az "
+"alsó héjrétegek számánál nagyobb érték a festett terület feletti kitöltést "
+"is befesti."
 
 msgid "Apply gap fill"
 msgstr "Réskitöltés alkalmazása"
@@ -20080,7 +21242,7 @@ msgid ""
 "Enter the shrinkage percentage that the filament will get after cooling (94% "
 "if you measure 94mm instead of 100mm). The part will be scaled in XY to "
 "compensate. For multi-material prints, ensure filament shrinkage matches "
-"across all used filaments\n"
+"across all used filaments.\n"
 "Be sure to allow enough space between objects, as this compensation is done "
 "after the checks."
 msgstr ""
@@ -20199,8 +21361,9 @@ msgstr ""
 msgid "Wipe tower cooling"
 msgstr "Törlőtorony hűtése"
 
-msgid "Temperature drop before entering filament tower"
-msgstr "Hőmérsékletcsökkenés az filamenttoronyba lépés előtt"
+# AI Translated
+msgid "Temperature drop before entering the wipe tower."
+msgstr "Hőmérsékletcsökkenés a törlőtoronyba lépés előtt."
 
 msgid "Interface layer pre-extrusion distance"
 msgstr "Érintkezőréteg előextrudálási távolsága"
@@ -20830,12 +21993,10 @@ msgstr ""
 msgid "accel_to_decel"
 msgstr "accel_to_decel"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
-"Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
-msgstr ""
-"A Klipper max_accel_to_decel értéke a gyorsulás erre a százalékra lesz "
-"állítva."
+"Klipper's max_accel_to_decel will be adjusted to this % of acceleration."
+msgstr "A Klipper max_accel_to_decel értékét a gyorsulás ezen %-ára állítja."
 
 msgid "Default jerk."
 msgstr "Alapértelmezett jerk."
@@ -21124,7 +22285,7 @@ msgstr "Alkalmazzon-e bolyhos felületet az első rétegen."
 msgid "Fuzzy skin generator mode"
 msgstr "A bolyhos felület generálási módja"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
 "Fuzzy skin generation mode. Works only with Arachne!\n"
 "Displacement: Сlassic mode when the pattern is formed by shifting the nozzle "
@@ -21140,14 +22301,15 @@ msgid ""
 "Attention! The [Extrusion] and [Combined] modes works only the "
 "fuzzy_skin_thickness parameter not more than the thickness of printed loop. "
 "At the same time, the width of the extrusion for a particular layer should "
-"also not be below a certain level. It is usually equal 15-25%% of a layer "
+"also not be below a certain level. It is usually equal 15-25% of a layer "
 "height. Therefore, the maximum fuzzy skin thickness with a perimeter width "
 "of 0.4 mm and a layer height of 0.2 mm will be 0.4-(0.2*0.25)=±0.35mm! If "
 "you enter a higher parameter than this, the error Flow::spacing() will "
 "displayed, and the model will not be sliced. You can choose this number "
 "until this error is repeated."
 msgstr ""
-"Bolyhos felület generálási mód. Csak az Arachne-nal működik!\n"
+"A barázdált felület generálási módja. Csak az Arachne használatával "
+"működik!\n"
 "Eltolás: Klasszikus mód, amikor a mintázat úgy jön létre, hogy a fúvóka "
 "oldalirányban eltér az eredeti útvonaltól.\n"
 "Extrudálás: Olyan mód, amikor a mintázatot az extrudált műanyag mennyisége "
@@ -21160,11 +22322,12 @@ msgstr ""
 "Figyelem! Az [Extrudálás] és a [Kombinált] mód csak akkor működik, ha a "
 "fuzzy_skin_thickness paraméter nem nagyobb a nyomtatott hurok vastagságánál. "
 "Emellett egy adott réteg extrudálási szélessége sem lehet egy bizonyos szint "
-"alá csökkentve. Ez általában a rétegmagasság 15-25%%-a. Ezért 0,4 mm "
-"kerületszélesség és 0,2 mm rétegmagasság mellett a maximális bolyhos felület "
-"vastagság 0,4-(0,2*0,25)=±0,35 mm lesz. Ha ennél nagyobb értéket adsz meg, a "
-"Flow::spacing() hiba jelenik meg, és a modell nem lesz szeletelhető. Ezt az "
-"értéket addig választhatod, amíg ez a hiba meg nem ismétlődik."
+"alá csökkentve. Ez általában a rétegmagasság 15-25%-a. Ezért 0,4 mm "
+"kerületszélesség és 0,2 mm rétegmagasság mellett a barázdált felület "
+"maximális vastagsága 0,4-(0,2*0,25)=±0,35 mm lesz. Ha ennél nagyobb értéket "
+"adsz meg, a Flow::spacing() hiba jelenik meg, és a modell nem lesz "
+"szeletelhető. Ezt az értéket addig választhatod, amíg ez a hiba meg nem "
+"ismétlődik."
 
 msgid "Displacement"
 msgstr "Eltolás"
@@ -21346,24 +22509,41 @@ msgstr ""
 msgid "Arc fitting"
 msgstr "Íves illesztés"
 
+# AI Translated
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting "
-"tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted "
+"within the resolution, while sparse infill, supports and the wipe tower use "
+"fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which "
+"shortens the G-code of curved infill patterns without affecting the walls "
+"and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. "
-"Klipper does not benefit from arc commands as these are split again into "
-"line segments by the firmware. This results in a reduction in surface "
-"quality as line segments are converted to arcs by the slicer and then back "
-"to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs "
+"back into line segments, which lowers the surface quality and can increase "
+"the print time."
 msgstr ""
-"Engedélyezd ezt, hogy olyan G-kód fájlt kapj, amely G2 és G3 mozgásokat is "
-"tartalmaz. Az illesztési tűrés megegyezik a felbontással.\n"
+"G2 és G3 ívmozgások illesztése a szerszámpályákra. A falak és a felületek a "
+"felbontáson belül illeszkednek, míg a kitöltés, a támaszok és a törlőtorony "
+"rögzített tűréshatárokat használ.\n"
+" - Letiltva: csak egyenes G1 mozgások használatosak.\n"
+" - Engedélyezve: az ívek minden szerszámpályára illeszkednek.\n"
+" - Csak kitöltés: az ívek csak a kitöltésre illeszkednek, ami lerövidíti az "
+"íves kitöltési mintázatok G-code-ját a falak és a felületek befolyásolása "
+"nélkül.\n"
 "\n"
-"Megjegyzés: Klipper gépeknél ajánlott ezt az opciót kikapcsolni. A Klipper "
-"nem profitál az ívparancsokból, mert a firmware ezeket ismét "
-"vonalszakaszokra bontja. Ez a felületi minőség romlását eredményezi, mivel a "
-"szeletelő a vonalszakaszokat ívekké alakítja, majd a firmware újra "
-"vonalszakaszokká bontja őket."
+"Megjegyzés: Klipper gépeknél a Letiltva beállítás ajánlott. A Klipper az "
+"íveket visszabontja egyenes szakaszokra, ami rontja a felületminőséget, és "
+"növelheti a nyomtatási időt."
+
+msgid "Enabled"
+msgstr "Engedélyezve"
+
+# AI Translated
+# Needs human review: Glossary renders Sparse infill as Kitöltés (same as Infill); check the option still reads as 'sparse infill only' in the arc-fitting dropdown.
+msgid "Sparse infill only"
+msgstr "Csak kitöltés"
 
 msgid "Add line number"
 msgstr "Vonalszám hozzáadása"
@@ -21572,28 +22752,31 @@ msgstr "pénz/óra"
 msgid "Support controlling chamber temperature"
 msgstr "Kamrahőmérséklet-szabályozás engedélyezése"
 
+# AI Translated
 msgid ""
-"This option is enabled if machine support controlling chamber temperature\n"
+"This option is enabled if the machine supports controlling the chamber "
+"temperature\n"
 "G-code command: M141 S(0-255)"
 msgstr ""
 "Engedélyezd ezt az opciót, ha a gép támogatja a kamrahőmérséklet "
 "szabályozását.\n"
-"G-kód parancs: M141 S(0-255)"
+"G-code parancs: M141 S(0-255)"
 
 msgid "Support air filtration"
 msgstr "Légszűrés támogatása"
 
+# AI Translated
 msgid ""
-"Enable this if printer support air filtration\n"
+"Enable this if the printer supports air filtration\n"
 "G-code command: M106 P3 S(0-255)"
 msgstr ""
 "Engedélyezd ezt, ha a nyomtató támogatja a légszűrést.\n"
-"G-kód parancs: M106 P3 S(0-255)"
+"G-code parancs: M106 P3 S(0-255)"
 
 msgid "Use cooling filter"
 msgstr "Hűtőszűrő használata"
 
-msgid "Enable this if printer support cooling filter"
+msgid "Enable this if the printer supports a cooling filter"
 msgstr "Engedélyezd a beállítást, ha a nyomtató támogatja a hűtőszűrőt"
 
 msgid "G-code flavor"
@@ -21664,6 +22847,22 @@ msgid "Enable this option to add EXCLUDE OBJECT command in G-code."
 msgstr ""
 "Engedélyezd ezt az opciót, hogy EXCLUDE OBJECT parancs kerüljön a G-kódba."
 
+# AI Translated
+msgid "Outline tolerance"
+msgstr "Körvonal tűrése"
+
+# AI Translated
+msgid ""
+"Maximum deviation of the object outline written to EXCLUDE_OBJECT_DEFINE "
+"from the original outline. Larger values give fewer points, which helps "
+"firmware that stalls while parsing G-code with many objects. 0 keeps every "
+"point."
+msgstr ""
+"Az EXCLUDE_OBJECT_DEFINE-ba írt objektumkörvonal legnagyobb megengedett "
+"eltérése az eredeti körvonaltól. Nagyobb értékeknél kevesebb pont "
+"keletkezik, ami segít azokon a firmware-eken, amelyek sok objektumot "
+"tartalmazó G-code feldolgozásakor megakadnak. A 0 minden pontot megtart."
+
 msgid "Verbose G-code"
 msgstr "Bővebb G-kód"
 
@@ -21676,6 +22875,23 @@ msgstr ""
 "amelynek minden egyes sorát egy leíró szöveg magyarázza. Ha SD-kártyáról "
 "nyomtat, a fájl nagyobb mérete miatt a nyomtató vezérlő szoftvere "
 "lelassulhat."
+
+msgid "High precision G-code (experimental)"
+msgstr ""
+
+msgid ""
+"Write X, Y, Z, I and J with 4 decimal places instead of 3, and E with 6 "
+"instead of 5, to reduce rounding errors in the G-code. With relative E "
+"distances, the rounding error of each move is also carried over to the next "
+"one. Supports are removed after printing, so they keep the standard "
+"precision. This may help stabilize extrusion with small nozzles (e.g. 0.2 "
+"mm) and thin layers (e.g. 0.08 mm or less), where each move extrudes so "
+"little material that rounding errors matter most. The effect depends "
+"strongly on how well the rest of the settings are tuned and may be hard to "
+"notice unless the print profile is well calibrated. The G-code file becomes "
+"about 10 percent larger, which may slow down printers that parse G-code "
+"slowly."
+msgstr ""
 
 msgid "Infill combination"
 msgstr "Kitöltés összevonása"
@@ -22217,17 +23433,6 @@ msgstr ""
 
 msgid "Clumping detection G-code"
 msgstr "Csomósodásészlelés G-kód"
-
-# AI Translated
-msgid "Silent Mode"
-msgstr "Csendes mód"
-
-msgid ""
-"Whether the machine supports silent mode in which machine uses lower "
-"acceleration to print more quietly"
-msgstr ""
-"Csendes üzemmód támogatása, amelyben a gép kisebb gyorsulást használ a "
-"csendesebb nyomtatáshoz"
 
 msgid "Emit limits to G-code"
 msgstr "Korlátok kiírása a G-kódba"
@@ -22864,13 +24069,13 @@ msgstr ""
 msgid "Detect overhang walls"
 msgstr "Túlnyúló falak felismerése"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
 "This detects the overhang percentage relative to line width and uses a "
-"different speed to print. For 100%% overhang, bridging speed is used."
+"different speed to print. For 100% overhang, bridging speed is used."
 msgstr ""
 "Felismeri a túlnyúlás százalékos arányát a vonalszélességhez viszonyítva, és "
-"más sebességet használ. A 100%%-os túlnyúlás esetén az áthidaláshoz "
+"más sebességet használ. A 100%-os túlnyúlás esetén az áthidaláshoz "
 "beállított sebességet használja."
 
 # AI Translated
@@ -23197,6 +24402,9 @@ msgstr "Z-emelés típusa"
 msgid "Type of Z-hop."
 msgstr "A Z-emelés típusa."
 
+msgid "Normal"
+msgstr "Normál"
+
 msgid "Slope"
 msgstr "Lejtő"
 
@@ -23392,16 +24600,17 @@ msgstr ""
 msgid "Seam gap"
 msgstr "Varrat hézag"
 
+# AI Translated
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, "
 "the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the "
-"current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle "
+"diameter. The default value for this parameter is 10%."
 msgstr ""
 "A varrat láthatóságának csökkentéséhez zárt hurkú extrudálásnál a hurok "
 "megszakad és a megadott mértékben rövidül.\n"
-"Ez az érték megadható milliméterben vagy az aktuális extruderátmérő "
-"százalékában. Ennek a paraméternek az alapértelmezett értéke 10%."
+"Ez az érték megadható milliméterben vagy a fúvóka átmérőjének százalékában. "
+"Ennek a paraméternek az alapértelmezett értéke 10%."
 
 msgid "Scarf joint seam (beta)"
 msgstr "Átlapolt varrat (béta)"
@@ -23697,9 +24906,6 @@ msgstr ""
 "\n"
 "Engedélyezve = a szoknya olyan magas lesz, mint a legmagasabb nyomtatott "
 "objektum. Ellenkező esetben a „Szoknya magassága” érték kerül használatra."
-
-msgid "Enabled"
-msgstr "Engedélyezve"
 
 msgid "Skirt type"
 msgstr "Szoknya típusa"
@@ -24847,16 +26053,6 @@ msgstr ""
 "nyírás/skálázás és tengelyleképezés előtt. Jellemzően X a portál dőlési "
 "tengelye (a szalag Y irányban halad)."
 
-msgid "X"
-msgstr "X"
-
-msgid "Y"
-msgstr "Y"
-
-# AI Translated
-msgid "Z"
-msgstr "Z"
-
 # AI Translated
 msgid "Belt tilt angle"
 msgstr "Szalag dőlésszöge"
@@ -25353,6 +26549,23 @@ msgstr ""
 "vékony legyen a héj kis rétegmagasságnál. A 0 azt jelenti, hogy ez a "
 "beállítás ki van kapcsolva, és a felső héj vastagságát egyszerűen a felső "
 "héjrétegek száma határozza meg."
+
+# AI Translated
+# Needs human review: 'Paint' is the Color Painting feature (Színfestés). Check 'színfestés-behatolási' reads right for 'paint penetration' (the layers that take the painted color).
+msgid "Top paint penetration layers"
+msgstr "Felső színfestés-behatolási rétegek"
+
+# AI Translated
+msgid ""
+"The number of layers, including the top surface layer, that take the color "
+"painted on a top surface. Set to 0 to use the top shell layers. A value "
+"larger than the top shell also colors the sparse infill below the painted "
+"area."
+msgstr ""
+"A felső felületre festett színt felvevő rétegek száma, a felső felületi "
+"réteget is beleértve. 0-ra állítva a felső héjrétegek számát használja. A "
+"felső héjrétegek számánál nagyobb érték a festett terület alatti kitöltést "
+"is befesti."
 
 # AI Translated
 msgid "Separated infills"
@@ -26192,6 +27405,22 @@ msgstr ""
 msgid "invalid value "
 msgstr "érvénytelen érték "
 
+# AI Translated
+msgid "Invalid collision volume definition."
+msgstr "Érvénytelen ütközési térfogat definíció."
+
+# AI Translated
+msgid ""
+"A nozzle offset is required for every extruder when toolhead-relative "
+"collision volumes are enabled."
+msgstr ""
+"A szerszámfejhez viszonyított ütközési térfogatok engedélyezésekor minden "
+"extrudernek szüksége van fúvókaeltolásra."
+
+# AI Translated
+msgid "Invalid per-extruder collision volume definition."
+msgstr "Érvénytelen extruderenkénti ütközési térfogat definíció."
+
 msgid "Invalid value when spiral vase mode is enabled: "
 msgstr "Érvénytelen érték spirálváza mód engedélyezésekor: "
 
@@ -26579,15 +27808,21 @@ msgstr "Kimeneti mappa"
 msgid "This is the output directory for exported files."
 msgstr "Az exportált fájlok kimeneti mappája."
 
+# AI Translated
 msgid "Export statistics"
-msgstr ""
+msgstr "Statisztika exportálása"
 
+# AI Translated
 msgid ""
 "Write the statistics of each sliced plate as JSON, as "
 "plate_N.statistics.json next to its G-code in the output directory and "
 "inside the 3MF of --export-3mf: print time, filament and feature totals, and "
 "the same per layer and per object."
 msgstr ""
+"Minden szeletelt tálca statisztikáját JSON-ként írja ki: "
+"plate_N.statistics.json néven a G-code mellé a kimeneti mappába, valamint az "
+"--export-3mf által írt 3MF fájlba: nyomtatási idő, filament- és vonaltípus-"
+"összesítők, valamint ugyanezek rétegenként és objektumonként."
 
 msgid "Debug level"
 msgstr "Hibakeresés szintje"
@@ -26964,11 +28199,13 @@ msgstr ""
 "A törlőtoronyon elpazarolt anyag teljes költsége. A Filament beállítások "
 "filament_cost értékéből számítva."
 
-msgid "Wipe tower volume"
-msgstr "Törlőtorony térfogata"
+# AI Translated
+msgid "Total wipe tower filament"
+msgstr "A törlőtorony teljes filamentje"
 
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "A törlőtoronyon kinyomott filament teljes térfogata."
+# AI Translated
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr "A törlőtoronyban felhasznált filament teljes hossza mm-ben."
 
 msgid "Used filament"
 msgstr "Használt filament"
@@ -27251,12 +28488,13 @@ msgstr "Rétegszám"
 
 # AI Translated
 msgid ""
-"Index of the current layer. Zero-based (i.e. first layer is number 0), "
-"except in extrusion role change G-code, where it is one-based."
+"Index of the current layer. The index is zero-based (first layer has index "
+"0). Before the first layer starts, it is -1. In extrusion role change G-"
+"code, the index is one-based (first layer has index 1)."
 msgstr ""
-"Az aktuális réteg indexe. Nullától számozott (azaz az első réteg száma 0), "
-"kivéve az extrudálási szerep váltásakor futó G-code-ban, ahol egytől "
-"számozott."
+"Az aktuális réteg indexe. Az index nullától számozott (az első réteg indexe "
+"0). Az első réteg kezdete előtt értéke -1. Az extrudálási szerep váltásakor "
+"lefutó G-code-ban az index egytől számozott (az első réteg indexe 1)."
 
 msgid "Layer Z"
 msgstr "Réteg Z"
@@ -27276,8 +28514,202 @@ msgstr "Az utolsó réteg magassága a tárgyasztal felett."
 msgid "Filament extruder ID"
 msgstr "Filament extruderazonosító"
 
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "Az aktuális extruder azonosítója. Ugyanaz, mint a current_extruder."
+# AI Translated
+msgid ""
+"In filament start G-code, the index of the filament that is being loaded. In "
+"filament end G-code, the index of the filament that is being unloaded. The "
+"index is zero-based (first filament has index 0). At a tool change, filament "
+"end G-code gets the extruder index instead, unless the Type 1 wipe tower "
+"does the tool change. Machine end G-code gets the value from the last "
+"filament end G-code at the end of the print."
+msgstr ""
+"A filament kezdő G-code-jában a betöltés alatt álló filament indexe. A "
+"filament záró G-code-jában a kihúzás alatt álló filament indexe. Az index "
+"nullától számozott (az első filament indexe 0). Szerszámcserekor a filament "
+"záró G-code-ja ehelyett az extruder indexét kapja, kivéve ha a "
+"szerszámcserét az 1-es típusú törlőtorony végzi. A gép záró G-code-ja a "
+"nyomtatás végén az utolsó filament záró G-code-jából kapja az értéket."
+
+# AI Translated
+msgid "Current filament ID"
+msgstr "Aktuális filament azonosítója"
+
+# AI Translated
+msgid ""
+"Index of the currently active filament. The index is zero-based (first "
+"filament has index 0)."
+msgstr ""
+"Az aktuálisan aktív filament indexe. Az index nullától számozott (az első "
+"filament indexe 0)."
+
+# AI Translated
+msgid "Current extruder ID"
+msgstr "Aktuális extruder azonosítója"
+
+# AI Translated
+msgid ""
+"Index of the currently active physical extruder. The index is zero-based "
+"(first extruder has index 0)."
+msgstr ""
+"Az aktuálisan aktív fizikai extruder indexe. Az index nullától számozott (az "
+"első extruder indexe 0)."
+
+# AI Translated
+msgid "Current nozzle ID"
+msgstr "Aktuális fúvóka azonosítója"
+
+# AI Translated
+msgid ""
+"Index of the currently active nozzle. The index is zero-based (first nozzle "
+"has index 0)."
+msgstr ""
+"Az aktuálisan aktív fúvóka indexe. Az index nullától számozott (az első "
+"fúvóka indexe 0)."
+
+# AI Translated
+msgid "Nozzle diameters"
+msgstr "Fúvókaátmérők"
+
+# AI Translated
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr "Fúvókaátmérők a fúvóka azonosítója szerint indexelve."
+
+# AI Translated
+# Needs human review: Flow class of the nozzle (Standard, High Flow), not the glossary's Nozzle volume. Reuses the catalog's 'fúvókatérfogat-típus'; the Device UI calls the same thing 'Fúvóka anyagáramlása' (Nozzle Flow). Check which term fits.
+msgid "Nozzle volume types"
+msgstr "Fúvókatérfogat-típusok"
+
+# AI Translated
+#. TRN The quoted values are G-code identifiers; keep them in English.
+msgid ""
+"Nozzle volume types indexed by nozzle ID, such as \"Standard\" or \"High "
+"Flow\"."
+msgstr ""
+"A fúvókatérfogat-típusok fúvókaazonosító szerint indexelve, például "
+"\"Standard\" vagy \"High Flow\"."
+
+# AI Translated
+msgid "Retraction distance used when cutting filament."
+msgstr "A filament vágásakor használt visszahúzási távolság."
+
+# AI Translated
+msgid "Long retraction when cut"
+msgstr "Hosszú visszahúzás vágáskor"
+
+# AI Translated
+msgid "Whether long retraction is used when cutting filament."
+msgstr "Hosszú visszahúzást használjon-e a filament vágásakor."
+
+# AI Translated
+msgid "Most-used physical extruder ID"
+msgstr "Leggyakrabban használt fizikai extruder azonosítója"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder used most often on the current layer. The "
+"index is zero-based (first extruder has index 0)."
+msgstr ""
+"Az aktuális rétegen leggyakrabban használt fizikai extruder indexe. Az index "
+"nullától számozott (az első extruder indexe 0)."
+
+# AI Translated
+msgid "Current Y acceleration limit"
+msgstr "Aktuális Y gyorsulási határ"
+
+# AI Translated
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr ""
+"Az aktuális Y tengelyű gyorsulási határ az asztal tömegének figyelembevétele "
+"után."
+
+# AI Translated
+msgid "Current accumulated mass"
+msgstr "Aktuális összegzett tömeg"
+
+# AI Translated
+msgid "Accumulated printed mass at the current layer."
+msgstr "Az aktuális rétegig kinyomtatott összegzett tömeg."
+
+# AI Translated
+msgid "Previous layer mass"
+msgstr "Előző réteg tömege"
+
+# AI Translated
+msgid "Printed mass of the previous layer."
+msgstr "Az előző réteg kinyomtatott tömege."
+
+# AI Translated
+msgid "Same as previous_layer_mass. Bambu Studio uses this name."
+msgstr ""
+"Ugyanaz, mint a previous_layer_mass. A Bambu Studio ezt a nevet használja."
+
+# AI Translated
+msgid "Current physical extruder ID"
+msgstr "Aktuális fizikai extruder azonosítója"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder active for the current layer. The index is "
+"zero-based (first extruder has index 0)."
+msgstr ""
+"Az aktuális rétegnél aktív fizikai extruder indexe. Az index nullától "
+"számozott (az első extruder indexe 0)."
+
+# AI Translated
+msgid "Timelapse position X"
+msgstr "Timelapse X pozíció"
+
+# AI Translated
+msgid "Selected X position for timelapse capture."
+msgstr "A timelapse-felvételhez kiválasztott X pozíció."
+
+# AI Translated
+msgid "Timelapse position Y"
+msgstr "Timelapse Y pozíció"
+
+# AI Translated
+msgid "Selected Y position for timelapse capture."
+msgstr "A timelapse-felvételhez kiválasztott Y pozíció."
+
+# AI Translated
+msgid "Has timelapse safe position"
+msgstr "Van biztonságos timelapse pozíció"
+
+# AI Translated
+msgid "Whether a safe timelapse position was found."
+msgstr "Talált-e biztonságos timelapse pozíciót."
+
+# AI Translated
+msgid "Timelapse inline photo"
+msgstr "Timelapse beágyazott fotó"
+
+# AI Translated
+msgid ""
+"Whether the photo is taken where the nozzle already is, without moving to a "
+"safe timelapse position first."
+msgstr ""
+"Azt jelzi, hogy a fotó ott készül-e, ahol a fúvóka éppen van, anélkül, hogy "
+"előbb egy biztonságos Timelapse-pozícióba mozogna."
+
+# AI Translated
+msgid "Farthest-point timelapse enabled"
+msgstr "Legtávolabbi pontos timelapse engedélyezve"
+
+# AI Translated
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr "Aktív-e a timelapse pozicionálása a legtávolabbi pontra."
+
+# AI Translated
+msgid "Clear path to X0"
+msgstr "Szabad út X0-ig"
+
+# AI Translated
+msgid ""
+"Whether the nozzle can move to X0 at the current height without hitting "
+"another printed object."
+msgstr ""
+"Azt jelzi, hogy a fúvóka az aktuális magasságon el tud-e jutni X0-ig "
+"anélkül, hogy egy másik nyomtatott objektummal ütközne."
 
 # AI Translated
 msgid "Previous extruder"
@@ -27285,11 +28717,13 @@ msgstr "Előző extruder"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being unloaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being unloaded. The index is zero-based (first "
+"filament has index 0). At the start of the print, when no filament is loaded "
+"yet, it is -1."
 msgstr ""
-"Az éppen kiürített extruder indexe. Az index nullától számozott (az első "
-"extruder indexe 0)."
+"A kihúzás alatt álló filament indexe. Az index nullától számozott (az első "
+"filament indexe 0). A nyomtatás elején, amikor még nincs betöltött filament, "
+"értéke -1."
 
 # AI Translated
 msgid "Next extruder"
@@ -27297,11 +28731,117 @@ msgstr "Következő extruder"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being loaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being loaded. The index is zero-based (first "
+"filament has index 0)."
 msgstr ""
-"Az éppen betöltés alatt álló extruder indexe. Az index nullától számozott "
-"(az első extruder indexe 0)."
+"A betöltés alatt álló filament indexe. Az index nullától számozott (az első "
+"filament indexe 0)."
+
+# AI Translated
+msgid "Current hotend"
+msgstr "Jelenlegi fejegység"
+
+# AI Translated
+msgid ""
+"Hotend of the outgoing filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"A kilépő filament fejegysége, nullától számozott extruderindexként megadva. "
+"Bambu nyomtatókon értéke -1, vagy a fúvóka azonosítója, ha a filament "
+"rétegről rétegre fúvókát vált."
+
+# AI Translated
+msgid "Next hotend"
+msgstr "Következő fejegység"
+
+# AI Translated
+msgid ""
+"Hotend of the incoming filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"A belépő filament fejegysége, nullától számozott extruderindexként megadva. "
+"Bambu nyomtatókon értéke -1, vagy a fúvóka azonosítója, ha a filament "
+"rétegről rétegre fúvókát vált."
+
+# AI Translated
+msgid "Next nozzle ID"
+msgstr "Következő fúvóka azonosítója"
+
+# AI Translated
+msgid ""
+"Index of the nozzle associated with the incoming filament. The index is zero-"
+"based (first nozzle has index 0)."
+msgstr ""
+"A belépő filamenthez tartozó fúvóka indexe. Az index nullától számozott (az "
+"első fúvóka indexe 0)."
+
+# AI Translated
+msgid "Next filament ID"
+msgstr "Következő filament azonosítója"
+
+# AI Translated
+msgid ""
+"Index of the incoming filament. The index is zero-based (first filament has "
+"index 0)."
+msgstr ""
+"A belépő filament indexe. Az index nullától számozott (az első filament "
+"indexe 0)."
+
+# AI Translated
+msgid "Old extruder variant"
+msgstr "Régi extruder változat"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the outgoing extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"A kilépő extruder típusa és fúvókatérfogat-típusa, például \"Direct Drive "
+"High Flow\"."
+
+# AI Translated
+msgid "New extruder variant"
+msgstr "Új extruder változat"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the incoming extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"A belépő extruder típusa és fúvókatérfogat-típusa, például \"Direct Drive "
+"High Flow\"."
+
+# AI Translated
+msgid "Filament nozzle-change retract length"
+msgstr "Filament visszahúzási hossza fúvókacserekor"
+
+# AI Translated
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr "A kilépő filament visszahúzási hossza fúvókacserekor."
+
+# AI Translated
+msgid "New extruder retracted length"
+msgstr "Új extruder visszahúzott hossza"
+
+# AI Translated
+msgid ""
+"Retraction length still applied to the incoming extruder from when it was "
+"parked."
+msgstr ""
+"A belépő extruder parkolásakor alkalmazott visszahúzási hossz, amely még "
+"mindig érvényben van."
+
+# AI Translated
+msgid "Outer wall volumetric speed"
+msgstr "Külső fal volumetrikus sebessége"
+
+# AI Translated
+msgid "Volumetric speed used for the outer wall."
+msgstr "A külső falhoz használt volumetrikus sebesség."
 
 # AI Translated
 msgid "Relative e-axis"
@@ -27318,6 +28858,14 @@ msgstr "Szerszámcserék száma"
 # AI Translated
 msgid "The number of toolchanges throughout the print."
 msgstr "A szerszámcserék száma a nyomtatás során."
+
+# AI Translated
+msgid "Toolchange Z"
+msgstr "Szerszámcsere Z"
+
+# AI Translated
+msgid "The Z position during the toolchange."
+msgstr "A Z pozíció a szerszámcsere alatt."
 
 # AI Translated
 msgid "Old retract length"
@@ -27396,16 +28944,16 @@ msgid "First flush volume"
 msgstr "Első öblítési térfogat"
 
 # AI Translated
-msgid "The first flush volume."
-msgstr "Az első öblítési térfogat."
+msgid "First half of the planned purge length, in mm of filament."
+msgstr "A tervezett öblítési hossz első fele, mm filamentben megadva."
 
 # AI Translated
 msgid "Second flush volume"
 msgstr "Második öblítési térfogat"
 
 # AI Translated
-msgid "The second flush volume."
-msgstr "A második öblítési térfogat."
+msgid "Second half of the planned purge length, in mm of filament."
+msgstr "A tervezett öblítési hossz második fele, mm filamentben megadva."
 
 # AI Translated
 msgid "Old filament e feedrate"
@@ -27502,6 +29050,131 @@ msgstr "4. öblítési hossz"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "A negyedik öblítési hossz."
+
+# AI Translated
+msgid "Flush length"
+msgstr "Öblítés hossza"
+
+# AI Translated
+msgid "Total flush length."
+msgstr "Az öblítés teljes hossza."
+
+# AI Translated
+msgid "Flush volumetric speeds"
+msgstr "Öblítés volumetrikus sebességei"
+
+# AI Translated
+msgid "Flush volumetric speeds for each filament."
+msgstr "Az öblítés volumetrikus sebességei az egyes filamentekhez."
+
+# AI Translated
+msgid "Flush temperatures"
+msgstr "Öblítési hőmérsékletek"
+
+# AI Translated
+msgid "Flush temperatures for each filament."
+msgstr "Az öblítési hőmérsékletek az egyes filamentekhez."
+
+# AI Translated
+msgid "Filament cooling before tower"
+msgstr "Filament hűtése a torony előtt"
+
+# AI Translated
+msgid "Avoid wipe perimeter"
+msgstr "Törlési kerület elkerülése"
+
+# AI Translated
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr "A mozgásnak el kell-e kerülnie a törlési kerületet."
+
+# AI Translated
+msgid "Wipe tower avoidance X"
+msgstr "Törlőtorony elkerülése X"
+
+# AI Translated
+msgid ""
+"X position just beside the wipe tower that the nozzle moves to so it stays "
+"clear of the tower."
+msgstr ""
+"A közvetlenül a törlőtorony melletti X pozíció, ahová a fúvóka mozog, hogy "
+"távol maradjon a toronytól."
+
+# AI Translated
+# Needs human review: Placeholder name; check that interface (the tower layers between materials) reads as átmeneti réteg and matches the existing prime-tower interface wording.
+msgid "Prime tower interface"
+msgstr "Törlőtorony átmeneti rétege"
+
+# AI Translated
+msgid ""
+"Whether the current purge is for the prime tower interface layer (where "
+"different materials meet)."
+msgstr ""
+"Azt jelzi, hogy az aktuális öblítés a törlőtorony érintkezőrétegéhez (ahol a "
+"különböző anyagok találkoznak) tartozik-e."
+
+# AI Translated
+msgid ""
+"Print temperature for prime tower interface layer (where different materials "
+"meet)."
+msgstr ""
+"Nyomtatási hőmérséklet a törlőtorony érintkezőrétegéhez (ahol a különböző "
+"anyagok találkoznak)."
+
+# AI Translated
+msgid "Wipe tower wait position X"
+msgstr "Törlőtorony várakozási pozíciója X"
+
+# AI Translated
+msgid ""
+"X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the "
+"tower edge."
+msgstr ""
+"A fúvóka törlőtorony melletti várakozási pozíciójának X koordinátája, 2 mm-"
+"re a torony szélén kívül."
+
+# AI Translated
+msgid "Wipe tower wait position Y"
+msgstr "Törlőtorony várakozási pozíciója Y"
+
+# AI Translated
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr "A fúvóka törlőtorony melletti várakozási pozíciójának Y koordinátája."
+
+# AI Translated
+msgid "Wipe tower wait position valid"
+msgstr "Törlőtorony várakozási pozíciója érvényes"
+
+# AI Translated
+msgid ""
+"Whether the wait position is set, which is the case when the print has a "
+"wipe tower."
+msgstr ""
+"Azt jelzi, hogy be van-e állítva a várakozási pozíció, ami akkor áll fenn, "
+"ha a nyomtatásnak van törlőtornya."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_x. Bambu Studio uses this name."
+msgstr ""
+"Ugyanaz, mint a wipe_tower_wait_pos_x. A Bambu Studio ezt a nevet használja."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_y. Bambu Studio uses this name."
+msgstr ""
+"Ugyanaz, mint a wipe_tower_wait_pos_y. A Bambu Studio ezt a nevet használja."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_valid. Bambu Studio uses this name."
+msgstr ""
+"Ugyanaz, mint a wipe_tower_wait_pos_valid. A Bambu Studio ezt a nevet "
+"használja."
+
+# AI Translated
+msgid "Nozzle temperatures indexed by filament."
+msgstr "Fúvókahőmérsékletek filament szerint indexelve."
+
+# AI Translated
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr "Első réteg fúvókahőmérsékletei filament szerint indexelve."
 
 # AI Translated
 msgid "Extrusion role"
@@ -27739,6 +29412,14 @@ msgstr "A reguláris kifejezés fordítása sikertelen"
 # AI Translated
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "Logikai művelet nem alkalmazható nem logikai operandusokra."
+
+# AI Translated
+msgid ""
+"This value is known only after the G-code is generated. It can be printed, "
+"but not used in a calculation or a comparison."
+msgstr ""
+"Ez az érték csak a G-code előállítása után ismert. Kiírható, de számításban "
+"vagy összehasonlításban nem használható."
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -29465,7 +31146,7 @@ msgstr "%s tesztelése indul..."
 
 # AI Translated
 #, c-format, boost-format
-msgid "test %s ip resolved = %s"
+msgid "test %s IP resolved = %s"
 msgstr "%s tesztelése: IP feloldva = %s"
 
 # AI Translated
@@ -29802,15 +31483,17 @@ msgstr ""
 msgid "Filament Created"
 msgstr "Filament létrehozva"
 
+# AI Translated
 msgid ""
-"Please go to filament setting to edit your presets if you need.\n"
+"Please go to filament settings to edit your presets if you need to.\n"
 "Please note that nozzle temperature, hot bed temperature, and maximum "
-"volumetric speed has a significant impact on printing quality. Please set "
-"them carefully."
+"volumetric speed each have a significant impact on printing quality. Please "
+"set them carefully."
 msgstr ""
-"Ha szükséges, lépj be az filamentbeállításokhoz az értékek szerkesztéséhez.\n"
-"Figyelem: a fúvóka hőmérséklete, a tárgyasztal hőmérséklete és a maximális "
-"volumetrikus sebesség jelentős hatással van a nyomtatási minőségre."
+"Ha szükséges, lépj be a filamentbeállításokhoz az értékek szerkesztéséhez.\n"
+"Figyelem: a fúvóka és az asztal hőmérséklete, valamint a maximális "
+"volumetrikus sebesség jelentős hatással van a nyomtatási minőségre. Kérlek, "
+"körültekintően állítsd be őket."
 
 msgid ""
 "\n"
@@ -30030,9 +31713,9 @@ msgstr ""
 "A fúvóka típusa nem egyezik a nyomtató tényleges fúvókatípusával.\n"
 "Kattints a fenti Szinkronizálás gombra, majd indítsd újra a kalibrálást."
 
-#, c-format, boost-format
-msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
-msgstr "%1s anyag nyomtatása %2s fúvókával a fúvóka károsodását okozhatja."
+#, boost-format
+msgid "Printing %1% material with %2% nozzle may cause nozzle damage."
+msgstr "%1% anyag nyomtatása %2% fúvókával a fúvóka károsodását okozhatja."
 
 msgid "Need select printer"
 msgstr "Ki kell választanod a nyomtatót"
@@ -31111,15 +32794,6 @@ msgid "Could not connect to CrealityPrint"
 msgstr "Nem sikerült csatlakozni a CrealityPrinthez"
 
 # AI Translated
-msgid ""
-"Connection timed out. Please check if the printer and computer network are "
-"functioning properly, and confirm that they are on the same network."
-msgstr ""
-"A kapcsolat időtúllépés miatt megszakadt. Kérlek, ellenőrizd, hogy a "
-"nyomtató és a számítógép hálózata megfelelően működik-e, és hogy ugyanazon a "
-"hálózaton vannak-e."
-
-# AI Translated
 msgid "The Hostname/IP/URL could not be parsed, please check it and try again."
 msgstr "A gépnév/IP-cím/URL nem értelmezhető. Ellenőrizd, majd próbáld újra."
 
@@ -31130,6 +32804,15 @@ msgid ""
 msgstr ""
 "A fájl-/adatátvitel megszakadt. Kérlek, ellenőrizd a nyomtatót és a "
 "hálózatot, majd próbáld újra."
+
+# AI Translated
+msgid ""
+"Connection timed out. Please check if the printer and computer network are "
+"functioning properly, and confirm that they are on the same network."
+msgstr ""
+"A kapcsolat időtúllépés miatt megszakadt. Kérlek, ellenőrizd, hogy a "
+"nyomtató és a számítógép hálózata megfelelően működik-e, és hogy ugyanazon a "
+"hálózaton vannak-e."
 
 msgid "The provided state is not correct."
 msgstr "A megadott állapot nem megfelelő."
@@ -31378,10 +33061,6 @@ msgstr "Háromszögfelületek száma"
 
 msgid "Calculating, please wait..."
 msgstr "Számítás folyamatban, kérlek várj..."
-
-# AI Translated
-msgid "Save these settings as default"
-msgstr "Beállítások mentése alapértelmezettként"
 
 # AI Translated
 msgid ""
@@ -32576,10 +34255,6 @@ msgstr "(minden él)"
 # AI Translated
 msgid "Placement (transform / mirror / mate)"
 msgstr "Elhelyezés (transzformálás / tükrözés / illesztés)"
-
-# AI Translated
-msgid "Transform"
-msgstr "Transzformálás"
 
 # AI Translated
 msgid "Move and/or rotate an existing body"
@@ -35986,10 +37661,6 @@ msgstr ""
 "amelyek találkoznak"
 
 # AI Translated
-msgid "The size must be greater than zero"
-msgstr "A méretnek nagyobbnak kell lennie nullánál"
-
-# AI Translated
 msgid ""
 "Fillet: the radius overruns a leg, or the two lines do not meet at a corner"
 msgstr ""
@@ -36099,10 +37770,6 @@ msgstr "Ismétlés"
 # AI Translated
 msgid "Reference"
 msgstr "Referencia"
-
-# AI Translated
-msgid "Modify"
-msgstr "Módosítás"
 
 # AI Translated
 msgctxt "Design"
@@ -36947,9 +38614,6 @@ msgstr "Zoom közelítés"
 
 msgid "Zoom out"
 msgstr "Zoom távolítás"
-
-msgid "Show/Hide 3Dconnexion devices settings dialog"
-msgstr "3Dconnexion-eszközbeállítások párbeszédablak megjelenítése/elrejtése"
 
 # AI Translated
 msgid "Show/Hide wireframe"
@@ -37972,1232 +39636,1650 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
+# AI Translated
 msgid "Color Picker"
-msgstr ""
+msgstr "Színválasztó"
 
+# AI Translated
 msgid "Basic Colors"
-msgstr ""
+msgstr "Alapszínek"
 
-msgid "Orca Palette"
-msgstr ""
-
+# AI Translated
+# Needs human review: Glossary cell for Palette empty for hu; 'paletta' used
 #. TRN: Keep the brand name "Orca" unchanged; translate only the palette descriptor.
-msgid "RAL Classic"
-msgstr ""
+msgid "Orca Palette"
+msgstr "Orca paletta"
 
+# AI Translated
 #. TRN: Keep the standard/brand name "RAL" unchanged.
+msgid "RAL Classic"
+msgstr "RAL Klasszikus"
+
+# AI Translated
 msgid "Gradients"
-msgstr ""
+msgstr "Színátmenetek"
 
+# AI Translated
+msgctxt "Color picker"
 msgid "Solid"
-msgstr ""
+msgstr "Egyszínű"
 
+# AI Translated
 msgid "Gradient"
-msgstr ""
+msgstr "Színátmenet"
 
+# AI Translated
 msgid "Gradient start"
-msgstr ""
+msgstr "Színátmenet kezdete"
 
+# AI Translated
 msgid "Gradient end"
-msgstr ""
+msgstr "Színátmenet vége"
 
+# AI Translated
 msgid "Gradient color"
-msgstr ""
+msgstr "Színátmenet színe"
 
+# AI Translated
 msgid "Add color"
-msgstr ""
+msgstr "Szín hozzáadása"
 
+# AI Translated
 msgid "Remove color"
-msgstr ""
+msgstr "Szín eltávolítása"
 
+# AI Translated
 msgid "Saturation"
-msgstr ""
+msgstr "Telítettség"
 
+# AI Translated
 msgid "Original color"
-msgstr ""
+msgstr "Eredeti szín"
 
+# AI Translated
 #. TRN: Clicking the current color preview adds it to the saved favorites.
 msgid "Save current color"
-msgstr ""
+msgstr "Jelenlegi szín mentése"
 
+# AI Translated
+# Needs human review: Glossary cell for Palette empty for hu; 'paletta' used
 msgid "Palettes"
+msgstr "Paletták"
+
+msgid "Pick color from screen"
 msgstr ""
 
+# AI Translated
 msgid "Search colors"
-msgstr ""
+msgstr "Színek keresése"
 
+# AI Translated
 msgid "Filter colors"
-msgstr ""
+msgstr "Színek szűrése"
 
+# AI Translated
 msgid "No matching colors"
-msgstr ""
+msgstr "Nincs egyező szín"
 
+# AI Translated
 msgid "Hex color"
-msgstr ""
+msgstr "Hex szín"
 
 # AI Translated
 msgid "Opacity"
 msgstr "Átlátszatlanság"
 
+# AI Translated
 msgid "Opacity percent"
-msgstr ""
+msgstr "Átlátszatlanság (%)"
 
+# AI Translated
 msgid "Save color"
-msgstr ""
+msgstr "Szín mentése"
 
+# AI Translated
 msgid "Enter a complete hexadecimal color"
-msgstr ""
+msgstr "Adj meg egy teljes hexadecimális színkódot"
 
+# AI Translated
 msgid ""
 "The current multi-color selection is kept until you choose a different color."
 msgstr ""
+"A jelenlegi többszínű kijelölés megmarad, amíg másik színt nem választasz."
 
+# AI Translated
 #, c-format, boost-format
 msgid "Up to %d colors supported."
-msgstr ""
+msgstr "Legfeljebb %d szín támogatott."
 
+# AI Translated
 msgid "Crimson"
-msgstr ""
+msgstr "Karmazsin"
 
+# AI Translated
 msgid "Orange red"
-msgstr ""
+msgstr "Narancsvörös"
 
+# AI Translated
 msgid "Tomato"
-msgstr ""
+msgstr "Paradicsom"
 
+# AI Translated
 msgid "Orange"
-msgstr ""
+msgstr "Narancs"
 
+# AI Translated
 msgid "Dark orange"
-msgstr ""
+msgstr "Sötét narancs"
 
+# AI Translated
 msgid "Gold"
-msgstr ""
+msgstr "Arany"
 
+# AI Translated
 msgid "Burly wood"
-msgstr ""
+msgstr "Fabarna"
 
+# AI Translated
 msgid "Bisque"
-msgstr ""
+msgstr "Biszkvit"
 
+# AI Translated
 msgid "Misty rose"
-msgstr ""
+msgstr "Ködös rózsa"
 
+# AI Translated
 msgid "Light yellow"
-msgstr ""
+msgstr "Világossárga"
 
+# AI Translated
 msgid "Lemon chiffon"
-msgstr ""
+msgstr "Citromhab"
 
+# AI Translated
 msgid "Beige"
-msgstr ""
+msgstr "Bézs"
 
+# AI Translated
 msgid "Light golden rod yellow"
-msgstr ""
+msgstr "Világos aranyvesszősárga"
 
+# AI Translated
 msgid "Pale golden rod"
-msgstr ""
+msgstr "Halvány aranyvessző"
 
+# AI Translated
 msgid "Khaki"
-msgstr ""
+msgstr "Khaki"
 
+# AI Translated
 msgid "Dark khaki"
-msgstr ""
+msgstr "Sötét khaki"
 
+# AI Translated
 msgid "Peach puff"
-msgstr ""
+msgstr "Barackhab"
 
+# AI Translated
 msgid "Moccasin"
-msgstr ""
+msgstr "Mokaszin"
 
+# AI Translated
 msgid "Papaya whip"
-msgstr ""
+msgstr "Papayakrém"
 
+# AI Translated
 msgid "Blanched almond"
-msgstr ""
+msgstr "Hámozott mandula"
 
+# AI Translated
 msgid "Antique white"
-msgstr ""
+msgstr "Antik fehér"
 
+# AI Translated
 msgid "Navajo white"
-msgstr ""
+msgstr "Navajo fehér"
 
+# AI Translated
 msgid "Wheat"
-msgstr ""
+msgstr "Búza"
 
+# AI Translated
 msgid "Golden rod"
-msgstr ""
+msgstr "Aranyvessző"
 
+# AI Translated
 msgid "Chocolate"
-msgstr ""
+msgstr "Csokoládé"
 
+# AI Translated
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
+# AI Translated
 msgid "Fire brick"
-msgstr ""
+msgstr "Téglavörös"
 
+# AI Translated
 msgid "Sienna"
-msgstr ""
+msgstr "Siena"
 
+# AI Translated
 msgid "Saddle brown"
-msgstr ""
+msgstr "Nyeregbarna"
 
+# AI Translated
 msgid "Brown"
-msgstr ""
+msgstr "Barna"
 
+# AI Translated
 msgid "Rosy brown"
-msgstr ""
+msgstr "Rózsás barna"
 
+# AI Translated
 msgid "Salmon"
-msgstr ""
+msgstr "Lazac"
 
+# AI Translated
 msgid "Light salmon"
-msgstr ""
+msgstr "Világos lazac"
 
+# AI Translated
 msgid "Dark salmon"
-msgstr ""
+msgstr "Sötét lazac"
 
+# AI Translated
 msgid "Sandy brown"
-msgstr ""
+msgstr "Homokbarna"
 
+# AI Translated
 msgid "Coral"
-msgstr ""
+msgstr "Korall"
 
+# AI Translated
 msgid "Light coral"
-msgstr ""
+msgstr "Világos korall"
 
+# AI Translated
 msgid "Indian red"
-msgstr ""
+msgstr "Indiánvörös"
 
+# AI Translated
 msgid "Dark red"
-msgstr ""
+msgstr "Sötétvörös"
 
+# AI Translated
 msgid "Maroon"
-msgstr ""
+msgstr "Bordó"
 
+# AI Translated
 msgid "Green yellow"
-msgstr ""
+msgstr "Zöldessárga"
 
+# AI Translated
 msgid "Yellow green"
-msgstr ""
+msgstr "Sárgászöld"
 
+# AI Translated
 msgid "Chartreuse"
-msgstr ""
+msgstr "Chartreuse"
 
+# AI Translated
 msgid "Lawn green"
-msgstr ""
+msgstr "Gyepzöld"
 
+# AI Translated
 msgid "Lime green"
-msgstr ""
+msgstr "Limezöld"
 
+# AI Translated
 msgid "Spring green"
-msgstr ""
+msgstr "Tavaszi zöld"
 
+# AI Translated
 msgid "Medium spring green"
-msgstr ""
+msgstr "Közepes tavaszi zöld"
 
+# AI Translated
 msgid "Lime"
-msgstr ""
+msgstr "Lime"
 
+# AI Translated
 msgid "Forest green"
-msgstr ""
+msgstr "Erdőzöld"
 
+# AI Translated
 msgid "Dark green"
-msgstr ""
+msgstr "Sötétzöld"
 
+# AI Translated
 msgid "Olive drab"
-msgstr ""
+msgstr "Tompa olívazöld"
 
+# AI Translated
 msgid "Olive"
-msgstr ""
+msgstr "Olíva"
 
+# AI Translated
 msgid "Dark olive green"
-msgstr ""
+msgstr "Sötét olívazöld"
 
+# AI Translated
 msgid "Pale green"
-msgstr ""
+msgstr "Halványzöld"
 
+# AI Translated
 msgid "Light green"
-msgstr ""
+msgstr "Világoszöld"
 
+# AI Translated
 msgid "Medium sea green"
-msgstr ""
+msgstr "Közepes tengerzöld"
 
+# AI Translated
 msgid "Sea green"
-msgstr ""
+msgstr "Tengerzöld"
 
+# AI Translated
 msgid "Dark sea green"
-msgstr ""
+msgstr "Sötét tengerzöld"
 
+# AI Translated
 msgid "Cadet blue"
-msgstr ""
+msgstr "Kadétkék"
 
+# AI Translated
 msgid "Medium aqua marine"
-msgstr ""
+msgstr "Közepes akvamarin"
 
+# AI Translated
 msgid "Turquoise"
-msgstr ""
+msgstr "Türkiz"
 
+# AI Translated
 msgid "Medium turquoise"
-msgstr ""
+msgstr "Közepes türkiz"
 
+# AI Translated
 msgid "Dark turquoise"
-msgstr ""
+msgstr "Sötét türkiz"
 
+# AI Translated
 msgid "Pale turquoise"
-msgstr ""
+msgstr "Halvány türkiz"
 
+# AI Translated
 msgid "Aqua"
-msgstr ""
+msgstr "Aqua"
 
+# AI Translated
 msgid "Light cyan"
-msgstr ""
+msgstr "Világos cián"
 
+# AI Translated
 msgid "Mint cream"
-msgstr ""
+msgstr "Mentakrém"
 
+# AI Translated
 msgid "Honey dew"
-msgstr ""
+msgstr "Mézharmat"
 
+# AI Translated
 msgid "Aquamarine"
-msgstr ""
+msgstr "Akvamarin"
 
+# AI Translated
 msgid "Light sea green"
-msgstr ""
+msgstr "Világos tengerzöld"
 
+# AI Translated
 msgid "Dark cyan"
-msgstr ""
+msgstr "Sötét cián"
 
+# AI Translated
 msgid "Teal"
-msgstr ""
+msgstr "Pávakék"
 
+# AI Translated
 msgid "Dark slate gray"
-msgstr ""
+msgstr "Sötét palaszürke"
 
+# AI Translated
 msgid "Light slate gray"
-msgstr ""
+msgstr "Világos palaszürke"
 
+# AI Translated
 msgid "Slate gray"
-msgstr ""
+msgstr "Palaszürke"
 
+# AI Translated
 msgid "Deep sky blue"
-msgstr ""
+msgstr "Mély égkék"
 
+# AI Translated
 msgid "Dodger Blue"
-msgstr ""
+msgstr "Dodger-kék"
 
+# AI Translated
 msgid "Sky blue"
-msgstr ""
+msgstr "Égkék"
 
+# AI Translated
 msgid "Light sky blue"
-msgstr ""
+msgstr "Világos égkék"
 
+# AI Translated
 msgid "Light blue"
-msgstr ""
+msgstr "Világoskék"
 
+# AI Translated
 msgid "Powder blue"
-msgstr ""
+msgstr "Púderkék"
 
+# AI Translated
 msgid "Light steel blue"
-msgstr ""
+msgstr "Világos acélkék"
 
+# AI Translated
 msgid "Steel blue"
-msgstr ""
+msgstr "Acélkék"
 
+# AI Translated
 msgid "Cornflower blue"
-msgstr ""
+msgstr "Búzavirágkék"
 
+# AI Translated
 msgid "Royal blue"
-msgstr ""
+msgstr "Királykék"
 
+# AI Translated
 msgid "Medium blue"
-msgstr ""
+msgstr "Közepes kék"
 
+# AI Translated
 msgid "Midnight blue"
-msgstr ""
+msgstr "Éjkék"
 
+# AI Translated
 msgid "Dark blue"
-msgstr ""
+msgstr "Sötétkék"
 
+# AI Translated
 msgid "Navy"
-msgstr ""
+msgstr "Tengerészkék"
 
+# AI Translated
 msgid "Slate blue"
-msgstr ""
+msgstr "Palakék"
 
+# AI Translated
 msgid "Dark slate blue"
-msgstr ""
+msgstr "Sötét palakék"
 
+# AI Translated
 msgid "Medium slate blue"
-msgstr ""
+msgstr "Közepes palakék"
 
+# AI Translated
 msgid "Blue violet"
-msgstr ""
+msgstr "Kékibolya"
 
+# AI Translated
 msgid "Indigo"
-msgstr ""
+msgstr "Indigó"
 
+# AI Translated
 msgid "Dark violet"
-msgstr ""
+msgstr "Sötét ibolya"
 
+# AI Translated
 msgid "Dark orchid"
-msgstr ""
+msgstr "Sötét orchidea"
 
+# AI Translated
 msgid "Medium orchid"
-msgstr ""
+msgstr "Közepes orchidea"
 
+# AI Translated
 msgid "Orchid"
-msgstr ""
+msgstr "Orchidea"
 
+# AI Translated
 msgid "Violet"
-msgstr ""
+msgstr "Ibolya"
 
+# AI Translated
 msgid "Medium purple"
-msgstr ""
+msgstr "Közepes lila"
 
+# AI Translated
 msgid "Purple"
-msgstr ""
+msgstr "Lila"
 
+# AI Translated
 msgid "Rebecca purple"
-msgstr ""
+msgstr "Rebecca-lila"
 
+# AI Translated
 msgid "Medium violet red"
-msgstr ""
+msgstr "Közepes ibolyavörös"
 
-msgid "PaleV violet red"
-msgstr ""
+# AI Translated
+msgid "Pale violet red"
+msgstr "Halvány ibolyavörös"
 
+# AI Translated
 msgid "Deep pink"
-msgstr ""
+msgstr "Mély rózsaszín"
 
+# AI Translated
 msgid "Hot pink"
-msgstr ""
+msgstr "Élénk rózsaszín"
 
+# AI Translated
 msgid "Light pink"
-msgstr ""
+msgstr "Világos rózsaszín"
 
+# AI Translated
 msgid "Pink"
-msgstr ""
+msgstr "Rózsaszín"
 
+# AI Translated
 msgid "Plum"
-msgstr ""
+msgstr "Szilva"
 
+# AI Translated
 msgid "Thistle"
-msgstr ""
+msgstr "Bogáncs"
 
+# AI Translated
 msgid "Fuchsia"
-msgstr ""
+msgstr "Fukszia"
 
+# AI Translated
 msgid "Dark magenta"
-msgstr ""
+msgstr "Sötét magenta"
 
+# AI Translated
 msgid "Linen"
-msgstr ""
+msgstr "Vászon"
 
+# AI Translated
 msgid "Old lace"
-msgstr ""
+msgstr "Régi csipke"
 
+# AI Translated
+# Needs human review: CSS color 'seashell'; Shell glossary warning is a false match (not the print shell)
 msgid "Sea shell"
-msgstr ""
+msgstr "Kagyló"
 
+# AI Translated
 msgid "Ivory"
-msgstr ""
+msgstr "Elefántcsont"
 
+# AI Translated
 msgid "Floral white"
-msgstr ""
+msgstr "Virágfehér"
 
+# AI Translated
 msgid "Lavender blush"
-msgstr ""
+msgstr "Levendulapír"
 
+# AI Translated
 msgid "Ghost white"
-msgstr ""
+msgstr "Szellemfehér"
 
+# AI Translated
 msgid "Alice blue"
-msgstr ""
+msgstr "Alice-kék"
 
+# AI Translated
 msgid "Lavender"
-msgstr ""
+msgstr "Levendula"
 
+# AI Translated
 msgid "White smoke"
-msgstr ""
+msgstr "Füstfehér"
 
+# AI Translated
 msgid "Gainsboro"
-msgstr ""
+msgstr "Gainsboro"
 
+# AI Translated
 msgid "Black"
-msgstr ""
+msgstr "Fekete"
 
+# AI Translated
 msgid "Coral fire"
-msgstr ""
+msgstr "Korallparázs"
 
+# AI Translated
 msgid "Sea anemone"
-msgstr ""
+msgstr "Tengerirózsa"
 
+# AI Translated
 msgid "Deep abyss"
-msgstr ""
+msgstr "Mély szakadék"
 
+# AI Translated
 msgid "Lobster red"
-msgstr ""
+msgstr "Homárvörös"
 
+# AI Translated
 msgid "Sandy clay"
-msgstr ""
+msgstr "Homokos agyag"
 
+# AI Translated
 msgid "Driftwood"
-msgstr ""
+msgstr "Uszadékfa"
 
+# AI Translated
 msgid "Sea buckthorn"
-msgstr ""
+msgstr "Homoktövis"
 
+# AI Translated
 msgid "Sunset reef"
-msgstr ""
+msgstr "Naplementés zátony"
 
+# AI Translated
 msgid "Tiger coral"
-msgstr ""
+msgstr "Tigriskorall"
 
+# AI Translated
 msgid "Pink coral"
-msgstr ""
+msgstr "Rózsaszín korall"
 
+# AI Translated
 msgid "Seashell glow"
-msgstr ""
+msgstr "Kagylófény"
 
+# AI Translated
 msgid "Sand"
-msgstr ""
+msgstr "Homok"
 
+# AI Translated
 msgid "Golden kelp"
-msgstr ""
+msgstr "Arany moszat"
 
+# AI Translated
 msgid "Sunlit dune"
-msgstr ""
+msgstr "Napsütötte dűne"
 
+# AI Translated
 msgid "Amber nautilus"
-msgstr ""
+msgstr "Borostyán nautilus"
 
+# AI Translated
 msgid "Sea lemon"
-msgstr ""
+msgstr "Tengeri citrom"
 
+# AI Translated
 msgid "Pale starfish"
-msgstr ""
+msgstr "Halvány tengericsillag"
 
+# AI Translated
 msgid "Spring tide"
-msgstr ""
+msgstr "Tavaszi dagály"
 
+# AI Translated
 msgid "Lime algae"
-msgstr ""
+msgstr "Limezöld alga"
 
+# AI Translated
 msgid "Sea grass"
-msgstr ""
+msgstr "Tengeri fű"
 
+# AI Translated
 msgid "Neon plankton"
-msgstr ""
+msgstr "Neon plankton"
 
+# AI Translated
 msgid "Kelp forest"
-msgstr ""
+msgstr "Moszaterdő"
 
+# AI Translated
 msgid "Emerald wave"
-msgstr ""
+msgstr "Smaragd hullám"
 
+# AI Translated
 msgid "Whale shadow"
-msgstr ""
+msgstr "Bálnaárnyék"
 
+# AI Translated
 msgid "Sea turtle"
-msgstr ""
+msgstr "Tengeri teknős"
 
+# AI Translated
 msgid "Lagoon"
-msgstr ""
+msgstr "Lagúna"
 
+# AI Translated
 msgid "Tropical current"
-msgstr ""
+msgstr "Trópusi áramlat"
 
+# AI Translated
 msgid "Midnight trench"
-msgstr ""
+msgstr "Éjféli árok"
 
+# AI Translated
 msgid "Dark kelp"
-msgstr ""
+msgstr "Sötét moszat"
 
+# AI Translated
 msgid "Crystal surf"
-msgstr ""
+msgstr "Kristályhullám"
 
+# AI Translated
 msgid "Turquoise bay"
-msgstr ""
+msgstr "Türkiz öböl"
 
+# AI Translated
 msgid "Sky over reef"
-msgstr ""
+msgstr "Zátony feletti ég"
 
+# AI Translated
 msgid "Shallow sky"
-msgstr ""
+msgstr "Sekélyvízi ég"
 
-msgid "Electric bel"
-msgstr ""
+# AI Translated
+msgid "Electric blue"
+msgstr "Elektromos kék"
 
+# AI Translated
 msgid "Dolphin"
-msgstr ""
+msgstr "Delfin"
 
+# AI Translated
 msgid "Ocean depths"
-msgstr ""
+msgstr "Óceánmélység"
 
+# AI Translated
 msgid "Whale"
-msgstr ""
+msgstr "Bálna"
 
+# AI Translated
 msgid "Indigo abyss"
-msgstr ""
+msgstr "Indigó szakadék"
 
+# AI Translated
 msgid "Sea urchin"
-msgstr ""
+msgstr "Tengeri sün"
 
+# AI Translated
 msgid "Lavender coral"
-msgstr ""
+msgstr "Levendula korall"
 
+# AI Translated
 msgid "Violet tide"
-msgstr ""
+msgstr "Ibolya dagály"
 
+# AI Translated
 msgid "Deep sea orchid"
-msgstr ""
+msgstr "Mélytengeri orchidea"
 
+# AI Translated
 msgid "Neon jelly"
-msgstr ""
+msgstr "Neon medúza"
 
+# AI Translated
 msgid "Fuchsia coral"
-msgstr ""
+msgstr "Fukszia korall"
 
+# AI Translated
 msgid "Pink jellyfish"
-msgstr ""
+msgstr "Rózsaszín medúza"
 
+# AI Translated
 msgid "Foam"
-msgstr ""
+msgstr "Hab"
 
+# AI Translated
 msgid "Seashell white"
-msgstr ""
+msgstr "Kagylófehér"
 
+# AI Translated
 msgid "Pebble gray"
-msgstr ""
+msgstr "Kavicsszürke"
 
+# AI Translated
 msgid "Storm cloud"
-msgstr ""
+msgstr "Viharfelhő"
 
+# AI Translated
 msgid "Ink black"
-msgstr ""
+msgstr "Tintafekete"
 
+# AI Translated
 msgid "Green beige"
-msgstr ""
+msgstr "Zöldesbézs"
 
+# AI Translated
 msgid "Sand yellow"
-msgstr ""
+msgstr "Homoksárga"
 
+# AI Translated
 msgid "Signal yellow"
-msgstr ""
+msgstr "Jelzősárga"
 
+# AI Translated
 msgid "Golden yellow"
-msgstr ""
+msgstr "Aranysárga"
 
+# AI Translated
 msgid "Honey yellow"
-msgstr ""
+msgstr "Mézsárga"
 
+# AI Translated
 msgid "Maize yellow"
-msgstr ""
+msgstr "Kukoricasárga"
 
-msgid "Dalmatian yellow"
-msgstr ""
+# AI Translated
+msgid "Daffodil yellow"
+msgstr "Nárciszsárga"
 
+# AI Translated
 msgid "Brown beige"
-msgstr ""
+msgstr "Barnabézs"
 
+# AI Translated
 msgid "Lemon yellow"
-msgstr ""
+msgstr "Citromsárga"
 
+# AI Translated
 msgid "Oyster white"
-msgstr ""
+msgstr "Osztrigafehér"
 
+# AI Translated
 msgid "Light ivory"
-msgstr ""
+msgstr "Világos elefántcsont"
 
+# AI Translated
 msgid "Zinc yellow"
-msgstr ""
+msgstr "Cinksárga"
 
+# AI Translated
 msgid "Grey beige"
-msgstr ""
+msgstr "Szürkebézs"
 
+# AI Translated
 msgid "Olive yellow"
-msgstr ""
+msgstr "Olívasárga"
 
+# AI Translated
 msgid "Rape yellow"
-msgstr ""
+msgstr "Repcesárga"
 
+# AI Translated
 msgid "Traffic yellow"
-msgstr ""
+msgstr "Forgalmi sárga"
 
+# AI Translated
 msgid "Ochre yellow"
-msgstr ""
+msgstr "Okkersárga"
 
+# AI Translated
 msgid "Traffic orange yellow"
-msgstr ""
+msgstr "Forgalmi narancssárga"
 
+# AI Translated
 msgid "Curry"
-msgstr ""
+msgstr "Curry"
 
+# AI Translated
 msgid "Melon yellow"
-msgstr ""
+msgstr "Dinnyesárga"
 
+# AI Translated
 msgid "Broom yellow"
-msgstr ""
+msgstr "Rekettyesárga"
 
+# AI Translated
 msgid "Dahlia yellow"
-msgstr ""
+msgstr "Dáliasárga"
 
+# AI Translated
 msgid "Pastel yellow"
-msgstr ""
+msgstr "Pasztellsárga"
 
+# AI Translated
 msgid "Pearl beige"
-msgstr ""
+msgstr "Gyöngybézs"
 
+# AI Translated
 msgid "Pearl gold"
-msgstr ""
+msgstr "Gyöngyarany"
 
+# AI Translated
 msgid "Sun yellow"
-msgstr ""
+msgstr "Napsárga"
 
+# AI Translated
 msgid "Yellow orange"
-msgstr ""
+msgstr "Sárgásnarancs"
 
+# AI Translated
 msgid "Deep orange"
-msgstr ""
+msgstr "Mély narancs"
 
+# AI Translated
 msgid "Vermilion"
-msgstr ""
+msgstr "Cinóber"
 
+# AI Translated
 msgid "Pearl orange"
-msgstr ""
+msgstr "Gyöngynarancs"
 
+# AI Translated
 msgid "Pure orange"
-msgstr ""
+msgstr "Tiszta narancs"
 
+# AI Translated
 msgid "Luminous orange"
-msgstr ""
+msgstr "Világító narancs"
 
+# AI Translated
 msgid "Luminous bright orange"
-msgstr ""
+msgstr "Világító élénk narancs"
 
+# AI Translated
 msgid "Bright red orange"
-msgstr ""
+msgstr "Élénk vörösnarancs"
 
+# AI Translated
 msgid "Traffic orange"
-msgstr ""
+msgstr "Forgalmi narancs"
 
+# AI Translated
 msgid "Signal orange"
-msgstr ""
+msgstr "Jelzőnarancs"
 
+# AI Translated
 msgid "Salmon orange"
-msgstr ""
+msgstr "Lazacnarancs"
 
+# AI Translated
 msgid "Pearl pink"
-msgstr ""
+msgstr "Gyöngyrózsaszín"
 
+# AI Translated
 msgid "Copper orange"
-msgstr ""
+msgstr "Réznarancs"
 
+# AI Translated
 msgid "Signal brown"
-msgstr ""
+msgstr "Jelzőbarna"
 
+# AI Translated
+# Needs human review: RAL 2018 name; 'Fir' rendered as jegenyefenyő; check against the Hungarian RAL chart
 msgid "Fir orange"
-msgstr ""
+msgstr "Jegenyefenyő-narancs"
 
+# AI Translated
 msgid "Signal red"
-msgstr ""
+msgstr "Jelzővörös"
 
+# AI Translated
 msgid "Luminous red"
-msgstr ""
+msgstr "Világító vörös"
 
+# AI Translated
 msgid "Carmine red"
-msgstr ""
+msgstr "Karminvörös"
 
+# AI Translated
 msgid "Pearl carmine red"
-msgstr ""
+msgstr "Gyöngykarminvörös"
 
+# AI Translated
 msgid "Pure red"
-msgstr ""
+msgstr "Tiszta vörös"
 
+# AI Translated
 msgid "Luminous deep red"
-msgstr ""
+msgstr "Világító mélyvörös"
 
+# AI Translated
 msgid "Currant red"
-msgstr ""
+msgstr "Ribizlivörös"
 
+# AI Translated
 msgid "Pearl ruby red"
-msgstr ""
+msgstr "Gyöngyrubinvörös"
 
+# AI Translated
 msgid "Fire red"
-msgstr ""
+msgstr "Tűzvörös"
 
+# AI Translated
 msgid "Ruby red"
-msgstr ""
+msgstr "Rubinvörös"
 
+# AI Translated
 msgid "Purple red"
-msgstr ""
+msgstr "Lilásvörös"
 
+# AI Translated
 msgid "Wine red"
-msgstr ""
+msgstr "Borvörös"
 
+# AI Translated
 msgid "Black red"
-msgstr ""
+msgstr "Feketésvörös"
 
+# AI Translated
 msgid "Oxide red"
-msgstr ""
+msgstr "Oxidvörös"
 
+# AI Translated
 msgid "Brown red"
-msgstr ""
+msgstr "Barnásvörös"
 
+# AI Translated
+# Needs human review: RAL 3012 name; check against the Hungarian RAL chart
 msgid "Pine red"
-msgstr ""
+msgstr "Fenyővörös"
 
+# AI Translated
 msgid "Tomato red"
-msgstr ""
+msgstr "Paradicsomvörös"
 
+# AI Translated
 msgid "Antique pink"
-msgstr ""
+msgstr "Antik rózsaszín"
 
+# AI Translated
 msgid "Coral red"
-msgstr ""
+msgstr "Korallvörös"
 
+# AI Translated
 msgid "Rose"
-msgstr ""
+msgstr "Rózsa"
 
+# AI Translated
 msgid "Strawberry red"
-msgstr ""
+msgstr "Epervörös"
 
+# AI Translated
 msgid "Traffic red"
-msgstr ""
+msgstr "Forgalmi vörös"
 
+# AI Translated
 msgid "Salmon pink"
-msgstr ""
+msgstr "Lazacrózsaszín"
 
+# AI Translated
 msgid "Luminous rose"
-msgstr ""
+msgstr "Világító rózsa"
 
+# AI Translated
 msgid "Luminous bright red"
-msgstr ""
+msgstr "Világító élénkvörös"
 
+# AI Translated
 msgid "Raspberry red"
-msgstr ""
+msgstr "Málnavörös"
 
+# AI Translated
 msgid "Orient red"
-msgstr ""
+msgstr "Keleti vörös"
 
+# AI Translated
 msgid "Pearl ruby"
-msgstr ""
+msgstr "Gyöngyrubin"
 
+# AI Translated
 msgid "Red purple"
-msgstr ""
+msgstr "Vöröslila"
 
+# AI Translated
 msgid "Red violet"
-msgstr ""
+msgstr "Vörösibolya"
 
+# AI Translated
 msgid "Heather violet"
-msgstr ""
+msgstr "Hangaibolya"
 
+# AI Translated
 msgid "Bordeaux violet"
-msgstr ""
+msgstr "Bordóibolya"
 
+# AI Translated
 msgid "Mahogany"
-msgstr ""
+msgstr "Mahagóni"
 
+# AI Translated
 msgid "Grey purple"
-msgstr ""
+msgstr "Szürkéslila"
 
+# AI Translated
 msgid "Signal violet"
-msgstr ""
+msgstr "Jelzőibolya"
 
+# AI Translated
+# Needs human review: Used for both RAL 4009 and 6009 (source reuses one msgid); check against the Hungarian RAL chart
 msgid "Fir green"
-msgstr ""
+msgstr "Jegenyefenyő-zöld"
 
+# AI Translated
+# Needs human review: RAL 4010 name (a violet-grey); unclear source term, check against the Hungarian RAL chart
 msgid "Sabine grey"
-msgstr ""
+msgstr "Szabin szürke"
 
+# AI Translated
 msgid "Pearl violet"
-msgstr ""
+msgstr "Gyöngyibolya"
 
+# AI Translated
 msgid "Pearl blackberry"
-msgstr ""
+msgstr "Gyöngyszeder"
 
+# AI Translated
 msgid "Green blue"
-msgstr ""
+msgstr "Zöldeskék"
 
+# AI Translated
 msgid "Ultramarine blue"
-msgstr ""
+msgstr "Ultramarinkék"
 
+# AI Translated
 msgid "Sapphire blue"
-msgstr ""
+msgstr "Zafírkék"
 
+# AI Translated
 msgid "Black blue"
-msgstr ""
+msgstr "Feketéskék"
 
+# AI Translated
 msgid "Signal blue"
-msgstr ""
+msgstr "Jelzőkék"
 
+# AI Translated
 msgid "Brilliant blue"
-msgstr ""
+msgstr "Ragyogó kék"
 
+# AI Translated
 msgid "Grey blue"
-msgstr ""
+msgstr "Szürkéskék"
 
+# AI Translated
 msgid "Azure blue"
-msgstr ""
+msgstr "Azúrkék"
 
+# AI Translated
 msgid "Gentian blue"
-msgstr ""
+msgstr "Enciánkék"
 
+# AI Translated
 msgid "Cobalt blue"
-msgstr ""
+msgstr "Kobaltkék"
 
+# AI Translated
 msgid "Pigeon blue"
-msgstr ""
+msgstr "Galambkék"
 
+# AI Translated
 msgid "Traffic blue"
-msgstr ""
+msgstr "Forgalmi kék"
 
+# AI Translated
 msgid "Turquoise blue"
-msgstr ""
+msgstr "Türkizkék"
 
-msgid "Capsanthin violet"
-msgstr ""
+# AI Translated
+msgid "Capri blue"
+msgstr "Caprikék"
 
+# AI Translated
 msgid "Ocean blue"
-msgstr ""
+msgstr "Óceánkék"
 
+# AI Translated
 msgid "Water blue"
-msgstr ""
+msgstr "Vízkék"
 
+# AI Translated
 msgid "Night blue"
-msgstr ""
+msgstr "Éjszakai kék"
 
+# AI Translated
 msgid "Distant blue"
-msgstr ""
+msgstr "Távoli kék"
 
+# AI Translated
 msgid "Pastel blue"
-msgstr ""
+msgstr "Pasztellkék"
 
+# AI Translated
 msgid "Pearl gentian blue"
-msgstr ""
+msgstr "Gyöngyenciánkék"
 
+# AI Translated
 msgid "Pearl midnight blue"
-msgstr ""
+msgstr "Gyöngyéjkék"
 
+# AI Translated
 msgid "Patina green"
-msgstr ""
+msgstr "Patinazöld"
 
+# AI Translated
 msgid "Emerald green"
-msgstr ""
+msgstr "Smaragdzöld"
 
+# AI Translated
 msgid "Leaf green"
-msgstr ""
+msgstr "Levélzöld"
 
+# AI Translated
 msgid "Olive green"
-msgstr ""
+msgstr "Olívazöld"
 
+# AI Translated
 msgid "Blue green"
-msgstr ""
+msgstr "Kékeszöld"
 
+# AI Translated
 msgid "Moss green"
-msgstr ""
+msgstr "Mohazöld"
 
+# AI Translated
 msgid "Grey olive"
-msgstr ""
+msgstr "Szürkeolíva"
 
+# AI Translated
 msgid "Pine green"
-msgstr ""
+msgstr "Fenyőzöld"
 
+# AI Translated
 msgid "Pine brown"
-msgstr ""
+msgstr "Fenyőbarna"
 
+# AI Translated
 msgid "Grass green"
-msgstr ""
+msgstr "Fűzöld"
 
+# AI Translated
 msgid "Reseda green"
-msgstr ""
+msgstr "Rezedazöld"
 
+# AI Translated
 msgid "Brown green"
-msgstr ""
+msgstr "Barnászöld"
 
+# AI Translated
 msgid "Reed green"
-msgstr ""
+msgstr "Nádzöld"
 
+# AI Translated
 msgid "Black green"
-msgstr ""
+msgstr "Feketészöld"
 
+# AI Translated
 msgid "Turquoise green"
-msgstr ""
+msgstr "Türkizzöld"
 
+# AI Translated
 msgid "May green"
-msgstr ""
+msgstr "Májusi zöld"
 
+# AI Translated
 msgid "Chrome oxide green"
-msgstr ""
+msgstr "Krómoxidzöld"
 
+# AI Translated
 msgid "Traffic green"
-msgstr ""
+msgstr "Forgalmi zöld"
 
+# AI Translated
 msgid "Fern green"
-msgstr ""
+msgstr "Páfránzöld"
 
+# AI Translated
 msgid "Opal green"
-msgstr ""
+msgstr "Opálzöld"
 
+# AI Translated
 msgid "Mint green"
-msgstr ""
+msgstr "Mentazöld"
 
+# AI Translated
 msgid "Bronze green"
-msgstr ""
+msgstr "Bronzzöld"
 
+# AI Translated
 msgid "Pearl green"
-msgstr ""
+msgstr "Gyöngyzöld"
 
+# AI Translated
 msgid "Sax turquoise"
-msgstr ""
+msgstr "Szász türkiz"
 
+# AI Translated
 msgid "Pearl turquoise"
-msgstr ""
+msgstr "Gyöngytürkiz"
 
+# AI Translated
 msgid "Pearl jade"
-msgstr ""
+msgstr "Gyöngyjáde"
 
+# AI Translated
 msgid "Pure green"
-msgstr ""
+msgstr "Tiszta zöld"
 
+# AI Translated
 msgid "Luminous green"
-msgstr ""
+msgstr "Világító zöld"
 
+# AI Translated
 msgid "Squirrel grey"
-msgstr ""
+msgstr "Mókusszürke"
 
+# AI Translated
 msgid "Silver grey"
-msgstr ""
+msgstr "Ezüstszürke"
 
-msgid "Olivestone"
-msgstr ""
+# AI Translated
+msgid "Olive grey"
+msgstr "Olívaszürke"
 
+# AI Translated
 msgid "Moss grey"
-msgstr ""
+msgstr "Mohaszürke"
 
+# AI Translated
 msgid "Signal grey"
-msgstr ""
+msgstr "Jelzőszürke"
 
+# AI Translated
 msgid "Mouse grey"
-msgstr ""
+msgstr "Egérszürke"
 
+# AI Translated
 msgid "Beige grey"
-msgstr ""
+msgstr "Bézsszürke"
 
+# AI Translated
 msgid "Khaki grey"
-msgstr ""
+msgstr "Khakiszürke"
 
+# AI Translated
 msgid "Green grey"
-msgstr ""
+msgstr "Zöldesszürke"
 
+# AI Translated
 msgid "Tarpaulin grey"
-msgstr ""
+msgstr "Ponyvaszürke"
 
+# AI Translated
 msgid "Iron grey"
-msgstr ""
+msgstr "Vasszürke"
 
+# AI Translated
 msgid "Basalt grey"
-msgstr ""
+msgstr "Bazaltszürke"
 
+# AI Translated
 msgid "Brown grey"
-msgstr ""
+msgstr "Barnásszürke"
 
+# AI Translated
 msgid "Slate grey"
-msgstr ""
+msgstr "Palaszürke"
 
+# AI Translated
 msgid "Anthracite grey"
-msgstr ""
+msgstr "Antracitszürke"
 
+# AI Translated
 msgid "Light grey"
-msgstr ""
+msgstr "Világosszürke"
 
+# AI Translated
 msgid "Umber grey"
-msgstr ""
+msgstr "Umbraszürke"
 
+# AI Translated
 msgid "Concrete grey"
-msgstr ""
+msgstr "Betonszürke"
 
+# AI Translated
 msgid "Graphite grey"
-msgstr ""
+msgstr "Grafitszürke"
 
+# AI Translated
 msgid "Granite grey"
-msgstr ""
+msgstr "Gránitszürke"
 
+# AI Translated
 msgid "Stone grey"
-msgstr ""
+msgstr "Kőszürke"
 
+# AI Translated
 msgid "Pebble grey"
-msgstr ""
+msgstr "Kavicsszürke"
 
+# AI Translated
 msgid "Cement grey"
-msgstr ""
+msgstr "Cementszürke"
 
+# AI Translated
 msgid "Yellow grey"
-msgstr ""
+msgstr "Sárgásszürke"
 
+# AI Translated
 msgid "Platinum grey"
-msgstr ""
+msgstr "Platinaszürke"
 
+# AI Translated
 msgid "Dusty grey"
-msgstr ""
+msgstr "Porszürke"
 
+# AI Translated
 msgid "Agate grey"
-msgstr ""
+msgstr "Achátszürke"
 
+# AI Translated
 msgid "Quartz grey"
-msgstr ""
+msgstr "Kvarcszürke"
 
+# AI Translated
 msgid "Window grey"
-msgstr ""
+msgstr "Ablakszürke"
 
+# AI Translated
 msgid "Traffic grey A"
-msgstr ""
+msgstr "Forgalmi szürke A"
 
+# AI Translated
 msgid "Traffic grey B"
-msgstr ""
+msgstr "Forgalmi szürke B"
 
+# AI Translated
 msgid "Silk grey"
-msgstr ""
+msgstr "Selyemszürke"
 
+# AI Translated
 msgid "Telegrey 1"
-msgstr ""
+msgstr "Távközlési szürke 1"
 
+# AI Translated
 msgid "Telegrey 2"
-msgstr ""
+msgstr "Távközlési szürke 2"
 
+# AI Translated
 msgid "Telegrey 4"
-msgstr ""
+msgstr "Távközlési szürke 4"
 
+# AI Translated
 msgid "Pearl mouse grey"
-msgstr ""
+msgstr "Gyöngyegérszürke"
 
+# AI Translated
 msgid "Green brown"
-msgstr ""
+msgstr "Zöldesbarna"
 
+# AI Translated
 msgid "Ochre brown"
-msgstr ""
+msgstr "Okkerbarna"
 
+# AI Translated
 msgid "Clay brown"
-msgstr ""
+msgstr "Agyagbarna"
 
+# AI Translated
 msgid "Copper brown"
-msgstr ""
+msgstr "Rézbarna"
 
+# AI Translated
 msgid "Chocolate brown"
-msgstr ""
+msgstr "Csokoládébarna"
 
+# AI Translated
 msgid "Olive brown"
-msgstr ""
+msgstr "Olívabarna"
 
+# AI Translated
 msgid "Nut brown"
-msgstr ""
+msgstr "Dióbarna"
 
+# AI Translated
 msgid "Red brown"
-msgstr ""
+msgstr "Vörösesbarna"
 
+# AI Translated
 msgid "Sepia brown"
-msgstr ""
+msgstr "Szépiabarna"
 
+# AI Translated
 msgid "Chestnut brown"
-msgstr ""
+msgstr "Gesztenyebarna"
 
+# AI Translated
 msgid "Mahogany brown"
-msgstr ""
+msgstr "Mahagónibarna"
 
+# AI Translated
 msgid "Grey brown"
-msgstr ""
+msgstr "Szürkésbarna"
 
+# AI Translated
 msgid "Pearl copper"
-msgstr ""
+msgstr "Gyöngyréz"
 
+# AI Translated
 msgid "Beige brown"
-msgstr ""
+msgstr "Bézsbarna"
 
+# AI Translated
 msgid "Pearl mocha brown"
-msgstr ""
+msgstr "Gyöngymokkabarna"
 
+# AI Translated
 msgid "Earth brown"
-msgstr ""
+msgstr "Földbarna"
 
+# AI Translated
 msgid "Pearl brown"
-msgstr ""
+msgstr "Gyöngybarna"
 
+# AI Translated
 msgid "Cream"
-msgstr ""
+msgstr "Krém"
 
+# AI Translated
 msgid "Grey white"
-msgstr ""
+msgstr "Szürkésfehér"
 
+# AI Translated
 msgid "Signal white"
-msgstr ""
+msgstr "Jelzőfehér"
 
+# AI Translated
 msgid "Signal black"
-msgstr ""
+msgstr "Jelzőfekete"
 
+# AI Translated
 msgid "Jet black"
-msgstr ""
+msgstr "Koromfekete"
 
+# AI Translated
 msgid "White aluminium"
-msgstr ""
+msgstr "Fehér alumínium"
 
+# AI Translated
 msgid "Grey aluminium"
-msgstr ""
+msgstr "Szürke alumínium"
 
+# AI Translated
 msgid "Pure white"
-msgstr ""
+msgstr "Tiszta fehér"
 
+# AI Translated
 msgid "Graphite black"
-msgstr ""
+msgstr "Grafitfekete"
 
+# AI Translated
 msgid "Traffic white"
-msgstr ""
+msgstr "Forgalmi fehér"
 
+# AI Translated
 msgid "Traffic black"
-msgstr ""
+msgstr "Forgalmi fekete"
 
+# AI Translated
 msgid "Papyrus white"
-msgstr ""
+msgstr "Papiruszfehér"
 
+# AI Translated
 msgid "Pearl light grey"
-msgstr ""
+msgstr "Gyöngyvilágosszürke"
 
+# AI Translated
 msgid "Metal: Silver"
-msgstr ""
+msgstr "Fém: Ezüst"
 
+# AI Translated
 msgid "Metal: Brass"
-msgstr ""
+msgstr "Fém: Sárgaréz"
 
+# AI Translated
 msgid "Metal: Gold"
-msgstr ""
+msgstr "Fém: Arany"
 
+# AI Translated
 msgid "Metal: Copper"
-msgstr ""
+msgstr "Fém: Réz"
 
+# AI Translated
 msgid "Metal: Bronze"
-msgstr ""
+msgstr "Fém: Bronz"
 
+# AI Translated
 msgid "Nature: Pearl"
-msgstr ""
+msgstr "Természet: Gyöngy"
 
+# AI Translated
 msgid "Nature: Rainbow"
-msgstr ""
+msgstr "Természet: Szivárvány"
 
+# AI Translated
 msgid "Nature: Clear Sky"
-msgstr ""
+msgstr "Természet: Derült ég"
 
+# AI Translated
 msgid "Nature: Sunset"
-msgstr ""
+msgstr "Természet: Naplemente"
 
+# AI Translated
 msgid "Wood: Dark"
-msgstr ""
+msgstr "Fa: Sötét"
 
+# AI Translated
 msgid "Wood: Medium"
-msgstr ""
+msgstr "Fa: Közepes"
 
+# AI Translated
 msgid "Wood: Light"
-msgstr ""
+msgstr "Fa: Világos"
 
 # AI Translated
 msgid "Alternate nozzles:"
@@ -39341,10 +41423,6 @@ msgstr "Asztal alakja és mérete"
 # AI Translated
 msgid "Set the shape of your printer's bed."
 msgstr "Állítsd be a nyomtatód asztalának alakját."
-
-# AI Translated
-msgid "Invalid numeric input."
-msgstr "Érvénytelen számérték."
 
 # AI Translated
 msgid "Filament and Nozzle Diameters"
@@ -39737,14 +41815,17 @@ msgstr "Saját textúrák"
 msgid "No textures found."
 msgstr "Nem található textúra."
 
+# AI Translated
 msgid "Texture libraries"
-msgstr ""
+msgstr "Textúratárak"
 
+# AI Translated
 msgid "Explore more texture libraries"
-msgstr ""
+msgstr "További textúratárak felfedezése"
 
+# AI Translated
 msgid "Opens OrcaCloud in the Home page to browse for plugins."
-msgstr ""
+msgstr "Megnyitja az OrcaCloudot a Kezdőlapon a bővítmények böngészéséhez."
 
 # AI Translated
 msgid ""
@@ -40237,6 +42318,10 @@ msgid "Texture layers"
 msgstr "Textúrarétegek"
 
 # AI Translated
+msgid "Add layer"
+msgstr "Réteg hozzáadása"
+
+# AI Translated
 msgid ""
 "Drag onto another layer to reorder. The first layer sits on the bare "
 "surface; each one after it adds its relief on top of the ones before."
@@ -40310,11 +42395,15 @@ msgstr ""
 "gyakrabban ismétlődik, és a részletei finomabbak; kikapcsolt Csempézésnél ez "
 "az egyetlen példány mérete."
 
+# AI Translated
+# Needs human review: Caption under a tile-size picture in the Texture displacement gizmo; check it fits
 msgid "Larger"
-msgstr ""
+msgstr "Nagyobb"
 
+# AI Translated
+# Needs human review: Caption under a tile-size picture in the Texture displacement gizmo; check it fits
 msgid "Smaller"
-msgstr ""
+msgstr "Kisebb"
 
 # AI Translated
 msgid ""
@@ -40442,11 +42531,15 @@ msgstr ""
 "színeiből választódnak ki, és csak azok jönnek létre, amelyeket a beégetés "
 "ténylegesen használ."
 
+# AI Translated
+# Needs human review: Caption under a mixed-colors picture in the Texture displacement gizmo; check it fits
 msgid "Few"
-msgstr ""
+msgstr "Kevés"
 
+# AI Translated
+# Needs human review: Caption under a mixed-colors picture in the Texture displacement gizmo; check it fits
 msgid "Many"
-msgstr ""
+msgstr "Sok"
 
 #. TRN The %2% part of "%1% printable colors %2%"; %1% is the number of filaments.
 #, boost-format
@@ -40771,16 +42864,6 @@ msgstr "Kevesebb beállítás"
 msgid "More settings"
 msgstr "Több beállítás"
 
-#, boost-format
-msgid "All %1% layer used"
-msgid_plural "All %1% layers used"
-msgstr[0] ""
-msgstr[1] ""
-
-# AI Translated
-msgid "Add layer"
-msgstr "Réteg hozzáadása"
-
 # AI Translated
 msgid "Subdivision"
 msgstr "Felosztás"
@@ -40973,11 +43056,15 @@ msgstr ""
 "domborítás egyenletes hálón működik a legjobban; ez készít ilyet egy "
 "egyenetlen importált modellből."
 
+# AI Translated
+# Needs human review: Caption under the remesh before/after picture; check it fits
 msgid "Before"
-msgstr ""
+msgstr "Előtte"
 
+# AI Translated
+# Needs human review: Caption under the remesh before/after picture; check it fits
 msgid "After"
-msgstr ""
+msgstr "Utána"
 
 # AI Translated
 msgid "Keep sharp edges"
@@ -41126,31 +43213,6 @@ msgstr ""
 "állít elő."
 
 # AI Translated
-#. TRN Slider value: %d is the triangle budget in thousands
-msgid "Budget"
-msgstr "Keret"
-
-# AI Translated
-#, c-format, boost-format
-msgid "%d k (auto)"
-msgstr "%d k (automatikus)"
-
-# AI Translated
-msgid ""
-"How many thousand triangles this bake may spend on the area you painted. "
-"Relief already baked into the rest of the model is kept on top of it, so a "
-"second bake somewhere else gets the same budget as the first. Raise it if "
-"the warning below Resolution says the detail will not fit; 0 keeps every "
-"triangle the refinement produced, however many that is."
-msgstr ""
-"Hány ezer háromszöget használhat fel ez a beégetés a befestett területen. A "
-"modell többi részébe már beégetett domborzat ezen felül megmarad, így egy "
-"máshol végzett második beégetés ugyanakkora keretet kap, mint az első. "
-"Növeld, ha a Felbontás alatti figyelmeztetés szerint a részletek nem férnek "
-"bele; a 0 a finomítás által létrehozott összes háromszöget megtartja, "
-"akárhány is az."
-
-# AI Translated
 msgid "Align mesh to texture edges"
 msgstr "Háló igazítása a textúra éleihez"
 
@@ -41183,6 +43245,31 @@ msgstr ""
 "tesszellációjából örököl, mielőtt a domborítás mintát venne belőlük. Egy "
 "szilánk három sarka a textúra három, egymástól független pontjára esik, "
 "emiatt tűnik csipkézettnek a domborzat."
+
+# AI Translated
+#. TRN Slider value: %d is the triangle budget in thousands
+msgid "Budget"
+msgstr "Keret"
+
+# AI Translated
+#, c-format, boost-format
+msgid "%d k (auto)"
+msgstr "%d k (automatikus)"
+
+# AI Translated
+msgid ""
+"How many thousand triangles this bake may spend on the area you painted. "
+"Relief already baked into the rest of the model is kept on top of it, so a "
+"second bake somewhere else gets the same budget as the first. Raise it if "
+"the warning below Resolution says the detail will not fit; 0 keeps every "
+"triangle the refinement produced, however many that is."
+msgstr ""
+"Hány ezer háromszöget használhat fel ez a beégetés a befestett területen. A "
+"modell többi részébe már beégetett domborzat ezen felül megmarad, így egy "
+"máshol végzett második beégetés ugyanakkora keretet kap, mint az első. "
+"Növeld, ha a Felbontás alatti figyelmeztetés szerint a részletek nem férnek "
+"bele; a 0 a finomítás által létrehozott összes háromszöget megtartja, "
+"akárhány is az."
 
 # AI Translated
 msgid ""
@@ -42888,10 +44975,6 @@ msgid "Recently opened"
 msgstr "Legutóbb megnyitott"
 
 # AI Translated
-msgid "Open Containing Folder"
-msgstr "Tartalmazó mappa megnyitása"
-
-# AI Translated
 msgid "Forward"
 msgstr "Előre"
 
@@ -43038,19 +45121,6 @@ msgstr "ismeretlen név"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"A(z) \"%s\" bővítmény fájlrendszer-olvasási hozzáférést kér ehhez:\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "Bővítményengedélyek"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -43100,23 +45170,24 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the "
+"listed hosts. It does not restrict ports. A URL with a path, query or port "
+"is covered only for that exact URL."
 msgstr ""
-"A(z) \"%s\" bővítmény HTTP-kérést szeretne küldeni ide:\n"
-"%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not "
+"restrict ports."
 msgstr ""
-"A(z) \"%s\" bővítmény hálózati kapcsolatot szeretne nyitni ide:\n"
-"%s"
 
 #, c-format, boost-format
 msgid ""
@@ -43152,6 +45223,10 @@ msgstr ""
 # AI Translated
 msgid "Plugin permission request"
 msgstr "Bővítmény engedélykérése"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "Bővítményengedélyek"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -43197,8 +45272,9 @@ msgstr "Szkript"
 msgid "Slicing Pipeline"
 msgstr "Szeletelési folyamat"
 
+# AI Translated
 msgid "Resource Texture"
-msgstr ""
+msgstr "Erőforrás-textúra"
 
 # AI Translated
 msgid "The plugin's configuration UI was empty. Showing the default editor."
@@ -43363,23 +45439,29 @@ msgstr "A bővítmény könyvtára .py és .whl belépési fájlt is tartalmaz"
 msgid "Plugin directory does not contain a .py or .whl entry file"
 msgstr "A bővítmény könyvtára nem tartalmaz .py vagy .whl belépési fájlt"
 
+# AI Translated
 msgid "Resource texture directory is not set"
-msgstr ""
+msgstr "Az erőforrás-textúra mappája nincs megadva"
 
+# AI Translated
 msgid "Resource texture directory could not be resolved"
-msgstr ""
+msgstr "Az erőforrás-textúra mappáját nem sikerült feloldani"
 
+# AI Translated
 msgid "Resource texture path is not a directory"
-msgstr ""
+msgstr "Az erőforrás-textúra útvonala nem mappa"
 
+# AI Translated
 msgid "Plugin folder could not be resolved"
-msgstr ""
+msgstr "A bővítmény mappáját nem sikerült feloldani"
 
+# AI Translated
 msgid "Resource texture directory is outside the plugin folder"
-msgstr ""
+msgstr "Az erőforrás-textúra mappája a bővítmény mappáján kívül van"
 
+# AI Translated
 msgid "Resource texture directory could not be read"
-msgstr ""
+msgstr "Az erőforrás-textúra mappáját nem sikerült beolvasni"
 
 # AI Translated
 #, boost-format
@@ -43601,8 +45683,16 @@ msgstr ""
 "eltávolításához használd a Törlés lehetőséget."
 
 # AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr "A bővítmény fájlrendszer-olvasási engedélykérése elutasítva"
+msgid "Python interpreter is shutting down."
+msgstr "A Python-értelmező leáll."
+
+# AI Translated
+msgid "Plugin system is shutting down."
+msgstr "A bővítményrendszer leáll."
+
+# AI Translated
+msgid "Plugin permission request denied"
+msgstr "A bővítmény engedélykérése elutasítva"
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -43863,7 +45953,7 @@ msgstr "Nem sikerült betölteni a(z) \"%1%\" konfigurációs fájlt: %2%"
 # AI Translated
 #. TRN %1% is the application name.
 #, boost-format
-msgid "Not a gcode file generated by %1%."
+msgid "Not a G-code file generated by %1%."
 msgstr "Nem a(z) %1% által generált G-code fájl."
 
 # AI Translated
@@ -43999,7 +46089,7 @@ msgstr ""
 "utófeldolgozó szkript futtatása előtt: %2%"
 
 # AI Translated
-msgid "Post-processor can't find exported gcode file"
+msgid "Post-processor can't find exported G-code file"
 msgstr "Az utófeldolgozó nem találja az exportált G-code fájlt"
 
 # AI Translated
@@ -44444,6 +46534,347 @@ msgstr ""
 "Tudtad, hogy a kunkorodásra hajlamos anyagok (például ABS) nyomtatásakor a "
 "tárgyasztal hőmérsékletének növelése csökkentheti a kunkorodás "
 "valószínűségét?"
+
+# AI Translated
+#~ msgid "Not valid state please report reproduction steps on github"
+#~ msgstr ""
+#~ "Érvénytelen állapot, kérlek, jelentsd a reprodukálás lépéseit a GitHubon"
+
+# AI Translated
+#~ msgid "Missing svg file in embossed shape"
+#~ msgstr "Hiányzik az SVG fájl a dombornyomott alakzatból"
+
+# AI Translated
+#~ msgid "Missing data of svg file"
+#~ msgstr "Hiányoznak az SVG fájl adatai"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "Tükrözés az X-tengely mentén"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "Tükrözés az Y-tengely mentén"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "Tükrözés a Z-tengely mentén"
+
+#~ msgid "Split the selected object"
+#~ msgstr "Szétválasztja a kijelölt objektumot"
+
+#~ msgid "Subdivision mesh"
+#~ msgstr "Háló felosztása"
+
+#~ msgid "(Lost color)"
+#~ msgstr "(Elveszett szín)"
+
+#~ msgid "Storage needs to be inserted before sending to printer."
+#~ msgstr "A nyomtatóra küldés előtt be kell helyezni egy tárolót."
+
+# AI Translated
+#~ msgid "Processing G-Code from previous file…"
+#~ msgstr "G-code feldolgozása egy előző fájlból..."
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgstr[0] ""
+#~ "A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
+#~ "túllépi a(z) %s nyomtatható tartományát."
+#~ msgstr[1] ""
+#~ "A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
+#~ "túllépi a(z) %s nyomtatható tartományát."
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgstr[0] ""
+#~ "A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
+#~ "túllépi a(z) %s nyomtatható magasságát."
+#~ msgstr[1] ""
+#~ "A(z) %s filament a(z) %s helyre van téve, de a generált G-kód útvonal "
+#~ "túllépi a(z) %s nyomtatható magasságát."
+
+# AI Translated
+#~ msgid "Measure how fast the 3D scene renders in Prepare and Preview"
+#~ msgstr ""
+#~ "Méri, milyen gyorsan jelenik meg a 3D jelenet az Előkészítés és az "
+#~ "Előnézet fülön"
+
+#~ msgid "Storage needs to be inserted before printing."
+#~ msgstr "Nyomtatás előtt be kell helyezni a tárolót."
+
+#~ msgid "Storage needs to be inserted before send to printer."
+#~ msgstr "Nyomtatóra küldés előtt be kell helyezni a tárolót."
+
+# AI Translated
+#~ msgid "Available anywhere in the window, even while typing in a text field."
+#~ msgstr "Az ablakban bárhol elérhető, szövegmezőbe gépelés közben is."
+
+# AI Translated
+#~ msgid "Global shortcuts also apply while typing."
+#~ msgstr "A globális gyorsbillentyűk gépelés közben is működnek."
+
+#~ msgid ""
+#~ "Unprintable area in XY plane. For example, X1 Series printers use the "
+#~ "front left corner to cut filament during filament change. The area is "
+#~ "expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr ""
+#~ "A nyomtatásra nem használható terület az XY síkban. Az X1 nyomtatók "
+#~ "például a bal első sarkot használják a filament elvágására filamentcserét "
+#~ "követően. A terület sokszögként van meghatározva a következő formátumban: "
+#~ "XxY, XxY, ..."
+
+#, no-c-format, no-boost-format
+#~ msgid ""
+#~ "Enter the shrinkage percentage that the filament will get after cooling "
+#~ "(94% if you measure 94mm instead of 100mm). The part will be scaled in XY "
+#~ "to compensate. For multi-material prints, ensure filament shrinkage "
+#~ "matches across all used filaments\n"
+#~ "Be sure to allow enough space between objects, as this compensation is "
+#~ "done after the checks."
+#~ msgstr ""
+#~ "Add meg a filament lehűlés utáni zsugorodási százalékát (például 94%, ha "
+#~ "100 mm helyett 94 mm-t mérsz). Az alkatrész XY irányban lesz skálázva a "
+#~ "kompenzációhoz. Többanyagú nyomtatásnál ügyelj arra, hogy a zsugorodás "
+#~ "minden használt filamentnél megegyezzen.\n"
+#~ "Biztosíts elegendő helyet az objektumok között, mert ez a kompenzáció az "
+#~ "ellenőrzések után történik."
+
+#~ msgid "Temperature drop before entering filament tower"
+#~ msgstr "Hőmérsékletcsökkenés az filamenttoronyba lépés előtt"
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
+#~ msgstr ""
+#~ "A Klipper max_accel_to_decel értéke a gyorsulás erre a százalékra lesz "
+#~ "állítva."
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "Fuzzy skin generation mode. Works only with Arachne!\n"
+#~ "Displacement: Сlassic mode when the pattern is formed by shifting the "
+#~ "nozzle sideways from the original path.\n"
+#~ "Extrusion: The mode when the pattern formed by the amount of extruded "
+#~ "plastic. This is the fast and straight algorithm without unnecessary "
+#~ "nozzle shake that gives a smooth pattern. But it is more useful for "
+#~ "forming loose walls in the entire they array.\n"
+#~ "Combined: Joint mode [Displacement] + [Extrusion]. The appearance of the "
+#~ "walls is similar to [Displacement] Mode, but it leaves no pores between "
+#~ "the perimeters.\n"
+#~ "\n"
+#~ "Attention! The [Extrusion] and [Combined] modes works only the "
+#~ "fuzzy_skin_thickness parameter not more than the thickness of printed "
+#~ "loop. At the same time, the width of the extrusion for a particular layer "
+#~ "should also not be below a certain level. It is usually equal 15-25%% of "
+#~ "a layer height. Therefore, the maximum fuzzy skin thickness with a "
+#~ "perimeter width of 0.4 mm and a layer height of 0.2 mm will be 0.4-"
+#~ "(0.2*0.25)=±0.35mm! If you enter a higher parameter than this, the error "
+#~ "Flow::spacing() will displayed, and the model will not be sliced. You can "
+#~ "choose this number until this error is repeated."
+#~ msgstr ""
+#~ "Bolyhos felület generálási mód. Csak az Arachne-nal működik!\n"
+#~ "Eltolás: Klasszikus mód, amikor a mintázat úgy jön létre, hogy a fúvóka "
+#~ "oldalirányban eltér az eredeti útvonaltól.\n"
+#~ "Extrudálás: Olyan mód, amikor a mintázatot az extrudált műanyag "
+#~ "mennyisége alakítja ki. Ez egy gyors és egyenes algoritmus, felesleges "
+#~ "fúvókarázás nélkül, amely sima mintázatot ad. Ugyanakkor inkább a teljes "
+#~ "felületen lazább falak kialakítására hasznos.\n"
+#~ "Kombinált: Egyesített mód [Eltolás] + [Extrudálás]. A falak megjelenése "
+#~ "hasonló az [Eltolás] módhoz, de nem hagy pórusokat a kerületek között.\n"
+#~ "\n"
+#~ "Figyelem! Az [Extrudálás] és a [Kombinált] mód csak akkor működik, ha a "
+#~ "fuzzy_skin_thickness paraméter nem nagyobb a nyomtatott hurok "
+#~ "vastagságánál. Emellett egy adott réteg extrudálási szélessége sem lehet "
+#~ "egy bizonyos szint alá csökkentve. Ez általában a rétegmagasság 15-25%%-"
+#~ "a. Ezért 0,4 mm kerületszélesség és 0,2 mm rétegmagasság mellett a "
+#~ "maximális bolyhos felület vastagság 0,4-(0,2*0,25)=±0,35 mm lesz. Ha "
+#~ "ennél nagyobb értéket adsz meg, a Flow::spacing() hiba jelenik meg, és a "
+#~ "modell nem lesz szeletelhető. Ezt az értéket addig választhatod, amíg ez "
+#~ "a hiba meg nem ismétlődik."
+
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting "
+#~ "tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. "
+#~ "Klipper does not benefit from arc commands as these are split again into "
+#~ "line segments by the firmware. This results in a reduction in surface "
+#~ "quality as line segments are converted to arcs by the slicer and then "
+#~ "back to line segments by the firmware."
+#~ msgstr ""
+#~ "Engedélyezd ezt, hogy olyan G-kód fájlt kapj, amely G2 és G3 mozgásokat "
+#~ "is tartalmaz. Az illesztési tűrés megegyezik a felbontással.\n"
+#~ "\n"
+#~ "Megjegyzés: Klipper gépeknél ajánlott ezt az opciót kikapcsolni. A "
+#~ "Klipper nem profitál az ívparancsokból, mert a firmware ezeket ismét "
+#~ "vonalszakaszokra bontja. Ez a felületi minőség romlását eredményezi, "
+#~ "mivel a szeletelő a vonalszakaszokat ívekké alakítja, majd a firmware "
+#~ "újra vonalszakaszokká bontja őket."
+
+#~ msgid ""
+#~ "This option is enabled if machine support controlling chamber "
+#~ "temperature\n"
+#~ "G-code command: M141 S(0-255)"
+#~ msgstr ""
+#~ "Engedélyezd ezt az opciót, ha a gép támogatja a kamrahőmérséklet "
+#~ "szabályozását.\n"
+#~ "G-kód parancs: M141 S(0-255)"
+
+#~ msgid ""
+#~ "Enable this if printer support air filtration\n"
+#~ "G-code command: M106 P3 S(0-255)"
+#~ msgstr ""
+#~ "Engedélyezd ezt, ha a nyomtató támogatja a légszűrést.\n"
+#~ "G-kód parancs: M106 P3 S(0-255)"
+
+#~ msgid "Enable this if printer support cooling filter"
+#~ msgstr "Engedélyezd a beállítást, ha a nyomtató támogatja a hűtőszűrőt"
+
+# AI Translated
+#~ msgid "Silent Mode"
+#~ msgstr "Csendes mód"
+
+#~ msgid ""
+#~ "Whether the machine supports silent mode in which machine uses lower "
+#~ "acceleration to print more quietly"
+#~ msgstr ""
+#~ "Csendes üzemmód támogatása, amelyben a gép kisebb gyorsulást használ a "
+#~ "csendesebb nyomtatáshoz"
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "This detects the overhang percentage relative to line width and uses a "
+#~ "different speed to print. For 100%% overhang, bridging speed is used."
+#~ msgstr ""
+#~ "Felismeri a túlnyúlás százalékos arányát a vonalszélességhez viszonyítva, "
+#~ "és más sebességet használ. A 100%%-os túlnyúlás esetén az áthidaláshoz "
+#~ "beállított sebességet használja."
+
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, "
+#~ "the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the "
+#~ "current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "A varrat láthatóságának csökkentéséhez zárt hurkú extrudálásnál a hurok "
+#~ "megszakad és a megadott mértékben rövidül.\n"
+#~ "Ez az érték megadható milliméterben vagy az aktuális extruderátmérő "
+#~ "százalékában. Ennek a paraméternek az alapértelmezett értéke 10%."
+
+#~ msgid "Wipe tower volume"
+#~ msgstr "Törlőtorony térfogata"
+
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "A törlőtoronyon kinyomott filament teljes térfogata."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the current layer. Zero-based (i.e. first layer is number 0), "
+#~ "except in extrusion role change G-code, where it is one-based."
+#~ msgstr ""
+#~ "Az aktuális réteg indexe. Nullától számozott (azaz az első réteg száma "
+#~ "0), kivéve az extrudálási szerep váltásakor futó G-code-ban, ahol egytől "
+#~ "számozott."
+
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "Az aktuális extruder azonosítója. Ugyanaz, mint a current_extruder."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being unloaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "Az éppen kiürített extruder indexe. Az index nullától számozott (az első "
+#~ "extruder indexe 0)."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being loaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "Az éppen betöltés alatt álló extruder indexe. Az index nullától számozott "
+#~ "(az első extruder indexe 0)."
+
+# AI Translated
+#~ msgid "The first flush volume."
+#~ msgstr "Az első öblítési térfogat."
+
+# AI Translated
+#~ msgid "The second flush volume."
+#~ msgstr "A második öblítési térfogat."
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid "test %s ip resolved = %s"
+#~ msgstr "%s tesztelése: IP feloldva = %s"
+
+#~ msgid ""
+#~ "Please go to filament setting to edit your presets if you need.\n"
+#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
+#~ "volumetric speed has a significant impact on printing quality. Please set "
+#~ "them carefully."
+#~ msgstr ""
+#~ "Ha szükséges, lépj be az filamentbeállításokhoz az értékek "
+#~ "szerkesztéséhez.\n"
+#~ "Figyelem: a fúvóka hőmérséklete, a tárgyasztal hőmérséklete és a "
+#~ "maximális volumetrikus sebesség jelentős hatással van a nyomtatási "
+#~ "minőségre."
+
+#, c-format, boost-format
+#~ msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
+#~ msgstr "%1s anyag nyomtatása %2s fúvókával a fúvóka károsodását okozhatja."
+
+# AI Translated
+#~ msgid "Open Containing Folder"
+#~ msgstr "Tartalmazó mappa megnyitása"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "A(z) \"%s\" bővítmény fájlrendszer-olvasási hozzáférést kér ehhez:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "A(z) \"%s\" bővítmény HTTP-kérést szeretne küldeni ide:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "A(z) \"%s\" bővítmény hálózati kapcsolatot szeretne nyitni ide:\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr "A bővítmény fájlrendszer-olvasási engedélykérése elutasítva"
+
+# AI Translated
+#, boost-format
+#~ msgid "Not a gcode file generated by %1%."
+#~ msgstr "Nem a(z) %1% által generált G-code fájl."
+
+# AI Translated
+#~ msgid "Post-processor can't find exported gcode file"
+#~ msgstr "Az utófeldolgozó nem találja az exportált G-code fájlt"
 
 #~ msgid "The configuration may be generated by a newer version of OrcaSlicer."
 #~ msgstr "A konfigurációt az OrcaSlicer egy újabb verziója hozhatta létre."
@@ -45000,19 +47431,6 @@ msgstr ""
 #~ msgid "Test OrcaSlicer (GitHub):"
 #~ msgstr "OrcaSlicer tesztverzió (GitHub):"
 
-# AI Translated
-#~ msgid ""
-#~ "Please go to filament settings to edit your presets if you need to.\n"
-#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
-#~ "volumetric speed each have a significant impact on printing quality. "
-#~ "Please set them carefully."
-#~ msgstr ""
-#~ "Ha szükséges, lépj be a filamentbeállításokhoz az értékek "
-#~ "szerkesztéséhez.\n"
-#~ "Figyelem: a fúvóka és az asztal hőmérséklete, valamint a maximális "
-#~ "volumetrikus sebesség jelentős hatással van a nyomtatási minőségre. "
-#~ "Kérlek, körültekintően állítsd be őket."
-
 #~ msgid ""
 #~ "\n"
 #~ "\n"
@@ -45362,20 +47780,11 @@ msgstr ""
 #~ msgid "Along X axis"
 #~ msgstr "X-tengely mentén"
 
-#~ msgid "Mirror along the X axis"
-#~ msgstr "Tükrözés az X-tengely mentén"
-
 #~ msgid "Along Y axis"
 #~ msgstr "Y-tengely mentén"
 
-#~ msgid "Mirror along the Y axis"
-#~ msgstr "Tükrözés az Y-tengely mentén"
-
 #~ msgid "Along Z axis"
 #~ msgstr "Z-tengely mentén"
-
-#~ msgid "Mirror along the Z axis"
-#~ msgstr "Tükrözés a Z-tengely mentén"
 
 #~ msgid "To objects"
 #~ msgstr "Objektumokra"

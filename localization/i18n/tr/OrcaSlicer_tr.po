@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 22:06+0300\n"
+"POT-Creation-Date: 2026-10-29 23:22+0300\n"
 "PO-Revision-Date: 2025-03-12 23:48+0300\n"
 "Last-Translator: GlauTech\n"
 "Language-Team: \n"
@@ -880,18 +880,21 @@ msgstr "Seçim"
 msgid "Plate"
 msgstr "Plaka"
 
+# AI Translated
 msgid "Distribute"
-msgstr ""
+msgstr "Dağıt"
 
 # AI Translated
 msgid "Coordinate system used for transform actions."
 msgstr "Dönüştürme işlemlerinde kullanılan koordinat sistemi."
 
+# AI Translated
 msgid "Reference for alignment"
-msgstr ""
+msgstr "Hizalama referansı"
 
+# AI Translated
 msgid "Select at least 3 parts or objects"
-msgstr ""
+msgstr "En az 3 parça veya nesne seçin"
 
 # AI Translated
 msgid "Align left"
@@ -944,8 +947,10 @@ msgstr "Üst-alt yönünde dağıt"
 msgid "Drop"
 msgstr "Düşür"
 
+# AI Translated
 msgid "Move the selection along Z so that its lowest point touches the bed."
 msgstr ""
+"Seçimi, en alçak noktası yatağa değecek şekilde Z ekseni boyunca taşır."
 
 # AI Translated
 msgid "Absolute"
@@ -1367,6 +1372,9 @@ msgstr "Aynayı Ayarla"
 msgid "Embossed text"
 msgstr "Kabartmalı metin"
 
+msgid "Default font"
+msgstr "Varsayılan yazı tipi"
+
 msgid "Enter emboss gizmo"
 msgstr "Kabartma aletine girin"
 
@@ -1408,9 +1416,6 @@ msgstr "MODERN"
 
 msgid "First font"
 msgstr "İlk yazı tipi"
-
-msgid "Default font"
-msgstr "Varsayılan yazı tipi"
 
 msgid "Advanced"
 msgstr "Gelişmiş"
@@ -1861,7 +1866,7 @@ msgid "Stroke of shape (%1%) contains unsupported: %2%."
 msgstr "Şeklin konturu (%1%) desteklenmeyenleri içeriyor: %2%."
 
 # AI Translated
-msgid "Not valid state please report reproduction steps on github"
+msgid "Not valid state please report reproduction steps on GitHub"
 msgstr "Geçersiz durum, lütfen yeniden oluşturma adımlarını GitHub'da bildirin"
 
 # AI Translated
@@ -1869,11 +1874,11 @@ msgid "No embossed file"
 msgstr "Kabartma dosyası yok"
 
 # AI Translated
-msgid "Missing svg file in embossed shape"
+msgid "Missing SVG file in embossed shape"
 msgstr "Kabartmalı şekilde SVG dosyası eksik"
 
 # AI Translated
-msgid "Missing data of svg file"
+msgid "Missing data of SVG file"
 msgstr "SVG dosyasının verileri eksik"
 
 msgid "Face the camera"
@@ -2203,17 +2208,21 @@ msgstr "Birleştirme gizmosuna giriliyor"
 msgid "Leaving Assembly gizmo"
 msgstr "Birleştirme gizmosundan çıkılıyor"
 
+# AI Translated
 msgid "Parts of a cut object cannot be moved"
-msgstr ""
+msgstr "Kesilmiş bir nesnenin parçaları taşınamaz"
 
+# AI Translated
 msgid "Aligning to the plate is available in X and Y only"
-msgstr ""
+msgstr "Plakaya hizalama yalnızca X ve Y'de kullanılabilir"
 
+# AI Translated
 msgid "Turn off Auto-Drop for the selected objects to move them in Z"
-msgstr ""
+msgstr "Seçilen nesneleri Z ekseninde taşımak için Otomatik düşürmeyi kapatın"
 
+# AI Translated
 msgid "All selected objects must be on the same plate"
-msgstr ""
+msgstr "Seçilen tüm nesneler aynı plakada olmalıdır"
 
 msgid "Shift+"
 msgstr "Shift+"
@@ -3299,9 +3308,6 @@ msgstr "Bu nesneye akıt"
 msgid "Flush into objects' support"
 msgstr "Nesnelerin desteğine akıt"
 
-msgid "Edit in Parameter Table"
-msgstr "Parametre tablosunda düzenle"
-
 msgid "Convert from Inches"
 msgstr "İnçten dönüştür"
 
@@ -3323,32 +3329,55 @@ msgstr "Seçilen nesneleri birden çok parçalı bir nesneyle birleştirin"
 msgid "Assemble the selected objects into an object with single part"
 msgstr "Seçilen nesneleri tek parçalı bir nesneye birleştirin"
 
+msgid "Along X Axis"
+msgstr "X ekseni boyunca"
+
+msgid "Mirror along the X axis"
+msgstr "X ekseni boyunca aynalama"
+
+msgid "Along Y Axis"
+msgstr "Y ekseni boyunca"
+
+msgid "Mirror along the Y axis"
+msgstr "Y ekseni boyunca aynalama"
+
+msgid "Along Z Axis"
+msgstr "Z ekseni boyunca"
+
+msgid "Mirror along the Z axis"
+msgstr "Z ekseni boyunca aynalama"
+
+# AI Translated
+msgid "Transform"
+msgstr "Dönüştür"
+
+msgid "Split"
+msgstr "Böl"
+
+msgid "To Objects"
+msgstr "Nesnelere"
+
+msgid "Split the selected object into multiple objects"
+msgstr "Seçilen nesneyi birden çok nesneye bölme"
+
+msgid "To Parts"
+msgstr "Parçalara"
+
+msgid "Split the selected object into multiple parts"
+msgstr "Seçilen nesneyi birden çok parçaya böl"
+
 msgid "Mesh boolean"
 msgstr "Mesh bölme"
 
 msgid "Mesh boolean operations including union and subtraction"
 msgstr "Birleştirme ve çıkarma dahil mesh bölme işlemleri"
 
-msgid "Along X Axis"
-msgstr "X ekseni boyunca"
+# AI Translated
+msgid "Modify"
+msgstr "Değiştir"
 
-msgid "Mirror along the X Axis"
-msgstr "X ekseni boyunca aynala"
-
-msgid "Along Y Axis"
-msgstr "Y ekseni boyunca"
-
-msgid "Mirror along the Y Axis"
-msgstr "Y ekseni boyunca aynala"
-
-msgid "Along Z Axis"
-msgstr "Z ekseni boyunca"
-
-msgid "Mirror along the Z Axis"
-msgstr "Z ekseni boyunca aynala"
-
-msgid "Mirror object"
-msgstr "Nesneyi aynala"
+msgid "More"
+msgstr "Daha"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3409,29 +3438,18 @@ msgstr "Model ekle"
 msgid "Show Labels"
 msgstr "Etiketleri Göster"
 
-msgid "To Objects"
-msgstr "Nesnelere"
-
-msgid "Split the selected object into multiple objects"
-msgstr "Seçilen nesneyi birden çok nesneye bölme"
-
-msgid "To Parts"
-msgstr "Parçalara"
-
-msgid "Split the selected object into multiple parts"
-msgstr "Seçilen nesneyi birden çok parçaya böl"
-
-msgid "Split"
-msgstr "Böl"
-
-msgid "Split the selected object"
-msgstr "Seçilen nesneyi böl"
+# AI Translated
+msgid "Instances"
+msgstr "Eş kopyalar"
 
 msgid "Auto orientation"
 msgstr "Otomatik yönlendirme"
 
 msgid "Auto orient the object to improve print quality"
 msgstr "Baskı kalitesini artırmak için nesneyi otomatik olarak yönlendirin."
+
+msgid "Paste Process Settings"
+msgstr "İşlem Ayarlarını Yapıştır"
 
 msgid "Edit"
 msgstr "Düzenle"
@@ -3470,11 +3488,20 @@ msgstr "Hizala"
 msgid "Arrange current plate"
 msgstr "Mevcut plakayı hizala"
 
-msgid "Reload All"
-msgstr "Tümünü yeniden yükle"
+msgid "Auto Rotate"
+msgstr "Otomatik döndürme"
 
-msgid "Reload all from disk"
-msgstr "Hepsini diskten yeniden yükle"
+msgid "Auto rotate current plate"
+msgstr "Geçerli plakayı otomatik döndürme"
+
+msgid "Name"
+msgstr "İsim"
+
+msgid "All Plates"
+msgstr "Tüm Plakalar"
+
+msgid "Order By"
+msgstr ""
 
 # AI Translated
 msgid "Fix All"
@@ -3492,17 +3519,11 @@ msgstr "Tüm plakaları düzelt"
 msgid "Fix all models on all plates"
 msgstr "Tüm plakalardaki tüm modelleri düzelt"
 
-msgid "Auto Rotate"
-msgstr "Otomatik döndürme"
+msgid "Reload All"
+msgstr "Tümünü yeniden yükle"
 
-msgid "Auto rotate current plate"
-msgstr "Geçerli plakayı otomatik döndürme"
-
-msgid "Delete Plate"
-msgstr "Plakayı sil"
-
-msgid "Remove the selected plate"
-msgstr "Seçilen plakayı kaldır"
+msgid "Reload all from disk"
+msgstr "Hepsini diskten yeniden yükle"
 
 msgid "Add instance"
 msgstr "Örnek ekle"
@@ -3534,11 +3555,8 @@ msgstr "Klon oluştur"
 msgid "Simplify Model"
 msgstr "Modeli basitleştir"
 
-msgid "Subdivision mesh"
-msgstr "Alt bölüm ağı"
-
-msgid "(Lost color)"
-msgstr "(Renk kaybı)"
+msgid "Subdivision mesh (Lost color)"
+msgstr "Poligon artırma (Renk kaybı)"
 
 msgid "Center"
 msgstr "Merkez"
@@ -3558,8 +3576,8 @@ msgstr "İşlem ayarlarını düzenle"
 msgid "Copy Process Settings"
 msgstr "İşlem Ayarlarını Kopyala"
 
-msgid "Paste Process Settings"
-msgstr "İşlem Ayarlarını Yapıştır"
+msgid "Edit in Parameter Table"
+msgstr "Parametre tablosunda düzenle"
 
 msgid "Edit print parameters for a single object"
 msgstr "Tek bir nesne için yazdırma parametrelerini düzenleme"
@@ -3583,8 +3601,11 @@ msgstr "Kilitle"
 msgid "Edit Plate Name"
 msgstr "Plaka adını düzenle"
 
-msgid "Name"
-msgstr "İsim"
+msgid "Delete Plate"
+msgstr "Plakayı sil"
+
+msgid "Remove the selected plate"
+msgstr "Seçilen plakayı kaldır"
 
 msgid "Fila."
 msgstr "Fila."
@@ -3694,6 +3715,23 @@ msgstr "Hata!"
 
 msgid "Failed to get the model data in the current file."
 msgstr "Geçerli dosyadaki model verileri alınamadı."
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+# AI Translated
+msgid "Z"
+msgstr "Z"
+
+#. TRN Size of a torus (ring): the diameter of its hole and the thickness of the ring.
+msgid "Inner diameter"
+msgstr ""
+
+msgid "Tube diameter"
+msgstr ""
 
 # AI Translated
 msgid "Add primitive"
@@ -3967,9 +4005,6 @@ msgstr "Çizgi Tipi"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "1x1 Izgara: %d mm"
-
-msgid "More"
-msgstr "Daha"
 
 msgid "Open Preferences"
 msgstr "Tercihleri aç"
@@ -4762,8 +4797,8 @@ msgstr "Gcode dosyası sdcard'a gönderiliyor"
 msgid "Successfully sent. Close current page in %s s"
 msgstr "Başarıyla gönderildi. %s s'de mevcut sayfayı kapat"
 
-msgid "Storage needs to be inserted before sending to printer."
-msgstr "Yazıcıya göndermeden önce depolama biriminin eklenmesi gerekir."
+msgid "Insert storage or free up space before sending to the printer."
+msgstr ""
 
 msgid ""
 "Sending G-code file over LAN, but the Storage in the printer is abnormal and "
@@ -4988,6 +5023,10 @@ msgstr "Betik eklentisi atlandı."
 # AI Translated
 msgid "Script plugin finished."
 msgstr "Betik eklentisi tamamlandı."
+
+# AI Translated
+msgid "Script plugin started."
+msgstr "Betik eklentisi başlatıldı."
 
 msgid "Printer"
 msgstr "Yazıcı"
@@ -5538,7 +5577,7 @@ msgstr "Lütfen projeyi kaydedin ve programı yeniden başlatın."
 msgid "Unknown C++ exception."
 msgstr "Bilinmeyen C++ istisnası."
 
-msgid "Processing G-Code from previous file…"
+msgid "Processing G-code from previous file…"
 msgstr "Önceki dosyadan G-code işleniyor…"
 
 msgid "Slicing complete"
@@ -5952,12 +5991,549 @@ msgstr ""
 "Hayır - Arachne Duvarı Oluşturucusunu Devre Dışı Bırak ve Pütürlü Yüzey [Yer "
 "Değiştirme] modunu ayarla"
 
+msgid ""
+"Set the maximum volumetric extrusion rate slope above zero to use extrusion "
+"rate smoothing."
+msgstr ""
+
+msgid ""
+"Arc fitting is unavailable for belt printers and when extrusion rate "
+"smoothing is enabled."
+msgstr ""
+
+msgid "Set wall loops above zero to use this setting."
+msgstr ""
+
+msgid "This setting is hidden because sparse infill density is zero."
+msgstr ""
+
+msgid ""
+"Infill anchors require nonzero sparse infill density and a pattern other "
+"than Concentric or Spiral Inset."
+msgstr ""
+
+msgid ""
+"Enable infill combination and use nonzero sparse infill density to show this "
+"setting."
+msgstr ""
+
+msgid ""
+"Select Gyroid, TPMS-D or TPMS-FK infill with sparse infill density greater "
+"than zero and less than 100%."
+msgstr ""
+
+msgid ""
+"Enable adaptive density for Gyroid, TPMS-D or TPMS-FK infill with sparse "
+"infill density greater than zero and less than 100%."
+msgstr ""
+
+msgid ""
+"Select Gyroid infill with nonzero sparse infill density and disable adaptive "
+"density to use this setting."
+msgstr ""
+
+msgid "The selected sparse infill pattern does not support multiline infill."
+msgstr ""
+
+msgid "The Line infill pattern does not support infill anchors."
+msgstr ""
+
+msgid ""
+"Select an infill pattern other than Line and set the maximum infill anchor "
+"length above zero."
+msgstr ""
+
+msgid ""
+"Select the Cross Zag or Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "Select the Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+
+msgid ""
+"Select the Zig Zag, Cross Zag or Locked Zag sparse infill pattern to use "
+"this setting."
+msgstr ""
+
+msgid ""
+"Select 3D Honeycomb infill with nonzero sparse infill density to use this "
+"setting."
+msgstr ""
+
+msgid "Enable spiral vase mode to use this setting."
+msgstr ""
+
+msgid "Enable spiral vase mode and spiral smoothing to use this setting."
+msgstr ""
+
+msgid ""
+"This setting requires top shell layers, or more than one bottom shell layer "
+"in spiral vase mode."
+msgstr ""
+
+msgid "This setting requires a top shell with nonzero top surface density."
+msgstr ""
+
+msgid "Set bottom shell layers above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use nonzero sparse infill density and an infill pattern and multiline "
+"setting that support infill smoothing."
+msgstr ""
+
+msgid "Set top surface expansion above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use a top or bottom shell with the Archimedean Chords or Octagram Spiral "
+"surface pattern."
+msgstr ""
+
+msgid "The selected sparse infill pattern does not support separated infills."
+msgstr ""
+
+msgid ""
+"Use a top shell with nonzero surface density and the Concentric, Spiral "
+"Inset, Archimedean Chords or Octagram Spiral surface pattern."
+msgstr ""
+
+msgid ""
+"Use bottom shell layers and the Concentric, Spiral Inset, Archimedean Chords "
+"or Octagram Spiral surface pattern."
+msgstr ""
+
+msgid ""
+"Use nonzero sparse infill density or top or bottom shell layers to edit this "
+"setting."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and set top shell layers above zero to edit top "
+"shell thickness."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and set bottom shell layers above zero to edit "
+"bottom shell thickness."
+msgstr ""
+
+msgid ""
+"Set default acceleration above zero to edit acceleration for individual "
+"extrusion roles."
+msgstr ""
+
+msgid "This setting requires the Marlin firmware G-code flavor."
+msgstr ""
+
+msgid ""
+"Jerk settings are unavailable while the printer uses junction deviation."
+msgstr ""
+
+msgid ""
+"Set the printer junction deviation limit above zero with the Marlin firmware "
+"G-code flavor to edit this setting."
+msgstr ""
+
+msgid ""
+"Set default jerk above zero to edit jerk for individual extrusion roles."
+msgstr ""
+
+msgid "Use a non-belt printer with skirt loops above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use a non-belt printer with skirt loops above zero and disable the full-"
+"height draft shield to edit skirt height."
+msgstr ""
+
+msgid "Skirts are unavailable for belt printers."
+msgstr ""
+
+msgid "Select a brim type other than No brim to use this setting."
+msgstr ""
+
+msgid "Enable a brim on a printer without a tilted belt to use this setting."
+msgstr ""
+
+msgid ""
+"Select a brim type with an editable width, or enable a brim on a tilted belt "
+"printer."
+msgstr ""
+
+msgid "This setting requires a belt printer with a tilted slicing plane."
+msgstr ""
+
+msgid ""
+"Enable a brim on a belt printer with a tilted slicing plane to use this "
+"setting."
+msgstr ""
+
+msgid "Enable walls or a brim to select the wall filament."
+msgstr ""
+
 # AI Translated
 msgid "Brim ear radius"
 msgstr "Kenar kulak yarıçapı"
 
 msgid "Brim width"
 msgstr "Kenar genişliği"
+
+msgid "Set brim width above zero to edit brim ear detection."
+msgstr ""
+
+msgid ""
+"Use painted brim ears or set brim width above zero to edit this setting."
+msgstr ""
+
+msgid ""
+"Select automatic brim ears on a printer without a tilted belt to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Select automatic or painted brim ears on a printer without a tilted belt to "
+"use this setting."
+msgstr ""
+
+msgid ""
+"Enable elephant foot compensation or set elephant foot layer density below "
+"100% to use this setting."
+msgstr ""
+
+msgid "Rafts are unavailable for belt printers."
+msgstr ""
+
+msgid "Enable support to edit this setting."
+msgstr ""
+
+msgid "Enable support or add raft layers to edit this setting."
+msgstr ""
+
+msgid "Select an automatic support type to edit the threshold angle."
+msgstr ""
+
+msgid ""
+"Select an automatic support type and set the threshold angle to zero to edit "
+"threshold overlap."
+msgstr ""
+
+msgid "Threshold overlap is unavailable for tree supports."
+msgstr ""
+
+msgid ""
+"Enable tree supports and select a style other than Organic or Default to "
+"show this setting."
+msgstr ""
+
+msgid ""
+"Enable tree supports with the Organic or Default style to show this setting."
+msgstr ""
+
+msgid ""
+"Independent support layer height is unavailable for organic tree supports."
+msgstr ""
+
+msgid ""
+"Enable tree supports and turn off automatic brim width to edit the tree "
+"support brim width."
+msgstr ""
+
+msgid "Enable tree supports to show the maximum bridge length."
+msgstr ""
+
+msgid ""
+"Tree supports use maximum bridge length instead of the bridge support "
+"setting."
+msgstr ""
+
+msgid "Enable automatic tree supports to show this setting."
+msgstr ""
+
+msgid ""
+"Set top or bottom support interface layers above zero to edit this setting."
+msgstr ""
+
+msgid ""
+"Enable a raft, or enable supports with top interface layers, to use support "
+"ironing."
+msgstr ""
+
+msgid ""
+"Enable support ironing with a raft or top support interface layers to show "
+"this setting."
+msgstr ""
+
+msgid ""
+"Set top or bottom support interface layers above zero to edit interface "
+"spacing."
+msgstr ""
+
+msgid ""
+"Support ironing requires a solid interface, so interface spacing cannot be "
+"edited."
+msgstr ""
+
+msgid "Enable walls, a skirt or a brim to edit inner wall line width."
+msgstr ""
+
+msgid "Enable support, a raft, or a skirt to select the support filament."
+msgstr ""
+
+msgid "Add raft layers to show raft contact distance."
+msgstr ""
+
+msgid ""
+"Raft contact distance is unavailable when the top support Z distance is zero."
+msgstr ""
+
+msgid "Add raft layers to show raft expansion."
+msgstr ""
+
+msgid ""
+"Slim, Strong and Hybrid tree supports use first layer expansion instead of "
+"raft expansion."
+msgstr ""
+
+msgid ""
+"Add a raft or choose a tree support style other than Slim or Strong to edit "
+"first layer expansion."
+msgstr ""
+
+msgid "Enable ironing to use this setting."
+msgstr ""
+
+msgid "Enable ironing with the Rectilinear pattern to edit ironing angles."
+msgstr ""
+
+msgid "Enable ironing or support ironing to edit ironing speed."
+msgstr ""
+
+msgid "Enable Z contouring to use this setting."
+msgstr ""
+
+msgid "Print order cannot be edited when the print sequence is By object."
+msgstr ""
+
+msgid "This setting is unavailable for Bambu Lab printers."
+msgstr ""
+
+msgid "This setting is unavailable in single extruder multimaterial mode."
+msgstr ""
+
+msgid "Enable ooze prevention to use this setting."
+msgstr ""
+
+msgid ""
+"Enable ooze prevention and use a positive number of preheat steps to show "
+"this setting."
+msgstr ""
+
+msgid ""
+"Enable the belt purge tower in the belt printer settings to use this setting."
+msgstr ""
+
+msgid "Enable the prime tower on a non-belt printer to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and tower interface features on a non-belt printer to "
+"use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and select wipe tower Type 2 on a non-Bambu, non-belt "
+"printer."
+msgstr ""
+
+msgid ""
+"Enable the prime tower on a non-belt printer and turn off skipping sparse "
+"tower layers to use layer combination."
+msgstr ""
+
+msgid ""
+"Enable the prime tower with Rib walls on a non-belt printer to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable a Type 2 prime tower with Cone walls on a non-Bambu, non-belt printer."
+msgstr ""
+
+msgid ""
+"Enable the prime tower on a non-belt printer and choose a wall type other "
+"than Rib to edit tower width."
+msgstr ""
+
+msgid ""
+"Enable a Type 2 prime tower on a non-Bambu, non-belt printer and disable "
+"single extruder multimaterial mode."
+msgstr ""
+
+msgid "Select Cyclic tool change ordering to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and either disable purging in the prime tower or "
+"disable single extruder multimaterial mode."
+msgstr ""
+
+msgid "Enable the prime tower to use this setting."
+msgstr ""
+
+msgid ""
+"Enable avoiding crossing walls to edit the maximum travel detour distance."
+msgstr ""
+
+msgid "Enable setting other flow ratios to use this setting."
+msgstr ""
+
+msgid "Enable slowing down for overhangs to use this setting."
+msgstr ""
+
+msgid ""
+"This setting is available in object settings rather than global print "
+"settings."
+msgstr ""
+
+msgid ""
+"Select a specific support interface filament and use the default support "
+"filament to show this setting."
+msgstr ""
+
+msgid "Enable fuzzy skin to use this setting."
+msgstr ""
+
+msgid "Enable fuzzy skin with Ripple noise to use this setting."
+msgstr ""
+
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic or Ripple to "
+"edit noise scale."
+msgstr ""
+
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic, Voronoi or "
+"Ripple to edit noise octaves."
+msgstr ""
+
+msgid "Enable fuzzy skin with Perlin or Billow noise to edit persistence."
+msgstr ""
+
+msgid "Select the Arachne wall generator to use this setting."
+msgstr ""
+
+msgid "Thin wall detection is unavailable with the Arachne wall generator."
+msgstr ""
+
+msgid "Disable role-based wipe speed to edit wipe speed manually."
+msgstr ""
+
+msgid "Enable inward wiping to edit inward wipe distance."
+msgstr ""
+
+msgid "This setting requires the Klipper G-code flavor."
+msgstr ""
+
+msgid "Enable acceleration to deceleration to edit its factor."
+msgstr ""
+
+msgid ""
+"Enable excluding objects with the Klipper G-code flavor to edit the outline "
+"tolerance."
+msgstr ""
+
+msgid "Enable making overhangs printable to use this setting."
+msgstr ""
+
+msgid ""
+"Enable only one wall on top surfaces with top shell layers, or use Arachne "
+"with a minimum wall length factor above 0.5."
+msgstr ""
+
+msgid "Enable converting holes to polyholes to use this setting."
+msgstr ""
+
+msgid "Enable overhang wall detection to use this setting."
+msgstr ""
+
+msgid "Reverse overhang direction is unavailable in spiral vase mode."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and enable reverse overhang direction to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable overhang wall detection and reverse overhang direction, disable "
+"spiral vase mode, and turn off reversing internal perimeters only."
+msgstr ""
+
+msgid "This setting requires a Bambu Lab printer."
+msgstr ""
+
+msgid "Enable small area infill flow compensation to edit its model."
+msgstr ""
+
+msgid "Scarf seams are unavailable in spiral vase mode and for belt printers."
+msgstr ""
+
+msgid ""
+"Enable scarf seams on a non-belt printer with spiral vase mode disabled to "
+"use this setting."
+msgstr ""
+
+msgid "Disable scarfing the entire loop to edit the minimum scarf length."
+msgstr ""
+
+msgid ""
+"Enable conditional scarf seams on a non-belt printer with spiral vase mode "
+"disabled to use this setting."
+msgstr ""
+
+msgid "Enable beam interlocking to use this setting."
+msgstr ""
+
+msgid "Disable beam interlocking to edit segmented region interlocking depth."
+msgstr ""
+
+msgid "Select the Lateral Lattice sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "Select the Lightning sparse infill pattern to use this setting."
+msgstr ""
+
+msgid ""
+"Infill rotation templates are unavailable for Adaptive Cubic and Support "
+"Cubic infill."
+msgstr ""
+
+msgid ""
+"Clear the sparse infill rotation template and choose a pattern other than "
+"Adaptive Cubic or Support Cubic to edit infill direction."
+msgstr ""
+
+msgid ""
+"Clear the solid infill rotation template to edit solid infill direction."
+msgstr ""
+
+msgid "Select the Lateral Honeycomb sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "The selected printer does not support wrapping detection."
+msgstr ""
+
+msgid "Enable the pad to edit this setting."
+msgstr ""
+
+msgid "Enable the pad around the object to edit this setting."
+msgstr ""
+
+msgid ""
+"Enable support and disable the pad around the object to edit object "
+"elevation."
+msgstr ""
 
 msgid ""
 "Spiral mode only works when wall loops is 1, support is disabled, clumping "
@@ -6465,6 +7041,14 @@ msgstr "Girilen bazı uzantılar geçersiz"
 
 msgid "This parameter expects a valid template."
 msgstr "Bu parametre geçerli bir şablon bekliyor."
+
+# AI Translated
+msgid ""
+"Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, "
+"XxY, ... and separate multiple volumes with |."
+msgstr ""
+"Geçersiz çarpışma hacmi biçimi. XxY, XxY, ... veya ZMIN..ZMAX;XxY, XxY, ... "
+"biçimini kullanın ve birden çok hacmi | ile ayırın."
 
 msgid ""
 "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per "
@@ -7046,6 +7630,35 @@ msgstr "Sol püskürtme ucu: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%\n"
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "Sağ nozul: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 
+msgid ""
+"The position or size of some models exceeds the assigned extruder's "
+"printable range. Please check and adjust the part's position or size to fit "
+"the printable range."
+msgstr ""
+
+msgid "Mirror object"
+msgstr "Nesneyi aynala"
+
+# AI Translated
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed. There is no "
+"free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+"%1% numaralı plakadaki prime kulesi yerleştirildiği yere artık sığmıyor. "
+"Plakada kule için boş alan kalmadığından bir nesnenin üzerine taşındı."
+
+# AI Translated
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed, so it was "
+"moved to free space on the plate."
+msgstr ""
+"%1% numaralı plakadaki prime kulesi yerleştirildiği yere artık sığmıyor, bu "
+"nedenle plakadaki boş bir alana taşındı."
+
 msgid "Tool move"
 msgstr "Araç Taşıma"
 
@@ -7163,9 +7776,6 @@ msgstr "Hepsini dilimle"
 msgid "Failed"
 msgstr "Başarısız"
 
-msgid "All Plates"
-msgstr "Tüm Plakalar"
-
 msgid "Stats"
 msgstr "İstatistikler"
 
@@ -7225,8 +7835,10 @@ msgstr "Eksenler"
 msgid "Gridlines"
 msgstr "Kılavuz çizgileri"
 
+# AI Translated
+# Needs human review: Glossary has no Turkish rendering for Focus mode yet; check 'Odak modu' fits the view-mode name.
 msgid "Focus mode"
-msgstr ""
+msgstr "Odak modu"
 
 msgid "Labels"
 msgstr "Etiketler"
@@ -7311,32 +7923,34 @@ msgstr "2 veya daha fazla TPU filamentinin yazdırılmasını desteklemez."
 msgid "Tool %d"
 msgstr "Araç %d"
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable range of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable range of the %2%."
 msgstr[0] ""
-"%s filamanı %s içine yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
+"%1% filamenti %2% içine yerleştirildi, ancak oluşturulan G-code yolu %2%'nin "
 "yazdırılabilir aralığını aşıyor."
 msgstr[1] ""
-"%s filamanı %s içine yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
-"yazdırılabilir aralığını aşıyor."
+"%1% filamentleri %2% içine yerleştirildi, ancak oluşturulan G-code yolu "
+"%2%'nin yazdırılabilir aralığını aşıyor."
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable height of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable height of the %2%."
 msgstr[0] ""
-"%s filamanı %s'e yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
+"%1% filamenti %2%'e yerleştirildi, ancak oluşturulan G-code yolu %2%'nin "
 "yazdırılabilir yüksekliğini aşıyor."
 msgstr[1] ""
-"%s filamanı %s'e yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
+"%1% filamentleri %2%'e yerleştirildi, ancak oluşturulan G-code yolu %2%'nin "
 "yazdırılabilir yüksekliğini aşıyor."
 
 msgid "Open wiki for more information."
@@ -7540,14 +8154,6 @@ msgstr ""
 
 msgid "Open Network Test"
 msgstr "Ağ Testini Aç"
-
-# AI Translated
-msgid "Benchmark 3D Scene"
-msgstr "3D Sahne Performans Testi"
-
-# AI Translated
-msgid "Measure how fast the 3D scene renders in Prepare and Preview"
-msgstr "3D sahnenin Hazırlık ve Ön İzleme'de ne kadar hızlı çizildiğini ölçer"
 
 msgid "Show Tip of the Day"
 msgstr "Günün İpucunu Göster"
@@ -7811,11 +8417,29 @@ msgstr "Pencere Düzenini Sıfırla"
 msgid "Reset to default window layout"
 msgstr "Varsayılan pencere düzenine sıfırla"
 
+msgid "Show 3Dconnexion Settings"
+msgstr ""
+
+msgid "Show/Hide 3Dconnexion devices settings dialog"
+msgstr "3Dconnexion cihazları ayarları iletişim kutusunu Göster/Gizle"
+
 msgid "Show &Labels"
 msgstr "Etiketleri Göster"
 
 msgid "Show object labels in 3D scene."
 msgstr "3B sahnede nesne etiketlerini göster."
+
+# AI Translated
+msgid "Show all collision volumes"
+msgstr "Tüm çarpışma hacimlerini göster"
+
+# AI Translated
+msgid ""
+"Show the full height of every configured collision volume, including on an "
+"empty bed."
+msgstr ""
+"Boş bir yatakta bile yapılandırılmış her çarpışma hacminin tam yüksekliğini "
+"göster."
 
 msgid "Show &Overhang"
 msgstr "Çıkıntıyı Göster"
@@ -8185,6 +8809,9 @@ msgstr "İndir"
 
 msgid "Download selected files from printer."
 msgstr "Seçilen dosyaları yazıcıdan indirin."
+
+msgid "Select all files in the list for batch management."
+msgstr ""
 
 msgid "Batch manage files."
 msgstr "Dosyaları toplu olarak yönet."
@@ -9170,6 +9797,10 @@ msgid "Troubleshoot Center"
 msgstr "Sorun giderme merkezi"
 
 # AI Translated
+msgid "Benchmark 3D Scene"
+msgstr "3D Sahne Performans Testi"
+
+# AI Translated
 msgid "About OrcaSlicer"
 msgstr "OrcaSlicer Hakkında"
 
@@ -9347,10 +9978,6 @@ msgid "Cut connectors"
 msgstr "Konektörleri kes"
 
 # AI Translated
-msgid "Instances"
-msgstr "Eş kopyalar"
-
-# AI Translated
 #, c-format, boost-format
 msgid "Instance %d"
 msgstr "Eş kopya %d"
@@ -9414,6 +10041,20 @@ msgid ""
 msgstr ""
 "Bu tür için kullanılabilir eklenti yeteneği yok.\n"
 "Kullanmak için birkaçını etkinleştirin veya yükleyin."
+
+msgid "Hidden by the current configuration."
+msgstr ""
+
+#, boost-format
+msgid "Hidden: %1%"
+msgstr ""
+
+msgid "Disabled by the current configuration."
+msgstr ""
+
+#, boost-format
+msgid "Disabled: %1%"
+msgstr ""
 
 # AI Translated
 msgid ""
@@ -9694,6 +10335,9 @@ msgstr "Nesnenin tüm ayarları"
 
 msgid "Material settings"
 msgstr "Malzeme ayarları"
+
+msgid "The process flow ratio cannot be edited in this panel."
+msgstr ""
 
 # AI Translated
 # Needs human review: Unsettled glossary term (⚠) "Tool (printer)": this entry uses "araç"; align it once the term is settled.
@@ -11458,6 +12102,19 @@ msgstr "Pencere düğmelerini sol tarafta kullan"
 msgid "(Requires restart)"
 msgstr "(Yeniden başlatma gerektirir)"
 
+#. TRN "GPU" is the graphics card; the option only matters on computers that have two of them.
+msgid "Render on the discrete GPU"
+msgstr ""
+
+#. TRN DRI_PRIME is an environment variable name and must stay as it is.
+msgid ""
+"On a computer with two GPUs, run OrcaSlicer on the discrete GPU instead of "
+"the one that drives the display. Some Wayland systems cannot show frames "
+"rendered on the other GPU, or fail to open the window at all. Turn this off "
+"if the 3D view stays empty; if OrcaSlicer no longer starts, start it once "
+"with DRI_PRIME=0 in the environment to get back here."
+msgstr ""
+
 msgid "Downloads folder"
 msgstr "İndirilenler klasörü"
 
@@ -11747,6 +12404,14 @@ msgstr ""
 msgid "Auto arrange plate after cloning"
 msgstr "Klonlamadan sonra plakayı otomatik düzenle"
 
+msgid "Show options when adding a primitive"
+msgstr ""
+
+msgid ""
+"If enabled, a dialog asks for the dimensions of a primitive shape before it "
+"is added."
+msgstr ""
+
 msgid "Auto slice after changes"
 msgstr "Değişikliklerden sonra otomatik dilimleme"
 
@@ -12016,6 +12681,22 @@ msgstr ""
 "Yörünge: ışık kamerayla birlikte döner ve kamera hareket ettiği her karede "
 "gölgeleri yeniden hesaplar."
 
+# AI Translated
+msgid "Glossy toolpaths"
+msgstr "Parlak takımyolları"
+
+# AI Translated
+# Needs human review: Second line starts "Off," = when the option is off; check that "sade görünüm" (the plain, non-realistic view) and "vurgu" (the specular highlight) read right in Preferences.
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight "
+"of the plain view."
+msgstr ""
+"Gerçekçi görünümde Ön İzleme'deki takımyollarını parlak plastik gibi "
+"vurgular.\n"
+"Kapalıyken yarı saydam bir filament mat olur, opak olan ise sade görünümün "
+"vurgusunu korur."
+
 msgid "Anti-aliasing"
 msgstr "Anti-Aliasing"
 
@@ -12238,6 +12919,20 @@ msgstr ""
 "%99 neredeyse hiç karartmaz, %0 ise tamamen siyah gösterir. Üst sınır %99 "
 "olarak belirlenmiştir, çünkü %100 seçeneği devre dışı bırakmakla aynı olurdu."
 
+# AI Translated
+msgid "Translucent filaments"
+msgstr "Yarı saydam filamentler"
+
+# AI Translated
+msgid ""
+"Draw the toolpaths of filaments whose color is partly transparent as see-"
+"through, as the 3D view draws their objects. Turn it off to draw every "
+"filament opaque."
+msgstr ""
+"Rengi kısmen saydam olan filamentlerin takımyollarını, 3D görünümde "
+"nesnelerinin çizildiği gibi saydam çizer. Her filamenti opak çizmek için "
+"kapatın."
+
 msgid "Login region"
 msgstr "Giriş bölgesi"
 
@@ -12408,15 +13103,21 @@ msgstr ""
 "Yazıcı ve filament açılır listelerinde uyumsuz/desteklenmeyen ön ayarları "
 "gösterir. Bu ön ayarlar seçilemez."
 
+# AI Translated
 msgid "Export statistics with G-code"
-msgstr ""
+msgstr "İstatistikleri G-code ile dışa aktar"
 
+# AI Translated
 msgid ""
 "If enabled, exporting a G-code file also writes its statistics as JSON next "
 "to it, as <name>.statistics.json, and an exported sliced 3MF file holds them "
 "inside: print time, filament and feature totals, and the same per layer and "
 "per object."
 msgstr ""
+"Etkinleştirilirse, bir G-code dosyası dışa aktarılırken istatistikleri de "
+"yanına <name>.statistics.json olarak JSON biçiminde yazılır; dışa aktarılan "
+"dilimlenmiş 3MF dosyası da bunları içinde barındırır: baskı süresi, filament "
+"ve çizgi türü toplamları ile katman ve nesne başına aynı bilgiler."
 
 # AI Translated
 msgid "Experimental Features"
@@ -12606,6 +13307,31 @@ msgstr "Uyumsuz"
 
 msgid "The selected preset is null!"
 msgstr "Seçilen ön ayar boş!"
+
+msgid "Changing one dimension changes the others in proportion."
+msgstr ""
+
+# AI Translated
+msgid "Save these settings as default"
+msgstr "Bu ayarları varsayılan olarak kaydet"
+
+msgid ""
+"If enabled, these dimensions are used for this shape from now on, also when "
+"this dialog is not shown."
+msgstr ""
+
+msgid ""
+"If enabled, shapes are added at their default size without asking. The "
+"dialog can be turned back on in Preferences."
+msgstr ""
+
+# AI Translated
+msgid "The size must be greater than zero"
+msgstr "Boyut sıfırdan büyük olmalıdır"
+
+# AI Translated
+msgid "Invalid numeric input."
+msgstr "Geçersiz sayısal giriş."
 
 # AI Translated
 msgctxt "Layer range"
@@ -12805,6 +13531,15 @@ msgstr "\"%1%\" ön ayarı zaten mevcut ve mevcut yazıcıyla uyumlu değil."
 
 msgid "Please note that saving will overwrite the current preset."
 msgstr "Kaydetme eyleminin bu ön ayarın yerini alacağını lütfen unutmayın."
+
+msgid "control characters are not allowed."
+msgstr ""
+
+msgid "The name is a reserved system name."
+msgstr ""
+
+msgid "The name is too long."
+msgstr ""
 
 msgid "The name cannot be the same as a preset alias name."
 msgstr "Ad, önceden ayarlanmış bir takma adla aynı olamaz."
@@ -13428,6 +14163,10 @@ msgstr "Dosya yazıcının depolama alanına yüklenemedi. Lütfen tekrar deneyi
 msgid "Send Failed"
 msgstr "Gönderim Başarısız"
 
+# AI Translated
+msgid "No available printers"
+msgstr "Kullanılabilir yazıcı yok"
+
 msgid "The name length exceeds the limit."
 msgstr "Ad uzunluğu sınırı aşıyor."
 
@@ -13704,8 +14443,8 @@ msgstr "LAN aracılığıyla yazdırmadan önce depolamanın eklenmesi gerekir."
 msgid "Storage is in abnormal state or is in read-only mode."
 msgstr "Depolama anormal durumda veya salt okunur modda."
 
-msgid "Storage needs to be inserted before printing."
-msgstr "Yazdırmadan önce depolamanın eklenmesi gerekir."
+msgid "Insert storage or free up space before printing."
+msgstr ""
 
 msgid "Cannot send the print job to a printer whose firmware must be updated."
 msgstr ""
@@ -13828,9 +14567,6 @@ msgstr "Yükseltme devam ederken yazdırma görevi gönderilemiyor"
 
 msgid "The selected printer is incompatible with the chosen printer presets."
 msgstr "Seçilen yazıcı, seçilen yazıcı ön ayarlarıyla uyumlu değil."
-
-msgid "Storage needs to be inserted before send to printer."
-msgstr "Yazıcıya gönderilmeden önce depolama biriminin eklenmesi gerekir."
 
 msgid "The printer is required to be in the same LAN as XDesktop."
 msgstr "Yazıcının XDesktop ile aynı LAN'da olması gerekir."
@@ -14043,6 +14779,21 @@ msgid "Click to reset all settings to the last saved preset."
 msgstr "Tüm ayarları en son kaydedilen ön ayara sıfırlamak için tıklayın."
 
 # AI Translated
+# Needs human review: "Excluded bed area" follows the label and glossary cell "Tablada hariç tutulan bölge"; the Turkish glossary notes say Tabla should become Yatak, so change it here together with the label.
+msgid ""
+"This definition contains collision-volume syntax. Add it to the toolhead "
+"collision volumes for G-code checking and travel avoidance? The existing "
+"excluded bed area will be preserved."
+msgstr ""
+"Bu tanım çarpışma hacmi sözdizimi içeriyor. G-code denetimi ve seyahat "
+"sırasında kaçınma için baskı kafası çarpışma hacimlerine eklensin mi? Mevcut "
+"tablada hariç tutulan bölge korunacak."
+
+# AI Translated
+msgid "Add collision volumes"
+msgstr "Çarpışma hacimleri ekle"
+
+# AI Translated
 # Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "Prime Kulesi"; align it once the term is settled.
 msgid ""
 "Prime tower is required for nozzle changing. There may be flaws on the model "
@@ -14222,6 +14973,9 @@ msgstr ""
 "eklenmesi önerilir.\n"
 "Yapı plakasının boş konumuna sağ tıklayın ve \"İlkel Ekle\" -> \"Timelapse "
 "Temizleme Kulesi\" seçeneğini seçin."
+
+msgid "Setting unavailable"
+msgstr ""
 
 msgid ""
 "A copy of the current system preset will be created, which will be detached "
@@ -14405,8 +15159,16 @@ msgstr "Eklenti Yapılandırması"
 msgid "Notes"
 msgstr "Notlar"
 
+msgid "The selected printer does not support multiple bed types."
+msgstr ""
+
 msgid "Frequent"
 msgstr "Sıklıkla"
+
+msgid ""
+"Custom filament print order is unavailable while the plate contains mixed-"
+"color filaments."
+msgstr ""
 
 #, c-format, boost-format
 msgid ""
@@ -14431,6 +15193,21 @@ msgstr "Ayarların Üzerine Yazma"
 
 msgid "Retraction when switching material"
 msgstr "Malzemeyi Değiştirirken Geri Çekme"
+
+msgid ""
+"Set the filament retraction length above zero, or use the printer's value, "
+"to edit this setting."
+msgstr ""
+
+msgid ""
+"The printer profile must allow filament overrides for long retraction when "
+"cutting."
+msgstr ""
+
+msgid ""
+"Allow long retraction when cutting in the printer profile and enable it in "
+"the filament profile to use this setting."
+msgstr ""
 
 msgid "Basic information"
 msgstr "Temel Bilgiler"
@@ -14606,6 +15383,74 @@ msgstr "Uyumlu yazıcılar"
 msgid "Compatible process profiles"
 msgstr "Uyumlu süreç profilleri"
 
+msgid "Enable cooling for overhangs and bridges to edit this setting."
+msgstr ""
+
+msgid "Enable slowing down for layer cooling to use this setting."
+msgstr ""
+
+msgid ""
+"Set the number of initial layers without cooling to zero to override the "
+"first layer fan speed."
+msgstr ""
+
+msgid "Enable the auxiliary fan in the printer profile to use this setting."
+msgstr ""
+
+msgid "The selected printer does not support air filtration."
+msgstr ""
+
+msgid "Activate air filtration to edit this setting."
+msgstr ""
+
+msgid ""
+"Activate air filtration and enable it during printing to edit the exhaust "
+"fan speed."
+msgstr ""
+
+msgid ""
+"Activate air filtration and enable it on completion to edit the exhaust fan "
+"speed."
+msgstr ""
+
+msgid "Enable pressure advance to use this setting."
+msgstr ""
+
+msgid ""
+"Select this bed type or enable support for multiple bed types in the printer "
+"profile to show its temperature settings."
+msgstr ""
+
+msgid ""
+"Enable pressure advance and adaptive pressure advance to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the pellet printer option in the printer profile to use this setting."
+msgstr ""
+
+msgid "Filament diameter is unavailable for pellet printers."
+msgstr ""
+
+msgid "The selected printer does not support chamber temperature control."
+msgstr ""
+
+msgid ""
+"Set nonzero volumetric speed coefficients before enabling adaptive "
+"volumetric speed."
+msgstr ""
+
+msgid "Enable multitool ramming to edit this setting."
+msgstr ""
+
+msgid "This setting requires a Bambu Lab printer with multiple extruders."
+msgstr ""
+
+msgid ""
+"Use a Bambu Lab printer with multiple extruders and enable long retraction "
+"when the extruder changes."
+msgstr ""
+
 msgid "Printable space"
 msgstr "Plaka Ayarı"
 
@@ -14686,9 +15531,6 @@ msgstr "Şablon Özel G-kod"
 
 msgid "Motion ability"
 msgstr "Hareket"
-
-msgid "Normal"
-msgstr "Normal"
 
 # AI Translated
 msgid "Resonance Compensation"
@@ -14792,6 +15634,80 @@ msgstr "Katman Yüksekliği Sınırları"
 msgid "Z-Hop"
 msgstr "Z Sıçraması"
 
+msgid ""
+"Power loss recovery requires a Bambu Lab printer or the Marlin firmware G-"
+"code flavor."
+msgstr ""
+
+msgid "Build plate tilt is derived from the belt tilt on belt printers."
+msgstr ""
+
+msgid "Enable belt printer mode to use this setting."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode and select a belt rotation axis to edit its angle."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode and select Expert or Developer settings visibility "
+"to use this setting."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode, select Expert or Developer settings visibility, "
+"and decouple the machine frame tilt to edit its angle."
+msgstr ""
+
+msgid "Enable support for parallel printheads to edit their count."
+msgstr ""
+
+msgid "Collision volume mode selection requires multiple extruders."
+msgstr ""
+
+msgid ""
+"Select a shared collision volume mode or use a single-extruder printer to "
+"edit this setting."
+msgstr ""
+
+msgid "Enable the auxiliary fan to edit its direction."
+msgstr ""
+
+msgid ""
+"Air filtration and the cooling filter are alternative accessories; disable "
+"cooling filter support to use air filtration."
+msgstr ""
+
+msgid ""
+"Enable cooling filter support in the printer profile to use this setting."
+msgstr ""
+
+msgid "Enable belt printer mode to use the belt purge tower."
+msgstr ""
+
+msgid ""
+"Wipe tower type selection is unavailable for Bambu Lab printers and belt "
+"printers."
+msgstr ""
+
+msgid "Select wipe tower Type 2 on a non-Bambu printer to use this setting."
+msgstr ""
+
+msgid "Extruder count cannot be edited in single extruder multimaterial mode."
+msgstr ""
+
+msgid ""
+"Enable single extruder multimaterial mode to use manual filament changes."
+msgstr ""
+
+msgid ""
+"Enable single extruder multimaterial mode with wipe tower Type 2 on a non-"
+"Bambu printer to use this setting."
+msgstr ""
+
+msgid "Enable IDEX/IQEX printer mode to use this setting."
+msgstr ""
+
 # AI Translated
 msgid "Front-left"
 msgstr "Sol ön"
@@ -14808,6 +15724,51 @@ msgstr "Sol arka"
 msgid "Rear-right"
 msgstr "Sağ arka"
 
+msgid ""
+"Use multiple extruders with wipe tower Type 2 on a non-Bambu printer and "
+"disable single extruder multimaterial mode."
+msgstr ""
+
+msgid ""
+"Set retraction length above zero or enable firmware retraction to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"The extruder printable area and height are fixed by the printer profile."
+msgstr ""
+
+msgid "This setting is shown for printers with exactly two extruders."
+msgstr ""
+
+msgid ""
+"Select per-extruder collision volumes on a printer with multiple extruders "
+"to edit this setting."
+msgstr ""
+
+msgid ""
+"Retraction length is controlled by the firmware while firmware retraction is "
+"enabled."
+msgstr ""
+
+msgid "Enable retraction and set Z hop above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Set retraction length above zero and disable firmware retraction to edit "
+"this setting."
+msgstr ""
+
+msgid ""
+"Enable retraction and wiping, and set retract after wipe below 100% to edit "
+"retract before wipe."
+msgstr ""
+
+msgid ""
+"Enable retraction and wiping, and set retract before wipe below 100% to edit "
+"retract after wipe."
+msgstr ""
+
 # AI Translated
 msgid ""
 "The Retract before wipe option could be only 100% when using the Firmware "
@@ -14822,6 +15783,64 @@ msgstr ""
 
 msgid "Firmware Retraction"
 msgstr "Yazılımsal Geri Çekme"
+
+msgid "Enable retraction and wiping to edit wipe distance."
+msgstr ""
+
+msgid "This setting requires multiple extruders."
+msgstr ""
+
+msgid ""
+"Use multiple extruders and set tool change retraction length above zero to "
+"edit this setting."
+msgstr ""
+
+msgid ""
+"Disable firmware retraction and allow long retraction when cutting to use "
+"this setting."
+msgstr ""
+
+msgid "Enable long retraction when cutting to edit the retraction distance."
+msgstr ""
+
+msgid "Select a Z hop type other than Normal to edit travel slope."
+msgstr ""
+
+msgid ""
+"Travel acceleration limits are unavailable for the Marlin legacy and Klipper "
+"G-code flavors."
+msgstr ""
+
+msgid ""
+"Jerk limits are unavailable while Marlin uses nonzero junction deviation."
+msgstr ""
+
+msgid ""
+"Emitting machine limits requires the Marlin legacy, Marlin or RepRapFirmware "
+"G-code flavor."
+msgstr ""
+
+msgid "Enable resonance avoidance to edit its speed range."
+msgstr ""
+
+msgid ""
+"This input shaping setting requires the Marlin or RepRapFirmware G-code "
+"flavor."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits to G-code to emit input shaping settings."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits and input shaping to G-code to edit this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits and input shaping to G-code with the Marlin "
+"firmware G-code flavor to edit separate Y-axis values."
+msgstr ""
 
 msgid ""
 "Switching to a printer with different extruder types or numbers will discard "
@@ -14886,6 +15905,11 @@ msgstr ""
 # AI Translated
 msgid "Are you sure you want to delete the selected preset?"
 msgstr "Seçilen ön ayarı silmek istediğinizden emin misiniz?"
+
+msgid ""
+"Select \"All\" to edit the compatibility condition instead of using an "
+"explicit profile list."
+msgstr ""
 
 msgid "Select printers"
 msgstr "Yazıcıları seçin"
@@ -15011,6 +16035,9 @@ msgstr "Geçerli değeri sıfırlamak ve genel değere eklemek için tıklayın.
 msgid "Click to drop current modifications and reset to saved value."
 msgstr ""
 "Geçerli değişikliği bırakmak ve kaydedilen değere sıfırlamak için tıklayın."
+
+msgid "Material print speed cannot be edited for the SL1 printer."
+msgstr ""
 
 msgid "Process Settings"
 msgstr "İşlem Ayarları"
@@ -15767,9 +16794,8 @@ msgid "Global"
 msgstr "Genel"
 
 # AI Translated
-msgid "Available anywhere in the window, even while typing in a text field."
-msgstr ""
-"Pencerenin her yerinde, bir metin alanına yazarken bile kullanılabilir."
+msgid "Available anywhere in the window."
+msgstr "Pencerenin her yerinde kullanılabilir."
 
 # AI Translated
 msgid "Run favorite 1 to 10"
@@ -15884,10 +16910,6 @@ msgstr "%s, %s için atanmış. %s için yeniden atansın mı?"
 #, c-format, boost-format
 msgid "The default %s is assigned to %s. Reassign it to %s?"
 msgstr "Varsayılan %s, %s için atanmış. %s için yeniden atansın mı?"
-
-# AI Translated
-msgid "Global shortcuts also apply while typing."
-msgstr "Genel kısayollar yazarken de geçerlidir."
 
 # AI Translated
 msgid "A key that types a character cannot be a global shortcut."
@@ -16277,6 +17299,33 @@ msgstr ""
 "Disk dolu mu?"
 
 # AI Translated
+#. TRN %1% is the extruder number counted from 1.
+#, boost-format
+msgid ""
+"A G-code move intersects a collision volume for extruder %1%. This may cause "
+"a printer collision."
+msgstr ""
+"Bir G-code hareketi, %1% numaralı ekstruder için bir çarpışma hacmiyle "
+"kesişiyor. Bu, yazıcıda çarpışmaya neden olabilir."
+
+# AI Translated
+msgid ""
+"A G-code move intersects a collision volume. This may cause a printer "
+"collision."
+msgstr ""
+"Bir G-code hareketi bir çarpışma hacmiyle kesişiyor. Bu, yazıcıda çarpışmaya "
+"neden olabilir."
+
+# AI Translated
+#, boost-format
+msgid ""
+"The intersecting move is at G-code line %1%. Its Z position is unknown after "
+"homing, so Orca checked it against every height."
+msgstr ""
+"Kesişen hareket G-code satırı %1% üzerinde. Home işleminden sonra Z konumu "
+"bilinmediği için Orca bunu her yükseklikte kontrol etti."
+
+# AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
 msgid ""
@@ -16439,9 +17488,10 @@ msgstr ""
 msgid "Seam placement may differ from expected."
 msgstr "Dikiş yerleşimi beklenenden farklı olabilir."
 
+# AI Translated
 #, boost-format
 msgid "Failed to write the G-code statistics to %1%."
-msgstr ""
+msgstr "G-code istatistikleri %1% konumuna yazılamadı."
 
 msgid "Internal Bridge"
 msgstr "İç Köprü"
@@ -16711,6 +17761,19 @@ msgstr ""
 "%1%, hariç tutma alanına çok yakın; yazdırma sırasında çarpışmalar meydana "
 "gelebilir."
 
+# AI Translated
+#. TRN %1% is the object name.
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr ""
+"%1%, kullanılabilir her ekstruder için çarpışma hacimleriyle kesişiyor."
+
+# AI Translated
+#. TRN %1% is the object name, %2% the extruder number counted from 1.
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr "%1%, %2% numaralı ekstruder için bir çarpışma hacmiyle kesişiyor."
+
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
 msgstr "%1% diğerlerine çok yakın ve çarpışmalara neden olabilir."
@@ -16814,6 +17877,11 @@ msgstr ""
 
 msgid "No extrusions under current settings."
 msgstr "Mevcut ayarlarda ekstrüzyon yok."
+
+#. TRN %1% is the filament number as shown in the filament list, starting from 1.
+#, boost-format
+msgid "The flow ratio of filament %1% must be greater than 0."
+msgstr ""
 
 # AI Translated
 msgid ""
@@ -17413,14 +18481,88 @@ msgstr ""
 msgid "Excluded bed area"
 msgstr "Tablada hariç tutulan bölge"
 
+# AI Translated
 msgid ""
 "Unprintable area in XY plane. For example, X1 Series printers use the front "
 "left corner to cut filament during filament change. The area is expressed as "
-"polygon by points in following format: \"XxY, XxY, ...\""
+"a polygon in the format \"XxY, XxY, ...\". It constrains material and model "
+"placement, but allows machine travel. Configure toolhead collision volumes "
+"separately for G-code checking and travel avoidance."
 msgstr ""
 "XY düzleminde yazdırılamayan alan. Örneğin X1 Serisi yazıcılar, filament "
-"değişimi sırasında filamenti kesmek için sol ön köşeyi kullanır. Alan şu "
-"formatta noktalarla çokgen olarak ifade edilir: \"XxY, XxY, ...\""
+"değişimi sırasında filamenti kesmek için sol ön köşeyi kullanır. Alan, "
+"\"XxY, XxY, ...\" biçiminde bir çokgen olarak ifade edilir. Malzeme ve model "
+"yerleşimini kısıtlar, ancak makinenin seyahat hareketine izin verir. G-code "
+"kontrolü ve seyahatten kaçınma için baskı kafası çarpışma hacimlerini ayrıca "
+"yapılandırın."
+
+# AI Translated
+msgid "Toolhead collision volumes"
+msgstr "Baskı kafası çarpışma hacimleri"
+
+# AI Translated
+# Needs human review: "Excluded bed area" follows the label and glossary cell "Tablada hariç tutulan bölge"; the Turkish glossary notes say Tabla should become Yatak, so change it here together with the label.
+msgid ""
+"Collision volumes used for model and generated-material exclusion, G-code "
+"checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height "
+"polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate "
+"multiple volumes with \"|\". These volumes are additional to the excluded "
+"bed area. Automatic arrangement conservatively uses the bounding box of a "
+"non-convex volume."
+msgstr ""
+"Model ve oluşturulan malzemeyi hariç tutma, G-code denetimi ve seyahat "
+"sırasında kaçınma için kullanılan çarpışma hacimleri. Tam yükseklikli bir "
+"çokgen için \"XxY, XxY, ...\" veya Z ile sınırlı bir hacim için "
+"\"ZMIN..ZMAX;XxY, XxY, ...\" kullanın. Birden fazla hacmi \"|\" ile ayırın. "
+"Bu hacimler, tablada hariç tutulan bölgeye ek olarak geçerlidir. Otomatik "
+"hizalama, dışbükey olmayan bir hacmin sınırlayıcı kutusunu ihtiyatlı biçimde "
+"kullanır."
+
+# AI Translated
+msgid "Collision volume behavior"
+msgstr "Çarpışma hacmi davranışı"
+
+# AI Translated
+msgid ""
+"Choose whether all nozzles use the same collision volumes, derive toolhead-"
+"relative volumes from each nozzle's XY offset, or configure independent "
+"volumes for every extruder. In individual mode, select each extruder on the "
+"Extruder page to configure its volumes."
+msgstr ""
+"Tüm nozulların aynı çarpışma hacimlerini kullanmasını, her nozulun XY "
+"ofsetinden baskı kafasına göreli hacimler türetilmesini veya her ekstruder "
+"için bağımsız hacimler yapılandırılmasını seçin. Bireysel modda, hacimlerini "
+"yapılandırmak için Ekstruder sayfasında her ekstruderi seçin."
+
+# AI Translated
+#. TRN Collision volume modes: one set for all nozzles, one set moved by each nozzle's XY offset, or one set per extruder.
+msgid "Shared by all nozzles"
+msgstr "Tüm nozullar için ortak"
+
+# AI Translated
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr "Baskı kafasına göreli (nozul ofsetleri)"
+
+# AI Translated
+msgid "Individual per extruder"
+msgstr "Ekstruder başına bağımsız"
+
+# AI Translated
+msgid "Extruder collision volumes"
+msgstr "Ekstruder çarpışma hacimleri"
+
+# AI Translated
+msgid ""
+"Collision volumes used only by this extruder in individual mode. Use the "
+"same polygon and optional Z-range format as the shared collision volumes. "
+"Leave empty for no collision volumes on this extruder. Automatic arrangement "
+"conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+"Bireysel modda yalnızca bu ekstruder tarafından kullanılan çarpışma "
+"hacimleri. Ortak çarpışma hacimleriyle aynı çokgen ve isteğe bağlı Z aralığı "
+"biçimini kullanın. Bu ekstruder için çarpışma hacmi istemiyorsanız boş "
+"bırakın. Otomatik yerleşim, dışbükey olmayan bir hacmin sınırlayıcı kutusunu "
+"temkinli biçimde kullanır."
 
 msgid "Bed custom texture"
 msgstr "Özel plaka dokusu"
@@ -17800,6 +18942,23 @@ msgstr ""
 "yüksekliği küçük olduğunda kabuğun çok ince olmasını önleyebilir. 0, bu "
 "ayarın devre dışı olduğu ve alt kabuğun kalınlığının mutlaka alt kabuk "
 "katmanları tarafından belirlendiği anlamına gelir."
+
+# AI Translated
+# Needs human review: "Paint penetration" rendered "boya nüfuz" (how many layers behind a painted surface take the Renkli boyama color); check it is clear in the Printer/Process settings.
+msgid "Bottom paint penetration layers"
+msgstr "Alt boya nüfuz katmanları"
+
+# AI Translated
+msgid ""
+"The number of layers, including the bottom surface layer, that take the "
+"color painted on a bottom surface. Set to 0 to use the bottom shell layers. "
+"A value larger than the bottom shell also colors the sparse infill above the "
+"painted area."
+msgstr ""
+"Alt yüzey katmanı da dahil olmak üzere, alt yüzeye boyanan rengi alan katman "
+"sayısı. Alt kabuk katmanlarını kullanmak için 0 olarak ayarlayın. Alt kabuk "
+"katman sayısından büyük bir değer, boyanan alanın üstündeki dolguyu da "
+"renklendirir."
 
 msgid "Apply gap fill"
 msgstr "Boşluk doldurmayı uygula"
@@ -20128,7 +21287,7 @@ msgid ""
 "Enter the shrinkage percentage that the filament will get after cooling (94% "
 "if you measure 94mm instead of 100mm). The part will be scaled in XY to "
 "compensate. For multi-material prints, ensure filament shrinkage matches "
-"across all used filaments\n"
+"across all used filaments.\n"
 "Be sure to allow enough space between objects, as this compensation is done "
 "after the checks."
 msgstr ""
@@ -20256,9 +21415,9 @@ msgid "Wipe tower cooling"
 msgstr "Silme kulesi soğutması"
 
 # AI Translated
-# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "Filament kulesi"; align it once the term is settled.
-msgid "Temperature drop before entering filament tower"
-msgstr "Filament kulesine girmeden önceki sıcaklık düşüşü"
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "Silme kulesi"; align it once the term is settled.
+msgid "Temperature drop before entering the wipe tower."
+msgstr "Silme kulesine girmeden önceki sıcaklık düşüşü."
 
 msgid "Interface layer pre-extrusion distance"
 msgstr "Arayüz katmanı ön ekstrüzyon mesafesi"
@@ -20883,11 +22042,11 @@ msgstr "Klipper'ın max_accel_to_decel'i otomatik olarak ayarlanacak."
 msgid "accel_to_decel"
 msgstr "Accel_to_decel"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
-"Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
+"Klipper's max_accel_to_decel will be adjusted to this % of acceleration."
 msgstr ""
-"Klipper'ın max_accel_to_decel değeri ivmenin bu %%'sine göre ayarlanacak."
+"Klipper'ın max_accel_to_decel değeri ivmenin bu %'sine göre ayarlanacak."
 
 msgid "Default jerk."
 msgstr "Varsayılan sarsıntı."
@@ -21171,7 +22330,8 @@ msgstr "İlk katmana pütürlü yüzey uygulanıp uygulanmayacağı."
 msgid "Fuzzy skin generator mode"
 msgstr "Pütürlü yüzey oluşturma modu"
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, no-c-format, no-boost-format
 msgid ""
 "Fuzzy skin generation mode. Works only with Arachne!\n"
 "Displacement: Сlassic mode when the pattern is formed by shifting the nozzle "
@@ -21187,7 +22347,7 @@ msgid ""
 "Attention! The [Extrusion] and [Combined] modes works only the "
 "fuzzy_skin_thickness parameter not more than the thickness of printed loop. "
 "At the same time, the width of the extrusion for a particular layer should "
-"also not be below a certain level. It is usually equal 15-25%% of a layer "
+"also not be below a certain level. It is usually equal 15-25% of a layer "
 "height. Therefore, the maximum fuzzy skin thickness with a perimeter width "
 "of 0.4 mm and a layer height of 0.2 mm will be 0.4-(0.2*0.25)=±0.35mm! If "
 "you enter a higher parameter than this, the error Flow::spacing() will "
@@ -21195,10 +22355,10 @@ msgid ""
 "until this error is repeated."
 msgstr ""
 "Pütürlü yüzey oluşturma modu. Sadece Arachne ile çalışır!\n"
-"Yer Değiştirme: Desen, nozülün orijinal yoldan yana kaydırılmasıyla "
+"Yer Değiştirme: Desen, nozulun orijinal yoldan yana kaydırılmasıyla "
 "oluşturulduğu klasik mod.\n"
 "Ekstrüzyon: Desenin ekstrüde edilen plastik miktarına göre oluşturulduğu "
-"mod. Bu, nozül sarsıntısı olmadan pürüzsüz bir desen veren hızlı ve düz bir "
+"mod. Bu, nozul sarsıntısı olmadan pürüzsüz bir desen veren hızlı ve düz bir "
 "algoritmadır. Ancak, tüm dizilimde gevşek duvarlar oluşturmak için daha "
 "kullanışlıdır.\n"
 "Birleşik: Eklem modu [Yer Değiştirme] + [Ekstrüzyon]. Duvarların görünümü "
@@ -21398,25 +22558,41 @@ msgstr ""
 msgid "Arc fitting"
 msgstr "Ark"
 
+# AI Translated
+# Needs human review: Option names (Devredışı, Etkin, Yalnızca dolgu) must match the dropdown entries. Glossary renders both Infill and Sparse infill as Dolgu, so 'Sparse infill only' became 'Yalnızca dolgu'; check it is not confusable with solid infill.
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting "
-"tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted "
+"within the resolution, while sparse infill, supports and the wipe tower use "
+"fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which "
+"shortens the G-code of curved infill patterns without affecting the walls "
+"and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. "
-"Klipper does not benefit from arc commands as these are split again into "
-"line segments by the firmware. This results in a reduction in surface "
-"quality as line segments are converted to arcs by the slicer and then back "
-"to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs "
+"back into line segments, which lowers the surface quality and can increase "
+"the print time."
 msgstr ""
-"G2 ve G3 hareketlerine sahip bir G kodu dosyası elde etmek için bunu "
-"etkinleştirin. Montaj toleransı çözünürlükle aynıdır.\n"
+"G2 ve G3 yay hareketlerini takımyollarına uydurur. Duvarlar ve yüzeyler "
+"çözünürlük dahilinde uydurulur; dolgu, destekler ve silme kulesi ise sabit "
+"toleranslar kullanır.\n"
+" - Devredışı: yalnızca düz G1 hareketleri kullanılır.\n"
+" - Etkin: yaylar tüm takımyollarına uydurulur.\n"
+" - Yalnızca dolgu: yaylar yalnızca dolguya uydurulur; bu, duvarları ve "
+"yüzeyleri etkilemeden eğrisel dolgu desenlerinin G-code'unu kısaltır.\n"
 "\n"
-"Not: Klipper makineler için bu seçeneğin devre dışı bırakılması önerilir. "
-"Klipper, yazılım tarafından tekrar çizgi bölümlerine bölündüğü için yay "
-"komutlarından faydalanmaz. Bu, çizgi bölümlerinin dilimleyici tarafından "
-"yaylara dönüştürülmesi ve ardından donanım yazılımı tarafından tekrar çizgi "
-"bölümlerine dönüştürülmesi nedeniyle yüzey kalitesinde bir azalmaya neden "
-"olur."
+"Not: Klipper makineleri için Devredışı önerilir. Klipper yayları tekrar "
+"doğru parçalarına böler; bu, yüzey kalitesini düşürür ve baskı süresini "
+"artırabilir."
+
+msgid "Enabled"
+msgstr "Etkin"
+
+# AI Translated
+# Needs human review: Arc fitting dropdown option; glossary renders Sparse infill as plain Dolgu, check whether 'Yalnızca seyrek dolgu' would be clearer.
+msgid "Sparse infill only"
+msgstr "Yalnızca dolgu"
 
 msgid "Add line number"
 msgstr "Satır numarası ekle"
@@ -21625,7 +22801,8 @@ msgid "Support controlling chamber temperature"
 msgstr "Bölme sıcaklığı kontrolünü destekler"
 
 msgid ""
-"This option is enabled if machine support controlling chamber temperature\n"
+"This option is enabled if the machine supports controlling the chamber "
+"temperature\n"
 "G-code command: M141 S(0-255)"
 msgstr ""
 "Bu seçenek, hazne sıcaklığını kontrol eden makine desteği varsa "
@@ -21636,7 +22813,7 @@ msgid "Support air filtration"
 msgstr "Hava filtrasyonu desteği"
 
 msgid ""
-"Enable this if printer support air filtration\n"
+"Enable this if the printer supports air filtration\n"
 "G-code command: M106 P3 S(0-255)"
 msgstr ""
 "Yazıcı hava filtrelemeyi destekliyorsa bunu etkinleştirin\n"
@@ -21647,7 +22824,7 @@ msgid "Use cooling filter"
 msgstr "Soğutma filtresi kullan"
 
 # AI Translated
-msgid "Enable this if printer support cooling filter"
+msgid "Enable this if the printer supports a cooling filter"
 msgstr "Yazıcı soğutma filtresini destekliyorsa bunu etkinleştirin"
 
 msgid "G-code flavor"
@@ -21716,6 +22893,22 @@ msgid "Enable this option to add EXCLUDE OBJECT command in G-code."
 msgstr ""
 "G koduna EXCLUDE OBJECT komutunu eklemek için bu seçeneği etkinleştirin."
 
+# AI Translated
+msgid "Outline tolerance"
+msgstr "Dış hat toleransı"
+
+# AI Translated
+msgid ""
+"Maximum deviation of the object outline written to EXCLUDE_OBJECT_DEFINE "
+"from the original outline. Larger values give fewer points, which helps "
+"firmware that stalls while parsing G-code with many objects. 0 keeps every "
+"point."
+msgstr ""
+"EXCLUDE_OBJECT_DEFINE'a yazılan nesne dış hattının orijinal dış hattan en "
+"fazla sapması. Daha büyük değerler daha az nokta üretir; bu, çok sayıda "
+"nesne içeren G-code'u ayrıştırırken takılan ürün yazılımına yardımcı olur. 0 "
+"her noktayı korur."
+
 msgid "Verbose G-code"
 msgstr "Ayrıntılı G-code"
 
@@ -21727,6 +22920,23 @@ msgstr ""
 "Her satırın açıklayıcı bir metinle açıklandığı, yorumlu bir G kodu dosyası "
 "almak için bunu etkinleştirin. SD karttan yazdırırsanız dosyanın ilave "
 "ağırlığı ürün yazılımınızın yavaşlamasına neden olabilir."
+
+msgid "High precision G-code (experimental)"
+msgstr ""
+
+msgid ""
+"Write X, Y, Z, I and J with 4 decimal places instead of 3, and E with 6 "
+"instead of 5, to reduce rounding errors in the G-code. With relative E "
+"distances, the rounding error of each move is also carried over to the next "
+"one. Supports are removed after printing, so they keep the standard "
+"precision. This may help stabilize extrusion with small nozzles (e.g. 0.2 "
+"mm) and thin layers (e.g. 0.08 mm or less), where each move extrudes so "
+"little material that rounding errors matter most. The effect depends "
+"strongly on how well the rest of the settings are tuned and may be hard to "
+"notice unless the print profile is well calibrated. The G-code file becomes "
+"about 10 percent larger, which may slow down printers that parse G-code "
+"slowly."
+msgstr ""
 
 msgid "Infill combination"
 msgstr "Dolgu kombinasyonu"
@@ -22274,15 +23484,6 @@ msgstr ""
 
 msgid "Clumping detection G-code"
 msgstr "Topaklanma tespiti G kodu"
-
-# AI Translated
-msgid "Silent Mode"
-msgstr "Sessiz mod"
-
-msgid ""
-"Whether the machine supports silent mode in which machine uses lower "
-"acceleration to print more quietly"
-msgstr "Daha sessiz baskı için ivmelenmeyi düşüren sessiz mod desteği"
 
 msgid "Emit limits to G-code"
 msgstr "G-kod sınırları"
@@ -22933,13 +24134,13 @@ msgstr ""
 msgid "Detect overhang walls"
 msgstr "Çıkıntılı duvarı algıla"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
 "This detects the overhang percentage relative to line width and uses a "
-"different speed to print. For 100%% overhang, bridging speed is used."
+"different speed to print. For 100% overhang, bridging speed is used."
 msgstr ""
 "Çizgi genişliğine göre çıkıntı yüzdesini tespit edin ve yazdırmak için "
-"farklı hızlar kullanın. %%100 çıkıntı için köprü hızı kullanılır."
+"farklı hızlar kullanın. %100 çıkıntı için köprü hızı kullanılır."
 
 # AI Translated
 msgid "Print unsupported walls last"
@@ -23272,6 +24473,9 @@ msgstr "Z-Sıçrama türü"
 msgid "Type of Z-hop."
 msgstr "Z-hop türü."
 
+msgid "Normal"
+msgstr "Normal"
+
 msgid "Slope"
 msgstr "Eğim"
 
@@ -23475,15 +24679,16 @@ msgstr ""
 msgid "Seam gap"
 msgstr "Dikiş boşluğu"
 
+# AI Translated
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, "
 "the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the "
-"current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle "
+"diameter. The default value for this parameter is 10%."
 msgstr ""
 "Kapalı döngü ekstrüzyonda dikişin görünürlüğünü azaltmak için döngü "
 "kesintiye uğrar ve belirli bir miktarda kısaltılır.\n"
-"Bu miktar milimetre cinsinden veya mevcut ekstruder çapının yüzdesi olarak "
+"Bu miktar milimetre cinsinden veya nozul çapının yüzdesi olarak "
 "belirtilebilir. Bu parametrenin varsayılan değeri %10'dur."
 
 msgid "Scarf joint seam (beta)"
@@ -23777,9 +24982,6 @@ msgstr ""
 "\n"
 "Etkin = etek, yazdırılan en yüksek nesne kadar uzun. Aksi takdirde ‘Etek "
 "yüksekliği’ kullanılır."
-
-msgid "Enabled"
-msgstr "Etkin"
 
 msgid "Skirt type"
 msgstr "Etek tipi"
@@ -24930,16 +26132,6 @@ msgstr ""
 "koordinat sistemi kesme/ölçekleme ve yeniden eşleme işlemlerinden önce "
 "tersine çevirir. Tipik portal eğimi X'tir (bant Y boyunca ilerler)."
 
-msgid "X"
-msgstr "X"
-
-msgid "Y"
-msgstr "Y"
-
-# AI Translated
-msgid "Z"
-msgstr "Z"
-
 # AI Translated
 msgid "Belt tilt angle"
 msgstr "Bant eğim açısı"
@@ -25435,6 +26627,23 @@ msgstr ""
 "yüksekliği küçük olduğunda kabuğun çok ince olmasını önleyebilir. 0, bu "
 "ayarın devre dışı olduğu ve üst kabuğun kalınlığının kesinlikle üst kabuk "
 "katmanları tarafından belirlendiği anlamına gelir."
+
+# AI Translated
+# Needs human review: "Paint penetration" rendered "boya nüfuz" (how many layers behind a painted surface take the Renkli boyama color); check it is clear in the Printer/Process settings.
+msgid "Top paint penetration layers"
+msgstr "Üst boya nüfuz katmanları"
+
+# AI Translated
+msgid ""
+"The number of layers, including the top surface layer, that take the color "
+"painted on a top surface. Set to 0 to use the top shell layers. A value "
+"larger than the top shell also colors the sparse infill below the painted "
+"area."
+msgstr ""
+"Üst yüzey katmanı da dahil olmak üzere, üst yüzeye boyanan rengi alan katman "
+"sayısı. Üst kabuk katmanlarını kullanmak için 0 olarak ayarlayın. Üst kabuk "
+"katman sayısından büyük bir değer, boyanan alanın altındaki dolguyu da "
+"renklendirir."
 
 # AI Translated
 msgid "Separated infills"
@@ -26290,6 +27499,22 @@ msgstr ""
 msgid "invalid value "
 msgstr "geçersiz değer "
 
+# AI Translated
+msgid "Invalid collision volume definition."
+msgstr "Geçersiz çarpışma hacmi tanımı."
+
+# AI Translated
+msgid ""
+"A nozzle offset is required for every extruder when toolhead-relative "
+"collision volumes are enabled."
+msgstr ""
+"Baskı kafasına göreli çarpışma hacimleri etkinleştirildiğinde her ekstruder "
+"için bir nozul ofseti gereklidir."
+
+# AI Translated
+msgid "Invalid per-extruder collision volume definition."
+msgstr "Geçersiz ekstruder başına çarpışma hacmi tanımı."
+
 msgid "Invalid value when spiral vase mode is enabled: "
 msgstr "Spiral vazo modu etkinleştirildiğinde geçersiz değer: "
 
@@ -26673,15 +27898,21 @@ msgstr "Çıkış dizini"
 msgid "This is the output directory for exported files."
 msgstr "Dışa aktarılan dosyalar için çıkış dizini."
 
+# AI Translated
 msgid "Export statistics"
-msgstr ""
+msgstr "İstatistikleri dışa aktar"
 
+# AI Translated
 msgid ""
 "Write the statistics of each sliced plate as JSON, as "
 "plate_N.statistics.json next to its G-code in the output directory and "
 "inside the 3MF of --export-3mf: print time, filament and feature totals, and "
 "the same per layer and per object."
 msgstr ""
+"Dilimlenen her plakanın istatistiklerini JSON olarak yazar: çıktı dizininde "
+"G-code'un yanına plate_N.statistics.json olarak ve --export-3mf ile "
+"oluşturulan 3MF'in içine; baskı süresi, filament ve çizgi türü toplamları "
+"ile katman ve nesne başına aynı bilgiler."
 
 msgid "Debug level"
 msgstr "Hata ayıklama düzeyi"
@@ -27063,11 +28294,13 @@ msgstr ""
 "Silme kulesinde israf edilen malzemenin toplam maliyeti. Filament "
 "Ayarlarındaki filament_cost değerinden hesaplanır."
 
-msgid "Wipe tower volume"
-msgstr "Kule hacmini sil"
+# AI Translated
+msgid "Total wipe tower filament"
+msgstr "Toplam silme kulesi filamenti"
 
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "Silme kulesinde ekstrüzyona tabi tutulan toplam filaman hacmi."
+# AI Translated
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr "Silme kulesinde kullanılan toplam filament uzunluğu, mm cinsinden."
 
 msgid "Used filament"
 msgstr "Kullanılan"
@@ -27351,11 +28584,13 @@ msgstr "Katman numarası"
 
 # AI Translated
 msgid ""
-"Index of the current layer. Zero-based (i.e. first layer is number 0), "
-"except in extrusion role change G-code, where it is one-based."
+"Index of the current layer. The index is zero-based (first layer has index "
+"0). Before the first layer starts, it is -1. In extrusion role change G-"
+"code, the index is one-based (first layer has index 1)."
 msgstr ""
-"Geçerli katmanın indeksi. Sıfır tabanlıdır (yani ilk katman 0 numaralıdır); "
-"ancak ekstrüzyon rolü değişim G-code'unda bir tabanlıdır."
+"Geçerli katmanın indeksi. İndeks sıfır tabanlıdır (ilk katmanın indeksi "
+"0'dır). İlk katman başlamadan önce -1'dir. Ekstrüzyon rolü değişimi G-"
+"code'unda indeks bir tabanlıdır (ilk katmanın indeksi 1'dir)."
 
 msgid "Layer Z"
 msgstr "Z katmanı"
@@ -27376,8 +28611,199 @@ msgstr "Baskı yatağının üzerindeki son katmanın yüksekliği."
 msgid "Filament extruder ID"
 msgstr "Filament ekstruder kimliği"
 
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "Geçerli ekstruder kimliği. Mevcut ekstruder ile aynı."
+# AI Translated
+msgid ""
+"In filament start G-code, the index of the filament that is being loaded. In "
+"filament end G-code, the index of the filament that is being unloaded. The "
+"index is zero-based (first filament has index 0). At a tool change, filament "
+"end G-code gets the extruder index instead, unless the Type 1 wipe tower "
+"does the tool change. Machine end G-code gets the value from the last "
+"filament end G-code at the end of the print."
+msgstr ""
+"Filament başlangıç G-code'unda, yüklenmekte olan filamentin indeksi. "
+"Filament bitiş G-code'unda, boşaltılmakta olan filamentin indeksi. İndeks "
+"sıfır tabanlıdır (ilk filamentin indeksi 0'dır). Takım değişiminde, takım "
+"değişimini Tip 1 silme kulesi yapmıyorsa filament bitiş G-code'u bunun "
+"yerine ekstruder indeksini alır. Makine bitiş G-code'u, baskının sonunda son "
+"filament bitiş G-code'undaki değeri alır."
+
+# AI Translated
+msgid "Current filament ID"
+msgstr "Geçerli filament kimliği"
+
+# AI Translated
+msgid ""
+"Index of the currently active filament. The index is zero-based (first "
+"filament has index 0)."
+msgstr ""
+"Şu anda etkin olan filamentin indeksi. İndeks sıfır tabanlıdır (ilk "
+"filamentin indeksi 0'dır)."
+
+# AI Translated
+msgid "Current extruder ID"
+msgstr "Geçerli ekstruder kimliği"
+
+# AI Translated
+msgid ""
+"Index of the currently active physical extruder. The index is zero-based "
+"(first extruder has index 0)."
+msgstr ""
+"Şu anda etkin olan fiziksel ekstruderin indeksi. İndeks sıfır tabanlıdır "
+"(ilk ekstruderin indeksi 0'dır)."
+
+# AI Translated
+msgid "Current nozzle ID"
+msgstr "Geçerli nozul kimliği"
+
+# AI Translated
+msgid ""
+"Index of the currently active nozzle. The index is zero-based (first nozzle "
+"has index 0)."
+msgstr ""
+"Şu anda etkin olan nozulun indeksi. İndeks sıfır tabanlıdır (ilk nozulun "
+"indeksi 0'dır)."
+
+# AI Translated
+msgid "Nozzle diameters"
+msgstr "Nozul çapları"
+
+# AI Translated
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr "Nozul kimliğine göre dizinlenmiş nozul çapları."
+
+# AI Translated
+msgid "Nozzle volume types"
+msgstr "Nozul hacmi tipleri"
+
+# AI Translated
+#. TRN The quoted values are G-code identifiers; keep them in English.
+msgid ""
+"Nozzle volume types indexed by nozzle ID, such as \"Standard\" or \"High "
+"Flow\"."
+msgstr ""
+"Nozul kimliğine göre indekslenmiş nozul hacmi tipleri, örneğin \"Standard\" "
+"veya \"High Flow\"."
+
+# AI Translated
+msgid "Retraction distance used when cutting filament."
+msgstr "Filament kesilirken kullanılan geri çekme mesafesi."
+
+# AI Translated
+msgid "Long retraction when cut"
+msgstr "Kesildiğinde uzun geri çekme"
+
+# AI Translated
+msgid "Whether long retraction is used when cutting filament."
+msgstr "Filament kesilirken uzun geri çekmenin kullanılıp kullanılmayacağı."
+
+# AI Translated
+msgid "Most-used physical extruder ID"
+msgstr "En çok kullanılan fiziksel ekstruder kimliği"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder used most often on the current layer. The "
+"index is zero-based (first extruder has index 0)."
+msgstr ""
+"Geçerli katmanda en sık kullanılan fiziksel ekstruderin indeksi. İndeks "
+"sıfır tabanlıdır (ilk ekstruderin indeksi 0'dır)."
+
+# AI Translated
+msgid "Current Y acceleration limit"
+msgstr "Geçerli Y ivme sınırı"
+
+# AI Translated
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr "Yatak kütlesi ayarlamasından sonra geçerli Y ekseni ivme sınırı."
+
+# AI Translated
+msgid "Current accumulated mass"
+msgstr "Geçerli birikmiş kütle"
+
+# AI Translated
+msgid "Accumulated printed mass at the current layer."
+msgstr "Geçerli katmandaki birikmiş basılmış kütle."
+
+# AI Translated
+msgid "Previous layer mass"
+msgstr "Önceki katman kütlesi"
+
+# AI Translated
+msgid "Printed mass of the previous layer."
+msgstr "Önceki katmanın basılmış kütlesi."
+
+# AI Translated
+msgid "Same as previous_layer_mass. Bambu Studio uses this name."
+msgstr "previous_layer_mass ile aynı. Bambu Studio bu adı kullanır."
+
+# AI Translated
+msgid "Current physical extruder ID"
+msgstr "Geçerli fiziksel ekstruder kimliği"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder active for the current layer. The index is "
+"zero-based (first extruder has index 0)."
+msgstr ""
+"Geçerli katman için etkin olan fiziksel ekstruderin indeksi. İndeks sıfır "
+"tabanlıdır (ilk ekstruderin indeksi 0'dır)."
+
+# AI Translated
+msgid "Timelapse position X"
+msgstr "Timelapse X konumu"
+
+# AI Translated
+msgid "Selected X position for timelapse capture."
+msgstr "Timelapse çekimi için seçilen X konumu."
+
+# AI Translated
+msgid "Timelapse position Y"
+msgstr "Timelapse Y konumu"
+
+# AI Translated
+msgid "Selected Y position for timelapse capture."
+msgstr "Timelapse çekimi için seçilen Y konumu."
+
+# AI Translated
+msgid "Has timelapse safe position"
+msgstr "Güvenli timelapse konumu var"
+
+# AI Translated
+msgid "Whether a safe timelapse position was found."
+msgstr "Güvenli bir timelapse konumunun bulunup bulunmadığı."
+
+# AI Translated
+# Needs human review: Placeholder variable label; check what 'inline position' means for the timelapse photo and adjust 'satır içi'.
+msgid "Timelapse inline photo"
+msgstr "Timelapse satır içi fotoğraf"
+
+# AI Translated
+msgid ""
+"Whether the photo is taken where the nozzle already is, without moving to a "
+"safe timelapse position first."
+msgstr ""
+"Fotoğrafın, önce güvenli bir timelapse konumuna gidilmeden, nozulun o anda "
+"bulunduğu yerde çekilip çekilmediği."
+
+# AI Translated
+msgid "Farthest-point timelapse enabled"
+msgstr "En uzak noktada timelapse etkin"
+
+# AI Translated
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr "En uzak nokta timelapse konumlandırmasının etkin olup olmadığı."
+
+# AI Translated
+msgid "Clear path to X0"
+msgstr "X0'a kadar engelsiz yol"
+
+# AI Translated
+msgid ""
+"Whether the nozzle can move to X0 at the current height without hitting "
+"another printed object."
+msgstr ""
+"Nozulun mevcut yükseklikte, yazdırılmış başka bir nesneye çarpmadan X0'a "
+"gidip gidemeyeceği."
 
 # AI Translated
 msgid "Previous extruder"
@@ -27385,11 +28811,13 @@ msgstr "Önceki ekstruder"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being unloaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being unloaded. The index is zero-based (first "
+"filament has index 0). At the start of the print, when no filament is loaded "
+"yet, it is -1."
 msgstr ""
-"Boşaltılmakta olan ekstruderin indeksi. İndeks sıfır tabanlıdır (ilk "
-"ekstruderin indeksi 0'dır)."
+"Boşaltılmakta olan filamentin indeksi. İndeks sıfır tabanlıdır (ilk "
+"filamentin indeksi 0'dır). Baskının başında, henüz filament yüklenmemişken "
+"-1'dir."
 
 # AI Translated
 msgid "Next extruder"
@@ -27397,11 +28825,116 @@ msgstr "Sonraki ekstruder"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being loaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being loaded. The index is zero-based (first "
+"filament has index 0)."
 msgstr ""
-"Yüklenmekte olan ekstruderin indeksi. İndeks sıfır tabanlıdır (ilk "
-"ekstruderin indeksi 0'dır)."
+"Yüklenmekte olan filamentin indeksi. İndeks sıfır tabanlıdır (ilk filamentin "
+"indeksi 0'dır)."
+
+# AI Translated
+msgid "Current hotend"
+msgstr "Geçerli hotend"
+
+# AI Translated
+msgid ""
+"Hotend of the outgoing filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"Çıkan filamentin hotend'i, sıfır tabanlı ekstruder indeksi olarak verilir. "
+"Bambu yazıcılarda -1'dir veya bir filament katmanlar boyunca nozullar "
+"arasında geçtiğinde nozul kimliğidir."
+
+# AI Translated
+msgid "Next hotend"
+msgstr "Sonraki hotend"
+
+# AI Translated
+msgid ""
+"Hotend of the incoming filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"Gelen filamentin hotend'i, sıfır tabanlı ekstruder indeksi olarak verilir. "
+"Bambu yazıcılarda -1'dir veya bir filament katmanlar boyunca nozullar "
+"arasında geçtiğinde nozul kimliğidir."
+
+# AI Translated
+msgid "Next nozzle ID"
+msgstr "Sonraki nozul kimliği"
+
+# AI Translated
+msgid ""
+"Index of the nozzle associated with the incoming filament. The index is zero-"
+"based (first nozzle has index 0)."
+msgstr ""
+"Gelen filamentle ilişkili nozulun indeksi. İndeks sıfır tabanlıdır (ilk "
+"nozulun indeksi 0'dır)."
+
+# AI Translated
+msgid "Next filament ID"
+msgstr "Sonraki filament kimliği"
+
+# AI Translated
+msgid ""
+"Index of the incoming filament. The index is zero-based (first filament has "
+"index 0)."
+msgstr ""
+"Gelen filamentin indeksi. İndeks sıfır tabanlıdır (ilk filamentin indeksi "
+"0'dır)."
+
+# AI Translated
+msgid "Old extruder variant"
+msgstr "Eski ekstruder varyantı"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the outgoing extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"Çıkan ekstruderin ekstruder tipi ve nozul hacmi tipi, örneğin \"Direct Drive "
+"High Flow\"."
+
+# AI Translated
+msgid "New extruder variant"
+msgstr "Yeni ekstruder varyantı"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the incoming extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"Gelen ekstruderin ekstruder tipi ve nozul hacmi tipi, örneğin \"Direct Drive "
+"High Flow\"."
+
+# AI Translated
+msgid "Filament nozzle-change retract length"
+msgstr "Filament nozul değişimi geri çekme uzunluğu"
+
+# AI Translated
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr "Çıkan filamentin nozul değişimi geri çekme uzunluğu."
+
+# AI Translated
+msgid "New extruder retracted length"
+msgstr "Yeni ekstruderin geri çekilmiş uzunluğu"
+
+# AI Translated
+msgid ""
+"Retraction length still applied to the incoming extruder from when it was "
+"parked."
+msgstr ""
+"Gelen ekstrudere park edildiği andan beri hâlâ uygulanan geri çekme uzunluğu."
+
+# AI Translated
+msgid "Outer wall volumetric speed"
+msgstr "Dış duvar hacimsel hızı"
+
+# AI Translated
+msgid "Volumetric speed used for the outer wall."
+msgstr "Dış duvar için kullanılan hacimsel hız."
 
 # AI Translated
 msgid "Relative e-axis"
@@ -27420,6 +28953,14 @@ msgstr "Takım değişimi sayısı"
 # Needs human review: Unsettled glossary term (⚠) "Tool (printer)": this entry uses "takım"; align it once the term is settled.
 msgid "The number of toolchanges throughout the print."
 msgstr "Baskı boyunca takım değişimi sayısı."
+
+# AI Translated
+msgid "Toolchange Z"
+msgstr "Takım değişimi Z"
+
+# AI Translated
+msgid "The Z position during the toolchange."
+msgstr "Takım değişimi sırasındaki Z konumu."
 
 # AI Translated
 msgid "Old retract length"
@@ -27508,16 +29049,20 @@ msgid "First flush volume"
 msgstr "İlk yıkama hacmi"
 
 # AI Translated
-msgid "The first flush volume."
-msgstr "İlk yıkama hacmi."
+msgid "First half of the planned purge length, in mm of filament."
+msgstr ""
+"Planlanan yıkama uzunluğunun ilk yarısı, filament uzunluğu olarak mm "
+"cinsinden."
 
 # AI Translated
 msgid "Second flush volume"
 msgstr "İkinci yıkama hacmi"
 
 # AI Translated
-msgid "The second flush volume."
-msgstr "İkinci yıkama hacmi."
+msgid "Second half of the planned purge length, in mm of filament."
+msgstr ""
+"Planlanan yıkama uzunluğunun ikinci yarısı, filament uzunluğu olarak mm "
+"cinsinden."
 
 # AI Translated
 msgid "Old filament e feedrate"
@@ -27614,6 +29159,133 @@ msgstr "Yıkama uzunluğu 4"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "Dördüncü yıkama uzunluğu."
+
+# AI Translated
+msgid "Flush length"
+msgstr "Yıkama uzunluğu"
+
+# AI Translated
+msgid "Total flush length."
+msgstr "Toplam yıkama uzunluğu."
+
+# AI Translated
+msgid "Flush volumetric speeds"
+msgstr "Yıkama hacimsel hızları"
+
+# AI Translated
+msgid "Flush volumetric speeds for each filament."
+msgstr "Her filament için yıkama hacimsel hızları."
+
+# AI Translated
+msgid "Flush temperatures"
+msgstr "Yıkama sıcaklıkları"
+
+# AI Translated
+msgid "Flush temperatures for each filament."
+msgstr "Her filament için yıkama sıcaklıkları."
+
+# AI Translated
+msgid "Filament cooling before tower"
+msgstr "Kuleden önce filament soğutma"
+
+# AI Translated
+# Needs human review: 'Wipe perimeter' is not defined elsewhere; check what it refers to (wipe area outline) and the term.
+msgid "Avoid wipe perimeter"
+msgstr "Temizleme çevresinden kaçın"
+
+# AI Translated
+# Needs human review: Check wording together with 'Avoid wipe perimeter'.
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr "Seyahatin temizleme çevresinden kaçınıp kaçınmayacağı."
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "Silme kulesi"; align it once the term is settled.
+msgid "Wipe tower avoidance X"
+msgstr "Silme kulesinden kaçınma X"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "silme kulesi"; align it once the term is settled.
+msgid ""
+"X position just beside the wipe tower that the nozzle moves to so it stays "
+"clear of the tower."
+msgstr ""
+"Nozulun kuleden uzak durmak için gittiği, silme kulesinin hemen yanındaki X "
+"konumu."
+
+# AI Translated
+msgid "Prime tower interface"
+msgstr "Prime kulesi arayüzü"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ana kule", quoted from the purge length tooltip; align it once the term is settled.
+msgid ""
+"Whether the current purge is for the prime tower interface layer (where "
+"different materials meet)."
+msgstr ""
+"Mevcut yıkamanın ana kule arayüz katmanı (farklı malzemelerin buluştuğu yer) "
+"için olup olmadığı."
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "Ana kule", quoted from the purge length tooltip; align it once the term is settled.
+msgid ""
+"Print temperature for prime tower interface layer (where different materials "
+"meet)."
+msgstr ""
+"Ana kule arayüz katmanı (farklı malzemelerin buluştuğu yer) için yazdırma "
+"sıcaklığı."
+
+# AI Translated
+msgid "Wipe tower wait position X"
+msgstr "Silme kulesi bekleme konumu X"
+
+# AI Translated
+msgid ""
+"X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the "
+"tower edge."
+msgstr ""
+"Nozulun silme kulesi bekleme konumunun X koordinatı, kule kenarının 2 mm "
+"dışında."
+
+# AI Translated
+msgid "Wipe tower wait position Y"
+msgstr "Silme kulesi bekleme konumu Y"
+
+# AI Translated
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr "Nozulun silme kulesi bekleme konumunun Y koordinatı."
+
+# AI Translated
+msgid "Wipe tower wait position valid"
+msgstr "Silme kulesi bekleme konumu geçerli"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "silme kulesi"; align it once the term is settled.
+msgid ""
+"Whether the wait position is set, which is the case when the print has a "
+"wipe tower."
+msgstr ""
+"Bekleme konumunun ayarlanıp ayarlanmadığı; baskıda silme kulesi olduğunda "
+"ayarlanır."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_x. Bambu Studio uses this name."
+msgstr "wipe_tower_wait_pos_x ile aynı. Bambu Studio bu adı kullanır."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_y. Bambu Studio uses this name."
+msgstr "wipe_tower_wait_pos_y ile aynı. Bambu Studio bu adı kullanır."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_valid. Bambu Studio uses this name."
+msgstr "wipe_tower_wait_pos_valid ile aynı. Bambu Studio bu adı kullanır."
+
+# AI Translated
+msgid "Nozzle temperatures indexed by filament."
+msgstr "Filamente göre dizinlenmiş nozul sıcaklıkları."
+
+# AI Translated
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr "Filamente göre dizinlenmiş ilk katman nozul sıcaklıkları."
 
 # AI Translated
 msgid "Extrusion role"
@@ -27849,6 +29521,14 @@ msgstr "Düzenli ifade derlemesi başarısız oldu"
 # AI Translated
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "Mantıksal işlem, boole olmayan işlenenlere uygulanamıyor."
+
+# AI Translated
+msgid ""
+"This value is known only after the G-code is generated. It can be printed, "
+"but not used in a calculation or a comparison."
+msgstr ""
+"Bu değer yalnızca G-code oluşturulduktan sonra bilinir. Yazdırılabilir, "
+"ancak bir hesaplamada veya karşılaştırmada kullanılamaz."
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -29575,7 +31255,7 @@ msgstr "%s testi başlatılıyor..."
 
 # AI Translated
 #, c-format, boost-format
-msgid "test %s ip resolved = %s"
+msgid "test %s IP resolved = %s"
 msgstr "%s testi: IP çözümlendi = %s"
 
 # AI Translated
@@ -29905,10 +31585,10 @@ msgid "Filament Created"
 msgstr "Filament Oluşturuldu"
 
 msgid ""
-"Please go to filament setting to edit your presets if you need.\n"
+"Please go to filament settings to edit your presets if you need to.\n"
 "Please note that nozzle temperature, hot bed temperature, and maximum "
-"volumetric speed has a significant impact on printing quality. Please set "
-"them carefully."
+"volumetric speed each have a significant impact on printing quality. Please "
+"set them carefully."
 msgstr ""
 "İhtiyacınız olursa ön ayarlarınızı düzenlemek için lütfen filament ayarına "
 "gidin.\n"
@@ -30138,10 +31818,10 @@ msgstr ""
 "Lütfen yukarıdaki Senkronizasyon düğmesine tıklayın ve kalibrasyonu yeniden "
 "başlatın."
 
-#, c-format, boost-format
-msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
+#, boost-format
+msgid "Printing %1% material with %2% nozzle may cause nozzle damage."
 msgstr ""
-"%1s malzemeyi %2s püskürtme ucuyla yazdırmak püskürtme ucu hasarına neden "
+"%1% malzemeyi %2% püskürtme ucuyla yazdırmak püskürtme ucu hasarına neden "
 "olabilir."
 
 msgid "Need select printer"
@@ -31215,14 +32895,6 @@ msgid "Could not connect to CrealityPrint"
 msgstr "CrealityPrint'e bağlanılamadı"
 
 # AI Translated
-msgid ""
-"Connection timed out. Please check if the printer and computer network are "
-"functioning properly, and confirm that they are on the same network."
-msgstr ""
-"Bağlantı zaman aşımına uğradı. Lütfen yazıcı ve bilgisayar ağının düzgün "
-"çalışıp çalışmadığını denetleyin ve aynı ağda olduklarını doğrulayın."
-
-# AI Translated
 msgid "The Hostname/IP/URL could not be parsed, please check it and try again."
 msgstr ""
 "Ana makine adı/IP/URL ayrıştırılamadı, lütfen denetleyip yeniden deneyin."
@@ -31234,6 +32906,14 @@ msgid ""
 msgstr ""
 "Dosya/veri aktarımı kesildi. Lütfen yazıcıyı ve ağı denetleyin, ardından "
 "yeniden deneyin."
+
+# AI Translated
+msgid ""
+"Connection timed out. Please check if the printer and computer network are "
+"functioning properly, and confirm that they are on the same network."
+msgstr ""
+"Bağlantı zaman aşımına uğradı. Lütfen yazıcı ve bilgisayar ağının düzgün "
+"çalışıp çalışmadığını denetleyin ve aynı ağda olduklarını doğrulayın."
 
 msgid "The provided state is not correct."
 msgstr "Sağlanan durum doğru değil."
@@ -31485,10 +33165,6 @@ msgstr "Üçgen yüzeylerin sayısı"
 
 msgid "Calculating, please wait..."
 msgstr "Hesaplanıyor, lütfen bekleyin..."
-
-# AI Translated
-msgid "Save these settings as default"
-msgstr "Bu ayarları varsayılan olarak kaydet"
 
 # AI Translated
 msgid ""
@@ -32688,10 +34364,6 @@ msgstr "(tüm kenarlar)"
 # AI Translated
 msgid "Placement (transform / mirror / mate)"
 msgstr "Konumlandırma (dönüştürme / aynalama / montaj ilişkisi)"
-
-# AI Translated
-msgid "Transform"
-msgstr "Dönüştür"
 
 # AI Translated
 msgid "Move and/or rotate an existing body"
@@ -36087,10 +37759,6 @@ msgstr ""
 "Bu iki çizgi bir köşede birleşmiyor — bir köşede birleşen iki çizgi seçin"
 
 # AI Translated
-msgid "The size must be greater than zero"
-msgstr "Boyut sıfırdan büyük olmalıdır"
-
-# AI Translated
 msgid ""
 "Fillet: the radius overruns a leg, or the two lines do not meet at a corner"
 msgstr ""
@@ -36194,10 +37862,6 @@ msgstr "Tekrar"
 # AI Translated
 msgid "Reference"
 msgstr "Referans"
-
-# AI Translated
-msgid "Modify"
-msgstr "Değiştir"
 
 # AI Translated
 msgctxt "Design"
@@ -37039,9 +38703,6 @@ msgstr "Yakınlaştır"
 
 msgid "Zoom out"
 msgstr "Uzaklaştır"
-
-msgid "Show/Hide 3Dconnexion devices settings dialog"
-msgstr "3Dconnexion cihazları ayarları iletişim kutusunu Göster/Gizle"
 
 # AI Translated
 msgid "Show/Hide wireframe"
@@ -38059,1232 +39720,1656 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
+# AI Translated
 msgid "Color Picker"
-msgstr ""
+msgstr "Renk seçici"
 
+# AI Translated
 msgid "Basic Colors"
-msgstr ""
+msgstr "Temel renkler"
 
-msgid "Orca Palette"
-msgstr ""
-
+# AI Translated
+# Needs human review: Glossary has no Turkish rendering for Palette; check 'palet' (also Paletler).
 #. TRN: Keep the brand name "Orca" unchanged; translate only the palette descriptor.
-msgid "RAL Classic"
-msgstr ""
+msgid "Orca Palette"
+msgstr "Orca paleti"
 
+# AI Translated
 #. TRN: Keep the standard/brand name "RAL" unchanged.
+msgid "RAL Classic"
+msgstr "RAL Klasik"
+
+# AI Translated
+# Needs human review: Glossary has no Turkish cell for Gradient; used 'Gradyan' (as in Karışık filament gradyanı), though 'Linear gradient' is 'Doğrusal degrade' in the catalog.
 msgid "Gradients"
-msgstr ""
+msgstr "Gradyanlar"
 
+# AI Translated
+# Needs human review: Color-picker sense (single color, not a gradient); check 'Düz' reads as 'solid color'.
+msgctxt "Color picker"
 msgid "Solid"
-msgstr ""
+msgstr "Düz"
 
+# AI Translated
+# Needs human review: Glossary has no Turkish cell for Gradient; used 'Gradyan' (as in Karışık filament gradyanı), though 'Linear gradient' is 'Doğrusal degrade' in the catalog.
 msgid "Gradient"
-msgstr ""
+msgstr "Gradyan"
 
+# AI Translated
 msgid "Gradient start"
-msgstr ""
+msgstr "Gradyan başlangıcı"
 
+# AI Translated
 msgid "Gradient end"
-msgstr ""
+msgstr "Gradyan sonu"
 
+# AI Translated
 msgid "Gradient color"
-msgstr ""
+msgstr "Gradyan rengi"
 
+# AI Translated
 msgid "Add color"
-msgstr ""
+msgstr "Renk ekle"
 
+# AI Translated
 msgid "Remove color"
-msgstr ""
+msgstr "Rengi kaldır"
 
+# AI Translated
 msgid "Saturation"
-msgstr ""
+msgstr "Doygunluk"
 
+# AI Translated
 msgid "Original color"
-msgstr ""
+msgstr "Orijinal renk"
 
+# AI Translated
 #. TRN: Clicking the current color preview adds it to the saved favorites.
 msgid "Save current color"
-msgstr ""
+msgstr "Geçerli rengi kaydet"
 
+# AI Translated
+# Needs human review: Glossary has no Turkish rendering for Palette; check 'Paletler'.
 msgid "Palettes"
+msgstr "Paletler"
+
+msgid "Pick color from screen"
 msgstr ""
 
+# AI Translated
 msgid "Search colors"
-msgstr ""
+msgstr "Renk ara"
 
+# AI Translated
 msgid "Filter colors"
-msgstr ""
+msgstr "Renkleri filtrele"
 
+# AI Translated
 msgid "No matching colors"
-msgstr ""
+msgstr "Eşleşen renk yok"
 
+# AI Translated
 msgid "Hex color"
-msgstr ""
+msgstr "Onaltılık renk"
 
 # AI Translated
 msgid "Opacity"
 msgstr "Opaklık"
 
+# AI Translated
 msgid "Opacity percent"
-msgstr ""
+msgstr "Opaklık yüzdesi"
 
+# AI Translated
 msgid "Save color"
-msgstr ""
+msgstr "Rengi kaydet"
 
+# AI Translated
 msgid "Enter a complete hexadecimal color"
-msgstr ""
+msgstr "Eksiksiz bir onaltılık renk girin"
 
+# AI Translated
 msgid ""
 "The current multi-color selection is kept until you choose a different color."
-msgstr ""
+msgstr "Mevcut çok renkli seçim, farklı bir renk seçene kadar korunur."
 
+# AI Translated
 #, c-format, boost-format
 msgid "Up to %d colors supported."
-msgstr ""
+msgstr "En fazla %d renk desteklenir."
 
+# AI Translated
 msgid "Crimson"
-msgstr ""
+msgstr "Kızıl"
 
+# AI Translated
 msgid "Orange red"
-msgstr ""
+msgstr "Turuncu kırmızı"
 
+# AI Translated
 msgid "Tomato"
-msgstr ""
+msgstr "Domates"
 
+# AI Translated
 msgid "Orange"
-msgstr ""
+msgstr "Turuncu"
 
+# AI Translated
 msgid "Dark orange"
-msgstr ""
+msgstr "Koyu turuncu"
 
+# AI Translated
 msgid "Gold"
-msgstr ""
+msgstr "Altın"
 
+# AI Translated
+# Needs human review: CSS color; check 'Ahşap kahvesi' conveys burlywood (light tan wood).
 msgid "Burly wood"
-msgstr ""
+msgstr "Ahşap kahvesi"
 
+# AI Translated
 msgid "Bisque"
-msgstr ""
+msgstr "Bisküvi"
 
+# AI Translated
 msgid "Misty rose"
-msgstr ""
+msgstr "Sisli gül"
 
+# AI Translated
 msgid "Light yellow"
-msgstr ""
+msgstr "Açık sarı"
 
+# AI Translated
 msgid "Lemon chiffon"
-msgstr ""
+msgstr "Limon şifonu"
 
+# AI Translated
 msgid "Beige"
-msgstr ""
+msgstr "Bej"
 
+# AI Translated
 msgid "Light golden rod yellow"
-msgstr ""
+msgstr "Açık altın çubuk sarısı"
 
+# AI Translated
 msgid "Pale golden rod"
-msgstr ""
+msgstr "Soluk altın çubuk"
 
+# AI Translated
 msgid "Khaki"
-msgstr ""
+msgstr "Haki"
 
+# AI Translated
 msgid "Dark khaki"
-msgstr ""
+msgstr "Koyu haki"
 
+# AI Translated
 msgid "Peach puff"
-msgstr ""
+msgstr "Şeftali kreması"
 
+# AI Translated
 msgid "Moccasin"
-msgstr ""
+msgstr "Mokasen"
 
+# AI Translated
 msgid "Papaya whip"
-msgstr ""
+msgstr "Papaya kreması"
 
+# AI Translated
 msgid "Blanched almond"
-msgstr ""
+msgstr "Soyulmuş badem"
 
+# AI Translated
 msgid "Antique white"
-msgstr ""
+msgstr "Antik beyaz"
 
+# AI Translated
 msgid "Navajo white"
-msgstr ""
+msgstr "Navaho beyazı"
 
+# AI Translated
 msgid "Wheat"
-msgstr ""
+msgstr "Buğday"
 
+# AI Translated
 msgid "Golden rod"
-msgstr ""
+msgstr "Altın çubuk"
 
+# AI Translated
 msgid "Chocolate"
-msgstr ""
+msgstr "Çikolata"
 
+# AI Translated
 msgid "Peru"
-msgstr ""
+msgstr "Peru"
 
+# AI Translated
 msgid "Fire brick"
-msgstr ""
+msgstr "Tuğla kırmızısı"
 
+# AI Translated
 msgid "Sienna"
-msgstr ""
+msgstr "Siyena"
 
+# AI Translated
 msgid "Saddle brown"
-msgstr ""
+msgstr "Eyer kahvesi"
 
+# AI Translated
 msgid "Brown"
-msgstr ""
+msgstr "Kahverengi"
 
+# AI Translated
 msgid "Rosy brown"
-msgstr ""
+msgstr "Gül kahvesi"
 
+# AI Translated
 msgid "Salmon"
-msgstr ""
+msgstr "Somon"
 
+# AI Translated
 msgid "Light salmon"
-msgstr ""
+msgstr "Açık somon"
 
+# AI Translated
 msgid "Dark salmon"
-msgstr ""
+msgstr "Koyu somon"
 
+# AI Translated
 msgid "Sandy brown"
-msgstr ""
+msgstr "Kum kahvesi"
 
+# AI Translated
 msgid "Coral"
-msgstr ""
+msgstr "Mercan"
 
+# AI Translated
 msgid "Light coral"
-msgstr ""
+msgstr "Açık mercan"
 
+# AI Translated
 msgid "Indian red"
-msgstr ""
+msgstr "Hint kırmızısı"
 
+# AI Translated
 msgid "Dark red"
-msgstr ""
+msgstr "Koyu kırmızı"
 
+# AI Translated
+# Needs human review: CSS maroon rendered 'Vişne çürüğü'; check.
 msgid "Maroon"
-msgstr ""
+msgstr "Vişne çürüğü"
 
+# AI Translated
 msgid "Green yellow"
-msgstr ""
+msgstr "Yeşil sarı"
 
+# AI Translated
 msgid "Yellow green"
-msgstr ""
+msgstr "Sarı yeşil"
 
+# AI Translated
 msgid "Chartreuse"
-msgstr ""
+msgstr "Şartröz"
 
+# AI Translated
 msgid "Lawn green"
-msgstr ""
+msgstr "Çim yeşili"
 
+# AI Translated
 msgid "Lime green"
-msgstr ""
+msgstr "Misket limonu yeşili"
 
+# AI Translated
 msgid "Spring green"
-msgstr ""
+msgstr "Bahar yeşili"
 
+# AI Translated
 msgid "Medium spring green"
-msgstr ""
+msgstr "Orta bahar yeşili"
 
+# AI Translated
 msgid "Lime"
-msgstr ""
+msgstr "Misket limonu"
 
+# AI Translated
 msgid "Forest green"
-msgstr ""
+msgstr "Orman yeşili"
 
+# AI Translated
 msgid "Dark green"
-msgstr ""
+msgstr "Koyu yeşil"
 
+# AI Translated
 msgid "Olive drab"
-msgstr ""
+msgstr "Mat zeytin yeşili"
 
+# AI Translated
 msgid "Olive"
-msgstr ""
+msgstr "Zeytin"
 
+# AI Translated
 msgid "Dark olive green"
-msgstr ""
+msgstr "Koyu zeytin yeşili"
 
+# AI Translated
 msgid "Pale green"
-msgstr ""
+msgstr "Soluk yeşil"
 
+# AI Translated
 msgid "Light green"
-msgstr ""
+msgstr "Açık yeşil"
 
+# AI Translated
 msgid "Medium sea green"
-msgstr ""
+msgstr "Orta deniz yeşili"
 
+# AI Translated
 msgid "Sea green"
-msgstr ""
+msgstr "Deniz yeşili"
 
+# AI Translated
 msgid "Dark sea green"
-msgstr ""
+msgstr "Koyu deniz yeşili"
 
+# AI Translated
 msgid "Cadet blue"
-msgstr ""
+msgstr "Harbiye mavisi"
 
+# AI Translated
 msgid "Medium aqua marine"
-msgstr ""
+msgstr "Orta akuamarin"
 
+# AI Translated
 msgid "Turquoise"
-msgstr ""
+msgstr "Turkuaz"
 
+# AI Translated
 msgid "Medium turquoise"
-msgstr ""
+msgstr "Orta turkuaz"
 
+# AI Translated
 msgid "Dark turquoise"
-msgstr ""
+msgstr "Koyu turkuaz"
 
+# AI Translated
 msgid "Pale turquoise"
-msgstr ""
+msgstr "Soluk turkuaz"
 
+# AI Translated
 msgid "Aqua"
-msgstr ""
+msgstr "Akua"
 
+# AI Translated
 msgid "Light cyan"
-msgstr ""
+msgstr "Açık camgöbeği"
 
+# AI Translated
 msgid "Mint cream"
-msgstr ""
+msgstr "Nane kreması"
 
+# AI Translated
 msgid "Honey dew"
-msgstr ""
+msgstr "Bal kavunu"
 
+# AI Translated
 msgid "Aquamarine"
-msgstr ""
+msgstr "Akuamarin"
 
+# AI Translated
 msgid "Light sea green"
-msgstr ""
+msgstr "Açık deniz yeşili"
 
+# AI Translated
 msgid "Dark cyan"
-msgstr ""
+msgstr "Koyu camgöbeği"
 
+# AI Translated
+# Needs human review: Rendered 'Petrol mavisi'; check it reads as teal.
 msgid "Teal"
-msgstr ""
+msgstr "Petrol mavisi"
 
+# AI Translated
 msgid "Dark slate gray"
-msgstr ""
+msgstr "Koyu arduvaz grisi"
 
+# AI Translated
 msgid "Light slate gray"
-msgstr ""
+msgstr "Açık arduvaz grisi"
 
+# AI Translated
 msgid "Slate gray"
-msgstr ""
+msgstr "Arduvaz grisi"
 
+# AI Translated
 msgid "Deep sky blue"
-msgstr ""
+msgstr "Derin gökyüzü mavisi"
 
+# AI Translated
 msgid "Dodger Blue"
-msgstr ""
+msgstr "Dodger mavisi"
 
+# AI Translated
 msgid "Sky blue"
-msgstr ""
+msgstr "Gökyüzü mavisi"
 
+# AI Translated
 msgid "Light sky blue"
-msgstr ""
+msgstr "Açık gökyüzü mavisi"
 
+# AI Translated
 msgid "Light blue"
-msgstr ""
+msgstr "Açık mavi"
 
+# AI Translated
 msgid "Powder blue"
-msgstr ""
+msgstr "Pudra mavisi"
 
+# AI Translated
 msgid "Light steel blue"
-msgstr ""
+msgstr "Açık çelik mavisi"
 
+# AI Translated
 msgid "Steel blue"
-msgstr ""
+msgstr "Çelik mavisi"
 
+# AI Translated
 msgid "Cornflower blue"
-msgstr ""
+msgstr "Kantaron mavisi"
 
+# AI Translated
 msgid "Royal blue"
-msgstr ""
+msgstr "Kraliyet mavisi"
 
+# AI Translated
 msgid "Medium blue"
-msgstr ""
+msgstr "Orta mavi"
 
+# AI Translated
 msgid "Midnight blue"
-msgstr ""
+msgstr "Gece yarısı mavisi"
 
+# AI Translated
 msgid "Dark blue"
-msgstr ""
+msgstr "Koyu mavi"
 
+# AI Translated
 msgid "Navy"
-msgstr ""
+msgstr "Lacivert"
 
+# AI Translated
 msgid "Slate blue"
-msgstr ""
+msgstr "Arduvaz mavisi"
 
+# AI Translated
 msgid "Dark slate blue"
-msgstr ""
+msgstr "Koyu arduvaz mavisi"
 
+# AI Translated
 msgid "Medium slate blue"
-msgstr ""
+msgstr "Orta arduvaz mavisi"
 
+# AI Translated
 msgid "Blue violet"
-msgstr ""
+msgstr "Mavi menekşe"
 
+# AI Translated
 msgid "Indigo"
-msgstr ""
+msgstr "İndigo"
 
+# AI Translated
 msgid "Dark violet"
-msgstr ""
+msgstr "Koyu menekşe"
 
+# AI Translated
 msgid "Dark orchid"
-msgstr ""
+msgstr "Koyu orkide"
 
+# AI Translated
 msgid "Medium orchid"
-msgstr ""
+msgstr "Orta orkide"
 
+# AI Translated
 msgid "Orchid"
-msgstr ""
+msgstr "Orkide"
 
+# AI Translated
 msgid "Violet"
-msgstr ""
+msgstr "Menekşe"
 
+# AI Translated
 msgid "Medium purple"
-msgstr ""
+msgstr "Orta mor"
 
+# AI Translated
 msgid "Purple"
-msgstr ""
+msgstr "Mor"
 
+# AI Translated
 msgid "Rebecca purple"
-msgstr ""
+msgstr "Rebecca moru"
 
+# AI Translated
 msgid "Medium violet red"
-msgstr ""
+msgstr "Orta menekşe kırmızısı"
 
-msgid "PaleV violet red"
-msgstr ""
+# AI Translated
+msgid "Pale violet red"
+msgstr "Soluk menekşe kırmızısı"
 
+# AI Translated
 msgid "Deep pink"
-msgstr ""
+msgstr "Derin pembe"
 
+# AI Translated
 msgid "Hot pink"
-msgstr ""
+msgstr "Sıcak pembe"
 
+# AI Translated
 msgid "Light pink"
-msgstr ""
+msgstr "Açık pembe"
 
+# AI Translated
 msgid "Pink"
-msgstr ""
+msgstr "Pembe"
 
+# AI Translated
 msgid "Plum"
-msgstr ""
+msgstr "Erik"
 
+# AI Translated
 msgid "Thistle"
-msgstr ""
+msgstr "Devedikeni"
 
+# AI Translated
 msgid "Fuchsia"
-msgstr ""
+msgstr "Fuşya"
 
+# AI Translated
 msgid "Dark magenta"
-msgstr ""
+msgstr "Koyu macenta"
 
+# AI Translated
 msgid "Linen"
-msgstr ""
+msgstr "Keten"
 
+# AI Translated
 msgid "Old lace"
-msgstr ""
+msgstr "Eski dantel"
 
+# AI Translated
 msgid "Sea shell"
-msgstr ""
+msgstr "Deniz kabuğu"
 
+# AI Translated
 msgid "Ivory"
-msgstr ""
+msgstr "Fildişi"
 
+# AI Translated
 msgid "Floral white"
-msgstr ""
+msgstr "Çiçek beyazı"
 
+# AI Translated
 msgid "Lavender blush"
-msgstr ""
+msgstr "Lavanta pembesi"
 
+# AI Translated
 msgid "Ghost white"
-msgstr ""
+msgstr "Hayalet beyazı"
 
+# AI Translated
 msgid "Alice blue"
-msgstr ""
+msgstr "Alice mavisi"
 
+# AI Translated
 msgid "Lavender"
-msgstr ""
+msgstr "Lavanta"
 
+# AI Translated
 msgid "White smoke"
-msgstr ""
+msgstr "Duman beyazı"
 
+# AI Translated
 msgid "Gainsboro"
-msgstr ""
+msgstr "Gainsboro"
 
+# AI Translated
 msgid "Black"
-msgstr ""
+msgstr "Siyah"
 
+# AI Translated
 msgid "Coral fire"
-msgstr ""
+msgstr "Mercan ateşi"
 
+# AI Translated
 msgid "Sea anemone"
-msgstr ""
+msgstr "Deniz anemonu"
 
+# AI Translated
 msgid "Deep abyss"
-msgstr ""
+msgstr "Derin uçurum"
 
+# AI Translated
 msgid "Lobster red"
-msgstr ""
+msgstr "Istakoz kırmızısı"
 
+# AI Translated
 msgid "Sandy clay"
-msgstr ""
+msgstr "Kumlu kil"
 
+# AI Translated
 msgid "Driftwood"
-msgstr ""
+msgstr "Sürüklenmiş odun"
 
+# AI Translated
 msgid "Sea buckthorn"
-msgstr ""
+msgstr "Deniz iğdesi"
 
+# AI Translated
 msgid "Sunset reef"
-msgstr ""
+msgstr "Gün batımı resifi"
 
+# AI Translated
 msgid "Tiger coral"
-msgstr ""
+msgstr "Kaplan mercanı"
 
+# AI Translated
 msgid "Pink coral"
-msgstr ""
+msgstr "Pembe mercan"
 
+# AI Translated
 msgid "Seashell glow"
-msgstr ""
+msgstr "Deniz kabuğu parıltısı"
 
+# AI Translated
 msgid "Sand"
-msgstr ""
+msgstr "Kum"
 
+# AI Translated
 msgid "Golden kelp"
-msgstr ""
+msgstr "Altın deniz yosunu"
 
+# AI Translated
 msgid "Sunlit dune"
-msgstr ""
+msgstr "Güneşli kumul"
 
+# AI Translated
 msgid "Amber nautilus"
-msgstr ""
+msgstr "Kehribar nautilus"
 
+# AI Translated
 msgid "Sea lemon"
-msgstr ""
+msgstr "Deniz limonu"
 
+# AI Translated
 msgid "Pale starfish"
-msgstr ""
+msgstr "Soluk deniz yıldızı"
 
+# AI Translated
+# Needs human review: Ocean-themed name; 'Büyük gelgit' is the oceanographic term; check it reads as a color name.
 msgid "Spring tide"
-msgstr ""
+msgstr "Büyük gelgit"
 
+# AI Translated
+# Needs human review: Ocean-themed name; check 'Misket limonu algi' reads right.
 msgid "Lime algae"
-msgstr ""
+msgstr "Misket limonu algi"
 
+# AI Translated
 msgid "Sea grass"
-msgstr ""
+msgstr "Deniz çimi"
 
+# AI Translated
 msgid "Neon plankton"
-msgstr ""
+msgstr "Neon plankton"
 
+# AI Translated
 msgid "Kelp forest"
-msgstr ""
+msgstr "Deniz yosunu ormanı"
 
+# AI Translated
 msgid "Emerald wave"
-msgstr ""
+msgstr "Zümrüt dalga"
 
+# AI Translated
 msgid "Whale shadow"
-msgstr ""
+msgstr "Balina gölgesi"
 
+# AI Translated
 msgid "Sea turtle"
-msgstr ""
+msgstr "Deniz kaplumbağası"
 
+# AI Translated
 msgid "Lagoon"
-msgstr ""
+msgstr "Lagün"
 
+# AI Translated
 msgid "Tropical current"
-msgstr ""
+msgstr "Tropik akıntı"
 
+# AI Translated
 msgid "Midnight trench"
-msgstr ""
+msgstr "Gece yarısı çukuru"
 
+# AI Translated
 msgid "Dark kelp"
-msgstr ""
+msgstr "Koyu deniz yosunu"
 
+# AI Translated
 msgid "Crystal surf"
-msgstr ""
+msgstr "Kristal dalga"
 
+# AI Translated
 msgid "Turquoise bay"
-msgstr ""
+msgstr "Turkuaz koy"
 
+# AI Translated
 msgid "Sky over reef"
-msgstr ""
+msgstr "Resif üstü gökyüzü"
 
+# AI Translated
+# Needs human review: Ocean-themed color name; check 'Sığ gökyüzü' reads as a color.
 msgid "Shallow sky"
-msgstr ""
+msgstr "Sığ gökyüzü"
 
-msgid "Electric bel"
-msgstr ""
+# AI Translated
+msgid "Electric blue"
+msgstr "Elektrik mavisi"
 
+# AI Translated
 msgid "Dolphin"
-msgstr ""
+msgstr "Yunus"
 
+# AI Translated
 msgid "Ocean depths"
-msgstr ""
+msgstr "Okyanus derinlikleri"
 
+# AI Translated
 msgid "Whale"
-msgstr ""
+msgstr "Balina"
 
+# AI Translated
 msgid "Indigo abyss"
-msgstr ""
+msgstr "İndigo uçurum"
 
+# AI Translated
 msgid "Sea urchin"
-msgstr ""
+msgstr "Deniz kestanesi"
 
+# AI Translated
 msgid "Lavender coral"
-msgstr ""
+msgstr "Lavanta mercanı"
 
+# AI Translated
 msgid "Violet tide"
-msgstr ""
+msgstr "Menekşe gelgiti"
 
+# AI Translated
 msgid "Deep sea orchid"
-msgstr ""
+msgstr "Derin deniz orkidesi"
 
+# AI Translated
 msgid "Neon jelly"
-msgstr ""
+msgstr "Neon denizanası"
 
+# AI Translated
 msgid "Fuchsia coral"
-msgstr ""
+msgstr "Fuşya mercan"
 
+# AI Translated
 msgid "Pink jellyfish"
-msgstr ""
+msgstr "Pembe denizanası"
 
+# AI Translated
 msgid "Foam"
-msgstr ""
+msgstr "Köpük"
 
+# AI Translated
 msgid "Seashell white"
-msgstr ""
+msgstr "Deniz kabuğu beyazı"
 
+# AI Translated
 msgid "Pebble gray"
-msgstr ""
+msgstr "Çakıl grisi"
 
+# AI Translated
 msgid "Storm cloud"
-msgstr ""
+msgstr "Fırtına bulutu"
 
+# AI Translated
 msgid "Ink black"
-msgstr ""
+msgstr "Mürekkep siyahı"
 
+# AI Translated
 msgid "Green beige"
-msgstr ""
+msgstr "Yeşil bej"
 
+# AI Translated
 msgid "Sand yellow"
-msgstr ""
+msgstr "Kum sarısı"
 
+# AI Translated
 msgid "Signal yellow"
-msgstr ""
+msgstr "Sinyal sarısı"
 
+# AI Translated
 msgid "Golden yellow"
-msgstr ""
+msgstr "Altın sarısı"
 
+# AI Translated
 msgid "Honey yellow"
-msgstr ""
+msgstr "Bal sarısı"
 
+# AI Translated
 msgid "Maize yellow"
-msgstr ""
+msgstr "Mısır sarısı"
 
-msgid "Dalmatian yellow"
-msgstr ""
+# AI Translated
+msgid "Daffodil yellow"
+msgstr "Nergis sarısı"
 
+# AI Translated
 msgid "Brown beige"
-msgstr ""
+msgstr "Kahverengi bej"
 
+# AI Translated
 msgid "Lemon yellow"
-msgstr ""
+msgstr "Limon sarısı"
 
+# AI Translated
 msgid "Oyster white"
-msgstr ""
+msgstr "İstiridye beyazı"
 
+# AI Translated
 msgid "Light ivory"
-msgstr ""
+msgstr "Açık fildişi"
 
+# AI Translated
 msgid "Zinc yellow"
-msgstr ""
+msgstr "Çinko sarısı"
 
+# AI Translated
 msgid "Grey beige"
-msgstr ""
+msgstr "Gri bej"
 
+# AI Translated
 msgid "Olive yellow"
-msgstr ""
+msgstr "Zeytin sarısı"
 
+# AI Translated
 msgid "Rape yellow"
-msgstr ""
+msgstr "Kolza sarısı"
 
+# AI Translated
 msgid "Traffic yellow"
-msgstr ""
+msgstr "Trafik sarısı"
 
+# AI Translated
 msgid "Ochre yellow"
-msgstr ""
+msgstr "Oker sarısı"
 
+# AI Translated
 msgid "Traffic orange yellow"
-msgstr ""
+msgstr "Trafik turuncu sarısı"
 
+# AI Translated
 msgid "Curry"
-msgstr ""
+msgstr "Köri"
 
+# AI Translated
 msgid "Melon yellow"
-msgstr ""
+msgstr "Kavun sarısı"
 
+# AI Translated
 msgid "Broom yellow"
-msgstr ""
+msgstr "Katırtırnağı sarısı"
 
+# AI Translated
 msgid "Dahlia yellow"
-msgstr ""
+msgstr "Dahlia sarısı"
 
+# AI Translated
 msgid "Pastel yellow"
-msgstr ""
+msgstr "Pastel sarı"
 
+# AI Translated
 msgid "Pearl beige"
-msgstr ""
+msgstr "İnci bej"
 
+# AI Translated
 msgid "Pearl gold"
-msgstr ""
+msgstr "İnci altın"
 
+# AI Translated
 msgid "Sun yellow"
-msgstr ""
+msgstr "Güneş sarısı"
 
+# AI Translated
 msgid "Yellow orange"
-msgstr ""
+msgstr "Sarı turuncu"
 
+# AI Translated
 msgid "Deep orange"
-msgstr ""
+msgstr "Derin turuncu"
 
+# AI Translated
 msgid "Vermilion"
-msgstr ""
+msgstr "Vermilyon"
 
+# AI Translated
 msgid "Pearl orange"
-msgstr ""
+msgstr "İnci turuncu"
 
+# AI Translated
 msgid "Pure orange"
-msgstr ""
+msgstr "Saf turuncu"
 
+# AI Translated
 msgid "Luminous orange"
-msgstr ""
+msgstr "Parlak turuncu"
 
+# AI Translated
 msgid "Luminous bright orange"
-msgstr ""
+msgstr "Parlak açık turuncu"
 
+# AI Translated
 msgid "Bright red orange"
-msgstr ""
+msgstr "Açık kırmızı turuncu"
 
+# AI Translated
 msgid "Traffic orange"
-msgstr ""
+msgstr "Trafik turuncusu"
 
+# AI Translated
 msgid "Signal orange"
-msgstr ""
+msgstr "Sinyal turuncusu"
 
+# AI Translated
 msgid "Salmon orange"
-msgstr ""
+msgstr "Somon turuncusu"
 
+# AI Translated
 msgid "Pearl pink"
-msgstr ""
+msgstr "İnci pembe"
 
+# AI Translated
 msgid "Copper orange"
-msgstr ""
+msgstr "Bakır turuncusu"
 
+# AI Translated
 msgid "Signal brown"
-msgstr ""
+msgstr "Sinyal kahvesi"
 
+# AI Translated
+# Needs human review: Odd RAL name; translated literally as Ladin turuncusu.
 msgid "Fir orange"
-msgstr ""
+msgstr "Ladin turuncusu"
 
+# AI Translated
 msgid "Signal red"
-msgstr ""
+msgstr "Sinyal kırmızısı"
 
+# AI Translated
 msgid "Luminous red"
-msgstr ""
+msgstr "Parlak kırmızı"
 
+# AI Translated
 msgid "Carmine red"
-msgstr ""
+msgstr "Karmen kırmızısı"
 
+# AI Translated
 msgid "Pearl carmine red"
-msgstr ""
+msgstr "İnci karmen kırmızısı"
 
+# AI Translated
 msgid "Pure red"
-msgstr ""
+msgstr "Saf kırmızı"
 
+# AI Translated
 msgid "Luminous deep red"
-msgstr ""
+msgstr "Parlak koyu kırmızı"
 
+# AI Translated
 msgid "Currant red"
-msgstr ""
+msgstr "Frenk üzümü kırmızısı"
 
+# AI Translated
 msgid "Pearl ruby red"
-msgstr ""
+msgstr "İnci yakut kırmızısı"
 
+# AI Translated
 msgid "Fire red"
-msgstr ""
+msgstr "Ateş kırmızısı"
 
+# AI Translated
 msgid "Ruby red"
-msgstr ""
+msgstr "Yakut kırmızısı"
 
+# AI Translated
 msgid "Purple red"
-msgstr ""
+msgstr "Mor kırmızı"
 
+# AI Translated
 msgid "Wine red"
-msgstr ""
+msgstr "Şarap kırmızısı"
 
+# AI Translated
 msgid "Black red"
-msgstr ""
+msgstr "Siyah kırmızı"
 
+# AI Translated
 msgid "Oxide red"
-msgstr ""
+msgstr "Oksit kırmızısı"
 
+# AI Translated
 msgid "Brown red"
-msgstr ""
+msgstr "Kahverengi kırmızı"
 
+# AI Translated
 msgid "Pine red"
-msgstr ""
+msgstr "Çam kırmızısı"
 
+# AI Translated
 msgid "Tomato red"
-msgstr ""
+msgstr "Domates kırmızısı"
 
+# AI Translated
 msgid "Antique pink"
-msgstr ""
+msgstr "Antik pembe"
 
+# AI Translated
 msgid "Coral red"
-msgstr ""
+msgstr "Mercan kırmızısı"
 
+# AI Translated
 msgid "Rose"
-msgstr ""
+msgstr "Gül"
 
+# AI Translated
 msgid "Strawberry red"
-msgstr ""
+msgstr "Çilek kırmızısı"
 
+# AI Translated
 msgid "Traffic red"
-msgstr ""
+msgstr "Trafik kırmızısı"
 
+# AI Translated
 msgid "Salmon pink"
-msgstr ""
+msgstr "Somon pembesi"
 
+# AI Translated
 msgid "Luminous rose"
-msgstr ""
+msgstr "Parlak gül"
 
+# AI Translated
 msgid "Luminous bright red"
-msgstr ""
+msgstr "Parlak açık kırmızı"
 
+# AI Translated
 msgid "Raspberry red"
-msgstr ""
+msgstr "Ahududu kırmızısı"
 
+# AI Translated
 msgid "Orient red"
-msgstr ""
+msgstr "Doğu kırmızısı"
 
+# AI Translated
 msgid "Pearl ruby"
-msgstr ""
+msgstr "İnci yakut"
 
+# AI Translated
 msgid "Red purple"
-msgstr ""
+msgstr "Kırmızı mor"
 
+# AI Translated
 msgid "Red violet"
-msgstr ""
+msgstr "Kırmızı menekşe"
 
+# AI Translated
 msgid "Heather violet"
-msgstr ""
+msgstr "Funda moru"
 
+# AI Translated
 msgid "Bordeaux violet"
-msgstr ""
+msgstr "Bordo moru"
 
+# AI Translated
 msgid "Mahogany"
-msgstr ""
+msgstr "Maun"
 
+# AI Translated
 msgid "Grey purple"
-msgstr ""
+msgstr "Gri mor"
 
+# AI Translated
 msgid "Signal violet"
-msgstr ""
+msgstr "Sinyal moru"
 
+# AI Translated
 msgid "Fir green"
-msgstr ""
+msgstr "Ladin yeşili"
 
+# AI Translated
+# Needs human review: RAL name; check the Turkish form.
 msgid "Sabine grey"
-msgstr ""
+msgstr "Sabine grisi"
 
+# AI Translated
 msgid "Pearl violet"
-msgstr ""
+msgstr "İnci mor"
 
+# AI Translated
 msgid "Pearl blackberry"
-msgstr ""
+msgstr "İnci böğürtlen"
 
+# AI Translated
 msgid "Green blue"
-msgstr ""
+msgstr "Yeşil mavi"
 
+# AI Translated
 msgid "Ultramarine blue"
-msgstr ""
+msgstr "Ultramarin mavisi"
 
+# AI Translated
 msgid "Sapphire blue"
-msgstr ""
+msgstr "Safir mavisi"
 
+# AI Translated
 msgid "Black blue"
-msgstr ""
+msgstr "Siyah mavi"
 
+# AI Translated
 msgid "Signal blue"
-msgstr ""
+msgstr "Sinyal mavisi"
 
+# AI Translated
 msgid "Brilliant blue"
-msgstr ""
+msgstr "Canlı mavi"
 
+# AI Translated
 msgid "Grey blue"
-msgstr ""
+msgstr "Gri mavi"
 
+# AI Translated
 msgid "Azure blue"
-msgstr ""
+msgstr "Azur mavisi"
 
+# AI Translated
 msgid "Gentian blue"
-msgstr ""
+msgstr "Centiyana mavisi"
 
+# AI Translated
 msgid "Cobalt blue"
-msgstr ""
+msgstr "Kobalt mavisi"
 
+# AI Translated
 msgid "Pigeon blue"
-msgstr ""
+msgstr "Güvercin mavisi"
 
+# AI Translated
 msgid "Traffic blue"
-msgstr ""
+msgstr "Trafik mavisi"
 
+# AI Translated
 msgid "Turquoise blue"
-msgstr ""
+msgstr "Turkuaz mavisi"
 
-msgid "Capsanthin violet"
-msgstr ""
+# AI Translated
+msgid "Capri blue"
+msgstr "Capri mavisi"
 
+# AI Translated
 msgid "Ocean blue"
-msgstr ""
+msgstr "Okyanus mavisi"
 
+# AI Translated
 msgid "Water blue"
-msgstr ""
+msgstr "Su mavisi"
 
+# AI Translated
 msgid "Night blue"
-msgstr ""
+msgstr "Gece mavisi"
 
+# AI Translated
 msgid "Distant blue"
-msgstr ""
+msgstr "Uzak mavi"
 
+# AI Translated
 msgid "Pastel blue"
-msgstr ""
+msgstr "Pastel mavi"
 
+# AI Translated
 msgid "Pearl gentian blue"
-msgstr ""
+msgstr "İnci centiyana mavisi"
 
+# AI Translated
 msgid "Pearl midnight blue"
-msgstr ""
+msgstr "İnci gece yarısı mavisi"
 
+# AI Translated
 msgid "Patina green"
-msgstr ""
+msgstr "Patina yeşili"
 
+# AI Translated
 msgid "Emerald green"
-msgstr ""
+msgstr "Zümrüt yeşili"
 
+# AI Translated
 msgid "Leaf green"
-msgstr ""
+msgstr "Yaprak yeşili"
 
+# AI Translated
 msgid "Olive green"
-msgstr ""
+msgstr "Zeytin yeşili"
 
+# AI Translated
 msgid "Blue green"
-msgstr ""
+msgstr "Mavi yeşil"
 
+# AI Translated
 msgid "Moss green"
-msgstr ""
+msgstr "Karayosunu yeşili"
 
+# AI Translated
 msgid "Grey olive"
-msgstr ""
+msgstr "Gri zeytin"
 
+# AI Translated
 msgid "Pine green"
-msgstr ""
+msgstr "Çam yeşili"
 
+# AI Translated
 msgid "Pine brown"
-msgstr ""
+msgstr "Çam kahvesi"
 
+# AI Translated
 msgid "Grass green"
-msgstr ""
+msgstr "Ot yeşili"
 
+# AI Translated
 msgid "Reseda green"
-msgstr ""
+msgstr "Reseda yeşili"
 
+# AI Translated
 msgid "Brown green"
-msgstr ""
+msgstr "Kahverengi yeşil"
 
+# AI Translated
 msgid "Reed green"
-msgstr ""
+msgstr "Sazlık yeşili"
 
+# AI Translated
 msgid "Black green"
-msgstr ""
+msgstr "Siyah yeşil"
 
+# AI Translated
 msgid "Turquoise green"
-msgstr ""
+msgstr "Turkuaz yeşili"
 
+# AI Translated
 msgid "May green"
-msgstr ""
+msgstr "Mayıs yeşili"
 
+# AI Translated
 msgid "Chrome oxide green"
-msgstr ""
+msgstr "Krom oksit yeşili"
 
+# AI Translated
 msgid "Traffic green"
-msgstr ""
+msgstr "Trafik yeşili"
 
+# AI Translated
 msgid "Fern green"
-msgstr ""
+msgstr "Eğrelti otu yeşili"
 
+# AI Translated
 msgid "Opal green"
-msgstr ""
+msgstr "Opal yeşili"
 
+# AI Translated
 msgid "Mint green"
-msgstr ""
+msgstr "Nane yeşili"
 
+# AI Translated
 msgid "Bronze green"
-msgstr ""
+msgstr "Bronz yeşili"
 
+# AI Translated
 msgid "Pearl green"
-msgstr ""
+msgstr "İnci yeşil"
 
+# AI Translated
+# Needs human review: RAL name; check the Turkish form.
 msgid "Sax turquoise"
-msgstr ""
+msgstr "Sax turkuazı"
 
+# AI Translated
 msgid "Pearl turquoise"
-msgstr ""
+msgstr "İnci turkuaz"
 
+# AI Translated
 msgid "Pearl jade"
-msgstr ""
+msgstr "İnci yeşim"
 
+# AI Translated
 msgid "Pure green"
-msgstr ""
+msgstr "Saf yeşil"
 
+# AI Translated
 msgid "Luminous green"
-msgstr ""
+msgstr "Parlak yeşil"
 
+# AI Translated
 msgid "Squirrel grey"
-msgstr ""
+msgstr "Sincap grisi"
 
+# AI Translated
 msgid "Silver grey"
-msgstr ""
+msgstr "Gümüş grisi"
 
-msgid "Olivestone"
-msgstr ""
+# AI Translated
+msgid "Olive grey"
+msgstr "Zeytin grisi"
 
+# AI Translated
 msgid "Moss grey"
-msgstr ""
+msgstr "Karayosunu grisi"
 
+# AI Translated
 msgid "Signal grey"
-msgstr ""
+msgstr "Sinyal grisi"
 
+# AI Translated
 msgid "Mouse grey"
-msgstr ""
+msgstr "Fare grisi"
 
+# AI Translated
 msgid "Beige grey"
-msgstr ""
+msgstr "Bej gri"
 
+# AI Translated
 msgid "Khaki grey"
-msgstr ""
+msgstr "Haki gri"
 
+# AI Translated
 msgid "Green grey"
-msgstr ""
+msgstr "Yeşil gri"
 
+# AI Translated
 msgid "Tarpaulin grey"
-msgstr ""
+msgstr "Branda grisi"
 
+# AI Translated
 msgid "Iron grey"
-msgstr ""
+msgstr "Demir grisi"
 
+# AI Translated
 msgid "Basalt grey"
-msgstr ""
+msgstr "Bazalt grisi"
 
+# AI Translated
 msgid "Brown grey"
-msgstr ""
+msgstr "Kahverengi gri"
 
+# AI Translated
 msgid "Slate grey"
-msgstr ""
+msgstr "Arduvaz grisi"
 
+# AI Translated
 msgid "Anthracite grey"
-msgstr ""
+msgstr "Antrasit grisi"
 
+# AI Translated
 msgid "Light grey"
-msgstr ""
+msgstr "Açık gri"
 
+# AI Translated
 msgid "Umber grey"
-msgstr ""
+msgstr "Umber grisi"
 
+# AI Translated
 msgid "Concrete grey"
-msgstr ""
+msgstr "Beton grisi"
 
+# AI Translated
 msgid "Graphite grey"
-msgstr ""
+msgstr "Grafit grisi"
 
+# AI Translated
 msgid "Granite grey"
-msgstr ""
+msgstr "Granit grisi"
 
+# AI Translated
 msgid "Stone grey"
-msgstr ""
+msgstr "Taş grisi"
 
+# AI Translated
 msgid "Pebble grey"
-msgstr ""
+msgstr "Çakıl grisi"
 
+# AI Translated
 msgid "Cement grey"
-msgstr ""
+msgstr "Çimento grisi"
 
+# AI Translated
 msgid "Yellow grey"
-msgstr ""
+msgstr "Sarı gri"
 
+# AI Translated
 msgid "Platinum grey"
-msgstr ""
+msgstr "Platin grisi"
 
+# AI Translated
 msgid "Dusty grey"
-msgstr ""
+msgstr "Tozlu gri"
 
+# AI Translated
 msgid "Agate grey"
-msgstr ""
+msgstr "Akik grisi"
 
+# AI Translated
 msgid "Quartz grey"
-msgstr ""
+msgstr "Kuvars grisi"
 
+# AI Translated
 msgid "Window grey"
-msgstr ""
+msgstr "Pencere grisi"
 
+# AI Translated
 msgid "Traffic grey A"
-msgstr ""
+msgstr "Trafik grisi A"
 
+# AI Translated
 msgid "Traffic grey B"
-msgstr ""
+msgstr "Trafik grisi B"
 
+# AI Translated
 msgid "Silk grey"
-msgstr ""
+msgstr "İpek grisi"
 
+# AI Translated
 msgid "Telegrey 1"
-msgstr ""
+msgstr "Telegri 1"
 
+# AI Translated
 msgid "Telegrey 2"
-msgstr ""
+msgstr "Telegri 2"
 
+# AI Translated
 msgid "Telegrey 4"
-msgstr ""
+msgstr "Telegri 4"
 
+# AI Translated
 msgid "Pearl mouse grey"
-msgstr ""
+msgstr "İnci fare grisi"
 
+# AI Translated
 msgid "Green brown"
-msgstr ""
+msgstr "Yeşil kahverengi"
 
+# AI Translated
 msgid "Ochre brown"
-msgstr ""
+msgstr "Oker kahvesi"
 
+# AI Translated
 msgid "Clay brown"
-msgstr ""
+msgstr "Kil kahvesi"
 
+# AI Translated
 msgid "Copper brown"
-msgstr ""
+msgstr "Bakır kahvesi"
 
+# AI Translated
 msgid "Chocolate brown"
-msgstr ""
+msgstr "Çikolata kahvesi"
 
+# AI Translated
 msgid "Olive brown"
-msgstr ""
+msgstr "Zeytin kahvesi"
 
+# AI Translated
 msgid "Nut brown"
-msgstr ""
+msgstr "Ceviz kahvesi"
 
+# AI Translated
 msgid "Red brown"
-msgstr ""
+msgstr "Kırmızı kahverengi"
 
+# AI Translated
 msgid "Sepia brown"
-msgstr ""
+msgstr "Sepya kahvesi"
 
+# AI Translated
 msgid "Chestnut brown"
-msgstr ""
+msgstr "Kestane kahvesi"
 
+# AI Translated
 msgid "Mahogany brown"
-msgstr ""
+msgstr "Maun kahvesi"
 
+# AI Translated
 msgid "Grey brown"
-msgstr ""
+msgstr "Gri kahverengi"
 
+# AI Translated
 msgid "Pearl copper"
-msgstr ""
+msgstr "İnci bakır"
 
+# AI Translated
 msgid "Beige brown"
-msgstr ""
+msgstr "Bej kahverengi"
 
+# AI Translated
 msgid "Pearl mocha brown"
-msgstr ""
+msgstr "İnci mokka kahvesi"
 
+# AI Translated
 msgid "Earth brown"
-msgstr ""
+msgstr "Toprak kahvesi"
 
+# AI Translated
 msgid "Pearl brown"
-msgstr ""
+msgstr "İnci kahverengi"
 
+# AI Translated
 msgid "Cream"
-msgstr ""
+msgstr "Krem"
 
+# AI Translated
 msgid "Grey white"
-msgstr ""
+msgstr "Gri beyaz"
 
+# AI Translated
 msgid "Signal white"
-msgstr ""
+msgstr "Sinyal beyazı"
 
+# AI Translated
 msgid "Signal black"
-msgstr ""
+msgstr "Sinyal siyahı"
 
+# AI Translated
 msgid "Jet black"
-msgstr ""
+msgstr "Jet siyahı"
 
+# AI Translated
 msgid "White aluminium"
-msgstr ""
+msgstr "Beyaz alüminyum"
 
+# AI Translated
 msgid "Grey aluminium"
-msgstr ""
+msgstr "Gri alüminyum"
 
+# AI Translated
 msgid "Pure white"
-msgstr ""
+msgstr "Saf beyaz"
 
+# AI Translated
 msgid "Graphite black"
-msgstr ""
+msgstr "Grafit siyahı"
 
+# AI Translated
 msgid "Traffic white"
-msgstr ""
+msgstr "Trafik beyazı"
 
+# AI Translated
 msgid "Traffic black"
-msgstr ""
+msgstr "Trafik siyahı"
 
+# AI Translated
 msgid "Papyrus white"
-msgstr ""
+msgstr "Papirüs beyazı"
 
+# AI Translated
 msgid "Pearl light grey"
-msgstr ""
+msgstr "İnci açık gri"
 
+# AI Translated
 msgid "Metal: Silver"
-msgstr ""
+msgstr "Metal: Gümüş"
 
+# AI Translated
 msgid "Metal: Brass"
-msgstr ""
+msgstr "Metal: Pirinç"
 
+# AI Translated
 msgid "Metal: Gold"
-msgstr ""
+msgstr "Metal: Altın"
 
+# AI Translated
 msgid "Metal: Copper"
-msgstr ""
+msgstr "Metal: Bakır"
 
+# AI Translated
 msgid "Metal: Bronze"
-msgstr ""
+msgstr "Metal: Bronz"
 
+# AI Translated
 msgid "Nature: Pearl"
-msgstr ""
+msgstr "Doğa: İnci"
 
+# AI Translated
 msgid "Nature: Rainbow"
-msgstr ""
+msgstr "Doğa: Gökkuşağı"
 
+# AI Translated
 msgid "Nature: Clear Sky"
-msgstr ""
+msgstr "Doğa: Açık gökyüzü"
 
+# AI Translated
 msgid "Nature: Sunset"
-msgstr ""
+msgstr "Doğa: Gün batımı"
 
+# AI Translated
 msgid "Wood: Dark"
-msgstr ""
+msgstr "Ahşap: Koyu"
 
+# AI Translated
 msgid "Wood: Medium"
-msgstr ""
+msgstr "Ahşap: Orta"
 
+# AI Translated
 msgid "Wood: Light"
-msgstr ""
+msgstr "Ahşap: Açık"
 
 # AI Translated
 msgid "Alternate nozzles:"
@@ -39424,10 +41509,6 @@ msgstr "Yatak Şekli ve Boyutu"
 # AI Translated
 msgid "Set the shape of your printer's bed."
 msgstr "Yazıcınızın yatağının şeklini ayarlayın."
-
-# AI Translated
-msgid "Invalid numeric input."
-msgstr "Geçersiz sayısal giriş."
 
 # AI Translated
 msgid "Filament and Nozzle Diameters"
@@ -39821,14 +41902,17 @@ msgstr "Dokularım"
 msgid "No textures found."
 msgstr "Doku bulunamadı."
 
+# AI Translated
 msgid "Texture libraries"
-msgstr ""
+msgstr "Doku kütüphaneleri"
 
+# AI Translated
 msgid "Explore more texture libraries"
-msgstr ""
+msgstr "Daha fazla doku kütüphanesi keşfedin"
 
+# AI Translated
 msgid "Opens OrcaCloud in the Home page to browse for plugins."
-msgstr ""
+msgstr "Eklentilere göz atmak için OrcaCloud'u Ana sayfada açar."
 
 # AI Translated
 msgid ""
@@ -40320,6 +42404,10 @@ msgid "Texture layers"
 msgstr "Doku katmanları"
 
 # AI Translated
+msgid "Add layer"
+msgstr "Katman ekle"
+
+# AI Translated
 msgid ""
 "Drag onto another layer to reorder. The first layer sits on the bare "
 "surface; each one after it adds its relief on top of the ones before."
@@ -40394,11 +42482,13 @@ msgstr ""
 "daha sık tekrarlar ve ayrıntısını inceltir; Döşeme kapalıyken bu, tek "
 "kopyanın boyutudur."
 
+# AI Translated
 msgid "Larger"
-msgstr ""
+msgstr "Daha büyük"
 
+# AI Translated
 msgid "Smaller"
-msgstr ""
+msgstr "Daha küçük"
 
 # AI Translated
 msgid ""
@@ -40526,11 +42616,15 @@ msgstr ""
 "dokunun renklerinden seçilir ve yalnızca pişirmenin gerçekten kullandıkları "
 "oluşturulur."
 
+# AI Translated
+# Needs human review: Bare label in the app; check Az/Çok fit their context.
 msgid "Few"
-msgstr ""
+msgstr "Az"
 
+# AI Translated
+# Needs human review: Bare label in the app; check Az/Çok fit their context.
 msgid "Many"
-msgstr ""
+msgstr "Çok"
 
 #. TRN The %2% part of "%1% printable colors %2%"; %1% is the number of filaments.
 #, boost-format
@@ -40851,16 +42945,6 @@ msgstr "Daha az ayar"
 msgid "More settings"
 msgstr "Daha fazla ayar"
 
-#, boost-format
-msgid "All %1% layer used"
-msgid_plural "All %1% layers used"
-msgstr[0] ""
-msgstr[1] ""
-
-# AI Translated
-msgid "Add layer"
-msgstr "Katman ekle"
-
 # AI Translated
 msgid "Subdivision"
 msgstr "Alt bölümleme"
@@ -41049,11 +43133,15 @@ msgstr ""
 "en iyi düzgün bir mesh üzerinde çalışır; düzensiz bir içe aktarmadan düzgün "
 "mesh bu şekilde elde edilir."
 
+# AI Translated
+# Needs human review: Bare label in the app; check Önce/Sonra fit their context.
 msgid "Before"
-msgstr ""
+msgstr "Önce"
 
+# AI Translated
+# Needs human review: Bare label in the app; check Önce/Sonra fit their context.
 msgid "After"
-msgstr ""
+msgstr "Sonra"
 
 # AI Translated
 msgid "Keep sharp edges"
@@ -41204,30 +43292,6 @@ msgstr ""
 "gerekmez, ancak henüz renk üretmez."
 
 # AI Translated
-#. TRN Slider value: %d is the triangle budget in thousands
-msgid "Budget"
-msgstr "Bütçe"
-
-# AI Translated
-#, c-format, boost-format
-msgid "%d k (auto)"
-msgstr "%d k (otomatik)"
-
-# AI Translated
-msgid ""
-"How many thousand triangles this bake may spend on the area you painted. "
-"Relief already baked into the rest of the model is kept on top of it, so a "
-"second bake somewhere else gets the same budget as the first. Raise it if "
-"the warning below Resolution says the detail will not fit; 0 keeps every "
-"triangle the refinement produced, however many that is."
-msgstr ""
-"Bu pişirmenin boyadığınız alana kaç bin üçgen harcayabileceği. Modelin geri "
-"kalanına önceden pişirilmiş kabartma buna ek olarak korunur; böylece başka "
-"bir yerdeki ikinci pişirme de ilkiyle aynı bütçeyi alır. Çözünürlük "
-"altındaki uyarı ayrıntının sığmayacağını söylüyorsa artırın; 0, "
-"sıklaştırmanın ürettiği her üçgeni, sayısı ne olursa olsun korur."
-
-# AI Translated
 msgid "Align mesh to texture edges"
 msgstr "Mesh'i doku kenarlarına hizala"
 
@@ -41260,6 +43324,30 @@ msgstr ""
 "değiştirme onları örneklemeden önce çökertir. İnce uzun bir üçgenin üç "
 "köşesi dokunun birbiriyle ilgisiz üç kısmına denk gelir; kabartmanın "
 "tırtıklı görünmesinin nedeni budur."
+
+# AI Translated
+#. TRN Slider value: %d is the triangle budget in thousands
+msgid "Budget"
+msgstr "Bütçe"
+
+# AI Translated
+#, c-format, boost-format
+msgid "%d k (auto)"
+msgstr "%d k (otomatik)"
+
+# AI Translated
+msgid ""
+"How many thousand triangles this bake may spend on the area you painted. "
+"Relief already baked into the rest of the model is kept on top of it, so a "
+"second bake somewhere else gets the same budget as the first. Raise it if "
+"the warning below Resolution says the detail will not fit; 0 keeps every "
+"triangle the refinement produced, however many that is."
+msgstr ""
+"Bu pişirmenin boyadığınız alana kaç bin üçgen harcayabileceği. Modelin geri "
+"kalanına önceden pişirilmiş kabartma buna ek olarak korunur; böylece başka "
+"bir yerdeki ikinci pişirme de ilkiyle aynı bütçeyi alır. Çözünürlük "
+"altındaki uyarı ayrıntının sığmayacağını söylüyorsa artırın; 0, "
+"sıklaştırmanın ürettiği her üçgeni, sayısı ne olursa olsun korur."
 
 # AI Translated
 msgid ""
@@ -42932,9 +45020,6 @@ msgstr "Yeni proje oluştur"
 msgid "Recently opened"
 msgstr "Yakın zamanda açıldı"
 
-msgid "Open Containing Folder"
-msgstr "Dosyayı içeren klasörü açınız"
-
 # AI Translated
 msgid "Forward"
 msgstr "İleri"
@@ -43082,19 +45167,6 @@ msgstr "bilinmeyen ad"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"\"%s\" eklentisi dosya sistemine okuma erişimi istiyor:\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "Eklenti izinleri"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -43143,23 +45215,24 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the "
+"listed hosts. It does not restrict ports. A URL with a path, query or port "
+"is covered only for that exact URL."
 msgstr ""
-"\"%s\" eklentisi şu adrese HTTP isteği yapmak istiyor:\n"
-"%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not "
+"restrict ports."
 msgstr ""
-"\"%s\" eklentisi şu adrese ağ bağlantısı açmak istiyor:\n"
-"%s"
 
 #, c-format, boost-format
 msgid ""
@@ -43194,6 +45267,10 @@ msgstr "\"%s\" eklentisi \"%s\" Python denetim olayı için izin istiyor."
 # AI Translated
 msgid "Plugin permission request"
 msgstr "Eklenti izin isteği"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "Eklenti izinleri"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -43238,8 +45315,9 @@ msgstr "Betik"
 msgid "Slicing Pipeline"
 msgstr "Dilimleme Hattı"
 
+# AI Translated
 msgid "Resource Texture"
-msgstr ""
+msgstr "Kaynak dokusu"
 
 # AI Translated
 msgid "The plugin's configuration UI was empty. Showing the default editor."
@@ -43400,23 +45478,29 @@ msgstr "Eklenti dizini hem .py hem de .whl giriş dosyaları içeriyor"
 msgid "Plugin directory does not contain a .py or .whl entry file"
 msgstr "Eklenti dizini bir .py veya .whl giriş dosyası içermiyor"
 
+# AI Translated
 msgid "Resource texture directory is not set"
-msgstr ""
+msgstr "Kaynak dokusu dizini ayarlanmamış"
 
+# AI Translated
 msgid "Resource texture directory could not be resolved"
-msgstr ""
+msgstr "Kaynak dokusu dizini belirlenemedi"
 
+# AI Translated
 msgid "Resource texture path is not a directory"
-msgstr ""
+msgstr "Kaynak dokusu yolu bir dizin değil"
 
+# AI Translated
 msgid "Plugin folder could not be resolved"
-msgstr ""
+msgstr "Eklenti klasörü belirlenemedi"
 
+# AI Translated
 msgid "Resource texture directory is outside the plugin folder"
-msgstr ""
+msgstr "Kaynak dokusu dizini eklenti klasörünün dışında"
 
+# AI Translated
 msgid "Resource texture directory could not be read"
-msgstr ""
+msgstr "Kaynak dokusu dizini okunamadı"
 
 # AI Translated
 #, boost-format
@@ -43635,8 +45719,16 @@ msgstr ""
 "için Sil'i kullanın."
 
 # AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr "Eklenti dosya sistemi okuma izni isteği reddedildi"
+msgid "Python interpreter is shutting down."
+msgstr "Python yorumlayıcısı kapatılıyor."
+
+# AI Translated
+msgid "Plugin system is shutting down."
+msgstr "Eklenti sistemi kapanıyor."
+
+# AI Translated
+msgid "Plugin permission request denied"
+msgstr "Eklenti izin isteği reddedildi"
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -43893,7 +45985,7 @@ msgstr "\"%1%\" yapılandırma dosyası yüklenemedi: %2%"
 # AI Translated
 #. TRN %1% is the application name.
 #, boost-format
-msgid "Not a gcode file generated by %1%."
+msgid "Not a G-code file generated by %1%."
 msgstr "%1% tarafından oluşturulmuş bir G-code dosyası değil."
 
 # AI Translated
@@ -44030,7 +46122,7 @@ msgstr ""
 "geçici kopyası oluşturulamadı: %2%"
 
 # AI Translated
-msgid "Post-processor can't find exported gcode file"
+msgid "Post-processor can't find exported G-code file"
 msgstr "İşlem sonrası işlemcisi dışa aktarılan G-code dosyasını bulamıyor"
 
 # AI Translated
@@ -44500,6 +46592,346 @@ msgstr ""
 "ABS gibi bükülmeye yatkın malzemelere baskı yaparken, ısıtma yatağı "
 "sıcaklığının uygun şekilde arttırılmasının bükülme olasılığını "
 "azaltabileceğini biliyor muydunuz?"
+
+# AI Translated
+#~ msgid "Not valid state please report reproduction steps on github"
+#~ msgstr ""
+#~ "Geçersiz durum, lütfen yeniden oluşturma adımlarını GitHub'da bildirin"
+
+# AI Translated
+#~ msgid "Missing svg file in embossed shape"
+#~ msgstr "Kabartmalı şekilde SVG dosyası eksik"
+
+# AI Translated
+#~ msgid "Missing data of svg file"
+#~ msgstr "SVG dosyasının verileri eksik"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "X ekseni boyunca aynala"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "Y ekseni boyunca aynala"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "Z ekseni boyunca aynala"
+
+#~ msgid "Split the selected object"
+#~ msgstr "Seçilen nesneyi böl"
+
+#~ msgid "Subdivision mesh"
+#~ msgstr "Alt bölüm ağı"
+
+#~ msgid "(Lost color)"
+#~ msgstr "(Renk kaybı)"
+
+#~ msgid "Storage needs to be inserted before sending to printer."
+#~ msgstr "Yazıcıya göndermeden önce depolama biriminin eklenmesi gerekir."
+
+#~ msgid "Processing G-Code from previous file…"
+#~ msgstr "Önceki dosyadan G-code işleniyor…"
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgstr[0] ""
+#~ "%s filamanı %s içine yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
+#~ "yazdırılabilir aralığını aşıyor."
+#~ msgstr[1] ""
+#~ "%s filamanı %s içine yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
+#~ "yazdırılabilir aralığını aşıyor."
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgstr[0] ""
+#~ "%s filamanı %s'e yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
+#~ "yazdırılabilir yüksekliğini aşıyor."
+#~ msgstr[1] ""
+#~ "%s filamanı %s'e yerleştirildi, ancak oluşturulan G kodu yolu %s'nin "
+#~ "yazdırılabilir yüksekliğini aşıyor."
+
+# AI Translated
+#~ msgid "Measure how fast the 3D scene renders in Prepare and Preview"
+#~ msgstr ""
+#~ "3D sahnenin Hazırlık ve Ön İzleme'de ne kadar hızlı çizildiğini ölçer"
+
+#~ msgid "Storage needs to be inserted before printing."
+#~ msgstr "Yazdırmadan önce depolamanın eklenmesi gerekir."
+
+#~ msgid "Storage needs to be inserted before send to printer."
+#~ msgstr "Yazıcıya gönderilmeden önce depolama biriminin eklenmesi gerekir."
+
+# AI Translated
+#~ msgid "Available anywhere in the window, even while typing in a text field."
+#~ msgstr ""
+#~ "Pencerenin her yerinde, bir metin alanına yazarken bile kullanılabilir."
+
+# AI Translated
+#~ msgid "Global shortcuts also apply while typing."
+#~ msgstr "Genel kısayollar yazarken de geçerlidir."
+
+#~ msgid ""
+#~ "Unprintable area in XY plane. For example, X1 Series printers use the "
+#~ "front left corner to cut filament during filament change. The area is "
+#~ "expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr ""
+#~ "XY düzleminde yazdırılamayan alan. Örneğin X1 Serisi yazıcılar, filament "
+#~ "değişimi sırasında filamenti kesmek için sol ön köşeyi kullanır. Alan şu "
+#~ "formatta noktalarla çokgen olarak ifade edilir: \"XxY, XxY, ...\""
+
+#, no-c-format, no-boost-format
+#~ msgid ""
+#~ "Enter the shrinkage percentage that the filament will get after cooling "
+#~ "(94% if you measure 94mm instead of 100mm). The part will be scaled in XY "
+#~ "to compensate. For multi-material prints, ensure filament shrinkage "
+#~ "matches across all used filaments\n"
+#~ "Be sure to allow enough space between objects, as this compensation is "
+#~ "done after the checks."
+#~ msgstr ""
+#~ "Filamentin soğuduktan sonra alacağı büzülme yüzdesini girin (100 mm "
+#~ "yerine 94 mm ölçerseniz 94%). Parça, telafi etmek için xy'de "
+#~ "ölçeklendirilecektir. Yalnızca çevre için kullanılan filament dikkate "
+#~ "alınır.\n"
+#~ "Bu telafi kontrollerden sonra yapıldığından, nesneler arasında yeterli "
+#~ "boşluk bıraktığınızdan emin olun."
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "Filament kulesi"; align it once the term is settled.
+#~ msgid "Temperature drop before entering filament tower"
+#~ msgstr "Filament kulesine girmeden önceki sıcaklık düşüşü"
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
+#~ msgstr ""
+#~ "Klipper'ın max_accel_to_decel değeri ivmenin bu %%'sine göre ayarlanacak."
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Fuzzy skin generation mode. Works only with Arachne!\n"
+#~ "Displacement: Сlassic mode when the pattern is formed by shifting the "
+#~ "nozzle sideways from the original path.\n"
+#~ "Extrusion: The mode when the pattern formed by the amount of extruded "
+#~ "plastic. This is the fast and straight algorithm without unnecessary "
+#~ "nozzle shake that gives a smooth pattern. But it is more useful for "
+#~ "forming loose walls in the entire they array.\n"
+#~ "Combined: Joint mode [Displacement] + [Extrusion]. The appearance of the "
+#~ "walls is similar to [Displacement] Mode, but it leaves no pores between "
+#~ "the perimeters.\n"
+#~ "\n"
+#~ "Attention! The [Extrusion] and [Combined] modes works only the "
+#~ "fuzzy_skin_thickness parameter not more than the thickness of printed "
+#~ "loop. At the same time, the width of the extrusion for a particular layer "
+#~ "should also not be below a certain level. It is usually equal 15-25%% of "
+#~ "a layer height. Therefore, the maximum fuzzy skin thickness with a "
+#~ "perimeter width of 0.4 mm and a layer height of 0.2 mm will be 0.4-"
+#~ "(0.2*0.25)=±0.35mm! If you enter a higher parameter than this, the error "
+#~ "Flow::spacing() will displayed, and the model will not be sliced. You can "
+#~ "choose this number until this error is repeated."
+#~ msgstr ""
+#~ "Pütürlü yüzey oluşturma modu. Sadece Arachne ile çalışır!\n"
+#~ "Yer Değiştirme: Desen, nozülün orijinal yoldan yana kaydırılmasıyla "
+#~ "oluşturulduğu klasik mod.\n"
+#~ "Ekstrüzyon: Desenin ekstrüde edilen plastik miktarına göre oluşturulduğu "
+#~ "mod. Bu, nozül sarsıntısı olmadan pürüzsüz bir desen veren hızlı ve düz "
+#~ "bir algoritmadır. Ancak, tüm dizilimde gevşek duvarlar oluşturmak için "
+#~ "daha kullanışlıdır.\n"
+#~ "Birleşik: Eklem modu [Yer Değiştirme] + [Ekstrüzyon]. Duvarların görünümü "
+#~ "[Yer Değiştirme] Moduna benzer, ancak çevreler arasında gözenek "
+#~ "bırakmaz.\n"
+#~ "\n"
+#~ "Dikkat! [Ekstrüzyon] ve [Birleşik] modları yalnızca fuzzy_skin_thickness "
+#~ "parametresini çalıştırır, yazdırılan ilmeğin kalınlığından daha fazla "
+#~ "olmamalıdır. Aynı zamanda, belirli bir katman için ekstrüzyon genişliği "
+#~ "de belirli bir seviyenin altında olmamalıdır. Genellikle katman "
+#~ "yüksekliğinin %15-25'ine eşittir. Bu nedenle, 0,4 mm çevre genişliği ve "
+#~ "0,2 mm katman yüksekliğine sahip maksimum pütürlü yüzey kalınlığı 0,4-"
+#~ "(0,2*0,25)=±0,35 mm olacaktır! Bundan daha yüksek bir parametre "
+#~ "girerseniz, Flow::spacing() hatası görüntülenir ve model dilimlenmez. Bu "
+#~ "hata tekrarlanana kadar bu sayıyı seçebilirsiniz."
+
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting "
+#~ "tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. "
+#~ "Klipper does not benefit from arc commands as these are split again into "
+#~ "line segments by the firmware. This results in a reduction in surface "
+#~ "quality as line segments are converted to arcs by the slicer and then "
+#~ "back to line segments by the firmware."
+#~ msgstr ""
+#~ "G2 ve G3 hareketlerine sahip bir G kodu dosyası elde etmek için bunu "
+#~ "etkinleştirin. Montaj toleransı çözünürlükle aynıdır.\n"
+#~ "\n"
+#~ "Not: Klipper makineler için bu seçeneğin devre dışı bırakılması önerilir. "
+#~ "Klipper, yazılım tarafından tekrar çizgi bölümlerine bölündüğü için yay "
+#~ "komutlarından faydalanmaz. Bu, çizgi bölümlerinin dilimleyici tarafından "
+#~ "yaylara dönüştürülmesi ve ardından donanım yazılımı tarafından tekrar "
+#~ "çizgi bölümlerine dönüştürülmesi nedeniyle yüzey kalitesinde bir azalmaya "
+#~ "neden olur."
+
+#~ msgid ""
+#~ "This option is enabled if machine support controlling chamber "
+#~ "temperature\n"
+#~ "G-code command: M141 S(0-255)"
+#~ msgstr ""
+#~ "Bu seçenek, hazne sıcaklığını kontrol eden makine desteği varsa "
+#~ "etkinleştirilir\n"
+#~ "G-code komut: M141 S(0-255)"
+
+#~ msgid ""
+#~ "Enable this if printer support air filtration\n"
+#~ "G-code command: M106 P3 S(0-255)"
+#~ msgstr ""
+#~ "Yazıcı hava filtrelemeyi destekliyorsa bunu etkinleştirin\n"
+#~ "G-code komut: M106 P3 S(0-255)"
+
+# AI Translated
+#~ msgid "Enable this if printer support cooling filter"
+#~ msgstr "Yazıcı soğutma filtresini destekliyorsa bunu etkinleştirin"
+
+# AI Translated
+#~ msgid "Silent Mode"
+#~ msgstr "Sessiz mod"
+
+#~ msgid ""
+#~ "Whether the machine supports silent mode in which machine uses lower "
+#~ "acceleration to print more quietly"
+#~ msgstr "Daha sessiz baskı için ivmelenmeyi düşüren sessiz mod desteği"
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "This detects the overhang percentage relative to line width and uses a "
+#~ "different speed to print. For 100%% overhang, bridging speed is used."
+#~ msgstr ""
+#~ "Çizgi genişliğine göre çıkıntı yüzdesini tespit edin ve yazdırmak için "
+#~ "farklı hızlar kullanın. %%100 çıkıntı için köprü hızı kullanılır."
+
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, "
+#~ "the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the "
+#~ "current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "Kapalı döngü ekstrüzyonda dikişin görünürlüğünü azaltmak için döngü "
+#~ "kesintiye uğrar ve belirli bir miktarda kısaltılır.\n"
+#~ "Bu miktar milimetre cinsinden veya mevcut ekstruder çapının yüzdesi "
+#~ "olarak belirtilebilir. Bu parametrenin varsayılan değeri %10'dur."
+
+#~ msgid "Wipe tower volume"
+#~ msgstr "Kule hacmini sil"
+
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "Silme kulesinde ekstrüzyona tabi tutulan toplam filaman hacmi."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the current layer. Zero-based (i.e. first layer is number 0), "
+#~ "except in extrusion role change G-code, where it is one-based."
+#~ msgstr ""
+#~ "Geçerli katmanın indeksi. Sıfır tabanlıdır (yani ilk katman 0 "
+#~ "numaralıdır); ancak ekstrüzyon rolü değişim G-code'unda bir tabanlıdır."
+
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "Geçerli ekstruder kimliği. Mevcut ekstruder ile aynı."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being unloaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "Boşaltılmakta olan ekstruderin indeksi. İndeks sıfır tabanlıdır (ilk "
+#~ "ekstruderin indeksi 0'dır)."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being loaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "Yüklenmekte olan ekstruderin indeksi. İndeks sıfır tabanlıdır (ilk "
+#~ "ekstruderin indeksi 0'dır)."
+
+# AI Translated
+#~ msgid "The first flush volume."
+#~ msgstr "İlk yıkama hacmi."
+
+# AI Translated
+#~ msgid "The second flush volume."
+#~ msgstr "İkinci yıkama hacmi."
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid "test %s ip resolved = %s"
+#~ msgstr "%s testi: IP çözümlendi = %s"
+
+#~ msgid ""
+#~ "Please go to filament setting to edit your presets if you need.\n"
+#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
+#~ "volumetric speed has a significant impact on printing quality. Please set "
+#~ "them carefully."
+#~ msgstr ""
+#~ "İhtiyacınız olursa ön ayarlarınızı düzenlemek için lütfen filament "
+#~ "ayarına gidin.\n"
+#~ "Lütfen püskürtme ucu sıcaklığının, sıcak yatak sıcaklığının ve maksimum "
+#~ "hacimsel hızın baskı kalitesi üzerinde önemli bir etkiye sahip olduğunu "
+#~ "unutmayın. Lütfen bunları dikkatlice ayarlayın."
+
+#, c-format, boost-format
+#~ msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
+#~ msgstr ""
+#~ "%1s malzemeyi %2s püskürtme ucuyla yazdırmak püskürtme ucu hasarına neden "
+#~ "olabilir."
+
+#~ msgid "Open Containing Folder"
+#~ msgstr "Dosyayı içeren klasörü açınız"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "\"%s\" eklentisi dosya sistemine okuma erişimi istiyor:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "\"%s\" eklentisi şu adrese HTTP isteği yapmak istiyor:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "\"%s\" eklentisi şu adrese ağ bağlantısı açmak istiyor:\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr "Eklenti dosya sistemi okuma izni isteği reddedildi"
+
+# AI Translated
+#, boost-format
+#~ msgid "Not a gcode file generated by %1%."
+#~ msgstr "%1% tarafından oluşturulmuş bir G-code dosyası değil."
+
+# AI Translated
+#~ msgid "Post-processor can't find exported gcode file"
+#~ msgstr "İşlem sonrası işlemcisi dışa aktarılan G-code dosyasını bulamıyor"
 
 #~ msgid "The configuration may be generated by a newer version of OrcaSlicer."
 #~ msgstr ""
@@ -45051,18 +47483,6 @@ msgstr ""
 #~ msgstr "OrcaSlicer'ı (GitHub) test edin:"
 
 #~ msgid ""
-#~ "Please go to filament settings to edit your presets if you need to.\n"
-#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
-#~ "volumetric speed each have a significant impact on printing quality. "
-#~ "Please set them carefully."
-#~ msgstr ""
-#~ "İhtiyacınız olursa ön ayarlarınızı düzenlemek için lütfen filament "
-#~ "ayarına gidin.\n"
-#~ "Lütfen püskürtme ucu sıcaklığının, sıcak yatak sıcaklığının ve maksimum "
-#~ "hacimsel hızın baskı kalitesi üzerinde önemli bir etkiye sahip olduğunu "
-#~ "unutmayın. Lütfen bunları dikkatlice ayarlayın."
-
-#~ msgid ""
 #~ "\n"
 #~ "\n"
 #~ "Orca has detected that your user presets synchronization function is not "
@@ -45400,20 +47820,11 @@ msgstr ""
 #~ msgid "Along X axis"
 #~ msgstr "X ekseni boyunca"
 
-#~ msgid "Mirror along the X axis"
-#~ msgstr "X ekseni boyunca aynalama"
-
 #~ msgid "Along Y axis"
 #~ msgstr "Y ekseni boyunca"
 
-#~ msgid "Mirror along the Y axis"
-#~ msgstr "Y ekseni boyunca aynalama"
-
 #~ msgid "Along Z axis"
 #~ msgstr "Z ekseni boyunca"
-
-#~ msgid "Mirror along the Z axis"
-#~ msgstr "Z ekseni boyunca aynalama"
 
 #~ msgid "To objects"
 #~ msgstr "Nesnelere"

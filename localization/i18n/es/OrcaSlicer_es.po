@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 22:06+0300\n"
+"POT-Creation-Date: 2026-10-29 23:22+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Carlos Fco. Caruncho Serrano <puzzlero@gmail.com>\n"
 "Language-Team: \n"
@@ -828,17 +828,21 @@ msgstr "Selección"
 msgid "Plate"
 msgstr "Cama"
 
+# AI Translated
+# Needs human review: Distribute has no glossary rendering yet; check the term.
 msgid "Distribute"
-msgstr ""
+msgstr "Distribuir"
 
 msgid "Coordinate system used for transform actions."
 msgstr "Sistema de coordenadas utilizado para las acciones de transformación."
 
+# AI Translated
 msgid "Reference for alignment"
-msgstr ""
+msgstr "Referencia de alineación"
 
+# AI Translated
 msgid "Select at least 3 parts or objects"
-msgstr ""
+msgstr "Selecciona al menos 3 piezas u objetos"
 
 # AI Translated
 msgid "Align left"
@@ -891,8 +895,10 @@ msgstr "Distribuir arriba-abajo"
 msgid "Drop"
 msgstr "Soltar"
 
+# AI Translated
 msgid "Move the selection along Z so that its lowest point touches the bed."
 msgstr ""
+"Mueve la selección a lo largo de Z para que su punto más bajo toque la cama."
 
 msgid "Absolute"
 msgstr "Absoluto"
@@ -1309,6 +1315,9 @@ msgstr "Configurar espejo"
 msgid "Embossed text"
 msgstr "Texto en relieve"
 
+msgid "Default font"
+msgstr "Fuente por defecto"
+
 msgid "Enter emboss gizmo"
 msgstr "Abrir la herramienta de relieve"
 
@@ -1349,9 +1358,6 @@ msgstr "MODERNA"
 
 msgid "First font"
 msgstr "Primera fuente"
-
-msgid "Default font"
-msgstr "Fuente por defecto"
 
 msgid "Advanced"
 msgstr "Avanzado"
@@ -1807,7 +1813,7 @@ msgid "Stroke of shape (%1%) contains unsupported: %2%."
 msgstr "Trazo de forma (%1%) contiene no soportado: %2%."
 
 # AI Translated
-msgid "Not valid state please report reproduction steps on github"
+msgid "Not valid state please report reproduction steps on GitHub"
 msgstr "Estado no válido; informe en GitHub de los pasos para reproducirlo"
 
 # AI Translated
@@ -1815,11 +1821,11 @@ msgid "No embossed file"
 msgstr "No hay archivo en relieve"
 
 # AI Translated
-msgid "Missing svg file in embossed shape"
+msgid "Missing SVG file in embossed shape"
 msgstr "Falta el archivo SVG en la forma en relieve"
 
 # AI Translated
-msgid "Missing data of svg file"
+msgid "Missing data of SVG file"
 msgstr "Faltan los datos del archivo SVG"
 
 msgid "Face the camera"
@@ -2146,17 +2152,23 @@ msgstr "Entrando al mecanismo de ensamblaje"
 msgid "Leaving Assembly gizmo"
 msgstr "Saliendo del mecanismo de ensamblaje"
 
+# AI Translated
 msgid "Parts of a cut object cannot be moved"
-msgstr ""
+msgstr "Las piezas de un objeto cortado no se pueden mover"
 
+# AI Translated
 msgid "Aligning to the plate is available in X and Y only"
-msgstr ""
+msgstr "La alineación con la cama solo está disponible en X e Y"
 
+# AI Translated
 msgid "Turn off Auto-Drop for the selected objects to move them in Z"
 msgstr ""
+"Desactiva Dejar caer automáticamente en los objetos seleccionados para "
+"moverlos en Z"
 
+# AI Translated
 msgid "All selected objects must be on the same plate"
-msgstr ""
+msgstr "Todos los objetos seleccionados deben estar en la misma cama"
 
 msgid "Shift+"
 msgstr "Shift+"
@@ -3198,9 +3210,6 @@ msgstr "Purgar en este objeto"
 msgid "Flush into objects' support"
 msgstr "Purgar en los soportes de objetos"
 
-msgid "Edit in Parameter Table"
-msgstr "Editar en la Tabla de Parámetros"
-
 msgid "Convert from Inches"
 msgstr "Convertir de pulgadas"
 
@@ -3222,32 +3231,54 @@ msgstr "Ensamblar los objetos seleccionados en un objeto con múltiples piezas"
 msgid "Assemble the selected objects into an object with single part"
 msgstr "Ensamblar los objetos seleccionados en un objeto de una sola pieza"
 
+msgid "Along X Axis"
+msgstr "A lo largo del eje X"
+
+msgid "Mirror along the X axis"
+msgstr "Reflejar a lo largo del eje X"
+
+msgid "Along Y Axis"
+msgstr "A lo largo del eje Y"
+
+msgid "Mirror along the Y axis"
+msgstr "Reflejar a lo largo del eje Y"
+
+msgid "Along Z Axis"
+msgstr "A lo largo del eje Z"
+
+msgid "Mirror along the Z axis"
+msgstr "Reflejar a lo largo del eje Z"
+
+# AI Translated
+msgid "Transform"
+msgstr "Transformar"
+
+msgid "Split"
+msgstr "Dividir"
+
+msgid "To Objects"
+msgstr "En objetos"
+
+msgid "Split the selected object into multiple objects"
+msgstr "Dividir el objeto seleccionado en varios objetos"
+
+msgid "To Parts"
+msgstr "En piezas"
+
+msgid "Split the selected object into multiple parts"
+msgstr "Dividir el objeto seleccionado en varias piezas"
+
 msgid "Mesh boolean"
 msgstr "Operaciones booleanas de malla"
 
 msgid "Mesh boolean operations including union and subtraction"
 msgstr "Operaciones booleanas de malla incluyendo la unión y substracción"
 
-msgid "Along X Axis"
-msgstr "A lo largo del eje X"
+msgid "Modify"
+msgstr "Modificar"
 
-msgid "Mirror along the X Axis"
-msgstr "Reflejar a lo largo del eje X"
-
-msgid "Along Y Axis"
-msgstr "A lo largo del eje Y"
-
-msgid "Mirror along the Y Axis"
-msgstr "Reflejar a lo largo del eje Y"
-
-msgid "Along Z Axis"
-msgstr "A lo largo del eje Z"
-
-msgid "Mirror along the Z Axis"
-msgstr "Reflejar a lo largo del eje Z"
-
-msgid "Mirror object"
-msgstr "Reflejar objeto"
+msgid "More"
+msgstr "Más"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3308,23 +3339,9 @@ msgstr "Añadir Modelos"
 msgid "Show Labels"
 msgstr "Mostrar Etiquetas"
 
-msgid "To Objects"
-msgstr "En objetos"
-
-msgid "Split the selected object into multiple objects"
-msgstr "Dividir el objeto seleccionado en varios objetos"
-
-msgid "To Parts"
-msgstr "En piezas"
-
-msgid "Split the selected object into multiple parts"
-msgstr "Dividir el objeto seleccionado en varias piezas"
-
-msgid "Split"
-msgstr "Dividir"
-
-msgid "Split the selected object"
-msgstr "Dividir el objeto seleccionado"
+# AI Translated
+msgid "Instances"
+msgstr "Instancias"
 
 msgid "Auto orientation"
 msgstr "Orientación automática"
@@ -3332,6 +3349,9 @@ msgstr "Orientación automática"
 msgid "Auto orient the object to improve print quality"
 msgstr ""
 "Orienta automáticamente el objeto para mejorar la calidad de la impresión"
+
+msgid "Paste Process Settings"
+msgstr "Pegar configuración del proceso"
 
 msgid "Edit"
 msgstr "Editar"
@@ -3369,11 +3389,20 @@ msgstr "Organizar"
 msgid "Arrange current plate"
 msgstr "Organizar la cama actual"
 
-msgid "Reload All"
-msgstr "Recargar todo"
+msgid "Auto Rotate"
+msgstr "Rotación Automática"
 
-msgid "Reload all from disk"
-msgstr "Recargar todo desde disco"
+msgid "Auto rotate current plate"
+msgstr "Auto rotar la cama actual"
+
+msgid "Name"
+msgstr "Nombre"
+
+msgid "All Plates"
+msgstr "Todas las camas"
+
+msgid "Order By"
+msgstr ""
 
 # AI Translated
 msgid "Fix All"
@@ -3391,17 +3420,11 @@ msgstr "Reparar todas las camas"
 msgid "Fix all models on all plates"
 msgstr "Reparar todos los modelos de todas las camas"
 
-msgid "Auto Rotate"
-msgstr "Rotación Automática"
+msgid "Reload All"
+msgstr "Recargar todo"
 
-msgid "Auto rotate current plate"
-msgstr "Auto rotar la cama actual"
-
-msgid "Delete Plate"
-msgstr "Borrar Cama"
-
-msgid "Remove the selected plate"
-msgstr "Eliminar la cama seleccionada"
+msgid "Reload all from disk"
+msgstr "Recargar todo desde disco"
 
 msgid "Add instance"
 msgstr "Añadir instancia"
@@ -3434,11 +3457,8 @@ msgstr "Clonar"
 msgid "Simplify Model"
 msgstr "Simplificar modelo"
 
-msgid "Subdivision mesh"
-msgstr "Subdivisión de malla"
-
-msgid "(Lost color)"
-msgstr "(Color perdido)"
+msgid "Subdivision mesh (Lost color)"
+msgstr "Subdivisión de malla (Color perdido)"
 
 msgid "Center"
 msgstr "Centrar"
@@ -3457,8 +3477,8 @@ msgstr "Editar ajustes de proceso"
 msgid "Copy Process Settings"
 msgstr "Copiar configuración del proceso"
 
-msgid "Paste Process Settings"
-msgstr "Pegar configuración del proceso"
+msgid "Edit in Parameter Table"
+msgstr "Editar en la Tabla de Parámetros"
 
 msgid "Edit print parameters for a single object"
 msgstr "Editar los parámetros de impresión de un solo objeto"
@@ -3482,8 +3502,11 @@ msgstr "Bloquear"
 msgid "Edit Plate Name"
 msgstr "Editar nombre de la cama"
 
-msgid "Name"
-msgstr "Nombre"
+msgid "Delete Plate"
+msgstr "Borrar Cama"
+
+msgid "Remove the selected plate"
+msgstr "Eliminar la cama seleccionada"
 
 msgid "Fila."
 msgstr "Fila."
@@ -3585,6 +3608,23 @@ msgstr "¡Error!"
 
 msgid "Failed to get the model data in the current file."
 msgstr "Fallo recuperando los datos del modelo del archivo actual."
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+# AI Translated
+msgid "Z"
+msgstr "Z"
+
+#. TRN Size of a torus (ring): the diameter of its hole and the thickness of the ring.
+msgid "Inner diameter"
+msgstr ""
+
+msgid "Tube diameter"
+msgstr ""
 
 msgid "Add primitive"
 msgstr "Añadir primitivo"
@@ -3854,9 +3894,6 @@ msgstr "Tipo de línea"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "Cuadrícula 1x1: %d mm"
-
-msgid "More"
-msgstr "Más"
 
 msgid "Open Preferences"
 msgstr "Abrir Preferencias"
@@ -4630,9 +4667,8 @@ msgstr "Enviando el archivo de G-Code a la tarjeta SD"
 msgid "Successfully sent. Close current page in %s s"
 msgstr "Envío exitoso. Cerrando la página actual en %s s"
 
-msgid "Storage needs to be inserted before sending to printer."
+msgid "Insert storage or free up space before sending to the printer."
 msgstr ""
-"Es necesario insertar el almacenamiento antes de enviar a la impresora."
 
 msgid ""
 "Sending G-code file over LAN, but the Storage in the printer is abnormal and "
@@ -4852,6 +4888,10 @@ msgstr "Plugin de script omitido."
 # AI Translated
 msgid "Script plugin finished."
 msgstr "Plugin de script finalizado."
+
+# AI Translated
+msgid "Script plugin started."
+msgstr "El plugin de script se ha iniciado."
 
 msgid "Printer"
 msgstr "Impresora"
@@ -5399,7 +5439,7 @@ msgstr "Guarde el proyecto y reinicie el programa."
 msgid "Unknown C++ exception."
 msgstr "Excepción de C++ desconocida."
 
-msgid "Processing G-Code from previous file…"
+msgid "Processing G-code from previous file…"
 msgstr "Procesando el G-Code del archivo anterior…"
 
 msgid "Slicing complete"
@@ -5831,12 +5871,549 @@ msgstr ""
 "No: deshabilitar el generador de paredes Arachne y establecer el modo "
 "[Desplazamiento] de la piel difusa"
 
+msgid ""
+"Set the maximum volumetric extrusion rate slope above zero to use extrusion "
+"rate smoothing."
+msgstr ""
+
+msgid ""
+"Arc fitting is unavailable for belt printers and when extrusion rate "
+"smoothing is enabled."
+msgstr ""
+
+msgid "Set wall loops above zero to use this setting."
+msgstr ""
+
+msgid "This setting is hidden because sparse infill density is zero."
+msgstr ""
+
+msgid ""
+"Infill anchors require nonzero sparse infill density and a pattern other "
+"than Concentric or Spiral Inset."
+msgstr ""
+
+msgid ""
+"Enable infill combination and use nonzero sparse infill density to show this "
+"setting."
+msgstr ""
+
+msgid ""
+"Select Gyroid, TPMS-D or TPMS-FK infill with sparse infill density greater "
+"than zero and less than 100%."
+msgstr ""
+
+msgid ""
+"Enable adaptive density for Gyroid, TPMS-D or TPMS-FK infill with sparse "
+"infill density greater than zero and less than 100%."
+msgstr ""
+
+msgid ""
+"Select Gyroid infill with nonzero sparse infill density and disable adaptive "
+"density to use this setting."
+msgstr ""
+
+msgid "The selected sparse infill pattern does not support multiline infill."
+msgstr ""
+
+msgid "The Line infill pattern does not support infill anchors."
+msgstr ""
+
+msgid ""
+"Select an infill pattern other than Line and set the maximum infill anchor "
+"length above zero."
+msgstr ""
+
+msgid ""
+"Select the Cross Zag or Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "Select the Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+
+msgid ""
+"Select the Zig Zag, Cross Zag or Locked Zag sparse infill pattern to use "
+"this setting."
+msgstr ""
+
+msgid ""
+"Select 3D Honeycomb infill with nonzero sparse infill density to use this "
+"setting."
+msgstr ""
+
+msgid "Enable spiral vase mode to use this setting."
+msgstr ""
+
+msgid "Enable spiral vase mode and spiral smoothing to use this setting."
+msgstr ""
+
+msgid ""
+"This setting requires top shell layers, or more than one bottom shell layer "
+"in spiral vase mode."
+msgstr ""
+
+msgid "This setting requires a top shell with nonzero top surface density."
+msgstr ""
+
+msgid "Set bottom shell layers above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use nonzero sparse infill density and an infill pattern and multiline "
+"setting that support infill smoothing."
+msgstr ""
+
+msgid "Set top surface expansion above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use a top or bottom shell with the Archimedean Chords or Octagram Spiral "
+"surface pattern."
+msgstr ""
+
+msgid "The selected sparse infill pattern does not support separated infills."
+msgstr ""
+
+msgid ""
+"Use a top shell with nonzero surface density and the Concentric, Spiral "
+"Inset, Archimedean Chords or Octagram Spiral surface pattern."
+msgstr ""
+
+msgid ""
+"Use bottom shell layers and the Concentric, Spiral Inset, Archimedean Chords "
+"or Octagram Spiral surface pattern."
+msgstr ""
+
+msgid ""
+"Use nonzero sparse infill density or top or bottom shell layers to edit this "
+"setting."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and set top shell layers above zero to edit top "
+"shell thickness."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and set bottom shell layers above zero to edit "
+"bottom shell thickness."
+msgstr ""
+
+msgid ""
+"Set default acceleration above zero to edit acceleration for individual "
+"extrusion roles."
+msgstr ""
+
+msgid "This setting requires the Marlin firmware G-code flavor."
+msgstr ""
+
+msgid ""
+"Jerk settings are unavailable while the printer uses junction deviation."
+msgstr ""
+
+msgid ""
+"Set the printer junction deviation limit above zero with the Marlin firmware "
+"G-code flavor to edit this setting."
+msgstr ""
+
+msgid ""
+"Set default jerk above zero to edit jerk for individual extrusion roles."
+msgstr ""
+
+msgid "Use a non-belt printer with skirt loops above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Use a non-belt printer with skirt loops above zero and disable the full-"
+"height draft shield to edit skirt height."
+msgstr ""
+
+msgid "Skirts are unavailable for belt printers."
+msgstr ""
+
+msgid "Select a brim type other than No brim to use this setting."
+msgstr ""
+
+msgid "Enable a brim on a printer without a tilted belt to use this setting."
+msgstr ""
+
+msgid ""
+"Select a brim type with an editable width, or enable a brim on a tilted belt "
+"printer."
+msgstr ""
+
+msgid "This setting requires a belt printer with a tilted slicing plane."
+msgstr ""
+
+msgid ""
+"Enable a brim on a belt printer with a tilted slicing plane to use this "
+"setting."
+msgstr ""
+
+msgid "Enable walls or a brim to select the wall filament."
+msgstr ""
+
 # AI Translated
 msgid "Brim ear radius"
 msgstr "Radio de las orejas de borde"
 
 msgid "Brim width"
 msgstr "Ancho del borde de adherencia"
+
+msgid "Set brim width above zero to edit brim ear detection."
+msgstr ""
+
+msgid ""
+"Use painted brim ears or set brim width above zero to edit this setting."
+msgstr ""
+
+msgid ""
+"Select automatic brim ears on a printer without a tilted belt to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Select automatic or painted brim ears on a printer without a tilted belt to "
+"use this setting."
+msgstr ""
+
+msgid ""
+"Enable elephant foot compensation or set elephant foot layer density below "
+"100% to use this setting."
+msgstr ""
+
+msgid "Rafts are unavailable for belt printers."
+msgstr ""
+
+msgid "Enable support to edit this setting."
+msgstr ""
+
+msgid "Enable support or add raft layers to edit this setting."
+msgstr ""
+
+msgid "Select an automatic support type to edit the threshold angle."
+msgstr ""
+
+msgid ""
+"Select an automatic support type and set the threshold angle to zero to edit "
+"threshold overlap."
+msgstr ""
+
+msgid "Threshold overlap is unavailable for tree supports."
+msgstr ""
+
+msgid ""
+"Enable tree supports and select a style other than Organic or Default to "
+"show this setting."
+msgstr ""
+
+msgid ""
+"Enable tree supports with the Organic or Default style to show this setting."
+msgstr ""
+
+msgid ""
+"Independent support layer height is unavailable for organic tree supports."
+msgstr ""
+
+msgid ""
+"Enable tree supports and turn off automatic brim width to edit the tree "
+"support brim width."
+msgstr ""
+
+msgid "Enable tree supports to show the maximum bridge length."
+msgstr ""
+
+msgid ""
+"Tree supports use maximum bridge length instead of the bridge support "
+"setting."
+msgstr ""
+
+msgid "Enable automatic tree supports to show this setting."
+msgstr ""
+
+msgid ""
+"Set top or bottom support interface layers above zero to edit this setting."
+msgstr ""
+
+msgid ""
+"Enable a raft, or enable supports with top interface layers, to use support "
+"ironing."
+msgstr ""
+
+msgid ""
+"Enable support ironing with a raft or top support interface layers to show "
+"this setting."
+msgstr ""
+
+msgid ""
+"Set top or bottom support interface layers above zero to edit interface "
+"spacing."
+msgstr ""
+
+msgid ""
+"Support ironing requires a solid interface, so interface spacing cannot be "
+"edited."
+msgstr ""
+
+msgid "Enable walls, a skirt or a brim to edit inner wall line width."
+msgstr ""
+
+msgid "Enable support, a raft, or a skirt to select the support filament."
+msgstr ""
+
+msgid "Add raft layers to show raft contact distance."
+msgstr ""
+
+msgid ""
+"Raft contact distance is unavailable when the top support Z distance is zero."
+msgstr ""
+
+msgid "Add raft layers to show raft expansion."
+msgstr ""
+
+msgid ""
+"Slim, Strong and Hybrid tree supports use first layer expansion instead of "
+"raft expansion."
+msgstr ""
+
+msgid ""
+"Add a raft or choose a tree support style other than Slim or Strong to edit "
+"first layer expansion."
+msgstr ""
+
+msgid "Enable ironing to use this setting."
+msgstr ""
+
+msgid "Enable ironing with the Rectilinear pattern to edit ironing angles."
+msgstr ""
+
+msgid "Enable ironing or support ironing to edit ironing speed."
+msgstr ""
+
+msgid "Enable Z contouring to use this setting."
+msgstr ""
+
+msgid "Print order cannot be edited when the print sequence is By object."
+msgstr ""
+
+msgid "This setting is unavailable for Bambu Lab printers."
+msgstr ""
+
+msgid "This setting is unavailable in single extruder multimaterial mode."
+msgstr ""
+
+msgid "Enable ooze prevention to use this setting."
+msgstr ""
+
+msgid ""
+"Enable ooze prevention and use a positive number of preheat steps to show "
+"this setting."
+msgstr ""
+
+msgid ""
+"Enable the belt purge tower in the belt printer settings to use this setting."
+msgstr ""
+
+msgid "Enable the prime tower on a non-belt printer to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and tower interface features on a non-belt printer to "
+"use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and select wipe tower Type 2 on a non-Bambu, non-belt "
+"printer."
+msgstr ""
+
+msgid ""
+"Enable the prime tower on a non-belt printer and turn off skipping sparse "
+"tower layers to use layer combination."
+msgstr ""
+
+msgid ""
+"Enable the prime tower with Rib walls on a non-belt printer to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable a Type 2 prime tower with Cone walls on a non-Bambu, non-belt printer."
+msgstr ""
+
+msgid ""
+"Enable the prime tower on a non-belt printer and choose a wall type other "
+"than Rib to edit tower width."
+msgstr ""
+
+msgid ""
+"Enable a Type 2 prime tower on a non-Bambu, non-belt printer and disable "
+"single extruder multimaterial mode."
+msgstr ""
+
+msgid "Select Cyclic tool change ordering to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the prime tower and either disable purging in the prime tower or "
+"disable single extruder multimaterial mode."
+msgstr ""
+
+msgid "Enable the prime tower to use this setting."
+msgstr ""
+
+msgid ""
+"Enable avoiding crossing walls to edit the maximum travel detour distance."
+msgstr ""
+
+msgid "Enable setting other flow ratios to use this setting."
+msgstr ""
+
+msgid "Enable slowing down for overhangs to use this setting."
+msgstr ""
+
+msgid ""
+"This setting is available in object settings rather than global print "
+"settings."
+msgstr ""
+
+msgid ""
+"Select a specific support interface filament and use the default support "
+"filament to show this setting."
+msgstr ""
+
+msgid "Enable fuzzy skin to use this setting."
+msgstr ""
+
+msgid "Enable fuzzy skin with Ripple noise to use this setting."
+msgstr ""
+
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic or Ripple to "
+"edit noise scale."
+msgstr ""
+
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic, Voronoi or "
+"Ripple to edit noise octaves."
+msgstr ""
+
+msgid "Enable fuzzy skin with Perlin or Billow noise to edit persistence."
+msgstr ""
+
+msgid "Select the Arachne wall generator to use this setting."
+msgstr ""
+
+msgid "Thin wall detection is unavailable with the Arachne wall generator."
+msgstr ""
+
+msgid "Disable role-based wipe speed to edit wipe speed manually."
+msgstr ""
+
+msgid "Enable inward wiping to edit inward wipe distance."
+msgstr ""
+
+msgid "This setting requires the Klipper G-code flavor."
+msgstr ""
+
+msgid "Enable acceleration to deceleration to edit its factor."
+msgstr ""
+
+msgid ""
+"Enable excluding objects with the Klipper G-code flavor to edit the outline "
+"tolerance."
+msgstr ""
+
+msgid "Enable making overhangs printable to use this setting."
+msgstr ""
+
+msgid ""
+"Enable only one wall on top surfaces with top shell layers, or use Arachne "
+"with a minimum wall length factor above 0.5."
+msgstr ""
+
+msgid "Enable converting holes to polyholes to use this setting."
+msgstr ""
+
+msgid "Enable overhang wall detection to use this setting."
+msgstr ""
+
+msgid "Reverse overhang direction is unavailable in spiral vase mode."
+msgstr ""
+
+msgid ""
+"Disable spiral vase mode and enable reverse overhang direction to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable overhang wall detection and reverse overhang direction, disable "
+"spiral vase mode, and turn off reversing internal perimeters only."
+msgstr ""
+
+msgid "This setting requires a Bambu Lab printer."
+msgstr ""
+
+msgid "Enable small area infill flow compensation to edit its model."
+msgstr ""
+
+msgid "Scarf seams are unavailable in spiral vase mode and for belt printers."
+msgstr ""
+
+msgid ""
+"Enable scarf seams on a non-belt printer with spiral vase mode disabled to "
+"use this setting."
+msgstr ""
+
+msgid "Disable scarfing the entire loop to edit the minimum scarf length."
+msgstr ""
+
+msgid ""
+"Enable conditional scarf seams on a non-belt printer with spiral vase mode "
+"disabled to use this setting."
+msgstr ""
+
+msgid "Enable beam interlocking to use this setting."
+msgstr ""
+
+msgid "Disable beam interlocking to edit segmented region interlocking depth."
+msgstr ""
+
+msgid "Select the Lateral Lattice sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "Select the Lightning sparse infill pattern to use this setting."
+msgstr ""
+
+msgid ""
+"Infill rotation templates are unavailable for Adaptive Cubic and Support "
+"Cubic infill."
+msgstr ""
+
+msgid ""
+"Clear the sparse infill rotation template and choose a pattern other than "
+"Adaptive Cubic or Support Cubic to edit infill direction."
+msgstr ""
+
+msgid ""
+"Clear the solid infill rotation template to edit solid infill direction."
+msgstr ""
+
+msgid "Select the Lateral Honeycomb sparse infill pattern to use this setting."
+msgstr ""
+
+msgid "The selected printer does not support wrapping detection."
+msgstr ""
+
+msgid "Enable the pad to edit this setting."
+msgstr ""
+
+msgid "Enable the pad around the object to edit this setting."
+msgstr ""
+
+msgid ""
+"Enable support and disable the pad around the object to edit object "
+"elevation."
+msgstr ""
 
 msgid ""
 "Spiral mode only works when wall loops is 1, support is disabled, clumping "
@@ -6349,6 +6926,14 @@ msgstr "Alguna extensión en la entrada no es válida"
 
 msgid "This parameter expects a valid template."
 msgstr "Este parámetro espera una plantilla válida."
+
+# AI Translated
+msgid ""
+"Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, "
+"XxY, ... and separate multiple volumes with |."
+msgstr ""
+"Formato de volumen de colisión no válido. Use XxY, XxY, ... o "
+"ZMIN..ZMAX;XxY, XxY, ... y separe varios volúmenes con |."
 
 msgid ""
 "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per "
@@ -6923,6 +7508,36 @@ msgstr "Boquilla izquierda: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%\n"
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "Boquilla derecha: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 
+msgid ""
+"The position or size of some models exceeds the assigned extruder's "
+"printable range. Please check and adjust the part's position or size to fit "
+"the printable range."
+msgstr ""
+
+msgid "Mirror object"
+msgstr "Reflejar objeto"
+
+# AI Translated
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed. There is no "
+"free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+"La torre de purga de la cama %1% ya no cabe donde se había colocado. No "
+"queda espacio libre en la cama para ella, por lo que se ha movido sobre un "
+"objeto."
+
+# AI Translated
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed, so it was "
+"moved to free space on the plate."
+msgstr ""
+"La torre de purga de la cama %1% ya no cabe donde se había colocado, por lo "
+"que se ha movido a un espacio libre de la cama."
+
 msgid "Tool move"
 msgstr "Herramienta Mover"
 
@@ -7040,9 +7655,6 @@ msgstr "Laminar todo"
 msgid "Failed"
 msgstr "Error"
 
-msgid "All Plates"
-msgstr "Todas las camas"
-
 msgid "Stats"
 msgstr "Estadísticas"
 
@@ -7099,8 +7711,10 @@ msgstr "Ejes"
 msgid "Gridlines"
 msgstr "Cuadrícula"
 
+# AI Translated
+# Needs human review: Name of a view mode hiding the surrounding UI; glossary cell is empty, check the term.
 msgid "Focus mode"
-msgstr ""
+msgstr "Modo de enfoque"
 
 msgid "Labels"
 msgstr "Etiquetas"
@@ -7185,33 +7799,35 @@ msgstr "No se admite la impresión con 2 o más filamentos TPU."
 msgid "Tool %d"
 msgstr "Herramienta %d"
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable range of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable range of the %2%."
 msgstr[0] ""
-"El filamento %s está colocado en el %s, pero la ruta de G-code generada "
-"excede el rango imprimible del %s."
+"El filamento %1% está colocado en el %2%, pero la ruta de G-code generada "
+"excede el rango imprimible del %2%."
 msgstr[1] ""
-"El filamento %s está colocado en el %s, pero la ruta de G-code generada "
-"excede el rango imprimible del %s."
+"Los filamentos %1% están colocados en el %2%, pero la ruta de G-code "
+"generada excede el rango imprimible del %2%."
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable height of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable height of the %2%."
 msgstr[0] ""
-"El filamento %s está colocado en el %s, pero la ruta de G-code generada "
-"excede la altura imprimible del %s."
+"El filamento %1% está colocado en el %2%, pero la ruta de G-code generada "
+"excede la altura imprimible del %2%."
 msgstr[1] ""
-"El filamento %s está colocado en el %s, pero la ruta de G-code generada "
-"excede la altura imprimible del %s."
+"Los filamentos %1% están colocados en el %2%, pero la ruta de G-code "
+"generada excede la altura imprimible del %2%."
 
 msgid "Open wiki for more information."
 msgstr "Abrir wiki para más información."
@@ -7413,16 +8029,6 @@ msgstr ""
 
 msgid "Open Network Test"
 msgstr "Abrir Test de Red"
-
-# AI Translated
-msgid "Benchmark 3D Scene"
-msgstr "Prueba de rendimiento de la escena 3D"
-
-# AI Translated
-msgid "Measure how fast the 3D scene renders in Prepare and Preview"
-msgstr ""
-"Mide la velocidad de renderizado de la escena 3D en Preparar y "
-"Previsualización"
 
 msgid "Show Tip of the Day"
 msgstr "Mostrar Consejo Diario"
@@ -7684,11 +8290,29 @@ msgstr "Reiniciar Diseño de Ventana"
 msgid "Reset to default window layout"
 msgstr "Restablecer el diseño de ventana por defecto"
 
+msgid "Show 3Dconnexion Settings"
+msgstr ""
+
+msgid "Show/Hide 3Dconnexion devices settings dialog"
+msgstr "Mostrar/Ocultar el diálogo de ajustes de los dispositivos 3Dconnexion"
+
 msgid "Show &Labels"
 msgstr "Mostrar Etiquetas(&L)"
 
 msgid "Show object labels in 3D scene."
 msgstr "Mostrar etiquetas en escena 3D."
+
+# AI Translated
+msgid "Show all collision volumes"
+msgstr "Mostrar todos los volúmenes de colisión"
+
+# AI Translated
+msgid ""
+"Show the full height of every configured collision volume, including on an "
+"empty bed."
+msgstr ""
+"Muestra la altura completa de cada volumen de colisión configurado, también "
+"con la cama vacía."
 
 msgid "Show &Overhang"
 msgstr "Mostrar Voladizo (&O)"
@@ -8062,6 +8686,9 @@ msgstr "Descargar"
 
 msgid "Download selected files from printer."
 msgstr "Descargar achivos seleccionados desde la impresora."
+
+msgid "Select all files in the list for batch management."
+msgstr ""
 
 msgid "Batch manage files."
 msgstr "Procesado de archivo por lotes."
@@ -9039,6 +9666,10 @@ msgid "Troubleshoot Center"
 msgstr "Centro de resolución de problemas"
 
 # AI Translated
+msgid "Benchmark 3D Scene"
+msgstr "Prueba de rendimiento de la escena 3D"
+
+# AI Translated
 msgid "About OrcaSlicer"
 msgstr "Acerca de OrcaSlicer"
 
@@ -9212,10 +9843,6 @@ msgid "Cut connectors"
 msgstr "Cortar Conectores"
 
 # AI Translated
-msgid "Instances"
-msgstr "Instancias"
-
-# AI Translated
 #, c-format, boost-format
 msgid "Instance %d"
 msgstr "Instancia %d"
@@ -9278,6 +9905,20 @@ msgid ""
 msgstr ""
 "No hay capacidades de plugins disponibles para este tipo.\n"
 "Active o instale alguna para usarla."
+
+msgid "Hidden by the current configuration."
+msgstr ""
+
+#, boost-format
+msgid "Hidden: %1%"
+msgstr ""
+
+msgid "Disabled by the current configuration."
+msgstr ""
+
+#, boost-format
+msgid "Disabled: %1%"
+msgstr ""
 
 msgid ""
 "There is stringing-prone filament in the current print job. Enabling nozzle "
@@ -9540,6 +10181,9 @@ msgstr "Ver todos los ajustes del objeto"
 
 msgid "Material settings"
 msgstr "Configuración de Material"
+
+msgid "The process flow ratio cannot be edited in this panel."
+msgstr ""
 
 # AI Translated
 msgid ""
@@ -11284,6 +11928,19 @@ msgstr "Utiliza los botones de la ventana situados a la izquierda"
 msgid "(Requires restart)"
 msgstr "(Requiere reinicio)"
 
+#. TRN "GPU" is the graphics card; the option only matters on computers that have two of them.
+msgid "Render on the discrete GPU"
+msgstr ""
+
+#. TRN DRI_PRIME is an environment variable name and must stay as it is.
+msgid ""
+"On a computer with two GPUs, run OrcaSlicer on the discrete GPU instead of "
+"the one that drives the display. Some Wayland systems cannot show frames "
+"rendered on the other GPU, or fail to open the window at all. Turn this off "
+"if the 3D view stays empty; if OrcaSlicer no longer starts, start it once "
+"with DRI_PRIME=0 in the environment to get back here."
+msgstr ""
+
 msgid "Downloads folder"
 msgstr "Carpeta de descargas"
 
@@ -11563,6 +12220,14 @@ msgstr ""
 msgid "Auto arrange plate after cloning"
 msgstr "Disposición automática de la placa tras la clonación"
 
+msgid "Show options when adding a primitive"
+msgstr ""
+
+msgid ""
+"If enabled, a dialog asks for the dimensions of a primitive shape before it "
+"is added."
+msgstr ""
+
 msgid "Auto slice after changes"
 msgstr "Laminar automáticamente tras cambios"
 
@@ -11826,6 +12491,21 @@ msgstr ""
 "Orbital: la luz gira con la cámara y recalcula las sombras en cada fotograma "
 "en que la cámara se mueve."
 
+# AI Translated
+msgid "Glossy toolpaths"
+msgstr "Trayectorias brillantes"
+
+# AI Translated
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight "
+"of the plain view."
+msgstr ""
+"Resalta las trayectorias en Previsualización como plástico brillante en la "
+"vista realista.\n"
+"Si está desactivado, un filamento translúcido es mate y uno opaco conserva "
+"el brillo de la vista normal."
+
 msgid "Anti-aliasing"
 msgstr "Anti-aliasing"
 
@@ -12044,6 +12724,20 @@ msgstr ""
 "99% apenas se oscurece y 0% las muestra en negro. Está limitado al 99% "
 "porque el 100% equivaldría a desactivar la opción."
 
+# AI Translated
+msgid "Translucent filaments"
+msgstr "Filamentos translúcidos"
+
+# AI Translated
+msgid ""
+"Draw the toolpaths of filaments whose color is partly transparent as see-"
+"through, as the 3D view draws their objects. Turn it off to draw every "
+"filament opaque."
+msgstr ""
+"Dibuja como translúcidas las trayectorias de los filamentos cuyo color es "
+"parcialmente transparente, igual que la vista 3D dibuja sus objetos. "
+"Desactívelo para dibujar todos los filamentos opacos."
+
 msgid "Login region"
 msgstr "Región de inicio de sesión"
 
@@ -12199,15 +12893,21 @@ msgstr ""
 "menús desplegables de impresoras y filamentos. Estos ajustes preestablecidos "
 "no se pueden seleccionar."
 
+# AI Translated
 msgid "Export statistics with G-code"
-msgstr ""
+msgstr "Exportar estadísticas con el G-code"
 
+# AI Translated
 msgid ""
 "If enabled, exporting a G-code file also writes its statistics as JSON next "
 "to it, as <name>.statistics.json, and an exported sliced 3MF file holds them "
 "inside: print time, filament and feature totals, and the same per layer and "
 "per object."
 msgstr ""
+"Si se activa, al exportar un archivo G-code también se escriben sus "
+"estadísticas como JSON junto a él, como <name>.statistics.json, y un archivo "
+"3MF laminado exportado las contiene en su interior: tiempo de impresión, "
+"totales de filamento y por tipo de línea, y lo mismo por capa y por objeto."
 
 msgid "Experimental Features"
 msgstr "Funciones experimentales"
@@ -12392,6 +13092,30 @@ msgstr "Incompatible"
 
 msgid "The selected preset is null!"
 msgstr "¡El ajuste seleccionado es nulo!"
+
+msgid "Changing one dimension changes the others in proportion."
+msgstr ""
+
+msgid "Save these settings as default"
+msgstr "Guardar estos ajustes como predeterminados"
+
+msgid ""
+"If enabled, these dimensions are used for this shape from now on, also when "
+"this dialog is not shown."
+msgstr ""
+
+msgid ""
+"If enabled, shapes are added at their default size without asking. The "
+"dialog can be turned back on in Preferences."
+msgstr ""
+
+# AI Translated
+msgid "The size must be greater than zero"
+msgstr "El tamaño debe ser mayor que cero"
+
+# AI Translated
+msgid "Invalid numeric input."
+msgstr "Entrada numérica no válida."
 
 msgctxt "Layer range"
 msgid "End"
@@ -12590,6 +13314,15 @@ msgstr "El perfil \"%1%\" ya existe y es incompatible con la impresora actual."
 
 msgid "Please note that saving will overwrite the current preset."
 msgstr "Tenga en cuenta que la acción de guardar reemplazará este perfil."
+
+msgid "control characters are not allowed."
+msgstr ""
+
+msgid "The name is a reserved system name."
+msgstr ""
+
+msgid "The name is too long."
+msgstr ""
 
 msgid "The name cannot be the same as a preset alias name."
 msgstr "El nombre no puede ser el mismo que el nombre del perfil."
@@ -13196,6 +13929,10 @@ msgstr ""
 msgid "Send Failed"
 msgstr "Envío fallido"
 
+# AI Translated
+msgid "No available printers"
+msgstr "No hay impresoras disponibles"
+
 msgid "The name length exceeds the limit."
 msgstr "La longitud del nombre supera el límite."
 
@@ -13467,9 +14204,8 @@ msgstr ""
 msgid "Storage is in abnormal state or is in read-only mode."
 msgstr "El almacenamiento está en un estado anómalo o en modo solo lectura."
 
-msgid "Storage needs to be inserted before printing."
+msgid "Insert storage or free up space before printing."
 msgstr ""
-"Es necesario insertar un dispositivo de almacenamiento antes de imprimir."
 
 msgid "Cannot send the print job to a printer whose firmware must be updated."
 msgstr ""
@@ -13592,10 +14328,6 @@ msgstr ""
 msgid "The selected printer is incompatible with the chosen printer presets."
 msgstr ""
 "La impresora seleccionada es incompatible con los perfiles seleccionados."
-
-msgid "Storage needs to be inserted before send to printer."
-msgstr ""
-"Es necesario insertar el almacenamiento antes de enviarlo a la impresora."
 
 msgid "The printer is required to be in the same LAN as XDesktop."
 msgstr ""
@@ -13804,6 +14536,20 @@ msgid "Click to reset all settings to the last saved preset."
 msgstr ""
 "Presionar para reiniciar todos los ajustes al perfil guardado por defecto."
 
+# AI Translated
+msgid ""
+"This definition contains collision-volume syntax. Add it to the toolhead "
+"collision volumes for G-code checking and travel avoidance? The existing "
+"excluded bed area will be preserved."
+msgstr ""
+"Esta definición contiene sintaxis de volúmenes de colisión. ¿Añadirla a los "
+"volúmenes de colisión del cabezal para la comprobación del G-code y la "
+"evitación de desplazamientos? El área excluida de la cama se conservará."
+
+# AI Translated
+msgid "Add collision volumes"
+msgstr "Añadir volúmenes de colisión"
+
 msgid ""
 "Prime tower is required for nozzle changing. There may be flaws on the model "
 "without prime tower. Are you sure you want to disable prime tower?"
@@ -13986,6 +14732,9 @@ msgstr ""
 "posición vacía de la cama de impresión y seleccionando \"Añadir Primitivo\"-"
 ">Torre de Purga de Timelapse\"."
 
+msgid "Setting unavailable"
+msgstr ""
+
 msgid ""
 "A copy of the current system preset will be created, which will be detached "
 "from the system preset."
@@ -14166,8 +14915,16 @@ msgstr "Configuración del plugin"
 msgid "Notes"
 msgstr "Anotaciones"
 
+msgid "The selected printer does not support multiple bed types."
+msgstr ""
+
 msgid "Frequent"
 msgstr "Frecuente"
+
+msgid ""
+"Custom filament print order is unavailable while the plate contains mixed-"
+"color filaments."
+msgstr ""
 
 #, c-format, boost-format
 msgid ""
@@ -14192,6 +14949,21 @@ msgstr "Sobreescribir Ajustes de impresora"
 
 msgid "Retraction when switching material"
 msgstr "Retracción al cambiar de material"
+
+msgid ""
+"Set the filament retraction length above zero, or use the printer's value, "
+"to edit this setting."
+msgstr ""
+
+msgid ""
+"The printer profile must allow filament overrides for long retraction when "
+"cutting."
+msgstr ""
+
+msgid ""
+"Allow long retraction when cutting in the printer profile and enable it in "
+"the filament profile to use this setting."
+msgstr ""
 
 msgid "Basic information"
 msgstr "Información básica"
@@ -14369,6 +15141,74 @@ msgstr "Impresoras compatibles"
 msgid "Compatible process profiles"
 msgstr "Perfiles de proceso compatibles"
 
+msgid "Enable cooling for overhangs and bridges to edit this setting."
+msgstr ""
+
+msgid "Enable slowing down for layer cooling to use this setting."
+msgstr ""
+
+msgid ""
+"Set the number of initial layers without cooling to zero to override the "
+"first layer fan speed."
+msgstr ""
+
+msgid "Enable the auxiliary fan in the printer profile to use this setting."
+msgstr ""
+
+msgid "The selected printer does not support air filtration."
+msgstr ""
+
+msgid "Activate air filtration to edit this setting."
+msgstr ""
+
+msgid ""
+"Activate air filtration and enable it during printing to edit the exhaust "
+"fan speed."
+msgstr ""
+
+msgid ""
+"Activate air filtration and enable it on completion to edit the exhaust fan "
+"speed."
+msgstr ""
+
+msgid "Enable pressure advance to use this setting."
+msgstr ""
+
+msgid ""
+"Select this bed type or enable support for multiple bed types in the printer "
+"profile to show its temperature settings."
+msgstr ""
+
+msgid ""
+"Enable pressure advance and adaptive pressure advance to use this setting."
+msgstr ""
+
+msgid ""
+"Enable the pellet printer option in the printer profile to use this setting."
+msgstr ""
+
+msgid "Filament diameter is unavailable for pellet printers."
+msgstr ""
+
+msgid "The selected printer does not support chamber temperature control."
+msgstr ""
+
+msgid ""
+"Set nonzero volumetric speed coefficients before enabling adaptive "
+"volumetric speed."
+msgstr ""
+
+msgid "Enable multitool ramming to edit this setting."
+msgstr ""
+
+msgid "This setting requires a Bambu Lab printer with multiple extruders."
+msgstr ""
+
+msgid ""
+"Use a Bambu Lab printer with multiple extruders and enable long retraction "
+"when the extruder changes."
+msgstr ""
+
 msgid "Printable space"
 msgstr "Espacio imprimible"
 
@@ -14449,9 +15289,6 @@ msgstr "Plantilla para G-Code de usuario"
 
 msgid "Motion ability"
 msgstr "Capacidad de movimiento"
-
-msgid "Normal"
-msgstr "Normal"
 
 msgid "Resonance Compensation"
 msgstr "Compensación de resonancia"
@@ -14552,6 +15389,80 @@ msgstr "Límites de altura de la capa"
 msgid "Z-Hop"
 msgstr "Salto en Z"
 
+msgid ""
+"Power loss recovery requires a Bambu Lab printer or the Marlin firmware G-"
+"code flavor."
+msgstr ""
+
+msgid "Build plate tilt is derived from the belt tilt on belt printers."
+msgstr ""
+
+msgid "Enable belt printer mode to use this setting."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode and select a belt rotation axis to edit its angle."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode and select Expert or Developer settings visibility "
+"to use this setting."
+msgstr ""
+
+msgid ""
+"Enable belt printer mode, select Expert or Developer settings visibility, "
+"and decouple the machine frame tilt to edit its angle."
+msgstr ""
+
+msgid "Enable support for parallel printheads to edit their count."
+msgstr ""
+
+msgid "Collision volume mode selection requires multiple extruders."
+msgstr ""
+
+msgid ""
+"Select a shared collision volume mode or use a single-extruder printer to "
+"edit this setting."
+msgstr ""
+
+msgid "Enable the auxiliary fan to edit its direction."
+msgstr ""
+
+msgid ""
+"Air filtration and the cooling filter are alternative accessories; disable "
+"cooling filter support to use air filtration."
+msgstr ""
+
+msgid ""
+"Enable cooling filter support in the printer profile to use this setting."
+msgstr ""
+
+msgid "Enable belt printer mode to use the belt purge tower."
+msgstr ""
+
+msgid ""
+"Wipe tower type selection is unavailable for Bambu Lab printers and belt "
+"printers."
+msgstr ""
+
+msgid "Select wipe tower Type 2 on a non-Bambu printer to use this setting."
+msgstr ""
+
+msgid "Extruder count cannot be edited in single extruder multimaterial mode."
+msgstr ""
+
+msgid ""
+"Enable single extruder multimaterial mode to use manual filament changes."
+msgstr ""
+
+msgid ""
+"Enable single extruder multimaterial mode with wipe tower Type 2 on a non-"
+"Bambu printer to use this setting."
+msgstr ""
+
+msgid "Enable IDEX/IQEX printer mode to use this setting."
+msgstr ""
+
 # AI Translated
 msgid "Front-left"
 msgstr "Frontal izquierda"
@@ -14569,6 +15480,51 @@ msgid "Rear-right"
 msgstr "Posterior derecha"
 
 msgid ""
+"Use multiple extruders with wipe tower Type 2 on a non-Bambu printer and "
+"disable single extruder multimaterial mode."
+msgstr ""
+
+msgid ""
+"Set retraction length above zero or enable firmware retraction to use this "
+"setting."
+msgstr ""
+
+msgid ""
+"The extruder printable area and height are fixed by the printer profile."
+msgstr ""
+
+msgid "This setting is shown for printers with exactly two extruders."
+msgstr ""
+
+msgid ""
+"Select per-extruder collision volumes on a printer with multiple extruders "
+"to edit this setting."
+msgstr ""
+
+msgid ""
+"Retraction length is controlled by the firmware while firmware retraction is "
+"enabled."
+msgstr ""
+
+msgid "Enable retraction and set Z hop above zero to use this setting."
+msgstr ""
+
+msgid ""
+"Set retraction length above zero and disable firmware retraction to edit "
+"this setting."
+msgstr ""
+
+msgid ""
+"Enable retraction and wiping, and set retract after wipe below 100% to edit "
+"retract before wipe."
+msgstr ""
+
+msgid ""
+"Enable retraction and wiping, and set retract before wipe below 100% to edit "
+"retract after wipe."
+msgstr ""
+
+msgid ""
 "The Retract before wipe option could be only 100% when using the Firmware "
 "Retraction mode.\n"
 "\n"
@@ -14581,6 +15537,64 @@ msgstr ""
 
 msgid "Firmware Retraction"
 msgstr "Retracción de firmware"
+
+msgid "Enable retraction and wiping to edit wipe distance."
+msgstr ""
+
+msgid "This setting requires multiple extruders."
+msgstr ""
+
+msgid ""
+"Use multiple extruders and set tool change retraction length above zero to "
+"edit this setting."
+msgstr ""
+
+msgid ""
+"Disable firmware retraction and allow long retraction when cutting to use "
+"this setting."
+msgstr ""
+
+msgid "Enable long retraction when cutting to edit the retraction distance."
+msgstr ""
+
+msgid "Select a Z hop type other than Normal to edit travel slope."
+msgstr ""
+
+msgid ""
+"Travel acceleration limits are unavailable for the Marlin legacy and Klipper "
+"G-code flavors."
+msgstr ""
+
+msgid ""
+"Jerk limits are unavailable while Marlin uses nonzero junction deviation."
+msgstr ""
+
+msgid ""
+"Emitting machine limits requires the Marlin legacy, Marlin or RepRapFirmware "
+"G-code flavor."
+msgstr ""
+
+msgid "Enable resonance avoidance to edit its speed range."
+msgstr ""
+
+msgid ""
+"This input shaping setting requires the Marlin or RepRapFirmware G-code "
+"flavor."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits to G-code to emit input shaping settings."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits and input shaping to G-code to edit this "
+"setting."
+msgstr ""
+
+msgid ""
+"Enable emitting machine limits and input shaping to G-code with the Marlin "
+"firmware G-code flavor to edit separate Y-axis values."
+msgstr ""
 
 msgid ""
 "Switching to a printer with different extruder types or numbers will discard "
@@ -14646,6 +15660,11 @@ msgstr ""
 # AI Translated
 msgid "Are you sure you want to delete the selected preset?"
 msgstr "¿Está seguro de borrar el perfil seleccionado?"
+
+msgid ""
+"Select \"All\" to edit the compatibility condition instead of using an "
+"explicit profile list."
+msgstr ""
 
 msgid "Select printers"
 msgstr "Seleccionar impresoras"
@@ -14761,6 +15780,9 @@ msgstr ""
 msgid "Click to drop current modifications and reset to saved value."
 msgstr ""
 "Haga clic para dejar la modificación actual y restablecer el valor guardado."
+
+msgid "Material print speed cannot be edited for the SL1 printer."
+msgstr ""
 
 msgid "Process Settings"
 msgstr "Ajustes del proceso"
@@ -15502,10 +16524,8 @@ msgid "Global"
 msgstr "Global"
 
 # AI Translated
-msgid "Available anywhere in the window, even while typing in a text field."
-msgstr ""
-"Disponible en cualquier parte de la ventana, incluso mientras se escribe en "
-"un campo de texto."
+msgid "Available anywhere in the window."
+msgstr "Disponible en cualquier parte de la ventana."
 
 # AI Translated
 msgid "Run favorite 1 to 10"
@@ -15622,10 +16642,6 @@ msgstr "%s está asignado a %s. ¿Reasignarlo a %s?"
 #, c-format, boost-format
 msgid "The default %s is assigned to %s. Reassign it to %s?"
 msgstr "El %s predeterminado está asignado a %s. ¿Reasignarlo a %s?"
-
-# AI Translated
-msgid "Global shortcuts also apply while typing."
-msgstr "Los atajos globales también se aplican mientras se escribe."
 
 # AI Translated
 msgid "A key that types a character cannot be a global shortcut."
@@ -15995,6 +17011,34 @@ msgstr ""
 "¿Está lleno el disco?"
 
 # AI Translated
+#. TRN %1% is the extruder number counted from 1.
+#, boost-format
+msgid ""
+"A G-code move intersects a collision volume for extruder %1%. This may cause "
+"a printer collision."
+msgstr ""
+"Un movimiento del G-code interseca un volumen de colisión del extrusor %1%. "
+"Esto puede provocar una colisión de la impresora."
+
+# AI Translated
+msgid ""
+"A G-code move intersects a collision volume. This may cause a printer "
+"collision."
+msgstr ""
+"Un movimiento del G-code interseca un volumen de colisión. Esto puede "
+"provocar una colisión de la impresora."
+
+# AI Translated
+#, boost-format
+msgid ""
+"The intersecting move is at G-code line %1%. Its Z position is unknown after "
+"homing, so Orca checked it against every height."
+msgstr ""
+"El movimiento que interseca está en la línea %1% del G-code. Su posición Z "
+"se desconoce tras el homing, por lo que Orca lo ha comprobado con todas las "
+"alturas."
+
+# AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
 msgid ""
@@ -16154,9 +17198,10 @@ msgstr ""
 msgid "Seam placement may differ from expected."
 msgstr "La ubicación de la costura puede diferir de la esperada."
 
+# AI Translated
 #, boost-format
 msgid "Failed to write the G-code statistics to %1%."
-msgstr ""
+msgstr "No se pudieron escribir las estadísticas del G-code en %1%."
 
 msgid "Internal Bridge"
 msgstr "Puente Interior"
@@ -16424,6 +17469,19 @@ msgstr ""
 "%1% está demasiado cerca de la zona de exclusión. Podrían producirse "
 "colisiones al imprimir."
 
+# AI Translated
+#. TRN %1% is the object name.
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr ""
+"%1% interseca los volúmenes de colisión de todos los extrusores disponibles."
+
+# AI Translated
+#. TRN %1% is the object name, %2% the extruder number counted from 1.
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr "%1% interseca un volumen de colisión del extrusor %2%."
+
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
 msgstr "%1% está demasiado cerca de otros, y pueden producirse colisiones."
@@ -16524,6 +17582,11 @@ msgstr ""
 
 msgid "No extrusions under current settings."
 msgstr "No hay extrusiones con los ajustes actuales."
+
+#. TRN %1% is the filament number as shown in the filament list, starting from 1.
+#, boost-format
+msgid "The flow ratio of filament %1% must be greater than 0."
+msgstr ""
 
 # AI Translated
 msgid ""
@@ -17109,15 +18172,89 @@ msgstr ""
 msgid "Excluded bed area"
 msgstr "Área excluida de la cama"
 
+# AI Translated
 msgid ""
 "Unprintable area in XY plane. For example, X1 Series printers use the front "
 "left corner to cut filament during filament change. The area is expressed as "
-"polygon by points in following format: \"XxY, XxY, ...\""
+"a polygon in the format \"XxY, XxY, ...\". It constrains material and model "
+"placement, but allows machine travel. Configure toolhead collision volumes "
+"separately for G-code checking and travel avoidance."
 msgstr ""
-"Área excluida de la impresión en el plano XY. Por ejemplo, las impresoras de "
-"la serie X1 utilizan la esquina delantera izquierda para cortar el filamento "
-"durante el cambio de filamento. El área la delimita un polígono unido por "
-"puntos en el siguiente formato: \"XxY, XxY, ...\""
+"Área no imprimible en el plano XY. Por ejemplo, las impresoras de la serie "
+"X1 usan la esquina frontal izquierda para cortar el filamento durante el "
+"cambio de filamento. El área se expresa como un polígono con el formato "
+"\"XxY, XxY, ...\". Limita la colocación del material y de los modelos, pero "
+"permite los desplazamientos de la máquina. Configure los volúmenes de "
+"colisión del cabezal por separado para la comprobación del G-code y la "
+"evitación de desplazamientos."
+
+# AI Translated
+msgid "Toolhead collision volumes"
+msgstr "Volúmenes de colisión del cabezal"
+
+# AI Translated
+msgid ""
+"Collision volumes used for model and generated-material exclusion, G-code "
+"checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height "
+"polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate "
+"multiple volumes with \"|\". These volumes are additional to the excluded "
+"bed area. Automatic arrangement conservatively uses the bounding box of a "
+"non-convex volume."
+msgstr ""
+"Volúmenes de colisión usados para la exclusión de modelos y de material "
+"generado, la comprobación del G-code y la evitación de desplazamientos. Use "
+"\"XxY, XxY, ...\" para un polígono de altura completa o \"ZMIN..ZMAX;XxY, "
+"XxY, ...\" para un volumen limitado en Z. Separe varios volúmenes con \"|\". "
+"Estos volúmenes se suman al área excluida de la cama. La disposición "
+"automática usa de forma conservadora el cuadro delimitador de un volumen no "
+"convexo."
+
+# AI Translated
+msgid "Collision volume behavior"
+msgstr "Comportamiento de los volúmenes de colisión"
+
+# AI Translated
+msgid ""
+"Choose whether all nozzles use the same collision volumes, derive toolhead-"
+"relative volumes from each nozzle's XY offset, or configure independent "
+"volumes for every extruder. In individual mode, select each extruder on the "
+"Extruder page to configure its volumes."
+msgstr ""
+"Elija si todas las boquillas usan los mismos volúmenes de colisión, si se "
+"derivan volúmenes relativos al cabezal a partir del desplazamiento XY de "
+"cada boquilla, o si se configuran volúmenes independientes para cada "
+"extrusor. En el modo individual, seleccione cada extrusor en la página "
+"Extrusor para configurar sus volúmenes."
+
+# AI Translated
+#. TRN Collision volume modes: one set for all nozzles, one set moved by each nozzle's XY offset, or one set per extruder.
+msgid "Shared by all nozzles"
+msgstr "Compartido por todas las boquillas"
+
+# AI Translated
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr "Relativo al cabezal (desplazamientos de boquilla)"
+
+# AI Translated
+msgid "Individual per extruder"
+msgstr "Individual por extrusor"
+
+# AI Translated
+msgid "Extruder collision volumes"
+msgstr "Volúmenes de colisión del extrusor"
+
+# AI Translated
+msgid ""
+"Collision volumes used only by this extruder in individual mode. Use the "
+"same polygon and optional Z-range format as the shared collision volumes. "
+"Leave empty for no collision volumes on this extruder. Automatic arrangement "
+"conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+"Volúmenes de colisión usados solo por este extrusor en el modo individual. "
+"Use el mismo formato de polígono y de rango Z opcional que en los volúmenes "
+"de colisión compartidos. Déjelo vacío para no tener volúmenes de colisión en "
+"este extrusor. La disposición automática usa de forma conservadora el cuadro "
+"delimitador de un volumen no convexo."
 
 msgid "Bed custom texture"
 msgstr "Textura personalizada de cama"
@@ -17495,6 +18632,23 @@ msgstr ""
 "pequeña. 0 significa que este ajuste está desactivado y el grosor de la capa "
 "inferior está absolutamente determinado por las capas de la cubierta "
 "inferior."
+
+# AI Translated
+# Needs human review: New setting: how many layers behind a painted bottom surface take the painted color. 'Paint' = Color Painting ('pintura de color'); check the label is understandable.
+msgid "Bottom paint penetration layers"
+msgstr "Capas de penetración de la pintura inferior"
+
+# AI Translated
+msgid ""
+"The number of layers, including the bottom surface layer, that take the "
+"color painted on a bottom surface. Set to 0 to use the bottom shell layers. "
+"A value larger than the bottom shell also colors the sparse infill above the "
+"painted area."
+msgstr ""
+"Número de capas, incluida la capa superficial inferior, que toman el color "
+"pintado en una superficie inferior. Establézcalo en 0 para usar las capas "
+"inferiores de cubierta. Un valor mayor que el de la cubierta inferior "
+"también colorea el relleno de baja densidad por encima de la zona pintada."
 
 msgid "Apply gap fill"
 msgstr "Aplicar relleno de huecos"
@@ -19849,7 +21003,7 @@ msgid ""
 "Enter the shrinkage percentage that the filament will get after cooling (94% "
 "if you measure 94mm instead of 100mm). The part will be scaled in XY to "
 "compensate. For multi-material prints, ensure filament shrinkage matches "
-"across all used filaments\n"
+"across all used filaments.\n"
 "Be sure to allow enough space between objects, as this compensation is done "
 "after the checks."
 msgstr ""
@@ -19975,8 +21129,9 @@ msgstr ""
 msgid "Wipe tower cooling"
 msgstr "Refrigeración de Torre de Purga"
 
-msgid "Temperature drop before entering filament tower"
-msgstr "Descenso de temperatura antes de entrar en la torre de filamentos"
+# AI Translated
+msgid "Temperature drop before entering the wipe tower."
+msgstr "Descenso de temperatura antes de entrar en la torre de purga."
 
 msgid "Interface layer pre-extrusion distance"
 msgstr "Distancia de pre-extrusión de la capa de interfaz"
@@ -20597,10 +21752,10 @@ msgstr "El max_accel_to_decel de Klipper será ajustado automáticamente."
 msgid "accel_to_decel"
 msgstr "accel_to_decel"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
-"Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
-msgstr "El max_accel_to_decel de Klipper se ajustará a este %% de aceleración."
+"Klipper's max_accel_to_decel will be adjusted to this % of acceleration."
+msgstr "El max_accel_to_decel de Klipper se ajustará a este % de aceleración."
 
 msgid "Default jerk."
 msgstr "Jerk por defecto."
@@ -20893,7 +22048,7 @@ msgstr "Aplicar o no superficie difusa en la primera capa."
 msgid "Fuzzy skin generator mode"
 msgstr "Modo generador de piel difusa"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
 "Fuzzy skin generation mode. Works only with Arachne!\n"
 "Displacement: Сlassic mode when the pattern is formed by shifting the nozzle "
@@ -20909,14 +22064,14 @@ msgid ""
 "Attention! The [Extrusion] and [Combined] modes works only the "
 "fuzzy_skin_thickness parameter not more than the thickness of printed loop. "
 "At the same time, the width of the extrusion for a particular layer should "
-"also not be below a certain level. It is usually equal 15-25%% of a layer "
+"also not be below a certain level. It is usually equal 15-25% of a layer "
 "height. Therefore, the maximum fuzzy skin thickness with a perimeter width "
 "of 0.4 mm and a layer height of 0.2 mm will be 0.4-(0.2*0.25)=±0.35mm! If "
 "you enter a higher parameter than this, the error Flow::spacing() will "
 "displayed, and the model will not be sliced. You can choose this number "
 "until this error is repeated."
 msgstr ""
-"Modo de generación de piel difusa. ¡Funciona solo con Arachne!\n"
+"Modo de generación de piel rugosa. ¡Funciona solo con Arachne!\n"
 "Desplazamiento: Modo clásico en el que el patrón se forma desplazando la "
 "boquilla lateralmente respecto a la trayectoria original.\n"
 "Extrusión: Modo en que el patrón se forma por la cantidad de material "
@@ -20930,8 +22085,8 @@ msgstr ""
 "¡Atención! Los modos [Extrusión] y [Combinado] funcionan solo si el "
 "parámetro fuzzy_skin_thickness no supera el espesor del perímetro impreso. "
 "Al mismo tiempo, el ancho de extrusión para una capa determinada tampoco "
-"debe estar por debajo de un cierto umbral, que suele ser el 15–25%% de la "
-"altura de capa. Por lo tanto, el espesor máximo de piel difusa con un ancho "
+"debe estar por debajo de un cierto umbral, que suele ser el 15–25% de la "
+"altura de capa. Por lo tanto, el espesor máximo de piel rugosa con un ancho "
 "de perímetro de 0,4 mm y una altura de capa de 0,2 mm será 0,4-"
 "(0,2*0,25)=±0,35 mm. Si introduce un valor mayor, se mostrará el error "
 "Flow::spacing() y el modelo no se podrá laminar. Puede ajustar este valor "
@@ -21117,25 +22272,40 @@ msgstr ""
 msgid "Arc fitting"
 msgstr "Activar movimientos en arco"
 
+# AI Translated
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting "
-"tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted "
+"within the resolution, while sparse infill, supports and the wipe tower use "
+"fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which "
+"shortens the G-code of curved infill patterns without affecting the walls "
+"and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. "
-"Klipper does not benefit from arc commands as these are split again into "
-"line segments by the firmware. This results in a reduction in surface "
-"quality as line segments are converted to arcs by the slicer and then back "
-"to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs "
+"back into line segments, which lowers the surface quality and can increase "
+"the print time."
 msgstr ""
-"Habilite esta opción para obtener un archivo de G-Code con los movimientos "
-"G2 y G3. La tolerancia de ajuste es la misma que la resolución.\n"
+"Ajusta movimientos de arco G2 y G3 a las trayectorias. Las paredes y "
+"superficies se ajustan dentro de la resolución, mientras que el relleno de "
+"baja densidad, los soportes y la torre de purga usan tolerancias fijas.\n"
+" - Desactivado: solo se usan movimientos G1 rectos.\n"
+" - Activado: los arcos se ajustan a todas las trayectorias.\n"
+" - Solo relleno de baja densidad: los arcos se ajustan únicamente al relleno "
+"de baja densidad, lo que acorta el G-code de los patrones de relleno curvos "
+"sin afectar a las paredes ni a las superficies.\n"
 "\n"
-"Nota: Para impresoras con firmware Klipper, se recomienda desactivar esta "
-"opción. Klipper no se beneficia de los comandos de arco ya que estos son "
-"divididos de nuevo en segmentos de línea por el firmware. El resultado es "
-"una reducción de la calidad de la superficie, ya que los segmentos de línea "
-"son convertidos en arcos por el laminador y de nuevo en segmentos de línea "
-"por el firmware."
+"Nota: En las máquinas con Klipper se recomienda Desactivado. Klipper vuelve "
+"a dividir los arcos en segmentos de línea, lo que reduce la calidad de la "
+"superficie y puede aumentar el tiempo de impresión."
+
+msgid "Enabled"
+msgstr "Activado"
+
+# AI Translated
+msgid "Sparse infill only"
+msgstr "Solo relleno de baja densidad"
 
 msgid "Add line number"
 msgstr "Añadir número de línea"
@@ -21344,18 +22514,21 @@ msgstr "dinero/hora"
 msgid "Support controlling chamber temperature"
 msgstr "Función de control de temperatura de recámara"
 
+# AI Translated
 msgid ""
-"This option is enabled if machine support controlling chamber temperature\n"
+"This option is enabled if the machine supports controlling the chamber "
+"temperature\n"
 "G-code command: M141 S(0-255)"
 msgstr ""
 "Esta opción se activa si la máquina admite el control de la temperatura de "
-"la cámara"
+"la recámara\n"
+"Comando G-code: M141 S(0-255)"
 
 msgid "Support air filtration"
 msgstr "Función de filtración de aire"
 
 msgid ""
-"Enable this if printer support air filtration\n"
+"Enable this if the printer supports air filtration\n"
 "G-code command: M106 P3 S(0-255)"
 msgstr ""
 "Active esta opción si la impresora admite filtración de aire\n"
@@ -21364,7 +22537,7 @@ msgstr ""
 msgid "Use cooling filter"
 msgstr "Usar un filtro de enfriamiento"
 
-msgid "Enable this if printer support cooling filter"
+msgid "Enable this if the printer supports a cooling filter"
 msgstr "Activar esta opción si la impresora soporta el filtro de enfriamiento"
 
 msgid "G-code flavor"
@@ -21434,6 +22607,22 @@ msgid "Enable this option to add EXCLUDE OBJECT command in G-code."
 msgstr ""
 "Activar esta opción para añadir el comando EXCLUDE OBJECT en el G-Code."
 
+# AI Translated
+msgid "Outline tolerance"
+msgstr "Tolerancia del contorno"
+
+# AI Translated
+msgid ""
+"Maximum deviation of the object outline written to EXCLUDE_OBJECT_DEFINE "
+"from the original outline. Larger values give fewer points, which helps "
+"firmware that stalls while parsing G-code with many objects. 0 keeps every "
+"point."
+msgstr ""
+"Desviación máxima del contorno del objeto escrito en EXCLUDE_OBJECT_DEFINE "
+"respecto al contorno original. Los valores más altos dan menos puntos, lo "
+"que ayuda al firmware que se bloquea al analizar G-code con muchos objetos. "
+"0 conserva todos los puntos."
+
 msgid "Verbose G-code"
 msgstr "G-Code detallado"
 
@@ -21445,6 +22634,23 @@ msgstr ""
 "Activar esta opción para generar archivos de G-Code comentados, con cada "
 "línea explicada por un texto descriptivo. Si se imprime desde la tarjeta SD, "
 "el tamaño adicional del archivo podría hacer que el firmware se ralentice."
+
+msgid "High precision G-code (experimental)"
+msgstr ""
+
+msgid ""
+"Write X, Y, Z, I and J with 4 decimal places instead of 3, and E with 6 "
+"instead of 5, to reduce rounding errors in the G-code. With relative E "
+"distances, the rounding error of each move is also carried over to the next "
+"one. Supports are removed after printing, so they keep the standard "
+"precision. This may help stabilize extrusion with small nozzles (e.g. 0.2 "
+"mm) and thin layers (e.g. 0.08 mm or less), where each move extrudes so "
+"little material that rounding errors matter most. The effect depends "
+"strongly on how well the rest of the settings are tuned and may be hard to "
+"notice unless the print profile is well calibrated. The G-code file becomes "
+"about 10 percent larger, which may slow down printers that parse G-code "
+"slowly."
+msgstr ""
 
 msgid "Infill combination"
 msgstr "Combinación de relleno"
@@ -21991,16 +23197,6 @@ msgstr ""
 
 msgid "Clumping detection G-code"
 msgstr "G-code de detección de aglomeraciones"
-
-msgid "Silent Mode"
-msgstr "Modo silencioso"
-
-msgid ""
-"Whether the machine supports silent mode in which machine uses lower "
-"acceleration to print more quietly"
-msgstr ""
-"¿Admite la máquina el modo silencioso, en el que utiliza una aceleración "
-"menor para imprimir de forma más silenciosa?"
 
 msgid "Emit limits to G-code"
 msgstr "Emitir límites al G-Code"
@@ -22652,13 +23848,13 @@ msgstr ""
 msgid "Detect overhang walls"
 msgstr "Detectar perímetros en voladizo"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
 "This detects the overhang percentage relative to line width and uses a "
-"different speed to print. For 100%% overhang, bridging speed is used."
+"different speed to print. For 100% overhang, bridging speed is used."
 msgstr ""
 "Detecta el porcentaje de voladizo en relación con el ancho de línea y "
-"utiliza diferentes velocidades para imprimir. Para el 100%% de voladizo, se "
+"utiliza diferentes velocidades para imprimir. Para el 100% de voladizo, se "
 "utiliza la velocidad de puente."
 
 # AI Translated
@@ -22980,6 +24176,9 @@ msgstr "Tipo de salto Z"
 msgid "Type of Z-hop."
 msgstr "Tipo de salto Z."
 
+msgid "Normal"
+msgstr "Normal"
+
 msgid "Slope"
 msgstr "Pendiente"
 
@@ -23177,16 +24376,17 @@ msgstr ""
 msgid "Seam gap"
 msgstr "Separación entre costuras"
 
+# AI Translated
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, "
 "the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the "
-"current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle "
+"diameter. The default value for this parameter is 10%."
 msgstr ""
 "Para reducir la visibilidad de la costura en una extrusión de bucle cerrado, "
 "el bucle se interrumpe y se acorta en una cantidad especificada.\n"
 "Esta cantidad puede especificarse en milímetros o como porcentaje del "
-"diámetro actual del extrusor. El valor por defecto de este parámetro es 10%."
+"diámetro de la boquilla. El valor por defecto de este parámetro es 10%."
 
 msgid "Scarf joint seam (beta)"
 msgstr "Unión de bufanda en costuras (beta)"
@@ -23488,9 +24688,6 @@ msgstr ""
 "\n"
 "Si se activa, la falda tendrá la misma altura que el objeto impreso más "
 "alto. En caso contrario, se utilizará la «Altura de falda»."
-
-msgid "Enabled"
-msgstr "Activado"
 
 msgid "Skirt type"
 msgstr "Tipo de falda"
@@ -24641,16 +25838,6 @@ msgstr ""
 "de la máquina. X es la inclinación típica del pórtico (la cinta avanza a lo "
 "largo de Y)."
 
-msgid "X"
-msgstr "X"
-
-msgid "Y"
-msgstr "Y"
-
-# AI Translated
-msgid "Z"
-msgstr "Z"
-
 # AI Translated
 msgid "Belt tilt angle"
 msgstr "Ángulo de inclinación de la cinta"
@@ -25160,6 +26347,23 @@ msgstr ""
 "es pequeña. 0 significa que este ajuste está desactivado y el grosor de la "
 "capa superior está absolutamente determinado por las capas de la cubierta "
 "superior."
+
+# AI Translated
+# Needs human review: New setting: how many layers behind a painted top surface take the painted color. 'Paint' = Color Painting ('pintura de color'); check the label is understandable.
+msgid "Top paint penetration layers"
+msgstr "Capas de penetración de la pintura superior"
+
+# AI Translated
+msgid ""
+"The number of layers, including the top surface layer, that take the color "
+"painted on a top surface. Set to 0 to use the top shell layers. A value "
+"larger than the top shell also colors the sparse infill below the painted "
+"area."
+msgstr ""
+"Número de capas, incluida la capa superficial superior, que toman el color "
+"pintado en una superficie superior. Establézcalo en 0 para usar las capas de "
+"la cubierta superior. Un valor mayor que el de la cubierta superior también "
+"colorea el relleno de baja densidad por debajo de la zona pintada."
 
 msgid "Separated infills"
 msgstr "Rellenos separados"
@@ -25999,6 +27203,22 @@ msgstr ""
 msgid "invalid value "
 msgstr "valor inválido "
 
+# AI Translated
+msgid "Invalid collision volume definition."
+msgstr "Definición de volumen de colisión no válida."
+
+# AI Translated
+msgid ""
+"A nozzle offset is required for every extruder when toolhead-relative "
+"collision volumes are enabled."
+msgstr ""
+"Se requiere un desplazamiento de boquilla para cada extrusor cuando se "
+"activan los volúmenes de colisión relativos al cabezal."
+
+# AI Translated
+msgid "Invalid per-extruder collision volume definition."
+msgstr "Definición de volumen de colisión por extrusor no válida."
+
 msgid "Invalid value when spiral vase mode is enabled: "
 msgstr "Valor no válido cuando está activado el modo jarrón espiral: "
 
@@ -26383,15 +27603,21 @@ msgstr "Directorio de salida"
 msgid "This is the output directory for exported files."
 msgstr "Directorio de salida para los archivos exportados."
 
+# AI Translated
 msgid "Export statistics"
-msgstr ""
+msgstr "Exportar estadísticas"
 
+# AI Translated
 msgid ""
 "Write the statistics of each sliced plate as JSON, as "
 "plate_N.statistics.json next to its G-code in the output directory and "
 "inside the 3MF of --export-3mf: print time, filament and feature totals, and "
 "the same per layer and per object."
 msgstr ""
+"Escribe las estadísticas de cada cama laminada como JSON, como "
+"plate_N.statistics.json junto a su G-code en el directorio de salida y "
+"dentro del 3MF de --export-3mf: tiempo de impresión, totales de filamento y "
+"por tipo de línea, y lo mismo por capa y por objeto."
 
 msgid "Debug level"
 msgstr "Nivel de depuración"
@@ -26764,11 +27990,13 @@ msgstr ""
 "Costo total del material desperdiciado en la torre de purga. Calculado a "
 "partir del valor filament_cost en Ajustes de Filamento."
 
-msgid "Wipe tower volume"
-msgstr "Volumen de torre de purga"
+# AI Translated
+msgid "Total wipe tower filament"
+msgstr "Filamento total de la torre de purga"
 
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "Volumen total de filamento extruido en la torre de purga."
+# AI Translated
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr "Longitud total de filamento usado en la torre de purga, en mm."
 
 msgid "Used filament"
 msgstr "Filamento usado"
@@ -27055,12 +28283,14 @@ msgstr "Número de capa"
 
 # AI Translated
 msgid ""
-"Index of the current layer. Zero-based (i.e. first layer is number 0), "
-"except in extrusion role change G-code, where it is one-based."
+"Index of the current layer. The index is zero-based (first layer has index "
+"0). Before the first layer starts, it is -1. In extrusion role change G-"
+"code, the index is one-based (first layer has index 1)."
 msgstr ""
-"Índice de la capa actual. Basado en cero (es decir, la primera capa es la "
-"número 0), excepto en el G-Code de cambio de rol de extrusión, donde está "
-"basado en uno."
+"Índice de la capa actual. El índice empieza en cero (la primera capa tiene "
+"el índice 0). Antes de que empiece la primera capa, vale -1. En el G-code de "
+"cambio de rol de extrusión, el índice empieza en uno (la primera capa tiene "
+"el índice 1)."
 
 msgid "Layer Z"
 msgstr "Z de capa"
@@ -27081,8 +28311,202 @@ msgstr "Altura de la última capa sobre la cama de impresión."
 msgid "Filament extruder ID"
 msgstr "ID extrusor filamento"
 
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "El ID del extrusor actual. El mismo que current_extruder."
+# AI Translated
+msgid ""
+"In filament start G-code, the index of the filament that is being loaded. In "
+"filament end G-code, the index of the filament that is being unloaded. The "
+"index is zero-based (first filament has index 0). At a tool change, filament "
+"end G-code gets the extruder index instead, unless the Type 1 wipe tower "
+"does the tool change. Machine end G-code gets the value from the last "
+"filament end G-code at the end of the print."
+msgstr ""
+"En el G-code de inicio de filamento, el índice del filamento que se está "
+"cargando. En el G-code de fin de filamento, el índice del filamento que se "
+"está descargando. El índice empieza en cero (el primer filamento tiene el "
+"índice 0). En un cambio de herramienta, el G-code de fin de filamento recibe "
+"en su lugar el índice del extrusor, salvo que el cambio de herramienta lo "
+"haga la torre de purga de tipo 1. El G-code de fin de máquina recibe el "
+"valor del último G-code de fin de filamento al final de la impresión."
+
+# AI Translated
+msgid "Current filament ID"
+msgstr "ID del filamento actual"
+
+# AI Translated
+msgid ""
+"Index of the currently active filament. The index is zero-based (first "
+"filament has index 0)."
+msgstr ""
+"Índice del filamento activo actualmente. El índice empieza en cero (el "
+"primer filamento tiene el índice 0)."
+
+# AI Translated
+msgid "Current extruder ID"
+msgstr "ID del extrusor actual"
+
+# AI Translated
+msgid ""
+"Index of the currently active physical extruder. The index is zero-based "
+"(first extruder has index 0)."
+msgstr ""
+"Índice del extrusor físico activo actualmente. El índice empieza en cero (el "
+"primer extrusor tiene el índice 0)."
+
+# AI Translated
+msgid "Current nozzle ID"
+msgstr "ID de la boquilla actual"
+
+# AI Translated
+msgid ""
+"Index of the currently active nozzle. The index is zero-based (first nozzle "
+"has index 0)."
+msgstr ""
+"Índice de la boquilla activa actualmente. El índice empieza en cero (la "
+"primera boquilla tiene el índice 0)."
+
+# AI Translated
+msgid "Nozzle diameters"
+msgstr "Diámetros de boquilla"
+
+# AI Translated
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr "Diámetros de boquilla indexados por ID de boquilla."
+
+# AI Translated
+msgid "Nozzle volume types"
+msgstr "Tipos de volumen de boquilla"
+
+# AI Translated
+#. TRN The quoted values are G-code identifiers; keep them in English.
+msgid ""
+"Nozzle volume types indexed by nozzle ID, such as \"Standard\" or \"High "
+"Flow\"."
+msgstr ""
+"Tipos de volumen de boquilla indexados por ID de boquilla, como \"Standard\" "
+"o \"High Flow\"."
+
+# AI Translated
+msgid "Retraction distance used when cutting filament."
+msgstr "Distancia de retracción usada al cortar el filamento."
+
+# AI Translated
+msgid "Long retraction when cut"
+msgstr "Retracción larga al cortar"
+
+# AI Translated
+msgid "Whether long retraction is used when cutting filament."
+msgstr "Indica si se usa una retracción larga al cortar el filamento."
+
+# AI Translated
+msgid "Most-used physical extruder ID"
+msgstr "ID del extrusor físico más usado"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder used most often on the current layer. The "
+"index is zero-based (first extruder has index 0)."
+msgstr ""
+"Índice del extrusor físico usado con más frecuencia en la capa actual. El "
+"índice empieza en cero (el primer extrusor tiene el índice 0)."
+
+# AI Translated
+msgid "Current Y acceleration limit"
+msgstr "Límite de aceleración Y actual"
+
+# AI Translated
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr ""
+"Límite actual de aceleración del eje Y tras el ajuste por la masa de la cama."
+
+# AI Translated
+msgid "Current accumulated mass"
+msgstr "Masa acumulada actual"
+
+# AI Translated
+msgid "Accumulated printed mass at the current layer."
+msgstr "Masa impresa acumulada hasta la capa actual."
+
+# AI Translated
+msgid "Previous layer mass"
+msgstr "Masa de la capa anterior"
+
+# AI Translated
+msgid "Printed mass of the previous layer."
+msgstr "Masa impresa de la capa anterior."
+
+# AI Translated
+msgid "Same as previous_layer_mass. Bambu Studio uses this name."
+msgstr "Igual que previous_layer_mass. Bambu Studio usa este nombre."
+
+# AI Translated
+msgid "Current physical extruder ID"
+msgstr "ID del extrusor físico actual"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder active for the current layer. The index is "
+"zero-based (first extruder has index 0)."
+msgstr ""
+"Índice del extrusor físico activo en la capa actual. El índice empieza en "
+"cero (el primer extrusor tiene el índice 0)."
+
+# AI Translated
+msgid "Timelapse position X"
+msgstr "Posición X del timelapse"
+
+# AI Translated
+msgid "Selected X position for timelapse capture."
+msgstr "Posición X seleccionada para la captura del timelapse."
+
+# AI Translated
+msgid "Timelapse position Y"
+msgstr "Posición Y del timelapse"
+
+# AI Translated
+msgid "Selected Y position for timelapse capture."
+msgstr "Posición Y seleccionada para la captura del timelapse."
+
+# AI Translated
+msgid "Has timelapse safe position"
+msgstr "Tiene posición segura de timelapse"
+
+# AI Translated
+msgid "Whether a safe timelapse position was found."
+msgstr "Indica si se encontró una posición segura para el timelapse."
+
+# AI Translated
+msgid "Timelapse inline photo"
+msgstr "Foto de timelapse en línea"
+
+# AI Translated
+msgid ""
+"Whether the photo is taken where the nozzle already is, without moving to a "
+"safe timelapse position first."
+msgstr ""
+"Indica si la foto se toma donde ya está la boquilla, sin desplazarse antes a "
+"una posición segura de timelapse."
+
+# AI Translated
+msgid "Farthest-point timelapse enabled"
+msgstr "Timelapse del punto más lejano activado"
+
+# AI Translated
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr ""
+"Indica si el posicionamiento del timelapse en el punto más lejano está "
+"activo."
+
+# AI Translated
+msgid "Clear path to X0"
+msgstr "Vía libre hasta X0"
+
+# AI Translated
+msgid ""
+"Whether the nozzle can move to X0 at the current height without hitting "
+"another printed object."
+msgstr ""
+"Indica si la boquilla puede desplazarse hasta X0 a la altura actual sin "
+"chocar con otro objeto impreso."
 
 # AI Translated
 msgid "Previous extruder"
@@ -27090,11 +28514,13 @@ msgstr "Extrusor anterior"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being unloaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being unloaded. The index is zero-based (first "
+"filament has index 0). At the start of the print, when no filament is loaded "
+"yet, it is -1."
 msgstr ""
-"Índice del extrusor que se está descargando. El índice es de base cero (el "
-"primer extrusor tiene el índice 0)."
+"Índice del filamento que se está descargando. El índice empieza en cero (el "
+"primer filamento tiene el índice 0). Al inicio de la impresión, cuando aún "
+"no hay ningún filamento cargado, vale -1."
 
 # AI Translated
 msgid "Next extruder"
@@ -27102,11 +28528,118 @@ msgstr "Extrusor siguiente"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being loaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being loaded. The index is zero-based (first "
+"filament has index 0)."
 msgstr ""
-"Índice del extrusor que se está cargando. El índice es de base cero (el "
-"primer extrusor tiene el índice 0)."
+"Índice del filamento que se está cargando. El índice empieza en cero (el "
+"primer filamento tiene el índice 0)."
+
+# AI Translated
+msgid "Current hotend"
+msgstr "Hotend actual"
+
+# AI Translated
+msgid ""
+"Hotend of the outgoing filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"Hotend del filamento saliente, expresado como su índice de extrusor, que "
+"empieza en cero. En las impresoras Bambu es -1, o el ID de la boquilla "
+"cuando un filamento pasa de una boquilla a otra entre capas."
+
+# AI Translated
+msgid "Next hotend"
+msgstr "Siguiente hotend"
+
+# AI Translated
+msgid ""
+"Hotend of the incoming filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"Hotend del filamento entrante, expresado como su índice de extrusor, que "
+"empieza en cero. En las impresoras Bambu es -1, o el ID de la boquilla "
+"cuando un filamento pasa de una boquilla a otra entre capas."
+
+# AI Translated
+msgid "Next nozzle ID"
+msgstr "ID de la siguiente boquilla"
+
+# AI Translated
+msgid ""
+"Index of the nozzle associated with the incoming filament. The index is zero-"
+"based (first nozzle has index 0)."
+msgstr ""
+"Índice de la boquilla asociada al filamento entrante. El índice empieza en "
+"cero (la primera boquilla tiene el índice 0)."
+
+# AI Translated
+msgid "Next filament ID"
+msgstr "ID del siguiente filamento"
+
+# AI Translated
+msgid ""
+"Index of the incoming filament. The index is zero-based (first filament has "
+"index 0)."
+msgstr ""
+"Índice del filamento entrante. El índice empieza en cero (el primer "
+"filamento tiene el índice 0)."
+
+# AI Translated
+msgid "Old extruder variant"
+msgstr "Variante del extrusor anterior"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the outgoing extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"Tipo de extrusor y tipo de volumen de boquilla del extrusor saliente, como "
+"\"Direct Drive High Flow\"."
+
+# AI Translated
+msgid "New extruder variant"
+msgstr "Variante del extrusor nuevo"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the incoming extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"Tipo de extrusor y tipo de volumen de boquilla del extrusor entrante, como "
+"\"Direct Drive High Flow\"."
+
+# AI Translated
+msgid "Filament nozzle-change retract length"
+msgstr "Longitud de retracción del filamento al cambiar de boquilla"
+
+# AI Translated
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr "Longitud de retracción al cambiar de boquilla del filamento saliente."
+
+# AI Translated
+msgid "New extruder retracted length"
+msgstr "Longitud retraída del extrusor nuevo"
+
+# AI Translated
+# Needs human review: 'Parked' = the incoming extruder was parked while another one printed; check 'se estacionó' reads right (the catalog writes "estaciona" in quotes for parked filament).
+msgid ""
+"Retraction length still applied to the incoming extruder from when it was "
+"parked."
+msgstr ""
+"Longitud de retracción que sigue aplicada al extrusor entrante desde que se "
+"estacionó."
+
+# AI Translated
+msgid "Outer wall volumetric speed"
+msgstr "Velocidad volumétrica del perímetro externo"
+
+# AI Translated
+msgid "Volumetric speed used for the outer wall."
+msgstr "Velocidad volumétrica usada para el perímetro externo."
 
 # AI Translated
 msgid "Relative e-axis"
@@ -27123,6 +28656,14 @@ msgstr "Número de cambios de herramienta"
 # AI Translated
 msgid "The number of toolchanges throughout the print."
 msgstr "El número de cambios de herramienta a lo largo de la impresión."
+
+# AI Translated
+msgid "Toolchange Z"
+msgstr "Z del cambio de herramienta"
+
+# AI Translated
+msgid "The Z position during the toolchange."
+msgstr "La posición Z durante el cambio de herramienta."
 
 # AI Translated
 msgid "Old retract length"
@@ -27203,16 +28744,16 @@ msgid "First flush volume"
 msgstr "Primer volumen de purga"
 
 # AI Translated
-msgid "The first flush volume."
-msgstr "El primer volumen de purga."
+msgid "First half of the planned purge length, in mm of filament."
+msgstr "Primera mitad de la longitud de purga prevista, en mm de filamento."
 
 # AI Translated
 msgid "Second flush volume"
 msgstr "Segundo volumen de purga"
 
 # AI Translated
-msgid "The second flush volume."
-msgstr "El segundo volumen de purga."
+msgid "Second half of the planned purge length, in mm of filament."
+msgstr "Segunda mitad de la longitud de purga prevista, en mm de filamento."
 
 # AI Translated
 msgid "Old filament e feedrate"
@@ -27309,6 +28850,131 @@ msgstr "Longitud de purga 4"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "La cuarta longitud de purga."
+
+# AI Translated
+msgid "Flush length"
+msgstr "Longitud de purga"
+
+# AI Translated
+msgid "Total flush length."
+msgstr "Longitud de purga total."
+
+# AI Translated
+msgid "Flush volumetric speeds"
+msgstr "Velocidades volumétricas de descarga"
+
+# AI Translated
+msgid "Flush volumetric speeds for each filament."
+msgstr "Velocidades volumétricas de descarga para cada filamento."
+
+# AI Translated
+msgid "Flush temperatures"
+msgstr "Temperaturas de descarga"
+
+# AI Translated
+msgid "Flush temperatures for each filament."
+msgstr "Temperaturas de descarga para cada filamento."
+
+# AI Translated
+msgid "Filament cooling before tower"
+msgstr "Refrigeración del filamento antes de la torre"
+
+# AI Translated
+# Needs human review: Variable label in the G-code placeholder list; 'wipe perimeter' is not in the glossary, check it matches the wipe area meant (the wipe tower border).
+msgid "Avoid wipe perimeter"
+msgstr "Evitar el perímetro de purga"
+
+# AI Translated
+# Needs human review: Pairs with 'Avoid wipe perimeter'; check the wipe perimeter term.
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr "Indica si los desplazamientos deben evitar el perímetro de purga."
+
+# AI Translated
+msgid "Wipe tower avoidance X"
+msgstr "X de evitación de la torre de purga"
+
+# AI Translated
+msgid ""
+"X position just beside the wipe tower that the nozzle moves to so it stays "
+"clear of the tower."
+msgstr ""
+"Posición X justo al lado de la torre de purga a la que se desplaza la "
+"boquilla para mantenerse alejada de la torre."
+
+# AI Translated
+msgid "Prime tower interface"
+msgstr "Interfaz de la torre de purga"
+
+# AI Translated
+msgid ""
+"Whether the current purge is for the prime tower interface layer (where "
+"different materials meet)."
+msgstr ""
+"Indica si la purga actual es para la capa de interfaz de la torre de purga "
+"(donde se unen diferentes materiales)."
+
+# AI Translated
+msgid ""
+"Print temperature for prime tower interface layer (where different materials "
+"meet)."
+msgstr ""
+"Temperatura de impresión para la capa de interfaz de la torre de purga "
+"(donde se unen diferentes materiales)."
+
+# AI Translated
+msgid "Wipe tower wait position X"
+msgstr "X de la posición de espera de la torre de purga"
+
+# AI Translated
+msgid ""
+"X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the "
+"tower edge."
+msgstr ""
+"Coordenada X de la posición de espera de la boquilla junto a la torre de "
+"purga, a 2 mm fuera del borde de la torre."
+
+# AI Translated
+msgid "Wipe tower wait position Y"
+msgstr "Y de la posición de espera de la torre de purga"
+
+# AI Translated
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr ""
+"Coordenada Y de la posición de espera de la boquilla junto a la torre de "
+"purga."
+
+# AI Translated
+msgid "Wipe tower wait position valid"
+msgstr "Posición de espera de la torre de purga válida"
+
+# AI Translated
+msgid ""
+"Whether the wait position is set, which is the case when the print has a "
+"wipe tower."
+msgstr ""
+"Indica si la posición de espera está definida, lo que ocurre cuando la "
+"impresión tiene una torre de purga."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_x. Bambu Studio uses this name."
+msgstr "Igual que wipe_tower_wait_pos_x. Bambu Studio usa este nombre."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_y. Bambu Studio uses this name."
+msgstr "Igual que wipe_tower_wait_pos_y. Bambu Studio usa este nombre."
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_valid. Bambu Studio uses this name."
+msgstr "Igual que wipe_tower_wait_pos_valid. Bambu Studio usa este nombre."
+
+# AI Translated
+msgid "Nozzle temperatures indexed by filament."
+msgstr "Temperaturas de la boquilla indexadas por filamento."
+
+# AI Translated
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr ""
+"Temperaturas de la boquilla de la primera capa indexadas por filamento."
 
 # AI Translated
 msgid "Extrusion role"
@@ -27548,6 +29214,14 @@ msgstr "Error al compilar la expresión regular"
 # AI Translated
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "No se puede aplicar una operación lógica a operandos no buleanos."
+
+# AI Translated
+msgid ""
+"This value is known only after the G-code is generated. It can be printed, "
+"but not used in a calculation or a comparison."
+msgstr ""
+"Este valor solo se conoce una vez generado el G-code. Se puede imprimir, "
+"pero no usar en un cálculo ni en una comparación."
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -29304,7 +30978,7 @@ msgstr "prueba de %s iniciada..."
 
 # AI Translated
 #, c-format, boost-format
-msgid "test %s ip resolved = %s"
+msgid "test %s IP resolved = %s"
 msgstr "prueba de %s: IP resuelta = %s"
 
 # AI Translated
@@ -29649,10 +31323,10 @@ msgid "Filament Created"
 msgstr "Filamento creado"
 
 msgid ""
-"Please go to filament setting to edit your presets if you need.\n"
+"Please go to filament settings to edit your presets if you need to.\n"
 "Please note that nozzle temperature, hot bed temperature, and maximum "
-"volumetric speed has a significant impact on printing quality. Please set "
-"them carefully."
+"volumetric speed each have a significant impact on printing quality. Please "
+"set them carefully."
 msgstr ""
 "Por favor, vaya a la configuración de filamento para editar sus perfiles si "
 "es necesario.\n"
@@ -29879,9 +31553,9 @@ msgstr ""
 "impresora.\n"
 "Haga clic en el botón Sincronizar situado arriba y reinicie la calibración."
 
-#, c-format, boost-format
-msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
-msgstr "Imprimir material %1s con una boquilla %2s puede dañar la boquilla."
+#, boost-format
+msgid "Printing %1% material with %2% nozzle may cause nozzle damage."
+msgstr "Imprimir material %1% con una boquilla %2% puede dañar la boquilla."
 
 msgid "Need select printer"
 msgstr "Necesario seleccionar impresora"
@@ -30871,14 +32545,6 @@ msgstr "¡Conectado a CrealityPrint correctamente!"
 msgid "Could not connect to CrealityPrint"
 msgstr "No se ha podido conectar a CrealityPrint"
 
-msgid ""
-"Connection timed out. Please check if the printer and computer network are "
-"functioning properly, and confirm that they are on the same network."
-msgstr ""
-"Se ha agotado el tiempo de espera de la conexión. Comprueba si la impresora "
-"y la red del ordenador funcionan correctamente y asegúrate de que estén "
-"conectadas a la misma red."
-
 msgid "The Hostname/IP/URL could not be parsed, please check it and try again."
 msgstr ""
 "No se ha podido analizar el nombre de host, la dirección IP o la URL. "
@@ -30890,6 +32556,14 @@ msgid ""
 msgstr ""
 "Se ha interrumpido la transferencia de archivos o datos. Comprueba la "
 "impresora y la red y vuelve a intentarlo."
+
+msgid ""
+"Connection timed out. Please check if the printer and computer network are "
+"functioning properly, and confirm that they are on the same network."
+msgstr ""
+"Se ha agotado el tiempo de espera de la conexión. Comprueba si la impresora "
+"y la red del ordenador funcionan correctamente y asegúrate de que estén "
+"conectadas a la misma red."
 
 msgid "The provided state is not correct."
 msgstr "El estado proporcionado no es correcto."
@@ -31139,9 +32813,6 @@ msgstr "Número de caras triangulares"
 
 msgid "Calculating, please wait..."
 msgstr "Calculando, por favor espere..."
-
-msgid "Save these settings as default"
-msgstr "Guardar estos ajustes como predeterminados"
 
 msgid ""
 "If enabled, the values above are stored as the defaults used for future STEP "
@@ -32279,10 +33950,6 @@ msgstr "(todas las aristas)"
 # AI Translated
 msgid "Placement (transform / mirror / mate)"
 msgstr "Colocación (transformar / reflejar / relación de posición)"
-
-# AI Translated
-msgid "Transform"
-msgstr "Transformar"
 
 # AI Translated
 msgid "Move and/or rotate an existing body"
@@ -35704,10 +37371,6 @@ msgstr ""
 "hagan"
 
 # AI Translated
-msgid "The size must be greater than zero"
-msgstr "El tamaño debe ser mayor que cero"
-
-# AI Translated
 msgid ""
 "Fillet: the radius overruns a leg, or the two lines do not meet at a corner"
 msgstr ""
@@ -35814,9 +37477,6 @@ msgstr "Repetir"
 # AI Translated
 msgid "Reference"
 msgstr "Referencia"
-
-msgid "Modify"
-msgstr "Modificar"
 
 # AI Translated
 msgctxt "Design"
@@ -36659,9 +38319,6 @@ msgstr "Acercar"
 
 msgid "Zoom out"
 msgstr "Alejar"
-
-msgid "Show/Hide 3Dconnexion devices settings dialog"
-msgstr "Mostrar/Ocultar el diálogo de ajustes de los dispositivos 3Dconnexion"
 
 # AI Translated
 msgid "Show/Hide wireframe"
@@ -37691,1232 +39348,1653 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
+# AI Translated
 msgid "Color Picker"
-msgstr ""
+msgstr "Selector de color"
 
+# AI Translated
 msgid "Basic Colors"
-msgstr ""
+msgstr "Colores básicos"
 
-msgid "Orca Palette"
-msgstr ""
-
+# AI Translated
+# Needs human review: Palette has no glossary rendering yet; check the term.
 #. TRN: Keep the brand name "Orca" unchanged; translate only the palette descriptor.
-msgid "RAL Classic"
-msgstr ""
+msgid "Orca Palette"
+msgstr "Paleta Orca"
 
+# AI Translated
 #. TRN: Keep the standard/brand name "RAL" unchanged.
+msgid "RAL Classic"
+msgstr "RAL Classic"
+
+# AI Translated
+# Needs human review: Gradient has no glossary rendering in this language; used the catalog's color-gradient term.
 msgid "Gradients"
-msgstr ""
+msgstr "Gradientes"
 
+# AI Translated
+msgctxt "Color picker"
 msgid "Solid"
-msgstr ""
+msgstr "Sólido"
 
+# AI Translated
 msgid "Gradient"
-msgstr ""
+msgstr "Gradiente"
 
+# AI Translated
 msgid "Gradient start"
-msgstr ""
+msgstr "Inicio del gradiente"
 
+# AI Translated
 msgid "Gradient end"
-msgstr ""
+msgstr "Fin del gradiente"
 
+# AI Translated
 msgid "Gradient color"
-msgstr ""
+msgstr "Color del gradiente"
 
+# AI Translated
 msgid "Add color"
-msgstr ""
+msgstr "Añadir color"
 
+# AI Translated
 msgid "Remove color"
-msgstr ""
+msgstr "Eliminar color"
 
+# AI Translated
 msgid "Saturation"
-msgstr ""
+msgstr "Saturación"
 
+# AI Translated
 msgid "Original color"
-msgstr ""
+msgstr "Color original"
 
+# AI Translated
 #. TRN: Clicking the current color preview adds it to the saved favorites.
 msgid "Save current color"
-msgstr ""
+msgstr "Guardar color actual"
 
+# AI Translated
+# Needs human review: Palette has no glossary rendering yet; check the term.
 msgid "Palettes"
+msgstr "Paletas"
+
+msgid "Pick color from screen"
 msgstr ""
 
+# AI Translated
 msgid "Search colors"
-msgstr ""
+msgstr "Buscar colores"
 
+# AI Translated
 msgid "Filter colors"
-msgstr ""
+msgstr "Filtrar colores"
 
+# AI Translated
 msgid "No matching colors"
-msgstr ""
+msgstr "No hay colores coincidentes"
 
+# AI Translated
 msgid "Hex color"
-msgstr ""
+msgstr "Color hexadecimal"
 
 # AI Translated
 msgid "Opacity"
 msgstr "Opacidad"
 
+# AI Translated
 msgid "Opacity percent"
-msgstr ""
+msgstr "Porcentaje de opacidad"
 
+# AI Translated
 msgid "Save color"
-msgstr ""
+msgstr "Guardar color"
 
+# AI Translated
 msgid "Enter a complete hexadecimal color"
-msgstr ""
+msgstr "Introduce un color hexadecimal completo"
 
+# AI Translated
 msgid ""
 "The current multi-color selection is kept until you choose a different color."
 msgstr ""
+"La selección multicolor actual se mantiene hasta que elijas otro color."
 
+# AI Translated
 #, c-format, boost-format
 msgid "Up to %d colors supported."
-msgstr ""
+msgstr "Se admiten hasta %d colores."
 
+# AI Translated
 msgid "Crimson"
-msgstr ""
+msgstr "Carmesí"
 
+# AI Translated
 msgid "Orange red"
-msgstr ""
+msgstr "Rojo anaranjado"
 
+# AI Translated
 msgid "Tomato"
-msgstr ""
+msgstr "Tomate"
 
+# AI Translated
 msgid "Orange"
-msgstr ""
+msgstr "Naranja"
 
+# AI Translated
 msgid "Dark orange"
-msgstr ""
+msgstr "Naranja oscuro"
 
+# AI Translated
 msgid "Gold"
-msgstr ""
+msgstr "Oro"
 
+# AI Translated
 msgid "Burly wood"
-msgstr ""
+msgstr "Madera clara"
 
+# AI Translated
 msgid "Bisque"
-msgstr ""
+msgstr "Bizcocho"
 
+# AI Translated
 msgid "Misty rose"
-msgstr ""
+msgstr "Rosa brumoso"
 
+# AI Translated
 msgid "Light yellow"
-msgstr ""
+msgstr "Amarillo claro"
 
+# AI Translated
 msgid "Lemon chiffon"
-msgstr ""
+msgstr "Gasa de limón"
 
+# AI Translated
 msgid "Beige"
-msgstr ""
+msgstr "Beige"
 
+# AI Translated
 msgid "Light golden rod yellow"
-msgstr ""
+msgstr "Amarillo vara de oro claro"
 
+# AI Translated
 msgid "Pale golden rod"
-msgstr ""
+msgstr "Vara de oro pálido"
 
+# AI Translated
 msgid "Khaki"
-msgstr ""
+msgstr "Caqui"
 
+# AI Translated
 msgid "Dark khaki"
-msgstr ""
+msgstr "Caqui oscuro"
 
+# AI Translated
 msgid "Peach puff"
-msgstr ""
+msgstr "Melocotón suave"
 
+# AI Translated
 msgid "Moccasin"
-msgstr ""
+msgstr "Mocasín"
 
+# AI Translated
 msgid "Papaya whip"
-msgstr ""
+msgstr "Crema de papaya"
 
+# AI Translated
 msgid "Blanched almond"
-msgstr ""
+msgstr "Almendra pelada"
 
+# AI Translated
 msgid "Antique white"
-msgstr ""
+msgstr "Blanco antiguo"
 
+# AI Translated
 msgid "Navajo white"
-msgstr ""
+msgstr "Blanco navajo"
 
+# AI Translated
 msgid "Wheat"
-msgstr ""
+msgstr "Trigo"
 
+# AI Translated
 msgid "Golden rod"
-msgstr ""
+msgstr "Vara de oro"
 
+# AI Translated
 msgid "Chocolate"
-msgstr ""
+msgstr "Chocolate"
 
+# AI Translated
 msgid "Peru"
-msgstr ""
+msgstr "Perú"
 
+# AI Translated
 msgid "Fire brick"
-msgstr ""
+msgstr "Ladrillo refractario"
 
+# AI Translated
 msgid "Sienna"
-msgstr ""
+msgstr "Siena"
 
+# AI Translated
 msgid "Saddle brown"
-msgstr ""
+msgstr "Marrón cuero"
 
+# AI Translated
 msgid "Brown"
-msgstr ""
+msgstr "Marrón"
 
+# AI Translated
 msgid "Rosy brown"
-msgstr ""
+msgstr "Marrón rosado"
 
+# AI Translated
 msgid "Salmon"
-msgstr ""
+msgstr "Salmón"
 
+# AI Translated
 msgid "Light salmon"
-msgstr ""
+msgstr "Salmón claro"
 
+# AI Translated
 msgid "Dark salmon"
-msgstr ""
+msgstr "Salmón oscuro"
 
+# AI Translated
 msgid "Sandy brown"
-msgstr ""
+msgstr "Marrón arenoso"
 
+# AI Translated
 msgid "Coral"
-msgstr ""
+msgstr "Coral"
 
+# AI Translated
 msgid "Light coral"
-msgstr ""
+msgstr "Coral claro"
 
+# AI Translated
 msgid "Indian red"
-msgstr ""
+msgstr "Rojo indio"
 
+# AI Translated
 msgid "Dark red"
-msgstr ""
+msgstr "Rojo oscuro"
 
+# AI Translated
 msgid "Maroon"
-msgstr ""
+msgstr "Granate"
 
+# AI Translated
 msgid "Green yellow"
-msgstr ""
+msgstr "Verde amarillento"
 
+# AI Translated
 msgid "Yellow green"
-msgstr ""
+msgstr "Amarillo verdoso"
 
+# AI Translated
 msgid "Chartreuse"
-msgstr ""
+msgstr "Chartreuse"
 
+# AI Translated
 msgid "Lawn green"
-msgstr ""
+msgstr "Verde césped"
 
+# AI Translated
 msgid "Lime green"
-msgstr ""
+msgstr "Verde lima"
 
+# AI Translated
 msgid "Spring green"
-msgstr ""
+msgstr "Verde primavera"
 
+# AI Translated
 msgid "Medium spring green"
-msgstr ""
+msgstr "Verde primavera medio"
 
+# AI Translated
 msgid "Lime"
-msgstr ""
+msgstr "Lima"
 
+# AI Translated
 msgid "Forest green"
-msgstr ""
+msgstr "Verde bosque"
 
+# AI Translated
 msgid "Dark green"
-msgstr ""
+msgstr "Verde oscuro"
 
+# AI Translated
 msgid "Olive drab"
-msgstr ""
+msgstr "Verde oliva mate"
 
+# AI Translated
 msgid "Olive"
-msgstr ""
+msgstr "Oliva"
 
+# AI Translated
 msgid "Dark olive green"
-msgstr ""
+msgstr "Verde oliva oscuro"
 
+# AI Translated
 msgid "Pale green"
-msgstr ""
+msgstr "Verde pálido"
 
+# AI Translated
 msgid "Light green"
-msgstr ""
+msgstr "Verde claro"
 
+# AI Translated
 msgid "Medium sea green"
-msgstr ""
+msgstr "Verde mar medio"
 
+# AI Translated
 msgid "Sea green"
-msgstr ""
+msgstr "Verde mar"
 
+# AI Translated
 msgid "Dark sea green"
-msgstr ""
+msgstr "Verde mar oscuro"
 
+# AI Translated
 msgid "Cadet blue"
-msgstr ""
+msgstr "Azul cadete"
 
+# AI Translated
 msgid "Medium aqua marine"
-msgstr ""
+msgstr "Aguamarina medio"
 
+# AI Translated
 msgid "Turquoise"
-msgstr ""
+msgstr "Turquesa"
 
+# AI Translated
 msgid "Medium turquoise"
-msgstr ""
+msgstr "Turquesa medio"
 
+# AI Translated
 msgid "Dark turquoise"
-msgstr ""
+msgstr "Turquesa oscuro"
 
+# AI Translated
 msgid "Pale turquoise"
-msgstr ""
+msgstr "Turquesa pálido"
 
+# AI Translated
 msgid "Aqua"
-msgstr ""
+msgstr "Agua"
 
+# AI Translated
 msgid "Light cyan"
-msgstr ""
+msgstr "Cian claro"
 
+# AI Translated
 msgid "Mint cream"
-msgstr ""
+msgstr "Crema de menta"
 
+# AI Translated
 msgid "Honey dew"
-msgstr ""
+msgstr "Rocío de miel"
 
+# AI Translated
 msgid "Aquamarine"
-msgstr ""
+msgstr "Aguamarina"
 
+# AI Translated
 msgid "Light sea green"
-msgstr ""
+msgstr "Verde mar claro"
 
+# AI Translated
 msgid "Dark cyan"
-msgstr ""
+msgstr "Cian oscuro"
 
+# AI Translated
 msgid "Teal"
-msgstr ""
+msgstr "Verde azulado"
 
+# AI Translated
 msgid "Dark slate gray"
-msgstr ""
+msgstr "Gris pizarra oscuro"
 
+# AI Translated
 msgid "Light slate gray"
-msgstr ""
+msgstr "Gris pizarra claro"
 
+# AI Translated
 msgid "Slate gray"
-msgstr ""
+msgstr "Gris pizarra"
 
+# AI Translated
 msgid "Deep sky blue"
-msgstr ""
+msgstr "Azul cielo intenso"
 
+# AI Translated
 msgid "Dodger Blue"
-msgstr ""
+msgstr "Azul Dodger"
 
+# AI Translated
 msgid "Sky blue"
-msgstr ""
+msgstr "Azul cielo"
 
+# AI Translated
 msgid "Light sky blue"
-msgstr ""
+msgstr "Azul cielo claro"
 
+# AI Translated
 msgid "Light blue"
-msgstr ""
+msgstr "Azul claro"
 
+# AI Translated
 msgid "Powder blue"
-msgstr ""
+msgstr "Azul polvo"
 
+# AI Translated
 msgid "Light steel blue"
-msgstr ""
+msgstr "Azul acero claro"
 
+# AI Translated
 msgid "Steel blue"
-msgstr ""
+msgstr "Azul acero"
 
+# AI Translated
 msgid "Cornflower blue"
-msgstr ""
+msgstr "Azul aciano"
 
+# AI Translated
 msgid "Royal blue"
-msgstr ""
+msgstr "Azul real"
 
+# AI Translated
 msgid "Medium blue"
-msgstr ""
+msgstr "Azul medio"
 
+# AI Translated
 msgid "Midnight blue"
-msgstr ""
+msgstr "Azul medianoche"
 
+# AI Translated
 msgid "Dark blue"
-msgstr ""
+msgstr "Azul oscuro"
 
+# AI Translated
 msgid "Navy"
-msgstr ""
+msgstr "Azul marino"
 
+# AI Translated
 msgid "Slate blue"
-msgstr ""
+msgstr "Azul pizarra"
 
+# AI Translated
 msgid "Dark slate blue"
-msgstr ""
+msgstr "Azul pizarra oscuro"
 
+# AI Translated
 msgid "Medium slate blue"
-msgstr ""
+msgstr "Azul pizarra medio"
 
+# AI Translated
 msgid "Blue violet"
-msgstr ""
+msgstr "Azul violeta"
 
+# AI Translated
 msgid "Indigo"
-msgstr ""
+msgstr "Índigo"
 
+# AI Translated
 msgid "Dark violet"
-msgstr ""
+msgstr "Violeta oscuro"
 
+# AI Translated
 msgid "Dark orchid"
-msgstr ""
+msgstr "Orquídea oscura"
 
+# AI Translated
 msgid "Medium orchid"
-msgstr ""
+msgstr "Orquídea media"
 
+# AI Translated
 msgid "Orchid"
-msgstr ""
+msgstr "Orquídea"
 
+# AI Translated
 msgid "Violet"
-msgstr ""
+msgstr "Violeta"
 
+# AI Translated
 msgid "Medium purple"
-msgstr ""
+msgstr "Púrpura medio"
 
+# AI Translated
 msgid "Purple"
-msgstr ""
+msgstr "Púrpura"
 
+# AI Translated
 msgid "Rebecca purple"
-msgstr ""
+msgstr "Púrpura Rebecca"
 
+# AI Translated
 msgid "Medium violet red"
-msgstr ""
+msgstr "Rojo violeta medio"
 
-msgid "PaleV violet red"
-msgstr ""
+# AI Translated
+msgid "Pale violet red"
+msgstr "Rojo violeta pálido"
 
+# AI Translated
 msgid "Deep pink"
-msgstr ""
+msgstr "Rosa intenso"
 
+# AI Translated
 msgid "Hot pink"
-msgstr ""
+msgstr "Rosa fuerte"
 
+# AI Translated
 msgid "Light pink"
-msgstr ""
+msgstr "Rosa claro"
 
+# AI Translated
 msgid "Pink"
-msgstr ""
+msgstr "Rosa"
 
+# AI Translated
 msgid "Plum"
-msgstr ""
+msgstr "Ciruela"
 
+# AI Translated
 msgid "Thistle"
-msgstr ""
+msgstr "Cardo"
 
+# AI Translated
 msgid "Fuchsia"
-msgstr ""
+msgstr "Fucsia"
 
+# AI Translated
 msgid "Dark magenta"
-msgstr ""
+msgstr "Magenta oscuro"
 
+# AI Translated
 msgid "Linen"
-msgstr ""
+msgstr "Lino"
 
+# AI Translated
 msgid "Old lace"
-msgstr ""
+msgstr "Encaje antiguo"
 
+# AI Translated
+# Needs human review: CSS color Seashell (a shell in the seafood sense); glossary Shell warning is a false match.
 msgid "Sea shell"
-msgstr ""
+msgstr "Concha marina"
 
+# AI Translated
 msgid "Ivory"
-msgstr ""
+msgstr "Marfil"
 
+# AI Translated
 msgid "Floral white"
-msgstr ""
+msgstr "Blanco floral"
 
+# AI Translated
 msgid "Lavender blush"
-msgstr ""
+msgstr "Rubor de lavanda"
 
+# AI Translated
 msgid "Ghost white"
-msgstr ""
+msgstr "Blanco fantasma"
 
+# AI Translated
 msgid "Alice blue"
-msgstr ""
+msgstr "Azul Alicia"
 
+# AI Translated
 msgid "Lavender"
-msgstr ""
+msgstr "Lavanda"
 
+# AI Translated
 msgid "White smoke"
-msgstr ""
+msgstr "Humo blanco"
 
+# AI Translated
 msgid "Gainsboro"
-msgstr ""
+msgstr "Gainsboro"
 
+# AI Translated
 msgid "Black"
-msgstr ""
+msgstr "Negro"
 
+# AI Translated
 msgid "Coral fire"
-msgstr ""
+msgstr "Fuego de coral"
 
+# AI Translated
 msgid "Sea anemone"
-msgstr ""
+msgstr "Anémona de mar"
 
+# AI Translated
 msgid "Deep abyss"
-msgstr ""
+msgstr "Abismo profundo"
 
+# AI Translated
 msgid "Lobster red"
-msgstr ""
+msgstr "Rojo langosta"
 
+# AI Translated
 msgid "Sandy clay"
-msgstr ""
+msgstr "Arcilla arenosa"
 
+# AI Translated
 msgid "Driftwood"
-msgstr ""
+msgstr "Madera a la deriva"
 
+# AI Translated
+# Needs human review: Ocean-themed color name; check the plant name.
 msgid "Sea buckthorn"
-msgstr ""
+msgstr "Espino amarillo"
 
+# AI Translated
 msgid "Sunset reef"
-msgstr ""
+msgstr "Arrecife al atardecer"
 
+# AI Translated
 msgid "Tiger coral"
-msgstr ""
+msgstr "Coral tigre"
 
+# AI Translated
 msgid "Pink coral"
-msgstr ""
+msgstr "Coral rosa"
 
+# AI Translated
 msgid "Seashell glow"
-msgstr ""
+msgstr "Resplandor de concha"
 
+# AI Translated
 msgid "Sand"
-msgstr ""
+msgstr "Arena"
 
+# AI Translated
 msgid "Golden kelp"
-msgstr ""
+msgstr "Alga dorada"
 
+# AI Translated
 msgid "Sunlit dune"
-msgstr ""
+msgstr "Duna iluminada"
 
+# AI Translated
 msgid "Amber nautilus"
-msgstr ""
+msgstr "Nautilo ámbar"
 
+# AI Translated
 msgid "Sea lemon"
-msgstr ""
+msgstr "Limón de mar"
 
+# AI Translated
 msgid "Pale starfish"
-msgstr ""
+msgstr "Estrella de mar pálida"
 
+# AI Translated
+# Needs human review: Ocean-themed color name; check the sense (tide vs spring season).
 msgid "Spring tide"
-msgstr ""
+msgstr "Marea viva"
 
+# AI Translated
 msgid "Lime algae"
-msgstr ""
+msgstr "Alga lima"
 
+# AI Translated
 msgid "Sea grass"
-msgstr ""
+msgstr "Hierba marina"
 
+# AI Translated
 msgid "Neon plankton"
-msgstr ""
+msgstr "Plancton neón"
 
+# AI Translated
 msgid "Kelp forest"
-msgstr ""
+msgstr "Bosque de algas"
 
+# AI Translated
 msgid "Emerald wave"
-msgstr ""
+msgstr "Ola esmeralda"
 
+# AI Translated
 msgid "Whale shadow"
-msgstr ""
+msgstr "Sombra de ballena"
 
+# AI Translated
 msgid "Sea turtle"
-msgstr ""
+msgstr "Tortuga marina"
 
+# AI Translated
 msgid "Lagoon"
-msgstr ""
+msgstr "Laguna"
 
+# AI Translated
 msgid "Tropical current"
-msgstr ""
+msgstr "Corriente tropical"
 
+# AI Translated
 msgid "Midnight trench"
-msgstr ""
+msgstr "Fosa de medianoche"
 
+# AI Translated
 msgid "Dark kelp"
-msgstr ""
+msgstr "Alga oscura"
 
+# AI Translated
 msgid "Crystal surf"
-msgstr ""
+msgstr "Oleaje cristalino"
 
+# AI Translated
 msgid "Turquoise bay"
-msgstr ""
+msgstr "Bahía turquesa"
 
+# AI Translated
 msgid "Sky over reef"
-msgstr ""
+msgstr "Cielo sobre el arrecife"
 
+# AI Translated
+# Needs human review: Ocean-themed color name; check it reads as a pale sky blue.
 msgid "Shallow sky"
-msgstr ""
+msgstr "Cielo somero"
 
-msgid "Electric bel"
-msgstr ""
+# AI Translated
+msgid "Electric blue"
+msgstr "Azul eléctrico"
 
+# AI Translated
 msgid "Dolphin"
-msgstr ""
+msgstr "Delfín"
 
+# AI Translated
 msgid "Ocean depths"
-msgstr ""
+msgstr "Profundidades oceánicas"
 
+# AI Translated
 msgid "Whale"
-msgstr ""
+msgstr "Ballena"
 
+# AI Translated
 msgid "Indigo abyss"
-msgstr ""
+msgstr "Abismo índigo"
 
+# AI Translated
 msgid "Sea urchin"
-msgstr ""
+msgstr "Erizo de mar"
 
+# AI Translated
 msgid "Lavender coral"
-msgstr ""
+msgstr "Coral lavanda"
 
+# AI Translated
 msgid "Violet tide"
-msgstr ""
+msgstr "Marea violeta"
 
+# AI Translated
 msgid "Deep sea orchid"
-msgstr ""
+msgstr "Orquídea de aguas profundas"
 
+# AI Translated
 msgid "Neon jelly"
-msgstr ""
+msgstr "Medusa neón"
 
+# AI Translated
 msgid "Fuchsia coral"
-msgstr ""
+msgstr "Coral fucsia"
 
+# AI Translated
 msgid "Pink jellyfish"
-msgstr ""
+msgstr "Medusa rosa"
 
+# AI Translated
 msgid "Foam"
-msgstr ""
+msgstr "Espuma"
 
+# AI Translated
 msgid "Seashell white"
-msgstr ""
+msgstr "Blanco concha"
 
+# AI Translated
 msgid "Pebble gray"
-msgstr ""
+msgstr "Gris guijarro"
 
+# AI Translated
 msgid "Storm cloud"
-msgstr ""
+msgstr "Nube de tormenta"
 
+# AI Translated
 msgid "Ink black"
-msgstr ""
+msgstr "Negro tinta"
 
+# AI Translated
 msgid "Green beige"
-msgstr ""
+msgstr "Beige verdoso"
 
+# AI Translated
 msgid "Sand yellow"
-msgstr ""
+msgstr "Amarillo arena"
 
+# AI Translated
 msgid "Signal yellow"
-msgstr ""
+msgstr "Amarillo señales"
 
+# AI Translated
 msgid "Golden yellow"
-msgstr ""
+msgstr "Amarillo dorado"
 
+# AI Translated
 msgid "Honey yellow"
-msgstr ""
+msgstr "Amarillo miel"
 
+# AI Translated
 msgid "Maize yellow"
-msgstr ""
+msgstr "Amarillo maíz"
 
-msgid "Dalmatian yellow"
-msgstr ""
+# AI Translated
+msgid "Daffodil yellow"
+msgstr "Amarillo narciso"
 
+# AI Translated
 msgid "Brown beige"
-msgstr ""
+msgstr "Beige amarronado"
 
+# AI Translated
 msgid "Lemon yellow"
-msgstr ""
+msgstr "Amarillo limón"
 
+# AI Translated
 msgid "Oyster white"
-msgstr ""
+msgstr "Blanco ostra"
 
+# AI Translated
 msgid "Light ivory"
-msgstr ""
+msgstr "Marfil claro"
 
+# AI Translated
 msgid "Zinc yellow"
-msgstr ""
+msgstr "Amarillo zinc"
 
+# AI Translated
 msgid "Grey beige"
-msgstr ""
+msgstr "Beige grisáceo"
 
+# AI Translated
 msgid "Olive yellow"
-msgstr ""
+msgstr "Amarillo oliva"
 
+# AI Translated
 msgid "Rape yellow"
-msgstr ""
+msgstr "Amarillo colza"
 
+# AI Translated
 msgid "Traffic yellow"
-msgstr ""
+msgstr "Amarillo tráfico"
 
+# AI Translated
 msgid "Ochre yellow"
-msgstr ""
+msgstr "Amarillo ocre"
 
+# AI Translated
+# Needs human review: RAL name; unusual source name, translated by its parts.
 msgid "Traffic orange yellow"
-msgstr ""
+msgstr "Amarillo anaranjado tráfico"
 
+# AI Translated
 msgid "Curry"
-msgstr ""
+msgstr "Curry"
 
+# AI Translated
 msgid "Melon yellow"
-msgstr ""
+msgstr "Amarillo melón"
 
+# AI Translated
 msgid "Broom yellow"
-msgstr ""
+msgstr "Amarillo retama"
 
+# AI Translated
 msgid "Dahlia yellow"
-msgstr ""
+msgstr "Amarillo dalia"
 
+# AI Translated
 msgid "Pastel yellow"
-msgstr ""
+msgstr "Amarillo pastel"
 
+# AI Translated
 msgid "Pearl beige"
-msgstr ""
+msgstr "Beige perlado"
 
+# AI Translated
 msgid "Pearl gold"
-msgstr ""
+msgstr "Oro perlado"
 
+# AI Translated
 msgid "Sun yellow"
-msgstr ""
+msgstr "Amarillo sol"
 
+# AI Translated
 msgid "Yellow orange"
-msgstr ""
+msgstr "Naranja amarillento"
 
+# AI Translated
 msgid "Deep orange"
-msgstr ""
+msgstr "Naranja intenso"
 
+# AI Translated
 msgid "Vermilion"
-msgstr ""
+msgstr "Bermellón"
 
+# AI Translated
 msgid "Pearl orange"
-msgstr ""
+msgstr "Naranja perlado"
 
+# AI Translated
 msgid "Pure orange"
-msgstr ""
+msgstr "Naranja puro"
 
+# AI Translated
 msgid "Luminous orange"
-msgstr ""
+msgstr "Naranja brillante"
 
+# AI Translated
 msgid "Luminous bright orange"
-msgstr ""
+msgstr "Naranja claro brillante"
 
+# AI Translated
 msgid "Bright red orange"
-msgstr ""
+msgstr "Rojo anaranjado claro"
 
+# AI Translated
 msgid "Traffic orange"
-msgstr ""
+msgstr "Naranja tráfico"
 
+# AI Translated
 msgid "Signal orange"
-msgstr ""
+msgstr "Naranja señales"
 
+# AI Translated
 msgid "Salmon orange"
-msgstr ""
+msgstr "Naranja salmón"
 
+# AI Translated
 msgid "Pearl pink"
-msgstr ""
+msgstr "Rosa perlado"
 
+# AI Translated
 msgid "Copper orange"
-msgstr ""
+msgstr "Naranja cobre"
 
+# AI Translated
 msgid "Signal brown"
-msgstr ""
+msgstr "Marrón señales"
 
+# AI Translated
+# Needs human review: RAL name; 'Fir orange' looks odd in the source, translated literally.
 msgid "Fir orange"
-msgstr ""
+msgstr "Naranja abeto"
 
+# AI Translated
 msgid "Signal red"
-msgstr ""
+msgstr "Rojo señales"
 
+# AI Translated
 msgid "Luminous red"
-msgstr ""
+msgstr "Rojo brillante"
 
+# AI Translated
 msgid "Carmine red"
-msgstr ""
+msgstr "Rojo carmín"
 
+# AI Translated
 msgid "Pearl carmine red"
-msgstr ""
+msgstr "Rojo carmín perlado"
 
+# AI Translated
 msgid "Pure red"
-msgstr ""
+msgstr "Rojo puro"
 
+# AI Translated
 msgid "Luminous deep red"
-msgstr ""
+msgstr "Rojo intenso brillante"
 
+# AI Translated
 msgid "Currant red"
-msgstr ""
+msgstr "Rojo grosella"
 
+# AI Translated
 msgid "Pearl ruby red"
-msgstr ""
+msgstr "Rojo rubí perlado"
 
+# AI Translated
 msgid "Fire red"
-msgstr ""
+msgstr "Rojo fuego"
 
+# AI Translated
 msgid "Ruby red"
-msgstr ""
+msgstr "Rojo rubí"
 
+# AI Translated
 msgid "Purple red"
-msgstr ""
+msgstr "Rojo púrpura"
 
+# AI Translated
 msgid "Wine red"
-msgstr ""
+msgstr "Rojo vino"
 
+# AI Translated
 msgid "Black red"
-msgstr ""
+msgstr "Rojo negruzco"
 
+# AI Translated
 msgid "Oxide red"
-msgstr ""
+msgstr "Rojo óxido"
 
+# AI Translated
 msgid "Brown red"
-msgstr ""
+msgstr "Rojo amarronado"
 
+# AI Translated
 msgid "Pine red"
-msgstr ""
+msgstr "Rojo pino"
 
+# AI Translated
 msgid "Tomato red"
-msgstr ""
+msgstr "Rojo tomate"
 
+# AI Translated
 msgid "Antique pink"
-msgstr ""
+msgstr "Rosa antiguo"
 
+# AI Translated
 msgid "Coral red"
-msgstr ""
+msgstr "Rojo coral"
 
+# AI Translated
 msgid "Rose"
-msgstr ""
+msgstr "Rosa"
 
+# AI Translated
 msgid "Strawberry red"
-msgstr ""
+msgstr "Rojo fresa"
 
+# AI Translated
 msgid "Traffic red"
-msgstr ""
+msgstr "Rojo tráfico"
 
+# AI Translated
 msgid "Salmon pink"
-msgstr ""
+msgstr "Rosa salmón"
 
+# AI Translated
 msgid "Luminous rose"
-msgstr ""
+msgstr "Rosa brillante"
 
+# AI Translated
 msgid "Luminous bright red"
-msgstr ""
+msgstr "Rojo claro brillante"
 
+# AI Translated
 msgid "Raspberry red"
-msgstr ""
+msgstr "Rojo frambuesa"
 
+# AI Translated
 msgid "Orient red"
-msgstr ""
+msgstr "Rojo oriente"
 
+# AI Translated
 msgid "Pearl ruby"
-msgstr ""
+msgstr "Rubí perlado"
 
+# AI Translated
 msgid "Red purple"
-msgstr ""
+msgstr "Púrpura rojizo"
 
+# AI Translated
 msgid "Red violet"
-msgstr ""
+msgstr "Violeta rojizo"
 
+# AI Translated
 msgid "Heather violet"
-msgstr ""
+msgstr "Violeta brezo"
 
+# AI Translated
 msgid "Bordeaux violet"
-msgstr ""
+msgstr "Violeta burdeos"
 
+# AI Translated
 msgid "Mahogany"
-msgstr ""
+msgstr "Caoba"
 
+# AI Translated
 msgid "Grey purple"
-msgstr ""
+msgstr "Púrpura grisáceo"
 
+# AI Translated
 msgid "Signal violet"
-msgstr ""
+msgstr "Violeta señales"
 
+# AI Translated
 msgid "Fir green"
-msgstr ""
+msgstr "Verde abeto"
 
+# AI Translated
 msgid "Sabine grey"
-msgstr ""
+msgstr "Gris sabino"
 
+# AI Translated
 msgid "Pearl violet"
-msgstr ""
+msgstr "Violeta perlado"
 
+# AI Translated
 msgid "Pearl blackberry"
-msgstr ""
+msgstr "Mora perlada"
 
+# AI Translated
 msgid "Green blue"
-msgstr ""
+msgstr "Azul verdoso"
 
+# AI Translated
 msgid "Ultramarine blue"
-msgstr ""
+msgstr "Azul ultramar"
 
+# AI Translated
 msgid "Sapphire blue"
-msgstr ""
+msgstr "Azul zafiro"
 
+# AI Translated
 msgid "Black blue"
-msgstr ""
+msgstr "Azul negruzco"
 
+# AI Translated
 msgid "Signal blue"
-msgstr ""
+msgstr "Azul señales"
 
+# AI Translated
 msgid "Brilliant blue"
-msgstr ""
+msgstr "Azul brillante"
 
+# AI Translated
 msgid "Grey blue"
-msgstr ""
+msgstr "Azul grisáceo"
 
+# AI Translated
 msgid "Azure blue"
-msgstr ""
+msgstr "Azul azur"
 
+# AI Translated
 msgid "Gentian blue"
-msgstr ""
+msgstr "Azul genciana"
 
+# AI Translated
 msgid "Cobalt blue"
-msgstr ""
+msgstr "Azul cobalto"
 
+# AI Translated
 msgid "Pigeon blue"
-msgstr ""
+msgstr "Azul paloma"
 
+# AI Translated
 msgid "Traffic blue"
-msgstr ""
+msgstr "Azul tráfico"
 
+# AI Translated
 msgid "Turquoise blue"
-msgstr ""
+msgstr "Azul turquesa"
 
-msgid "Capsanthin violet"
-msgstr ""
+# AI Translated
+msgid "Capri blue"
+msgstr "Azul Capri"
 
+# AI Translated
 msgid "Ocean blue"
-msgstr ""
+msgstr "Azul océano"
 
+# AI Translated
 msgid "Water blue"
-msgstr ""
+msgstr "Azul agua"
 
+# AI Translated
 msgid "Night blue"
-msgstr ""
+msgstr "Azul noche"
 
+# AI Translated
 msgid "Distant blue"
-msgstr ""
+msgstr "Azul lejano"
 
+# AI Translated
 msgid "Pastel blue"
-msgstr ""
+msgstr "Azul pastel"
 
+# AI Translated
 msgid "Pearl gentian blue"
-msgstr ""
+msgstr "Azul genciana perlado"
 
+# AI Translated
 msgid "Pearl midnight blue"
-msgstr ""
+msgstr "Azul medianoche perlado"
 
+# AI Translated
 msgid "Patina green"
-msgstr ""
+msgstr "Verde pátina"
 
+# AI Translated
 msgid "Emerald green"
-msgstr ""
+msgstr "Verde esmeralda"
 
+# AI Translated
 msgid "Leaf green"
-msgstr ""
+msgstr "Verde hoja"
 
+# AI Translated
 msgid "Olive green"
-msgstr ""
+msgstr "Verde oliva"
 
+# AI Translated
 msgid "Blue green"
-msgstr ""
+msgstr "Verde azulado"
 
+# AI Translated
 msgid "Moss green"
-msgstr ""
+msgstr "Verde musgo"
 
+# AI Translated
 msgid "Grey olive"
-msgstr ""
+msgstr "Oliva grisáceo"
 
+# AI Translated
 msgid "Pine green"
-msgstr ""
+msgstr "Verde pino"
 
+# AI Translated
 msgid "Pine brown"
-msgstr ""
+msgstr "Marrón pino"
 
+# AI Translated
 msgid "Grass green"
-msgstr ""
+msgstr "Verde hierba"
 
+# AI Translated
 msgid "Reseda green"
-msgstr ""
+msgstr "Verde reseda"
 
+# AI Translated
 msgid "Brown green"
-msgstr ""
+msgstr "Verde amarronado"
 
+# AI Translated
 msgid "Reed green"
-msgstr ""
+msgstr "Verde caña"
 
+# AI Translated
 msgid "Black green"
-msgstr ""
+msgstr "Verde negruzco"
 
+# AI Translated
 msgid "Turquoise green"
-msgstr ""
+msgstr "Verde turquesa"
 
+# AI Translated
 msgid "May green"
-msgstr ""
+msgstr "Verde mayo"
 
+# AI Translated
 msgid "Chrome oxide green"
-msgstr ""
+msgstr "Verde óxido de cromo"
 
+# AI Translated
 msgid "Traffic green"
-msgstr ""
+msgstr "Verde tráfico"
 
+# AI Translated
 msgid "Fern green"
-msgstr ""
+msgstr "Verde helecho"
 
+# AI Translated
 msgid "Opal green"
-msgstr ""
+msgstr "Verde ópalo"
 
+# AI Translated
 msgid "Mint green"
-msgstr ""
+msgstr "Verde menta"
 
+# AI Translated
 msgid "Bronze green"
-msgstr ""
+msgstr "Verde bronce"
 
+# AI Translated
 msgid "Pearl green"
-msgstr ""
+msgstr "Verde perlado"
 
+# AI Translated
+# Needs human review: RAL name (Saxe blue-like turquoise); check the rendering.
 msgid "Sax turquoise"
-msgstr ""
+msgstr "Turquesa sajón"
 
+# AI Translated
 msgid "Pearl turquoise"
-msgstr ""
+msgstr "Turquesa perlado"
 
+# AI Translated
 msgid "Pearl jade"
-msgstr ""
+msgstr "Jade perlado"
 
+# AI Translated
 msgid "Pure green"
-msgstr ""
+msgstr "Verde puro"
 
+# AI Translated
 msgid "Luminous green"
-msgstr ""
+msgstr "Verde brillante"
 
+# AI Translated
 msgid "Squirrel grey"
-msgstr ""
+msgstr "Gris ardilla"
 
+# AI Translated
 msgid "Silver grey"
-msgstr ""
+msgstr "Gris plata"
 
-msgid "Olivestone"
-msgstr ""
+# AI Translated
+msgid "Olive grey"
+msgstr "Gris oliva"
 
+# AI Translated
 msgid "Moss grey"
-msgstr ""
+msgstr "Gris musgo"
 
+# AI Translated
 msgid "Signal grey"
-msgstr ""
+msgstr "Gris señales"
 
+# AI Translated
 msgid "Mouse grey"
-msgstr ""
+msgstr "Gris ratón"
 
+# AI Translated
 msgid "Beige grey"
-msgstr ""
+msgstr "Gris beige"
 
+# AI Translated
 msgid "Khaki grey"
-msgstr ""
+msgstr "Gris caqui"
 
+# AI Translated
 msgid "Green grey"
-msgstr ""
+msgstr "Gris verdoso"
 
+# AI Translated
 msgid "Tarpaulin grey"
-msgstr ""
+msgstr "Gris lona"
 
+# AI Translated
 msgid "Iron grey"
-msgstr ""
+msgstr "Gris hierro"
 
+# AI Translated
 msgid "Basalt grey"
-msgstr ""
+msgstr "Gris basalto"
 
+# AI Translated
 msgid "Brown grey"
-msgstr ""
+msgstr "Gris amarronado"
 
+# AI Translated
 msgid "Slate grey"
-msgstr ""
+msgstr "Gris pizarra"
 
+# AI Translated
 msgid "Anthracite grey"
-msgstr ""
+msgstr "Gris antracita"
 
+# AI Translated
 msgid "Light grey"
-msgstr ""
+msgstr "Gris claro"
 
+# AI Translated
 msgid "Umber grey"
-msgstr ""
+msgstr "Gris sombra"
 
+# AI Translated
 msgid "Concrete grey"
-msgstr ""
+msgstr "Gris hormigón"
 
+# AI Translated
 msgid "Graphite grey"
-msgstr ""
+msgstr "Gris grafito"
 
+# AI Translated
 msgid "Granite grey"
-msgstr ""
+msgstr "Gris granito"
 
+# AI Translated
 msgid "Stone grey"
-msgstr ""
+msgstr "Gris piedra"
 
+# AI Translated
 msgid "Pebble grey"
-msgstr ""
+msgstr "Gris guijarro"
 
+# AI Translated
 msgid "Cement grey"
-msgstr ""
+msgstr "Gris cemento"
 
+# AI Translated
 msgid "Yellow grey"
-msgstr ""
+msgstr "Gris amarillento"
 
+# AI Translated
 msgid "Platinum grey"
-msgstr ""
+msgstr "Gris platino"
 
+# AI Translated
 msgid "Dusty grey"
-msgstr ""
+msgstr "Gris polvo"
 
+# AI Translated
 msgid "Agate grey"
-msgstr ""
+msgstr "Gris ágata"
 
+# AI Translated
 msgid "Quartz grey"
-msgstr ""
+msgstr "Gris cuarzo"
 
+# AI Translated
 msgid "Window grey"
-msgstr ""
+msgstr "Gris ventana"
 
+# AI Translated
 msgid "Traffic grey A"
-msgstr ""
+msgstr "Gris tráfico A"
 
+# AI Translated
 msgid "Traffic grey B"
-msgstr ""
+msgstr "Gris tráfico B"
 
+# AI Translated
 msgid "Silk grey"
-msgstr ""
+msgstr "Gris seda"
 
+# AI Translated
 msgid "Telegrey 1"
-msgstr ""
+msgstr "Telegris 1"
 
+# AI Translated
 msgid "Telegrey 2"
-msgstr ""
+msgstr "Telegris 2"
 
+# AI Translated
 msgid "Telegrey 4"
-msgstr ""
+msgstr "Telegris 4"
 
+# AI Translated
 msgid "Pearl mouse grey"
-msgstr ""
+msgstr "Gris ratón perlado"
 
+# AI Translated
 msgid "Green brown"
-msgstr ""
+msgstr "Marrón verdoso"
 
+# AI Translated
 msgid "Ochre brown"
-msgstr ""
+msgstr "Marrón ocre"
 
+# AI Translated
 msgid "Clay brown"
-msgstr ""
+msgstr "Marrón arcilla"
 
+# AI Translated
 msgid "Copper brown"
-msgstr ""
+msgstr "Marrón cobre"
 
+# AI Translated
 msgid "Chocolate brown"
-msgstr ""
+msgstr "Marrón chocolate"
 
+# AI Translated
 msgid "Olive brown"
-msgstr ""
+msgstr "Marrón oliva"
 
+# AI Translated
 msgid "Nut brown"
-msgstr ""
+msgstr "Marrón nuez"
 
+# AI Translated
 msgid "Red brown"
-msgstr ""
+msgstr "Marrón rojizo"
 
+# AI Translated
 msgid "Sepia brown"
-msgstr ""
+msgstr "Marrón sepia"
 
+# AI Translated
 msgid "Chestnut brown"
-msgstr ""
+msgstr "Marrón castaño"
 
+# AI Translated
 msgid "Mahogany brown"
-msgstr ""
+msgstr "Marrón caoba"
 
+# AI Translated
 msgid "Grey brown"
-msgstr ""
+msgstr "Marrón grisáceo"
 
+# AI Translated
 msgid "Pearl copper"
-msgstr ""
+msgstr "Cobre perlado"
 
+# AI Translated
 msgid "Beige brown"
-msgstr ""
+msgstr "Marrón beige"
 
+# AI Translated
 msgid "Pearl mocha brown"
-msgstr ""
+msgstr "Marrón moca perlado"
 
+# AI Translated
 msgid "Earth brown"
-msgstr ""
+msgstr "Marrón tierra"
 
+# AI Translated
 msgid "Pearl brown"
-msgstr ""
+msgstr "Marrón perlado"
 
+# AI Translated
 msgid "Cream"
-msgstr ""
+msgstr "Crema"
 
+# AI Translated
 msgid "Grey white"
-msgstr ""
+msgstr "Blanco grisáceo"
 
+# AI Translated
 msgid "Signal white"
-msgstr ""
+msgstr "Blanco señales"
 
+# AI Translated
 msgid "Signal black"
-msgstr ""
+msgstr "Negro señales"
 
+# AI Translated
 msgid "Jet black"
-msgstr ""
+msgstr "Negro azabache"
 
+# AI Translated
 msgid "White aluminium"
-msgstr ""
+msgstr "Aluminio blanco"
 
+# AI Translated
 msgid "Grey aluminium"
-msgstr ""
+msgstr "Aluminio gris"
 
+# AI Translated
 msgid "Pure white"
-msgstr ""
+msgstr "Blanco puro"
 
+# AI Translated
 msgid "Graphite black"
-msgstr ""
+msgstr "Negro grafito"
 
+# AI Translated
 msgid "Traffic white"
-msgstr ""
+msgstr "Blanco tráfico"
 
+# AI Translated
 msgid "Traffic black"
-msgstr ""
+msgstr "Negro tráfico"
 
+# AI Translated
 msgid "Papyrus white"
-msgstr ""
+msgstr "Blanco papiro"
 
+# AI Translated
 msgid "Pearl light grey"
-msgstr ""
+msgstr "Gris claro perlado"
 
+# AI Translated
 msgid "Metal: Silver"
-msgstr ""
+msgstr "Metal: Plata"
 
+# AI Translated
 msgid "Metal: Brass"
-msgstr ""
+msgstr "Metal: Latón"
 
+# AI Translated
 msgid "Metal: Gold"
-msgstr ""
+msgstr "Metal: Oro"
 
+# AI Translated
 msgid "Metal: Copper"
-msgstr ""
+msgstr "Metal: Cobre"
 
+# AI Translated
 msgid "Metal: Bronze"
-msgstr ""
+msgstr "Metal: Bronce"
 
+# AI Translated
 msgid "Nature: Pearl"
-msgstr ""
+msgstr "Naturaleza: Perla"
 
+# AI Translated
 msgid "Nature: Rainbow"
-msgstr ""
+msgstr "Naturaleza: Arcoíris"
 
+# AI Translated
 msgid "Nature: Clear Sky"
-msgstr ""
+msgstr "Naturaleza: Cielo despejado"
 
+# AI Translated
 msgid "Nature: Sunset"
-msgstr ""
+msgstr "Naturaleza: Atardecer"
 
+# AI Translated
 msgid "Wood: Dark"
-msgstr ""
+msgstr "Madera: Oscura"
 
+# AI Translated
 msgid "Wood: Medium"
-msgstr ""
+msgstr "Madera: Media"
 
+# AI Translated
 msgid "Wood: Light"
-msgstr ""
+msgstr "Madera: Clara"
 
 # AI Translated
 msgid "Alternate nozzles:"
@@ -39060,10 +41138,6 @@ msgstr "Forma y tamaño de la cama"
 # AI Translated
 msgid "Set the shape of your printer's bed."
 msgstr "Establezca la forma de la cama de su impresora."
-
-# AI Translated
-msgid "Invalid numeric input."
-msgstr "Entrada numérica no válida."
 
 # AI Translated
 msgid "Filament and Nozzle Diameters"
@@ -39461,14 +41535,17 @@ msgstr "Mis texturas"
 msgid "No textures found."
 msgstr "No se encontraron texturas."
 
+# AI Translated
 msgid "Texture libraries"
-msgstr ""
+msgstr "Bibliotecas de texturas"
 
+# AI Translated
 msgid "Explore more texture libraries"
-msgstr ""
+msgstr "Explorar más bibliotecas de texturas"
 
+# AI Translated
 msgid "Opens OrcaCloud in the Home page to browse for plugins."
-msgstr ""
+msgstr "Abre OrcaCloud en la página de inicio para explorar plugins."
 
 # AI Translated
 msgid ""
@@ -39968,6 +42045,10 @@ msgid "Texture layers"
 msgstr "Capas de textura"
 
 # AI Translated
+msgid "Add layer"
+msgstr "Añadir capa"
+
+# AI Translated
 msgid ""
 "Drag onto another layer to reorder. The first layer sits on the bare "
 "surface; each one after it adds its relief on top of the ones before."
@@ -40042,11 +42123,15 @@ msgstr ""
 "patrón más a menudo y hace su detalle más fino; con Mosaico desactivado, es "
 "el tamaño de la copia única."
 
+# AI Translated
+# Needs human review: Short label, role only visible in the app; check it reads right on its control.
 msgid "Larger"
-msgstr ""
+msgstr "Más grande"
 
+# AI Translated
+# Needs human review: Short label, role only visible in the app; check it reads right on its control.
 msgid "Smaller"
-msgstr ""
+msgstr "Más pequeño"
 
 # AI Translated
 msgid ""
@@ -40175,11 +42260,15 @@ msgstr ""
 "eligen a partir de los colores de la textura y solo se crean los que el "
 "empotrado usa realmente."
 
+# AI Translated
+# Needs human review: Short label, role only visible in the app; check it reads right on its control.
 msgid "Few"
-msgstr ""
+msgstr "Pocos"
 
+# AI Translated
+# Needs human review: Short label, role only visible in the app; check it reads right on its control.
 msgid "Many"
-msgstr ""
+msgstr "Muchos"
 
 #. TRN The %2% part of "%1% printable colors %2%"; %1% is the number of filaments.
 #, boost-format
@@ -40506,16 +42595,6 @@ msgstr "Menos ajustes"
 msgid "More settings"
 msgstr "Más ajustes"
 
-#, boost-format
-msgid "All %1% layer used"
-msgid_plural "All %1% layers used"
-msgstr[0] ""
-msgstr[1] ""
-
-# AI Translated
-msgid "Add layer"
-msgstr "Añadir capa"
-
 # AI Translated
 msgid "Subdivision"
 msgstr "Subdivisión"
@@ -40707,11 +42786,15 @@ msgstr ""
 "El desplazamiento funciona mejor en una malla uniforme; esto es lo que la "
 "crea a partir de una importación irregular."
 
+# AI Translated
+# Needs human review: Short label, role only visible in the app; check it reads right on its control.
 msgid "Before"
-msgstr ""
+msgstr "Antes"
 
+# AI Translated
+# Needs human review: Short label, role only visible in the app; check it reads right on its control.
 msgid "After"
-msgstr ""
+msgstr "Después"
 
 # AI Translated
 msgid "Keep sharp edges"
@@ -40862,31 +42945,6 @@ msgstr ""
 "nada antes, pero todavía no produce colores."
 
 # AI Translated
-#. TRN Slider value: %d is the triangle budget in thousands
-msgid "Budget"
-msgstr "Presupuesto"
-
-# AI Translated
-#, c-format, boost-format
-msgid "%d k (auto)"
-msgstr "%d k (auto)"
-
-# AI Translated
-msgid ""
-"How many thousand triangles this bake may spend on the area you painted. "
-"Relief already baked into the rest of the model is kept on top of it, so a "
-"second bake somewhere else gets the same budget as the first. Raise it if "
-"the warning below Resolution says the detail will not fit; 0 keeps every "
-"triangle the refinement produced, however many that is."
-msgstr ""
-"Cuántos miles de triángulos puede gastar este empotrado en el área que ha "
-"pintado. El relieve ya empotrado en el resto del modelo se conserva aparte, "
-"así que un segundo empotrado en otro sitio obtiene el mismo presupuesto que "
-"el primero. Auméntelo si el aviso bajo Resolución indica que el detalle no "
-"cabrá; 0 conserva todos los triángulos que produjo el refinado, sean cuantos "
-"sean."
-
-# AI Translated
 msgid "Align mesh to texture edges"
 msgstr "Alinear la malla con los bordes de la textura"
 
@@ -40919,6 +42977,31 @@ msgstr ""
 "original del modelo, antes de que el desplazamiento los muestree. Las tres "
 "esquinas de una astilla caen en tres partes no relacionadas de la textura, "
 "lo que hace que el relieve se vea dentado."
+
+# AI Translated
+#. TRN Slider value: %d is the triangle budget in thousands
+msgid "Budget"
+msgstr "Presupuesto"
+
+# AI Translated
+#, c-format, boost-format
+msgid "%d k (auto)"
+msgstr "%d k (auto)"
+
+# AI Translated
+msgid ""
+"How many thousand triangles this bake may spend on the area you painted. "
+"Relief already baked into the rest of the model is kept on top of it, so a "
+"second bake somewhere else gets the same budget as the first. Raise it if "
+"the warning below Resolution says the detail will not fit; 0 keeps every "
+"triangle the refinement produced, however many that is."
+msgstr ""
+"Cuántos miles de triángulos puede gastar este empotrado en el área que ha "
+"pintado. El relieve ya empotrado en el resto del modelo se conserva aparte, "
+"así que un segundo empotrado en otro sitio obtiene el mismo presupuesto que "
+"el primero. Auméntelo si el aviso bajo Resolución indica que el detalle no "
+"cabrá; 0 conserva todos los triángulos que produjo el refinado, sean cuantos "
+"sean."
 
 # AI Translated
 msgid ""
@@ -42600,9 +44683,6 @@ msgstr "Crear nuevo proyecto"
 msgid "Recently opened"
 msgstr "Abiertos recientemente"
 
-msgid "Open Containing Folder"
-msgstr "Abrir carpeta contenedora"
-
 # AI Translated
 msgid "Forward"
 msgstr "Adelante"
@@ -42750,19 +44830,6 @@ msgstr "nombre desconocido"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"El plugin \"%s\" solicita acceso de lectura al sistema de archivos en:\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "Permisos del plugin"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -42812,23 +44879,24 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the "
+"listed hosts. It does not restrict ports. A URL with a path, query or port "
+"is covered only for that exact URL."
 msgstr ""
-"El plugin \"%s\" solicita hacer una petición HTTP a:\n"
-"%s"
 
-# AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not "
+"restrict ports."
 msgstr ""
-"El plugin \"%s\" solicita abrir una conexión de red con:\n"
-"%s"
 
 #, c-format, boost-format
 msgid ""
@@ -42865,6 +44933,10 @@ msgstr ""
 # AI Translated
 msgid "Plugin permission request"
 msgstr "Solicitud de permiso del plugin"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "Permisos del plugin"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -42912,8 +44984,9 @@ msgstr "Script"
 msgid "Slicing Pipeline"
 msgstr "Flujo de laminado"
 
+# AI Translated
 msgid "Resource Texture"
-msgstr ""
+msgstr "Textura de recursos"
 
 # AI Translated
 msgid "The plugin's configuration UI was empty. Showing the default editor."
@@ -43082,23 +45155,30 @@ msgid "Plugin directory does not contain a .py or .whl entry file"
 msgstr ""
 "El directorio del plugin no contiene ningún archivo de entrada .py ni .whl"
 
+# AI Translated
 msgid "Resource texture directory is not set"
-msgstr ""
+msgstr "El directorio de texturas de recursos no está establecido"
 
+# AI Translated
 msgid "Resource texture directory could not be resolved"
-msgstr ""
+msgstr "No se pudo resolver el directorio de texturas de recursos"
 
+# AI Translated
 msgid "Resource texture path is not a directory"
-msgstr ""
+msgstr "La ruta de texturas de recursos no es un directorio"
 
+# AI Translated
 msgid "Plugin folder could not be resolved"
-msgstr ""
+msgstr "No se pudo resolver la carpeta del plugin"
 
+# AI Translated
 msgid "Resource texture directory is outside the plugin folder"
 msgstr ""
+"El directorio de texturas de recursos está fuera de la carpeta del plugin"
 
+# AI Translated
 msgid "Resource texture directory could not be read"
-msgstr ""
+msgstr "No se pudo leer el directorio de texturas de recursos"
 
 # AI Translated
 #, boost-format
@@ -43322,9 +45402,16 @@ msgstr ""
 "eliminar los archivos locales."
 
 # AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr ""
-"Solicitud de permiso de lectura del sistema de archivos del plugin denegada"
+msgid "Python interpreter is shutting down."
+msgstr "El intérprete de Python se está cerrando."
+
+# AI Translated
+msgid "Plugin system is shutting down."
+msgstr "El sistema de plugins se está cerrando."
+
+# AI Translated
+msgid "Plugin permission request denied"
+msgstr "Solicitud de permiso del plugin denegada"
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -43589,7 +45676,7 @@ msgstr "Error al cargar el archivo de configuración \"%1%\": %2%"
 # AI Translated
 #. TRN %1% is the application name.
 #, boost-format
-msgid "Not a gcode file generated by %1%."
+msgid "Not a G-code file generated by %1%."
 msgstr "No es un archivo G-code generado por %1%."
 
 # AI Translated
@@ -43724,7 +45811,7 @@ msgstr ""
 "un script de posprocesamiento: %2%"
 
 # AI Translated
-msgid "Post-processor can't find exported gcode file"
+msgid "Post-processor can't find exported G-code file"
 msgstr "El posprocesador no encuentra el archivo G-code exportado"
 
 # AI Translated
@@ -44170,6 +46257,355 @@ msgstr ""
 "¿Sabías que al imprimir materiales propensos a la deformación como el ABS, "
 "aumentar adecuadamente la temperatura de la cama térmica puede reducir la "
 "probabilidad de deformaciones?"
+
+# AI Translated
+#~ msgid "Not valid state please report reproduction steps on github"
+#~ msgstr "Estado no válido; informe en GitHub de los pasos para reproducirlo"
+
+# AI Translated
+#~ msgid "Missing svg file in embossed shape"
+#~ msgstr "Falta el archivo SVG en la forma en relieve"
+
+# AI Translated
+#~ msgid "Missing data of svg file"
+#~ msgstr "Faltan los datos del archivo SVG"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "Reflejar a lo largo del eje X"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "Reflejar a lo largo del eje Y"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "Reflejar a lo largo del eje Z"
+
+#~ msgid "Split the selected object"
+#~ msgstr "Dividir el objeto seleccionado"
+
+#~ msgid "Subdivision mesh"
+#~ msgstr "Subdivisión de malla"
+
+#~ msgid "(Lost color)"
+#~ msgstr "(Color perdido)"
+
+#~ msgid "Storage needs to be inserted before sending to printer."
+#~ msgstr ""
+#~ "Es necesario insertar el almacenamiento antes de enviar a la impresora."
+
+#~ msgid "Processing G-Code from previous file…"
+#~ msgstr "Procesando el G-Code del archivo anterior…"
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgstr[0] ""
+#~ "El filamento %s está colocado en el %s, pero la ruta de G-code generada "
+#~ "excede el rango imprimible del %s."
+#~ msgstr[1] ""
+#~ "El filamento %s está colocado en el %s, pero la ruta de G-code generada "
+#~ "excede el rango imprimible del %s."
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgstr[0] ""
+#~ "El filamento %s está colocado en el %s, pero la ruta de G-code generada "
+#~ "excede la altura imprimible del %s."
+#~ msgstr[1] ""
+#~ "El filamento %s está colocado en el %s, pero la ruta de G-code generada "
+#~ "excede la altura imprimible del %s."
+
+# AI Translated
+#~ msgid "Measure how fast the 3D scene renders in Prepare and Preview"
+#~ msgstr ""
+#~ "Mide la velocidad de renderizado de la escena 3D en Preparar y "
+#~ "Previsualización"
+
+#~ msgid "Storage needs to be inserted before printing."
+#~ msgstr ""
+#~ "Es necesario insertar un dispositivo de almacenamiento antes de imprimir."
+
+#~ msgid "Storage needs to be inserted before send to printer."
+#~ msgstr ""
+#~ "Es necesario insertar el almacenamiento antes de enviarlo a la impresora."
+
+# AI Translated
+#~ msgid "Available anywhere in the window, even while typing in a text field."
+#~ msgstr ""
+#~ "Disponible en cualquier parte de la ventana, incluso mientras se escribe "
+#~ "en un campo de texto."
+
+# AI Translated
+#~ msgid "Global shortcuts also apply while typing."
+#~ msgstr "Los atajos globales también se aplican mientras se escribe."
+
+#~ msgid ""
+#~ "Unprintable area in XY plane. For example, X1 Series printers use the "
+#~ "front left corner to cut filament during filament change. The area is "
+#~ "expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr ""
+#~ "Área excluida de la impresión en el plano XY. Por ejemplo, las impresoras "
+#~ "de la serie X1 utilizan la esquina delantera izquierda para cortar el "
+#~ "filamento durante el cambio de filamento. El área la delimita un polígono "
+#~ "unido por puntos en el siguiente formato: \"XxY, XxY, ...\""
+
+#, no-c-format, no-boost-format
+#~ msgid ""
+#~ "Enter the shrinkage percentage that the filament will get after cooling "
+#~ "(94% if you measure 94mm instead of 100mm). The part will be scaled in XY "
+#~ "to compensate. For multi-material prints, ensure filament shrinkage "
+#~ "matches across all used filaments\n"
+#~ "Be sure to allow enough space between objects, as this compensation is "
+#~ "done after the checks."
+#~ msgstr ""
+#~ "Introduzca el factor de contracción que sufrirá el filamento después de "
+#~ "enfriarse ('94% i' si mide 94mm en lugar de 100mm). La pieza se escalará "
+#~ "en X-Y para compensar. Sólo se tiene en cuenta el filamento utilizado "
+#~ "para el perímetro exterior.\n"
+#~ "Asegúrese de dejar suficiente espacio entre los objetos, ya que esta "
+#~ "compensación se realiza después de las comprobaciones."
+
+#~ msgid "Temperature drop before entering filament tower"
+#~ msgstr "Descenso de temperatura antes de entrar en la torre de filamentos"
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
+#~ msgstr ""
+#~ "El max_accel_to_decel de Klipper se ajustará a este %% de aceleración."
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "Fuzzy skin generation mode. Works only with Arachne!\n"
+#~ "Displacement: Сlassic mode when the pattern is formed by shifting the "
+#~ "nozzle sideways from the original path.\n"
+#~ "Extrusion: The mode when the pattern formed by the amount of extruded "
+#~ "plastic. This is the fast and straight algorithm without unnecessary "
+#~ "nozzle shake that gives a smooth pattern. But it is more useful for "
+#~ "forming loose walls in the entire they array.\n"
+#~ "Combined: Joint mode [Displacement] + [Extrusion]. The appearance of the "
+#~ "walls is similar to [Displacement] Mode, but it leaves no pores between "
+#~ "the perimeters.\n"
+#~ "\n"
+#~ "Attention! The [Extrusion] and [Combined] modes works only the "
+#~ "fuzzy_skin_thickness parameter not more than the thickness of printed "
+#~ "loop. At the same time, the width of the extrusion for a particular layer "
+#~ "should also not be below a certain level. It is usually equal 15-25%% of "
+#~ "a layer height. Therefore, the maximum fuzzy skin thickness with a "
+#~ "perimeter width of 0.4 mm and a layer height of 0.2 mm will be 0.4-"
+#~ "(0.2*0.25)=±0.35mm! If you enter a higher parameter than this, the error "
+#~ "Flow::spacing() will displayed, and the model will not be sliced. You can "
+#~ "choose this number until this error is repeated."
+#~ msgstr ""
+#~ "Modo de generación de piel difusa. ¡Funciona solo con Arachne!\n"
+#~ "Desplazamiento: Modo clásico en el que el patrón se forma desplazando la "
+#~ "boquilla lateralmente respecto a la trayectoria original.\n"
+#~ "Extrusión: Modo en que el patrón se forma por la cantidad de material "
+#~ "extruido. Es un algoritmo rápido y directo sin vibraciones innecesarias "
+#~ "de la boquilla que produce un patrón suave. Sin embargo, resulta más útil "
+#~ "para formar paredes sueltas en toda la matriz.\n"
+#~ "Combinado: Modo conjunto [Desplazamiento] + [Extrusión]. La apariencia de "
+#~ "las paredes es similar al modo [Desplazamiento], pero no deja poros entre "
+#~ "los perímetros.\n"
+#~ "\n"
+#~ "¡Atención! Los modos [Extrusión] y [Combinado] funcionan solo si el "
+#~ "parámetro fuzzy_skin_thickness no supera el espesor del perímetro "
+#~ "impreso. Al mismo tiempo, el ancho de extrusión para una capa determinada "
+#~ "tampoco debe estar por debajo de un cierto umbral, que suele ser el 15–"
+#~ "25%% de la altura de capa. Por lo tanto, el espesor máximo de piel difusa "
+#~ "con un ancho de perímetro de 0,4 mm y una altura de capa de 0,2 mm será "
+#~ "0,4-(0,2*0,25)=±0,35 mm. Si introduce un valor mayor, se mostrará el "
+#~ "error Flow::spacing() y el modelo no se podrá laminar. Puede ajustar este "
+#~ "valor hasta que deje de producirse el error."
+
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting "
+#~ "tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. "
+#~ "Klipper does not benefit from arc commands as these are split again into "
+#~ "line segments by the firmware. This results in a reduction in surface "
+#~ "quality as line segments are converted to arcs by the slicer and then "
+#~ "back to line segments by the firmware."
+#~ msgstr ""
+#~ "Habilite esta opción para obtener un archivo de G-Code con los "
+#~ "movimientos G2 y G3. La tolerancia de ajuste es la misma que la "
+#~ "resolución.\n"
+#~ "\n"
+#~ "Nota: Para impresoras con firmware Klipper, se recomienda desactivar esta "
+#~ "opción. Klipper no se beneficia de los comandos de arco ya que estos son "
+#~ "divididos de nuevo en segmentos de línea por el firmware. El resultado es "
+#~ "una reducción de la calidad de la superficie, ya que los segmentos de "
+#~ "línea son convertidos en arcos por el laminador y de nuevo en segmentos "
+#~ "de línea por el firmware."
+
+#~ msgid ""
+#~ "This option is enabled if machine support controlling chamber "
+#~ "temperature\n"
+#~ "G-code command: M141 S(0-255)"
+#~ msgstr ""
+#~ "Esta opción se activa si la máquina admite el control de la temperatura "
+#~ "de la cámara"
+
+#~ msgid ""
+#~ "Enable this if printer support air filtration\n"
+#~ "G-code command: M106 P3 S(0-255)"
+#~ msgstr ""
+#~ "Active esta opción si la impresora admite filtración de aire\n"
+#~ "Comando G-Code: M106 P3 S(0-255)"
+
+#~ msgid "Enable this if printer support cooling filter"
+#~ msgstr ""
+#~ "Activar esta opción si la impresora soporta el filtro de enfriamiento"
+
+#~ msgid "Silent Mode"
+#~ msgstr "Modo silencioso"
+
+#~ msgid ""
+#~ "Whether the machine supports silent mode in which machine uses lower "
+#~ "acceleration to print more quietly"
+#~ msgstr ""
+#~ "¿Admite la máquina el modo silencioso, en el que utiliza una aceleración "
+#~ "menor para imprimir de forma más silenciosa?"
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "This detects the overhang percentage relative to line width and uses a "
+#~ "different speed to print. For 100%% overhang, bridging speed is used."
+#~ msgstr ""
+#~ "Detecta el porcentaje de voladizo en relación con el ancho de línea y "
+#~ "utiliza diferentes velocidades para imprimir. Para el 100%% de voladizo, "
+#~ "se utiliza la velocidad de puente."
+
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, "
+#~ "the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the "
+#~ "current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "Para reducir la visibilidad de la costura en una extrusión de bucle "
+#~ "cerrado, el bucle se interrumpe y se acorta en una cantidad "
+#~ "especificada.\n"
+#~ "Esta cantidad puede especificarse en milímetros o como porcentaje del "
+#~ "diámetro actual del extrusor. El valor por defecto de este parámetro es "
+#~ "10%."
+
+#~ msgid "Wipe tower volume"
+#~ msgstr "Volumen de torre de purga"
+
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "Volumen total de filamento extruido en la torre de purga."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the current layer. Zero-based (i.e. first layer is number 0), "
+#~ "except in extrusion role change G-code, where it is one-based."
+#~ msgstr ""
+#~ "Índice de la capa actual. Basado en cero (es decir, la primera capa es la "
+#~ "número 0), excepto en el G-Code de cambio de rol de extrusión, donde está "
+#~ "basado en uno."
+
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "El ID del extrusor actual. El mismo que current_extruder."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being unloaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "Índice del extrusor que se está descargando. El índice es de base cero "
+#~ "(el primer extrusor tiene el índice 0)."
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being loaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "Índice del extrusor que se está cargando. El índice es de base cero (el "
+#~ "primer extrusor tiene el índice 0)."
+
+# AI Translated
+#~ msgid "The first flush volume."
+#~ msgstr "El primer volumen de purga."
+
+# AI Translated
+#~ msgid "The second flush volume."
+#~ msgstr "El segundo volumen de purga."
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid "test %s ip resolved = %s"
+#~ msgstr "prueba de %s: IP resuelta = %s"
+
+#~ msgid ""
+#~ "Please go to filament setting to edit your presets if you need.\n"
+#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
+#~ "volumetric speed has a significant impact on printing quality. Please set "
+#~ "them carefully."
+#~ msgstr ""
+#~ "Por favor, vaya a la configuración de filamento para editar sus perfiles "
+#~ "si es necesario.\n"
+#~ "Tenga en cuenta que la temperatura de la boquilla, la temperatura de la "
+#~ "cama caliente y la velocidad volumétrica máxima tienen un impacto "
+#~ "significativo en la calidad de impresión. Por favor, configúrelos con "
+#~ "cuidado."
+
+#, c-format, boost-format
+#~ msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
+#~ msgstr "Imprimir material %1s con una boquilla %2s puede dañar la boquilla."
+
+#~ msgid "Open Containing Folder"
+#~ msgstr "Abrir carpeta contenedora"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "El plugin \"%s\" solicita acceso de lectura al sistema de archivos en:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "El plugin \"%s\" solicita hacer una petición HTTP a:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "El plugin \"%s\" solicita abrir una conexión de red con:\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr ""
+#~ "Solicitud de permiso de lectura del sistema de archivos del plugin "
+#~ "denegada"
+
+# AI Translated
+#, boost-format
+#~ msgid "Not a gcode file generated by %1%."
+#~ msgstr "No es un archivo G-code generado por %1%."
+
+# AI Translated
+#~ msgid "Post-processor can't find exported gcode file"
+#~ msgstr "El posprocesador no encuentra el archivo G-code exportado"
 
 #~ msgid "The configuration may be generated by a newer version of OrcaSlicer."
 #~ msgstr ""
@@ -44730,19 +47166,6 @@ msgstr ""
 #~ msgstr "Prueba OrcaSlicer(GitHub):"
 
 #~ msgid ""
-#~ "Please go to filament settings to edit your presets if you need to.\n"
-#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
-#~ "volumetric speed each have a significant impact on printing quality. "
-#~ "Please set them carefully."
-#~ msgstr ""
-#~ "Por favor, vaya a la configuración de filamento para editar sus perfiles "
-#~ "si es necesario.\n"
-#~ "Tenga en cuenta que la temperatura de la boquilla, la temperatura de la "
-#~ "cama caliente y la velocidad volumétrica máxima tienen un impacto "
-#~ "significativo en la calidad de impresión. Por favor, configúrelos con "
-#~ "cuidado."
-
-#~ msgid ""
 #~ "\n"
 #~ "\n"
 #~ "Orca has detected that your user presets synchronization function is not "
@@ -45141,20 +47564,11 @@ msgstr ""
 #~ msgid "Along X axis"
 #~ msgstr "A lo largo del eje X"
 
-#~ msgid "Mirror along the X axis"
-#~ msgstr "Reflejar a lo largo del eje X"
-
 #~ msgid "Along Y axis"
 #~ msgstr "A lo largo del eje Y"
 
-#~ msgid "Mirror along the Y axis"
-#~ msgstr "Reflejar a lo largo del eje Y"
-
 #~ msgid "Along Z axis"
 #~ msgstr "A lo largo del eje Z"
-
-#~ msgid "Mirror along the Z axis"
-#~ msgstr "Reflejar a lo largo del eje Z"
 
 #~ msgid "To objects"
 #~ msgstr "En objetos"

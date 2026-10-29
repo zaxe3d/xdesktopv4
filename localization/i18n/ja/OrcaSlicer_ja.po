@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Orca Slicer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-29 22:06+0300\n"
+"POT-Creation-Date: 2026-10-29 23:22+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -885,18 +885,21 @@ msgstr "選択"
 msgid "Plate"
 msgstr "プレート"
 
+# AI Translated
 msgid "Distribute"
-msgstr ""
+msgstr "均等配置"
 
 # AI Translated
 msgid "Coordinate system used for transform actions."
 msgstr "変換操作に使用する座標系です。"
 
+# AI Translated
 msgid "Reference for alignment"
-msgstr ""
+msgstr "整列の基準"
 
+# AI Translated
 msgid "Select at least 3 parts or objects"
-msgstr ""
+msgstr "パーツまたはオブジェクトを3つ以上選択してください"
 
 # AI Translated
 msgid "Align left"
@@ -949,8 +952,9 @@ msgstr "上下に均等配置"
 msgid "Drop"
 msgstr "ドロップ"
 
+# AI Translated
 msgid "Move the selection along Z so that its lowest point touches the bed."
-msgstr ""
+msgstr "最下点がベッドに接するように、選択をZ方向に移動します。"
 
 # AI Translated
 msgid "Absolute"
@@ -1373,6 +1377,9 @@ msgstr "ミラーリング設定"
 msgid "Embossed text"
 msgstr "エンボステキスト"
 
+msgid "Default font"
+msgstr "デフォルトフォント"
+
 msgid "Enter emboss gizmo"
 msgstr "エンボスギズモに入る"
 
@@ -1415,9 +1422,6 @@ msgstr "モダン"
 
 msgid "First font"
 msgstr "最初のフォント"
-
-msgid "Default font"
-msgstr "デフォルトフォント"
 
 msgid "Advanced"
 msgstr "高度な設定"
@@ -1867,7 +1871,7 @@ msgstr ""
 "形状 (%1%) のストロークにサポートされていないものが含まれています： %2%."
 
 # AI Translated
-msgid "Not valid state please report reproduction steps on github"
+msgid "Not valid state please report reproduction steps on GitHub"
 msgstr "無効な状態です。再現手順をGitHubで報告してください"
 
 # AI Translated
@@ -1875,11 +1879,11 @@ msgid "No embossed file"
 msgstr "エンボス対象のファイルがありません"
 
 # AI Translated
-msgid "Missing svg file in embossed shape"
+msgid "Missing SVG file in embossed shape"
 msgstr "エンボス形状にSVGファイルがありません"
 
 # AI Translated
-msgid "Missing data of svg file"
+msgid "Missing data of SVG file"
 msgstr "SVGファイルのデータがありません"
 
 msgid "Face the camera"
@@ -2209,17 +2213,22 @@ msgstr "組み立てギズモを開始"
 msgid "Leaving Assembly gizmo"
 msgstr "組み立てギズモを終了"
 
+# AI Translated
 msgid "Parts of a cut object cannot be moved"
-msgstr ""
+msgstr "切断されたオブジェクトのパーツは移動できません"
 
+# AI Translated
 msgid "Aligning to the plate is available in X and Y only"
-msgstr ""
+msgstr "プレートへの整列はXとYのみ可能です"
 
+# AI Translated
 msgid "Turn off Auto-Drop for the selected objects to move them in Z"
 msgstr ""
+"Z方向に移動するには、選択したオブジェクトの自動ドロップをオフにしてください"
 
+# AI Translated
 msgid "All selected objects must be on the same plate"
-msgstr ""
+msgstr "選択したオブジェクトはすべて同じプレート上にある必要があります"
 
 msgid "Shift+"
 msgstr "Shift+"
@@ -3288,9 +3297,6 @@ msgstr "このオブジェクトにフラッシュする"
 msgid "Flush into objects' support"
 msgstr "サポートにフラッシュ"
 
-msgid "Edit in Parameter Table"
-msgstr "パラメータテーブルで編集"
-
 msgid "Convert from Inches"
 msgstr "インチから変換"
 
@@ -3313,32 +3319,55 @@ msgstr "選択したオブジェクトを一つオブジェクトに組み立て
 msgid "Assemble the selected objects into an object with single part"
 msgstr "選択したオブジェクトを一つオブジェクトに組み立てます（単パーツ）"
 
+msgid "Along X Axis"
+msgstr "X軸方向"
+
+msgid "Mirror along the X axis"
+msgstr "反転 (X軸)"
+
+msgid "Along Y Axis"
+msgstr "Y軸方向"
+
+msgid "Mirror along the Y axis"
+msgstr "反転 (Y軸)"
+
+msgid "Along Z Axis"
+msgstr "Z軸方向"
+
+msgid "Mirror along the Z axis"
+msgstr "反転 (Z軸)"
+
+# AI Translated
+msgid "Transform"
+msgstr "変換"
+
+msgid "Split"
+msgstr "分割"
+
+msgid "To Objects"
+msgstr "オブジェクトに"
+
+msgid "Split the selected object into multiple objects"
+msgstr "選択したオブジェクトを複数のオブジェクトに分割"
+
+msgid "To Parts"
+msgstr "パーツに"
+
+msgid "Split the selected object into multiple parts"
+msgstr "選択したオブジェクトを複数のパーツに分割"
+
 msgid "Mesh boolean"
 msgstr "メッシュブール"
 
 msgid "Mesh boolean operations including union and subtraction"
 msgstr "結合や減算などのメッシュのブール演算"
 
-msgid "Along X Axis"
-msgstr "X軸方向"
+# AI Translated
+msgid "Modify"
+msgstr "変更"
 
-msgid "Mirror along the X Axis"
-msgstr "反転 (X軸)"
-
-msgid "Along Y Axis"
-msgstr "Y軸方向"
-
-msgid "Mirror along the Y Axis"
-msgstr "反転 (Y軸)"
-
-msgid "Along Z Axis"
-msgstr "Z軸方向"
-
-msgid "Mirror along the Z Axis"
-msgstr "反転 (Z軸)"
-
-msgid "Mirror object"
-msgstr "オブジェクトを反転"
+msgid "More"
+msgstr "詳細"
 
 # AI Translated
 msgid "Precise Seam Type"
@@ -3399,29 +3428,18 @@ msgstr "モデルを追加"
 msgid "Show Labels"
 msgstr "ラベルを表示"
 
-msgid "To Objects"
-msgstr "オブジェクトに"
-
-msgid "Split the selected object into multiple objects"
-msgstr "選択したオブジェクトを複数のオブジェクトに分割"
-
-msgid "To Parts"
-msgstr "パーツに"
-
-msgid "Split the selected object into multiple parts"
-msgstr "選択したオブジェクトを複数のパーツに分割"
-
-msgid "Split"
-msgstr "分割"
-
-msgid "Split the selected object"
-msgstr "選択したオブジェクトを分割"
+# AI Translated
+msgid "Instances"
+msgstr "インスタンス"
 
 msgid "Auto orientation"
 msgstr "自動向き調整"
 
 msgid "Auto orient the object to improve print quality"
 msgstr "オブジェクトの向きを自動的に調整する"
+
+msgid "Paste Process Settings"
+msgstr "プロセス設定を貼り付け"
 
 msgid "Edit"
 msgstr "編集"
@@ -3460,11 +3478,21 @@ msgstr "レイアウト"
 msgid "Arrange current plate"
 msgstr "現在のプレートをレイアウト"
 
-msgid "Reload All"
-msgstr "全て再読み込み"
+msgid "Auto Rotate"
+msgstr "自動回転"
 
-msgid "Reload all from disk"
-msgstr "全てディスクから再読み込み"
+msgid "Auto rotate current plate"
+msgstr "現在のプレートを自動回転させる"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "All Plates"
+msgstr "全プレート"
+
+# AI Translated
+msgid "Order By"
+msgstr "並べ替え"
 
 # AI Translated
 msgid "Fix All"
@@ -3482,17 +3510,11 @@ msgstr "全プレートを修復"
 msgid "Fix all models on all plates"
 msgstr "すべてのプレート上のすべてのモデルを修復"
 
-msgid "Auto Rotate"
-msgstr "自動回転"
+msgid "Reload All"
+msgstr "全て再読み込み"
 
-msgid "Auto rotate current plate"
-msgstr "現在のプレートを自動回転させる"
-
-msgid "Delete Plate"
-msgstr "プレートを削除"
-
-msgid "Remove the selected plate"
-msgstr "選択したプレートを削除"
+msgid "Reload all from disk"
+msgstr "全てディスクから再読み込み"
 
 msgid "Add instance"
 msgstr "インスタンスを追加"
@@ -3524,11 +3546,8 @@ msgstr "複製"
 msgid "Simplify Model"
 msgstr "モデルを簡略化"
 
-msgid "Subdivision mesh"
-msgstr "サブディビジョンメッシュ"
-
-msgid "(Lost color)"
-msgstr "（色が失われました）"
+msgid "Subdivision mesh (Lost color)"
+msgstr "サブディビジョンメッシュ（色が失われました）"
 
 msgid "Center"
 msgstr "センター"
@@ -3547,8 +3566,8 @@ msgstr "プロセス設定を編集"
 msgid "Copy Process Settings"
 msgstr "プロセス設定をコピー"
 
-msgid "Paste Process Settings"
-msgstr "プロセス設定を貼り付け"
+msgid "Edit in Parameter Table"
+msgstr "パラメータテーブルで編集"
 
 msgid "Edit print parameters for a single object"
 msgstr "一つのオブジェクトのパラメータを編集"
@@ -3572,8 +3591,11 @@ msgstr "ロック"
 msgid "Edit Plate Name"
 msgstr "プレート名を編集"
 
-msgid "Name"
-msgstr "名称"
+msgid "Delete Plate"
+msgstr "プレートを削除"
+
+msgid "Remove the selected plate"
+msgstr "選択したプレートを削除"
 
 msgid "Fila."
 msgstr "フィラ."
@@ -3681,6 +3703,23 @@ msgstr "エラー！"
 
 msgid "Failed to get the model data in the current file."
 msgstr "現在のファイルのモデルデータの取得に失敗しました。"
+
+msgid "X"
+msgstr "X"
+
+msgid "Y"
+msgstr "Y"
+
+# AI Translated
+msgid "Z"
+msgstr "Z"
+
+#. TRN Size of a torus (ring): the diameter of its hole and the thickness of the ring.
+msgid "Inner diameter"
+msgstr ""
+
+msgid "Tube diameter"
+msgstr ""
 
 # AI Translated
 msgid "Add primitive"
@@ -3952,9 +3991,6 @@ msgstr "種類"
 #, c-format, boost-format
 msgid "1x1 Grid: %d mm"
 msgstr "1x1 グリッド: %d mm"
-
-msgid "More"
-msgstr "詳細"
 
 msgid "Open Preferences"
 msgstr "環境設定を開く"
@@ -4721,8 +4757,8 @@ msgstr "G-codeファイルをSDカードに送信"
 msgid "Successfully sent. Close current page in %s s"
 msgstr "送信しました、%s秒後自動閉じます。"
 
-msgid "Storage needs to be inserted before sending to printer."
-msgstr "プリンターに送信する前にストレージを挿入する必要があります。"
+msgid "Insert storage or free up space before sending to the printer."
+msgstr ""
 
 msgid ""
 "Sending G-code file over LAN, but the Storage in the printer is abnormal and "
@@ -4942,6 +4978,10 @@ msgstr "スクリプトプラグインをスキップしました。"
 # AI Translated
 msgid "Script plugin finished."
 msgstr "スクリプトプラグインが完了しました。"
+
+# AI Translated
+msgid "Script plugin started."
+msgstr "スクリプトプラグインを開始しました。"
 
 msgid "Printer"
 msgstr "プリンター"
@@ -5468,7 +5508,7 @@ msgid "Unknown C++ exception."
 msgstr "不明なC++例外です。"
 
 # AI Translated
-msgid "Processing G-Code from previous file…"
+msgid "Processing G-code from previous file…"
 msgstr "前のファイルのG-codeを処理中…"
 
 msgid "Slicing complete"
@@ -5878,11 +5918,890 @@ msgstr ""
 "ドに設定する"
 
 # AI Translated
+msgid ""
+"Set the maximum volumetric extrusion rate slope above zero to use extrusion "
+"rate smoothing."
+msgstr ""
+"押出レートスムージングを使用するには、「押出レートスムージング」の最大変化率"
+"を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Arc fitting is unavailable for belt printers and when extrusion rate "
+"smoothing is enabled."
+msgstr ""
+"ベルトプリンターの場合と、押出レートスムージングが有効な場合は、円弧フィッ"
+"ティングを使用できません。"
+
+# AI Translated
+msgid "Set wall loops above zero to use this setting."
+msgstr ""
+"この設定を使用するには、「壁面層数」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid "This setting is hidden because sparse infill density is zero."
+msgstr "この設定は、「スパース インフィル密度」が0のため非表示になっています。"
+
+# AI Translated
+msgid ""
+"Infill anchors require nonzero sparse infill density and a pattern other "
+"than Concentric or Spiral Inset."
+msgstr ""
+"インフィルアンカーには、0以外の「スパース インフィル密度」と、「同心」「スパ"
+"イラルインセット」以外のパターンが必要です。"
+
+# AI Translated
+msgid ""
+"Enable infill combination and use nonzero sparse infill density to show this "
+"setting."
+msgstr ""
+"この設定を表示するには、「インフィル マージ」を有効にし、「スパース インフィ"
+"ル密度」を0以外にしてください。"
+
+# AI Translated
+msgid ""
+"Select Gyroid, TPMS-D or TPMS-FK infill with sparse infill density greater "
+"than zero and less than 100%."
+msgstr ""
+"「ジャイロイド」「TPMS-D」「TPMS-FK」のいずれかのインフィルを選択し、「スパー"
+"ス インフィル密度」を0より大きく100%未満にしてください。"
+
+# AI Translated
+msgid ""
+"Enable adaptive density for Gyroid, TPMS-D or TPMS-FK infill with sparse "
+"infill density greater than zero and less than 100%."
+msgstr ""
+"「ジャイロイド」「TPMS-D」「TPMS-FK」のいずれかのインフィルで「スパース イン"
+"フィル密度」を0より大きく100%未満にし、「アダプティブ密度」を有効にしてくださ"
+"い。"
+
+# AI Translated
+msgid ""
+"Select Gyroid infill with nonzero sparse infill density and disable adaptive "
+"density to use this setting."
+msgstr ""
+"この設定を使用するには、「ジャイロイド」インフィルを選択して「スパース イン"
+"フィル密度」を0以外にし、「アダプティブ密度」を無効にしてください。"
+
+# AI Translated
+msgid "The selected sparse infill pattern does not support multiline infill."
+msgstr ""
+"選択したスパース インフィル パターンは「マルチラインフィル」に対応していませ"
+"ん。"
+
+# AI Translated
+msgid "The Line infill pattern does not support infill anchors."
+msgstr "インフィルパターン「線」はインフィルアンカーに対応していません。"
+
+# AI Translated
+msgid ""
+"Select an infill pattern other than Line and set the maximum infill anchor "
+"length above zero."
+msgstr ""
+"「線」以外のインフィルパターンを選択し、「最長インフィルアンカー」を0より大き"
+"い値に設定してください。"
+
+# AI Translated
+msgid ""
+"Select the Cross Zag or Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+"この設定を使用するには、スパース インフィル パターンで「クロスザグ」または"
+"「ロックザグ」を選択してください。"
+
+# AI Translated
+msgid "Select the Locked Zag sparse infill pattern to use this setting."
+msgstr ""
+"この設定を使用するには、スパース インフィル パターンで「ロックザグ」を選択し"
+"てください。"
+
+# AI Translated
+msgid ""
+"Select the Zig Zag, Cross Zag or Locked Zag sparse infill pattern to use "
+"this setting."
+msgstr ""
+"この設定を使用するには、スパース インフィル パターンで「ジグザグ」「クロスザ"
+"グ」「ロックザグ」のいずれかを選択してください。"
+
+# AI Translated
+msgid ""
+"Select 3D Honeycomb infill with nonzero sparse infill density to use this "
+"setting."
+msgstr ""
+"この設定を使用するには、「3D ハニカム」インフィルを選択し、「スパース イン"
+"フィル密度」を0以外にしてください。"
+
+# AI Translated
+msgid "Enable spiral vase mode to use this setting."
+msgstr "この設定を使用するには、スパイラルモードを有効にしてください。"
+
+# AI Translated
+msgid "Enable spiral vase mode and spiral smoothing to use this setting."
+msgstr ""
+"この設定を使用するには、スパイラルモードと「スムーススパイラル」を有効にして"
+"ください。"
+
+# AI Translated
+msgid ""
+"This setting requires top shell layers, or more than one bottom shell layer "
+"in spiral vase mode."
+msgstr ""
+"この設定には、「上面層数」が1以上であるか、スパイラルモードで「底面層数」が2"
+"以上であることが必要です。"
+
+# AI Translated
+msgid "This setting requires a top shell with nonzero top surface density."
+msgstr "この設定には、「上面密度」が0以外の上面シェルが必要です。"
+
+# AI Translated
+msgid "Set bottom shell layers above zero to use this setting."
+msgstr ""
+"この設定を使用するには、「底面層数」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Use nonzero sparse infill density and an infill pattern and multiline "
+"setting that support infill smoothing."
+msgstr ""
+"「スパース インフィル密度」を0以外にし、インフィルの平滑化に対応したインフィ"
+"ルパターンと「マルチラインフィル」の設定を使用してください。"
+
+# AI Translated
+msgid "Set top surface expansion above zero to use this setting."
+msgstr ""
+"この設定を使用するには、「上面の拡張」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Use a top or bottom shell with the Archimedean Chords or Octagram Spiral "
+"surface pattern."
+msgstr ""
+"上面または底面のシェルで、面パターンに「アルキメデス螺旋」または「オクタグラ"
+"ムスパイラル」を使用してください。"
+
+# AI Translated
+msgid "The selected sparse infill pattern does not support separated infills."
+msgstr ""
+"選択したスパース インフィル パターンは「インフィルを個別に配置」に対応してい"
+"ません。"
+
+# AI Translated
+msgid ""
+"Use a top shell with nonzero surface density and the Concentric, Spiral "
+"Inset, Archimedean Chords or Octagram Spiral surface pattern."
+msgstr ""
+"上面シェルの「上面密度」を0以外にし、面パターンに「同心」「スパイラルインセッ"
+"ト」「アルキメデス螺旋」「オクタグラムスパイラル」のいずれかを使用してくださ"
+"い。"
+
+# AI Translated
+msgid ""
+"Use bottom shell layers and the Concentric, Spiral Inset, Archimedean Chords "
+"or Octagram Spiral surface pattern."
+msgstr ""
+"「底面層数」を1以上にし、面パターンに「同心」「スパイラルインセット」「アルキ"
+"メデス螺旋」「オクタグラムスパイラル」のいずれかを使用してください。"
+
+# AI Translated
+msgid ""
+"Use nonzero sparse infill density or top or bottom shell layers to edit this "
+"setting."
+msgstr ""
+"この設定を編集するには、「スパース インフィル密度」を0以外にするか、「上面層"
+"数」または「底面層数」を1以上にしてください。"
+
+# AI Translated
+msgid ""
+"Disable spiral vase mode and set top shell layers above zero to edit top "
+"shell thickness."
+msgstr ""
+"「上面厚さ」を編集するには、スパイラルモードを無効にし、「上面層数」を0より大"
+"きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Disable spiral vase mode and set bottom shell layers above zero to edit "
+"bottom shell thickness."
+msgstr ""
+"「底面厚さ」を編集するには、スパイラルモードを無効にし、「底面層数」を0より大"
+"きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Set default acceleration above zero to edit acceleration for individual "
+"extrusion roles."
+msgstr ""
+"押出ロールごとの加速度を編集するには、「通常造形」の加速度を0より大きい値に設"
+"定してください。"
+
+# AI Translated
+msgid "This setting requires the Marlin firmware G-code flavor."
+msgstr "この設定には、G-codeスタイル「Marlin 2」が必要です。"
+
+# AI Translated
+msgid ""
+"Jerk settings are unavailable while the printer uses junction deviation."
+msgstr "プリンターが接合偏差を使用している間は、Jerkの設定を使用できません。"
+
+# AI Translated
+msgid ""
+"Set the printer junction deviation limit above zero with the Marlin firmware "
+"G-code flavor to edit this setting."
+msgstr ""
+"この設定を編集するには、G-codeスタイルを「Marlin 2」にし、プリンターの「最大"
+"接合偏差」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Set default jerk above zero to edit jerk for individual extrusion roles."
+msgstr ""
+"押出ロールごとのJerkを編集するには、デフォルトのJerkを0より大きい値に設定して"
+"ください。"
+
+# AI Translated
+msgid "Use a non-belt printer with skirt loops above zero to use this setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンター以外のプリンターで「スカートのループ"
+"数」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Use a non-belt printer with skirt loops above zero and disable the full-"
+"height draft shield to edit skirt height."
+msgstr ""
+"「スカートの高さ」を編集するには、ベルトプリンター以外のプリンターで「スカー"
+"トのループ数」を0より大きい値に設定し、全高の保護シールドを無効にしてくださ"
+"い。"
+
+# AI Translated
+msgid "Skirts are unavailable for belt printers."
+msgstr "ベルトプリンターではスカートを使用できません。"
+
+# AI Translated
+msgid "Select a brim type other than No brim to use this setting."
+msgstr ""
+"この設定を使用するには、「ブリム無し」以外のブリムタイプを選択してください。"
+
+# AI Translated
+msgid "Enable a brim on a printer without a tilted belt to use this setting."
+msgstr ""
+"この設定を使用するには、傾斜ベルトのないプリンターでブリムを有効にしてくださ"
+"い。"
+
+# AI Translated
+msgid ""
+"Select a brim type with an editable width, or enable a brim on a tilted belt "
+"printer."
+msgstr ""
+"幅を編集できるブリムタイプを選択するか、ベルトが傾斜したベルトプリンターでブ"
+"リムを有効にしてください。"
+
+# AI Translated
+msgid "This setting requires a belt printer with a tilted slicing plane."
+msgstr "この設定には、スライス平面が傾斜したベルトプリンターが必要です。"
+
+# AI Translated
+msgid ""
+"Enable a brim on a belt printer with a tilted slicing plane to use this "
+"setting."
+msgstr ""
+"この設定を使用するには、スライス平面が傾斜したベルトプリンターでブリムを有効"
+"にしてください。"
+
+# AI Translated
+msgid "Enable walls or a brim to select the wall filament."
+msgstr "壁のフィラメントを選択するには、壁またはブリムを有効にしてください。"
+
+# AI Translated
 msgid "Brim ear radius"
 msgstr "ブリムイヤー半径"
 
 msgid "Brim width"
 msgstr "ブリム幅"
+
+# AI Translated
+msgid "Set brim width above zero to edit brim ear detection."
+msgstr ""
+"ブリムイヤーの検出設定を編集するには、「ブリム幅」を0より大きい値に設定してく"
+"ださい。"
+
+# AI Translated
+msgid ""
+"Use painted brim ears or set brim width above zero to edit this setting."
+msgstr ""
+"この設定を編集するには、ブリムタイプ「ペイント済み」でブリムイヤーを使用する"
+"か、「ブリム幅」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Select automatic brim ears on a printer without a tilted belt to use this "
+"setting."
+msgstr ""
+"この設定を使用するには、傾斜ベルトのないプリンターで、ブリムイヤーを自動で配"
+"置するブリムタイプ「マウスイヤー」を選択してください。"
+
+# AI Translated
+msgid ""
+"Select automatic or painted brim ears on a printer without a tilted belt to "
+"use this setting."
+msgstr ""
+"この設定を使用するには、傾斜ベルトのないプリンターで、ブリムイヤーを使用する"
+"ブリムタイプ「マウスイヤー」または「ペイント済み」を選択してください。"
+
+# AI Translated
+msgid ""
+"Enable elephant foot compensation or set elephant foot layer density below "
+"100% to use this setting."
+msgstr ""
+"この設定を使用するには、「エレファントフット補正」を有効にするか、「エレファ"
+"ントフット補正層の密度」を100%未満に設定してください。"
+
+# AI Translated
+msgid "Rafts are unavailable for belt printers."
+msgstr "ベルトプリンターではラフトを使用できません。"
+
+# AI Translated
+msgid "Enable support to edit this setting."
+msgstr "この設定を編集するには、サポートを有効にしてください。"
+
+# AI Translated
+msgid "Enable support or add raft layers to edit this setting."
+msgstr ""
+"この設定を編集するには、サポートを有効にするか、ラフト層を追加してください。"
+
+# AI Translated
+msgid "Select an automatic support type to edit the threshold angle."
+msgstr "「閾値角度」を編集するには、自動のサポートタイプを選択してください。"
+
+# AI Translated
+msgid ""
+"Select an automatic support type and set the threshold angle to zero to edit "
+"threshold overlap."
+msgstr ""
+"「閾値の重複」を編集するには、自動のサポートタイプを選択し、「閾値角度」を0に"
+"設定してください。"
+
+# AI Translated
+msgid "Threshold overlap is unavailable for tree supports."
+msgstr "ツリーサポートでは「閾値の重複」を使用できません。"
+
+# AI Translated
+msgid ""
+"Enable tree supports and select a style other than Organic or Default to "
+"show this setting."
+msgstr ""
+"この設定を表示するには、ツリーサポートを有効にし、「オーガニック」「デフォル"
+"ト」以外のスタイルを選択してください。"
+
+# AI Translated
+msgid ""
+"Enable tree supports with the Organic or Default style to show this setting."
+msgstr ""
+"この設定を表示するには、スタイルが「オーガニック」または「デフォルト」のツ"
+"リーサポートを有効にしてください。"
+
+# AI Translated
+msgid ""
+"Independent support layer height is unavailable for organic tree supports."
+msgstr ""
+"オーガニックツリーサポートでは「独立サポート層ピッチ」を使用できません。"
+
+# AI Translated
+msgid ""
+"Enable tree supports and turn off automatic brim width to edit the tree "
+"support brim width."
+msgstr ""
+"「ツリーサポートブリム幅」を編集するには、ツリーサポートを有効にし、「オート"
+"ブリム幅」をオフにしてください。"
+
+# AI Translated
+msgid "Enable tree supports to show the maximum bridge length."
+msgstr ""
+"「最大ブリッジ長さ」を表示するには、ツリーサポートを有効にしてください。"
+
+# AI Translated
+msgid ""
+"Tree supports use maximum bridge length instead of the bridge support "
+"setting."
+msgstr ""
+"ツリーサポートでは、「ブリッジをサポートしない」の代わりに「最大ブリッジ長"
+"さ」を使用します。"
+
+# AI Translated
+msgid "Enable automatic tree supports to show this setting."
+msgstr "この設定を表示するには、自動のツリーサポートを有効にしてください。"
+
+# AI Translated
+msgid ""
+"Set top or bottom support interface layers above zero to edit this setting."
+msgstr ""
+"この設定を編集するには、サポートの「トップ接触面の層数」または「底部接触面層"
+"数」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Enable a raft, or enable supports with top interface layers, to use support "
+"ironing."
+msgstr ""
+"「サポート接触面のアイロン」を使用するには、ラフトを有効にするか、トップ接触"
+"面層のあるサポートを有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable support ironing with a raft or top support interface layers to show "
+"this setting."
+msgstr ""
+"この設定を表示するには、ラフトまたはトップのサポート接触面層を使用して、「サ"
+"ポート接触面のアイロン」を有効にしてください。"
+
+# AI Translated
+msgid ""
+"Set top or bottom support interface layers above zero to edit interface "
+"spacing."
+msgstr ""
+"接触面の間隔を編集するには、サポートの「トップ接触面の層数」または「底部接触"
+"面層数」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Support ironing requires a solid interface, so interface spacing cannot be "
+"edited."
+msgstr ""
+"サポート接触面のアイロンにはソリッドな接触面が必要なため、接触面の間隔は編集"
+"できません。"
+
+# AI Translated
+msgid "Enable walls, a skirt or a brim to edit inner wall line width."
+msgstr ""
+"内壁の押出線幅を編集するには、壁、スカート、またはブリムを有効にしてくださ"
+"い。"
+
+# AI Translated
+msgid "Enable support, a raft, or a skirt to select the support filament."
+msgstr ""
+"サポートのフィラメントを選択するには、サポート、ラフト、またはスカートを有効"
+"にしてください。"
+
+# AI Translated
+msgid "Add raft layers to show raft contact distance."
+msgstr "「ラフト接触面Z間隔」を表示するには、ラフト層を追加してください。"
+
+# AI Translated
+msgid ""
+"Raft contact distance is unavailable when the top support Z distance is zero."
+msgstr ""
+"サポートの「トップ面とのZ間隔」が0の場合、「ラフト接触面Z間隔」は使用できませ"
+"ん。"
+
+# AI Translated
+msgid "Add raft layers to show raft expansion."
+msgstr "「ラフト拡張」を表示するには、ラフト層を追加してください。"
+
+# AI Translated
+msgid ""
+"Slim, Strong and Hybrid tree supports use first layer expansion instead of "
+"raft expansion."
+msgstr ""
+"「ツリースリム」「ツリーストロング」「ツリーハイブリッド」のサポートでは、"
+"「ラフト拡張」の代わりに「1層目拡張」を使用します。"
+
+# AI Translated
+msgid ""
+"Add a raft or choose a tree support style other than Slim or Strong to edit "
+"first layer expansion."
+msgstr ""
+"「1層目拡張」を編集するには、ラフトを追加するか、「ツリースリム」「ツリースト"
+"ロング」以外のサポートスタイルを選択してください。"
+
+# AI Translated
+msgid "Enable ironing to use this setting."
+msgstr "この設定を使用するには、アイロンを有効にしてください。"
+
+# AI Translated
+msgid "Enable ironing with the Rectilinear pattern to edit ironing angles."
+msgstr ""
+"アイロンの角度を編集するには、アイロンパターン「直線」でアイロンを有効にして"
+"ください。"
+
+# AI Translated
+msgid "Enable ironing or support ironing to edit ironing speed."
+msgstr ""
+"「アイロン時の造形速度」を編集するには、アイロンまたはサポート接触面のアイロ"
+"ンを有効にしてください。"
+
+# AI Translated
+msgid "Enable Z contouring to use this setting."
+msgstr "この設定を使用するには、Z輪郭処理を有効にしてください。"
+
+# AI Translated
+msgid "Print order cannot be edited when the print sequence is By object."
+msgstr ""
+"造形シーケンスが「オブジェクト順」の場合、「レイヤー内の順序」は編集できませ"
+"ん。"
+
+# AI Translated
+msgid "This setting is unavailable for Bambu Lab printers."
+msgstr "この設定はBambu Labプリンターでは使用できません。"
+
+# AI Translated
+msgid "This setting is unavailable in single extruder multimaterial mode."
+msgstr "シングル押出機・マルチマテリアルモードでは、この設定を使用できません。"
+
+# AI Translated
+msgid "Enable ooze prevention to use this setting."
+msgstr "この設定を使用するには、垂れ出し抑止を有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable ooze prevention and use a positive number of preheat steps to show "
+"this setting."
+msgstr ""
+"この設定を表示するには、垂れ出し抑止を有効にし、「予熱ステップ数」を1以上にし"
+"てください。"
+
+# AI Translated
+msgid ""
+"Enable the belt purge tower in the belt printer settings to use this setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンターの設定でベルトパージタワーを有効にし"
+"てください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid "Enable the prime tower on a non-belt printer to use this setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンター以外のプリンターでプライムタワーを有"
+"効にしてください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Enable the prime tower and tower interface features on a non-belt printer to "
+"use this setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンター以外のプリンターでプライムタワーとタ"
+"ワーインターフェース機能を有効にしてください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー" and "ワイプタワー", following the English; align it once the term is settled.
+msgid ""
+"Enable the prime tower and select wipe tower Type 2 on a non-Bambu, non-belt "
+"printer."
+msgstr ""
+"Bambu製でもベルトプリンターでもないプリンターで、プライムタワーを有効にし、ワ"
+"イプタワータイプで「タイプ2」を選択してください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Enable the prime tower on a non-belt printer and turn off skipping sparse "
+"tower layers to use layer combination."
+msgstr ""
+"「スパース層を結合」を使用するには、ベルトプリンター以外のプリンターでプライ"
+"ムタワーを有効にし、「スパース層なし」をオフにしてください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Enable the prime tower with Rib walls on a non-belt printer to use this "
+"setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンター以外のプリンターで、壁タイプ「リブ」"
+"のプライムタワーを有効にしてください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Enable a Type 2 prime tower with Cone walls on a non-Bambu, non-belt printer."
+msgstr ""
+"Bambu製でもベルトプリンターでもないプリンターで、壁タイプ「コーン」の「タイプ"
+"2」プライムタワーを有効にしてください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Enable the prime tower on a non-belt printer and choose a wall type other "
+"than Rib to edit tower width."
+msgstr ""
+"タワーの幅を編集するには、ベルトプリンター以外のプリンターでプライムタワーを"
+"有効にし、「リブ」以外の壁タイプを選択してください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Enable a Type 2 prime tower on a non-Bambu, non-belt printer and disable "
+"single extruder multimaterial mode."
+msgstr ""
+"Bambu製でもベルトプリンターでもないプリンターで「タイプ2」のプライムタワーを"
+"有効にし、シングル押出機・マルチマテリアルモードを無効にしてください。"
+
+# AI Translated
+msgid "Select Cyclic tool change ordering to use this setting."
+msgstr ""
+"この設定を使用するには、「ツール交換の順序」で「循環」を選択してください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Enable the prime tower and either disable purging in the prime tower or "
+"disable single extruder multimaterial mode."
+msgstr ""
+"プライムタワーを有効にし、「プライムタワーでフラッシュ」とシングル押出機・マ"
+"ルチマテリアルモードのどちらかを無効にしてください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid "Enable the prime tower to use this setting."
+msgstr "この設定を使用するには、プライムタワーを有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable avoiding crossing walls to edit the maximum travel detour distance."
+msgstr ""
+"「最大迂回距離」を編集するには、「壁上の移動を迂回」を有効にしてください。"
+
+# AI Translated
+msgid "Enable setting other flow ratios to use this setting."
+msgstr "この設定を使用するには、「他の流量比を設定」を有効にしてください。"
+
+# AI Translated
+msgid "Enable slowing down for overhangs to use this setting."
+msgstr "この設定を使用するには、「オーバーハング減速」を有効にしてください。"
+
+# AI Translated
+msgid ""
+"This setting is available in object settings rather than global print "
+"settings."
+msgstr "この設定は、全体の造形設定ではなく、オブジェクトの設定で使用できます。"
+
+# AI Translated
+msgid ""
+"Select a specific support interface filament and use the default support "
+"filament to show this setting."
+msgstr ""
+"この設定を表示するには、サポート接触面に特定のフィラメントを選択し、サポート"
+"のフィラメントはデフォルトのままにしてください。"
+
+# AI Translated
+msgid "Enable fuzzy skin to use this setting."
+msgstr "この設定を使用するには、ファジー壁面を有効にしてください。"
+
+# AI Translated
+msgid "Enable fuzzy skin with Ripple noise to use this setting."
+msgstr ""
+"この設定を使用するには、ノイズタイプ「Ripple」でファジー壁面を有効にしてくだ"
+"さい。"
+
+# AI Translated
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic or Ripple to "
+"edit noise scale."
+msgstr ""
+"「ファジー壁面の特徴サイズ」を編集するには、ファジー壁面を有効にし、「クラ"
+"シック」「Ripple」以外のノイズタイプを選択してください。"
+
+# AI Translated
+msgid ""
+"Enable fuzzy skin and select a noise type other than Classic, Voronoi or "
+"Ripple to edit noise octaves."
+msgstr ""
+"「ファジー壁面のノイズオクターブ」を編集するには、ファジー壁面を有効にし、"
+"「クラシック」「Voronoi」「Ripple」以外のノイズタイプを選択してください。"
+
+# AI Translated
+msgid "Enable fuzzy skin with Perlin or Billow noise to edit persistence."
+msgstr ""
+"「ファジー壁面のノイズ減衰率」を編集するには、ノイズタイプ「Perlin」または"
+"「Billow」でファジー壁面を有効にしてください。"
+
+# AI Translated
+msgid "Select the Arachne wall generator to use this setting."
+msgstr "この設定を使用するには、壁面生成器で「Arachne」を選択してください。"
+
+# AI Translated
+msgid "Thin wall detection is unavailable with the Arachne wall generator."
+msgstr "壁面生成器「Arachne」では「薄い壁を検出」を使用できません。"
+
+# AI Translated
+msgid "Disable role-based wipe speed to edit wipe speed manually."
+msgstr ""
+"「拭き上げ速度」を手動で編集するには、「ロール基準の拭き上げ速度」を無効にし"
+"てください。"
+
+# AI Translated
+msgid "Enable inward wiping to edit inward wipe distance."
+msgstr ""
+"「内側への拭き上げ距離」を編集するには、「内側へ拭き上げ」を有効にしてくださ"
+"い。"
+
+# AI Translated
+msgid "This setting requires the Klipper G-code flavor."
+msgstr "この設定には、G-codeスタイル「Klipper」が必要です。"
+
+# AI Translated
+msgid "Enable acceleration to deceleration to edit its factor."
+msgstr "係数を編集するには、加減速制御を有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable excluding objects with the Klipper G-code flavor to edit the outline "
+"tolerance."
+msgstr ""
+"「アウトライン許容差」を編集するには、G-codeスタイル「Klipper」で「オブジェク"
+"トを除外」を有効にしてください。"
+
+# AI Translated
+msgid "Enable making overhangs printable to use this setting."
+msgstr ""
+"この設定を使用するには、「オーバーハングを印刷可能にする」を有効にしてくださ"
+"い。"
+
+# AI Translated
+msgid ""
+"Enable only one wall on top surfaces with top shell layers, or use Arachne "
+"with a minimum wall length factor above 0.5."
+msgstr ""
+"「上面層数」を1以上にして「上面は壁1本のみ」を有効にするか、Arachneを使用して"
+"「最小壁長さ」を0.5より大きくしてください。"
+
+# AI Translated
+msgid "Enable converting holes to polyholes to use this setting."
+msgstr "この設定を使用するには、「穴をポリホールに変換」を有効にしてください。"
+
+# AI Translated
+msgid "Enable overhang wall detection to use this setting."
+msgstr "この設定を使用するには、「オーバーハングを検出」を有効にしてください。"
+
+# AI Translated
+msgid "Reverse overhang direction is unavailable in spiral vase mode."
+msgstr "スパイラルモードでは「偶数レイヤーで反転」を使用できません。"
+
+# AI Translated
+msgid ""
+"Disable spiral vase mode and enable reverse overhang direction to use this "
+"setting."
+msgstr ""
+"この設定を使用するには、スパイラルモードを無効にし、「偶数レイヤーで反転」を"
+"有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable overhang wall detection and reverse overhang direction, disable "
+"spiral vase mode, and turn off reversing internal perimeters only."
+msgstr ""
+"「オーバーハングを検出」と「偶数レイヤーで反転」を有効にし、スパイラルモード"
+"を無効にして、「内部外周のみ反転」をオフにしてください。"
+
+# AI Translated
+msgid "This setting requires a Bambu Lab printer."
+msgstr "この設定にはBambu Labプリンターが必要です。"
+
+# AI Translated
+msgid "Enable small area infill flow compensation to edit its model."
+msgstr ""
+"「流量補正モデル」を編集するには、「小面積の流量補正」を有効にしてください。"
+
+# AI Translated
+msgid "Scarf seams are unavailable in spiral vase mode and for belt printers."
+msgstr ""
+"スパイラルモードとベルトプリンターでは、スカーフ継ぎ目を使用できません。"
+
+# AI Translated
+msgid ""
+"Enable scarf seams on a non-belt printer with spiral vase mode disabled to "
+"use this setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンター以外のプリンターで、スパイラルモード"
+"を無効にしてスカーフ継ぎ目を有効にしてください。"
+
+# AI Translated
+msgid "Disable scarfing the entire loop to edit the minimum scarf length."
+msgstr ""
+"「スカーフの長さ」を編集するには、「壁全体にスカーフを巻く」を無効にしてくだ"
+"さい。"
+
+# AI Translated
+msgid ""
+"Enable conditional scarf seams on a non-belt printer with spiral vase mode "
+"disabled to use this setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンター以外のプリンターで、スパイラルモード"
+"を無効にして「条件付きスカーフ継ぎ目」を有効にしてください。"
+
+# AI Translated
+msgid "Enable beam interlocking to use this setting."
+msgstr "この設定を使用するには、インターロックビームを有効にしてください。"
+
+# AI Translated
+msgid "Disable beam interlocking to edit segmented region interlocking depth."
+msgstr ""
+"「分割領域のかみ合わせ深さ」を編集するには、インターロックビームを無効にして"
+"ください。"
+
+# AI Translated
+msgid "Select the Lateral Lattice sparse infill pattern to use this setting."
+msgstr ""
+"この設定を使用するには、スパース インフィル パターンで「ラテラルラティス」を"
+"選択してください。"
+
+# AI Translated
+msgid "Select the Lightning sparse infill pattern to use this setting."
+msgstr ""
+"この設定を使用するには、スパース インフィル パターンで「ライトニング」を選択"
+"してください。"
+
+# AI Translated
+msgid ""
+"Infill rotation templates are unavailable for Adaptive Cubic and Support "
+"Cubic infill."
+msgstr ""
+"「アダプティブ キュービック」と「キュービックサポート」のインフィルでは、イン"
+"フィル回転テンプレートを使用できません。"
+
+# AI Translated
+msgid ""
+"Clear the sparse infill rotation template and choose a pattern other than "
+"Adaptive Cubic or Support Cubic to edit infill direction."
+msgstr ""
+"「スパース インフィルの方向」を編集するには、「スパースインフィル回転テンプ"
+"レート」を空にし、「アダプティブ キュービック」「キュービックサポート」以外の"
+"パターンを選択してください。"
+
+# AI Translated
+msgid ""
+"Clear the solid infill rotation template to edit solid infill direction."
+msgstr ""
+"「ソリッドインフィルの方向」を編集するには、「ソリッドインフィル回転テンプ"
+"レート」を空にしてください。"
+
+# AI Translated
+msgid "Select the Lateral Honeycomb sparse infill pattern to use this setting."
+msgstr ""
+"この設定を使用するには、スパース インフィル パターンで「ラテラルハニカム」を"
+"選択してください。"
+
+# AI Translated
+# Needs human review: The English says "wrapping detection", but the setting it gates is labelled "Enable clumping detection" (クランピング検出を有効にする); this follows the label.
+msgid "The selected printer does not support wrapping detection."
+msgstr "選択したプリンターはクランピング検出に対応していません。"
+
+# AI Translated
+# Needs human review: SLA pad: the catalog has no ja term yet; パッド follows PrusaSlicer. Check it against the SLA pad labels if they get translated.
+msgid "Enable the pad to edit this setting."
+msgstr "この設定を編集するには、パッドを有効にしてください。"
+
+# AI Translated
+# Needs human review: SLA pad: the catalog has no ja term yet; パッド follows PrusaSlicer. Check it against the SLA pad labels if they get translated.
+msgid "Enable the pad around the object to edit this setting."
+msgstr "この設定を編集するには、オブジェクト周りのパッドを有効にしてください。"
+
+# AI Translated
+# Needs human review: SLA pad: the catalog has no ja term yet; パッド follows PrusaSlicer. Check it against the SLA pad labels if they get translated.
+msgid ""
+"Enable support and disable the pad around the object to edit object "
+"elevation."
+msgstr ""
+"オブジェクトの持ち上げ高さを編集するには、サポートを有効にし、オブジェクト周"
+"りのパッドを無効にしてください。"
 
 msgid ""
 "Spiral mode only works when wall loops is 1, support is disabled, clumping "
@@ -6388,6 +7307,14 @@ msgstr "入力の一部の拡張子が無効"
 
 msgid "This parameter expects a valid template."
 msgstr "このパラメータには有効なテンプレートが必要です。"
+
+# AI Translated
+msgid ""
+"Invalid collision volume format. Use XxY, XxY, ... or ZMIN..ZMAX;XxY, "
+"XxY, ... and separate multiple volumes with |."
+msgstr ""
+"衝突ボリュームの形式が無効です。XxY, XxY, ... または ZMIN..ZMAX;XxY, "
+"XxY, ... の形式で指定し、複数のボリュームは | で区切ってください。"
 
 msgid ""
 "Invalid pattern. Use N, N#K, or a comma-separated list with optional #K per "
@@ -6975,6 +7902,37 @@ msgstr "左ノズル: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%\n"
 msgid "Right nozzle: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 msgstr "右ノズル: X:%1%-%2%, Y:%3%-%4%, Z:%5%-%6%"
 
+msgid ""
+"The position or size of some models exceeds the assigned extruder's "
+"printable range. Please check and adjust the part's position or size to fit "
+"the printable range."
+msgstr ""
+
+msgid "Mirror object"
+msgstr "オブジェクトを反転"
+
+# AI Translated
+# Needs human review: Glossary cell for prime/wipe tower is unsettled; used プライムタワー to follow the English 'prime tower'.
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed. There is no "
+"free space left on the plate for it, so it was moved onto an object."
+msgstr ""
+"プレート%1%のプライムタワーは、配置されていた位置に収まらなくなりました。プ"
+"レート上に空きスペースがないため、オブジェクト上に移動されました。"
+
+# AI Translated
+# Needs human review: Glossary cell for prime/wipe tower is unsettled; used プライムタワー to follow the English 'prime tower'.
+#. TRN %1% is the plate number.
+#, boost-format
+msgid ""
+"The prime tower on plate %1% no longer fits where it was placed, so it was "
+"moved to free space on the plate."
+msgstr ""
+"プレート%1%のプライムタワーは、配置されていた位置に収まらなくなったため、プ"
+"レート上の空きスペースに移動されました。"
+
 msgid "Tool move"
 msgstr "ツール 移動"
 
@@ -7092,9 +8050,6 @@ msgstr "スライス (全プレート)"
 msgid "Failed"
 msgstr "失敗"
 
-msgid "All Plates"
-msgstr "全プレート"
-
 msgid "Stats"
 msgstr "統計"
 
@@ -7154,8 +8109,9 @@ msgstr "軸"
 msgid "Gridlines"
 msgstr "グリッドライン"
 
+# AI Translated
 msgid "Focus mode"
-msgstr ""
+msgstr "フォーカスモード"
 
 msgid "Labels"
 msgstr "ラベル"
@@ -7240,27 +8196,29 @@ msgstr "2つ以上のTPUフィラメントの印刷はサポートされてい�
 msgid "Tool %d"
 msgstr "ツール%d"
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable range of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable range of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable range of the %2%."
 msgstr[0] ""
-"フィラメント%sは%sに配置されていますが、生成されたG-codeパスが%sの印刷可能範"
-"囲を超えています。"
+"フィラメント%1%は%2%に配置されていますが、生成されたG-codeパスが%2%の印刷可能"
+"範囲を超えています。"
 
-#, fuzzy, c-format, boost-format
+# AI Translated
+#, boost-format
 msgid ""
-"Filament %s is placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filament %1% is placed in the %2%, but the generated G-code path exceeds the "
+"printable height of the %2%."
 msgid_plural ""
-"Filaments %s are placed in the %s, but the generated G-code path exceeds the "
-"printable height of the %s."
+"Filaments %1% are placed in the %2%, but the generated G-code path exceeds "
+"the printable height of the %2%."
 msgstr[0] ""
-"フィラメント%sは%sに配置されていますが、生成されたG-codeパスが%sの印刷可能高"
-"さを超えています。"
+"フィラメント%1%は%2%に配置されていますが、生成されたG-codeパスが%2%の印刷可能"
+"高さを超えています。"
 
 msgid "Open wiki for more information."
 msgstr "詳細はWikiを参照してください。"
@@ -7460,14 +8418,6 @@ msgstr ""
 
 msgid "Open Network Test"
 msgstr "ネットワークテストを開く"
-
-# AI Translated
-msgid "Benchmark 3D Scene"
-msgstr "3Dシーンのベンチマーク"
-
-# AI Translated
-msgid "Measure how fast the 3D scene renders in Prepare and Preview"
-msgstr "準備タブとプレビュータブで3Dシーンの描画速度を測定します"
 
 msgid "Show Tip of the Day"
 msgstr "「毎日のヒント」を表示"
@@ -7728,11 +8678,29 @@ msgstr "ウィンドウレイアウトをリセット"
 msgid "Reset to default window layout"
 msgstr "デフォルトのウィンドウレイアウトにリセット"
 
+# AI Translated
+msgid "Show 3Dconnexion Settings"
+msgstr "3Dconnexion設定を表示"
+
+msgid "Show/Hide 3Dconnexion devices settings dialog"
+msgstr "3Dconnexion設定を表示/非表示"
+
 msgid "Show &Labels"
 msgstr "ラベルを表示"
 
 msgid "Show object labels in 3D scene."
 msgstr "3Dシーンにラベルを表示"
+
+# AI Translated
+msgid "Show all collision volumes"
+msgstr "すべての衝突ボリュームを表示"
+
+# AI Translated
+msgid ""
+"Show the full height of every configured collision volume, including on an "
+"empty bed."
+msgstr ""
+"設定されているすべての衝突ボリュームの全高を、空のベッド上でも表示します。"
 
 msgid "Show &Overhang"
 msgstr "オーバーハングを表示(&O)"
@@ -8095,6 +9063,9 @@ msgstr "ダウンロード"
 
 msgid "Download selected files from printer."
 msgstr "プリンターから選択したファイルをダウンロード"
+
+msgid "Select all files in the list for batch management."
+msgstr ""
 
 msgid "Batch manage files."
 msgstr "ファイルのバッチ処理"
@@ -9072,6 +10043,10 @@ msgid "Troubleshoot Center"
 msgstr "トラブルシューティングセンター"
 
 # AI Translated
+msgid "Benchmark 3D Scene"
+msgstr "3Dシーンのベンチマーク"
+
+# AI Translated
 msgid "About OrcaSlicer"
 msgstr "OrcaSlicerについて"
 
@@ -9247,10 +10222,6 @@ msgid "Cut connectors"
 msgstr "カットコネクタ"
 
 # AI Translated
-msgid "Instances"
-msgstr "インスタンス"
-
-# AI Translated
 #, c-format, boost-format
 msgid "Instance %d"
 msgstr "インスタンス %d"
@@ -9314,6 +10285,24 @@ msgid ""
 msgstr ""
 "この種類で利用できるプラグイン機能がありません。\n"
 "使用するには有効化またはインストールしてください。"
+
+# AI Translated
+msgid "Hidden by the current configuration."
+msgstr "現在の設定により非表示になっています。"
+
+# AI Translated
+#, boost-format
+msgid "Hidden: %1%"
+msgstr "非表示: %1%"
+
+# AI Translated
+msgid "Disabled by the current configuration."
+msgstr "現在の設定により無効になっています。"
+
+# AI Translated
+#, boost-format
+msgid "Disabled: %1%"
+msgstr "無効: %1%"
 
 # AI Translated
 msgid ""
@@ -9581,6 +10570,10 @@ msgstr "全てのオブジェクトの設定"
 
 msgid "Material settings"
 msgstr "材料設定"
+
+# AI Translated
+msgid "The process flow ratio cannot be edited in this panel."
+msgstr "このパネルではプロセスの流量比を編集できません。"
 
 # AI Translated
 msgid ""
@@ -11325,6 +12318,27 @@ msgstr "ウィンドウボタンを左側に表示"
 msgid "(Requires restart)"
 msgstr "（再起動が必要）"
 
+# AI Translated
+#. TRN "GPU" is the graphics card; the option only matters on computers that have two of them.
+msgid "Render on the discrete GPU"
+msgstr "ディスクリートGPUで描画"
+
+# AI Translated
+#. TRN DRI_PRIME is an environment variable name and must stay as it is.
+msgid ""
+"On a computer with two GPUs, run OrcaSlicer on the discrete GPU instead of "
+"the one that drives the display. Some Wayland systems cannot show frames "
+"rendered on the other GPU, or fail to open the window at all. Turn this off "
+"if the 3D view stays empty; if OrcaSlicer no longer starts, start it once "
+"with DRI_PRIME=0 in the environment to get back here."
+msgstr ""
+"GPUを2基搭載したコンピューターで、ディスプレイを駆動しているGPUではなくディス"
+"クリートGPUでOrcaSlicerを実行します。一部のWaylandシステムでは、もう一方のGPU"
+"で描画したフレームを表示できなかったり、ウィンドウがまったく開かなかったりし"
+"ます。3Dビューが空のままの場合は、この設定をオフにしてください。OrcaSlicerが"
+"起動しなくなった場合は、環境変数DRI_PRIME=0を指定して一度起動すると、この設定"
+"に戻れます。"
+
 msgid "Downloads folder"
 msgstr "ダウンロードフォルダ"
 
@@ -11602,6 +12616,14 @@ msgstr "選択した値が変更されたときにフラッシングボリュー
 msgid "Auto arrange plate after cloning"
 msgstr "クローン後にプレートを自動配置"
 
+msgid "Show options when adding a primitive"
+msgstr ""
+
+msgid ""
+"If enabled, a dialog asks for the dimensions of a primitive shape before it "
+"is added."
+msgstr ""
+
 msgid "Auto slice after changes"
 msgstr "変更後に自動スライス"
 
@@ -11863,6 +12885,21 @@ msgstr ""
 "オービット: 光源がカメラと一緒に回転し、カメラが動くフレームごとに影を再計算"
 "します。"
 
+# AI Translated
+msgid "Glossy toolpaths"
+msgstr "光沢のあるツールパス"
+
+# AI Translated
+msgid ""
+"Highlights the toolpaths in Preview as glossy plastic in realistic view.\n"
+"Off, a translucent filament is matte and an opaque one keeps the highlight "
+"of the plain view."
+msgstr ""
+"リアルビューで、プレビューのツールパスを光沢のあるプラスチックのようにハイラ"
+"イト表示します。\n"
+"オフの場合、半透明のフィラメントはつや消しになり、不透明なものは通常ビューの"
+"ハイライトのままです。"
+
 msgid "Anti-aliasing"
 msgstr "Anti-aliasing"
 
@@ -12083,6 +13120,20 @@ msgstr ""
 "99%ではほとんど暗くならず、0%では真っ黒になります。100%はオプションを無効にし"
 "た場合と同じになるため、上限は99%です。"
 
+# AI Translated
+msgid "Translucent filaments"
+msgstr "半透明フィラメント"
+
+# AI Translated
+msgid ""
+"Draw the toolpaths of filaments whose color is partly transparent as see-"
+"through, as the 3D view draws their objects. Turn it off to draw every "
+"filament opaque."
+msgstr ""
+"色が部分的に透明なフィラメントのツールパスを、3Dビューでオブジェクトを描画す"
+"る場合と同様に、透けて見えるように描画します。オフにすると、すべてのフィラメ"
+"ントを不透明で描画します。"
+
 msgid "Login region"
 msgstr "地域"
 
@@ -12243,15 +13294,22 @@ msgstr ""
 "プリンターとフィラメントのドロップダウンリストに、互換性のない/非対応のプリ"
 "セットを表示します。これらのプリセットは選択できません。"
 
+# AI Translated
 msgid "Export statistics with G-code"
-msgstr ""
+msgstr "G-codeと一緒に統計をエクスポート"
 
+# AI Translated
+# Needs human review: "feature" here is the G-code feature (line) type, not the Design-tab Feature; rendered as line type, check.
 msgid ""
 "If enabled, exporting a G-code file also writes its statistics as JSON next "
 "to it, as <name>.statistics.json, and an exported sliced 3MF file holds them "
 "inside: print time, filament and feature totals, and the same per layer and "
 "per object."
 msgstr ""
+"有効にすると、G-codeファイルのエクスポート時にその統計もJSON形式で "
+"<name>.statistics.json として隣に書き出され、エクスポートしたスライス済み3MF"
+"ファイルにも統計が含まれます。内容は、印刷時間、フィラメントと線種ごとの合"
+"計、および積層ごと・オブジェクトごとの同じ項目です。"
 
 # AI Translated
 msgid "Experimental Features"
@@ -12440,6 +13498,31 @@ msgstr "互換性なし"
 
 msgid "The selected preset is null!"
 msgstr "選択したプリセットがnullです！"
+
+msgid "Changing one dimension changes the others in proportion."
+msgstr ""
+
+# AI Translated
+msgid "Save these settings as default"
+msgstr "これらの設定をデフォルトとして保存"
+
+msgid ""
+"If enabled, these dimensions are used for this shape from now on, also when "
+"this dialog is not shown."
+msgstr ""
+
+msgid ""
+"If enabled, shapes are added at their default size without asking. The "
+"dialog can be turned back on in Preferences."
+msgstr ""
+
+# AI Translated
+msgid "The size must be greater than zero"
+msgstr "サイズは0より大きくする必要があります"
+
+# AI Translated
+msgid "Invalid numeric input."
+msgstr "無効な数値入力です。"
 
 # AI Translated
 msgctxt "Layer range"
@@ -12637,6 +13720,15 @@ msgstr "プリセット\"%1%\"は既に存在し、また互換性がありま�
 
 msgid "Please note that saving will overwrite the current preset."
 msgstr "注意：現在のプリセットを上書きされます。"
+
+msgid "control characters are not allowed."
+msgstr ""
+
+msgid "The name is a reserved system name."
+msgstr ""
+
+msgid "The name is too long."
+msgstr ""
 
 msgid "The name cannot be the same as a preset alias name."
 msgstr "プリセット名と同じの為、設定できません。"
@@ -13241,6 +14333,10 @@ msgstr ""
 msgid "Send Failed"
 msgstr "送信失敗"
 
+# AI Translated
+msgid "No available printers"
+msgstr "利用可能なプリンターがありません"
+
 msgid "The name length exceeds the limit."
 msgstr "名前の長さが制限を超えています。"
 
@@ -13504,8 +14600,8 @@ msgstr "LAN経由で印刷する前にストレージを挿入する必要があ
 msgid "Storage is in abnormal state or is in read-only mode."
 msgstr "ストレージが異常な状態または読み取り専用モードです。"
 
-msgid "Storage needs to be inserted before printing."
-msgstr "印刷する前にストレージを挿入する必要があります。"
+msgid "Insert storage or free up space before printing."
+msgstr ""
 
 msgid "Cannot send the print job to a printer whose firmware must be updated."
 msgstr "ファームウェアを更新する必要がある為、造形タスクを送信できません"
@@ -13623,9 +14719,6 @@ msgstr "アップデート中では造形タスクを送信できません"
 msgid "The selected printer is incompatible with the chosen printer presets."
 msgstr ""
 "選択したプリンターが選択されたプリンタープリセットと互換性がありません。"
-
-msgid "Storage needs to be inserted before send to printer."
-msgstr "プリンターに送信する前にストレージを挿入する必要があります。"
 
 msgid "The printer is required to be in the same LAN as XDesktop."
 msgstr ""
@@ -13825,6 +14918,20 @@ msgstr "このアイコンが付いたパラメータは、ノズルごとに設
 msgid "Click to reset all settings to the last saved preset."
 msgstr "全ての変更をリセットします"
 
+# AI Translated
+msgid ""
+"This definition contains collision-volume syntax. Add it to the toolhead "
+"collision volumes for G-code checking and travel avoidance? The existing "
+"excluded bed area will be preserved."
+msgstr ""
+"この定義には衝突ボリュームの構文が含まれています。G-codeのチェックと移動回避"
+"のために、ツールヘッドの衝突ボリュームに追加しますか？既存の除外領域は維持さ"
+"れます。"
+
+# AI Translated
+msgid "Add collision volumes"
+msgstr "衝突ボリュームを追加"
+
 msgid ""
 "Prime tower is required for nozzle changing. There may be flaws on the model "
 "without prime tower. Are you sure you want to disable prime tower?"
@@ -13993,6 +15100,10 @@ msgstr ""
 "ヘッド無しのタイムラプスビデオを録画する時に、「タイムラプスプライムタワー」"
 "を追加してください。プレートで右クリックして、「プリミティブを追加」→「タイム"
 "ラプスプライムタワー」で追加できます。"
+
+# AI Translated
+msgid "Setting unavailable"
+msgstr "設定を使用できません"
 
 msgid ""
 "A copy of the current system preset will be created, which will be detached "
@@ -14174,8 +15285,20 @@ msgstr "プラグイン設定"
 msgid "Notes"
 msgstr "メモ"
 
+# AI Translated
+msgid "The selected printer does not support multiple bed types."
+msgstr "選択したプリンターは複数のベッドタイプに対応していません。"
+
 msgid "Frequent"
 msgstr "よく使う"
+
+# AI Translated
+msgid ""
+"Custom filament print order is unavailable while the plate contains mixed-"
+"color filaments."
+msgstr ""
+"プレートに混合フィラメントが含まれている間は、フィラメント順序をカスタマイズ"
+"できません。"
 
 #, c-format, boost-format
 msgid ""
@@ -14201,6 +15324,30 @@ msgstr "上書き設定"
 
 msgid "Retraction when switching material"
 msgstr "素材変更時のリトラクション"
+
+# AI Translated
+msgid ""
+"Set the filament retraction length above zero, or use the printer's value, "
+"to edit this setting."
+msgstr ""
+"この設定を編集するには、フィラメントの「リトラクション長さ」を0より大きい値に"
+"設定するか、プリンターの値を使用してください。"
+
+# AI Translated
+msgid ""
+"The printer profile must allow filament overrides for long retraction when "
+"cutting."
+msgstr ""
+"プリンタープロファイルで、カット時のロングリトラクションをフィラメント側で上"
+"書きできるようにする必要があります。"
+
+# AI Translated
+msgid ""
+"Allow long retraction when cutting in the printer profile and enable it in "
+"the filament profile to use this setting."
+msgstr ""
+"この設定を使用するには、プリンタープロファイルでカット時のロングリトラクショ"
+"ンを許可し、フィラメントプロファイルで有効にしてください。"
 
 msgid "Basic information"
 msgstr "基本情報"
@@ -14369,6 +15516,117 @@ msgstr "互換プリンター"
 msgid "Compatible process profiles"
 msgstr "互換性のあるプロセスプロファイル"
 
+# AI Translated
+msgid "Enable cooling for overhangs and bridges to edit this setting."
+msgstr ""
+"この設定を編集するには、「オーバーハングとブリッジの強制冷却」を有効にしてく"
+"ださい。"
+
+# AI Translated
+msgid "Enable slowing down for layer cooling to use this setting."
+msgstr "この設定を使用するには、「冷却の為減速」を有効にしてください。"
+
+# AI Translated
+msgid ""
+"Set the number of initial layers without cooling to zero to override the "
+"first layer fan speed."
+msgstr ""
+"「1層目のファン速度」を上書きするには、「冷却しない最初の層数」を0に設定して"
+"ください。"
+
+# AI Translated
+msgid "Enable the auxiliary fan in the printer profile to use this setting."
+msgstr ""
+"この設定を使用するには、プリンタープロファイルで「補助パーツ冷却ファン」を有"
+"効にしてください。"
+
+# AI Translated
+msgid "The selected printer does not support air filtration."
+msgstr "選択したプリンターは空気ろ過に対応していません。"
+
+# AI Translated
+# Needs human review: Quotes the label "Activate air filtration" (エアフィルトレーションを有効化), a person's translation that differs from the glossary's 空気ろ過; change the label and these entries together.
+msgid "Activate air filtration to edit this setting."
+msgstr ""
+"この設定を編集するには、「エアフィルトレーションを有効化」をオンにしてくださ"
+"い。"
+
+# AI Translated
+# Needs human review: Quotes the label "Activate air filtration" (エアフィルトレーションを有効化), a person's translation that differs from the glossary's 空気ろ過; change the label and these entries together.
+msgid ""
+"Activate air filtration and enable it during printing to edit the exhaust "
+"fan speed."
+msgstr ""
+"排気ファンの回転速度を編集するには、「エアフィルトレーションを有効化」をオン"
+"にし、「印刷中」を有効にしてください。"
+
+# AI Translated
+# Needs human review: Quotes the label "Activate air filtration" (エアフィルトレーションを有効化), a person's translation that differs from the glossary's 空気ろ過; change the label and these entries together.
+msgid ""
+"Activate air filtration and enable it on completion to edit the exhaust fan "
+"speed."
+msgstr ""
+"排気ファンの回転速度を編集するには、「エアフィルトレーションを有効化」をオン"
+"にし、「完了時」を有効にしてください。"
+
+# AI Translated
+msgid "Enable pressure advance to use this setting."
+msgstr "この設定を使用するには、Pressure Advanceを有効にしてください。"
+
+# AI Translated
+msgid ""
+"Select this bed type or enable support for multiple bed types in the printer "
+"profile to show its temperature settings."
+msgstr ""
+"温度設定を表示するには、このベッドタイプを選択するか、プリンタープロファイル"
+"で「複数のベッドタイプに対応」を有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable pressure advance and adaptive pressure advance to use this setting."
+msgstr ""
+"この設定を使用するには、Pressure AdvanceとアダプティブPressure Advanceを有効"
+"にしてください。"
+
+# AI Translated
+msgid ""
+"Enable the pellet printer option in the printer profile to use this setting."
+msgstr ""
+"この設定を使用するには、プリンタープロファイルで「ペレット改造プリンター」を"
+"有効にしてください。"
+
+# AI Translated
+msgid "Filament diameter is unavailable for pellet printers."
+msgstr "ペレット式プリンターでは、フィラメントの直径を使用できません。"
+
+# AI Translated
+msgid "The selected printer does not support chamber temperature control."
+msgstr "選択したプリンターは庫内温度の制御に対応していません。"
+
+# AI Translated
+msgid ""
+"Set nonzero volumetric speed coefficients before enabling adaptive "
+"volumetric speed."
+msgstr ""
+"アダプティブ体積速度を有効にする前に、「最大体積速度の多項式係数」を0以外の値"
+"に設定してください。"
+
+# AI Translated
+msgid "Enable multitool ramming to edit this setting."
+msgstr "この設定を編集するには、マルチツールのラミングを有効にしてください。"
+
+# AI Translated
+msgid "This setting requires a Bambu Lab printer with multiple extruders."
+msgstr "この設定には、複数の押出機を備えたBambu Labプリンターが必要です。"
+
+# AI Translated
+msgid ""
+"Use a Bambu Lab printer with multiple extruders and enable long retraction "
+"when the extruder changes."
+msgstr ""
+"複数の押出機を備えたBambu Labプリンターを使用し、「押出機切り替え時のロングリ"
+"トラクション」を有効にしてください。"
+
 msgid "Printable space"
 msgstr "造形可能領域"
 
@@ -14449,9 +15707,6 @@ msgstr "カスタムG-code雛形"
 
 msgid "Motion ability"
 msgstr "移動能力"
-
-msgid "Normal"
-msgstr "普通"
 
 # AI Translated
 msgid "Resonance Compensation"
@@ -14553,6 +15808,132 @@ msgid "Z-Hop"
 msgstr "Z-ホップ"
 
 # AI Translated
+msgid ""
+"Power loss recovery requires a Bambu Lab printer or the Marlin firmware G-"
+"code flavor."
+msgstr ""
+"停電復旧には、Bambu LabプリンターまたはG-codeスタイル「Marlin 2」が必要です。"
+
+# AI Translated
+msgid "Build plate tilt is derived from the belt tilt on belt printers."
+msgstr "ベルトプリンターでは、ベッドの傾斜はベルトの傾斜から決まります。"
+
+# AI Translated
+msgid "Enable belt printer mode to use this setting."
+msgstr "この設定を使用するには、ベルトプリンターモードを有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable belt printer mode and select a belt rotation axis to edit its angle."
+msgstr ""
+"角度を編集するには、ベルトプリンターモードを有効にし、ベルト傾斜軸を選択して"
+"ください。"
+
+# AI Translated
+msgid ""
+"Enable belt printer mode and select Expert or Developer settings visibility "
+"to use this setting."
+msgstr ""
+"この設定を使用するには、ベルトプリンターモードを有効にし、設定の表示モードで"
+"「エキスパート」または「開発者」を選択してください。"
+
+# AI Translated
+msgid ""
+"Enable belt printer mode, select Expert or Developer settings visibility, "
+"and decouple the machine frame tilt to edit its angle."
+msgstr ""
+"角度を編集するには、ベルトプリンターモードを有効にし、設定の表示モードで「エ"
+"キスパート」または「開発者」を選択して、「機械座標系の傾斜を分離」を有効にし"
+"てください。"
+
+# AI Translated
+msgid "Enable support for parallel printheads to edit their count."
+msgstr ""
+"「並列プリントヘッド数」を編集するには、「並列プリントヘッドに対応」を有効に"
+"してください。"
+
+# AI Translated
+msgid "Collision volume mode selection requires multiple extruders."
+msgstr "衝突ボリュームの動作を選択するには、複数の押出機が必要です。"
+
+# AI Translated
+msgid ""
+"Select a shared collision volume mode or use a single-extruder printer to "
+"edit this setting."
+msgstr ""
+"この設定を編集するには、共有の衝突ボリュームの動作を選択するか、単一押出機の"
+"プリンターを使用してください。"
+
+# AI Translated
+msgid "Enable the auxiliary fan to edit its direction."
+msgstr ""
+"「ファンの向き」を編集するには、「補助パーツ冷却ファン」を有効にしてくださ"
+"い。"
+
+# AI Translated
+msgid ""
+"Air filtration and the cooling filter are alternative accessories; disable "
+"cooling filter support to use air filtration."
+msgstr ""
+"空気ろ過と冷却フィルターはどちらか一方のみ使用できるアクセサリーです。空気ろ"
+"過を使用するには、「冷却フィルターを使用」を無効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable cooling filter support in the printer profile to use this setting."
+msgstr ""
+"この設定を使用するには、プリンタープロファイルで「冷却フィルターを使用」を有"
+"効にしてください。"
+
+# AI Translated
+msgid "Enable belt printer mode to use the belt purge tower."
+msgstr ""
+"ベルトパージタワーを使用するには、ベルトプリンターモードを有効にしてくださ"
+"い。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid ""
+"Wipe tower type selection is unavailable for Bambu Lab printers and belt "
+"printers."
+msgstr ""
+"Bambu Labプリンターとベルトプリンターでは、ワイプタワータイプを選択できませ"
+"ん。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid "Select wipe tower Type 2 on a non-Bambu printer to use this setting."
+msgstr ""
+"この設定を使用するには、Bambu以外のプリンターでワイプタワータイプ「タイプ2」"
+"を選択してください。"
+
+# AI Translated
+msgid "Extruder count cannot be edited in single extruder multimaterial mode."
+msgstr ""
+"シングル押出機・マルチマテリアルモードでは、押出機の数を編集できません。"
+
+# AI Translated
+msgid ""
+"Enable single extruder multimaterial mode to use manual filament changes."
+msgstr ""
+"手動フィラメント交換を使用するには、シングル押出機・マルチマテリアルモードを"
+"有効にしてください。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid ""
+"Enable single extruder multimaterial mode with wipe tower Type 2 on a non-"
+"Bambu printer to use this setting."
+msgstr ""
+"この設定を使用するには、Bambu以外のプリンターでワイプタワー「タイプ2」を使用"
+"し、シングル押出機・マルチマテリアルモードを有効にしてください。"
+
+# AI Translated
+msgid "Enable IDEX/IQEX printer mode to use this setting."
+msgstr ""
+"この設定を使用するには、IDEX/IQEXプリンターモードを有効にしてください。"
+
+# AI Translated
 msgid "Front-left"
 msgstr "左前"
 
@@ -14569,6 +15950,79 @@ msgid "Rear-right"
 msgstr "右後ろ"
 
 # AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid ""
+"Use multiple extruders with wipe tower Type 2 on a non-Bambu printer and "
+"disable single extruder multimaterial mode."
+msgstr ""
+"Bambu以外のプリンターでワイプタワー「タイプ2」と複数の押出機を使用し、シング"
+"ル押出機・マルチマテリアルモードを無効にしてください。"
+
+# AI Translated
+msgid ""
+"Set retraction length above zero or enable firmware retraction to use this "
+"setting."
+msgstr ""
+"この設定を使用するには、「リトラクション長さ」を0より大きい値に設定するか、"
+"「ファームウェアリトラクションを使用」を有効にしてください。"
+
+# AI Translated
+msgid ""
+"The extruder printable area and height are fixed by the printer profile."
+msgstr ""
+"押出機の造形可能領域と高さは、プリンタープロファイルで固定されています。"
+
+# AI Translated
+msgid "This setting is shown for printers with exactly two extruders."
+msgstr "この設定は、押出機が2つのプリンターでのみ表示されます。"
+
+# AI Translated
+msgid ""
+"Select per-extruder collision volumes on a printer with multiple extruders "
+"to edit this setting."
+msgstr ""
+"この設定を編集するには、複数の押出機を備えたプリンターで、衝突ボリュームの動"
+"作に「押出機ごとに個別」を選択してください。"
+
+# AI Translated
+msgid ""
+"Retraction length is controlled by the firmware while firmware retraction is "
+"enabled."
+msgstr ""
+"ファームウェアリトラクションが有効な間は、リトラクション長さはファームウェア"
+"が制御します。"
+
+# AI Translated
+msgid "Enable retraction and set Z hop above zero to use this setting."
+msgstr ""
+"この設定を使用するには、リトラクションを有効にし、「Zホップの高さ」を0より大"
+"きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Set retraction length above zero and disable firmware retraction to edit "
+"this setting."
+msgstr ""
+"この設定を編集するには、「リトラクション長さ」を0より大きい値に設定し、"
+"「ファームウェアリトラクションを使用」を無効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable retraction and wiping, and set retract after wipe below 100% to edit "
+"retract before wipe."
+msgstr ""
+"「拭き上げ前のリトラクション量」を編集するには、リトラクションと拭き上げを有"
+"効にし、「拭き上げ後のリトラクション量」を100%未満に設定してください。"
+
+# AI Translated
+msgid ""
+"Enable retraction and wiping, and set retract before wipe below 100% to edit "
+"retract after wipe."
+msgstr ""
+"「拭き上げ後のリトラクション量」を編集するには、リトラクションと拭き上げを有"
+"効にし、「拭き上げ前のリトラクション量」を100%未満に設定してください。"
+
+# AI Translated
 msgid ""
 "The Retract before wipe option could be only 100% when using the Firmware "
 "Retraction mode.\n"
@@ -14582,6 +16036,100 @@ msgstr ""
 
 msgid "Firmware Retraction"
 msgstr "ファームウェアリトラクション"
+
+# AI Translated
+msgid "Enable retraction and wiping to edit wipe distance."
+msgstr ""
+"「拭き上げ距離」を編集するには、リトラクションと拭き上げを有効にしてくださ"
+"い。"
+
+# AI Translated
+msgid "This setting requires multiple extruders."
+msgstr "この設定には複数の押出機が必要です。"
+
+# AI Translated
+msgid ""
+"Use multiple extruders and set tool change retraction length above zero to "
+"edit this setting."
+msgstr ""
+"この設定を編集するには、複数の押出機を使用し、「リトラクション量 (ツール交"
+"換)」を0より大きい値に設定してください。"
+
+# AI Translated
+msgid ""
+"Disable firmware retraction and allow long retraction when cutting to use "
+"this setting."
+msgstr ""
+"この設定を使用するには、ファームウェアリトラクションを無効にし、カット時のロ"
+"ングリトラクションを許可してください。"
+
+# AI Translated
+msgid "Enable long retraction when cutting to edit the retraction distance."
+msgstr ""
+"「カット時の後退距離」を編集するには、「カット時のロングリトラクション」を有"
+"効にしてください。"
+
+# AI Translated
+msgid "Select a Z hop type other than Normal to edit travel slope."
+msgstr ""
+"「移動角度」を編集するには、「普通」以外の「Zホップのタイプ」を選択してくださ"
+"い。"
+
+# AI Translated
+msgid ""
+"Travel acceleration limits are unavailable for the Marlin legacy and Klipper "
+"G-code flavors."
+msgstr ""
+"G-codeスタイル「Marlin (レガシー)」と「Klipper」では、移動加速度の制限を使用"
+"できません。"
+
+# AI Translated
+msgid ""
+"Jerk limits are unavailable while Marlin uses nonzero junction deviation."
+msgstr "「Marlin 2」で接合偏差が0以外の間は、Jerkの制限を使用できません。"
+
+# AI Translated
+msgid ""
+"Emitting machine limits requires the Marlin legacy, Marlin or RepRapFirmware "
+"G-code flavor."
+msgstr ""
+"制限値をG-codeに出力するには、G-codeスタイル「Marlin (レガシー)」「Marlin 2」"
+"「RepRapFirmware」のいずれかが必要です。"
+
+# AI Translated
+msgid "Enable resonance avoidance to edit its speed range."
+msgstr "速度範囲を編集するには、共振回避を有効にしてください。"
+
+# AI Translated
+msgid ""
+"This input shaping setting requires the Marlin or RepRapFirmware G-code "
+"flavor."
+msgstr ""
+"この入力シェーピングの設定には、G-codeスタイル「Marlin 2」または"
+"「RepRapFirmware」が必要です。"
+
+# AI Translated
+msgid ""
+"Enable emitting machine limits to G-code to emit input shaping settings."
+msgstr ""
+"入力シェーピングの設定を出力するには、「制限値をG-codeに出力」を有効にしてく"
+"ださい。"
+
+# AI Translated
+msgid ""
+"Enable emitting machine limits and input shaping to G-code to edit this "
+"setting."
+msgstr ""
+"この設定を編集するには、「制限値をG-codeに出力」と「入力シェーピングを出力」"
+"を有効にしてください。"
+
+# AI Translated
+msgid ""
+"Enable emitting machine limits and input shaping to G-code with the Marlin "
+"firmware G-code flavor to edit separate Y-axis values."
+msgstr ""
+"Y軸の値を個別に編集するには、G-codeスタイル「Marlin 2」で「制限値をG-codeに出"
+"力」と「入力シェーピングを出力」を有効にしてください。"
 
 msgid ""
 "Switching to a printer with different extruder types or numbers will discard "
@@ -14645,6 +16193,14 @@ msgstr ""
 # AI Translated
 msgid "Are you sure you want to delete the selected preset?"
 msgstr "選択したプリセットを削除してもよろしいですか？"
+
+# AI Translated
+msgid ""
+"Select \"All\" to edit the compatibility condition instead of using an "
+"explicit profile list."
+msgstr ""
+"プロファイルを個別に指定する代わりに互換性の条件を編集するには、「すべて」を"
+"選択してください。"
 
 msgid "Select printers"
 msgstr "プリンターを選択"
@@ -14767,6 +16323,10 @@ msgstr "現在値をデフォルト値に戻します"
 
 msgid "Click to drop current modifications and reset to saved value."
 msgstr "クリックして値をリセットします"
+
+# AI Translated
+msgid "Material print speed cannot be edited for the SL1 printer."
+msgstr "SL1プリンターでは、材料の造形速度を編集できません。"
 
 msgid "Process Settings"
 msgstr "プロセス設定"
@@ -15525,9 +17085,8 @@ msgid "Global"
 msgstr "全般"
 
 # AI Translated
-msgid "Available anywhere in the window, even while typing in a text field."
-msgstr ""
-"テキストフィールドへの入力中も含め、ウィンドウ内のどこでも使用できます。"
+msgid "Available anywhere in the window."
+msgstr "ウィンドウ内のどこでも使用できます。"
 
 # AI Translated
 msgid "Run favorite 1 to 10"
@@ -15642,10 +17201,6 @@ msgstr "%sは%sに割り当てられています。%sに再割り当てします
 #, c-format, boost-format
 msgid "The default %s is assigned to %s. Reassign it to %s?"
 msgstr "デフォルトの%sは%sに割り当てられています。%sに再割り当てしますか？"
-
-# AI Translated
-msgid "Global shortcuts also apply while typing."
-msgstr "グローバルショートカットは文字入力中も有効です。"
 
 # AI Translated
 msgid "A key that types a character cannot be a global shortcut."
@@ -16019,6 +17574,33 @@ msgstr ""
 "ディスクの空き容量が不足していませんか？"
 
 # AI Translated
+#. TRN %1% is the extruder number counted from 1.
+#, boost-format
+msgid ""
+"A G-code move intersects a collision volume for extruder %1%. This may cause "
+"a printer collision."
+msgstr ""
+"G-codeの動きが押出機%1%の衝突ボリュームと交差しています。プリンターが衝突する"
+"可能性があります。"
+
+# AI Translated
+msgid ""
+"A G-code move intersects a collision volume. This may cause a printer "
+"collision."
+msgstr ""
+"G-codeの動きが衝突ボリュームと交差しています。プリンターが衝突する可能性があ"
+"ります。"
+
+# AI Translated
+#, boost-format
+msgid ""
+"The intersecting move is at G-code line %1%. Its Z position is unknown after "
+"homing, so Orca checked it against every height."
+msgstr ""
+"交差している動きはG-codeの%1%行目です。原点帰還後はそのZ位置が不明なため、"
+"Orcaはすべての高さに対してチェックしました。"
+
+# AI Translated
 #. TRN %1% is the temporary file path, %2% the output file path, %3% the system error message.
 #, boost-format
 msgid ""
@@ -16179,9 +17761,10 @@ msgstr ""
 msgid "Seam placement may differ from expected."
 msgstr "継ぎ目の位置が想定と異なる可能性があります。"
 
+# AI Translated
 #, boost-format
 msgid "Failed to write the G-code statistics to %1%."
-msgstr ""
+msgstr "G-codeの統計を %1% に書き込めませんでした。"
 
 msgid "Internal Bridge"
 msgstr "内部ブリッジ"
@@ -16442,6 +18025,18 @@ msgid ""
 "%1% is too close to exclusion area. There may be collisions when printing."
 msgstr "%1% は除外エリアに近すぎます。造形時に衝突の可能性があります。"
 
+# AI Translated
+#. TRN %1% is the object name.
+#, boost-format
+msgid "%1% intersects collision volumes for every available extruder."
+msgstr "%1%は、利用可能なすべての押出機の衝突ボリュームと交差しています。"
+
+# AI Translated
+#. TRN %1% is the object name, %2% the extruder number counted from 1.
+#, boost-format
+msgid "%1% intersects a collision volume for extruder %2%."
+msgstr "%1%は押出機%2%の衝突ボリュームと交差しています。"
+
 #, boost-format
 msgid "%1% is too close to others, and collisions may be caused."
 msgstr "%1% は他のオブジェクトと近すぎるため、衝突の可能性があります。"
@@ -16544,6 +18139,12 @@ msgstr ""
 
 msgid "No extrusions under current settings."
 msgstr "現在の設定では造形しません"
+
+# AI Translated
+#. TRN %1% is the filament number as shown in the filament list, starting from 1.
+#, boost-format
+msgid "The flow ratio of filament %1% must be greater than 0."
+msgstr "フィラメント%1%の流量比は0より大きくする必要があります。"
 
 # AI Translated
 msgid ""
@@ -17123,11 +18724,84 @@ msgstr ""
 msgid "Excluded bed area"
 msgstr "除外領域"
 
+# AI Translated
 msgid ""
 "Unprintable area in XY plane. For example, X1 Series printers use the front "
 "left corner to cut filament during filament change. The area is expressed as "
-"polygon by points in following format: \"XxY, XxY, ...\""
-msgstr "XY方向の除外領域"
+"a polygon in the format \"XxY, XxY, ...\". It constrains material and model "
+"placement, but allows machine travel. Configure toolhead collision volumes "
+"separately for G-code checking and travel avoidance."
+msgstr ""
+"XY平面上の印刷不可領域です。たとえばX1シリーズのプリンターでは、フィラメント"
+"交換時のフィラメントカットに左手前の隅を使用します。領域は「XxY, XxY, ...」形"
+"式の多角形で指定します。材料とモデルの配置は制限しますが、マシンの移動は許可"
+"します。G-codeのチェックと移動回避のためのツールヘッド衝突ボリュームは別途設"
+"定してください。"
+
+# AI Translated
+msgid "Toolhead collision volumes"
+msgstr "ツールヘッド衝突ボリューム"
+
+# AI Translated
+# Needs human review: Excluded bed area is rendered 除外領域, the catalog's existing label for that setting, instead of the glossary Bed term; check it matches the field label.
+msgid ""
+"Collision volumes used for model and generated-material exclusion, G-code "
+"checking, and travel avoidance. Use \"XxY, XxY, ...\" for a full-height "
+"polygon or \"ZMIN..ZMAX;XxY, XxY, ...\" for a Z-limited volume. Separate "
+"multiple volumes with \"|\". These volumes are additional to the excluded "
+"bed area. Automatic arrangement conservatively uses the bounding box of a "
+"non-convex volume."
+msgstr ""
+"モデルと生成された材料の除外、G-codeのチェック、移動回避に使用する衝突ボ"
+"リュームです。全高の多角形には「XxY, XxY, ...」、Z範囲を限定したボリュームに"
+"は「ZMIN..ZMAX;XxY, XxY, ...」を使用します。複数のボリュームは「|」で区切りま"
+"す。これらのボリュームは除外領域に追加されます。自動配置では、凸でないボ"
+"リュームは境界ボックスで保守的に扱われます。"
+
+# AI Translated
+msgid "Collision volume behavior"
+msgstr "衝突ボリュームの動作"
+
+# AI Translated
+msgid ""
+"Choose whether all nozzles use the same collision volumes, derive toolhead-"
+"relative volumes from each nozzle's XY offset, or configure independent "
+"volumes for every extruder. In individual mode, select each extruder on the "
+"Extruder page to configure its volumes."
+msgstr ""
+"すべてのノズルで同じ衝突ボリュームを使用するか、各ノズルのXYオフセットから"
+"ツールヘッド基準のボリュームを導出するか、押出機ごとに独立したボリュームを設"
+"定するかを選択します。個別モードでは、押出機ページで各押出機を選択して、その"
+"ボリュームを設定します。"
+
+# AI Translated
+#. TRN Collision volume modes: one set for all nozzles, one set moved by each nozzle's XY offset, or one set per extruder.
+msgid "Shared by all nozzles"
+msgstr "すべてのノズルで共通"
+
+# AI Translated
+msgid "Toolhead-relative (nozzle offsets)"
+msgstr "ツールヘッド基準（ノズルオフセット）"
+
+# AI Translated
+msgid "Individual per extruder"
+msgstr "押出機ごとに個別"
+
+# AI Translated
+msgid "Extruder collision volumes"
+msgstr "押出機の衝突ボリューム"
+
+# AI Translated
+msgid ""
+"Collision volumes used only by this extruder in individual mode. Use the "
+"same polygon and optional Z-range format as the shared collision volumes. "
+"Leave empty for no collision volumes on this extruder. Automatic arrangement "
+"conservatively uses the bounding box of a non-convex volume."
+msgstr ""
+"個別モードで、この押出機のみが使用する衝突ボリュームです。共有の衝突ボリュー"
+"ムと同じ多角形とオプションのZ範囲の形式を使用します。この押出機に衝突ボリュー"
+"ムを設定しない場合は空のままにします。自動配置では、凸でないボリュームは境界"
+"ボックスで保守的に扱われます。"
 
 msgid "Bed custom texture"
 msgstr "カスタムベッドテクスチャ"
@@ -17486,6 +19160,22 @@ msgid ""
 msgstr ""
 "底面の厚さです、底面層数で決まった厚みがこの値より小さい場合、層数を増やしま"
 "す。この値が0にする場合、この設定が無効となり、設定した層数で造形します。"
+
+# AI Translated
+# Needs human review: 'paint penetration' = how many layers deep the painted color reaches behind the painted bottom surface. Check that 色塗り浸透層数 reads right; 色塗り follows the existing Color Painting label.
+msgid "Bottom paint penetration layers"
+msgstr "底面の色塗り浸透層数"
+
+# AI Translated
+msgid ""
+"The number of layers, including the bottom surface layer, that take the "
+"color painted on a bottom surface. Set to 0 to use the bottom shell layers. "
+"A value larger than the bottom shell also colors the sparse infill above the "
+"painted area."
+msgstr ""
+"底面の層を含め、底面に塗った色が付く層の数です。0にすると、底面層数の値を使用"
+"します。底面層数より大きい値にすると、塗った領域の上にあるスパース インフィル"
+"にも色が付きます。"
 
 msgid "Apply gap fill"
 msgstr "ギャップフィルを適用"
@@ -19759,19 +21449,21 @@ msgstr "最大体積速度の多項式係数"
 msgid "Shrinkage (XY)"
 msgstr "収縮率 (XY)"
 
+# AI Translated
+# Needs human review: Rewrote a person's translation: Third sentence contradicted the English (said only the perimeter filament is considered).
 #, no-c-format, no-boost-format
 msgid ""
 "Enter the shrinkage percentage that the filament will get after cooling (94% "
 "if you measure 94mm instead of 100mm). The part will be scaled in XY to "
 "compensate. For multi-material prints, ensure filament shrinkage matches "
-"across all used filaments\n"
+"across all used filaments.\n"
 "Be sure to allow enough space between objects, as this compensation is done "
 "after the checks."
 msgstr ""
-"フィラメントが冷却後に収縮する率を入力します（100mm→94mmならば94%）。この収縮"
-"により、パーツはxy方向でスケーリングされて補償されます。補償は、パーツの周囲"
-"部分に使用されるフィラメントのみが考慮されます。\n"
-"この補償はチェック後に行われます。オブジェクト間に十分なスペースを確保してく"
+"フィラメントが冷却後に収縮する率を入力します（100mm→94mmならば94%）。パーツは"
+"これを補正するようにXY方向にスケーリングされます。マルチマテリアル造形では、"
+"使用するすべてのフィラメントの収縮率を一致させてください。\n"
+"この補正はチェック後に行われます。オブジェクト間に十分なスペースを確保してく"
 "ださい。"
 
 # AI Translated
@@ -19883,8 +21575,10 @@ msgstr ""
 msgid "Wipe tower cooling"
 msgstr "ワイプタワー冷却"
 
-msgid "Temperature drop before entering filament tower"
-msgstr "フィラメントタワーに入る前に温度を下げる"
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid "Temperature drop before entering the wipe tower."
+msgstr "ワイプタワーに入る前に温度を下げる。"
 
 msgid "Interface layer pre-extrusion distance"
 msgstr "インターフェース層の事前押出し距離"
@@ -20510,10 +22204,10 @@ msgid "accel_to_decel"
 msgstr "accel_to_decel"
 
 # AI Translated
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
-"Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
-msgstr "Klipperのmax_accel_to_decelが、加速度のこの%%に調整されます。"
+"Klipper's max_accel_to_decel will be adjusted to this % of acceleration."
+msgstr "Klipperのmax_accel_to_decelが、加速度のこの%に調整されます。"
 
 msgid "Default jerk."
 msgstr "デフォルトジャーク。"
@@ -20811,7 +22505,7 @@ msgid "Fuzzy skin generator mode"
 msgstr "ファジースキンの生成モード"
 
 # AI Translated
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
 "Fuzzy skin generation mode. Works only with Arachne!\n"
 "Displacement: Сlassic mode when the pattern is formed by shifting the nozzle "
@@ -20827,7 +22521,7 @@ msgid ""
 "Attention! The [Extrusion] and [Combined] modes works only the "
 "fuzzy_skin_thickness parameter not more than the thickness of printed loop. "
 "At the same time, the width of the extrusion for a particular layer should "
-"also not be below a certain level. It is usually equal 15-25%% of a layer "
+"also not be below a certain level. It is usually equal 15-25% of a layer "
 "height. Therefore, the maximum fuzzy skin thickness with a perimeter width "
 "of 0.4 mm and a layer height of 0.2 mm will be 0.4-(0.2*0.25)=±0.35mm! If "
 "you enter a higher parameter than this, the error Flow::spacing() will "
@@ -20845,7 +22539,7 @@ msgstr ""
 "\n"
 "注意！[押出]および[複合]モードは、fuzzy_skin_thicknessパラメータが印刷される"
 "ループの厚さ以下の場合にのみ動作します。同時に、特定の層における押出幅も一定"
-"の水準を下回ってはいけません。通常は積層ピッチの15-25%%程度です。したがって、"
+"の水準を下回ってはいけません。通常は積層ピッチの15-25%程度です。したがって、"
 "外周幅0.4 mm、積層ピッチ0.2 mmの場合、ファジー壁面の最大厚さは0.4-"
 "(0.2*0.25)=±0.35mmとなります。これより大きい値を入力するとFlow::spacing()エ"
 "ラーが表示され、モデルはスライスされません。このエラーが出なくなるまで値を調"
@@ -21036,23 +22730,39 @@ msgid "Arc fitting"
 msgstr "曲線フィッティング"
 
 # AI Translated
+# Needs human review: Glossary cell for prime/wipe tower is unsettled; used ワイプタワー to follow the English 'wipe tower'. Option names (Disabled/Enabled/Sparse infill only) should match the dropdown labels.
 msgid ""
-"Enable this to get a G-code file which has G2 and G3 moves. The fitting "
-"tolerance is same as the resolution.\n"
+"Fit G2 and G3 arc moves to the toolpaths. Walls and surfaces are fitted "
+"within the resolution, while sparse infill, supports and the wipe tower use "
+"fixed tolerances.\n"
+" - Disabled: only straight G1 moves are used.\n"
+" - Enabled: arcs are fitted to all toolpaths.\n"
+" - Sparse infill only: arcs are fitted to the sparse infill only, which "
+"shortens the G-code of curved infill patterns without affecting the walls "
+"and surfaces.\n"
 "\n"
-"Note: For Klipper machines, this option is recommended to be disabled. "
-"Klipper does not benefit from arc commands as these are split again into "
-"line segments by the firmware. This results in a reduction in surface "
-"quality as line segments are converted to arcs by the slicer and then back "
-"to line segments by the firmware."
+"Note: For Klipper machines, Disabled is recommended. Klipper splits arcs "
+"back into line segments, which lowers the surface quality and can increase "
+"the print time."
 msgstr ""
-"G2およびG3の動きを含むG-codeファイルを得たい場合に有効にします。フィッティン"
-"グ許容差は解像度と同じです。\n"
+"G2およびG3の円弧移動をツールパスにフィッティングします。壁とサーフェスは解像"
+"度の範囲内でフィッティングされ、スパース インフィル、サポート、ワイプタワーに"
+"は固定の許容差が使われます。\n"
+" - 無効：直線のG1移動のみを使用します。\n"
+" - 有効：すべてのツールパスに円弧をフィッティングします。\n"
+" - スパース インフィルのみ：円弧をスパース インフィルにのみフィッティングしま"
+"す。壁とサーフェスに影響を与えずに、曲線的なインフィルパターンのG-codeを短縮"
+"できます。\n"
 "\n"
-"注意: Klipper機ではこのオプションを無効にすることをおすすめします。円弧コマン"
-"ドはファームウェアで再び線分に分割されるため、Klipperでは利点がありません。ス"
-"ライサーが線分を円弧に変換し、ファームウェアが再び線分に戻すため、表面品質が"
-"低下します。"
+"注意：Klipperマシンでは「無効」を推奨します。Klipperは円弧を再び線分に分割す"
+"るため、表面品質が低下し、印刷時間が増える場合があります。"
+
+msgid "Enabled"
+msgstr "有効"
+
+# AI Translated
+msgid "Sparse infill only"
+msgstr "スパース インフィルのみ"
 
 msgid "Add line number"
 msgstr "行番号を追加"
@@ -21263,10 +22973,11 @@ msgstr "チャンバー温度の制御サポート"
 
 # AI Translated
 msgid ""
-"This option is enabled if machine support controlling chamber temperature\n"
+"This option is enabled if the machine supports controlling the chamber "
+"temperature\n"
 "G-code command: M141 S(0-255)"
 msgstr ""
-"チャンバー温度の制御に対応した機種の場合に、このオプションが有効になります\n"
+"庫内温度の制御に対応した機種の場合に、このオプションが有効になります\n"
 "G-codeコマンド: M141 S(0-255)"
 
 msgid "Support air filtration"
@@ -21274,7 +22985,7 @@ msgstr "Support air filtration"
 
 # AI Translated
 msgid ""
-"Enable this if printer support air filtration\n"
+"Enable this if the printer supports air filtration\n"
 "G-code command: M106 P3 S(0-255)"
 msgstr ""
 "プリンターが空気ろ過に対応している場合に有効にします\n"
@@ -21283,7 +22994,7 @@ msgstr ""
 msgid "Use cooling filter"
 msgstr "冷却フィルターを使用"
 
-msgid "Enable this if printer support cooling filter"
+msgid "Enable this if the printer supports a cooling filter"
 msgstr "プリンターが冷却フィルターに対応している場合は有効にする"
 
 msgid "G-code flavor"
@@ -21357,6 +23068,22 @@ msgid "Enable this option to add EXCLUDE OBJECT command in G-code."
 msgstr ""
 "G-codeにEXCLUDE OBJECTコマンドを追加するには、このオプションを有効にします。"
 
+# AI Translated
+msgid "Outline tolerance"
+msgstr "アウトライン許容差"
+
+# AI Translated
+msgid ""
+"Maximum deviation of the object outline written to EXCLUDE_OBJECT_DEFINE "
+"from the original outline. Larger values give fewer points, which helps "
+"firmware that stalls while parsing G-code with many objects. 0 keeps every "
+"point."
+msgstr ""
+"EXCLUDE_OBJECT_DEFINE に書き込まれるオブジェクトのアウトラインと元のアウトラ"
+"インとの最大偏差です。値を大きくすると点の数が減り、オブジェクトの多いG-code"
+"の解析中に停止するファームウェアで効果があります。0にするとすべての点を保持し"
+"ます。"
+
 msgid "Verbose G-code"
 msgstr "コメント付きGコード"
 
@@ -21368,6 +23095,34 @@ msgstr ""
 "これを有効にすると、コメント化されたGコードファイルが生成され、各行に説明テキ"
 "ストが追加されます。 ただし、SDカードからプリントする場合、ファイルサイズ増大"
 "が原因で処理が間に合わずプリント速度が低下する可能性があります。"
+
+# AI Translated
+msgid "High precision G-code (experimental)"
+msgstr "高精度G-code (実験的)"
+
+# AI Translated
+msgid ""
+"Write X, Y, Z, I and J with 4 decimal places instead of 3, and E with 6 "
+"instead of 5, to reduce rounding errors in the G-code. With relative E "
+"distances, the rounding error of each move is also carried over to the next "
+"one. Supports are removed after printing, so they keep the standard "
+"precision. This may help stabilize extrusion with small nozzles (e.g. 0.2 "
+"mm) and thin layers (e.g. 0.08 mm or less), where each move extrudes so "
+"little material that rounding errors matter most. The effect depends "
+"strongly on how well the rest of the settings are tuned and may be hard to "
+"notice unless the print profile is well calibrated. The G-code file becomes "
+"about 10 percent larger, which may slow down printers that parse G-code "
+"slowly."
+msgstr ""
+"G-codeの丸め誤差を減らすため、X、Y、Z、I、Jを小数点以下3桁ではなく4桁で、Eを5"
+"桁ではなく6桁で出力します。相対E距離を使用している場合は、各移動の丸め誤差も"
+"次の移動に繰り越されます。サポートは印刷後に取り除かれるため、標準の精度のま"
+"まです。小径ノズル (例: 0.2 mm) や小さい積層ピッチ (例: 0.08 mm以下) では、1"
+"回の移動で押し出す量がごくわずかで丸め誤差の影響が最も大きくなるため、押出の"
+"安定に役立つ場合があります。効果は他の設定の調整具合に大きく左右され、造形プ"
+"ロファイルが十分にキャリブレーションされていないと気づきにくいことがありま"
+"す。G-codeファイルは約10%大きくなるため、G-codeの解析が遅いプリンターでは動作"
+"が遅くなる場合があります。"
 
 msgid "Infill combination"
 msgstr "インフィル マージ"
@@ -21917,14 +23672,6 @@ msgstr "積層が変わる直後に実行するG-codeです。"
 
 msgid "Clumping detection G-code"
 msgstr "クラミング検出G-code"
-
-msgid "Silent Mode"
-msgstr "サイレントモード"
-
-msgid ""
-"Whether the machine supports silent mode in which machine uses lower "
-"acceleration to print more quietly"
-msgstr "サイレントモード有無"
 
 # AI Translated
 msgid "Emit limits to G-code"
@@ -22578,13 +24325,13 @@ msgstr ""
 msgid "Detect overhang walls"
 msgstr "オーバーハングを検出"
 
-#, c-format, boost-format
+#, no-c-format, no-boost-format
 msgid ""
 "This detects the overhang percentage relative to line width and uses a "
-"different speed to print. For 100%% overhang, bridging speed is used."
+"different speed to print. For 100% overhang, bridging speed is used."
 msgstr ""
 "この設定により、線幅に対するオーバーハングの割合を検出し、異なる速度で造形し"
-"ます。100%%のオーバーハングの場合、ブリッジの速度が使用されます。"
+"ます。100%のオーバーハングの場合、ブリッジの速度が使用されます。"
 
 # AI Translated
 msgid "Print unsupported walls last"
@@ -22909,6 +24656,9 @@ msgstr "Zホップのタイプ"
 msgid "Type of Z-hop."
 msgstr "Zホップのタイプです。"
 
+msgid "Normal"
+msgstr "普通"
+
 msgid "Slope"
 msgstr "スロープ"
 
@@ -23122,13 +24872,13 @@ msgstr "継ぎ目ギャップ"
 msgid ""
 "In order to reduce the visibility of the seam in a closed loop extrusion, "
 "the loop is interrupted and shortened by a specified amount.\n"
-"This amount can be specified in millimeters or as a percentage of the "
-"current extruder diameter. The default value for this parameter is 10%."
+"This amount can be specified in millimeters or as a percentage of the nozzle "
+"diameter. The default value for this parameter is 10%."
 msgstr ""
 "閉ループ押出における継ぎ目を目立たなくするため、ループを途中で止めて指定した"
 "量だけ短くします。\n"
-"この量はミリメートル、または現在の押出機径に対するパーセントで指定できます。"
-"このパラメータのデフォルト値は10%です。"
+"この量はミリメートル、またはノズル径に対するパーセントで指定できます。このパ"
+"ラメータのデフォルト値は10%です。"
 
 # AI Translated
 msgid "Scarf joint seam (beta)"
@@ -23423,9 +25173,6 @@ msgstr ""
 "\n"
 "有効 = スカートは最も高い印刷オブジェクトと同じ高さになります。それ以外の場合"
 "は「スカートの高さ」が使用されます。"
-
-msgid "Enabled"
-msgstr "有効"
 
 # AI Translated
 msgid "Skirt type"
@@ -24562,16 +26309,6 @@ msgstr ""
 "codeの逆変換では、機械座標系のせん断/スケールとリマップの前にこの回転が元に戻"
 "されます。一般的なガントリーの傾斜はXです (ベルトはY方向に移動)。"
 
-msgid "X"
-msgstr "X"
-
-msgid "Y"
-msgstr "Y"
-
-# AI Translated
-msgid "Z"
-msgstr "Z"
-
 # AI Translated
 msgid "Belt tilt angle"
 msgstr "ベルト傾斜角度"
@@ -25049,6 +26786,22 @@ msgstr ""
 "トップ面の厚さです、トップ面層数で決まった厚みがこの値より小さい場合、層数を"
 "増やします。この値が0にする場合、この設定が無効となり、設定した層数で造形しま"
 "す。"
+
+# AI Translated
+# Needs human review: 'paint penetration' = how many layers deep the painted color reaches behind the painted top surface; check 色塗り浸透層数. The neighbouring setting 'Top shell layers' is labelled トップ面層数 in the catalog (glossary says Top = 上面), and the tooltip quotes that label.
+msgid "Top paint penetration layers"
+msgstr "上面の色塗り浸透層数"
+
+# AI Translated
+msgid ""
+"The number of layers, including the top surface layer, that take the color "
+"painted on a top surface. Set to 0 to use the top shell layers. A value "
+"larger than the top shell also colors the sparse infill below the painted "
+"area."
+msgstr ""
+"上面の層を含め、上面に塗った色が付く層の数です。0にすると、上面層数の値を使用"
+"します。上面層数より大きい値にすると、塗った領域の下にあるスパース インフィル"
+"にも色が付きます。"
 
 # AI Translated
 msgid "Separated infills"
@@ -25881,6 +27634,22 @@ msgstr ""
 msgid "invalid value "
 msgstr "無効な値"
 
+# AI Translated
+msgid "Invalid collision volume definition."
+msgstr "衝突ボリュームの定義が無効です。"
+
+# AI Translated
+msgid ""
+"A nozzle offset is required for every extruder when toolhead-relative "
+"collision volumes are enabled."
+msgstr ""
+"ツールヘッド基準の衝突ボリュームを有効にする場合は、すべての押出機にノズルオ"
+"フセットが必要です。"
+
+# AI Translated
+msgid "Invalid per-extruder collision volume definition."
+msgstr "押出機ごとの衝突ボリュームの定義が無効です。"
+
 msgid "Invalid value when spiral vase mode is enabled: "
 msgstr "スパイラルベースモードが有効な場合、無効な値です："
 
@@ -26275,15 +28044,22 @@ msgstr "出力先フォルダ"
 msgid "This is the output directory for exported files."
 msgstr "エクスポートの出力先フォルダです。"
 
+# AI Translated
 msgid "Export statistics"
-msgstr ""
+msgstr "統計をエクスポート"
 
+# AI Translated
+# Needs human review: "feature" here is the G-code feature (line) type, not the Design-tab Feature; rendered as line type, check.
 msgid ""
 "Write the statistics of each sliced plate as JSON, as "
 "plate_N.statistics.json next to its G-code in the output directory and "
 "inside the 3MF of --export-3mf: print time, filament and feature totals, and "
 "the same per layer and per object."
 msgstr ""
+"スライスした各プレートの統計をJSON形式で、出力ディレクトリ内のG-codeの隣に "
+"plate_N.statistics.json として書き出し、--export-3mf で出力する3MFにも含めま"
+"す。内容は、印刷時間、フィラメントと線種ごとの合計、および積層ごと・オブジェ"
+"クトごとの同じ項目です。"
 
 msgid "Debug level"
 msgstr "デバッグ レベル"
@@ -26684,11 +28460,15 @@ msgstr ""
 "ワイプタワーで無駄になる材料の総コストです。フィラメント設定のfilament_cost値"
 "から計算されます。"
 
-msgid "Wipe tower volume"
-msgstr "ワイプタワー体積"
+# AI Translated
+# Needs human review: Glossary cell for prime/wipe tower is unsettled; used ワイプタワー to follow the English 'wipe tower'.
+msgid "Total wipe tower filament"
+msgstr "ワイプタワーのフィラメント合計"
 
-msgid "Total filament volume extruded on the wipe tower."
-msgstr "ワイプタワー上で押し出されたフィラメントの総体積。"
+# AI Translated
+# Needs human review: Glossary cell for prime/wipe tower is unsettled; used ワイプタワー to follow the English 'wipe tower'.
+msgid "Total length of filament used on the wipe tower, in mm."
+msgstr "ワイプタワーで使用されるフィラメントの全長（mm）。"
 
 msgid "Used filament"
 msgstr "フィラメント使用量"
@@ -26975,11 +28755,13 @@ msgstr "レイヤーナンバー"
 
 # AI Translated
 msgid ""
-"Index of the current layer. Zero-based (i.e. first layer is number 0), "
-"except in extrusion role change G-code, where it is one-based."
+"Index of the current layer. The index is zero-based (first layer has index "
+"0). Before the first layer starts, it is -1. In extrusion role change G-"
+"code, the index is one-based (first layer has index 1)."
 msgstr ""
-"現在の積層のインデックスです。0始まり (つまり最初の積層は0番) ですが、押出"
-"ロール変更G-codeでは1始まりです。"
+"現在の積層のインデックスです。インデックスは0から始まります（最初の積層のイン"
+"デックスは0）。最初の積層が始まる前は-1です。押出ロール変更G-codeでは、イン"
+"デックスは1から始まります（最初の積層のインデックスは1）。"
 
 msgid "Layer Z"
 msgstr "レイヤーZ"
@@ -27000,8 +28782,199 @@ msgid "Filament extruder ID"
 msgstr "フィラメントの押出機ID"
 
 # AI Translated
-msgid "The current extruder ID. The same as current_extruder."
-msgstr "現在の押出機IDです。current_extruderと同じです。"
+# Needs human review: Glossary cell for prime/wipe tower is unsettled; used ワイプタワー to follow the English 'wipe tower'.
+msgid ""
+"In filament start G-code, the index of the filament that is being loaded. In "
+"filament end G-code, the index of the filament that is being unloaded. The "
+"index is zero-based (first filament has index 0). At a tool change, filament "
+"end G-code gets the extruder index instead, unless the Type 1 wipe tower "
+"does the tool change. Machine end G-code gets the value from the last "
+"filament end G-code at the end of the print."
+msgstr ""
+"フィラメント開始G-codeでは、ロード中のフィラメントのインデックスです。フィラ"
+"メント終了G-codeでは、アンロード中のフィラメントのインデックスです。インデッ"
+"クスは0から始まります（最初のフィラメントのインデックスは0）。ツール交換時"
+"は、タイプ1のワイプタワーがツール交換を行う場合を除き、フィラメント終了G-code"
+"には代わりに押出機のインデックスが渡されます。プリンター終了G-codeには、印刷"
+"終了時の最後のフィラメント終了G-codeの値が渡されます。"
+
+# AI Translated
+msgid "Current filament ID"
+msgstr "現在のフィラメントID"
+
+# AI Translated
+msgid ""
+"Index of the currently active filament. The index is zero-based (first "
+"filament has index 0)."
+msgstr ""
+"現在アクティブなフィラメントのインデックスです。インデックスは0から始まります"
+"（最初のフィラメントのインデックスは0）。"
+
+# AI Translated
+msgid "Current extruder ID"
+msgstr "現在の押出機ID"
+
+# AI Translated
+msgid ""
+"Index of the currently active physical extruder. The index is zero-based "
+"(first extruder has index 0)."
+msgstr ""
+"現在アクティブな物理押出機のインデックスです。インデックスは0から始まります"
+"（最初の押出機のインデックスは0）。"
+
+# AI Translated
+msgid "Current nozzle ID"
+msgstr "現在のノズルID"
+
+# AI Translated
+msgid ""
+"Index of the currently active nozzle. The index is zero-based (first nozzle "
+"has index 0)."
+msgstr ""
+"現在アクティブなノズルのインデックスです。インデックスは0から始まります（最初"
+"のノズルのインデックスは0）。"
+
+# AI Translated
+msgid "Nozzle diameters"
+msgstr "ノズル直径"
+
+# AI Translated
+msgid "Nozzle diameters indexed by nozzle ID."
+msgstr "ノズルIDで索引付けされたノズル直径。"
+
+# AI Translated
+msgid "Nozzle volume types"
+msgstr "ノズルフロータイプ"
+
+# AI Translated
+#. TRN The quoted values are G-code identifiers; keep them in English.
+msgid ""
+"Nozzle volume types indexed by nozzle ID, such as \"Standard\" or \"High "
+"Flow\"."
+msgstr ""
+"ノズルIDをインデックスとするノズルフロータイプ (\"Standard\"、\"High Flow\" "
+"など) です。"
+
+# AI Translated
+msgid "Retraction distance used when cutting filament."
+msgstr "フィラメントをカットする際のリトラクション距離。"
+
+# AI Translated
+msgid "Long retraction when cut"
+msgstr "カット時のロングリトラクション"
+
+# AI Translated
+msgid "Whether long retraction is used when cutting filament."
+msgstr "フィラメントのカット時にロングリトラクションを使用するかどうか。"
+
+# AI Translated
+msgid "Most-used physical extruder ID"
+msgstr "最も使用される物理押出機ID"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder used most often on the current layer. The "
+"index is zero-based (first extruder has index 0)."
+msgstr ""
+"現在の積層で最も多く使用される物理押出機のインデックスです。インデックスは0か"
+"ら始まります（最初の押出機のインデックスは0）。"
+
+# AI Translated
+msgid "Current Y acceleration limit"
+msgstr "現在のY軸加速度の上限"
+
+# AI Translated
+msgid "Current Y-axis acceleration limit after the bed-mass adjustment."
+msgstr "ベッド質量による補正後の、現在のY軸加速度の上限。"
+
+# AI Translated
+msgid "Current accumulated mass"
+msgstr "現在の累積質量"
+
+# AI Translated
+msgid "Accumulated printed mass at the current layer."
+msgstr "現在の積層までに印刷された累積質量。"
+
+# AI Translated
+msgid "Previous layer mass"
+msgstr "前の積層の質量"
+
+# AI Translated
+msgid "Printed mass of the previous layer."
+msgstr "前の積層の印刷質量。"
+
+# AI Translated
+msgid "Same as previous_layer_mass. Bambu Studio uses this name."
+msgstr ""
+"previous_layer_massと同じです。Bambu Studioではこの名前が使われています。"
+
+# AI Translated
+msgid "Current physical extruder ID"
+msgstr "現在の物理押出機ID"
+
+# AI Translated
+msgid ""
+"Index of the physical extruder active for the current layer. The index is "
+"zero-based (first extruder has index 0)."
+msgstr ""
+"現在の積層でアクティブな物理押出機のインデックスです。インデックスは0から始ま"
+"ります（最初の押出機のインデックスは0）。"
+
+# AI Translated
+msgid "Timelapse position X"
+msgstr "タイムラプスの位置X"
+
+# AI Translated
+msgid "Selected X position for timelapse capture."
+msgstr "タイムラプス撮影用に選択されたX位置。"
+
+# AI Translated
+msgid "Timelapse position Y"
+msgstr "タイムラプスの位置Y"
+
+# AI Translated
+msgid "Selected Y position for timelapse capture."
+msgstr "タイムラプス撮影用に選択されたY位置。"
+
+# AI Translated
+msgid "Has timelapse safe position"
+msgstr "タイムラプスの安全位置あり"
+
+# AI Translated
+msgid "Whether a safe timelapse position was found."
+msgstr "タイムラプスの安全位置が見つかったかどうか。"
+
+# AI Translated
+msgid "Timelapse inline photo"
+msgstr "タイムラプスのインライン撮影"
+
+# AI Translated
+msgid ""
+"Whether the photo is taken where the nozzle already is, without moving to a "
+"safe timelapse position first."
+msgstr ""
+"先にタイムラプスの安全な位置へ移動せず、ノズルの現在位置で写真を撮影するかど"
+"うかを示します。"
+
+# AI Translated
+msgid "Farthest-point timelapse enabled"
+msgstr "最遠点タイムラプスが有効"
+
+# AI Translated
+msgid "Whether farthest-point timelapse positioning is active."
+msgstr "最遠点タイムラプスの位置決めが有効かどうか。"
+
+# AI Translated
+msgid "Clear path to X0"
+msgstr "X0まで障害物なし"
+
+# AI Translated
+msgid ""
+"Whether the nozzle can move to X0 at the current height without hitting "
+"another printed object."
+msgstr ""
+"現在の高さで、ノズルが他の造形済みオブジェクトに衝突せずにX0まで移動できるか"
+"どうかを示します。"
 
 # AI Translated
 msgid "Previous extruder"
@@ -27009,11 +28982,13 @@ msgstr "前の押出機"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being unloaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being unloaded. The index is zero-based (first "
+"filament has index 0). At the start of the print, when no filament is loaded "
+"yet, it is -1."
 msgstr ""
-"アンロード中の押出機のインデックスです。インデックスは0から始まります (最初の"
-"押出機のインデックスは0)。"
+"アンロード中のフィラメントのインデックスです。インデックスは0から始まります"
+"（最初のフィラメントのインデックスは0）。印刷開始時でまだフィラメントがロード"
+"されていない場合は-1です。"
 
 # AI Translated
 msgid "Next extruder"
@@ -27021,11 +28996,117 @@ msgstr "次の押出機"
 
 # AI Translated
 msgid ""
-"Index of the extruder that is being loaded. The index is zero based (first "
-"extruder has index 0)."
+"Index of the filament that is being loaded. The index is zero-based (first "
+"filament has index 0)."
 msgstr ""
-"ロード中の押出機のインデックスです。インデックスは0から始まります (最初の押出"
-"機のインデックスは0)。"
+"ロード中のフィラメントのインデックスです。インデックスは0から始まります（最初"
+"のフィラメントのインデックスは0）。"
+
+# AI Translated
+msgid "Current hotend"
+msgstr "現在のホットエンド"
+
+# AI Translated
+msgid ""
+"Hotend of the outgoing filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"切り替え前のフィラメントのホットエンドを、0から始まる押出機インデックスで示し"
+"ます。Bambuプリンターでは-1、またはフィラメントが積層をまたいでノズル間を移動"
+"する場合はノズルIDになります。"
+
+# AI Translated
+msgid "Next hotend"
+msgstr "次のホットエンド"
+
+# AI Translated
+msgid ""
+"Hotend of the incoming filament, given as its zero-based extruder index. On "
+"Bambu printers it is -1, or the nozzle ID when a filament moves between "
+"nozzles across layers."
+msgstr ""
+"切り替え後のフィラメントのホットエンドを、0から始まる押出機インデックスで示し"
+"ます。Bambuプリンターでは-1、またはフィラメントが積層をまたいでノズル間を移動"
+"する場合はノズルIDになります。"
+
+# AI Translated
+msgid "Next nozzle ID"
+msgstr "次のノズルID"
+
+# AI Translated
+msgid ""
+"Index of the nozzle associated with the incoming filament. The index is zero-"
+"based (first nozzle has index 0)."
+msgstr ""
+"切り替え後のフィラメントに対応するノズルのインデックスです。インデックスは0か"
+"ら始まります（最初のノズルのインデックスは0）。"
+
+# AI Translated
+msgid "Next filament ID"
+msgstr "次のフィラメントID"
+
+# AI Translated
+msgid ""
+"Index of the incoming filament. The index is zero-based (first filament has "
+"index 0)."
+msgstr ""
+"切り替え後のフィラメントのインデックスです。インデックスは0から始まります（最"
+"初のフィラメントのインデックスは0）。"
+
+# AI Translated
+msgid "Old extruder variant"
+msgstr "旧押出機のバリアント"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the outgoing extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"切り替え前の押出機の押出機タイプとノズルフロータイプ (\"Direct Drive High "
+"Flow\" など) です。"
+
+# AI Translated
+msgid "New extruder variant"
+msgstr "新押出機のバリアント"
+
+# AI Translated
+#. TRN The quoted value is a G-code identifier; keep it in English.
+msgid ""
+"Extruder type and nozzle volume type of the incoming extruder, such as "
+"\"Direct Drive High Flow\"."
+msgstr ""
+"切り替え後の押出機の押出機タイプとノズルフロータイプ (\"Direct Drive High "
+"Flow\" など) です。"
+
+# AI Translated
+msgid "Filament nozzle-change retract length"
+msgstr "フィラメントのノズル交換時リトラクション長さ"
+
+# AI Translated
+msgid "Nozzle-change retraction length of the outgoing filament."
+msgstr "切り替え前のフィラメントのノズル交換時リトラクション長さ。"
+
+# AI Translated
+msgid "New extruder retracted length"
+msgstr "新押出機のリトラクション済み長さ"
+
+# AI Translated
+msgid ""
+"Retraction length still applied to the incoming extruder from when it was "
+"parked."
+msgstr ""
+"切り替え後の押出機に、パーキング時から適用されたままのリトラクション長さで"
+"す。"
+
+# AI Translated
+msgid "Outer wall volumetric speed"
+msgstr "外壁の体積速度"
+
+# AI Translated
+msgid "Volumetric speed used for the outer wall."
+msgstr "外壁に使用する体積速度。"
 
 # AI Translated
 msgid "Relative e-axis"
@@ -27042,6 +29123,14 @@ msgstr "ツール交換回数"
 # AI Translated
 msgid "The number of toolchanges throughout the print."
 msgstr "印刷全体でのツール交換の回数です。"
+
+# AI Translated
+msgid "Toolchange Z"
+msgstr "ツール交換のZ"
+
+# AI Translated
+msgid "The Z position during the toolchange."
+msgstr "ツール交換中のZ位置。"
 
 # AI Translated
 msgid "Old retract length"
@@ -27120,16 +29209,16 @@ msgid "First flush volume"
 msgstr "最初のフラッシュ量"
 
 # AI Translated
-msgid "The first flush volume."
-msgstr "最初のフラッシュ量です。"
+msgid "First half of the planned purge length, in mm of filament."
+msgstr "予定されたフラッシュ長さの前半で、フィラメントのmm単位で表します。"
 
 # AI Translated
 msgid "Second flush volume"
 msgstr "2番目のフラッシュ量"
 
 # AI Translated
-msgid "The second flush volume."
-msgstr "2番目のフラッシュ量です。"
+msgid "Second half of the planned purge length, in mm of filament."
+msgstr "予定されたフラッシュ長さの後半で、フィラメントのmm単位で表します。"
 
 # AI Translated
 msgid "Old filament e feedrate"
@@ -27226,6 +29315,134 @@ msgstr "フラッシュ長さ 4"
 # AI Translated
 msgid "The fourth flush length."
 msgstr "4番目のフラッシュ長さです。"
+
+# AI Translated
+msgid "Flush length"
+msgstr "フラッシュ長さ"
+
+# AI Translated
+msgid "Total flush length."
+msgstr "フラッシュ長さの合計。"
+
+# AI Translated
+msgid "Flush volumetric speeds"
+msgstr "フラッシュ体積速度"
+
+# AI Translated
+msgid "Flush volumetric speeds for each filament."
+msgstr "各フィラメントのフラッシュ体積速度。"
+
+# AI Translated
+msgid "Flush temperatures"
+msgstr "フラッシュ温度"
+
+# AI Translated
+msgid "Flush temperatures for each filament."
+msgstr "各フィラメントのフラッシュ温度。"
+
+# AI Translated
+msgid "Filament cooling before tower"
+msgstr "タワー前のフィラメント冷却"
+
+# AI Translated
+msgid "Avoid wipe perimeter"
+msgstr "拭き上げ外周を回避"
+
+# AI Translated
+msgid "Whether travel should avoid the wipe perimeter."
+msgstr "移動で拭き上げ外周を回避するかどうか。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid "Wipe tower avoidance X"
+msgstr "ワイプタワー回避X"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid ""
+"X position just beside the wipe tower that the nozzle moves to so it stays "
+"clear of the tower."
+msgstr ""
+"ノズルがタワーを避けるために移動する、ワイプタワーのすぐ横のX位置です。"
+
+# AI Translated
+# Needs human review: Glossary cell for prime/wipe tower is unsettled; used プライムタワー to follow the English 'prime tower'.
+msgid "Prime tower interface"
+msgstr "プライムタワーのインターフェース"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Whether the current purge is for the prime tower interface layer (where "
+"different materials meet)."
+msgstr ""
+"現在のフラッシュが、異なる材料が接するプライムタワーのインターフェース層用か"
+"どうかを示します。"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "プライムタワー"; align it once the term is settled.
+msgid ""
+"Print temperature for prime tower interface layer (where different materials "
+"meet)."
+msgstr ""
+"異なる材料が接するプライムタワーのインターフェース層における、造形温度です。"
+
+# AI Translated
+msgid "Wipe tower wait position X"
+msgstr "ワイプタワー待機位置X"
+
+# AI Translated
+# Needs human review: See 'Wipe tower center X': description does not match the label. Glossary cell for prime/wipe tower is unsettled; used ワイプタワー.
+msgid ""
+"X coordinate of the nozzle's wipe-tower wait position, 2 mm outside the "
+"tower edge."
+msgstr "ノズルのワイプタワー待機位置のX座標。タワーの端から2 mm外側です。"
+
+# AI Translated
+msgid "Wipe tower wait position Y"
+msgstr "ワイプタワー待機位置Y"
+
+# AI Translated
+# Needs human review: See 'Wipe tower center Y': description does not match the label. Glossary cell for prime/wipe tower is unsettled; used ワイプタワー.
+msgid "Y coordinate of the nozzle's wipe-tower wait position."
+msgstr "ノズルのワイプタワー待機位置のY座標。"
+
+# AI Translated
+msgid "Wipe tower wait position valid"
+msgstr "ワイプタワー待機位置が有効"
+
+# AI Translated
+# Needs human review: Unsettled glossary term (⚠) "Prime tower / Wipe tower": this entry uses "ワイプタワー"; align it once the term is settled.
+msgid ""
+"Whether the wait position is set, which is the case when the print has a "
+"wipe tower."
+msgstr ""
+"待機位置が設定されているかどうかを示します。プリントにワイプタワーがある場合"
+"に設定されます。"
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_x. Bambu Studio uses this name."
+msgstr ""
+"wipe_tower_wait_pos_xと同じです。Bambu Studioではこの名前が使われています。"
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_y. Bambu Studio uses this name."
+msgstr ""
+"wipe_tower_wait_pos_yと同じです。Bambu Studioではこの名前が使われています。"
+
+# AI Translated
+msgid "Same as wipe_tower_wait_pos_valid. Bambu Studio uses this name."
+msgstr ""
+"wipe_tower_wait_pos_validと同じです。Bambu Studioではこの名前が使われていま"
+"す。"
+
+# AI Translated
+msgid "Nozzle temperatures indexed by filament."
+msgstr "フィラメント別のノズル温度。"
+
+# AI Translated
+msgid "First-layer nozzle temperatures indexed by filament."
+msgstr "フィラメント別の最初の積層のノズル温度。"
 
 # AI Translated
 msgid "Extrusion role"
@@ -27462,6 +29679,14 @@ msgstr "正規表現のコンパイルに失敗しました"
 # AI Translated
 msgid "Cannot apply logical operation to non-boolean operands."
 msgstr "論理演算を非ブールのオペランドに適用できません。"
+
+# AI Translated
+msgid ""
+"This value is known only after the G-code is generated. It can be printed, "
+"but not used in a calculation or a comparison."
+msgstr ""
+"この値はG-codeの生成後にのみ判明します。出力することはできますが、計算や比較"
+"には使用できません。"
 
 # AI Translated
 msgid "Trying to index a scalar variable"
@@ -29197,7 +31422,7 @@ msgstr "%s のテストを開始..."
 
 # AI Translated
 #, c-format, boost-format
-msgid "test %s ip resolved = %s"
+msgid "test %s IP resolved = %s"
 msgstr "%s のテスト: IP解決 = %s"
 
 # AI Translated
@@ -29541,15 +31766,16 @@ msgstr "プリンター設定に移動してプリセットを編集してくだ
 msgid "Filament Created"
 msgstr "フィラメントが作成されました"
 
+# AI Translated
 msgid ""
-"Please go to filament setting to edit your presets if you need.\n"
+"Please go to filament settings to edit your presets if you need to.\n"
 "Please note that nozzle temperature, hot bed temperature, and maximum "
-"volumetric speed has a significant impact on printing quality. Please set "
-"them carefully."
+"volumetric speed each have a significant impact on printing quality. Please "
+"set them carefully."
 msgstr ""
-"必要に応じてフィラメント設定に移動し、プリセットを編集してください。ノズル温"
-"度、ホットベッド温度、最大体積速度は、印刷品質に大きな影響を与えますので、慎"
-"重に設定してください。"
+"必要に応じてフィラメント設定に移動し、プリセットを編集してください。\n"
+"ノズル温度、ホットベッド温度、最大体積速度は、印刷品質に大きな影響を与えます"
+"ので、慎重に設定してください。"
 
 msgid ""
 "\n"
@@ -29768,9 +31994,9 @@ msgstr ""
 "ノズルタイプが実際のプリンターのノズルタイプと一致しません。\n"
 "上部の同期ボタンをクリックしてキャリブレーションを再開してください。"
 
-#, c-format, boost-format
-msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
-msgstr "%1s材料を%2sノズルで印刷するとノズルが損傷する可能性があります。"
+#, boost-format
+msgid "Printing %1% material with %2% nozzle may cause nozzle damage."
+msgstr "%1%材料を%2%ノズルで印刷するとノズルが損傷する可能性があります。"
 
 msgid "Need select printer"
 msgstr "プリンターを選ぶ必要があります"
@@ -30835,14 +33061,6 @@ msgid "Could not connect to CrealityPrint"
 msgstr "CrealityPrintに接続できませんでした"
 
 # AI Translated
-msgid ""
-"Connection timed out. Please check if the printer and computer network are "
-"functioning properly, and confirm that they are on the same network."
-msgstr ""
-"接続がタイムアウトしました。プリンターとコンピューターのネットワークが正常に"
-"機能しているか、また同じネットワーク上にあるかをご確認ください。"
-
-# AI Translated
 msgid "The Hostname/IP/URL could not be parsed, please check it and try again."
 msgstr "ホスト名/IP/URLを解析できませんでした。確認して再試行してください。"
 
@@ -30853,6 +33071,14 @@ msgid ""
 msgstr ""
 "ファイル/データの転送が中断されました。プリンターとネットワークを確認してから"
 "再試行してください。"
+
+# AI Translated
+msgid ""
+"Connection timed out. Please check if the printer and computer network are "
+"functioning properly, and confirm that they are on the same network."
+msgstr ""
+"接続がタイムアウトしました。プリンターとコンピューターのネットワークが正常に"
+"機能しているか、また同じネットワーク上にあるかをご確認ください。"
 
 msgid "The provided state is not correct."
 msgstr "指定された状態が正しくありません。"
@@ -31103,10 +33329,6 @@ msgstr "三角面の数"
 
 msgid "Calculating, please wait..."
 msgstr "計算中、お待ちください..."
-
-# AI Translated
-msgid "Save these settings as default"
-msgstr "これらの設定をデフォルトとして保存"
 
 # AI Translated
 msgid ""
@@ -32291,10 +34513,6 @@ msgstr "(すべてのエッジ)"
 # AI Translated
 msgid "Placement (transform / mirror / mate)"
 msgstr "配置 (変換 / 反転 / 合致)"
-
-# AI Translated
-msgid "Transform"
-msgstr "変換"
 
 # AI Translated
 msgid "Move and/or rotate an existing body"
@@ -35647,10 +37865,6 @@ msgstr ""
 "その2本の線分は角で交わっていません — 角で交わる2本の線分を選択してください"
 
 # AI Translated
-msgid "The size must be greater than zero"
-msgstr "サイズは0より大きくする必要があります"
-
-# AI Translated
 msgid ""
 "Fillet: the radius overruns a leg, or the two lines do not meet at a corner"
 msgstr ""
@@ -35752,10 +37966,6 @@ msgstr "繰り返し"
 # AI Translated
 msgid "Reference"
 msgstr "参照"
-
-# AI Translated
-msgid "Modify"
-msgstr "変更"
 
 # AI Translated
 msgctxt "Design"
@@ -36591,9 +38801,6 @@ msgstr "ズームイン"
 
 msgid "Zoom out"
 msgstr "縮小"
-
-msgid "Show/Hide 3Dconnexion devices settings dialog"
-msgstr "3Dconnexion設定を表示/非表示"
 
 # AI Translated
 msgid "Show/Hide wireframe"
@@ -37611,1232 +39818,1645 @@ msgstr[0] ""
 "現在のフィラメントリストに%sが含まれていません。混合フィラメントに必要なプロ"
 "ジェクトフィラメントは、分解後に自動的に作成されます。"
 
+# AI Translated
 msgid "Color Picker"
-msgstr ""
+msgstr "カラーピッカー"
 
+# AI Translated
 msgid "Basic Colors"
-msgstr ""
+msgstr "基本色"
 
-msgid "Orca Palette"
-msgstr ""
-
+# AI Translated
 #. TRN: Keep the brand name "Orca" unchanged; translate only the palette descriptor.
-msgid "RAL Classic"
-msgstr ""
+msgid "Orca Palette"
+msgstr "Orca パレット"
 
+# AI Translated
 #. TRN: Keep the standard/brand name "RAL" unchanged.
+msgid "RAL Classic"
+msgstr "RAL クラシック"
+
+# AI Translated
 msgid "Gradients"
-msgstr ""
+msgstr "グラデーション"
 
+# AI Translated
+msgctxt "Color picker"
 msgid "Solid"
-msgstr ""
+msgstr "単色"
 
+# AI Translated
 msgid "Gradient"
-msgstr ""
+msgstr "グラデーション"
 
+# AI Translated
 msgid "Gradient start"
-msgstr ""
+msgstr "グラデーション開始"
 
+# AI Translated
 msgid "Gradient end"
-msgstr ""
+msgstr "グラデーション終了"
 
+# AI Translated
 msgid "Gradient color"
-msgstr ""
+msgstr "グラデーションの色"
 
+# AI Translated
 msgid "Add color"
-msgstr ""
+msgstr "色を追加"
 
+# AI Translated
 msgid "Remove color"
-msgstr ""
+msgstr "色を削除"
 
+# AI Translated
 msgid "Saturation"
-msgstr ""
+msgstr "彩度"
 
+# AI Translated
 msgid "Original color"
-msgstr ""
+msgstr "元の色"
 
+# AI Translated
 #. TRN: Clicking the current color preview adds it to the saved favorites.
 msgid "Save current color"
-msgstr ""
+msgstr "現在の色を保存"
 
+# AI Translated
 msgid "Palettes"
-msgstr ""
+msgstr "パレット"
 
+# AI Translated
+msgid "Pick color from screen"
+msgstr "画面から色を取得"
+
+# AI Translated
 msgid "Search colors"
-msgstr ""
+msgstr "色を検索"
 
+# AI Translated
 msgid "Filter colors"
-msgstr ""
+msgstr "色を絞り込み"
 
+# AI Translated
 msgid "No matching colors"
-msgstr ""
+msgstr "一致する色がありません"
 
+# AI Translated
 msgid "Hex color"
-msgstr ""
+msgstr "16進カラー"
 
 # AI Translated
 msgid "Opacity"
 msgstr "不透明度"
 
+# AI Translated
 msgid "Opacity percent"
-msgstr ""
+msgstr "不透明度 (%)"
 
+# AI Translated
 msgid "Save color"
-msgstr ""
+msgstr "色を保存"
 
+# AI Translated
 msgid "Enter a complete hexadecimal color"
-msgstr ""
+msgstr "16進カラーコードを最後まで入力してください"
 
+# AI Translated
 msgid ""
 "The current multi-color selection is kept until you choose a different color."
-msgstr ""
+msgstr "別の色を選択するまで、現在のマルチカラー選択が保持されます。"
 
+# AI Translated
 #, c-format, boost-format
 msgid "Up to %d colors supported."
-msgstr ""
+msgstr "最大 %d 色に対応しています。"
 
+# AI Translated
 msgid "Crimson"
-msgstr ""
+msgstr "クリムゾン"
 
+# AI Translated
 msgid "Orange red"
-msgstr ""
+msgstr "オレンジレッド"
 
+# AI Translated
 msgid "Tomato"
-msgstr ""
+msgstr "トマト"
 
+# AI Translated
 msgid "Orange"
-msgstr ""
+msgstr "オレンジ"
 
+# AI Translated
 msgid "Dark orange"
-msgstr ""
+msgstr "ダークオレンジ"
 
+# AI Translated
 msgid "Gold"
-msgstr ""
+msgstr "ゴールド"
 
+# AI Translated
 msgid "Burly wood"
-msgstr ""
+msgstr "バーリーウッド"
 
+# AI Translated
 msgid "Bisque"
-msgstr ""
+msgstr "ビスク"
 
+# AI Translated
 msgid "Misty rose"
-msgstr ""
+msgstr "ミスティローズ"
 
+# AI Translated
 msgid "Light yellow"
-msgstr ""
+msgstr "ライトイエロー"
 
+# AI Translated
 msgid "Lemon chiffon"
-msgstr ""
+msgstr "レモンシフォン"
 
+# AI Translated
 msgid "Beige"
-msgstr ""
+msgstr "ベージュ"
 
+# AI Translated
 msgid "Light golden rod yellow"
-msgstr ""
+msgstr "ライトゴールデンロッドイエロー"
 
+# AI Translated
 msgid "Pale golden rod"
-msgstr ""
+msgstr "ペールゴールデンロッド"
 
+# AI Translated
 msgid "Khaki"
-msgstr ""
+msgstr "カーキ"
 
+# AI Translated
 msgid "Dark khaki"
-msgstr ""
+msgstr "ダークカーキ"
 
+# AI Translated
 msgid "Peach puff"
-msgstr ""
+msgstr "ピーチパフ"
 
+# AI Translated
 msgid "Moccasin"
-msgstr ""
+msgstr "モカシン"
 
+# AI Translated
 msgid "Papaya whip"
-msgstr ""
+msgstr "パパイヤホイップ"
 
+# AI Translated
 msgid "Blanched almond"
-msgstr ""
+msgstr "ブランチドアーモンド"
 
+# AI Translated
 msgid "Antique white"
-msgstr ""
+msgstr "アンティークホワイト"
 
+# AI Translated
 msgid "Navajo white"
-msgstr ""
+msgstr "ナバホホワイト"
 
+# AI Translated
 msgid "Wheat"
-msgstr ""
+msgstr "ウィート"
 
+# AI Translated
 msgid "Golden rod"
-msgstr ""
+msgstr "ゴールデンロッド"
 
+# AI Translated
 msgid "Chocolate"
-msgstr ""
+msgstr "チョコレート"
 
+# AI Translated
 msgid "Peru"
-msgstr ""
+msgstr "ペルー"
 
+# AI Translated
 msgid "Fire brick"
-msgstr ""
+msgstr "ファイアブリック"
 
+# AI Translated
 msgid "Sienna"
-msgstr ""
+msgstr "シエナ"
 
+# AI Translated
 msgid "Saddle brown"
-msgstr ""
+msgstr "サドルブラウン"
 
+# AI Translated
 msgid "Brown"
-msgstr ""
+msgstr "ブラウン"
 
+# AI Translated
 msgid "Rosy brown"
-msgstr ""
+msgstr "ロージーブラウン"
 
+# AI Translated
 msgid "Salmon"
-msgstr ""
+msgstr "サーモン"
 
+# AI Translated
 msgid "Light salmon"
-msgstr ""
+msgstr "ライトサーモン"
 
+# AI Translated
 msgid "Dark salmon"
-msgstr ""
+msgstr "ダークサーモン"
 
+# AI Translated
 msgid "Sandy brown"
-msgstr ""
+msgstr "サンディブラウン"
 
+# AI Translated
 msgid "Coral"
-msgstr ""
+msgstr "コーラル"
 
+# AI Translated
 msgid "Light coral"
-msgstr ""
+msgstr "ライトコーラル"
 
+# AI Translated
 msgid "Indian red"
-msgstr ""
+msgstr "インディアンレッド"
 
+# AI Translated
 msgid "Dark red"
-msgstr ""
+msgstr "ダークレッド"
 
+# AI Translated
 msgid "Maroon"
-msgstr ""
+msgstr "マルーン"
 
+# AI Translated
 msgid "Green yellow"
-msgstr ""
+msgstr "グリーンイエロー"
 
+# AI Translated
 msgid "Yellow green"
-msgstr ""
+msgstr "イエローグリーン"
 
+# AI Translated
 msgid "Chartreuse"
-msgstr ""
+msgstr "シャルトルーズ"
 
+# AI Translated
 msgid "Lawn green"
-msgstr ""
+msgstr "ローングリーン"
 
+# AI Translated
 msgid "Lime green"
-msgstr ""
+msgstr "ライムグリーン"
 
+# AI Translated
 msgid "Spring green"
-msgstr ""
+msgstr "スプリンググリーン"
 
+# AI Translated
 msgid "Medium spring green"
-msgstr ""
+msgstr "ミディアムスプリンググリーン"
 
+# AI Translated
 msgid "Lime"
-msgstr ""
+msgstr "ライム"
 
+# AI Translated
 msgid "Forest green"
-msgstr ""
+msgstr "フォレストグリーン"
 
+# AI Translated
 msgid "Dark green"
-msgstr ""
+msgstr "ダークグリーン"
 
+# AI Translated
 msgid "Olive drab"
-msgstr ""
+msgstr "オリーブドラブ"
 
+# AI Translated
 msgid "Olive"
-msgstr ""
+msgstr "オリーブ"
 
+# AI Translated
 msgid "Dark olive green"
-msgstr ""
+msgstr "ダークオリーブグリーン"
 
+# AI Translated
 msgid "Pale green"
-msgstr ""
+msgstr "ペールグリーン"
 
+# AI Translated
 msgid "Light green"
-msgstr ""
+msgstr "ライトグリーン"
 
+# AI Translated
 msgid "Medium sea green"
-msgstr ""
+msgstr "ミディアムシーグリーン"
 
+# AI Translated
 msgid "Sea green"
-msgstr ""
+msgstr "シーグリーン"
 
+# AI Translated
 msgid "Dark sea green"
-msgstr ""
+msgstr "ダークシーグリーン"
 
+# AI Translated
 msgid "Cadet blue"
-msgstr ""
+msgstr "カデットブルー"
 
+# AI Translated
 msgid "Medium aqua marine"
-msgstr ""
+msgstr "ミディアムアクアマリン"
 
+# AI Translated
 msgid "Turquoise"
-msgstr ""
+msgstr "ターコイズ"
 
+# AI Translated
 msgid "Medium turquoise"
-msgstr ""
+msgstr "ミディアムターコイズ"
 
+# AI Translated
 msgid "Dark turquoise"
-msgstr ""
+msgstr "ダークターコイズ"
 
+# AI Translated
 msgid "Pale turquoise"
-msgstr ""
+msgstr "ペールターコイズ"
 
+# AI Translated
 msgid "Aqua"
-msgstr ""
+msgstr "アクア"
 
+# AI Translated
 msgid "Light cyan"
-msgstr ""
+msgstr "ライトシアン"
 
+# AI Translated
 msgid "Mint cream"
-msgstr ""
+msgstr "ミントクリーム"
 
+# AI Translated
 msgid "Honey dew"
-msgstr ""
+msgstr "ハニーデュー"
 
+# AI Translated
 msgid "Aquamarine"
-msgstr ""
+msgstr "アクアマリン"
 
+# AI Translated
 msgid "Light sea green"
-msgstr ""
+msgstr "ライトシーグリーン"
 
+# AI Translated
 msgid "Dark cyan"
-msgstr ""
+msgstr "ダークシアン"
 
+# AI Translated
 msgid "Teal"
-msgstr ""
+msgstr "ティール"
 
+# AI Translated
 msgid "Dark slate gray"
-msgstr ""
+msgstr "ダークスレートグレー"
 
+# AI Translated
 msgid "Light slate gray"
-msgstr ""
+msgstr "ライトスレートグレー"
 
+# AI Translated
 msgid "Slate gray"
-msgstr ""
+msgstr "スレートグレー"
 
+# AI Translated
 msgid "Deep sky blue"
-msgstr ""
+msgstr "ディープスカイブルー"
 
+# AI Translated
 msgid "Dodger Blue"
-msgstr ""
+msgstr "ドジャーブルー"
 
+# AI Translated
 msgid "Sky blue"
-msgstr ""
+msgstr "スカイブルー"
 
+# AI Translated
 msgid "Light sky blue"
-msgstr ""
+msgstr "ライトスカイブルー"
 
+# AI Translated
 msgid "Light blue"
-msgstr ""
+msgstr "ライトブルー"
 
+# AI Translated
 msgid "Powder blue"
-msgstr ""
+msgstr "パウダーブルー"
 
+# AI Translated
 msgid "Light steel blue"
-msgstr ""
+msgstr "ライトスチールブルー"
 
+# AI Translated
 msgid "Steel blue"
-msgstr ""
+msgstr "スチールブルー"
 
+# AI Translated
 msgid "Cornflower blue"
-msgstr ""
+msgstr "コーンフラワーブルー"
 
+# AI Translated
 msgid "Royal blue"
-msgstr ""
+msgstr "ロイヤルブルー"
 
+# AI Translated
 msgid "Medium blue"
-msgstr ""
+msgstr "ミディアムブルー"
 
+# AI Translated
 msgid "Midnight blue"
-msgstr ""
+msgstr "ミッドナイトブルー"
 
+# AI Translated
 msgid "Dark blue"
-msgstr ""
+msgstr "ダークブルー"
 
+# AI Translated
 msgid "Navy"
-msgstr ""
+msgstr "ネイビー"
 
+# AI Translated
 msgid "Slate blue"
-msgstr ""
+msgstr "スレートブルー"
 
+# AI Translated
 msgid "Dark slate blue"
-msgstr ""
+msgstr "ダークスレートブルー"
 
+# AI Translated
 msgid "Medium slate blue"
-msgstr ""
+msgstr "ミディアムスレートブルー"
 
+# AI Translated
 msgid "Blue violet"
-msgstr ""
+msgstr "ブルーバイオレット"
 
+# AI Translated
 msgid "Indigo"
-msgstr ""
+msgstr "インディゴ"
 
+# AI Translated
 msgid "Dark violet"
-msgstr ""
+msgstr "ダークバイオレット"
 
+# AI Translated
 msgid "Dark orchid"
-msgstr ""
+msgstr "ダークオーキッド"
 
+# AI Translated
 msgid "Medium orchid"
-msgstr ""
+msgstr "ミディアムオーキッド"
 
+# AI Translated
 msgid "Orchid"
-msgstr ""
+msgstr "オーキッド"
 
+# AI Translated
 msgid "Violet"
-msgstr ""
+msgstr "バイオレット"
 
+# AI Translated
 msgid "Medium purple"
-msgstr ""
+msgstr "ミディアムパープル"
 
+# AI Translated
 msgid "Purple"
-msgstr ""
+msgstr "パープル"
 
+# AI Translated
 msgid "Rebecca purple"
-msgstr ""
+msgstr "レベッカパープル"
 
+# AI Translated
 msgid "Medium violet red"
-msgstr ""
+msgstr "ミディアムバイオレットレッド"
 
-msgid "PaleV violet red"
-msgstr ""
+# AI Translated
+msgid "Pale violet red"
+msgstr "ペールバイオレットレッド"
 
+# AI Translated
 msgid "Deep pink"
-msgstr ""
+msgstr "ディープピンク"
 
+# AI Translated
 msgid "Hot pink"
-msgstr ""
+msgstr "ホットピンク"
 
+# AI Translated
 msgid "Light pink"
-msgstr ""
+msgstr "ライトピンク"
 
+# AI Translated
 msgid "Pink"
-msgstr ""
+msgstr "ピンク"
 
+# AI Translated
 msgid "Plum"
-msgstr ""
+msgstr "プラム"
 
+# AI Translated
 msgid "Thistle"
-msgstr ""
+msgstr "シスル"
 
+# AI Translated
 msgid "Fuchsia"
-msgstr ""
+msgstr "フクシア"
 
+# AI Translated
 msgid "Dark magenta"
-msgstr ""
+msgstr "ダークマゼンタ"
 
+# AI Translated
 msgid "Linen"
-msgstr ""
+msgstr "リネン"
 
+# AI Translated
 msgid "Old lace"
-msgstr ""
+msgstr "オールドレース"
 
+# AI Translated
 msgid "Sea shell"
-msgstr ""
+msgstr "シーシェル"
 
+# AI Translated
 msgid "Ivory"
-msgstr ""
+msgstr "アイボリー"
 
+# AI Translated
 msgid "Floral white"
-msgstr ""
+msgstr "フローラルホワイト"
 
+# AI Translated
 msgid "Lavender blush"
-msgstr ""
+msgstr "ラベンダーブラッシュ"
 
+# AI Translated
 msgid "Ghost white"
-msgstr ""
+msgstr "ゴーストホワイト"
 
+# AI Translated
 msgid "Alice blue"
-msgstr ""
+msgstr "アリスブルー"
 
+# AI Translated
 msgid "Lavender"
-msgstr ""
+msgstr "ラベンダー"
 
+# AI Translated
 msgid "White smoke"
-msgstr ""
+msgstr "ホワイトスモーク"
 
+# AI Translated
 msgid "Gainsboro"
-msgstr ""
+msgstr "ゲインズボロ"
 
+# AI Translated
 msgid "Black"
-msgstr ""
+msgstr "ブラック"
 
+# AI Translated
 msgid "Coral fire"
-msgstr ""
+msgstr "コーラルファイア"
 
+# AI Translated
 msgid "Sea anemone"
-msgstr ""
+msgstr "シーアネモネ"
 
+# AI Translated
 msgid "Deep abyss"
-msgstr ""
+msgstr "ディープアビス"
 
+# AI Translated
 msgid "Lobster red"
-msgstr ""
+msgstr "ロブスターレッド"
 
+# AI Translated
 msgid "Sandy clay"
-msgstr ""
+msgstr "サンディクレイ"
 
+# AI Translated
 msgid "Driftwood"
-msgstr ""
+msgstr "ドリフトウッド"
 
+# AI Translated
 msgid "Sea buckthorn"
-msgstr ""
+msgstr "シーバックソーン"
 
+# AI Translated
 msgid "Sunset reef"
-msgstr ""
+msgstr "サンセットリーフ"
 
+# AI Translated
 msgid "Tiger coral"
-msgstr ""
+msgstr "タイガーコーラル"
 
+# AI Translated
 msgid "Pink coral"
-msgstr ""
+msgstr "ピンクコーラル"
 
+# AI Translated
 msgid "Seashell glow"
-msgstr ""
+msgstr "シーシェルグロウ"
 
+# AI Translated
 msgid "Sand"
-msgstr ""
+msgstr "サンド"
 
+# AI Translated
 msgid "Golden kelp"
-msgstr ""
+msgstr "ゴールデンケルプ"
 
+# AI Translated
 msgid "Sunlit dune"
-msgstr ""
+msgstr "サンリットデューン"
 
+# AI Translated
 msgid "Amber nautilus"
-msgstr ""
+msgstr "アンバーノーチラス"
 
+# AI Translated
 msgid "Sea lemon"
-msgstr ""
+msgstr "シーレモン"
 
+# AI Translated
 msgid "Pale starfish"
-msgstr ""
+msgstr "ペールスターフィッシュ"
 
+# AI Translated
 msgid "Spring tide"
-msgstr ""
+msgstr "スプリングタイド"
 
+# AI Translated
 msgid "Lime algae"
-msgstr ""
+msgstr "ライムアルジー"
 
+# AI Translated
 msgid "Sea grass"
-msgstr ""
+msgstr "シーグラス"
 
+# AI Translated
 msgid "Neon plankton"
-msgstr ""
+msgstr "ネオンプランクトン"
 
+# AI Translated
 msgid "Kelp forest"
-msgstr ""
+msgstr "ケルプフォレスト"
 
+# AI Translated
 msgid "Emerald wave"
-msgstr ""
+msgstr "エメラルドウェーブ"
 
+# AI Translated
 msgid "Whale shadow"
-msgstr ""
+msgstr "ホエールシャドウ"
 
+# AI Translated
 msgid "Sea turtle"
-msgstr ""
+msgstr "シータートル"
 
+# AI Translated
 msgid "Lagoon"
-msgstr ""
+msgstr "ラグーン"
 
+# AI Translated
 msgid "Tropical current"
-msgstr ""
+msgstr "トロピカルカレント"
 
+# AI Translated
 msgid "Midnight trench"
-msgstr ""
+msgstr "ミッドナイトトレンチ"
 
+# AI Translated
 msgid "Dark kelp"
-msgstr ""
+msgstr "ダークケルプ"
 
+# AI Translated
 msgid "Crystal surf"
-msgstr ""
+msgstr "クリスタルサーフ"
 
+# AI Translated
 msgid "Turquoise bay"
-msgstr ""
+msgstr "ターコイズベイ"
 
+# AI Translated
 msgid "Sky over reef"
-msgstr ""
+msgstr "スカイオーバーリーフ"
 
+# AI Translated
 msgid "Shallow sky"
-msgstr ""
+msgstr "シャロースカイ"
 
-msgid "Electric bel"
-msgstr ""
+# AI Translated
+msgid "Electric blue"
+msgstr "エレクトリックブルー"
 
+# AI Translated
 msgid "Dolphin"
-msgstr ""
+msgstr "ドルフィン"
 
+# AI Translated
 msgid "Ocean depths"
-msgstr ""
+msgstr "オーシャンデプス"
 
+# AI Translated
 msgid "Whale"
-msgstr ""
+msgstr "ホエール"
 
+# AI Translated
 msgid "Indigo abyss"
-msgstr ""
+msgstr "インディゴアビス"
 
+# AI Translated
 msgid "Sea urchin"
-msgstr ""
+msgstr "シーアーチン"
 
+# AI Translated
 msgid "Lavender coral"
-msgstr ""
+msgstr "ラベンダーコーラル"
 
+# AI Translated
 msgid "Violet tide"
-msgstr ""
+msgstr "バイオレットタイド"
 
+# AI Translated
 msgid "Deep sea orchid"
-msgstr ""
+msgstr "ディープシーオーキッド"
 
+# AI Translated
 msgid "Neon jelly"
-msgstr ""
+msgstr "ネオンジェリー"
 
+# AI Translated
 msgid "Fuchsia coral"
-msgstr ""
+msgstr "フクシアコーラル"
 
+# AI Translated
 msgid "Pink jellyfish"
-msgstr ""
+msgstr "ピンクジェリーフィッシュ"
 
+# AI Translated
 msgid "Foam"
-msgstr ""
+msgstr "フォーム"
 
+# AI Translated
 msgid "Seashell white"
-msgstr ""
+msgstr "シーシェルホワイト"
 
+# AI Translated
 msgid "Pebble gray"
-msgstr ""
+msgstr "ペブルグレー"
 
+# AI Translated
 msgid "Storm cloud"
-msgstr ""
+msgstr "ストームクラウド"
 
+# AI Translated
 msgid "Ink black"
-msgstr ""
+msgstr "インクブラック"
 
+# AI Translated
 msgid "Green beige"
-msgstr ""
+msgstr "グリーンベージュ"
 
+# AI Translated
 msgid "Sand yellow"
-msgstr ""
+msgstr "サンドイエロー"
 
+# AI Translated
 msgid "Signal yellow"
-msgstr ""
+msgstr "シグナルイエロー"
 
+# AI Translated
 msgid "Golden yellow"
-msgstr ""
+msgstr "ゴールデンイエロー"
 
+# AI Translated
 msgid "Honey yellow"
-msgstr ""
+msgstr "ハニーイエロー"
 
+# AI Translated
 msgid "Maize yellow"
-msgstr ""
+msgstr "メイズイエロー"
 
-msgid "Dalmatian yellow"
-msgstr ""
+# AI Translated
+msgid "Daffodil yellow"
+msgstr "ダフォディルイエロー"
 
+# AI Translated
 msgid "Brown beige"
-msgstr ""
+msgstr "ブラウンベージュ"
 
+# AI Translated
 msgid "Lemon yellow"
-msgstr ""
+msgstr "レモンイエロー"
 
+# AI Translated
 msgid "Oyster white"
-msgstr ""
+msgstr "オイスターホワイト"
 
+# AI Translated
 msgid "Light ivory"
-msgstr ""
+msgstr "ライトアイボリー"
 
+# AI Translated
 msgid "Zinc yellow"
-msgstr ""
+msgstr "ジンクイエロー"
 
+# AI Translated
 msgid "Grey beige"
-msgstr ""
+msgstr "グレーベージュ"
 
+# AI Translated
 msgid "Olive yellow"
-msgstr ""
+msgstr "オリーブイエロー"
 
+# AI Translated
 msgid "Rape yellow"
-msgstr ""
+msgstr "ナタネイエロー"
 
+# AI Translated
 msgid "Traffic yellow"
-msgstr ""
+msgstr "トラフィックイエロー"
 
+# AI Translated
 msgid "Ochre yellow"
-msgstr ""
+msgstr "オーカーイエロー"
 
+# AI Translated
 msgid "Traffic orange yellow"
-msgstr ""
+msgstr "トラフィックオレンジイエロー"
 
+# AI Translated
 msgid "Curry"
-msgstr ""
+msgstr "カレー"
 
+# AI Translated
 msgid "Melon yellow"
-msgstr ""
+msgstr "メロンイエロー"
 
+# AI Translated
 msgid "Broom yellow"
-msgstr ""
+msgstr "エニシダイエロー"
 
+# AI Translated
 msgid "Dahlia yellow"
-msgstr ""
+msgstr "ダリアイエロー"
 
+# AI Translated
 msgid "Pastel yellow"
-msgstr ""
+msgstr "パステルイエロー"
 
+# AI Translated
 msgid "Pearl beige"
-msgstr ""
+msgstr "パールベージュ"
 
+# AI Translated
 msgid "Pearl gold"
-msgstr ""
+msgstr "パールゴールド"
 
+# AI Translated
 msgid "Sun yellow"
-msgstr ""
+msgstr "サンイエロー"
 
+# AI Translated
 msgid "Yellow orange"
-msgstr ""
+msgstr "イエローオレンジ"
 
+# AI Translated
 msgid "Deep orange"
-msgstr ""
+msgstr "ディープオレンジ"
 
+# AI Translated
 msgid "Vermilion"
-msgstr ""
+msgstr "バーミリオン"
 
+# AI Translated
 msgid "Pearl orange"
-msgstr ""
+msgstr "パールオレンジ"
 
+# AI Translated
 msgid "Pure orange"
-msgstr ""
+msgstr "ピュアオレンジ"
 
+# AI Translated
 msgid "Luminous orange"
-msgstr ""
+msgstr "ルミナスオレンジ"
 
+# AI Translated
 msgid "Luminous bright orange"
-msgstr ""
+msgstr "ルミナスブライトオレンジ"
 
+# AI Translated
 msgid "Bright red orange"
-msgstr ""
+msgstr "ブライトレッドオレンジ"
 
+# AI Translated
 msgid "Traffic orange"
-msgstr ""
+msgstr "トラフィックオレンジ"
 
+# AI Translated
 msgid "Signal orange"
-msgstr ""
+msgstr "シグナルオレンジ"
 
+# AI Translated
 msgid "Salmon orange"
-msgstr ""
+msgstr "サーモンオレンジ"
 
+# AI Translated
 msgid "Pearl pink"
-msgstr ""
+msgstr "パールピンク"
 
+# AI Translated
 msgid "Copper orange"
-msgstr ""
+msgstr "カッパーオレンジ"
 
+# AI Translated
 msgid "Signal brown"
-msgstr ""
+msgstr "シグナルブラウン"
 
+# AI Translated
+# Needs human review: Source name is odd (RAL has Fir green); fir rendered as the tree.
 msgid "Fir orange"
-msgstr ""
+msgstr "モミオレンジ"
 
+# AI Translated
 msgid "Signal red"
-msgstr ""
+msgstr "シグナルレッド"
 
+# AI Translated
 msgid "Luminous red"
-msgstr ""
+msgstr "ルミナスレッド"
 
+# AI Translated
 msgid "Carmine red"
-msgstr ""
+msgstr "カーマインレッド"
 
+# AI Translated
 msgid "Pearl carmine red"
-msgstr ""
+msgstr "パールカーマインレッド"
 
+# AI Translated
 msgid "Pure red"
-msgstr ""
+msgstr "ピュアレッド"
 
+# AI Translated
 msgid "Luminous deep red"
-msgstr ""
+msgstr "ルミナスディープレッド"
 
+# AI Translated
 msgid "Currant red"
-msgstr ""
+msgstr "カラントレッド"
 
+# AI Translated
 msgid "Pearl ruby red"
-msgstr ""
+msgstr "パールルビーレッド"
 
+# AI Translated
 msgid "Fire red"
-msgstr ""
+msgstr "ファイアレッド"
 
+# AI Translated
 msgid "Ruby red"
-msgstr ""
+msgstr "ルビーレッド"
 
+# AI Translated
 msgid "Purple red"
-msgstr ""
+msgstr "パープルレッド"
 
+# AI Translated
 msgid "Wine red"
-msgstr ""
+msgstr "ワインレッド"
 
+# AI Translated
 msgid "Black red"
-msgstr ""
+msgstr "ブラックレッド"
 
+# AI Translated
 msgid "Oxide red"
-msgstr ""
+msgstr "オキサイドレッド"
 
+# AI Translated
 msgid "Brown red"
-msgstr ""
+msgstr "ブラウンレッド"
 
+# AI Translated
 msgid "Pine red"
-msgstr ""
+msgstr "パインレッド"
 
+# AI Translated
 msgid "Tomato red"
-msgstr ""
+msgstr "トマトレッド"
 
+# AI Translated
 msgid "Antique pink"
-msgstr ""
+msgstr "アンティークピンク"
 
+# AI Translated
 msgid "Coral red"
-msgstr ""
+msgstr "コーラルレッド"
 
+# AI Translated
 msgid "Rose"
-msgstr ""
+msgstr "ローズ"
 
+# AI Translated
 msgid "Strawberry red"
-msgstr ""
+msgstr "ストロベリーレッド"
 
+# AI Translated
 msgid "Traffic red"
-msgstr ""
+msgstr "トラフィックレッド"
 
+# AI Translated
 msgid "Salmon pink"
-msgstr ""
+msgstr "サーモンピンク"
 
+# AI Translated
 msgid "Luminous rose"
-msgstr ""
+msgstr "ルミナスローズ"
 
+# AI Translated
 msgid "Luminous bright red"
-msgstr ""
+msgstr "ルミナスブライトレッド"
 
+# AI Translated
 msgid "Raspberry red"
-msgstr ""
+msgstr "ラズベリーレッド"
 
+# AI Translated
 msgid "Orient red"
-msgstr ""
+msgstr "オリエントレッド"
 
+# AI Translated
 msgid "Pearl ruby"
-msgstr ""
+msgstr "パールルビー"
 
+# AI Translated
 msgid "Red purple"
-msgstr ""
+msgstr "レッドパープル"
 
+# AI Translated
 msgid "Red violet"
-msgstr ""
+msgstr "レッドバイオレット"
 
+# AI Translated
 msgid "Heather violet"
-msgstr ""
+msgstr "ヘザーバイオレット"
 
+# AI Translated
 msgid "Bordeaux violet"
-msgstr ""
+msgstr "ボルドーバイオレット"
 
+# AI Translated
 msgid "Mahogany"
-msgstr ""
+msgstr "マホガニー"
 
+# AI Translated
 msgid "Grey purple"
-msgstr ""
+msgstr "グレーパープル"
 
+# AI Translated
 msgid "Signal violet"
-msgstr ""
+msgstr "シグナルバイオレット"
 
+# AI Translated
 msgid "Fir green"
-msgstr ""
+msgstr "モミグリーン"
 
+# AI Translated
+# Needs human review: Source name unclear (Sabine); transliterated.
 msgid "Sabine grey"
-msgstr ""
+msgstr "サビーヌグレー"
 
+# AI Translated
 msgid "Pearl violet"
-msgstr ""
+msgstr "パールバイオレット"
 
+# AI Translated
 msgid "Pearl blackberry"
-msgstr ""
+msgstr "パールブラックベリー"
 
+# AI Translated
 msgid "Green blue"
-msgstr ""
+msgstr "グリーンブルー"
 
+# AI Translated
 msgid "Ultramarine blue"
-msgstr ""
+msgstr "ウルトラマリンブルー"
 
+# AI Translated
 msgid "Sapphire blue"
-msgstr ""
+msgstr "サファイアブルー"
 
+# AI Translated
 msgid "Black blue"
-msgstr ""
+msgstr "ブラックブルー"
 
+# AI Translated
 msgid "Signal blue"
-msgstr ""
+msgstr "シグナルブルー"
 
+# AI Translated
 msgid "Brilliant blue"
-msgstr ""
+msgstr "ブリリアントブルー"
 
+# AI Translated
 msgid "Grey blue"
-msgstr ""
+msgstr "グレーブルー"
 
+# AI Translated
 msgid "Azure blue"
-msgstr ""
+msgstr "アズールブルー"
 
+# AI Translated
 msgid "Gentian blue"
-msgstr ""
+msgstr "ゲンチアナブルー"
 
+# AI Translated
 msgid "Cobalt blue"
-msgstr ""
+msgstr "コバルトブルー"
 
+# AI Translated
 msgid "Pigeon blue"
-msgstr ""
+msgstr "ピジョンブルー"
 
+# AI Translated
 msgid "Traffic blue"
-msgstr ""
+msgstr "トラフィックブルー"
 
+# AI Translated
 msgid "Turquoise blue"
-msgstr ""
+msgstr "ターコイズブルー"
 
-msgid "Capsanthin violet"
-msgstr ""
+# AI Translated
+msgid "Capri blue"
+msgstr "カプリブルー"
 
+# AI Translated
 msgid "Ocean blue"
-msgstr ""
+msgstr "オーシャンブルー"
 
+# AI Translated
 msgid "Water blue"
-msgstr ""
+msgstr "ウォーターブルー"
 
+# AI Translated
 msgid "Night blue"
-msgstr ""
+msgstr "ナイトブルー"
 
+# AI Translated
 msgid "Distant blue"
-msgstr ""
+msgstr "ディスタントブルー"
 
+# AI Translated
 msgid "Pastel blue"
-msgstr ""
+msgstr "パステルブルー"
 
+# AI Translated
 msgid "Pearl gentian blue"
-msgstr ""
+msgstr "パールゲンチアナブルー"
 
+# AI Translated
 msgid "Pearl midnight blue"
-msgstr ""
+msgstr "パールミッドナイトブルー"
 
+# AI Translated
 msgid "Patina green"
-msgstr ""
+msgstr "パティナグリーン"
 
+# AI Translated
 msgid "Emerald green"
-msgstr ""
+msgstr "エメラルドグリーン"
 
+# AI Translated
 msgid "Leaf green"
-msgstr ""
+msgstr "リーフグリーン"
 
+# AI Translated
 msgid "Olive green"
-msgstr ""
+msgstr "オリーブグリーン"
 
+# AI Translated
 msgid "Blue green"
-msgstr ""
+msgstr "ブルーグリーン"
 
+# AI Translated
 msgid "Moss green"
-msgstr ""
+msgstr "モスグリーン"
 
+# AI Translated
 msgid "Grey olive"
-msgstr ""
+msgstr "グレーオリーブ"
 
+# AI Translated
 msgid "Pine green"
-msgstr ""
+msgstr "パイングリーン"
 
+# AI Translated
 msgid "Pine brown"
-msgstr ""
+msgstr "パインブラウン"
 
+# AI Translated
 msgid "Grass green"
-msgstr ""
+msgstr "グラスグリーン"
 
+# AI Translated
 msgid "Reseda green"
-msgstr ""
+msgstr "レセダグリーン"
 
+# AI Translated
 msgid "Brown green"
-msgstr ""
+msgstr "ブラウングリーン"
 
+# AI Translated
 msgid "Reed green"
-msgstr ""
+msgstr "リードグリーン"
 
+# AI Translated
 msgid "Black green"
-msgstr ""
+msgstr "ブラックグリーン"
 
+# AI Translated
 msgid "Turquoise green"
-msgstr ""
+msgstr "ターコイズグリーン"
 
+# AI Translated
 msgid "May green"
-msgstr ""
+msgstr "メイグリーン"
 
+# AI Translated
 msgid "Chrome oxide green"
-msgstr ""
+msgstr "クロムオキサイドグリーン"
 
+# AI Translated
 msgid "Traffic green"
-msgstr ""
+msgstr "トラフィックグリーン"
 
+# AI Translated
 msgid "Fern green"
-msgstr ""
+msgstr "ファーングリーン"
 
+# AI Translated
 msgid "Opal green"
-msgstr ""
+msgstr "オパールグリーン"
 
+# AI Translated
 msgid "Mint green"
-msgstr ""
+msgstr "ミントグリーン"
 
+# AI Translated
 msgid "Bronze green"
-msgstr ""
+msgstr "ブロンズグリーン"
 
+# AI Translated
 msgid "Pearl green"
-msgstr ""
+msgstr "パールグリーン"
 
+# AI Translated
 msgid "Sax turquoise"
-msgstr ""
+msgstr "サックスターコイズ"
 
+# AI Translated
 msgid "Pearl turquoise"
-msgstr ""
+msgstr "パールターコイズ"
 
+# AI Translated
 msgid "Pearl jade"
-msgstr ""
+msgstr "パールジェイド"
 
+# AI Translated
 msgid "Pure green"
-msgstr ""
+msgstr "ピュアグリーン"
 
+# AI Translated
 msgid "Luminous green"
-msgstr ""
+msgstr "ルミナスグリーン"
 
+# AI Translated
 msgid "Squirrel grey"
-msgstr ""
+msgstr "スクワレルグレー"
 
+# AI Translated
 msgid "Silver grey"
-msgstr ""
+msgstr "シルバーグレー"
 
-msgid "Olivestone"
-msgstr ""
+# AI Translated
+msgid "Olive grey"
+msgstr "オリーブグレー"
 
+# AI Translated
 msgid "Moss grey"
-msgstr ""
+msgstr "モスグレー"
 
+# AI Translated
 msgid "Signal grey"
-msgstr ""
+msgstr "シグナルグレー"
 
+# AI Translated
 msgid "Mouse grey"
-msgstr ""
+msgstr "マウスグレー"
 
+# AI Translated
 msgid "Beige grey"
-msgstr ""
+msgstr "ベージュグレー"
 
+# AI Translated
 msgid "Khaki grey"
-msgstr ""
+msgstr "カーキグレー"
 
+# AI Translated
 msgid "Green grey"
-msgstr ""
+msgstr "グリーングレー"
 
+# AI Translated
 msgid "Tarpaulin grey"
-msgstr ""
+msgstr "ターポリングレー"
 
+# AI Translated
 msgid "Iron grey"
-msgstr ""
+msgstr "アイアングレー"
 
+# AI Translated
 msgid "Basalt grey"
-msgstr ""
+msgstr "バサルトグレー"
 
+# AI Translated
 msgid "Brown grey"
-msgstr ""
+msgstr "ブラウングレー"
 
+# AI Translated
 msgid "Slate grey"
-msgstr ""
+msgstr "スレートグレー"
 
+# AI Translated
 msgid "Anthracite grey"
-msgstr ""
+msgstr "アンスラサイトグレー"
 
+# AI Translated
 msgid "Light grey"
-msgstr ""
+msgstr "ライトグレー"
 
+# AI Translated
 msgid "Umber grey"
-msgstr ""
+msgstr "アンバーグレー"
 
+# AI Translated
 msgid "Concrete grey"
-msgstr ""
+msgstr "コンクリートグレー"
 
+# AI Translated
 msgid "Graphite grey"
-msgstr ""
+msgstr "グラファイトグレー"
 
+# AI Translated
 msgid "Granite grey"
-msgstr ""
+msgstr "グラナイトグレー"
 
+# AI Translated
 msgid "Stone grey"
-msgstr ""
+msgstr "ストーングレー"
 
+# AI Translated
 msgid "Pebble grey"
-msgstr ""
+msgstr "ペブルグレー"
 
+# AI Translated
 msgid "Cement grey"
-msgstr ""
+msgstr "セメントグレー"
 
+# AI Translated
 msgid "Yellow grey"
-msgstr ""
+msgstr "イエローグレー"
 
+# AI Translated
 msgid "Platinum grey"
-msgstr ""
+msgstr "プラチナグレー"
 
+# AI Translated
 msgid "Dusty grey"
-msgstr ""
+msgstr "ダスティグレー"
 
+# AI Translated
 msgid "Agate grey"
-msgstr ""
+msgstr "アゲートグレー"
 
+# AI Translated
 msgid "Quartz grey"
-msgstr ""
+msgstr "クォーツグレー"
 
+# AI Translated
 msgid "Window grey"
-msgstr ""
+msgstr "ウィンドウグレー"
 
+# AI Translated
 msgid "Traffic grey A"
-msgstr ""
+msgstr "トラフィックグレーA"
 
+# AI Translated
 msgid "Traffic grey B"
-msgstr ""
+msgstr "トラフィックグレーB"
 
+# AI Translated
 msgid "Silk grey"
-msgstr ""
+msgstr "シルクグレー"
 
+# AI Translated
 msgid "Telegrey 1"
-msgstr ""
+msgstr "テレグレー1"
 
+# AI Translated
 msgid "Telegrey 2"
-msgstr ""
+msgstr "テレグレー2"
 
+# AI Translated
 msgid "Telegrey 4"
-msgstr ""
+msgstr "テレグレー4"
 
+# AI Translated
 msgid "Pearl mouse grey"
-msgstr ""
+msgstr "パールマウスグレー"
 
+# AI Translated
 msgid "Green brown"
-msgstr ""
+msgstr "グリーンブラウン"
 
+# AI Translated
 msgid "Ochre brown"
-msgstr ""
+msgstr "オーカーブラウン"
 
+# AI Translated
 msgid "Clay brown"
-msgstr ""
+msgstr "クレイブラウン"
 
+# AI Translated
 msgid "Copper brown"
-msgstr ""
+msgstr "カッパーブラウン"
 
+# AI Translated
 msgid "Chocolate brown"
-msgstr ""
+msgstr "チョコレートブラウン"
 
+# AI Translated
 msgid "Olive brown"
-msgstr ""
+msgstr "オリーブブラウン"
 
+# AI Translated
 msgid "Nut brown"
-msgstr ""
+msgstr "ナッツブラウン"
 
+# AI Translated
 msgid "Red brown"
-msgstr ""
+msgstr "レッドブラウン"
 
+# AI Translated
 msgid "Sepia brown"
-msgstr ""
+msgstr "セピアブラウン"
 
+# AI Translated
 msgid "Chestnut brown"
-msgstr ""
+msgstr "チェスナットブラウン"
 
+# AI Translated
 msgid "Mahogany brown"
-msgstr ""
+msgstr "マホガニーブラウン"
 
+# AI Translated
 msgid "Grey brown"
-msgstr ""
+msgstr "グレーブラウン"
 
+# AI Translated
 msgid "Pearl copper"
-msgstr ""
+msgstr "パールカッパー"
 
+# AI Translated
 msgid "Beige brown"
-msgstr ""
+msgstr "ベージュブラウン"
 
+# AI Translated
 msgid "Pearl mocha brown"
-msgstr ""
+msgstr "パールモカブラウン"
 
+# AI Translated
 msgid "Earth brown"
-msgstr ""
+msgstr "アースブラウン"
 
+# AI Translated
 msgid "Pearl brown"
-msgstr ""
+msgstr "パールブラウン"
 
+# AI Translated
 msgid "Cream"
-msgstr ""
+msgstr "クリーム"
 
+# AI Translated
 msgid "Grey white"
-msgstr ""
+msgstr "グレーホワイト"
 
+# AI Translated
 msgid "Signal white"
-msgstr ""
+msgstr "シグナルホワイト"
 
+# AI Translated
 msgid "Signal black"
-msgstr ""
+msgstr "シグナルブラック"
 
+# AI Translated
 msgid "Jet black"
-msgstr ""
+msgstr "ジェットブラック"
 
+# AI Translated
 msgid "White aluminium"
-msgstr ""
+msgstr "ホワイトアルミニウム"
 
+# AI Translated
 msgid "Grey aluminium"
-msgstr ""
+msgstr "グレーアルミニウム"
 
+# AI Translated
 msgid "Pure white"
-msgstr ""
+msgstr "ピュアホワイト"
 
+# AI Translated
 msgid "Graphite black"
-msgstr ""
+msgstr "グラファイトブラック"
 
+# AI Translated
 msgid "Traffic white"
-msgstr ""
+msgstr "トラフィックホワイト"
 
+# AI Translated
 msgid "Traffic black"
-msgstr ""
+msgstr "トラフィックブラック"
 
+# AI Translated
 msgid "Papyrus white"
-msgstr ""
+msgstr "パピルスホワイト"
 
+# AI Translated
 msgid "Pearl light grey"
-msgstr ""
+msgstr "パールライトグレー"
 
+# AI Translated
 msgid "Metal: Silver"
-msgstr ""
+msgstr "メタル: シルバー"
 
+# AI Translated
 msgid "Metal: Brass"
-msgstr ""
+msgstr "メタル: ブラス"
 
+# AI Translated
 msgid "Metal: Gold"
-msgstr ""
+msgstr "メタル: ゴールド"
 
+# AI Translated
 msgid "Metal: Copper"
-msgstr ""
+msgstr "メタル: カッパー"
 
+# AI Translated
 msgid "Metal: Bronze"
-msgstr ""
+msgstr "メタル: ブロンズ"
 
+# AI Translated
 msgid "Nature: Pearl"
-msgstr ""
+msgstr "ネイチャー: パール"
 
+# AI Translated
 msgid "Nature: Rainbow"
-msgstr ""
+msgstr "ネイチャー: レインボー"
 
+# AI Translated
 msgid "Nature: Clear Sky"
-msgstr ""
+msgstr "ネイチャー: クリアスカイ"
 
+# AI Translated
 msgid "Nature: Sunset"
-msgstr ""
+msgstr "ネイチャー: サンセット"
 
+# AI Translated
 msgid "Wood: Dark"
-msgstr ""
+msgstr "ウッド: ダーク"
 
+# AI Translated
 msgid "Wood: Medium"
-msgstr ""
+msgstr "ウッド: ミディアム"
 
+# AI Translated
 msgid "Wood: Light"
-msgstr ""
+msgstr "ウッド: ライト"
 
 # AI Translated
 msgid "Alternate nozzles:"
@@ -38978,10 +41598,6 @@ msgstr "ベッドの形状とサイズ"
 # AI Translated
 msgid "Set the shape of your printer's bed."
 msgstr "プリンターのベッドの形状を設定してください。"
-
-# AI Translated
-msgid "Invalid numeric input."
-msgstr "無効な数値入力です。"
 
 # AI Translated
 msgid "Filament and Nozzle Diameters"
@@ -39372,14 +41988,17 @@ msgstr "マイテクスチャ"
 msgid "No textures found."
 msgstr "テクスチャが見つかりません。"
 
+# AI Translated
 msgid "Texture libraries"
-msgstr ""
+msgstr "テクスチャライブラリ"
 
+# AI Translated
 msgid "Explore more texture libraries"
-msgstr ""
+msgstr "さらにテクスチャライブラリを探す"
 
+# AI Translated
 msgid "Opens OrcaCloud in the Home page to browse for plugins."
-msgstr ""
+msgstr "ホームページで OrcaCloud を開き、プラグインを探します。"
 
 # AI Translated
 msgid ""
@@ -39862,6 +42481,10 @@ msgid "Texture layers"
 msgstr "テクスチャレイヤー"
 
 # AI Translated
+msgid "Add layer"
+msgstr "レイヤーを追加"
+
+# AI Translated
 msgid ""
 "Drag onto another layer to reorder. The first layer sits on the bare "
 "surface; each one after it adds its relief on top of the ones before."
@@ -39934,11 +42557,15 @@ msgstr ""
 "ディテールが細かくなります。「タイル」がオフの場合は、1枚だけ配置されるテクス"
 "チャのサイズになります。"
 
+# AI Translated
+# Needs human review: Image caption in the tile-size tip (larger tiles); check wording.
 msgid "Larger"
-msgstr ""
+msgstr "大きい"
 
+# AI Translated
+# Needs human review: Image caption in the tile-size tip (smaller tiles); check wording.
 msgid "Smaller"
-msgstr ""
+msgstr "小さい"
 
 # AI Translated
 msgid ""
@@ -40064,11 +42691,15 @@ msgstr ""
 "焼付けで追加できる混合フィラメントの最大数です。テクスチャの色から選ばれ、焼"
 "付けで実際に使用されるものだけが作成されます。"
 
+# AI Translated
+# Needs human review: Image caption comparing few vs many mixed colors; check wording.
 msgid "Few"
-msgstr ""
+msgstr "少ない"
 
+# AI Translated
+# Needs human review: Image caption comparing few vs many mixed colors; check wording.
 msgid "Many"
-msgstr ""
+msgstr "多い"
 
 # AI Translated
 #. TRN The %2% part of "%1% printable colors %2%"; %1% is the number of filaments.
@@ -40387,16 +43018,6 @@ msgid "More settings"
 msgstr "その他の設定"
 
 # AI Translated
-#, boost-format
-msgid "All %1% layer used"
-msgid_plural "All %1% layers used"
-msgstr[0] "%1%個のレイヤーをすべて使用済み"
-
-# AI Translated
-msgid "Add layer"
-msgstr "レイヤーを追加"
-
-# AI Translated
 msgid "Subdivision"
 msgstr "細分化"
 
@@ -40582,11 +43203,15 @@ msgstr ""
 "もよく機能します。不均一なインポートモデルから均一なメッシュを作るための設定"
 "です。"
 
+# AI Translated
+# Needs human review: Image caption of the remesh comparison (before/after remeshing); check wording.
 msgid "Before"
-msgstr ""
+msgstr "適用前"
 
+# AI Translated
+# Needs human review: Image caption of the remesh comparison (before/after remeshing); check wording.
 msgid "After"
-msgstr ""
+msgstr "適用後"
 
 # AI Translated
 msgid "Keep sharp edges"
@@ -40728,30 +43353,6 @@ msgstr ""
 "応していません。"
 
 # AI Translated
-#. TRN Slider value: %d is the triangle budget in thousands
-msgid "Budget"
-msgstr "上限数"
-
-# AI Translated
-#, c-format, boost-format
-msgid "%d k (auto)"
-msgstr "%d k (自動)"
-
-# AI Translated
-msgid ""
-"How many thousand triangles this bake may spend on the area you painted. "
-"Relief already baked into the rest of the model is kept on top of it, so a "
-"second bake somewhere else gets the same budget as the first. Raise it if "
-"the warning below Resolution says the detail will not fit; 0 keeps every "
-"triangle the refinement produced, however many that is."
-msgstr ""
-"この焼付けでペイント領域に使える三角形の数 (千単位) です。モデルの他の部分に"
-"焼付け済みの起伏はこれとは別に保持されるため、別の場所での2回目の焼付けにも1"
-"回目と同じ上限数が与えられます。「分解能」の下の警告でディテールが収まらない"
-"と表示される場合は値を上げてください。0では細分化で生成された三角形をすべて保"
-"持します (数に関係なく)。"
-
-# AI Translated
 msgid "Align mesh to texture edges"
 msgstr "メッシュをテクスチャのエッジに合わせる"
 
@@ -40782,6 +43383,30 @@ msgstr ""
 "変位でサンプリングする前に、モデル自体のテッセレーションから細分化で引き継が"
 "れた細長い三角形を潰します。細長い三角形の3つの頂点はテクスチャの無関係な3か"
 "所に置かれるため、起伏がギザギザに見える原因になります。"
+
+# AI Translated
+#. TRN Slider value: %d is the triangle budget in thousands
+msgid "Budget"
+msgstr "上限数"
+
+# AI Translated
+#, c-format, boost-format
+msgid "%d k (auto)"
+msgstr "%d k (自動)"
+
+# AI Translated
+msgid ""
+"How many thousand triangles this bake may spend on the area you painted. "
+"Relief already baked into the rest of the model is kept on top of it, so a "
+"second bake somewhere else gets the same budget as the first. Raise it if "
+"the warning below Resolution says the detail will not fit; 0 keeps every "
+"triangle the refinement produced, however many that is."
+msgstr ""
+"この焼付けでペイント領域に使える三角形の数 (千単位) です。モデルの他の部分に"
+"焼付け済みの起伏はこれとは別に保持されるため、別の場所での2回目の焼付けにも1"
+"回目と同じ上限数が与えられます。「分解能」の下の警告でディテールが収まらない"
+"と表示される場合は値を上げてください。0では細分化で生成された三角形をすべて保"
+"持します (数に関係なく)。"
 
 # AI Translated
 msgid ""
@@ -42471,10 +45096,6 @@ msgid "Recently opened"
 msgstr "最近開いた項目"
 
 # AI Translated
-msgid "Open Containing Folder"
-msgstr "ファイルの場所を開く"
-
-# AI Translated
 msgid "Forward"
 msgstr "進む"
 
@@ -42620,20 +45241,6 @@ msgstr "不明な名前"
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" requests filesystem read access to:\n"
-"%s"
-msgstr ""
-"プラグイン「%s」がファイルシステムの次の場所への読み取りアクセスを要求してい"
-"ます:\n"
-"%s"
-
-# AI Translated
-msgid "Plugin permissions"
-msgstr "プラグインの権限"
-
-# AI Translated
-#, c-format, boost-format
-msgid ""
 "Plugin \"%s\" is requesting permission for the Python audit event \"%s\".\n"
 "\n"
 "This operation does not expose a target the audit hook can display."
@@ -42693,20 +45300,34 @@ msgstr[0] ""
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to make an HTTP request to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers HTTP or HTTPS access and raw network connections to the "
+"listed hosts. It does not restrict ports. A URL with a path, query or port "
+"is covered only for that exact URL."
 msgstr ""
-"プラグイン「%s」が次の宛先へのHTTPリクエストを要求しています:\n"
-"%s"
+"プラグイン「%s」が以下へのネットワークアクセスを要求しています:\n"
+"%s\n"
+"\n"
+"承認すると、一覧のホストへのHTTPまたはHTTPSアクセスと、直接のネットワーク接続"
+"が許可されます。ポートは制限されません。パス、クエリ、ポートを含むURLは、その"
+"URLに限り許可されます。"
 
 # AI Translated
 #, c-format, boost-format
 msgid ""
-"Plugin \"%s\" is requesting to open a network connection to:\n"
-"%s"
+"Plugin \"%s\" is requesting network access to:\n"
+"%s\n"
+"\n"
+"Approval covers raw network connections to the listed hosts. It does not "
+"restrict ports."
 msgstr ""
-"プラグイン「%s」が次の宛先へのネットワーク接続を要求しています:\n"
-"%s"
+"プラグイン「%s」が以下へのネットワークアクセスを要求しています:\n"
+"%s\n"
+"\n"
+"承認すると、一覧のホストへの直接のネットワーク接続が許可されます。ポートは制"
+"限されません。"
 
 # AI Translated
 #, c-format, boost-format
@@ -42744,6 +45365,10 @@ msgstr "プラグイン「%s」がPython監査イベント「%s」の許可を�
 # AI Translated
 msgid "Plugin permission request"
 msgstr "プラグインの権限リクエスト"
+
+# AI Translated
+msgid "Plugin permissions"
+msgstr "プラグインの権限"
 
 # AI Translated
 msgid "The preset stores invalid plugin capability configuration JSON."
@@ -42787,8 +45412,9 @@ msgstr "スクリプト"
 msgid "Slicing Pipeline"
 msgstr "スライスパイプライン"
 
+# AI Translated
 msgid "Resource Texture"
-msgstr ""
+msgstr "リソーステクスチャ"
 
 # AI Translated
 msgid "The plugin's configuration UI was empty. Showing the default editor."
@@ -42946,23 +45572,29 @@ msgstr "プラグインのディレクトリに.pyと.whlの両方のエント�
 msgid "Plugin directory does not contain a .py or .whl entry file"
 msgstr "プラグインのディレクトリに.pyまたは.whlのエントリファイルがありません"
 
+# AI Translated
 msgid "Resource texture directory is not set"
-msgstr ""
+msgstr "リソーステクスチャのディレクトリが設定されていません"
 
+# AI Translated
 msgid "Resource texture directory could not be resolved"
-msgstr ""
+msgstr "リソーステクスチャのディレクトリを特定できませんでした"
 
+# AI Translated
 msgid "Resource texture path is not a directory"
-msgstr ""
+msgstr "リソーステクスチャのパスがディレクトリではありません"
 
+# AI Translated
 msgid "Plugin folder could not be resolved"
-msgstr ""
+msgstr "プラグインフォルダーを特定できませんでした"
 
+# AI Translated
 msgid "Resource texture directory is outside the plugin folder"
-msgstr ""
+msgstr "リソーステクスチャのディレクトリがプラグインフォルダーの外にあります"
 
+# AI Translated
 msgid "Resource texture directory could not be read"
-msgstr ""
+msgstr "リソーステクスチャのディレクトリを読み取れませんでした"
 
 # AI Translated
 #, boost-format
@@ -43184,8 +45816,16 @@ msgstr ""
 "を使用してください。"
 
 # AI Translated
-msgid "Plugin filesystem read permission request denied"
-msgstr "プラグインのファイルシステム読み取り権限のリクエストが拒否されました"
+msgid "Python interpreter is shutting down."
+msgstr "Pythonインタープリターはシャットダウン中です。"
+
+# AI Translated
+msgid "Plugin system is shutting down."
+msgstr "プラグインシステムを終了しています。"
+
+# AI Translated
+msgid "Plugin permission request denied"
+msgstr "プラグインの権限リクエストを拒否しました"
 
 # AI Translated
 msgid "Profile has fewer than 2 points"
@@ -43445,7 +46085,7 @@ msgstr "設定ファイル「%1%」の読み込みに失敗しました: %2%"
 # AI Translated
 #. TRN %1% is the application name.
 #, boost-format
-msgid "Not a gcode file generated by %1%."
+msgid "Not a G-code file generated by %1%."
 msgstr "%1%で生成されたG-codeファイルではありません。"
 
 # AI Translated
@@ -43581,7 +46221,7 @@ msgstr ""
 "た: %2%"
 
 # AI Translated
-msgid "Post-processor can't find exported gcode file"
+msgid "Post-processor can't find exported G-code file"
 msgstr "後処理でエクスポートされたG-codeファイルが見つかりません"
 
 # AI Translated
@@ -44007,6 +46647,336 @@ msgstr ""
 "反りを避ける\n"
 "ABSのような反りやすい素材を印刷する場合、ヒートベッドの温度を適切に上げること"
 "で、反りが発生する確率を下げることができることをご存知ですか？"
+
+# AI Translated
+#~ msgid "Not valid state please report reproduction steps on github"
+#~ msgstr "無効な状態です。再現手順をGitHubで報告してください"
+
+# AI Translated
+#~ msgid "Missing svg file in embossed shape"
+#~ msgstr "エンボス形状にSVGファイルがありません"
+
+# AI Translated
+#~ msgid "Missing data of svg file"
+#~ msgstr "SVGファイルのデータがありません"
+
+#~ msgid "Mirror along the X Axis"
+#~ msgstr "反転 (X軸)"
+
+#~ msgid "Mirror along the Y Axis"
+#~ msgstr "反転 (Y軸)"
+
+#~ msgid "Mirror along the Z Axis"
+#~ msgstr "反転 (Z軸)"
+
+#~ msgid "Split the selected object"
+#~ msgstr "選択したオブジェクトを分割"
+
+#~ msgid "Subdivision mesh"
+#~ msgstr "サブディビジョンメッシュ"
+
+#~ msgid "(Lost color)"
+#~ msgstr "（色が失われました）"
+
+#~ msgid "Storage needs to be inserted before sending to printer."
+#~ msgstr "プリンターに送信する前にストレージを挿入する必要があります。"
+
+# AI Translated
+#~ msgid "Processing G-Code from previous file…"
+#~ msgstr "前のファイルのG-codeを処理中…"
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable range of the %s."
+#~ msgstr[0] ""
+#~ "フィラメント%sは%sに配置されていますが、生成されたG-codeパスが%sの印刷可能"
+#~ "範囲を超えています。"
+
+#, fuzzy, c-format, boost-format
+#~ msgid ""
+#~ "Filament %s is placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgid_plural ""
+#~ "Filaments %s are placed in the %s, but the generated G-code path exceeds "
+#~ "the printable height of the %s."
+#~ msgstr[0] ""
+#~ "フィラメント%sは%sに配置されていますが、生成されたG-codeパスが%sの印刷可能"
+#~ "高さを超えています。"
+
+# AI Translated
+#~ msgid "Measure how fast the 3D scene renders in Prepare and Preview"
+#~ msgstr "準備タブとプレビュータブで3Dシーンの描画速度を測定します"
+
+#~ msgid "Storage needs to be inserted before printing."
+#~ msgstr "印刷する前にストレージを挿入する必要があります。"
+
+#~ msgid "Storage needs to be inserted before send to printer."
+#~ msgstr "プリンターに送信する前にストレージを挿入する必要があります。"
+
+# AI Translated
+#~ msgid "Available anywhere in the window, even while typing in a text field."
+#~ msgstr ""
+#~ "テキストフィールドへの入力中も含め、ウィンドウ内のどこでも使用できます。"
+
+# AI Translated
+#~ msgid "Global shortcuts also apply while typing."
+#~ msgstr "グローバルショートカットは文字入力中も有効です。"
+
+#~ msgid ""
+#~ "Unprintable area in XY plane. For example, X1 Series printers use the "
+#~ "front left corner to cut filament during filament change. The area is "
+#~ "expressed as polygon by points in following format: \"XxY, XxY, ...\""
+#~ msgstr "XY方向の除外領域"
+
+#, no-c-format, no-boost-format
+#~ msgid ""
+#~ "Enter the shrinkage percentage that the filament will get after cooling "
+#~ "(94% if you measure 94mm instead of 100mm). The part will be scaled in XY "
+#~ "to compensate. For multi-material prints, ensure filament shrinkage "
+#~ "matches across all used filaments\n"
+#~ "Be sure to allow enough space between objects, as this compensation is "
+#~ "done after the checks."
+#~ msgstr ""
+#~ "フィラメントが冷却後に収縮する率を入力します（100mm→94mmならば94%）。この"
+#~ "収縮により、パーツはxy方向でスケーリングされて補償されます。補償は、パーツ"
+#~ "の周囲部分に使用されるフィラメントのみが考慮されます。\n"
+#~ "この補償はチェック後に行われます。オブジェクト間に十分なスペースを確保して"
+#~ "ください。"
+
+#~ msgid "Temperature drop before entering filament tower"
+#~ msgstr "フィラメントタワーに入る前に温度を下げる"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Klipper's max_accel_to_decel will be adjusted to this %% of acceleration."
+#~ msgstr "Klipperのmax_accel_to_decelが、加速度のこの%%に調整されます。"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Fuzzy skin generation mode. Works only with Arachne!\n"
+#~ "Displacement: Сlassic mode when the pattern is formed by shifting the "
+#~ "nozzle sideways from the original path.\n"
+#~ "Extrusion: The mode when the pattern formed by the amount of extruded "
+#~ "plastic. This is the fast and straight algorithm without unnecessary "
+#~ "nozzle shake that gives a smooth pattern. But it is more useful for "
+#~ "forming loose walls in the entire they array.\n"
+#~ "Combined: Joint mode [Displacement] + [Extrusion]. The appearance of the "
+#~ "walls is similar to [Displacement] Mode, but it leaves no pores between "
+#~ "the perimeters.\n"
+#~ "\n"
+#~ "Attention! The [Extrusion] and [Combined] modes works only the "
+#~ "fuzzy_skin_thickness parameter not more than the thickness of printed "
+#~ "loop. At the same time, the width of the extrusion for a particular layer "
+#~ "should also not be below a certain level. It is usually equal 15-25%% of "
+#~ "a layer height. Therefore, the maximum fuzzy skin thickness with a "
+#~ "perimeter width of 0.4 mm and a layer height of 0.2 mm will be 0.4-"
+#~ "(0.2*0.25)=±0.35mm! If you enter a higher parameter than this, the error "
+#~ "Flow::spacing() will displayed, and the model will not be sliced. You can "
+#~ "choose this number until this error is repeated."
+#~ msgstr ""
+#~ "ファジー壁面の生成モードです。Arachneでのみ動作します！\n"
+#~ "変位: ノズルを元のパスから横方向にずらすことでパターンを形成する従来のモー"
+#~ "ドです。\n"
+#~ "押出: 押し出す樹脂の量でパターンを形成するモードです。不要なノズルの振動が"
+#~ "ない高速で素直なアルゴリズムで、滑らかなパターンが得られます。ただし、壁面"
+#~ "全体をゆるく形成する用途により適しています。\n"
+#~ "複合: [変位]と[押出]を組み合わせたモードです。壁面の見た目は[変位]モードに"
+#~ "近いですが、外周同士の間に隙間が残りません。\n"
+#~ "\n"
+#~ "注意！[押出]および[複合]モードは、fuzzy_skin_thicknessパラメータが印刷され"
+#~ "るループの厚さ以下の場合にのみ動作します。同時に、特定の層における押出幅も"
+#~ "一定の水準を下回ってはいけません。通常は積層ピッチの15-25%%程度です。した"
+#~ "がって、外周幅0.4 mm、積層ピッチ0.2 mmの場合、ファジー壁面の最大厚さは0.4-"
+#~ "(0.2*0.25)=±0.35mmとなります。これより大きい値を入力するとFlow::spacing()"
+#~ "エラーが表示され、モデルはスライスされません。このエラーが出なくなるまで値"
+#~ "を調整してください。"
+
+# AI Translated
+#~ msgid ""
+#~ "Enable this to get a G-code file which has G2 and G3 moves. The fitting "
+#~ "tolerance is same as the resolution.\n"
+#~ "\n"
+#~ "Note: For Klipper machines, this option is recommended to be disabled. "
+#~ "Klipper does not benefit from arc commands as these are split again into "
+#~ "line segments by the firmware. This results in a reduction in surface "
+#~ "quality as line segments are converted to arcs by the slicer and then "
+#~ "back to line segments by the firmware."
+#~ msgstr ""
+#~ "G2およびG3の動きを含むG-codeファイルを得たい場合に有効にします。フィッティ"
+#~ "ング許容差は解像度と同じです。\n"
+#~ "\n"
+#~ "注意: Klipper機ではこのオプションを無効にすることをおすすめします。円弧コ"
+#~ "マンドはファームウェアで再び線分に分割されるため、Klipperでは利点がありま"
+#~ "せん。スライサーが線分を円弧に変換し、ファームウェアが再び線分に戻すため、"
+#~ "表面品質が低下します。"
+
+# AI Translated
+#~ msgid ""
+#~ "This option is enabled if machine support controlling chamber "
+#~ "temperature\n"
+#~ "G-code command: M141 S(0-255)"
+#~ msgstr ""
+#~ "チャンバー温度の制御に対応した機種の場合に、このオプションが有効になりま"
+#~ "す\n"
+#~ "G-codeコマンド: M141 S(0-255)"
+
+# AI Translated
+#~ msgid ""
+#~ "Enable this if printer support air filtration\n"
+#~ "G-code command: M106 P3 S(0-255)"
+#~ msgstr ""
+#~ "プリンターが空気ろ過に対応している場合に有効にします\n"
+#~ "G-codeコマンド: M106 P3 S(0-255)"
+
+#~ msgid "Enable this if printer support cooling filter"
+#~ msgstr "プリンターが冷却フィルターに対応している場合は有効にする"
+
+#~ msgid "Silent Mode"
+#~ msgstr "サイレントモード"
+
+#~ msgid ""
+#~ "Whether the machine supports silent mode in which machine uses lower "
+#~ "acceleration to print more quietly"
+#~ msgstr "サイレントモード有無"
+
+#, c-format, boost-format
+#~ msgid ""
+#~ "This detects the overhang percentage relative to line width and uses a "
+#~ "different speed to print. For 100%% overhang, bridging speed is used."
+#~ msgstr ""
+#~ "この設定により、線幅に対するオーバーハングの割合を検出し、異なる速度で造形"
+#~ "します。100%%のオーバーハングの場合、ブリッジの速度が使用されます。"
+
+# AI Translated
+#~ msgid ""
+#~ "In order to reduce the visibility of the seam in a closed loop extrusion, "
+#~ "the loop is interrupted and shortened by a specified amount.\n"
+#~ "This amount can be specified in millimeters or as a percentage of the "
+#~ "current extruder diameter. The default value for this parameter is 10%."
+#~ msgstr ""
+#~ "閉ループ押出における継ぎ目を目立たなくするため、ループを途中で止めて指定し"
+#~ "た量だけ短くします。\n"
+#~ "この量はミリメートル、または現在の押出機径に対するパーセントで指定できま"
+#~ "す。このパラメータのデフォルト値は10%です。"
+
+#~ msgid "Wipe tower volume"
+#~ msgstr "ワイプタワー体積"
+
+#~ msgid "Total filament volume extruded on the wipe tower."
+#~ msgstr "ワイプタワー上で押し出されたフィラメントの総体積。"
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the current layer. Zero-based (i.e. first layer is number 0), "
+#~ "except in extrusion role change G-code, where it is one-based."
+#~ msgstr ""
+#~ "現在の積層のインデックスです。0始まり (つまり最初の積層は0番) ですが、押出"
+#~ "ロール変更G-codeでは1始まりです。"
+
+# AI Translated
+#~ msgid "The current extruder ID. The same as current_extruder."
+#~ msgstr "現在の押出機IDです。current_extruderと同じです。"
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being unloaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "アンロード中の押出機のインデックスです。インデックスは0から始まります (最"
+#~ "初の押出機のインデックスは0)。"
+
+# AI Translated
+#~ msgid ""
+#~ "Index of the extruder that is being loaded. The index is zero based "
+#~ "(first extruder has index 0)."
+#~ msgstr ""
+#~ "ロード中の押出機のインデックスです。インデックスは0から始まります (最初の"
+#~ "押出機のインデックスは0)。"
+
+# AI Translated
+#~ msgid "The first flush volume."
+#~ msgstr "最初のフラッシュ量です。"
+
+# AI Translated
+#~ msgid "The second flush volume."
+#~ msgstr "2番目のフラッシュ量です。"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid "test %s ip resolved = %s"
+#~ msgstr "%s のテスト: IP解決 = %s"
+
+#~ msgid ""
+#~ "Please go to filament setting to edit your presets if you need.\n"
+#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
+#~ "volumetric speed has a significant impact on printing quality. Please set "
+#~ "them carefully."
+#~ msgstr ""
+#~ "必要に応じてフィラメント設定に移動し、プリセットを編集してください。ノズル"
+#~ "温度、ホットベッド温度、最大体積速度は、印刷品質に大きな影響を与えますの"
+#~ "で、慎重に設定してください。"
+
+#, c-format, boost-format
+#~ msgid "Printing %1s material with %2s nozzle may cause nozzle damage."
+#~ msgstr "%1s材料を%2sノズルで印刷するとノズルが損傷する可能性があります。"
+
+# AI Translated
+#, boost-format
+#~ msgid "All %1% layer used"
+#~ msgid_plural "All %1% layers used"
+#~ msgstr[0] "%1%個のレイヤーをすべて使用済み"
+
+# AI Translated
+#~ msgid "Open Containing Folder"
+#~ msgstr "ファイルの場所を開く"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" requests filesystem read access to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "プラグイン「%s」がファイルシステムの次の場所への読み取りアクセスを要求して"
+#~ "います:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to make an HTTP request to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "プラグイン「%s」が次の宛先へのHTTPリクエストを要求しています:\n"
+#~ "%s"
+
+# AI Translated
+#, c-format, boost-format
+#~ msgid ""
+#~ "Plugin \"%s\" is requesting to open a network connection to:\n"
+#~ "%s"
+#~ msgstr ""
+#~ "プラグイン「%s」が次の宛先へのネットワーク接続を要求しています:\n"
+#~ "%s"
+
+# AI Translated
+#~ msgid "Plugin filesystem read permission request denied"
+#~ msgstr ""
+#~ "プラグインのファイルシステム読み取り権限のリクエストが拒否されました"
+
+# AI Translated
+#, boost-format
+#~ msgid "Not a gcode file generated by %1%."
+#~ msgstr "%1%で生成されたG-codeファイルではありません。"
+
+# AI Translated
+#~ msgid "Post-processor can't find exported gcode file"
+#~ msgstr "後処理でエクスポートされたG-codeファイルが見つかりません"
 
 #~ msgid "The configuration may be generated by a newer version of OrcaSlicer."
 #~ msgstr ""
@@ -44537,17 +47507,6 @@ msgstr ""
 
 # AI Translated
 #~ msgid ""
-#~ "Please go to filament settings to edit your presets if you need to.\n"
-#~ "Please note that nozzle temperature, hot bed temperature, and maximum "
-#~ "volumetric speed each have a significant impact on printing quality. "
-#~ "Please set them carefully."
-#~ msgstr ""
-#~ "必要に応じてフィラメント設定に移動し、プリセットを編集してください。\n"
-#~ "ノズル温度、ホットベッド温度、最大体積速度は、印刷品質に大きな影響を与えま"
-#~ "すので、慎重に設定してください。"
-
-# AI Translated
-#~ msgid ""
 #~ "\n"
 #~ "\n"
 #~ "Orca has detected that your user presets synchronization function is not "
@@ -44882,20 +47841,11 @@ msgstr ""
 #~ msgid "Along X axis"
 #~ msgstr "X軸方向"
 
-#~ msgid "Mirror along the X axis"
-#~ msgstr "反転 (X軸)"
-
 #~ msgid "Along Y axis"
 #~ msgstr "Y軸方向"
 
-#~ msgid "Mirror along the Y axis"
-#~ msgstr "反転 (Y軸)"
-
 #~ msgid "Along Z axis"
 #~ msgstr "Z軸方向"
-
-#~ msgid "Mirror along the Z axis"
-#~ msgstr "反転 (Z軸)"
 
 #~ msgid "To objects"
 #~ msgstr "オブジェクトに"
