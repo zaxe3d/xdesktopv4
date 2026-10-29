@@ -3968,11 +3968,15 @@ void MainFrame::set_print_button_to_default(PrintSelectType select_type)
         update_btn1(m_print_enable);
         this->Layout();
     } else if (select_type == PrintSelectType::eExportSlicedFile) {
-        m_print_btn->SetLabel(_L("Export plate sliced file"));
+        // Zaxe: single mode button instead of upstream's m_print_btn
+        m_mode_btn->SetLabel(_L("Export plate sliced file"));
         m_print_select = eExportSlicedFile;
+        m_in_slicing_mode = false;
         if (m_print_enable)
             m_print_enable = get_enable_print_status();
-        m_print_btn->Enable(m_print_enable);
+        m_mode_btn->Enable(m_print_enable);
+        wxGetApp().plater()->sidebar().machine_manager()->enablePrintNowButton(m_print_enable);
+        update_btn1(m_print_enable);
         this->Layout();
     } else {
         // unsupport
