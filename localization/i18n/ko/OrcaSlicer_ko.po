@@ -1754,6 +1754,34 @@ msgstr "Orca Slicer에 처리되지 않은 예외가 발생했습니다: %1%"
 msgid "Untitled"
 msgstr "제목 없음"
 
+msgid ""
+"Since version 2.4.0, OrcaSlicer syncs user profiles through Orca Cloud "
+"instead of Bambu Cloud.\n"
+"\n"
+"To migrate your existing profiles, log in to Orca Cloud and they will be "
+"transferred automatically. To learn more about how OrcaSlicer stores and "
+"syncs your profiles, or to migrate your presets manually, check out our "
+"wiki.\n"
+"\n"
+"If you did not use Bambu Cloud to sync profiles, this change does not affect "
+"you and you can safely ignore this message."
+msgstr ""
+"버전 2.4.0부터 OrcaSlicer는 사용자 프로파일을 Bambu Cloud 대신 Orca Cloud를 "
+"통해 동기화합니다.\n"
+"\n"
+"기존 프로파일을 이전하려면 Orca Cloud에 로그인하세요. 자동으로 전송됩니다. "
+"OrcaSlicer가 프로파일을 저장하고 동기화하는 방식에 대해 자세히 알아보거나 사"
+"전 설정을 수동으로 이전하려면 위키를 참조하세요.\n"
+"\n"
+"프로파일 동기화에 Bambu Cloud를 사용하지 않았다면 이 변경 사항은 영향을 주지 "
+"않으므로 이 메시지를 무시해도 됩니다."
+
+msgid "Profile syncing change"
+msgstr ""
+
+msgid "Learn more"
+msgstr ""
+
 msgid "Reloading network plug-in..."
 msgstr "네트워크 플러그인 재로드 중..."
 
@@ -1784,6 +1812,14 @@ msgstr ""
 
 msgid "WebView2 Runtime"
 msgstr "WebView2 런타임"
+
+msgid ""
+"The Microsoft WebView2 Runtime could not be installed.\n"
+"Some features, including the setup wizard, may appear blank until it is "
+"installed.\n"
+"Please install it manually from https://developer.microsoft.com/microsoft-"
+"edge/webview2/ and restart Orca Slicer."
+msgstr ""
 
 #, c-format, boost-format
 msgid "Resources path does not exist or is not a directory: %s"
@@ -8716,6 +8752,16 @@ msgstr ""
 msgid "Renders cast shadows on the plate in realistic view."
 msgstr ""
 
+msgid "Smooth normals"
+msgstr ""
+
+msgid ""
+"Applies smooth normals to the realistic view.\n"
+"\n"
+"Requires manual scene reload to take effect (right-click on 3D view → "
+"\"Reload All\")."
+msgstr ""
+
 msgid "Anti-aliasing"
 msgstr ""
 
@@ -12207,6 +12253,14 @@ msgstr ""
 
 msgid "Generating skirt & brim"
 msgstr "스커트 & 브림 생성 중"
+
+msgid ""
+"Per-object skirts cannot fit between the objects in By object print "
+"sequence.\n"
+"\n"
+"Move the objects farther apart, reduce brim/skirt size, switch Skirt type to "
+"Combined, or switch Print sequence to By layer."
+msgstr ""
 
 msgid "Exporting G-code"
 msgstr "Gcode 내보내는 중"

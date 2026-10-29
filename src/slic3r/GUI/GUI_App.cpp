@@ -746,6 +746,15 @@ void GUI_App::post_init()
     if (! this->initialized())
         throw Slic3r::RuntimeError("Calling post_init() while not yet initialized");
 
+#if wxUSE_WEBVIEW_EDGE
+    // Ensure the Microsoft WebView2 runtime is installed before any WebView is
+    // created. The setup wizard and several dialogs render entirely through
+    // WebView2; without the runtime they come up blank. This runs here (not in the
+    // constructor) so that wxWidgets is fully initialized and the event loop is
+    // running, and so it precedes the first WebView creation (the setup wizard).
+    init_webview_runtime();
+#endif
+
     m_open_method = "double_click";
     bool switch_to_3d = false;
 
@@ -946,6 +955,37 @@ void GUI_App::post_init()
         });
     }
 
+    // Zaxe: Orca Cloud is not part of the XDesktop flow (rule 3.5); this Bambu Cloud -> Orca Cloud
+    // profile sync notice is not shown
+#if 0
+    // Orca: notify users upgrading from a pre-2.4.0 version that profile syncing
+    // moved from Bambu Cloud to Orca Cloud.
+    if (is_editor() && m_last_config_version && m_last_config_version->valid()
+        && *m_last_config_version < Semver(2, 4, 0)) {
+        CallAfter([] {
+            const wxString wiki_url = "https://www.orcaslicer.com/wiki/user_profiles/user_profiles.html#profiles-missing-after-updating-from-bambu-cloud";
+            MessageDialog dlg(nullptr,
+                _L("Since version 2.4.0, OrcaSlicer syncs user profiles through Orca Cloud instead of Bambu Cloud.\n\n"
+                   "To migrate your existing profiles, log in to Orca Cloud and they will be transferred automatically. "
+                   "To learn more about how OrcaSlicer stores and syncs your profiles, or to migrate your presets manually, check out our wiki.\n\n"
+                   "If you did not use Bambu Cloud to sync profiles, this change does not affect you and you can safely ignore this message."),
+                _L("Profile syncing change"),
+                wxOK,
+                "",
+                _L("Learn more"),
+                [wiki_url](const wxString &) { wxLaunchDefaultBrowser(wiki_url); });
+            // Hack: the "Learn more" link renders the message in a wxHtmlWindow whose
+            // height is underestimated for multi-paragraph text, leaving a scrollbar.
+            // The html sits in a proportion-1 sizer chain, so grow the dialog (never
+            // shrink it below its content width) to give the text enough room.
+            const wxSize sz = dlg.GetSize();
+            dlg.SetSize(std::max(sz.x, dlg.FromDIP(280)), std::max(sz.y, dlg.FromDIP(200)));
+            dlg.CenterOnParent();
+            dlg.ShowModal();
+        });
+    }
+#endif
+
     if(!m_networking_need_update && m_agent) {
         m_agent->set_on_ssdp_msg_fn(
             [this](std::string json_str) {
@@ -1036,9 +1076,10 @@ GUI_App::GUI_App()
 	//app config initializes early becasuse it is used in instance checking in OrcaSlicer.cpp
     this->init_app_config();
     this->init_download_path();
-#if wxUSE_WEBVIEW_EDGE
-    this->init_webview_runtime();
-#endif
+    // Note: the WebView2 runtime check (init_webview_runtime) used to run here, but
+    // the constructor executes before wxWidgets is fully initialized and before the
+    // event loop starts, so its modal prompt/installer could silently fail to appear.
+    // It now runs in post_init(), before the first WebView (the setup wizard) is created.
 
     reset_to_active();
 }
@@ -1122,7 +1163,7 @@ std::string GUI_App::get_plugin_url(std::string name, std::string country_code)
     std::string url = get_http_url(country_code);
 
     std::string curr_version;
-    if (NetworkAgent::use_legacy_network) {
+    if (use_legacy_network_plugin()) {
         curr_version = BAMBU_NETWORK_AGENT_VERSION_LEGACY;
     } else if (name == "plugins" && app_config) {
         std::string user_version = app_config->get_network_plugin_version();
@@ -1177,7 +1218,7 @@ int GUI_App::download_plugin(std::string name, std::string package_name, Install
     // Determine OS type for plugin download (must be set per-request since global
     // extra headers are no longer initialised on this branch).
 #if defined(__WINDOWS__)
-    std::string os_type = (is_running_on_arm64() && !NetworkAgent::use_legacy_network) ? "windows_arm" : "windows";
+    std::string os_type = (is_running_on_arm64() && !use_legacy_network_plugin()) ? "windows_arm" : "windows";
 #elif defined(__APPLE__)
     std::string os_type = "macos";
 #elif defined(__linux__)
@@ -1406,8 +1447,32 @@ int GUI_App::install_plugin(std::string name, std::string package_name, InstallP
                 boost::filesystem::create_directories(dest_path.parent_path());
                 std::string dest_zip_file = encode_path(dest_path.string().c_str());
                 try {
-                    if (fs::exists(dest_path))
-                        fs::remove(dest_path);
+                    if (fs::exists(dest_path)) {
+                        boost::system::error_code ec;
+                        fs::remove(dest_path, ec);
+                        if (ec) {
+                            // On Windows a currently-loaded DLL (e.g. BambuSource.dll, or the
+                            // networking library in legacy mode) cannot be deleted or overwritten
+                            // in place, which failed the whole install with "The plug-in file may
+                            // be in use" (issue #14373). It CAN however be renamed aside: the
+                            // running module keeps mapping the renamed file while we write the new
+                            // one. The stale ".old" copy is cleared on the next install/launch.
+                            boost::filesystem::path aside = dest_path;
+                            aside += ".old";
+                            boost::system::error_code ec2;
+                            fs::remove(aside, ec2);
+                            fs::rename(dest_path, aside, ec2);
+                            if (ec2) {
+                                close_zip_reader(&archive);
+                                BOOST_LOG_TRIVIAL(error) << "[install_plugin] cannot replace in-use file "
+                                                         << dest_path.string() << ": " << ec2.message();
+                                if (pro_fn) { pro_fn(InstallStatusUnzipFailed, 0, cancel); }
+                                return InstallStatusUnzipFailed;
+                            }
+                            BOOST_LOG_TRIVIAL(warning) << "[install_plugin] " << dest_path.filename().string()
+                                                       << " was in use, renamed aside to .old";
+                        }
+                    }
                     mz_bool res = 0;
 #ifndef WIN32
                     if (S_ISLNK(stat.m_external_attr >> 16)) {
@@ -1856,7 +1921,7 @@ bool GUI_App::check_networking_version()
     }
 
     std::string studio_ver;
-    if (NetworkAgent::use_legacy_network) {
+    if (use_legacy_network_plugin()) {
         studio_ver = BAMBU_NETWORK_AGENT_VERSION_LEGACY;
     } else if (app_config) {
         std::string user_version = app_config->get_network_plugin_version();
@@ -1876,6 +1941,11 @@ bool GUI_App::check_networking_version()
 
     m_networking_compatible = false;
     return false;
+}
+
+bool GUI_App::use_legacy_network_plugin() const
+{
+    return app_config && BBLNetworkPlugin::is_legacy_version(app_config->get_network_plugin_version());
 }
 
 bool GUI_App::is_compatibility_version()
@@ -2280,13 +2350,37 @@ void GUI_App::init_download_path()
 #if wxUSE_WEBVIEW_EDGE
 void GUI_App::init_webview_runtime()
 {
-    // Check WebView Runtime
-    if (!WebView::CheckWebViewRuntime()) {
-        int nRet = wxMessageBox(_L("XDesktop requires the Microsoft WebView2 Runtime to operate certain features.\nClick Yes to install it now."),
-                                _L("WebView2 Runtime"), wxYES_NO);
-        if (nRet == wxYES) {
-            WebView::DownloadAndInstallWebViewRuntime();
-        }
+    // Check whether the Microsoft WebView2 runtime is already present.
+    if (WebView::CheckWebViewRuntime()) {
+        BOOST_LOG_TRIVIAL(info) << "WebView2 runtime detected.";
+        return;
+    }
+
+    BOOST_LOG_TRIVIAL(warning) << "WebView2 runtime not found; prompting user to install.";
+    int nRet = wxMessageBox(_L("XDesktop requires the Microsoft WebView2 Runtime to operate certain features.\nClick Yes to install it now."),
+                            _L("WebView2 Runtime"), wxYES_NO);
+    if (nRet != wxYES) {
+        BOOST_LOG_TRIVIAL(warning) << "User declined WebView2 runtime installation.";
+        return;
+    }
+
+    // The bootstrapper auto-detects the device architecture (x64/x86/ARM64) and
+    // installs the matching runtime. The install is synchronous, and because this
+    // runs before the first WebView is created, a successful install takes effect
+    // in this same process without a restart.
+    bool installed = WebView::DownloadAndInstallWebViewRuntime();
+
+    // Re-check: the install can still fail (declined UAC elevation, no network,
+    // etc.). Without the runtime the setup wizard and other WebView dialogs render
+    // blank, so surface an explicit message rather than failing silently.
+    if (installed && WebView::CheckWebViewRuntime()) {
+        BOOST_LOG_TRIVIAL(info) << "WebView2 runtime installed successfully.";
+    } else {
+        BOOST_LOG_TRIVIAL(error) << "WebView2 runtime installation failed or still not detected.";
+        wxMessageBox(_L("The Microsoft WebView2 Runtime could not be installed.\n"
+                        "Some features, including the setup wizard, may appear blank until it is installed.\n"
+                        "Please install it manually from https://developer.microsoft.com/microsoft-edge/webview2/ and restart Orca Slicer."),
+                     _L("WebView2 Runtime"), wxOK | wxICON_WARNING);
     }
 }
 #endif
@@ -2758,31 +2852,35 @@ bool GUI_App::on_init_inner()
         //update_label_colours_from_appconfig();
     }
     if (bool new_sys_menu_enabled = app_config->get("sys_menu_enabled") == "1";
-        init_sys_menu_enabled != new_sys_menu_enabled)
+        init_sys_menu_enabled != new_sys_menu_enabled) {
 #ifdef __WINDOWS__
         NppDarkMode::SetSystemMenuForApp(new_sys_menu_enabled);
 #endif
+    }
 #endif
 
-    if (m_last_config_version) {
-        int last_major = m_last_config_version->maj();
-        int last_minor = m_last_config_version->min();
-        int last_patch = m_last_config_version->patch()/100;
-        std::string studio_ver = SLIC3R_VERSION;
-        int cur_major = atoi(studio_ver.substr(0,2).c_str());
-        int cur_minor = atoi(studio_ver.substr(3,2).c_str());
-        int cur_patch = atoi(studio_ver.substr(6,2).c_str());
-        BOOST_LOG_TRIVIAL(info) << boost::format("last app version {%1%.%2%.%3%}, current version {%4%.%5%.%6%}")
-            %last_major%last_minor%last_patch%cur_major%cur_minor%cur_patch;
-        if ((last_major != cur_major)
-            ||(last_minor != cur_minor)
-            ||(last_patch != cur_patch)) {
-            remove_old_networking_plugins();
-        }
-    }
+    // Orca: we allow user to pin the version of plugin, so we don't need to remove old networking plugins when the app version is updated
+    //
+    // if (m_last_config_version) {
+    //     int last_major = m_last_config_version->maj();
+    //     int last_minor = m_last_config_version->min();
+    //     int last_patch = m_last_config_version->patch()/100;
+    //     std::string studio_ver = SLIC3R_VERSION;
+    //     int cur_major = atoi(studio_ver.substr(0,2).c_str());
+    //     int cur_minor = atoi(studio_ver.substr(3,2).c_str());
+    //     int cur_patch = atoi(studio_ver.substr(6,2).c_str());
+    //     BOOST_LOG_TRIVIAL(info) << boost::format("last app version {%1%.%2%.%3%}, current version {%4%.%5%.%6%}")
+    //         %last_major%last_minor%last_patch%cur_major%cur_minor%cur_patch;
+    //     if ((last_major != cur_major)
+    //         ||(last_minor != cur_minor)
+    //         ||(last_patch != cur_patch)) {
+    //         remove_old_networking_plugins();
+    //     }
+    // }
 
-    if(app_config->get("version") != SLIC3R_VERSION) {
-        app_config->set("version", SLIC3R_VERSION);
+    //Orca: write OrcaSlicer version
+    if(app_config->get("version") != SoftFever_VERSION) {
+        app_config->set("version", SoftFever_VERSION);
     }
 
     // Orca: use wxWeakRef to provent wild pointer.
@@ -2948,9 +3046,8 @@ bool GUI_App::on_init_inner()
 
     // Orca: select network plugin version based on configured version string
     std::string configured_version = app_config->get_network_plugin_version();
-    NetworkAgent::use_legacy_network = (configured_version == BAMBU_NETWORK_AGENT_VERSION_LEGACY);
     BOOST_LOG_TRIVIAL(info) << "Network plugin mode: "
-        << (NetworkAgent::use_legacy_network ? ("legacy (version: " + std::string(BAMBU_NETWORK_AGENT_VERSION_LEGACY) + ")") : ("modern (version: " + configured_version + ")"));
+        << (use_legacy_network_plugin() ? ("legacy (version: " + std::string(BAMBU_NETWORK_AGENT_VERSION_LEGACY) + ")") : ("modern (version: " + configured_version + ")"));
     // Force legacy network plugin if debugger attached
     // See https://github.com/bambulab/BambuStudio/issues/6726
     /* if (!NetworkAgent::use_legacy_network) {
@@ -3229,7 +3326,7 @@ void GUI_App::copy_network_if_available()
         fs::remove(network_library);
         BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << ": Copying network library from " << network_library << " to " << network_library_dst << " successfully.";
 
-        app_config->set(SETTING_NETWORK_PLUGIN_VERSION, cached_version);
+        app_config->set_network_plugin_version(cached_version);
         app_config->save();
     }
 
@@ -3265,6 +3362,26 @@ void GUI_App::copy_network_if_available()
 
 bool GUI_App::on_init_network(bool try_backup)
 {
+    // Clean up stale ".old" files left by install_plugin() when it had to rename an in-use
+    // DLL aside (see the rename-aside path in install_plugin). This runs before the plug-in
+    // is (re)loaded - at startup nothing is mapped yet, and on a hot reload the previous
+    // module has already been unloaded - so the previously locked files can now be removed.
+    {
+        boost::filesystem::path plugin_folder = boost::filesystem::path(data_dir()) / "plugins";
+        boost::system::error_code ec;
+        if (boost::filesystem::is_directory(plugin_folder, ec)) {
+            for (boost::filesystem::directory_iterator it(plugin_folder, ec), end; !ec && it != end; it.increment(ec)) {
+                if (it->path().extension() == ".old") {
+                    boost::system::error_code rm_ec;
+                    boost::filesystem::remove(it->path(), rm_ec);
+                    if (rm_ec)
+                        BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << ": could not remove stale " << it->path().filename().string()
+                                                << " (" << rm_ec.message() << "), will retry next launch";
+                }
+            }
+        }
+    }
+
     auto should_load_networking_plugin = app_config->get_bool("installed_networking");
 
     std::string config_version = app_config->get_network_plugin_version();
@@ -3294,7 +3411,7 @@ bool GUI_App::on_init_network(bool try_backup)
                 if (config_base != loaded_version) {
                     BOOST_LOG_TRIVIAL(info) << __FUNCTION__ << ": syncing config version from " << config_version << " to loaded "
                                             << loaded_version;
-                    app_config->set(SETTING_NETWORK_PLUGIN_VERSION, loaded_version);
+                    app_config->set_network_plugin_version(loaded_version);
                     app_config->save();
                 }
             }
@@ -3420,7 +3537,7 @@ bool GUI_App::on_init_network(bool try_backup)
             m_user_manager = new Slic3r::UserManager();
     }
 
-    if (should_load_networking_plugin && m_networking_compatible && !NetworkAgent::use_legacy_network) {
+    if (should_load_networking_plugin && m_networking_compatible && !use_legacy_network_plugin()) {
         app_config->clear_remind_network_update_later();
 
         if (has_network_update_available()) {
@@ -4974,21 +5091,28 @@ void GUI_App::on_http_error(wxCommandEvent &evt)
         if (plater != nullptr && wxGetApp().imgui()->display_initialized()) {
             std::string text;
 
+            // Name the specific preset in the header so the user knows which one conflicts.
+            // The agent injects the local preset name into every 409 conflict body, so this is
+            // normally populated; fall back to a generic header if it is somehow missing.
+            const std::string header = conflict_preset_name.empty()
+                ? _u8L("Cloud sync conflict:")
+                : format(_u8L("Cloud sync conflict for preset \"%s\":"), conflict_preset_name);
+
             switch (conflict_code) {
             case -1:
-                text = _u8L("Cloud sync conflict: this preset has a newer version in OrcaCloud.\n"
+                text = header + " " + _u8L("This preset has a newer version in OrcaCloud.\n"
                             "Pull downloads the cloud copy. Force push overwrites it with your local preset.");
                 break;
             case -2:
-                text = _u8L("Cloud sync conflict: a preset with this name already exists in OrcaCloud.\n"
+                text = header + " " + _u8L("A preset with this name already exists in OrcaCloud.\n"
                             "Pull downloads the cloud copy. Force push overwrites it with your local preset.");
                 break;
             case -3:
-                text = _u8L("Cloud sync conflict: a preset with the same name was previously deleted from the cloud.\n"
+                text = header + " " + _u8L("A preset with the same name was previously deleted from the cloud.\n"
                             "Delete will delete your local preset. Force push overwrites it with your local preset.");
                 break;
             default:
-                text = _u8L("Cloud sync conflict: there was an unexpected or unidentified preset conflict.\n"
+                text = header + " " + _u8L("There was an unexpected or unidentified preset conflict.\n"
                             "Pull downloads the cloud copy. Force push overwrites it with your local preset.");
                 break;
             };
@@ -5007,10 +5131,12 @@ void GUI_App::on_http_error(wxCommandEvent &evt)
                 [this, conflict_setting_id, conflict_preset_name, conflict_user_id](wxEvtHandler*) {
                     if (mainframe == nullptr)
                         return false;
-                    MessageDialog
-                        dlg(mainframe,
-                            _L("Force push will overwrite the cloud copy with your local preset changes.\nDo you want to continue?"),
-                            _L("Resolve cloud sync conflict"), wxCENTER | wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
+                    const wxString confirm_msg = conflict_preset_name.empty()
+                        ? _L("Force push will overwrite the cloud copy with your local preset changes.\nDo you want to continue?")
+                        : format_wxstr(_L("Force push will overwrite the cloud copy of preset \"%s\" with your local changes.\nDo you want to continue?"),
+                                       conflict_preset_name);
+                    MessageDialog dlg(mainframe, confirm_msg, _L("Resolve cloud sync conflict"),
+                                      wxCENTER | wxYES_NO | wxNO_DEFAULT | wxICON_WARNING);
                     if (dlg.ShowModal() != wxID_YES)
                         return false;
 
@@ -6278,8 +6404,11 @@ bool GUI_App::maybe_migrate_user_presets_on_login()
 
 bool GUI_App::check_preset_parent_available(const std::pair<std::string, std::map<std::string, std::string>>& preset_data)
 {
-    std::string inherits_name = preset_data.second.at(BBL_JSON_KEY_INHERITS);
-    // // If contains "fdm_", "@System", and "@base", is a common base template that doesn't need to be installed
+    auto it = preset_data.second.find(BBL_JSON_KEY_INHERITS);
+    if (it == preset_data.second.end() || it->second.empty())
+        return true;
+    const std::string& inherits_name = it->second;
+    // If contains "fdm_", "@System", and "@base", is a common base template that doesn't need to be installed
     if (inherits_name.find("fdm_") != std::string::npos || inherits_name.find("@System") != std::string::npos || inherits_name.find("@base") != std::string::npos)
         return true;
 
@@ -6471,14 +6600,14 @@ void GUI_App::sync_preset(Preset* preset, bool force)
         result = 0; // Set to 0 so the sync_info gets saved below
 
         // Show user notification
-        CallAfter([this] {
+        CallAfter([this, name = preset->name] {
             static bool size_limit_dialog_notified = false;
             if (size_limit_dialog_notified)
                 return;
             size_limit_dialog_notified = true;
             if (mainframe == nullptr)
                 return;
-            auto msg = _L("The preset content is too large to sync to the cloud (exceeds 1MB). Please reduce the preset size by removing custom configurations or use it locally only.");
+            auto msg = format_wxstr(_L("The preset \"%s\" is too large to sync to the cloud (exceeds 1MB). Please reduce the preset size by removing custom configurations or use it locally only."), name);
             MessageDialog(mainframe, msg, _L("Sync user presets"), wxICON_WARNING | wxOK).ShowModal();
         });
         // NOTE: Don't return here - let execution continue to save the sync_info
