@@ -879,7 +879,9 @@ void make_brim(const Print& print, PrintTryCancel try_cancel, Polygons& islands_
     std::map<ObjectID, ExtrusionEntityCollection>& brimMap,
     std::map<ObjectID, ExtrusionEntityCollection>& supportBrimMap,
     std::vector<std::pair<ObjectID, unsigned int>> &objPrintVec,
-    std::vector<unsigned int>& printExtruders)
+    std::vector<unsigned int>& printExtruders,
+    std::map<ObjectID, ExPolygons>* objectBrimAreasOut,
+    std::map<ObjectID, ExPolygons>* supportBrimAreasOut)
 {
     std::map<ObjectID, double> brim_width_map;
     std::map<ObjectID, ExPolygons> brimAreaMap;
@@ -928,16 +930,76 @@ void make_brim(const Print& print, PrintTryCancel try_cancel, Polygons& islands_
     for (size_t iia = 0; iia < islands_area.size(); ++iia)
         islands_area[iia].translate(plate_shift);
 
-    for (auto iter = brimAreaMap.begin(); iter != brimAreaMap.end(); ++iter) {
-        if (!iter->second.empty()) {
-            brimMap.insert(std::make_pair(iter->first, makeBrimInfill(iter->second, print, islands_area)));
-        };
-    }
-    for (auto iter = supportBrimAreaMap.begin(); iter != supportBrimAreaMap.end(); ++iter) {
-        if (!iter->second.empty()) {
-            supportBrimMap.insert(std::make_pair(iter->first, makeBrimInfill(iter->second, print, islands_area)));
-        };
+    // Orca: keep translated brim footprints for skirt grouping.
+    auto translate_area_map = [plate_shift](const std::map<ObjectID, ExPolygons>& src) {
+        std::map<ObjectID, ExPolygons> dst = src;
+        for (auto& [_, areas] : dst)
+            for (ExPolygon& area : areas)
+                area.translate(plate_shift);
+        return dst;
+    };
+    if (objectBrimAreasOut != nullptr)
+        *objectBrimAreasOut = translate_area_map(brimAreaMap);
+    if (supportBrimAreasOut != nullptr)
+        *supportBrimAreasOut = translate_area_map(supportBrimAreaMap);
+
+    const bool combine_brims     = print.config().combine_brims.value;
+    const bool is_by_object      = (print.config().print_sequence == PrintSequence::ByObject);
+    const bool can_combine_brims = combine_brims && !is_by_object;
+
+    if (!can_combine_brims) {
+        // Orca: Generate brims separately when brims cannot be combined.
+        for (auto iter = brimAreaMap.begin(); iter != brimAreaMap.end(); ++iter) {
+            if (!iter->second.empty()) {
+                brimMap.insert(std::make_pair(iter->first, makeBrimInfill(iter->second, print, islands_area)));
+            };
+        }
+        for (auto iter = supportBrimAreaMap.begin(); iter != supportBrimAreaMap.end(); ++iter) {
+            if (!iter->second.empty()) {
+                supportBrimMap.insert(std::make_pair(iter->first, makeBrimInfill(iter->second, print, islands_area)));
+            };
+        }
+    } else {
+        // Orca: Unified brim mode (non-sequential printing)
+        ExPolygons            all_brims_merged;
+        std::vector<ObjectID> brim_object_ids;
+
+        // Add all object brims
+        for (auto& [obj_id, brims] : brimAreaMap) {
+            if (!brims.empty()) {
+                expolygons_append(all_brims_merged, brims);
+                brim_object_ids.push_back(obj_id);
+            }
+        }
+
+        if (!all_brims_merged.empty()) {
+            // Merge all brims into a single continuous area
+            all_brims_merged = union_ex(all_brims_merged);
+
+            // Apply a tiny morphological cleanup to reduce boolean-union micro-artifacts.
+            const float brim_cleanup_delta = std::max(float(scaled_resolution), float(SCALED_EPSILON));
+            all_brims_merged = offset2_ex(all_brims_merged, brim_cleanup_delta, -brim_cleanup_delta, jtRound, scaled_resolution);
+
+            // Generate infill once for the merged brim area.
+            ExtrusionEntityCollection merged_brim = makeBrimInfill(all_brims_merged, print, islands_area);
+
+            // In unified mode, assign the merged brim to a deterministic carrier object.
+            // Pick the first object in print order that actually contributed brim area.
+            ObjectID carrier_id;
+            bool     carrier_found = false;
+            for (const auto& [obj_id, _extruder] : objPrintVec) {
+                if (std::find(brim_object_ids.begin(), brim_object_ids.end(), obj_id) != brim_object_ids.end()) {
+                    carrier_id    = obj_id;
+                    carrier_found = true;
+                    break;
+                }
+            }
+
+            if (!carrier_found)
+                carrier_id = brim_object_ids.front();
+
+            brimMap[carrier_id] = std::move(merged_brim);
+        }
     }
 }
-
 } // namespace Slic3r

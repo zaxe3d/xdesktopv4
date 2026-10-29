@@ -209,7 +209,7 @@ bool DesktopIntegrationDialog::is_integrated()
     if (path.empty())
         return false;
 
-    // confirmation that OrcaSlicer.desktop exists
+    // confirmation that com.orcaslicer.OrcaSlicer.desktop exists
     struct stat buffer;   
     return (stat (path.c_str(), &buffer) == 0);
 }
@@ -336,6 +336,8 @@ void DesktopIntegrationDialog::perform_desktop_integration()
                 "Exec=\"%3%\" %%F\n"
                 "Terminal=false\n"
                 "Type=Application\n"
+                "PrefersNonDefaultGPU=true\n"
+                "X-KDE-RunOnDiscreteGpu=true\n"
                 "MimeType=model/stl;application/vnd.ms-3mfdocument;application/prs.wavefront-obj;application/x-amf;\n"
                 "Categories=Graphics;3DGraphics;Engineering;\n"
                 "Keywords=3D;Printing;Slicer;slice;3D;printer;convert;gcode;stl;obj;amf;SLA\n"
@@ -405,6 +407,8 @@ void DesktopIntegrationDialog::perform_desktop_integration()
             "Exec=\"%3%\" --gcodeviewer %%F\n"
             "Terminal=false\n"
             "Type=Application\n"
+            "PrefersNonDefaultGPU=true\n"
+            "X-KDE-RunOnDiscreteGpu=true\n"
             "MimeType=text/x.gcode;\n"
             "Categories=Graphics;3DGraphics;\n"
             "Keywords=3D;Printing;Slicer;\n"

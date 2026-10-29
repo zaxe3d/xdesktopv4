@@ -31,6 +31,8 @@
 #include "GUI_Utils.hpp"
 #include "Widgets/Button.hpp"
 
+class ModeSwitchButton;
+class ZaxeModeSwitch;
 class SwitchButton;
 class StaticBox;
 
@@ -86,7 +88,7 @@ class ParamsPanel : public wxPanel
         bool m_tips_arror_blink{false};
         ScalableButton* m_mode_icon { nullptr }; // ORCA
         wxStaticText* m_title_view { nullptr }; // Zaxe: "Advance" label kept next to m_mode_view
-        SwitchButton* m_mode_view { nullptr };
+        ZaxeModeSwitch* m_mode_view { nullptr }; // Zaxe: instead of upstream's ModeSwitchButton
         //wxBitmapButton* m_search_button { nullptr };
         wxStaticLine* m_staticline_print { nullptr };
         //wxBoxSizer* m_print_sizer { nullptr };
