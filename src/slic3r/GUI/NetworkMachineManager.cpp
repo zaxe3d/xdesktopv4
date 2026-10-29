@@ -4,6 +4,7 @@
 #include "I18N.hpp"
 #include "libslic3r/Utils.hpp"
 #include "ZaxeDevice.hpp"
+#include "PartPlate.hpp"
 #include "NotificationManager.hpp"
 #include "../Utils/ASCIIFolding.hpp"
 

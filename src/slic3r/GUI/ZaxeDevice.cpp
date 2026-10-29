@@ -5,6 +5,7 @@
 
 #include "MsgDialog.hpp"
 #include "Plater.hpp"
+#include "PartPlate.hpp"
 #include "GUI_App.hpp"
 #include "NotificationManager.hpp"
 
