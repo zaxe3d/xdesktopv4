@@ -1554,7 +1554,8 @@ void PreferencesDialog::create_items()
     auto item_token_storage    = create_item_checkbox(_L("Use encrypted file for token storage"),
                                                       _L("Store authentication tokens in an encrypted file instead of the system keychain. (Requires restart)"),
                                                       SETTING_USE_ENCRYPTED_TOKEN_FILE);
-    g_sizer->Add(item_token_storage);
+    // Zaxe: Orca Cloud token storage is not part of the XDesktop flow; created but not shown
+    item_token_storage->ShowItems(false);
 
     //// ONLINE > Filament Sync Options
     // Zaxe: not part of the XDesktop flow (Bambu network plug-in / AMS); created but not shown
