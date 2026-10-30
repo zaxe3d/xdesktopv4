@@ -24,6 +24,7 @@
 #include <mutex>
 #include <unordered_map>
 #include <ostream>
+#include <regex>
 #include <utility>
 #include <stdexcept>
 #include <boost/format.hpp>

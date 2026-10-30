@@ -7,6 +7,7 @@
 #include "PartPlate.hpp"
 #include "NotificationManager.hpp"
 #include "../Utils/ASCIIFolding.hpp"
+#include <regex>
 
 namespace Slic3r::GUI {
 
